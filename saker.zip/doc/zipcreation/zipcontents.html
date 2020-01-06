@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ZIP contents&nbsp;|&nbsp;saker.zip</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+	
+	<link rel="stylesheet" href="../../../res/bootstrap.min.css" >
+	<link rel="stylesheet" href="../../../res/doc-saker.css" >
+</head>
+<body data-nav-location="packagedoc" data-subdoc-presence="nest-package packagedoc javadoc taskdoc">
+<div class="doc-nav-bar">
+	<div class="container">
+		<a class="home-link" href="../../index.html" title="saker.zip"><img style="height: 2.5em;" class="logo" src="../../../res/logo.svg"/><span class="page-name">saker.zip</span></a>
+		<a class="nav-location-item" data-nav-location="doc-docs" href="../../doc/index.html" title="Documentation">Documentation</a>
+		<a class="nav-location-item" data-nav-location="doc-taskdoc" href="../../taskdoc/index.html" title="Build task documentation">TaskDoc</a>
+		<a class="nav-location-item" data-nav-location="doc-javadoc" href="../../javadoc/index.html"title="Java API documentation">JavaDoc</a>
+	</div>
+</div>
+<div class="container page-contents packagedoc">
+	<div class="row">
+		<div class="col-12 col-lg-3 col-xl-2 p-lg-0">
+			<div class="doc-navigation-container">
+				<label class="d-lg-none nav-collapse" for="doc-collapse-nav-label">
+					<svg style="height: 1.5em;" viewBox="0 0 24 24">
+					    <path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+					</svg>
+					Navigation
+				</label>
+				<input style="display:none;" id="doc-collapse-nav-label" type="checkbox"/> 
+				<div class="doc-nav">  <div class="doc-section">    <p class="section-title">Package details</p><ul><li><a class="doc-nav-section-link" href="../index.html" title="Overview">Overview</a></li><li><a class="doc-nav-section-link" href="../gettingstarted.html" title="Getting started">Getting started</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">ZIP creation</p><ul><li><a class="doc-nav-section-link" href="index.html" title="Basics">Basics</a></li><li class="doc-active doc-active-parent"><a class="doc-nav-section-link" href="zipcontents.html" title="ZIP contents">ZIP contents</a></li><li><a class="doc-nav-section-link" href="transformers.html" title="Resource transformers">Resource transformers</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Examples</p><ul><li><a class="doc-nav-section-link" href="../examples/index.html" title="Overview">Overview</a></li><li><a class="doc-nav-section-link" href="../examples/outputlocation.html" title="Output location">Output location</a></li><li><a class="doc-nav-section-link" href="../examples/addfiles.html" title="Add files">Add files</a></li><li><a class="doc-nav-section-link" href="../examples/adddirectory.html" title="Add directory tree">Add directory tree</a></li><li><a class="doc-nav-section-link" href="../examples/includearchive.html" title="Include archive">Include archive</a></li></ul>  </div></div>
+			</div>
+		</div>
+		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="sb-sponsors" style="display: none;">
+	<span class="sb-sponsors-title">Sponsors</span>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4 col-12">
+				<a class="sb-sponsors-link"></a>
+			</div>
+			<div class="col-md-4 col-12">
+				<a class="sb-sponsors-link"></a>
+			</div>
+			<div class="col-md-4 col-12">
+				<a class="sb-sponsors-link"></a>
+			</div>
+		</div>
+	</div>
+</div>
+			<div class="doc-content"><h1 id="zip-contents">ZIP contents<a class="doc-heading-anchor" href="#zip-contents"></a></h1>
+<p>To specify the archive contents you have two possibilities:</p>
+<ul>
+<li>Specify the files that should part of the archive. (<code>Resources</code> parameter)</li>
+<li>Include entries from other ZIP archives. (<code>Include</code> parameter)</li>
+</ul>
+<h2 id="resources"><code>Resources</code><a class="doc-heading-anchor" href="#resources"></a></h2>
+<p>The <code>Resources</code> parameter of the <a href="../../taskdoc/saker.zip.create.html"><code>saker.zip.create()</code></a> task can be used to specify files to be directly added to the archive, or to add files under a given subdirectory.</p>
+<p>In both cases, you can control the archive location of the added files using the <code>TargetDirectory</code> property.</p>
+<p>All of the files which are added using the <code>Resources</code> parameter will have the same modification time set for them, which equals to the <code>ModificationTime</code> parameter. (Or the epoch 1970-01-01T00:00:00Z if unspecified.)</p>
+<h3 id="adding-files">Adding files<a class="doc-heading-anchor" href="#adding-files"></a></h3>
+<p>When adding files to the archive, the files will be placed in the root of the created archive with the same name as the added file. If the <code>TargetDirectory</code> property is specified, they will be placed under that directory path.</p>
+<pre><code class="language-sakerscript"><span class="a"><a href="../../../saker.zip/taskdoc/saker.zip.create.html" title="Task: saker.zip.create()">saker.zip.create</a>(</span>
+	<span class="c">Resources</span>: <span class="e">[</span>
+		<span class="b">input.txt</span><span class="e">,</span>
+		<span class="e">{</span>
+			<span class="f">Files</span>: <span class="e">[</span>
+				<span class="b">libfoo.so</span><span class="e">,</span>
+				<span class="b">libbar.so</span><span class="e">
+			],</span>
+			<span class="f">TargetDirectory</span>: <span class="b">lib</span><span class="e">
+		}
+	]</span>
+<span class="a">)</span>
+</code></pre>
+<p>In the above example, the created ZIP archive will have the following files in it:</p>
+<pre><code class="language-plaintext">input.txt
+lib/libfoo.so
+lib/libbar.so
+</code></pre>
+<h3 id="adding-directory-contents">Adding directory contents<a class="doc-heading-anchor" href="#adding-directory-contents"></a></h3>
+<p>You can specify a directory and its subtree to be added to the created archive. This is a common use-case, as developers often store their to-be-archived resources in a single folder for easier management. To add a directory and its contents to the archive, use the following:</p>
+<pre><code class="language-sakerscript"><span class="a"><a href="../../../saker.zip/taskdoc/saker.zip.create.html" title="Task: saker.zip.create()">saker.zip.create</a>(</span>
+	<span class="c">Resources</span>: <span class="e">{</span>
+		<span class="f">Directory</span>: <span class="b">res</span><span class="e">,</span>
+		<span class="f">Resources</span>: <span class="b">**</span><span class="e">
+	}</span>
+<span class="a">)</span>
+</code></pre>
+<p>The <code>Directory</code> property specifies the path to the directory that should be added to the archive, while the <code>Resources</code> property specifies a wildcard pattern that selects the files to be added. The created archive will contain all files that is in the subtree of the <code>res</code> directory. The archive paths of the files are relativized against the <code>res</code> directory path.</p>
+<p>You can also specify the <code>TargetDirectory</code> property alongside the <code>Directory</code> and <code>Resources</code>, that will cause the files to be placed under the specified directory path.</p>
+<h2 id="include"><code>Include</code><a class="doc-heading-anchor" href="#include"></a></h2>
+<p>The <code>Include</code> parameter of the <a href="../../taskdoc/saker.zip.create.html"><code>saker.zip.create()</code></a> tasks allows you to include entries from other ZIP archives. You can specify the resources to be included using wildcard patterns, and can set a target directory under which they should be placed.</p>
+<pre><code class="language-sakerscript"><span class="a"><a href="../../../saker.zip/taskdoc/saker.zip.create.html" title="Task: saker.zip.create()">saker.zip.create</a>(</span>
+	<span class="c">Include</span>: <span class="e">[</span>
+		<span class="b">resources.zip</span><span class="e">,</span>
+		<span class="e">{</span>
+			<span class="f">Archive</span>: <span class="b">input.zip</span><span class="e">,</span>
+			<span class="f">Resources</span>: <span class="b">**/*.txt</span><span class="e">,</span>
+			<span class="f">TargetDirectory</span>: <span class="b">input_res</span><span class="e">
+		}
+	]</span>
+<span class="a">)</span>
+</code></pre>
+<p>The above example will include <em>all</em> entries from the <code>resources.zip</code> in the created archive, and will include all <code>txt</code> files from the <code>input.zip</code> archive. The <code>txt</code> files will be placed under the <code>input_res</code> path for the created archive. The <code>input_res</code> target directory is prepended to the entry paths, the <code>txt</code> files are placed with respect to their original archive paths.</p>
+<p>The modification time of the included entries are <em>preserved</em>. The <code>ModificationTime</code> parameter of the task doesn't override the modification time from the included entries.</p>
+<link href="../../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>
+			<div class="end-section-links">
+				<div class="end-section-prev">
+					<a class="doc-prev-section" href="../../doc/zipcreation/index.html" title="Basics"><svg class="doc-section-arrow" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" />
+</svg>Basics</a>
+				</div>
+				<div class="end-section-next">
+					<a class="doc-next-section" href="../../doc/zipcreation/transformers.html" title="Resource transformers">Resource transformers<svg class="doc-section-arrow" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z" />
+</svg></a>
+				</div>
+			</div>
+			<div class="doc-headings-nav">  <ul>    <li><a href="#zip-contents" title="ZIP contents">ZIP contents</a>      <ul>        <li><a href="#resources" title="Resources">Resources</a>          <ul>            <li><a href="#adding-files" title="Adding files">Adding files</a>            </li>            <li><a href="#adding-directory-contents" title="Adding directory contents">Adding directory contents</a>            </li>          </ul>        </li>        <li><a href="#include" title="Include">Include</a>        </li>      </ul>    </li>  </ul></div>
+		</div>
+	</div>
+</div>
+<div class="doc-footer">
+	<div class="container">
+		<div class="row">
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">About</p>
+				<div><a href="/index.html" title="Saker.build home page">Home</a></div>
+				<div data-footer-location="doc-docs"><a href="../../index.html" title="saker.zip documentation home">Documentation home</a></div>
+				<div><a href="../../../saker.build/index.html" title="Information about the saker.build system">saker.build system</a></div>
+				<div><a href="../../../saker.nest/index.html" title="Information about the saker.nest repository">saker.nest repository</a></div>
+				<div><a href="/contact.html" title="Contact us">Contact</a></div>
+			</div>
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">Resources</p>
+				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.zip documentation home">Documentation</a></div>
+				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.zip">JavaDoc</a></div>
+				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.zip">TaskDoc</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.zip" title="saker.zip | saker.nest">saker.nest package page</a></div>
+				<div><a href="https://github.com/sakerbuild/saker.zip" title="saker.zip on GitHub">GitHub</a></div>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col">
+			&copy; Bence Sipka 2020
+			</div>
+		</div>
+	</div>
+</div>
+
+<link rel="stylesheet" href="../../../res/hljs.css"><script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js" integrity="sha256-js+I1fdbke/DJrW2qXQlrw7VUEqmdeFeOW37UC0bEiU=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.13.1/build/languages/plaintext.min.js"></script>
+<script>
+if(window.hasOwnProperty("hljs")){
+	hljs.configure({
+	  languages: []
+	});
+	hljs.initHighlightingOnLoad();
+}
+</script>
+
+</body>
+</html>

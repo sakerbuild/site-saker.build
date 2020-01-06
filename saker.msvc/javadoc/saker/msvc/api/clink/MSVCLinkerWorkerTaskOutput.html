@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>MSVCLinkerWorkerTaskOutput</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+	
+	<link rel="stylesheet" type="text/css" href="../../../../../../res/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../../../../../../res/doc-saker.css">
+	
+</head>
+<body data-nav-location="javadoc" data-subdoc-presence="nest-package packagedoc taskdoc javadoc">
+<div class="doc-nav-bar">
+	<div class="container">
+		<a class="home-link" href="../../../../../index.html" title="saker.msvc"><img style="height: 2.5em;" class="logo" src="../../../../../../res/logo.svg"/><span class="page-name">saker.msvc</span></a>
+		<a class="nav-location-item" data-nav-location="doc-docs" href="../../../../../doc/index.html" title="Documentation">Documentation</a>
+		<a class="nav-location-item" data-nav-location="doc-taskdoc" href="../../../../../taskdoc/index.html" title="Build task documentation">TaskDoc</a>
+		<a class="nav-location-item" data-nav-location="doc-javadoc" href="../../../../../javadoc/index.html"title="Java API documentation">JavaDoc</a>
+	</div>
+</div>
+<nav class="javadoc-nav" data-nav-location="MSVCLinkerWorkerTaskOutput">
+	<div class="container">
+		<span class="javadoc-nav-title">JavaDoc</span>
+		<a class="nav-location-item" data-nav-location="javadoc-packages" href="../../../../index.html" title="Package index">Packages</a>
+		<a class="nav-location-item" data-nav-location="javadoc-all-classes" href="../../../../all-classes.html" title="All classes">All classes</a>
+		<a class="nav-location-item" data-nav-location="javadoc-constants" href="../../../../constants.html" title="All constants">Constants</a>
+	</div>
+</nav>
+<div class="container page-contents javadoc">
+	<div class="javadoc-content">
+	<div class="javadoc-class-header"><div class="javadoc-class-header-pkg"><span class="javadoc-code-ref"><span class="javadoc-kw">package</span> <a href="index.html" title="saker.msvc.api.clink" data-javadoc-kind="package">saker.msvc.api.clink</a></span></div><div class="javadoc-class-header-class"><span class="javadoc-kw">public interface </span><span class="javadoc-class-header-name">MSVCLinkerWorkerTaskOutput</span></div></div><div class="javadoc-class-doc"><div class="javadoc-class-doc-body">Provides access to the output of a linking task that was performed using the MSVC toolchain.</div></div><div class="javadoc-class-idx"><div class="javadoc-class-idx-methods javadoc-idx-section"><table><caption>Methods</caption><thead><tr><th class="javadoc-th-method-meta"></th><th class="javadoc-th-method-details"></th></tr></thead><tbody><tr class="javadoc-class-idx-method javadoc-idx-member"><td class="javadoc-class-idx-method-meta javadoc-idx-member-meta"><span class="javadoc-kw">public </span><span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="class java.lang.String" data-javadoc-kind="class">String</a></span></td><td class="javadoc-class-idx-method-sig javadoc-idx-member-sig"><div class="javadoc-class-idx-method-name javadoc-idx-member-name"><a href="#getArchitecture--" title="MSVCLinkerWorkerTaskOutput.getArchitecture()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">getArchitecture</a><span class="javadoc-code-ref">()</span></div><div class="javadoc-class-idx-method-short javadoc-member-short">Gets the target architecture that was the compilation done for.</div></td></tr><tr class="javadoc-class-idx-method javadoc-idx-member"><td class="javadoc-class-idx-method-meta javadoc-idx-member-meta"><span class="javadoc-kw">public </span><span class="javadoc-code-ref"><a href="/saker.compiler.utils/javadoc/saker/compiler/utils/api/CompilationIdentifier.html" title="interface saker.compiler.utils.api.CompilationIdentifier" data-javadoc-kind="interface">CompilationIdentifier</a></span></td><td class="javadoc-class-idx-method-sig javadoc-idx-member-sig"><div class="javadoc-class-idx-method-name javadoc-idx-member-name"><a href="#getIdentifier--" title="MSVCLinkerWorkerTaskOutput.getIdentifier()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">getIdentifier</a><span class="javadoc-code-ref">()</span></div><div class="javadoc-class-idx-method-short javadoc-member-short">Gets the identifier for the linker task.</div></td></tr><tr class="javadoc-class-idx-method javadoc-idx-member"><td class="javadoc-class-idx-method-meta javadoc-idx-member-meta"><span class="javadoc-kw">public </span><span class="javadoc-code-ref"><a href="/saker.build/javadoc/saker/build/file/path/SakerPath.html" title="class saker.build.file.path.SakerPath" data-javadoc-kind="class">SakerPath</a></span></td><td class="javadoc-class-idx-method-sig javadoc-idx-member-sig"><div class="javadoc-class-idx-method-name javadoc-idx-member-name"><a href="#getOutputPath--" title="MSVCLinkerWorkerTaskOutput.getOutputPath()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">getOutputPath</a><span class="javadoc-code-ref">()</span></div><div class="javadoc-class-idx-method-short javadoc-member-short">Gets the result path of the linking operation.</div></td></tr></tbody></table></div></div><div class="javadoc-class-details"><div class="javadoc-class-details-methods javadoc-details-section"><div id="getArchitecture--" class="javadoc-class-detail-method javadoc-class-detail-member"><div class="javadoc-class-detail-method-sig javadoc-member-sig"><span class="javadoc-kw">public abstract </span><span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="class java.lang.String" data-javadoc-kind="class">String</a></span> <a href="#getArchitecture--" title="MSVCLinkerWorkerTaskOutput.getArchitecture()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">getArchitecture</a><span class="javadoc-code-ref">()</span></div><div class="javadoc-class-detail-method-detail javadoc-member-detail"><div class="javadoc-detail-body">Gets the target architecture that was the compilation done for.</div><div class="javadoc-method-detail-return javadoc-blocktag-section"><div class="javadoc-method-detail-return-body">The target architecture.</div></div></div></div><div id="getIdentifier--" class="javadoc-class-detail-method javadoc-class-detail-member"><div class="javadoc-class-detail-method-sig javadoc-member-sig"><span class="javadoc-kw">public abstract </span><span class="javadoc-code-ref"><a href="/saker.compiler.utils/javadoc/saker/compiler/utils/api/CompilationIdentifier.html" title="interface saker.compiler.utils.api.CompilationIdentifier" data-javadoc-kind="interface">CompilationIdentifier</a></span> <a href="#getIdentifier--" title="MSVCLinkerWorkerTaskOutput.getIdentifier()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">getIdentifier</a><span class="javadoc-code-ref">()</span></div><div class="javadoc-class-detail-method-detail javadoc-member-detail"><div class="javadoc-detail-body">Gets the identifier for the linker task.</div><div class="javadoc-method-detail-return javadoc-blocktag-section"><div class="javadoc-method-detail-return-body">The identifier.</div></div></div></div><div id="getOutputPath--" class="javadoc-class-detail-method javadoc-class-detail-member"><div class="javadoc-class-detail-method-sig javadoc-member-sig"><span class="javadoc-kw">public abstract </span><span class="javadoc-code-ref"><a href="/saker.build/javadoc/saker/build/file/path/SakerPath.html" title="class saker.build.file.path.SakerPath" data-javadoc-kind="class">SakerPath</a></span> <a href="#getOutputPath--" title="MSVCLinkerWorkerTaskOutput.getOutputPath()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">getOutputPath</a><span class="javadoc-code-ref">()</span></div><div class="javadoc-class-detail-method-detail javadoc-member-detail"><div class="javadoc-detail-body">Gets the result path of the linking operation. <p>
+ The path usually points to an executable or library based on the operation configuration.</div><div class="javadoc-method-detail-return javadoc-blocktag-section"><div class="javadoc-method-detail-return-body">The execution path of the linking result.</div></div></div></div></div></div>
+	</div>
+</div>
+<div class="doc-footer">
+	<div class="container">
+		<div class="row">
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">About</p>
+				<div><a href="/index.html" title="Saker.build home page">Home</a></div>
+				<div data-footer-location="doc-docs"><a href="../../../../../index.html" title="saker.msvc documentation home">Documentation home</a></div>
+				<div><a href="../../../../../../saker.build/index.html" title="Information about the saker.build system">saker.build system</a></div>
+				<div><a href="../../../../../../saker.nest/index.html" title="Information about the saker.nest repository">saker.nest repository</a></div>
+				<div><a href="/contact.html" title="Contact us">Contact</a></div>
+			</div>
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">Resources</p>
+				<div data-footer-location="doc-docs"><a href="../../../../../doc/index.html" title="saker.msvc documentation home">Documentation</a></div>
+				<div data-footer-location="doc-javadoc"><a href="../../../../../javadoc/index.html" title="JavaDoc for saker.msvc">JavaDoc</a></div>
+				<div data-footer-location="doc-taskdoc"><a href="../../../../../taskdoc/index.html"  title="Documentation of build tasks in saker.msvc">TaskDoc</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.msvc" title="saker.msvc | saker.nest">saker.nest package page</a></div>
+				<div><a href="https://github.com/sakerbuild/saker.msvc" title="saker.msvc on GitHub">GitHub</a></div>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col">
+			&copy; Bence Sipka 2020
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>MSVCCompilerOptions&nbsp|&nbsp;saker.msvc</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+	
+	<link rel="stylesheet" href="../../../res/bootstrap.min.css" >
+	<link rel="stylesheet" href="../../../res/doc-saker.css" >
+</head>
+<body data-nav-location="taskdoc" data-subdoc-presence="nest-package packagedoc javadoc taskdoc">
+<div class="doc-nav-bar">
+	<div class="container">
+		<a class="home-link" href="../../index.html" title="saker.msvc"><img style="height: 2.5em;" class="logo" src="../../../res/logo.svg"/><span class="page-name">saker.msvc</span></a>
+		<a class="nav-location-item" data-nav-location="doc-docs" href="../../doc/index.html" title="Documentation">Documentation</a>
+		<a class="nav-location-item" data-nav-location="doc-taskdoc" href="../../taskdoc/index.html" title="Build task documentation">TaskDoc</a>
+		<a class="nav-location-item" data-nav-location="doc-javadoc" href="../../javadoc/index.html"title="Java API documentation">JavaDoc</a>
+	</div>
+</div>
+<nav class="taskdoc-nav" data-nav-location="MSVCCompilerOptions">
+	<div class="container">
+		<span class="taskdoc-nav-title">TaskDoc</span>
+		<a class="nav-location-item" data-nav-location="taskdoc-index" href="../index.html" title="Task doc index">Index</a>
+	</div>
+</nav>
+<div class="container page-contents taskdoc">
+	<div class="taskdoc-content">
+	<div class="typedoc-header"><div class="typedoc-typename"><a href="" title="Type MSVCCompilerOptions">MSVCCompilerOptions</a></div><div class="typedoc-container-bundle">In bundle: <a title="Package saker.msvc">saker.msvc</a></div></div><div class="typedoc-info" taskdoc-info-format="format.plaintext">Represents an options configuration to be used with saker.msvc.ccompile().
+The described options will be merged with the compilation input configuration based on the option qualifiers. The Identifier, Language, and Architecture fields are considered to be used as qualifiers for the option merging, in which case they are tested for mergeability with the input configuration.</div><div class="typedoc-idx"><div class="typedoc-idx-title">Summary</div><div class="typedoc-idx-section typedoc-idx-fields"><table><caption>Fields</caption><tbody><tr class="taskdoc-idx-member"><td><a class="typedoc-idx-field-name" href="#f-Architecture" title="Field Architecture">Architecture</a></td><td>Specifies the Architecture to which the options should be merged into.
+</td></tr><tr class="taskdoc-idx-member"><td><a class="typedoc-idx-field-name" href="#f-Identifier" title="Field Identifier">Identifier</a></td><td>Specifies the Identifier to which the options should be merged into.
+</td></tr><tr class="taskdoc-idx-member"><td><a class="typedoc-idx-field-name" href="#f-IncludeDirectories" title="Field IncludeDirectories">IncludeDirectories</a></td><td>Specifies include directories that are used to resolve #include directives in the source code.
+</td></tr><tr class="taskdoc-idx-member"><td><a class="typedoc-idx-field-name" href="#f-Language" title="Field Language">Language</a></td><td>Specifies the Language to which the options should be merged into.
+</td></tr><tr class="taskdoc-idx-member"><td><a class="typedoc-idx-field-name" href="#f-MacroDefinitions" title="Field MacroDefinitions">MacroDefinitions</a></td><td>Specifies key-value pairs which should be added as macro definitions for the compiled files.
+</td></tr><tr class="taskdoc-idx-member"><td><a class="typedoc-idx-field-name" href="#f-SDKs" title="Field SDKs">SDKs</a></td><td>Specifies the SDKs (Software Development Kits) used by the task.
+</td></tr><tr class="taskdoc-idx-member"><td><a class="typedoc-idx-field-name" href="#f-SimpleCompilerParameters" title="Field SimpleCompilerParameters">SimpleCompilerParameters</a></td><td>Specifies one or more singular arguments that should be directly passed to the compiler backend (cl.exe).
+</td></tr></tbody></table></div></div><div class="typedoc-details-fields"><div class="typedoc-details-title">Fields</div><div id="f-Architecture" class="typedoc-detail-member typedoc-detail-field"><div class="typedoc-detail-param-header-sig"><div class="typedoc-detail-field-name"><a href="#f-Architecture" title="Field Architecture">Architecture</a></div><div class="typedoc-detail-field-type"><a href="ArchitectureType.html" title="Type ArchitectureType">ArchitectureType</a></div></div><div class="typedoc-detail-field-detail" taskdoc-info-format="format.plaintext">Specifies the Architecture to which the options should be merged into.
+The associated options will only be merged into the target configuration if the target Architecture is the same as the Architecture defined in this options. If no Architecture is specified for this options, the Architecture is not considered as a qualifier.</div></div><div id="f-Identifier" class="typedoc-detail-member typedoc-detail-field"><div class="typedoc-detail-param-header-sig"><div class="typedoc-detail-field-name"><a href="#f-Identifier" title="Field Identifier">Identifier</a></div><div class="typedoc-detail-field-type"><a href="CompilationIdentifierTaskOption.html" title="Type CompilationIdentifierTaskOption">CompilationIdentifierTaskOption</a></div></div><div class="typedoc-detail-field-detail" taskdoc-info-format="format.plaintext">Specifies the Identifier to which the options should be merged into.
+The associated options will only be merged into the target configuration if the target Identifier contains all parts as this Identifier. If no Identifier specified for this options, the Identifier is not considered as a qualifier.</div></div><div id="f-IncludeDirectories" class="typedoc-detail-member typedoc-detail-field"><div class="typedoc-detail-param-header-sig"><div class="typedoc-detail-field-name"><a href="#f-IncludeDirectories" title="Field IncludeDirectories">IncludeDirectories</a></div><div class="typedoc-detail-field-type">Collection of <a href="IncludeDirectoryTaskOption.html" title="Type IncludeDirectoryTaskOption">IncludeDirectoryTaskOption</a></div></div><div class="typedoc-detail-field-detail" taskdoc-info-format="format.plaintext">Specifies include directories that are used to resolve #include directives in the source code.
+The values may be simple paths, wildcards, file locations, file collections, or SDK paths.
+The compilation task doesn&#39;t specify any include directories by default.
+Corresponds to the /I command line option for cl.exe.</div></div><div id="f-Language" class="typedoc-detail-member typedoc-detail-field"><div class="typedoc-detail-param-header-sig"><div class="typedoc-detail-field-name"><a href="#f-Language" title="Field Language">Language</a></div><div class="typedoc-detail-field-type"><a href="CompilationLanguage.html" title="Type CompilationLanguage">CompilationLanguage</a></div></div><div class="typedoc-detail-field-detail" taskdoc-info-format="format.plaintext">Specifies the Language to which the options should be merged into.
+The associated options will only be merged into the target configuration if the target Language is the same as the Language defined in this options. If no Language is specified for this options, the Language is not considered as a qualifier.</div></div><div id="f-MacroDefinitions" class="typedoc-detail-member typedoc-detail-field"><div class="typedoc-detail-param-header-sig"><div class="typedoc-detail-field-name"><a href="#f-MacroDefinitions" title="Field MacroDefinitions">MacroDefinitions</a></div><div class="typedoc-detail-field-type">Map of <a href="CMacroName.html" title="Type CMacroName">CMacroName</a> : <a href="CMacroValue.html" title="Type CMacroValue">CMacroValue</a></div></div><div class="typedoc-detail-field-detail" taskdoc-info-format="format.plaintext">Specifies key-value pairs which should be added as macro definitions for the compiled files.
+Each entry in this map will be defined as a preprocessor macro definition for the compiled files.
+Corresponds to the /D&lt;key&gt;=&lt;value&gt; command line option for cl.exe.
+When merging, the macro definitions won&#39;t overwrite macro definitions specified previously.</div></div><div id="f-SDKs" class="typedoc-detail-member typedoc-detail-field"><div class="typedoc-detail-param-header-sig"><div class="typedoc-detail-field-name"><a href="#f-SDKs" title="Field SDKs">SDKs</a></div><div class="typedoc-detail-field-type">Map of <a href="SDKName.html" title="Type SDKName">SDKName</a> : <a href="SDKDescriptionTaskOption.html" title="Type SDKDescriptionTaskOption">SDKDescriptionTaskOption</a></div></div><div class="typedoc-detail-field-detail" taskdoc-info-format="format.plaintext">Specifies the SDKs (Software Development Kits) used by the task.
+SDKs represent development kits that are available in the build environment and to the task. SDKs are used to determine the appropriate build environment to execute the task, as well to resolve paths against them (e.g. IncludeDirectory, LibraryPath).
+The &quot;MSVC&quot; SDK is used to determine the location of the backend executables (cl.exe, link.exe). If it is not specified, then the task will attempt to determine it automatically.
+When merging, duplicate SDK definitions are not overwritten.</div></div><div id="f-SimpleCompilerParameters" class="typedoc-detail-member typedoc-detail-field"><div class="typedoc-detail-param-header-sig"><div class="typedoc-detail-field-name"><a href="#f-SimpleCompilerParameters" title="Field SimpleCompilerParameters">SimpleCompilerParameters</a></div><div class="typedoc-detail-field-type">Collection of <a href="MSVCCCompilerParameter.html" title="Type MSVCCCompilerParameter">MSVCCCompilerParameter</a></div></div><div class="typedoc-detail-field-detail" taskdoc-info-format="format.plaintext">Specifies one or more singular arguments that should be directly passed to the compiler backend (cl.exe).
+Any arguments specified will be appended to the cl.exe invocation for the inputs. Take care when using this option as specifying files here may result in incorrect incremental builds.
+The parameters should be singular, meaning that arguments that require multiple command line options shouldn&#39;t be specified here. The order of the specified arguments are irrelevant, and may be changed by the task.
+When merging, duplicate parameters are removed automatically.</div></div></div>
+	</div>
+</div>
+<div class="doc-footer">
+	<div class="container">
+		<div class="row">
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">About</p>
+				<div><a href="/index.html" title="Saker.build home page">Home</a></div>
+				<div data-footer-location="doc-docs"><a href="../../index.html" title="saker.msvc documentation home">Documentation home</a></div>
+				<div><a href="../../../saker.build/index.html" title="Information about the saker.build system">saker.build system</a></div>
+				<div><a href="../../../saker.nest/index.html" title="Information about the saker.nest repository">saker.nest repository</a></div>
+				<div><a href="/contact.html" title="Contact us">Contact</a></div>
+			</div>
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">Resources</p>
+				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.msvc documentation home">Documentation</a></div>
+				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.msvc">JavaDoc</a></div>
+				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.msvc">TaskDoc</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.msvc" title="saker.msvc | saker.nest">saker.nest package page</a></div>
+				<div><a href="https://github.com/sakerbuild/saker.msvc" title="saker.msvc on GitHub">GitHub</a></div>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col">
+			&copy; Bence Sipka 2020
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

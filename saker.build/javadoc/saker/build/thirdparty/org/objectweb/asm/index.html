@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>saker.build.thirdparty.org.objectweb.asm</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+	
+	<link rel="stylesheet" type="text/css" href="../../../../../../../../res/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../../../../../../../../res/doc-saker.css">
+	
+</head>
+<body data-nav-location="javadoc" data-subdoc-presence="nest-package packagedoc javadoc">
+<div class="doc-nav-bar">
+	<div class="container">
+		<a class="home-link" href="../../../../../../../index.html" title="saker.build"><img style="height: 2.5em;" class="logo" src="../../../../../../../../res/logo.svg"/><span class="page-name">saker.build</span></a>
+		<a class="nav-location-item" data-nav-location="doc-docs" href="../../../../../../../doc/index.html" title="Documentation">Documentation</a>
+		<a class="nav-location-item" data-nav-location="doc-taskdoc" href="../../../../../../../taskdoc/index.html" title="Build task documentation">TaskDoc</a>
+		<a class="nav-location-item" data-nav-location="doc-javadoc" href="../../../../../../../javadoc/index.html"title="Java API documentation">JavaDoc</a>
+	</div>
+</div>
+<nav class="javadoc-nav" data-nav-location="package-info">
+	<div class="container">
+		<span class="javadoc-nav-title">JavaDoc</span>
+		<a class="nav-location-item" data-nav-location="javadoc-packages" href="../../../../../../index.html" title="Package index">Packages</a>
+		<a class="nav-location-item" data-nav-location="javadoc-all-classes" href="../../../../../../all-classes.html" title="All classes">All classes</a>
+		<a class="nav-location-item" data-nav-location="javadoc-constants" href="../../../../../../constants.html" title="All constants">Constants</a>
+	</div>
+</nav>
+<div class="container page-contents javadoc">
+	<div class="javadoc-content">
+	<div class="javadoc-package-header"><div class="javadoc-package-header-pkg"><span class="javadoc-code-ref"><span class="javadoc-kw">package</span> <span class="javadoc-package-header-name">saker.build.thirdparty.org.objectweb.asm</span></span></div></div><div class="javadoc-package-doc"><div class="javadoc-package-doc-body">Provides a small and fast bytecode manipulation framework. <p>
+ The <a href="http://asm.ow2.org/">ASM</a> framework is organized around the
+ <span class="javadoc-code-ref"><a href="ClassVisitor.html" title="class saker.build.thirdparty.org.objectweb.asm.ClassVisitor" data-javadoc-kind="class">ClassVisitor</a></span>,
+ <span class="javadoc-code-ref"><a href="FieldVisitor.html" title="class saker.build.thirdparty.org.objectweb.asm.FieldVisitor" data-javadoc-kind="class">FieldVisitor</a></span>,
+ <span class="javadoc-code-ref"><a href="MethodVisitor.html" title="class saker.build.thirdparty.org.objectweb.asm.MethodVisitor" data-javadoc-kind="class">MethodVisitor</a></span> and
+ <span class="javadoc-code-ref"><a href="AnnotationVisitor.html" title="class saker.build.thirdparty.org.objectweb.asm.AnnotationVisitor" data-javadoc-kind="class">AnnotationVisitor</a></span> abstract classes, which allow
+ one to visit the fields, methods and annotations of a class, including the bytecode instructions of each method.
+ <p>
+ In addition to these main abstract classes, ASM provides a
+ <span class="javadoc-code-ref"><a href="ClassReader.html" title="class saker.build.thirdparty.org.objectweb.asm.ClassReader" data-javadoc-kind="class">ClassReader</a></span> class, that can parse an existing class and
+ make a given visitor visit it. ASM also provides a <span class="javadoc-code-ref"><a href="ClassWriter.html" title="class saker.build.thirdparty.org.objectweb.asm.ClassWriter" data-javadoc-kind="class">ClassWriter</a></span> class, which is a visitor that generates Java class files.
+ <p>
+ In order to generate a class from scratch, only the <span class="javadoc-code-ref"><a href="ClassWriter.html" title="class saker.build.thirdparty.org.objectweb.asm.ClassWriter" data-javadoc-kind="class">ClassWriter</a></span> class is necessary. Indeed, in order to generate a class, one must just call its visit<i>Xxx</i> methods
+ with the appropriate arguments to generate the desired fields and methods.
+ <p>
+ In order to modify existing classes, one must use a <span class="javadoc-code-ref"><a href="ClassReader.html" title="class saker.build.thirdparty.org.objectweb.asm.ClassReader" data-javadoc-kind="class">ClassReader</a></span> class to analyze the original class, a class modifier, and a
+ <span class="javadoc-code-ref"><a href="ClassWriter.html" title="class saker.build.thirdparty.org.objectweb.asm.ClassWriter" data-javadoc-kind="class">ClassWriter</a></span> to construct the modified class. The class
+ modifier is just a <span class="javadoc-code-ref"><a href="ClassVisitor.html" title="class saker.build.thirdparty.org.objectweb.asm.ClassVisitor" data-javadoc-kind="class">ClassVisitor</a></span> that delegates most of
+ the work to another <span class="javadoc-code-ref"><a href="ClassVisitor.html" title="class saker.build.thirdparty.org.objectweb.asm.ClassVisitor" data-javadoc-kind="class">ClassVisitor</a></span>, but that sometimes
+ changes some parameter values, or call additional methods, in order to implement the desired modification process. In
+ order to make it easier to implement such class modifiers, the
+ <span class="javadoc-code-ref"><a href="ClassVisitor.html" title="class saker.build.thirdparty.org.objectweb.asm.ClassVisitor" data-javadoc-kind="class">ClassVisitor</a></span> and
+ <span class="javadoc-code-ref"><a href="MethodVisitor.html" title="class saker.build.thirdparty.org.objectweb.asm.MethodVisitor" data-javadoc-kind="class">MethodVisitor</a></span> classes delegate by default all the
+ method calls they receive to an optional visitor.</div></div><div class="javadoc-package-idx"><div class="javadoc-package-idx-itfs javadoc-idx-section"><table><caption>Interfaces</caption><thead><tr><th class="javadoc-th-type-name"></th><th class="javadoc-th-type-details"></th></tr></thead><tbody><tr class="javadoc-package-idx-itf javadoc-idx-member"><td class="javadoc-package-idx-itf-name javadoc-idx-member-meta"><a href="Opcodes.html" title="interface saker.build.thirdparty.org.objectweb.asm.Opcodes" data-javadoc-kind="interface">Opcodes</a></td><td class="javadoc-package-idx-itf-sig javadoc-idx-member-sig"><div class="javadoc-package-idx-itf-short javadoc-member-short">The JVM opcodes, access flags and array type codes.</div></td></tr></tbody></table></div><div class="javadoc-package-idx-classes javadoc-idx-section"><table><caption>Classes</caption><thead><tr><th class="javadoc-th-type-name"></th><th class="javadoc-th-type-details"></th></tr></thead><tbody><tr class="javadoc-package-idx-class javadoc-idx-member"><td class="javadoc-package-idx-class-name javadoc-idx-member-meta"><a href="AnnotationVisitor.html" title="class saker.build.thirdparty.org.objectweb.asm.AnnotationVisitor" data-javadoc-kind="class">AnnotationVisitor</a></td><td class="javadoc-package-idx-class-sig javadoc-idx-member-sig"><div class="javadoc-package-idx-class-short javadoc-member-short">A visitor to visit a Java annotation.</div></td></tr><tr class="javadoc-package-idx-class javadoc-idx-member"><td class="javadoc-package-idx-class-name javadoc-idx-member-meta"><a href="Attribute.html" title="class saker.build.thirdparty.org.objectweb.asm.Attribute" data-javadoc-kind="class">Attribute</a></td><td class="javadoc-package-idx-class-sig javadoc-idx-member-sig"><div class="javadoc-package-idx-class-short javadoc-member-short">A non standard class, field, method or code attribute, as defined in the Java Virtual Machine Specification (JVMS).</div></td></tr><tr class="javadoc-package-idx-class javadoc-idx-member"><td class="javadoc-package-idx-class-name javadoc-idx-member-meta"><a href="ByteVector.html" title="class saker.build.thirdparty.org.objectweb.asm.ByteVector" data-javadoc-kind="class">ByteVector</a></td><td class="javadoc-package-idx-class-sig javadoc-idx-member-sig"><div class="javadoc-package-idx-class-short javadoc-member-short">A dynamically extensible vector of bytes.</div></td></tr><tr class="javadoc-package-idx-class javadoc-idx-member"><td class="javadoc-package-idx-class-name javadoc-idx-member-meta"><a href="ClassReader.html" title="class saker.build.thirdparty.org.objectweb.asm.ClassReader" data-javadoc-kind="class">ClassReader</a></td><td class="javadoc-package-idx-class-sig javadoc-idx-member-sig"><div class="javadoc-package-idx-class-short javadoc-member-short">A parser to make a <span class="javadoc-code-ref"><a href="ClassVisitor.html" title="class saker.build.thirdparty.org.objectweb.asm.ClassVisitor" data-javadoc-kind="class">ClassVisitor</a></span> visit a ClassFile structure, as defined in the Java Virtual Machine
+ Specification (JVMS).</div></td></tr><tr class="javadoc-package-idx-class javadoc-idx-member"><td class="javadoc-package-idx-class-name javadoc-idx-member-meta"><a href="ClassVisitor.html" title="class saker.build.thirdparty.org.objectweb.asm.ClassVisitor" data-javadoc-kind="class">ClassVisitor</a></td><td class="javadoc-package-idx-class-sig javadoc-idx-member-sig"><div class="javadoc-package-idx-class-short javadoc-member-short">A visitor to visit a Java class.</div></td></tr><tr class="javadoc-package-idx-class javadoc-idx-member"><td class="javadoc-package-idx-class-name javadoc-idx-member-meta"><a href="ClassWriter.html" title="class saker.build.thirdparty.org.objectweb.asm.ClassWriter" data-javadoc-kind="class">ClassWriter</a></td><td class="javadoc-package-idx-class-sig javadoc-idx-member-sig"><div class="javadoc-package-idx-class-short javadoc-member-short">A <span class="javadoc-code-ref"><a href="ClassVisitor.html" title="class saker.build.thirdparty.org.objectweb.asm.ClassVisitor" data-javadoc-kind="class">ClassVisitor</a></span> that generates a corresponding ClassFile structure, as defined in the Java Virtual Machine
+ Specification (JVMS).</div></td></tr><tr class="javadoc-package-idx-class javadoc-idx-member"><td class="javadoc-package-idx-class-name javadoc-idx-member-meta"><a href="ConstantDynamic.html" title="class saker.build.thirdparty.org.objectweb.asm.ConstantDynamic" data-javadoc-kind="class">ConstantDynamic</a></td><td class="javadoc-package-idx-class-sig javadoc-idx-member-sig"><div class="javadoc-package-idx-class-short javadoc-member-short">A constant whose value is computed at runtime, with a bootstrap method.</div></td></tr><tr class="javadoc-package-idx-class javadoc-idx-member"><td class="javadoc-package-idx-class-name javadoc-idx-member-meta"><a href="FieldVisitor.html" title="class saker.build.thirdparty.org.objectweb.asm.FieldVisitor" data-javadoc-kind="class">FieldVisitor</a></td><td class="javadoc-package-idx-class-sig javadoc-idx-member-sig"><div class="javadoc-package-idx-class-short javadoc-member-short">A visitor to visit a Java field.</div></td></tr><tr class="javadoc-package-idx-class javadoc-idx-member"><td class="javadoc-package-idx-class-name javadoc-idx-member-meta"><a href="Handle.html" title="class saker.build.thirdparty.org.objectweb.asm.Handle" data-javadoc-kind="class">Handle</a></td><td class="javadoc-package-idx-class-sig javadoc-idx-member-sig"><div class="javadoc-package-idx-class-short javadoc-member-short">A reference to a field or a method.</div></td></tr><tr class="javadoc-package-idx-class javadoc-idx-member"><td class="javadoc-package-idx-class-name javadoc-idx-member-meta"><a href="Label.html" title="class saker.build.thirdparty.org.objectweb.asm.Label" data-javadoc-kind="class">Label</a></td><td class="javadoc-package-idx-class-sig javadoc-idx-member-sig"><div class="javadoc-package-idx-class-short javadoc-member-short">A position in the bytecode of a method.</div></td></tr><tr class="javadoc-package-idx-class javadoc-idx-member"><td class="javadoc-package-idx-class-name javadoc-idx-member-meta"><a href="MethodVisitor.html" title="class saker.build.thirdparty.org.objectweb.asm.MethodVisitor" data-javadoc-kind="class">MethodVisitor</a></td><td class="javadoc-package-idx-class-sig javadoc-idx-member-sig"><div class="javadoc-package-idx-class-short javadoc-member-short">A visitor to visit a Java method.</div></td></tr><tr class="javadoc-package-idx-class javadoc-idx-member"><td class="javadoc-package-idx-class-name javadoc-idx-member-meta"><a href="ModuleVisitor.html" title="class saker.build.thirdparty.org.objectweb.asm.ModuleVisitor" data-javadoc-kind="class">ModuleVisitor</a></td><td class="javadoc-package-idx-class-sig javadoc-idx-member-sig"><div class="javadoc-package-idx-class-short javadoc-member-short">A visitor to visit a Java module.</div></td></tr><tr class="javadoc-package-idx-class javadoc-idx-member"><td class="javadoc-package-idx-class-name javadoc-idx-member-meta"><a href="Type.html" title="class saker.build.thirdparty.org.objectweb.asm.Type" data-javadoc-kind="class">Type</a></td><td class="javadoc-package-idx-class-sig javadoc-idx-member-sig"><div class="javadoc-package-idx-class-short javadoc-member-short">A Java field or method type.</div></td></tr><tr class="javadoc-package-idx-class javadoc-idx-member"><td class="javadoc-package-idx-class-name javadoc-idx-member-meta"><a href="TypePath.html" title="class saker.build.thirdparty.org.objectweb.asm.TypePath" data-javadoc-kind="class">TypePath</a></td><td class="javadoc-package-idx-class-sig javadoc-idx-member-sig"><div class="javadoc-package-idx-class-short javadoc-member-short">The path to a type argument, wildcard bound, array element type, or static inner type within an enclosing type.</div></td></tr><tr class="javadoc-package-idx-class javadoc-idx-member"><td class="javadoc-package-idx-class-name javadoc-idx-member-meta"><a href="TypeReference.html" title="class saker.build.thirdparty.org.objectweb.asm.TypeReference" data-javadoc-kind="class">TypeReference</a></td><td class="javadoc-package-idx-class-sig javadoc-idx-member-sig"><div class="javadoc-package-idx-class-short javadoc-member-short">A reference to a type appearing in a class, field or method declaration, or on an instruction.</div></td></tr></tbody></table></div><div class="javadoc-package-idx-exceptions javadoc-idx-section"><table><caption>Exceptions</caption><thead><tr><th class="javadoc-th-type-name"></th><th class="javadoc-th-type-details"></th></tr></thead><tbody><tr class="javadoc-package-idx-exception javadoc-idx-member"><td class="javadoc-package-idx-exception-name javadoc-idx-member-meta"><a href="ClassTooLargeException.html" title="class saker.build.thirdparty.org.objectweb.asm.ClassTooLargeException" data-javadoc-kind="class">ClassTooLargeException</a></td><td class="javadoc-package-idx-exception-sig javadoc-idx-member-sig"><div class="javadoc-package-idx-exception-short javadoc-member-short">Exception thrown when the constant pool of a class produced by a <span class="javadoc-code-ref"><a href="ClassWriter.html" title="class saker.build.thirdparty.org.objectweb.asm.ClassWriter" data-javadoc-kind="class">ClassWriter</a></span> is too large.</div></td></tr><tr class="javadoc-package-idx-exception javadoc-idx-member"><td class="javadoc-package-idx-exception-name javadoc-idx-member-meta"><a href="MethodTooLargeException.html" title="class saker.build.thirdparty.org.objectweb.asm.MethodTooLargeException" data-javadoc-kind="class">MethodTooLargeException</a></td><td class="javadoc-package-idx-exception-sig javadoc-idx-member-sig"><div class="javadoc-package-idx-exception-short javadoc-member-short">Exception thrown when the Code attribute of a method produced by a <span class="javadoc-code-ref"><a href="ClassWriter.html" title="class saker.build.thirdparty.org.objectweb.asm.ClassWriter" data-javadoc-kind="class">ClassWriter</a></span> is too large.</div></td></tr></tbody></table></div></div>
+	</div>
+</div>
+<div class="doc-footer">
+	<div class="container">
+		<div class="row">
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">About</p>
+				<div><a href="/index.html" title="Saker.build home page">Home</a></div>
+				<div data-footer-location="doc-docs"><a href="../../../../../../../index.html" title="saker.build documentation home">Documentation home</a></div>
+				<div><a href="../../../../../../../../saker.build/index.html" title="Information about the saker.build system">saker.build system</a></div>
+				<div><a href="../../../../../../../../saker.nest/index.html" title="Information about the saker.nest repository">saker.nest repository</a></div>
+				<div><a href="/contact.html" title="Contact us">Contact</a></div>
+			</div>
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">Resources</p>
+				<div data-footer-location="doc-docs"><a href="../../../../../../../doc/index.html" title="saker.build documentation home">Documentation</a></div>
+				<div data-footer-location="doc-javadoc"><a href="../../../../../../../javadoc/index.html" title="JavaDoc for saker.build">JavaDoc</a></div>
+				<div data-footer-location="doc-taskdoc"><a href="../../../../../../../taskdoc/index.html"  title="Documentation of build tasks in saker.build">TaskDoc</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.nest package page</a></div>
+				<div><a href="https://github.com/sakerbuild/saker.build" title="saker.build on GitHub">GitHub</a></div>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col">
+			&copy; Bence Sipka 2020
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

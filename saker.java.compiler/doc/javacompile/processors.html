@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Annotation processors&nbsp;|&nbsp;saker.java.compiler</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+	
+	<link rel="stylesheet" href="../../../res/bootstrap.min.css" >
+	<link rel="stylesheet" href="../../../res/doc-saker.css" >
+</head>
+<body data-nav-location="packagedoc" data-subdoc-presence="nest-package packagedoc javadoc taskdoc">
+<div class="doc-nav-bar">
+	<div class="container">
+		<a class="home-link" href="../../index.html" title="saker.java.compiler"><img style="height: 2.5em;" class="logo" src="../../../res/logo.svg"/><span class="page-name">saker.java.compiler</span></a>
+		<a class="nav-location-item" data-nav-location="doc-docs" href="../../doc/index.html" title="Documentation">Documentation</a>
+		<a class="nav-location-item" data-nav-location="doc-taskdoc" href="../../taskdoc/index.html" title="Build task documentation">TaskDoc</a>
+		<a class="nav-location-item" data-nav-location="doc-javadoc" href="../../javadoc/index.html"title="Java API documentation">JavaDoc</a>
+	</div>
+</div>
+<div class="container page-contents packagedoc">
+	<div class="row">
+		<div class="col-12 col-lg-3 col-xl-2 p-lg-0">
+			<div class="doc-navigation-container">
+				<label class="d-lg-none nav-collapse" for="doc-collapse-nav-label">
+					<svg style="height: 1.5em;" viewBox="0 0 24 24">
+					    <path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+					</svg>
+					Navigation
+				</label>
+				<input style="display:none;" id="doc-collapse-nav-label" type="checkbox"/> 
+				<div class="doc-nav">  <div class="doc-section">    <p class="section-title">Package details</p><ul><li><a class="doc-nav-section-link" href="../index.html" title="Overview">Overview</a></li><li><a class="doc-nav-section-link" href="../gettingstarted.html" title="Getting started">Getting started</a></li><li><a class="doc-nav-section-link" href="../featurecomparison.html" title="Feature comparison">Feature comparison</a></li><li><a class="doc-nav-section-link" href="../performancecomparison.html" title="Performance comparison">Performance comparison</a></li><li><a class="doc-nav-section-link" href="../implementationinsights.html" title="Implementation insights">Implementation insights</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Java compilation</p><ul><li><a class="doc-nav-section-link" href="index.html" title="Overview">Overview</a></li><li><a class="doc-nav-section-link" href="basics.html" title="Basics">Basics</a></li><li class="doc-active doc-active-parent"><label class="doc-nav-collapse" for="_doc_collapse_id_0"><a class="doc-nav-section-link" href="processors.html" title="Annotation processors">Annotation processors</a></label><input style="display:none;" id="_doc_collapse_id_0" type="checkbox" checked/><label class="doc-nav-section-arrow" for="_doc_collapse_id_0"></label><ul><li><a class="doc-nav-section-link" href="processorconfig.html" title="Configuration">Configuration</a></li></ul></li><li><a class="doc-nav-section-link" href="crosscompile.html" title="Cross-compilation">Cross-compilation</a></li><li><a class="doc-nav-section-link" href="compileroptions.html" title="Compiler options">Compiler options</a></li><li><a class="doc-nav-section-link" href="sdkmanagement.html" title="SDK management">SDK management</a></li><li><a class="doc-nav-section-link" href="bundleclasspath.html" title="Bundle classpath">Bundle classpath</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Examples</p><ul><li><a class="doc-nav-section-link" href="../examples/index.html" title="Overview">Overview</a></li><li><a class="doc-nav-section-link" href="../examples/simple.html" title="Simple compilation">Simple compilation</a></li><li><a class="doc-nav-section-link" href="../examples/sourcefilter.html" title="Filter sources">Filter sources</a></li><li><a class="doc-nav-section-link" href="../examples/classpath.html" title="Classpath">Classpath</a></li><li><a class="doc-nav-section-link" href="../examples/processing.html" title="Annotation processing">Annotation processing</a></li><li><a class="doc-nav-section-link" href="../examples/compilerparameters.html" title="Compiler parameters">Compiler parameters</a></li><li><a class="doc-nav-section-link" href="../examples/parameternames.html" title="Reflection parameter names">Reflection parameter names</a></li><li><a class="doc-nav-section-link" href="../examples/debuginfo.html" title="Debug information">Debug information</a></li><li><a class="doc-nav-section-link" href="../examples/injectmoduleinfo.html" title="Injecting module-info attributes">Injecting module-info attributes</a></li><li><a class="doc-nav-section-link" href="../examples/nativeheaders.html" title="Native headers">Native headers</a></li><li><a class="doc-nav-section-link" href="../examples/jnicompile.html" title="JNI compilation">JNI compilation</a></li><li><a class="doc-nav-section-link" href="../examples/addexports.html" title="Add module exports">Add module exports</a></li><li><a class="doc-nav-section-link" href="../examples/crosscompile.html" title="Cross-compilation">Cross-compilation</a></li><li><a class="doc-nav-section-link" href="../examples/nestbundleclasspath.html" title="Nest bundle classpath">Nest bundle classpath</a></li></ul>  </div></div>
+			</div>
+		</div>
+		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="sb-sponsors" style="display: none;">
+	<span class="sb-sponsors-title">Sponsors</span>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4 col-12">
+				<a class="sb-sponsors-link"></a>
+			</div>
+			<div class="col-md-4 col-12">
+				<a class="sb-sponsors-link"></a>
+			</div>
+			<div class="col-md-4 col-12">
+				<a class="sb-sponsors-link"></a>
+			</div>
+		</div>
+	</div>
+</div>
+			<div class="doc-content"><p></p>
+<h1 id="annotation-processors">Annotation processors<a class="doc-heading-anchor" href="#annotation-processors"></a></h1>
+<p><a href="https://docs.oracle.com/javase/8/docs/api/javax/annotation/processing/Processor.html" title="Processor (Java Platform SE 8 )">Annotation processors</a> are basically plugins for the Java compilation workflow. They are presented the opportunity to analyze the compiled sources and generate other sources, classes, and resources based on them. They are a very versatile and useful tool for compile-time code generation.</p>
+<p>Processors are supported by the <a href="../../taskdoc/saker.java.compile.html"><code>saker.java.compile()</code></a> task and allows them running in an incremental manner. Processors can be specified for the task using the <code>AnnotationProcessors</code> parameter:</p>
+<pre><code class="language-sakerscript"><span class="a"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
+	<span class="c">SourceDirectories</span>: <span class="b">src</span>,
+	<span class="c">AnnotationProcessors: </span><span class="a"><a href="../../../saker.java.compiler/taskdoc/saker.java.processor.html" title="Task: saker.java.processor()">saker.java.processor</a>(</span>
+		<span class="c">ClassPath</span>: <span class="b">lib/my_processor.jar</span>,
+		<span class="c">Class: </span><span class="b">example.MyProcessor</span>
+	<span class="a">)</span>
+<span class="a">)</span>
+</code></pre>
+<p>The above is one of the simplest example for adding an annotation processor for the compilation task. The processor with the class name <code>example.MyProcessor</code> is loaded from the <code>lib/my_processor.jar</code> archive, and is called during the compilation.</p>
+<h2 id="processor-restrictions">Processor restrictions<a class="doc-heading-anchor" href="#processor-restrictions"></a></h2>
+<p>Due to the nature of the saker.build system environment and the implementation of the incremental annotation processing, the following restrictions are placed on the processor implementations:</p>
+<ul>
+<li>They <strong>must</strong> only use APIs to access environmental resources that is available to them through the object that they were initialized with.
+<ul>
+<li>This means that they can only use the <a href="https://docs.oracle.com/javase/8/docs/api/javax/annotation/processing/ProcessingEnvironment.html" title="ProcessingEnvironment (Java Platform SE 8 )"><code>ProcessingEnvironment</code></a> and related classes to read files and other properties of the current compilation environment.</li>
+<li>They can only use the <a href="https://docs.oracle.com/javase/8/docs/api/javax/annotation/processing/Filer.html" title="Filer (Java Platform SE 8 )"><code>Filer</code></a> API to read and write files.</li>
+<li>They <strong>must not</strong> use the <a href="https://docs.oracle.com/javase/8/docs/api/java/io/File.html" title="File (Java Platform SE 8 )"><code>java.io.File</code></a>, <a href="https://docs.oracle.com/javase/8/docs/api/java/nio/file/Files.html" title="Files (Java Platform SE 8 )"><code>java.nio.file.Files</code></a> or related APIs.</li>
+</ul>
+</li>
+<li><a href="processors.html#non-aggregating-processors" title="Non-aggregating processors">Non-aggregating</a> <strong>must</strong> report the elements based on which that they generate the output resources.</li>
+</ul>
+<h2 id="processor-classification">Processor classification<a class="doc-heading-anchor" href="#processor-classification"></a></h2>
+<p>In order to reduce the work that needs to be done for incremental compilation, we separate the annotation processor type into two category: Aggregating, and non-aggregating.</p>
+<p>The definition for an aggregating processor is as follows: <em>A processor is considered to be Aggregating if there exists an addition-wise modification to the compiled Java classes that causes it to generate different classes or resources.</em></p>
+<p>What does it mean in practice? Generally, if an annotation processor generates resources by taking information from multiple unrelated parts of the codebase, then it is most likely an aggregating processor. One example for one is the following.</p>
+<h5 id="aggregating-processor-example">Aggregating processor example<a class="doc-heading-anchor" href="#aggregating-processor-example"></a></h5>
+<p>Let's imagine a processor, that takes the list of compiled class names, and writes them to a custom output file. If we compile the following classes:</p>
+<pre><code class="language-java">// Bar.java
+package example;
+public class Bar { }
+</code></pre>
+<pre><code class="language-java">// Foo.java
+package example;
+public class Foo { }
+</code></pre>
+<p>It will generate a text file with the following contents:</p>
+<pre><code class="language-plaintext">// output.txt
+example.Bar
+example.Foo
+</code></pre>
+<p>Why is it aggregating? Because if we add a new class <code>Baz</code>, it will generate an output with different contents:</p>
+<pre><code class="language-java">package example;
+public class Baz { }
+</code></pre>
+<p>Will result in:</p>
+<pre><code class="language-plaintext">// output.txt
+example.Bar
+example.Baz
+example.Foo
+</code></pre>
+<p>We can see that from an incremental perspective, an unrelated Java codebase modification that is not part of the inputs of the <code>output.txt</code> generated file may cause it to have different contents.</p>
+<p>The aggregating nature of a processor will result in that the whole compilation set will be passed to it in order for it to do its work. It signals the compiler task that it may not perform additional optimizations as that could lead to incorrect output.</p>
+<p>All annotation processors are considered to be aggregating unless specified otherwise.</p>
+<h3 id="non-aggregating-processors">Non-aggregating processors<a class="doc-heading-anchor" href="#non-aggregating-processors"></a></h3>
+<p>If a processor is classified as non-aggregating, then the compiler task is allowed to perform optimizations in order to do less work. Non-aggregating processors generally don't need the whole compilation set as their input, and they can work on a subset of the input.</p>
+<p>If a non-aggregating processor creates an output resource, then the contents of that output resource only depends on the specified input elements, and there exists no Java codebase related modification that affects a non-input element, and causes different output resource to be created.</p>
+<h5 id="non-aggregating-processor-example">Non-aggregating processor example<a class="doc-heading-anchor" href="#non-aggregating-processor-example"></a></h5>
+<p>An example for a non-aggregating processor is one that simply generates a factory class for annotated classes. See the following inputs and outputs:</p>
+<pre><code class="language-java">// Foo.java
+package example;
+@example.CreateFactory
+public class Foo { }
+</code></pre>
+<p>The processor will generate the following class for it:</p>
+<pre><code class="language-java">// FooFactory.java (output by processor)
+package example;
+public class FooFactory {
+	public static Foo create() {
+		return new Foo();
+	}
+}
+</code></pre>
+<p>We can see that in this case the input and output have a one-to-one relation. Adding a class to the Java codebase will not cause the processor to generate different <code>FooFactory</code>. If we add a new class, the compiler task is allowed to <strong>not</strong> pass <code>Foo</code> as its input class element, since it was not modified. This results in the processor doing less work in case of incremental scenarios. However, if <code>Foo</code> is modified, the processor will be re-run accordingly.</p>
+<h3 id="non-aggregating-restrictions">Non-aggregating restrictions<a class="doc-heading-anchor" href="#non-aggregating-restrictions"></a></h3>
+<p>In order to work properly, non-aggregating processor implementations need to adhere to the following:</p>
+<ul>
+<li>They <strong>must</strong> report the originating elements for the generated sources, classes, and resources. They <strong>must</strong> use the <a href="https://docs.oracle.com/javase/8/docs/api/javax/annotation/processing/Filer.html" title="Filer (Java Platform SE 8 )"><code>Filer</code></a> API correctly when generating resources.
+<ul>
+<li>The originating elements should contain <strong>all</strong> Java elements that is an input information used to derive the generated resources.</li>
+<li>If they don't report the originating elements, that can cause incremental errors. These error are most likely silently ignored by the compiler task, as it has incorrect information to work with.</li>
+</ul>
+</li>
+<li>Processors can't generate resources based on the absence of a Java source element. That behaviour would make them aggregating.</li>
+<li>Non-aggregating processors aren't limited to generating resources using a one-to-one relation. They may take Java elements from multiple locations into account.</li>
+</ul>
+<link href="../../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>
+			<div class="end-section-links">
+				<div class="end-section-prev">
+					<a class="doc-prev-section" href="../../doc/javacompile/basics.html" title="Basics"><svg class="doc-section-arrow" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" />
+</svg>Basics</a>
+				</div>
+				<div class="end-section-next">
+					<a class="doc-next-section" href="../../doc/javacompile/processorconfig.html" title="Configuration">Configuration<svg class="doc-section-arrow" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z" />
+</svg></a>
+				</div>
+			</div>
+			<div class="doc-headings-nav">  <ul>    <li><a href="#annotation-processors" title="Annotation processors">Annotation processors</a>      <ul>        <li><a href="#processor-restrictions" title="Processor restrictions">Processor restrictions</a>        </li>        <li><a href="#processor-classification" title="Processor classification">Processor classification</a>          <ul>            <li><a href="#aggregating-processor-example" title="Aggregating processor example">Aggregating processor example</a>            </li>            <li><a href="#non-aggregating-processors" title="Non-aggregating processors">Non-aggregating processors</a>              <ul>                <li><a href="#non-aggregating-processor-example" title="Non-aggregating processor example">Non-aggregating processor example</a>                </li>              </ul>            </li>            <li><a href="#non-aggregating-restrictions" title="Non-aggregating restrictions">Non-aggregating restrictions</a>            </li>          </ul>        </li>      </ul>    </li>  </ul></div>
+		</div>
+	</div>
+</div>
+<div class="doc-footer">
+	<div class="container">
+		<div class="row">
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">About</p>
+				<div><a href="/index.html" title="Saker.build home page">Home</a></div>
+				<div data-footer-location="doc-docs"><a href="../../index.html" title="saker.java.compiler documentation home">Documentation home</a></div>
+				<div><a href="../../../saker.build/index.html" title="Information about the saker.build system">saker.build system</a></div>
+				<div><a href="../../../saker.nest/index.html" title="Information about the saker.nest repository">saker.nest repository</a></div>
+				<div><a href="/contact.html" title="Contact us">Contact</a></div>
+			</div>
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">Resources</p>
+				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.java.compiler documentation home">Documentation</a></div>
+				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.java.compiler">JavaDoc</a></div>
+				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.java.compiler">TaskDoc</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.java.compiler" title="saker.java.compiler | saker.nest">saker.nest package page</a></div>
+				<div><a href="https://github.com/sakerbuild/saker.java.compiler" title="saker.java.compiler on GitHub">GitHub</a></div>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col">
+			&copy; Bence Sipka 2020
+			</div>
+		</div>
+	</div>
+</div>
+
+<link rel="stylesheet" href="../../../res/hljs.css"><script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js" integrity="sha256-js+I1fdbke/DJrW2qXQlrw7VUEqmdeFeOW37UC0bEiU=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.13.1/build/languages/java.min.js"></script><script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.13.1/build/languages/plaintext.min.js"></script>
+<script>
+if(window.hasOwnProperty("hljs")){
+	hljs.configure({
+	  languages: []
+	});
+	hljs.initHighlightingOnLoad();
+}
+</script>
+
+</body>
+</html>

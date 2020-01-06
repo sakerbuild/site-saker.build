@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>saker.java.compiler.api.classpath</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+	
+	<link rel="stylesheet" type="text/css" href="../../../../../../../res/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../../../../../../../res/doc-saker.css">
+	
+</head>
+<body data-nav-location="javadoc" data-subdoc-presence="nest-package packagedoc javadoc taskdoc">
+<div class="doc-nav-bar">
+	<div class="container">
+		<a class="home-link" href="../../../../../../index.html" title="saker.java.compiler"><img style="height: 2.5em;" class="logo" src="../../../../../../../res/logo.svg"/><span class="page-name">saker.java.compiler</span></a>
+		<a class="nav-location-item" data-nav-location="doc-docs" href="../../../../../../doc/index.html" title="Documentation">Documentation</a>
+		<a class="nav-location-item" data-nav-location="doc-taskdoc" href="../../../../../../taskdoc/index.html" title="Build task documentation">TaskDoc</a>
+		<a class="nav-location-item" data-nav-location="doc-javadoc" href="../../../../../../javadoc/index.html"title="Java API documentation">JavaDoc</a>
+	</div>
+</div>
+<nav class="javadoc-nav" data-nav-location="package-info">
+	<div class="container">
+		<span class="javadoc-nav-title">JavaDoc</span>
+		<a class="nav-location-item" data-nav-location="javadoc-packages" href="../../../../../index.html" title="Package index">Packages</a>
+		<a class="nav-location-item" data-nav-location="javadoc-all-classes" href="../../../../../all-classes.html" title="All classes">All classes</a>
+		<a class="nav-location-item" data-nav-location="javadoc-constants" href="../../../../../constants.html" title="All constants">Constants</a>
+	</div>
+</nav>
+<div class="container page-contents javadoc">
+	<div class="javadoc-content">
+	<div class="javadoc-package-header"><div class="javadoc-package-header-pkg"><span class="javadoc-code-ref"><span class="javadoc-kw">package</span> <span class="javadoc-package-header-name">saker.java.compiler.api.classpath</span></span></div></div><div class="javadoc-package-doc"><div class="javadoc-package-doc-body">Contains classes for creating and accessing Java classpath configurations.</div></div><div class="javadoc-package-idx"><div class="javadoc-package-idx-itfs javadoc-idx-section"><table><caption>Interfaces</caption><thead><tr><th class="javadoc-th-type-name"></th><th class="javadoc-th-type-details"></th></tr></thead><tbody><tr class="javadoc-package-idx-itf javadoc-idx-member"><td class="javadoc-package-idx-itf-name javadoc-idx-member-meta"><a href="ClassPathEntry.html" title="interface saker.java.compiler.api.classpath.ClassPathEntry" data-javadoc-kind="interface">ClassPathEntry</a></td><td class="javadoc-package-idx-itf-sig javadoc-idx-member-sig"><div class="javadoc-package-idx-itf-short javadoc-member-short">Represents a classpath entry that is enclosed in a <a href="ClassPathReference.html" title="interface saker.java.compiler.api.classpath.ClassPathReference" data-javadoc-kind="interface">classpath reference</a>.</div></td></tr><tr class="javadoc-package-idx-itf javadoc-idx-member"><td class="javadoc-package-idx-itf-name javadoc-idx-member-meta"><a href="ClassPathReference.html" title="interface saker.java.compiler.api.classpath.ClassPathReference" data-javadoc-kind="interface">ClassPathReference</a></td><td class="javadoc-package-idx-itf-sig javadoc-idx-member-sig"><div class="javadoc-package-idx-itf-short javadoc-member-short">Represents a classpath entry that is provided by an external agent.</div></td></tr><tr class="javadoc-package-idx-itf javadoc-idx-member"><td class="javadoc-package-idx-itf-name javadoc-idx-member-meta"><a href="ClassPathVisitor.html" title="interface saker.java.compiler.api.classpath.ClassPathVisitor" data-javadoc-kind="interface">ClassPathVisitor</a></td><td class="javadoc-package-idx-itf-sig javadoc-idx-member-sig"><div class="javadoc-package-idx-itf-short javadoc-member-short">Visitor interface for examining classpath entries.</div></td></tr><tr class="javadoc-package-idx-itf javadoc-idx-member"><td class="javadoc-package-idx-itf-name javadoc-idx-member-meta"><a href="CompilationClassPath.html" title="interface saker.java.compiler.api.classpath.CompilationClassPath" data-javadoc-kind="interface">CompilationClassPath</a></td><td class="javadoc-package-idx-itf-sig javadoc-idx-member-sig"><div class="javadoc-package-idx-itf-short javadoc-member-short">Represents a classpath entry that is backed by the output of a Java compilation task.</div></td></tr><tr class="javadoc-package-idx-itf javadoc-idx-member"><td class="javadoc-package-idx-itf-name javadoc-idx-member-meta"><a href="FileClassPath.html" title="interface saker.java.compiler.api.classpath.FileClassPath" data-javadoc-kind="interface">FileClassPath</a></td><td class="javadoc-package-idx-itf-sig javadoc-idx-member-sig"><div class="javadoc-package-idx-itf-short javadoc-member-short">Represents a classpath entry that is backed by a file location.</div></td></tr><tr class="javadoc-package-idx-itf javadoc-idx-member"><td class="javadoc-package-idx-itf-name javadoc-idx-member-meta"><a href="JavaClassPath.html" title="interface saker.java.compiler.api.classpath.JavaClassPath" data-javadoc-kind="interface">JavaClassPath</a></td><td class="javadoc-package-idx-itf-sig javadoc-idx-member-sig"><div class="javadoc-package-idx-itf-short javadoc-member-short">Represents a classpath configuration for the JVM.</div></td></tr><tr class="javadoc-package-idx-itf javadoc-idx-member"><td class="javadoc-package-idx-itf-name javadoc-idx-member-meta"><a href="JavaClassPathBuilder.html" title="interface saker.java.compiler.api.classpath.JavaClassPathBuilder" data-javadoc-kind="interface">JavaClassPathBuilder</a></td><td class="javadoc-package-idx-itf-sig javadoc-idx-member-sig"><div class="javadoc-package-idx-itf-short javadoc-member-short">Builder interface for <span class="javadoc-code-ref"><a href="JavaClassPath.html" title="interface saker.java.compiler.api.classpath.JavaClassPath" data-javadoc-kind="interface">JavaClassPath</a></span>.</div></td></tr><tr class="javadoc-package-idx-itf javadoc-idx-member"><td class="javadoc-package-idx-itf-name javadoc-idx-member-meta"><a href="JavaSourceDirectory.html" title="interface saker.java.compiler.api.classpath.JavaSourceDirectory" data-javadoc-kind="interface">JavaSourceDirectory</a></td><td class="javadoc-package-idx-itf-sig javadoc-idx-member-sig"><div class="javadoc-package-idx-itf-short javadoc-member-short">Represents a source directory configuration.</div></td></tr><tr class="javadoc-package-idx-itf javadoc-idx-member"><td class="javadoc-package-idx-itf-name javadoc-idx-member-meta"><a href="SDKClassPath.html" title="interface saker.java.compiler.api.classpath.SDKClassPath" data-javadoc-kind="interface">SDKClassPath</a></td><td class="javadoc-package-idx-itf-sig javadoc-idx-member-sig"><div class="javadoc-package-idx-itf-short javadoc-member-short">Represents a classpath entry that is backed by a path from and SDK.</div></td></tr></tbody></table></div></div>
+	</div>
+</div>
+<div class="doc-footer">
+	<div class="container">
+		<div class="row">
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">About</p>
+				<div><a href="/index.html" title="Saker.build home page">Home</a></div>
+				<div data-footer-location="doc-docs"><a href="../../../../../../index.html" title="saker.java.compiler documentation home">Documentation home</a></div>
+				<div><a href="../../../../../../../saker.build/index.html" title="Information about the saker.build system">saker.build system</a></div>
+				<div><a href="../../../../../../../saker.nest/index.html" title="Information about the saker.nest repository">saker.nest repository</a></div>
+				<div><a href="/contact.html" title="Contact us">Contact</a></div>
+			</div>
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">Resources</p>
+				<div data-footer-location="doc-docs"><a href="../../../../../../doc/index.html" title="saker.java.compiler documentation home">Documentation</a></div>
+				<div data-footer-location="doc-javadoc"><a href="../../../../../../javadoc/index.html" title="JavaDoc for saker.java.compiler">JavaDoc</a></div>
+				<div data-footer-location="doc-taskdoc"><a href="../../../../../../taskdoc/index.html"  title="Documentation of build tasks in saker.java.compiler">TaskDoc</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.java.compiler" title="saker.java.compiler | saker.nest">saker.nest package page</a></div>
+				<div><a href="https://github.com/sakerbuild/saker.java.compiler" title="saker.java.compiler on GitHub">GitHub</a></div>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col">
+			&copy; Bence Sipka 2020
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

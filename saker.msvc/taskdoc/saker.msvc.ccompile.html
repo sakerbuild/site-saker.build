@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>saker.msvc.ccompile()&nbsp|&nbsp;saker.msvc</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+	
+	<link rel="stylesheet" href="../../res/bootstrap.min.css" >
+	<link rel="stylesheet" href="../../res/doc-saker.css" >
+</head>
+<body data-nav-location="taskdoc" data-subdoc-presence="nest-package packagedoc javadoc taskdoc">
+<div class="doc-nav-bar">
+	<div class="container">
+		<a class="home-link" href="../index.html" title="saker.msvc"><img style="height: 2.5em;" class="logo" src="../../res/logo.svg"/><span class="page-name">saker.msvc</span></a>
+		<a class="nav-location-item" data-nav-location="doc-docs" href="../doc/index.html" title="Documentation">Documentation</a>
+		<a class="nav-location-item" data-nav-location="doc-taskdoc" href="../taskdoc/index.html" title="Build task documentation">TaskDoc</a>
+		<a class="nav-location-item" data-nav-location="doc-javadoc" href="../javadoc/index.html"title="Java API documentation">JavaDoc</a>
+	</div>
+</div>
+<nav class="taskdoc-nav" data-nav-location="saker.msvc.ccompile">
+	<div class="container">
+		<span class="taskdoc-nav-title">TaskDoc</span>
+		<a class="nav-location-item" data-nav-location="taskdoc-index" href="index.html" title="Task doc index">Index</a>
+	</div>
+</nav>
+<div class="container page-contents taskdoc">
+	<div class="taskdoc-content">
+	<div class="taskdoc-header"><div class="taskdoc-header-sig"><div class="taskdoc-taskname"><a href="" title="Build task saker.msvc.ccompile()">saker.msvc.ccompile()</a></div><div class="taskdoc-return-type"><a href="types/CCompilerWorkerTaskOutput.html" title="Type CCompilerWorkerTaskOutput">CCompilerWorkerTaskOutput</a></div></div><div class="taskdoc-container-bundle">In bundle: <a title="Bundle saker.msvc">saker.msvc</a></div></div><div class="taskdoc-info" taskdoc-info-format="format.plaintext">Compiles C/C++ sources using the Microsoft Visual C++ toolchain.
+The task provides access to the MSVC compiler (cl.exe). It can be used to compile C/C++ source files which can be later linked using the saker.msvc.clink() task.
+The task supports distributing its workload using build clusters.</div><div class="taskdoc-idx"><div class="taskdoc-idx-title">Summary</div><div class="taskdoc-idx-section taskdoc-idx-parameters"><table><caption>Parameters</caption><tbody><tr class="taskdoc-idx-member"><td class="taskdoc-idx-param-meta"><a class="taskdoc-idx-paramname" href="#Architecture" title="Task parameter Architecture">Architecture</a></td><td class="taskdoc-idx-param-summary">Specifies the compilation target Architecture.
+</td></tr><tr class="taskdoc-idx-member"><td class="taskdoc-idx-param-meta"><a class="taskdoc-idx-paramname" href="#CompilerOptions" title="Task parameter CompilerOptions">CompilerOptions</a></td><td class="taskdoc-idx-param-summary">Specifies one or more option specifications that are merged with the inputs when applicable.
+</td></tr><tr class="taskdoc-idx-member"><td class="taskdoc-idx-param-meta"><a class="taskdoc-idx-paramname" href="#Identifier" title="Task parameter Identifier">Identifier</a></td><td class="taskdoc-idx-param-summary">The Identifier of the compilation.
+</td></tr><tr class="taskdoc-idx-member" taskdoc-required><td class="taskdoc-idx-param-meta"><a class="taskdoc-idx-paramname" href="#Input" title="Task parameter Input">Input</a></td><td class="taskdoc-idx-param-summary"><div class="taskdoc-required-parameter">Required parameter. </div>Specifies one or more inputs for the compilation.
+</td></tr><tr class="taskdoc-idx-member"><td class="taskdoc-idx-param-meta"><a class="taskdoc-idx-paramname" href="#SDKs" title="Task parameter SDKs">SDKs</a></td><td class="taskdoc-idx-param-summary">Specifies the SDKs (Software Development Kits) used by the task.
+</td></tr></tbody></table></div></div><div class="taskdoc-details-parameters"><div class="taskdoc-details-title">Parameters</div><div id="Architecture" class="taskdoc-detail-param"><div class="taskdoc-detail-param-header"><div class="taskdoc-detail-param-header-sig"><div class="taskdoc-detail-param-header-name"><a href="#Architecture" title="Task parameter Architecture">Architecture</a></div><div class="taskdoc-detail-param-header-type"><a href="types/ArchitectureType.html" title="Type ArchitectureType">ArchitectureType</a></div></div></div><div class="taskdoc-detail-member taskdoc-detail-param-detail" taskdoc-info-format="format.plaintext">Specifies the compilation target Architecture.
+The compilation will target the specified architecture. If no architecture is specified, the one that the build is execution on will be used. If it cannot be determined, an exception is thrown and the Architecture option must be specified in that case.
+The used Architecture will be taken into account as a qualifier when merging CompilerOptions.</div></div><div id="CompilerOptions" class="taskdoc-detail-param"><div class="taskdoc-detail-param-header"><div class="taskdoc-detail-param-header-sig"><div class="taskdoc-detail-param-header-name"><a href="#CompilerOptions" title="Task parameter CompilerOptions">CompilerOptions</a></div><div class="taskdoc-detail-param-header-type">Collection of <a href="types/MSVCCompilerOptions.html" title="Type MSVCCompilerOptions">MSVCCompilerOptions</a></div></div></div><div class="taskdoc-detail-member taskdoc-detail-param-detail" taskdoc-info-format="format.plaintext">Specifies one or more option specifications that are merged with the inputs when applicable.
+The parameter can be used to indirectly specify various compilation arguments independent of the actual inputs. This is generally useful when common options need to be specified to multiple compilation inputs.
+When compilation arguments are determined, each option specification will be merged into the used argumnets if applicable. An option is considered to be applicable to merging if all of the Identifier parts are contained in the compilation task Identifier, and the Language and Architecture arguments can be matched.
+In case of unresolveable merge conflicts, the task will throw an appropriate exception.
+Output from the saker.msvc.coptions.preset() task can be passed as a value to this parameter.</div></div><div id="Identifier" class="taskdoc-detail-param"><div class="taskdoc-detail-param-header"><div class="taskdoc-detail-param-header-sig"><div class="taskdoc-detail-param-header-name"><a href="#Identifier" title="Task parameter Identifier">Identifier</a></div><div class="taskdoc-detail-param-header-type"><a href="types/CompilationIdentifierTaskOption.html" title="Type CompilationIdentifierTaskOption">CompilationIdentifierTaskOption</a></div></div></div><div class="taskdoc-detail-member taskdoc-detail-param-detail" taskdoc-info-format="format.plaintext">The Identifier of the compilation.
+Each compilation task has an identifier that uniquely identifies it during a build execution. The identifier is used to determine the output directory of the compilation. It is also used to merge the appropriate options specified in CompilerOptions parameter.
+An identifier constists of dash separated parts of character sequences of a-z, A-Z, 0-9, _, ., (), [], @.
+An option specification in the CompilerOptions can be merged if the compilation identifier contains all parts of the option Identifier.
+If not specified, the identifier is determined based on the current working directory, or assigned to &quot;default&quot;, however, it won&#39;t be subject to option merging.</div></div><div id="Input" class="taskdoc-detail-param" taskdoc-required><div class="taskdoc-detail-param-header"><div class="taskdoc-detail-param-header-sig"><div class="taskdoc-detail-param-header-name"><a href="#Input" title="Task parameter Input">Input</a></div><div class="taskdoc-detail-param-header-type">Collection of <a href="types/CompilationInputPassTaskOption.html" title="Type CompilationInputPassTaskOption">CompilationInputPassTaskOption</a></div></div><div class="taskdoc-detail-param-header-aliases">Aliases: <div class="taskdoc-detail-param-header-alias"><a title="Unnamed parameter">&lt;unnamed&gt;</a></div></div></div><div class="taskdoc-detail-member taskdoc-detail-param-detail" taskdoc-info-format="format.plaintext"><div class="taskdoc-required-parameter">Required parameter.</div>Specifies one or more inputs for the compilation.
+The inputs may be either simple paths, wildcards, file locations, file collections or complex configuration specifying the input source files passed to the backed compiler.
+If not specified, the compilation language will be determined based on the extension of an input file. If the file extension ends with &quot;pp&quot; or &quot;xx&quot;, C++ is used by default. In any other cases, the file is compiled for the C language.</div></div><div id="SDKs" class="taskdoc-detail-param"><div class="taskdoc-detail-param-header"><div class="taskdoc-detail-param-header-sig"><div class="taskdoc-detail-param-header-name"><a href="#SDKs" title="Task parameter SDKs">SDKs</a></div><div class="taskdoc-detail-param-header-type">Map of <a href="types/SDKName.html" title="Type SDKName">SDKName</a> : <a href="types/SDKDescriptionTaskOption.html" title="Type SDKDescriptionTaskOption">SDKDescriptionTaskOption</a></div></div></div><div class="taskdoc-detail-member taskdoc-detail-param-detail" taskdoc-info-format="format.plaintext">Specifies the SDKs (Software Development Kits) used by the task.
+SDKs represent development kits that are available in the build environment and to the task. SDKs are used to determine the appropriate build environment to execute the task, as well to resolve paths against them (e.g. IncludeDirectory, LibraryPath).
+The &quot;MSVC&quot; SDK is used to determine the location of the backend executables (cl.exe, link.exe). If it is not specified, then the task will attempt to determine it automatically.</div></div></div>
+	</div>
+</div>
+<div class="doc-footer">
+	<div class="container">
+		<div class="row">
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">About</p>
+				<div><a href="/index.html" title="Saker.build home page">Home</a></div>
+				<div data-footer-location="doc-docs"><a href="../index.html" title="saker.msvc documentation home">Documentation home</a></div>
+				<div><a href="../../saker.build/index.html" title="Information about the saker.build system">saker.build system</a></div>
+				<div><a href="../../saker.nest/index.html" title="Information about the saker.nest repository">saker.nest repository</a></div>
+				<div><a href="/contact.html" title="Contact us">Contact</a></div>
+			</div>
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">Resources</p>
+				<div data-footer-location="doc-docs"><a href="../doc/index.html" title="saker.msvc documentation home">Documentation</a></div>
+				<div data-footer-location="doc-javadoc"><a href="../javadoc/index.html" title="JavaDoc for saker.msvc">JavaDoc</a></div>
+				<div data-footer-location="doc-taskdoc"><a href="../taskdoc/index.html"  title="Documentation of build tasks in saker.msvc">TaskDoc</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.msvc" title="saker.msvc | saker.nest">saker.nest package page</a></div>
+				<div><a href="https://github.com/sakerbuild/saker.msvc" title="saker.msvc on GitHub">GitHub</a></div>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col">
+			&copy; Bence Sipka 2020
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>nest.local.install()&nbsp|&nbsp;nest.repository.support</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+	
+	<link rel="stylesheet" href="../../res/bootstrap.min.css" >
+	<link rel="stylesheet" href="../../res/doc-saker.css" >
+</head>
+<body data-nav-location="taskdoc" data-subdoc-presence="nest-package packagedoc javadoc taskdoc">
+<div class="doc-nav-bar">
+	<div class="container">
+		<a class="home-link" href="../index.html" title="nest.repository.support"><img style="height: 2.5em;" class="logo" src="../../res/logo.svg"/><span class="page-name">nest.repository.support</span></a>
+		<a class="nav-location-item" data-nav-location="doc-docs" href="../doc/index.html" title="Documentation">Documentation</a>
+		<a class="nav-location-item" data-nav-location="doc-taskdoc" href="../taskdoc/index.html" title="Build task documentation">TaskDoc</a>
+		<a class="nav-location-item" data-nav-location="doc-javadoc" href="../javadoc/index.html"title="Java API documentation">JavaDoc</a>
+	</div>
+</div>
+<nav class="taskdoc-nav" data-nav-location="nest.local.install">
+	<div class="container">
+		<span class="taskdoc-nav-title">TaskDoc</span>
+		<a class="nav-location-item" data-nav-location="taskdoc-index" href="index.html" title="Task doc index">Index</a>
+	</div>
+</nav>
+<div class="container page-contents taskdoc">
+	<div class="taskdoc-content">
+	<div class="taskdoc-header"><div class="taskdoc-header-sig"><div class="taskdoc-taskname"><a href="" title="Build task nest.local.install()">nest.local.install()</a></div><div class="taskdoc-return-type"><a href="types/LocalInstallTaskOutput.html" title="Type LocalInstallTaskOutput">LocalInstallTaskOutput</a></div></div><div class="taskdoc-container-bundle">In bundle: <a title="Bundle nest.repository.support">nest.repository.support</a></div></div><div class="taskdoc-info" taskdoc-info-format="format.plaintext">Installs the specified saker.nest bundles to the specfied local bundle storage.
+The task will install the specified bundles to the local bundle storage of the repository configuration.
+The bundle installation will have no effect on the current build execution. Any contained tasks will be visible only in the next execution.
+If multiple local storages are configured for the current build execution, the StorageName parameter can be used to specify which storage is the installation target.</div><div class="taskdoc-idx"><div class="taskdoc-idx-title">Summary</div><div class="taskdoc-idx-section taskdoc-idx-parameters"><table><caption>Parameters</caption><tbody><tr class="taskdoc-idx-member" taskdoc-required><td class="taskdoc-idx-param-meta"><a class="taskdoc-idx-paramname" href="#Bundle" title="Task parameter Bundle">Bundle</a></td><td class="taskdoc-idx-param-summary"><div class="taskdoc-required-parameter">Required parameter. </div>Specifies one or more bundles to be installed.
+</td></tr><tr class="taskdoc-idx-member"><td class="taskdoc-idx-param-meta"><a class="taskdoc-idx-paramname" href="#StorageName" title="Task parameter StorageName">StorageName</a></td><td class="taskdoc-idx-param-summary">Specifies the storage name of the local bundle storage to where the bundles should be installed.
+</td></tr></tbody></table></div></div><div class="taskdoc-details-parameters"><div class="taskdoc-details-title">Parameters</div><div id="Bundle" class="taskdoc-detail-param" taskdoc-required><div class="taskdoc-detail-param-header"><div class="taskdoc-detail-param-header-sig"><div class="taskdoc-detail-param-header-name"><a href="#Bundle" title="Task parameter Bundle">Bundle</a></div><div class="taskdoc-detail-param-header-type">Collection of <a href="../../saker.build/javadoc/saker/build/file/path/WildcardPath.html" title="WildcardPath">WildcardPath</a></div></div><div class="taskdoc-detail-param-header-aliases">Aliases: <div class="taskdoc-detail-param-header-alias"><a title="Unnamed parameter">&lt;unnamed&gt;</a></div><div class="taskdoc-detail-param-header-alias">Bundles</div></div></div><div class="taskdoc-detail-member taskdoc-detail-param-detail" taskdoc-info-format="format.plaintext"><div class="taskdoc-required-parameter">Required parameter.</div>Specifies one or more bundles to be installed.
+The option accepts simple paths or wildcards to the bundles that should be installed.</div></div><div id="StorageName" class="taskdoc-detail-param"><div class="taskdoc-detail-param-header"><div class="taskdoc-detail-param-header-sig"><div class="taskdoc-detail-param-header-name"><a href="#StorageName" title="Task parameter StorageName">StorageName</a></div><div class="taskdoc-detail-param-header-type"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="String">String</a></div></div></div><div class="taskdoc-detail-member taskdoc-detail-param-detail" taskdoc-info-format="format.plaintext">Specifies the storage name of the local bundle storage to where the bundles should be installed.
+The storage name should be one of the local storages defined in the current Nest repository storage configuration.
+If not specified, the task will attempt to determine the default local bundle storage name. If no local storages, or more than 1 is configured, the task will fail.</div></div></div>
+	</div>
+</div>
+<div class="doc-footer">
+	<div class="container">
+		<div class="row">
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">About</p>
+				<div><a href="/index.html" title="Saker.build home page">Home</a></div>
+				<div data-footer-location="doc-docs"><a href="../index.html" title="nest.repository.support documentation home">Documentation home</a></div>
+				<div><a href="../../saker.build/index.html" title="Information about the saker.build system">saker.build system</a></div>
+				<div><a href="../../saker.nest/index.html" title="Information about the saker.nest repository">saker.nest repository</a></div>
+				<div><a href="/contact.html" title="Contact us">Contact</a></div>
+			</div>
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">Resources</p>
+				<div data-footer-location="doc-docs"><a href="../doc/index.html" title="nest.repository.support documentation home">Documentation</a></div>
+				<div data-footer-location="doc-javadoc"><a href="../javadoc/index.html" title="JavaDoc for nest.repository.support">JavaDoc</a></div>
+				<div data-footer-location="doc-taskdoc"><a href="../taskdoc/index.html"  title="Documentation of build tasks in nest.repository.support">TaskDoc</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/nest.repository.support" title="nest.repository.support | saker.nest">saker.nest package page</a></div>
+				<div><a href="https://github.com/sakerbuild/nest.repository.support" title="nest.repository.support on GitHub">GitHub</a></div>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col">
+			&copy; Bence Sipka 2020
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

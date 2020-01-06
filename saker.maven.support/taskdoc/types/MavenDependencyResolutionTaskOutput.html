@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>MavenDependencyResolutionTaskOutput&nbsp|&nbsp;saker.maven.support</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+	
+	<link rel="stylesheet" href="../../../res/bootstrap.min.css" >
+	<link rel="stylesheet" href="../../../res/doc-saker.css" >
+</head>
+<body data-nav-location="taskdoc" data-subdoc-presence="nest-package packagedoc javadoc taskdoc">
+<div class="doc-nav-bar">
+	<div class="container">
+		<a class="home-link" href="../../index.html" title="saker.maven.support"><img style="height: 2.5em;" class="logo" src="../../../res/logo.svg"/><span class="page-name">saker.maven.support</span></a>
+		<a class="nav-location-item" data-nav-location="doc-docs" href="../../doc/index.html" title="Documentation">Documentation</a>
+		<a class="nav-location-item" data-nav-location="doc-taskdoc" href="../../taskdoc/index.html" title="Build task documentation">TaskDoc</a>
+		<a class="nav-location-item" data-nav-location="doc-javadoc" href="../../javadoc/index.html"title="Java API documentation">JavaDoc</a>
+	</div>
+</div>
+<nav class="taskdoc-nav" data-nav-location="MavenDependencyResolutionTaskOutput">
+	<div class="container">
+		<span class="taskdoc-nav-title">TaskDoc</span>
+		<a class="nav-location-item" data-nav-location="taskdoc-index" href="../index.html" title="Task doc index">Index</a>
+	</div>
+</nav>
+<div class="container page-contents taskdoc">
+	<div class="taskdoc-content">
+	<div class="typedoc-header"><div class="typedoc-typename"><a href="" title="Type MavenDependencyResolutionTaskOutput">MavenDependencyResolutionTaskOutput</a></div><div class="typedoc-container-bundle">In bundle: <a title="Package saker.maven.support">saker.maven.support</a></div></div><div class="typedoc-info" taskdoc-info-format="format.plaintext">Represents the output of a Maven dependency resolution.
+Output of the task saker.maven.resolve().
+The results are recommended to be passed to other tasks that can properly convert it to the expected inputs of other tasks. (E.g. classpath, downloading, etc...)</div><div class="typedoc-idx"><div class="typedoc-idx-title">Summary</div><div class="typedoc-idx-section typedoc-idx-fields"><table><caption>Fields</caption><tbody><tr class="taskdoc-idx-member"><td><a class="typedoc-idx-field-name" href="#f-ArtifactCoordinates" title="Field ArtifactCoordinates">ArtifactCoordinates</a></td><td>Gets the artifact coordinates of the resolved artifacts.</td></tr><tr class="taskdoc-idx-member"><td><a class="typedoc-idx-field-name" href="#f-Configuration" title="Field Configuration">Configuration</a></td><td>The Maven configuration that was used during the operation.
+</td></tr><tr class="taskdoc-idx-member"><td><a class="typedoc-idx-field-name" href="#f-ResolvedArtifacts" title="Field ResolvedArtifacts">ResolvedArtifacts</a></td><td>Gets the information about each resolved artifact.
+</td></tr><tr class="taskdoc-idx-member"><td><a class="typedoc-idx-field-name" href="#f-Scopes" title="Field Scopes">Scopes</a></td><td>Gets a lookup object that can be used to retrieve views that contain resolved dependencies only for a given scope.
+</td></tr></tbody></table></div></div><div class="typedoc-details-fields"><div class="typedoc-details-title">Fields</div><div id="f-ArtifactCoordinates" class="typedoc-detail-member typedoc-detail-field"><div class="typedoc-detail-param-header-sig"><div class="typedoc-detail-field-name"><a href="#f-ArtifactCoordinates" title="Field ArtifactCoordinates">ArtifactCoordinates</a></div><div class="typedoc-detail-field-type">Collection of <a href="ArtifactCoordinates.html" title="Type ArtifactCoordinates">ArtifactCoordinates</a></div></div><div class="typedoc-detail-field-detail" taskdoc-info-format="format.plaintext">Gets the artifact coordinates of the resolved artifacts.</div></div><div id="f-Configuration" class="typedoc-detail-member typedoc-detail-field"><div class="typedoc-detail-param-header-sig"><div class="typedoc-detail-field-name"><a href="#f-Configuration" title="Field Configuration">Configuration</a></div><div class="typedoc-detail-field-type"><a href="MavenConfigurationTaskOption.html" title="Type MavenConfigurationTaskOption">MavenConfigurationTaskOption</a></div></div><div class="typedoc-detail-field-detail" taskdoc-info-format="format.plaintext">The Maven configuration that was used during the operation.
+This field can be passed to other Maven related tasks for their configurations.</div></div><div id="f-ResolvedArtifacts" class="typedoc-detail-member typedoc-detail-field"><div class="typedoc-detail-param-header-sig"><div class="typedoc-detail-field-name"><a href="#f-ResolvedArtifacts" title="Field ResolvedArtifacts">ResolvedArtifacts</a></div><div class="typedoc-detail-field-type">Collection of <a href="ResolvedDependencyArtifact.html" title="Type ResolvedDependencyArtifact">ResolvedDependencyArtifact</a></div></div><div class="typedoc-detail-field-detail" taskdoc-info-format="format.plaintext">Gets the information about each resolved artifact.
+The elements contain information about the artifact coordinates and the scope of the resolved dependency.</div></div><div id="f-Scopes" class="typedoc-detail-member typedoc-detail-field"><div class="typedoc-detail-param-header-sig"><div class="typedoc-detail-field-name"><a href="#f-Scopes" title="Field Scopes">Scopes</a></div><div class="typedoc-detail-field-type"><a href="MavenDependencyResolutionScopesOutput.html" title="Type MavenDependencyResolutionScopesOutput">MavenDependencyResolutionScopesOutput</a></div></div><div class="typedoc-detail-field-detail" taskdoc-info-format="format.plaintext">Gets a lookup object that can be used to retrieve views that contain resolved dependencies only for a given scope.
+Retrieving the appropriate fields will return the task output for the given scope of dependencies.</div></div></div>
+	</div>
+</div>
+<div class="doc-footer">
+	<div class="container">
+		<div class="row">
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">About</p>
+				<div><a href="/index.html" title="Saker.build home page">Home</a></div>
+				<div data-footer-location="doc-docs"><a href="../../index.html" title="saker.maven.support documentation home">Documentation home</a></div>
+				<div><a href="../../../saker.build/index.html" title="Information about the saker.build system">saker.build system</a></div>
+				<div><a href="../../../saker.nest/index.html" title="Information about the saker.nest repository">saker.nest repository</a></div>
+				<div><a href="/contact.html" title="Contact us">Contact</a></div>
+			</div>
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">Resources</p>
+				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.maven.support documentation home">Documentation</a></div>
+				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.maven.support">JavaDoc</a></div>
+				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.maven.support">TaskDoc</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.maven.support" title="saker.maven.support | saker.nest">saker.nest package page</a></div>
+				<div><a href="https://github.com/sakerbuild/saker.maven.support" title="saker.maven.support on GitHub">GitHub</a></div>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col">
+			&copy; Bence Sipka 2020
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

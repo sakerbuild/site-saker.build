@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Cross-compilation&nbsp;|&nbsp;saker.java.compiler</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+	
+	<link rel="stylesheet" href="../../../res/bootstrap.min.css" >
+	<link rel="stylesheet" href="../../../res/doc-saker.css" >
+</head>
+<body data-nav-location="packagedoc" data-subdoc-presence="nest-package packagedoc javadoc taskdoc">
+<div class="doc-nav-bar">
+	<div class="container">
+		<a class="home-link" href="../../index.html" title="saker.java.compiler"><img style="height: 2.5em;" class="logo" src="../../../res/logo.svg"/><span class="page-name">saker.java.compiler</span></a>
+		<a class="nav-location-item" data-nav-location="doc-docs" href="../../doc/index.html" title="Documentation">Documentation</a>
+		<a class="nav-location-item" data-nav-location="doc-taskdoc" href="../../taskdoc/index.html" title="Build task documentation">TaskDoc</a>
+		<a class="nav-location-item" data-nav-location="doc-javadoc" href="../../javadoc/index.html"title="Java API documentation">JavaDoc</a>
+	</div>
+</div>
+<div class="container page-contents packagedoc">
+	<div class="row">
+		<div class="col-12 col-lg-3 col-xl-2 p-lg-0">
+			<div class="doc-navigation-container">
+				<label class="d-lg-none nav-collapse" for="doc-collapse-nav-label">
+					<svg style="height: 1.5em;" viewBox="0 0 24 24">
+					    <path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+					</svg>
+					Navigation
+				</label>
+				<input style="display:none;" id="doc-collapse-nav-label" type="checkbox"/> 
+				<div class="doc-nav">  <div class="doc-section">    <p class="section-title">Package details</p><ul><li><a class="doc-nav-section-link" href="../index.html" title="Overview">Overview</a></li><li><a class="doc-nav-section-link" href="../gettingstarted.html" title="Getting started">Getting started</a></li><li><a class="doc-nav-section-link" href="../featurecomparison.html" title="Feature comparison">Feature comparison</a></li><li><a class="doc-nav-section-link" href="../performancecomparison.html" title="Performance comparison">Performance comparison</a></li><li><a class="doc-nav-section-link" href="../implementationinsights.html" title="Implementation insights">Implementation insights</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Java compilation</p><ul><li><a class="doc-nav-section-link" href="index.html" title="Overview">Overview</a></li><li><a class="doc-nav-section-link" href="basics.html" title="Basics">Basics</a></li><li><label class="doc-nav-collapse" for="_doc_collapse_id_0"><a class="doc-nav-section-link" href="processors.html" title="Annotation processors">Annotation processors</a></label><input style="display:none;" id="_doc_collapse_id_0" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_0"></label><ul><li><a class="doc-nav-section-link" href="processorconfig.html" title="Configuration">Configuration</a></li></ul></li><li class="doc-active doc-active-parent"><a class="doc-nav-section-link" href="crosscompile.html" title="Cross-compilation">Cross-compilation</a></li><li><a class="doc-nav-section-link" href="compileroptions.html" title="Compiler options">Compiler options</a></li><li><a class="doc-nav-section-link" href="sdkmanagement.html" title="SDK management">SDK management</a></li><li><a class="doc-nav-section-link" href="bundleclasspath.html" title="Bundle classpath">Bundle classpath</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Examples</p><ul><li><a class="doc-nav-section-link" href="../examples/index.html" title="Overview">Overview</a></li><li><a class="doc-nav-section-link" href="../examples/simple.html" title="Simple compilation">Simple compilation</a></li><li><a class="doc-nav-section-link" href="../examples/sourcefilter.html" title="Filter sources">Filter sources</a></li><li><a class="doc-nav-section-link" href="../examples/classpath.html" title="Classpath">Classpath</a></li><li><a class="doc-nav-section-link" href="../examples/processing.html" title="Annotation processing">Annotation processing</a></li><li><a class="doc-nav-section-link" href="../examples/compilerparameters.html" title="Compiler parameters">Compiler parameters</a></li><li><a class="doc-nav-section-link" href="../examples/parameternames.html" title="Reflection parameter names">Reflection parameter names</a></li><li><a class="doc-nav-section-link" href="../examples/debuginfo.html" title="Debug information">Debug information</a></li><li><a class="doc-nav-section-link" href="../examples/injectmoduleinfo.html" title="Injecting module-info attributes">Injecting module-info attributes</a></li><li><a class="doc-nav-section-link" href="../examples/nativeheaders.html" title="Native headers">Native headers</a></li><li><a class="doc-nav-section-link" href="../examples/jnicompile.html" title="JNI compilation">JNI compilation</a></li><li><a class="doc-nav-section-link" href="../examples/addexports.html" title="Add module exports">Add module exports</a></li><li><a class="doc-nav-section-link" href="../examples/crosscompile.html" title="Cross-compilation">Cross-compilation</a></li><li><a class="doc-nav-section-link" href="../examples/nestbundleclasspath.html" title="Nest bundle classpath">Nest bundle classpath</a></li></ul>  </div></div>
+			</div>
+		</div>
+		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="sb-sponsors" style="display: none;">
+	<span class="sb-sponsors-title">Sponsors</span>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4 col-12">
+				<a class="sb-sponsors-link"></a>
+			</div>
+			<div class="col-md-4 col-12">
+				<a class="sb-sponsors-link"></a>
+			</div>
+			<div class="col-md-4 col-12">
+				<a class="sb-sponsors-link"></a>
+			</div>
+		</div>
+	</div>
+</div>
+			<div class="doc-content"><h1 id="cross-compilation">Cross-compilation<a class="doc-heading-anchor" href="#cross-compilation"></a></h1>
+<p>Cross-compilation is the act of compiling the sources to be used with a different version than the current environment. E.g. if we're using JDK 10 to compile the sources, but we plan on running them on Java 8, then we'll be cross-compiling.</p>
+<p>The <a href="../../taskdoc/saker.java.compile.html"><code>saker.java.compile()</code></a> task supports cross-compilation the same way as <code>javac</code> does. It allows you to specify the source and target versions, and the <code>--release</code> option for JDK 9 or later.</p>
+<p>In the following example we compile the sources to run on Java 8.</p>
+<pre><code class="language-sakerscript"><span class="a"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
+	<span class="c">SourceDirectories</span>: <span class="b">src</span>,
+	<span class="c">SourceVersion: </span><span class="b">8</span>,
+	<span class="c">TargetVersion: </span><span class="b">8</span>
+<span class="a">)</span>
+</code></pre>
+<p>If we run the build on JDK 9 or later, then we may also need to specify the <code>--release</code> option for correctness:</p>
+<pre><code class="language-sakerscript"><span class="a"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
+	<span class="c">SourceDirectories</span>: <span class="b">src</span>,
+	<span class="c">SourceVersion: </span><span class="b">8</span>,
+	<span class="c">TargetVersion: </span><span class="b">8</span>,
+	<span class="c">Parameters: </span><span class="e">[</span> --<span class="b">release</span><span class="e">,</span> <span class="b">8</span><span class="e"> ]</span>
+<span class="a">)</span>
+</code></pre>
+<p>Note that the exact semantics are the same as the <a href="https://docs.oracle.com/javase/9/tools/javac.htm" title="javac"><code>javac</code></a> tool. The <code>SourceVersion</code> and <code>TargetVersion</code> corresponds to the <code>-source</code> and <code>-target</code> command line arguments accordingly.</p>
+<p>The <code>--release</code> parameter and its argument is ignored if the compilation is running on earlier versions than Java 9.</p>
+<h2 id="forked-compilation">Forked compilation<a class="doc-heading-anchor" href="#forked-compilation"></a></h2>
+<p>In cases when you're compiling for a more recent Java version that the one the build execution is running on, you may want to use forked compilation. In this case the <a href="../../taskdoc/saker.java.compile.html"><code>saker.java.compile()</code></a> task will spawn a new <code>java</code> process that will execute the compilation.</p>
+<p>The spawned Java process will run on the target JDK, and will communicate with the compiler task in order to do its work. Using forked compilation may be slower than using the in-process method. The incremental compilation and annotation processing should work the same way nonetheless.</p>
+<p>Example for using JDK 13 to compile the Java sources:</p>
+<pre><code class="language-sakerscript"><span class="a"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
+	<span class="c">SourceDirectories</span>: <span class="b">src</span>,
+	<span class="c">SDKs: </span><span class="e">{</span>
+		<span class="f">Java</span>: <span class="a"><a href="../../../saker.java.compiler/taskdoc/saker.java.sdk.html" title="Task: saker.java.sdk()">saker.java.sdk</a>(</span><span class="b">13</span><span class="a">)</span><span class="e">
+	}</span>
+<span class="a">)</span>
+</code></pre>
+<p>In order to setup the forked compilation, the task uses the <a href="../../../saker.sdk.support/doc/sdks/index.html" title="What is an SDK?">SDK mechanism</a> to pass the configuration. The <a href="../../taskdoc/saker.java.sdk.html"><code>saker.java.sdk()</code></a> task finds an appropriate JDK reference with the major version of 13, and that will be used to compile the sources.</p>
+<p>If the current build execution already runs on JDK 13, then the compilation will not be forked.</p>
+<link href="../../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>
+			<div class="end-section-links">
+				<div class="end-section-prev">
+					<a class="doc-prev-section" href="../../doc/javacompile/processorconfig.html" title="Configuration"><svg class="doc-section-arrow" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" />
+</svg>Configuration</a>
+				</div>
+				<div class="end-section-next">
+					<a class="doc-next-section" href="../../doc/javacompile/compileroptions.html" title="Compiler options">Compiler options<svg class="doc-section-arrow" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z" />
+</svg></a>
+				</div>
+			</div>
+			<div class="doc-headings-nav">  <ul>    <li><a href="#cross-compilation" title="Cross-compilation">Cross-compilation</a>      <ul>        <li><a href="#forked-compilation" title="Forked compilation">Forked compilation</a>        </li>      </ul>    </li>  </ul></div>
+		</div>
+	</div>
+</div>
+<div class="doc-footer">
+	<div class="container">
+		<div class="row">
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">About</p>
+				<div><a href="/index.html" title="Saker.build home page">Home</a></div>
+				<div data-footer-location="doc-docs"><a href="../../index.html" title="saker.java.compiler documentation home">Documentation home</a></div>
+				<div><a href="../../../saker.build/index.html" title="Information about the saker.build system">saker.build system</a></div>
+				<div><a href="../../../saker.nest/index.html" title="Information about the saker.nest repository">saker.nest repository</a></div>
+				<div><a href="/contact.html" title="Contact us">Contact</a></div>
+			</div>
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">Resources</p>
+				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.java.compiler documentation home">Documentation</a></div>
+				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.java.compiler">JavaDoc</a></div>
+				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.java.compiler">TaskDoc</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.java.compiler" title="saker.java.compiler | saker.nest">saker.nest package page</a></div>
+				<div><a href="https://github.com/sakerbuild/saker.java.compiler" title="saker.java.compiler on GitHub">GitHub</a></div>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col">
+			&copy; Bence Sipka 2020
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script>
+if(window.hasOwnProperty("hljs")){
+	hljs.configure({
+	  languages: []
+	});
+	hljs.initHighlightingOnLoad();
+}
+</script>
+
+</body>
+</html>

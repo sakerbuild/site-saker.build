@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>MavenDependencyResolutionTaskOutput</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+	
+	<link rel="stylesheet" type="text/css" href="../../../../../../../res/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../../../../../../../res/doc-saker.css">
+	
+</head>
+<body data-nav-location="javadoc" data-subdoc-presence="nest-package packagedoc javadoc taskdoc">
+<div class="doc-nav-bar">
+	<div class="container">
+		<a class="home-link" href="../../../../../../index.html" title="saker.maven.support"><img style="height: 2.5em;" class="logo" src="../../../../../../../res/logo.svg"/><span class="page-name">saker.maven.support</span></a>
+		<a class="nav-location-item" data-nav-location="doc-docs" href="../../../../../../doc/index.html" title="Documentation">Documentation</a>
+		<a class="nav-location-item" data-nav-location="doc-taskdoc" href="../../../../../../taskdoc/index.html" title="Build task documentation">TaskDoc</a>
+		<a class="nav-location-item" data-nav-location="doc-javadoc" href="../../../../../../javadoc/index.html"title="Java API documentation">JavaDoc</a>
+	</div>
+</div>
+<nav class="javadoc-nav" data-nav-location="MavenDependencyResolutionTaskOutput">
+	<div class="container">
+		<span class="javadoc-nav-title">JavaDoc</span>
+		<a class="nav-location-item" data-nav-location="javadoc-packages" href="../../../../../index.html" title="Package index">Packages</a>
+		<a class="nav-location-item" data-nav-location="javadoc-all-classes" href="../../../../../all-classes.html" title="All classes">All classes</a>
+		<a class="nav-location-item" data-nav-location="javadoc-constants" href="../../../../../constants.html" title="All constants">Constants</a>
+	</div>
+</nav>
+<div class="container page-contents javadoc">
+	<div class="javadoc-content">
+	<div class="javadoc-class-header"><div class="javadoc-class-header-pkg"><span class="javadoc-code-ref"><span class="javadoc-kw">package</span> <a href="index.html" title="saker.maven.support.api.dependency" data-javadoc-kind="package">saker.maven.support.api.dependency</a></span></div><div class="javadoc-class-header-class"><span class="javadoc-kw">public interface </span><span class="javadoc-class-header-name">MavenDependencyResolutionTaskOutput</span></div></div><div class="javadoc-class-doc"><div class="javadoc-class-doc-body">Provides access to the results of the dependency resolution task. <p>
+ The result of the resolution is a set of artifact coordinates paired with the dependency scope they were resolved
+ with.
+ <p>
+ Clients shouldn't implement this interface.</div></div><div class="javadoc-class-idx"><div class="javadoc-class-idx-methods javadoc-idx-section"><table><caption>Methods</caption><thead><tr><th class="javadoc-th-method-meta"></th><th class="javadoc-th-method-details"></th></tr></thead><tbody><tr class="javadoc-class-idx-method javadoc-idx-member"><td class="javadoc-class-idx-method-meta javadoc-idx-member-meta"><span class="javadoc-kw">public </span><span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Collection.html" title="interface java.util.Collection" data-javadoc-kind="interface">Collection</a>&lt;<wbr><a href="../ArtifactCoordinates.html" title="class saker.maven.support.api.ArtifactCoordinates" data-javadoc-kind="class">ArtifactCoordinates</a>&gt;</span></td><td class="javadoc-class-idx-method-sig javadoc-idx-member-sig"><div class="javadoc-class-idx-method-name javadoc-idx-member-name"><a href="#getArtifactCoordinates--" title="MavenDependencyResolutionTaskOutput.getArtifactCoordinates()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">getArtifactCoordinates</a><span class="javadoc-code-ref">()</span></div><div class="javadoc-class-idx-method-short javadoc-member-short">Gets the artifact coordinates that were resolved during the dependency resolution.</div></td></tr><tr class="javadoc-class-idx-method javadoc-idx-member"><td class="javadoc-class-idx-method-meta javadoc-idx-member-meta"><span class="javadoc-kw">public </span><span class="javadoc-code-ref"><a href="../MavenOperationConfiguration.html" title="class saker.maven.support.api.MavenOperationConfiguration" data-javadoc-kind="class">MavenOperationConfiguration</a></span></td><td class="javadoc-class-idx-method-sig javadoc-idx-member-sig"><div class="javadoc-class-idx-method-name javadoc-idx-member-name"><a href="#getConfiguration--" title="MavenDependencyResolutionTaskOutput.getConfiguration()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">getConfiguration</a><span class="javadoc-code-ref">()</span></div><div class="javadoc-class-idx-method-short javadoc-member-short">Gets the <span class="javadoc-code-ref"><a href="../MavenOperationConfiguration.html" title="class saker.maven.support.api.MavenOperationConfiguration" data-javadoc-kind="class">MavenOperationConfiguration</a></span> that was used when performing the dependency resolution.</div></td></tr><tr class="javadoc-class-idx-method javadoc-idx-member"><td class="javadoc-class-idx-method-meta javadoc-idx-member-meta"><span class="javadoc-kw">public </span><span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Collection.html" title="interface java.util.Collection" data-javadoc-kind="interface">Collection</a>&lt;<wbr><a href="ResolvedDependencyArtifact.html" title="interface saker.maven.support.api.dependency.ResolvedDependencyArtifact" data-javadoc-kind="interface">ResolvedDependencyArtifact</a>&gt;</span></td><td class="javadoc-class-idx-method-sig javadoc-idx-member-sig"><div class="javadoc-class-idx-method-name javadoc-idx-member-name"><a href="#getResolvedArtifacts--" title="MavenDependencyResolutionTaskOutput.getResolvedArtifacts()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">getResolvedArtifacts</a><span class="javadoc-code-ref">()</span></div><div class="javadoc-class-idx-method-short javadoc-member-short">Gets the artifact resolutions that are the result of the operation.</div></td></tr><tr class="javadoc-class-idx-method javadoc-idx-member"><td class="javadoc-class-idx-method-meta javadoc-idx-member-meta"><span class="javadoc-kw">public </span><span class="javadoc-code-ref"><a href="MavenDependencyResolutionScopesOutput.html" title="interface saker.maven.support.api.dependency.MavenDependencyResolutionScopesOutput" data-javadoc-kind="interface">MavenDependencyResolutionScopesOutput</a></span></td><td class="javadoc-class-idx-method-sig javadoc-idx-member-sig"><div class="javadoc-class-idx-method-name javadoc-idx-member-name"><a href="#getScopes--" title="MavenDependencyResolutionTaskOutput.getScopes()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">getScopes</a><span class="javadoc-code-ref">()</span></div><div class="javadoc-class-idx-method-short javadoc-member-short">Gets an object that can be used to limit the output by the specified dependency scopes.</div></td></tr></tbody></table></div></div><div class="javadoc-class-details"><div class="javadoc-class-details-methods javadoc-details-section"><div id="getArtifactCoordinates--" class="javadoc-class-detail-method javadoc-class-detail-member"><div class="javadoc-class-detail-method-sig javadoc-member-sig"><span class="javadoc-kw">public abstract </span><span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Collection.html" title="interface java.util.Collection" data-javadoc-kind="interface">Collection</a>&lt;<wbr><a href="../ArtifactCoordinates.html" title="class saker.maven.support.api.ArtifactCoordinates" data-javadoc-kind="class">ArtifactCoordinates</a>&gt;</span> <a href="#getArtifactCoordinates--" title="MavenDependencyResolutionTaskOutput.getArtifactCoordinates()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">getArtifactCoordinates</a><span class="javadoc-code-ref">()</span></div><div class="javadoc-class-detail-method-detail javadoc-member-detail"><div class="javadoc-detail-body">Gets the artifact coordinates that were resolved during the dependency resolution.</div><div class="javadoc-method-detail-return javadoc-blocktag-section"><div class="javadoc-method-detail-return-body">The coordinates of the resolved artifacts.</div></div></div></div><div id="getConfiguration--" class="javadoc-class-detail-method javadoc-class-detail-member"><div class="javadoc-class-detail-method-sig javadoc-member-sig"><span class="javadoc-kw">public abstract </span><span class="javadoc-code-ref"><a href="../MavenOperationConfiguration.html" title="class saker.maven.support.api.MavenOperationConfiguration" data-javadoc-kind="class">MavenOperationConfiguration</a></span> <a href="#getConfiguration--" title="MavenDependencyResolutionTaskOutput.getConfiguration()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">getConfiguration</a><span class="javadoc-code-ref">()</span></div><div class="javadoc-class-detail-method-detail javadoc-member-detail"><div class="javadoc-detail-body">Gets the <span class="javadoc-code-ref"><a href="../MavenOperationConfiguration.html" title="class saker.maven.support.api.MavenOperationConfiguration" data-javadoc-kind="class">MavenOperationConfiguration</a></span> that was used when performing the dependency resolution.</div><div class="javadoc-method-detail-return javadoc-blocktag-section"><div class="javadoc-method-detail-return-body">The configuration.</div></div></div></div><div id="getResolvedArtifacts--" class="javadoc-class-detail-method javadoc-class-detail-member"><div class="javadoc-class-detail-method-sig javadoc-member-sig"><span class="javadoc-kw">public abstract </span><span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Collection.html" title="interface java.util.Collection" data-javadoc-kind="interface">Collection</a>&lt;<wbr><a href="ResolvedDependencyArtifact.html" title="interface saker.maven.support.api.dependency.ResolvedDependencyArtifact" data-javadoc-kind="interface">ResolvedDependencyArtifact</a>&gt;</span> <a href="#getResolvedArtifacts--" title="MavenDependencyResolutionTaskOutput.getResolvedArtifacts()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">getResolvedArtifacts</a><span class="javadoc-code-ref">()</span></div><div class="javadoc-class-detail-method-detail javadoc-member-detail"><div class="javadoc-detail-body">Gets the artifact resolutions that are the result of the operation. <p>
+ The elements provide access to the artifact coordinates and the scope of the associated dependency.</div><div class="javadoc-method-detail-return javadoc-blocktag-section"><div class="javadoc-method-detail-return-body">The resolved artifacts.</div></div></div></div><div id="getScopes--" class="javadoc-class-detail-method javadoc-class-detail-member"><div class="javadoc-class-detail-method-sig javadoc-member-sig"><span class="javadoc-kw">public abstract </span><span class="javadoc-code-ref"><a href="MavenDependencyResolutionScopesOutput.html" title="interface saker.maven.support.api.dependency.MavenDependencyResolutionScopesOutput" data-javadoc-kind="interface">MavenDependencyResolutionScopesOutput</a></span> <a href="#getScopes--" title="MavenDependencyResolutionTaskOutput.getScopes()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">getScopes</a><span class="javadoc-code-ref">()</span></div><div class="javadoc-class-detail-method-detail javadoc-member-detail"><div class="javadoc-detail-body">Gets an object that can be used to limit the output by the specified dependency scopes. <p>
+ The result object provides access to the same artifacts as this, but can filter out unnecessary dependency
+ scopes.</div><div class="javadoc-method-detail-return javadoc-blocktag-section"><div class="javadoc-method-detail-return-body">The scope output.</div></div></div></div></div></div>
+	</div>
+</div>
+<div class="doc-footer">
+	<div class="container">
+		<div class="row">
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">About</p>
+				<div><a href="/index.html" title="Saker.build home page">Home</a></div>
+				<div data-footer-location="doc-docs"><a href="../../../../../../index.html" title="saker.maven.support documentation home">Documentation home</a></div>
+				<div><a href="../../../../../../../saker.build/index.html" title="Information about the saker.build system">saker.build system</a></div>
+				<div><a href="../../../../../../../saker.nest/index.html" title="Information about the saker.nest repository">saker.nest repository</a></div>
+				<div><a href="/contact.html" title="Contact us">Contact</a></div>
+			</div>
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">Resources</p>
+				<div data-footer-location="doc-docs"><a href="../../../../../../doc/index.html" title="saker.maven.support documentation home">Documentation</a></div>
+				<div data-footer-location="doc-javadoc"><a href="../../../../../../javadoc/index.html" title="JavaDoc for saker.maven.support">JavaDoc</a></div>
+				<div data-footer-location="doc-taskdoc"><a href="../../../../../../taskdoc/index.html"  title="Documentation of build tasks in saker.maven.support">TaskDoc</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.maven.support" title="saker.maven.support | saker.nest">saker.nest package page</a></div>
+				<div><a href="https://github.com/sakerbuild/saker.maven.support" title="saker.maven.support on GitHub">GitHub</a></div>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col">
+			&copy; Bence Sipka 2020
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

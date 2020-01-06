@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>FileCollection</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+	
+	<link rel="stylesheet" type="text/css" href="../../../../../../../res/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../../../../../../../res/doc-saker.css">
+	
+</head>
+<body data-nav-location="javadoc" data-subdoc-presence="nest-package packagedoc javadoc taskdoc">
+<div class="doc-nav-bar">
+	<div class="container">
+		<a class="home-link" href="../../../../../../index.html" title="saker.standard"><img style="height: 2.5em;" class="logo" src="../../../../../../../res/logo.svg"/><span class="page-name">saker.standard</span></a>
+		<a class="nav-location-item" data-nav-location="doc-docs" href="../../../../../../doc/index.html" title="Documentation">Documentation</a>
+		<a class="nav-location-item" data-nav-location="doc-taskdoc" href="../../../../../../taskdoc/index.html" title="Build task documentation">TaskDoc</a>
+		<a class="nav-location-item" data-nav-location="doc-javadoc" href="../../../../../../javadoc/index.html"title="Java API documentation">JavaDoc</a>
+	</div>
+</div>
+<nav class="javadoc-nav" data-nav-location="FileCollection">
+	<div class="container">
+		<span class="javadoc-nav-title">JavaDoc</span>
+		<a class="nav-location-item" data-nav-location="javadoc-packages" href="../../../../../index.html" title="Package index">Packages</a>
+		<a class="nav-location-item" data-nav-location="javadoc-all-classes" href="../../../../../all-classes.html" title="All classes">All classes</a>
+		<a class="nav-location-item" data-nav-location="javadoc-constants" href="../../../../../constants.html" title="All constants">Constants</a>
+	</div>
+</nav>
+<div class="container page-contents javadoc">
+	<div class="javadoc-content">
+	<div class="javadoc-class-header"><div class="javadoc-class-header-pkg"><span class="javadoc-code-ref"><span class="javadoc-kw">package</span> <a href="index.html" title="saker.std.api.file.location" data-javadoc-kind="package">saker.std.api.file.location</a></span></div><div class="javadoc-class-header-class"><span class="javadoc-kw">public interface </span><span class="javadoc-class-header-name">FileCollection</span>&nbsp;<span class="javadoc-kw">extends</span> <span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html" title="interface java.lang.Iterable" data-javadoc-kind="interface">Iterable</a>&lt;<wbr><a href="FileLocation.html" title="interface saker.std.api.file.location.FileLocation" data-javadoc-kind="interface">FileLocation</a>&gt;</span></div></div><div class="javadoc-class-super-hierarchy"><div class="javadoc-class-super-hierarchy-entry"><span class="javadoc-code-ref"><a href="#" title="interface saker.std.api.file.location.FileCollection" data-javadoc-kind="interface">saker.std.api.file.location.FileCollection</a></span><div class="javadoc-class-super-hierarchy-entry"><span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html" title="interface java.lang.Iterable" data-javadoc-kind="interface">java.lang.Iterable</a>&lt;<wbr><a href="FileLocation.html" title="interface saker.std.api.file.location.FileLocation" data-javadoc-kind="interface">FileLocation</a>&gt;</span></div></div></div><div class="javadoc-class-doc"><div class="javadoc-class-doc-body">Container for multiple <a href="FileLocation.html" title="interface saker.std.api.file.location.FileLocation" data-javadoc-kind="interface">file locations</a>. <p>
+ The interface represents a container that holds zero, one, or more file locations. The interface extends
+ <span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html" title="interface java.lang.Iterable" data-javadoc-kind="interface">Iterable&lt;FileLocation&gt;</a></span>.
+ <p>
+ It can be used to represent a collection of files, and can be used to accept multiple file locations as an input to
+ tasks.
+ <p>
+ Clients shouldn't implement this interface.
+ <p>
+ Use <span class="javadoc-code-ref"><a href="#create-java.util.Collection-" title="FileCollection.create(Collection<? extends FileLocation>)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface">create<span class="javadoc-code-ref">(<wbr>Collection&lt;<wbr>?&nbsp;<span class="javadoc-kw">extends</span> FileLocation&gt;)</span></a></span> to create a new instance.</div></div><div class="javadoc-class-idx"><div class="javadoc-class-idx-methods javadoc-idx-section"><table><caption>Methods</caption><thead><tr><th class="javadoc-th-method-meta"></th><th class="javadoc-th-method-details"></th></tr></thead><tbody><tr class="javadoc-class-idx-method javadoc-idx-member"><td class="javadoc-class-idx-method-meta javadoc-idx-member-meta"><span class="javadoc-kw">public static </span><span class="javadoc-code-ref"><a href="#" title="interface saker.std.api.file.location.FileCollection" data-javadoc-kind="interface">FileCollection</a></span></td><td class="javadoc-class-idx-method-sig javadoc-idx-member-sig"><div class="javadoc-class-idx-method-name javadoc-idx-member-name"><a href="#create-java.util.Collection-" title="FileCollection.create(Collection<? extends FileLocation>)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">create</a><span class="javadoc-code-ref">(<wbr><span class="javadoc-method-param"><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Collection.html" title="interface java.util.Collection" data-javadoc-kind="interface">Collection</a>&lt;<wbr>?&nbsp;<span class="javadoc-kw">extends</span> <a href="FileLocation.html" title="interface saker.std.api.file.location.FileLocation" data-javadoc-kind="interface">FileLocation</a>&gt; files</span>)</span></div><div class="javadoc-class-idx-method-short javadoc-member-short">Creates a new <span class="javadoc-code-ref"><a href="#" title="interface saker.std.api.file.location.FileCollection" data-javadoc-kind="interface">FileCollection</a></span>.</div></td></tr></tbody></table></div><div class="javadoc-class-idx-inherited-methods javadoc-idx-section"><table><caption>Inherited methods</caption><tbody><tr class="javadoc-class-idx-inherited-methods-entry"><td><div class="javadoc-class-idx-inherited-methods-title">From: <span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html" title="interface java.lang.Iterable" data-javadoc-kind="interface">Iterable</a>&lt;<wbr><a href="FileLocation.html" title="interface saker.std.api.file.location.FileLocation" data-javadoc-kind="interface">FileLocation</a>&gt;</span></div><div class="javadoc-class-idx-inherited-methods-list"><span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html#forEach-java.util.function.Consumer-" title="Iterable.forEach(Consumer<? super T>)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface">forEach</a>, <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html#iterator--" title="Iterable.iterator()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface">iterator</a>, <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html#spliterator--" title="Iterable.spliterator()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface">spliterator</a></span></div></td></tr></tbody></table></div></div><div class="javadoc-class-details"><div class="javadoc-class-details-methods javadoc-details-section"><div id="create-java.util.Collection-" class="javadoc-class-detail-method javadoc-class-detail-member"><div class="javadoc-class-detail-method-sig javadoc-member-sig"><span class="javadoc-kw">public static </span><span class="javadoc-code-ref"><a href="#" title="interface saker.std.api.file.location.FileCollection" data-javadoc-kind="interface">FileCollection</a></span> <a href="#create-java.util.Collection-" title="FileCollection.create(Collection<? extends FileLocation>)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">create</a><span class="javadoc-code-ref">(<wbr><span class="javadoc-method-param"><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Collection.html" title="interface java.util.Collection" data-javadoc-kind="interface">Collection</a>&lt;<wbr>?&nbsp;<span class="javadoc-kw">extends</span> <a href="FileLocation.html" title="interface saker.std.api.file.location.FileLocation" data-javadoc-kind="interface">FileLocation</a>&gt; files</span>)</span><span class="javadoc-method-throws"><span class="javadoc-kw">&nbsp;throws</span> <span class="javadoc-method-throws-entries"><span class="javadoc-method-exc"><span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html" title="class java.lang.NullPointerException" data-javadoc-kind="class">NullPointerException</a></span></span></span></span></div><div class="javadoc-class-detail-method-detail javadoc-member-detail"><div class="javadoc-detail-body">Creates a new <span class="javadoc-code-ref"><a href="#" title="interface saker.std.api.file.location.FileCollection" data-javadoc-kind="interface">FileCollection</a></span>. <p>
+ The argument file locations will be the enclosed in the created collection.</div><div class="javadoc-method-detail-params javadoc-blocktag-section"><div class="javadoc-method-detail-param"><span class="javadoc-method-detail-param-name">files</span><span class="javadoc-method-detail-param-detail">The file locations.</span></div></div><div class="javadoc-method-detail-return javadoc-blocktag-section"><div class="javadoc-method-detail-return-body">The created file collection.</div></div><div class="javadoc-method-detail-throwdeclarations javadoc-blocktag-section"><div class="javadoc-method-detail-throw"><span class="javadoc-method-detail-throw-name"><span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html" title="class java.lang.NullPointerException" data-javadoc-kind="class">NullPointerException</a></span></span><span class="javadoc-method-detail-throw-detail">If the argument is <code>null</code>.</span></div></div></div></div></div></div>
+	</div>
+</div>
+<div class="doc-footer">
+	<div class="container">
+		<div class="row">
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">About</p>
+				<div><a href="/index.html" title="Saker.build home page">Home</a></div>
+				<div data-footer-location="doc-docs"><a href="../../../../../../index.html" title="saker.standard documentation home">Documentation home</a></div>
+				<div><a href="../../../../../../../saker.build/index.html" title="Information about the saker.build system">saker.build system</a></div>
+				<div><a href="../../../../../../../saker.nest/index.html" title="Information about the saker.nest repository">saker.nest repository</a></div>
+				<div><a href="/contact.html" title="Contact us">Contact</a></div>
+			</div>
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">Resources</p>
+				<div data-footer-location="doc-docs"><a href="../../../../../../doc/index.html" title="saker.standard documentation home">Documentation</a></div>
+				<div data-footer-location="doc-javadoc"><a href="../../../../../../javadoc/index.html" title="JavaDoc for saker.standard">JavaDoc</a></div>
+				<div data-footer-location="doc-taskdoc"><a href="../../../../../../taskdoc/index.html"  title="Documentation of build tasks in saker.standard">TaskDoc</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.standard" title="saker.standard | saker.nest">saker.nest package page</a></div>
+				<div><a href="https://github.com/sakerbuild/saker.standard" title="saker.standard on GitHub">GitHub</a></div>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col">
+			&copy; Bence Sipka 2020
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

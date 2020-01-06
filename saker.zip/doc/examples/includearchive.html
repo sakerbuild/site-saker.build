@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Include archive&nbsp;|&nbsp;saker.zip</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+	
+	<link rel="stylesheet" href="../../../res/bootstrap.min.css" >
+	<link rel="stylesheet" href="../../../res/doc-saker.css" >
+</head>
+<body data-nav-location="packagedoc" data-subdoc-presence="nest-package packagedoc javadoc taskdoc">
+<div class="doc-nav-bar">
+	<div class="container">
+		<a class="home-link" href="../../index.html" title="saker.zip"><img style="height: 2.5em;" class="logo" src="../../../res/logo.svg"/><span class="page-name">saker.zip</span></a>
+		<a class="nav-location-item" data-nav-location="doc-docs" href="../../doc/index.html" title="Documentation">Documentation</a>
+		<a class="nav-location-item" data-nav-location="doc-taskdoc" href="../../taskdoc/index.html" title="Build task documentation">TaskDoc</a>
+		<a class="nav-location-item" data-nav-location="doc-javadoc" href="../../javadoc/index.html"title="Java API documentation">JavaDoc</a>
+	</div>
+</div>
+<div class="container page-contents packagedoc">
+	<div class="row">
+		<div class="col-12 col-lg-3 col-xl-2 p-lg-0">
+			<div class="doc-navigation-container">
+				<label class="d-lg-none nav-collapse" for="doc-collapse-nav-label">
+					<svg style="height: 1.5em;" viewBox="0 0 24 24">
+					    <path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+					</svg>
+					Navigation
+				</label>
+				<input style="display:none;" id="doc-collapse-nav-label" type="checkbox"/> 
+				<div class="doc-nav">  <div class="doc-section">    <p class="section-title">Package details</p><ul><li><a class="doc-nav-section-link" href="../index.html" title="Overview">Overview</a></li><li><a class="doc-nav-section-link" href="../gettingstarted.html" title="Getting started">Getting started</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">ZIP creation</p><ul><li><a class="doc-nav-section-link" href="../zipcreation/index.html" title="Basics">Basics</a></li><li><a class="doc-nav-section-link" href="../zipcreation/zipcontents.html" title="ZIP contents">ZIP contents</a></li><li><a class="doc-nav-section-link" href="../zipcreation/transformers.html" title="Resource transformers">Resource transformers</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Examples</p><ul><li><a class="doc-nav-section-link" href="index.html" title="Overview">Overview</a></li><li><a class="doc-nav-section-link" href="outputlocation.html" title="Output location">Output location</a></li><li><a class="doc-nav-section-link" href="addfiles.html" title="Add files">Add files</a></li><li><a class="doc-nav-section-link" href="adddirectory.html" title="Add directory tree">Add directory tree</a></li><li class="doc-active doc-active-parent"><a class="doc-nav-section-link" href="includearchive.html" title="Include archive">Include archive</a></li></ul>  </div></div>
+			</div>
+		</div>
+		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="sb-sponsors" style="display: none;">
+	<span class="sb-sponsors-title">Sponsors</span>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4 col-12">
+				<a class="sb-sponsors-link"></a>
+			</div>
+			<div class="col-md-4 col-12">
+				<a class="sb-sponsors-link"></a>
+			</div>
+			<div class="col-md-4 col-12">
+				<a class="sb-sponsors-link"></a>
+			</div>
+		</div>
+	</div>
+</div>
+			<div class="doc-content"><h1 id="include-archive">Include archive<a class="doc-heading-anchor" href="#include-archive"></a></h1>
+<p>Including the contents of an archive into the created archive works very similarly as <a href="adddirectory.html" title="Add directory tree">adding directory contents</a>, however, you specify an archive instead of a directory as the root:</p>
+<pre><code class="language-sakerscript"><span class="a"><a href="../../../saker.zip/taskdoc/saker.zip.create.html" title="Task: saker.zip.create()">saker.zip.create</a>(</span>
+	<span class="c">Include</span>: <span class="e">[</span>
+		<span class="b">everything.zip</span><span class="e">,</span>
+		<span class="e">{</span>
+			<span class="f">Archive</span>: <span class="b">images.zip</span><span class="e">,</span>
+			<span class="f">Resources</span>: <span class="b">**/*.png</span><span class="e">,</span>
+			<span class="f">TargetDirectory</span>: <span class="b">img</span><span class="e">
+		}
+	]</span>
+<span class="a">)</span>
+</code></pre>
+<p>Let's assume that the referenced ZIP files have the following contents:</p>
+<p><code>everything.zip</code>:</p>
+<pre><code class="language-plaintext">file.txt
+dir/dirfile.txt
+</code></pre>
+<p><code>images.zip</code>:</p>
+<pre><code class="language-plaintext">favicon.ico
+icon.png
+bg/background.png
+</code></pre>
+<p>If we call the above task, the contents of the archive will be the following:</p>
+<pre><code class="language-plaintext">file.txt
+dir/dirfile.txt
+img/icon.png
+img/bg/background.png
+</code></pre>
+<p>The first simple inclusion declaration will include all files from the <code>everything.zip</code> archive. They are placed into the resulting archive with the same path as they are present in <code>everything.zip</code>.</p>
+<p>The second inclusion declaration only includes the entries that end with <code>.png</code>. They are placed in the <code>img</code> directory of the created archive. If the <code>TargetDirectory</code> is not specified, then the same archive path will be used as in the originating archive.</p>
+<link href="../../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>
+			<div class="end-section-links">
+				<div class="end-section-prev">
+					<a class="doc-prev-section" href="../../doc/examples/adddirectory.html" title="Add directory tree"><svg class="doc-section-arrow" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" />
+</svg>Add directory tree</a>
+				</div>
+				<div class="end-section-next">
+					
+				</div>
+			</div>
+			
+		</div>
+	</div>
+</div>
+<div class="doc-footer">
+	<div class="container">
+		<div class="row">
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">About</p>
+				<div><a href="/index.html" title="Saker.build home page">Home</a></div>
+				<div data-footer-location="doc-docs"><a href="../../index.html" title="saker.zip documentation home">Documentation home</a></div>
+				<div><a href="../../../saker.build/index.html" title="Information about the saker.build system">saker.build system</a></div>
+				<div><a href="../../../saker.nest/index.html" title="Information about the saker.nest repository">saker.nest repository</a></div>
+				<div><a href="/contact.html" title="Contact us">Contact</a></div>
+			</div>
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">Resources</p>
+				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.zip documentation home">Documentation</a></div>
+				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.zip">JavaDoc</a></div>
+				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.zip">TaskDoc</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.zip" title="saker.zip | saker.nest">saker.nest package page</a></div>
+				<div><a href="https://github.com/sakerbuild/saker.zip" title="saker.zip on GitHub">GitHub</a></div>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col">
+			&copy; Bence Sipka 2020
+			</div>
+		</div>
+	</div>
+</div>
+
+<link rel="stylesheet" href="../../../res/hljs.css"><script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js" integrity="sha256-js+I1fdbke/DJrW2qXQlrw7VUEqmdeFeOW37UC0bEiU=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.13.1/build/languages/plaintext.min.js"></script>
+<script>
+if(window.hasOwnProperty("hljs")){
+	hljs.configure({
+	  languages: []
+	});
+	hljs.initHighlightingOnLoad();
+}
+</script>
+
+</body>
+</html>

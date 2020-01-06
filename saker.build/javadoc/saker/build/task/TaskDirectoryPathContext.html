@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>TaskDirectoryPathContext</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+	
+	<link rel="stylesheet" type="text/css" href="../../../../../res/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../../../../../res/doc-saker.css">
+	
+</head>
+<body data-nav-location="javadoc" data-subdoc-presence="nest-package packagedoc javadoc">
+<div class="doc-nav-bar">
+	<div class="container">
+		<a class="home-link" href="../../../../index.html" title="saker.build"><img style="height: 2.5em;" class="logo" src="../../../../../res/logo.svg"/><span class="page-name">saker.build</span></a>
+		<a class="nav-location-item" data-nav-location="doc-docs" href="../../../../doc/index.html" title="Documentation">Documentation</a>
+		<a class="nav-location-item" data-nav-location="doc-taskdoc" href="../../../../taskdoc/index.html" title="Build task documentation">TaskDoc</a>
+		<a class="nav-location-item" data-nav-location="doc-javadoc" href="../../../../javadoc/index.html"title="Java API documentation">JavaDoc</a>
+	</div>
+</div>
+<nav class="javadoc-nav" data-nav-location="TaskDirectoryPathContext">
+	<div class="container">
+		<span class="javadoc-nav-title">JavaDoc</span>
+		<a class="nav-location-item" data-nav-location="javadoc-packages" href="../../../index.html" title="Package index">Packages</a>
+		<a class="nav-location-item" data-nav-location="javadoc-all-classes" href="../../../all-classes.html" title="All classes">All classes</a>
+		<a class="nav-location-item" data-nav-location="javadoc-constants" href="../../../constants.html" title="All constants">Constants</a>
+	</div>
+</nav>
+<div class="container page-contents javadoc">
+	<div class="javadoc-content">
+	<div class="javadoc-class-header"><div class="javadoc-class-header-pkg"><span class="javadoc-code-ref"><span class="javadoc-kw">package</span> <a href="index.html" title="saker.build.task" data-javadoc-kind="package">saker.build.task</a></span></div><div class="javadoc-class-header-class"><span class="javadoc-kw">public interface </span><span class="javadoc-class-header-name">TaskDirectoryPathContext</span></div></div><div class="javadoc-class-subtypes"><div class="javadoc-class-subtypes-list"><span class="javadoc-code-ref"><span class="javadoc-subtype"><a href="ForwardingTaskContext.html" title="class saker.build.task.ForwardingTaskContext" data-javadoc-kind="class">ForwardingTaskContext</a></span>, <span class="javadoc-subtype"><a href="TaskContext.html" title="interface saker.build.task.TaskContext" data-javadoc-kind="interface">TaskContext</a></span>, <span class="javadoc-subtype"><a href="TaskDirectoryContext.html" title="interface saker.build.task.TaskDirectoryContext" data-javadoc-kind="interface">TaskDirectoryContext</a></span></span></div></div><div class="javadoc-class-doc"><div class="javadoc-class-doc-body">Container providing access to the base directory paths for a task during build execution.</div><div class="javadoc-detail-see javadoc-blocktag-section"><div class="javadoc-detail-see-entry"><span class="javadoc-code-ref"><a href="../file/SakerDirectory.html" title="interface saker.build.file.SakerDirectory" data-javadoc-kind="interface">SakerDirectory</a></span></div><div class="javadoc-detail-see-entry"><span class="javadoc-code-ref"><a href="TaskContext.html" title="interface saker.build.task.TaskContext" data-javadoc-kind="interface">TaskContext</a></span></div><div class="javadoc-detail-see-entry"><span class="javadoc-code-ref"><a href="TaskDirectoryContext.html" title="interface saker.build.task.TaskDirectoryContext" data-javadoc-kind="interface">TaskDirectoryContext</a></span></div></div></div><div class="javadoc-class-idx"><div class="javadoc-class-idx-methods javadoc-idx-section"><table><caption>Methods</caption><thead><tr><th class="javadoc-th-method-meta"></th><th class="javadoc-th-method-details"></th></tr></thead><tbody><tr class="javadoc-class-idx-method javadoc-idx-member"><td class="javadoc-class-idx-method-meta javadoc-idx-member-meta"><span class="javadoc-kw">public </span><span class="javadoc-code-ref"><a href="../file/path/SakerPath.html" title="class saker.build.file.path.SakerPath" data-javadoc-kind="class">SakerPath</a></span></td><td class="javadoc-class-idx-method-sig javadoc-idx-member-sig"><div class="javadoc-class-idx-method-name javadoc-idx-member-name"><a href="#getTaskBuildDirectoryPath--" title="TaskDirectoryPathContext.getTaskBuildDirectoryPath()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">getTaskBuildDirectoryPath</a><span class="javadoc-code-ref">()</span></div><div class="javadoc-class-idx-method-short javadoc-member-short">Gets the path of the build directory for the associated task.</div></td></tr><tr class="javadoc-class-idx-method javadoc-idx-member"><td class="javadoc-class-idx-method-meta javadoc-idx-member-meta"><span class="javadoc-kw">public </span><span class="javadoc-code-ref"><a href="../file/path/SakerPath.html" title="class saker.build.file.path.SakerPath" data-javadoc-kind="class">SakerPath</a></span></td><td class="javadoc-class-idx-method-sig javadoc-idx-member-sig"><div class="javadoc-class-idx-method-name javadoc-idx-member-name"><a href="#getTaskWorkingDirectoryPath--" title="TaskDirectoryPathContext.getTaskWorkingDirectoryPath()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">getTaskWorkingDirectoryPath</a><span class="javadoc-code-ref">()</span></div><div class="javadoc-class-idx-method-short javadoc-member-short">Gets the path of the working directory for the associated task.</div></td></tr></tbody></table></div></div><div class="javadoc-class-details"><div class="javadoc-class-details-methods javadoc-details-section"><div id="getTaskBuildDirectoryPath--" class="javadoc-class-detail-method javadoc-class-detail-member"><div class="javadoc-class-detail-method-sig javadoc-member-sig"><div class="javadoc-method-annots javadoc-member-annots"><div class="javadoc-annot"><a href="../thirdparty/saker/rmi/annot/invoke/RMICacheResult.html" title="@interface saker.build.thirdparty.saker.rmi.annot.invoke.RMICacheResult" data-javadoc-kind="annotation_type">@RMICacheResult</a></div></div><span class="javadoc-kw">public abstract </span><span class="javadoc-code-ref"><a href="../file/path/SakerPath.html" title="class saker.build.file.path.SakerPath" data-javadoc-kind="class">SakerPath</a></span> <a href="#getTaskBuildDirectoryPath--" title="TaskDirectoryPathContext.getTaskBuildDirectoryPath()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">getTaskBuildDirectoryPath</a><span class="javadoc-code-ref">()</span></div><div class="javadoc-class-detail-method-detail javadoc-member-detail"><div class="javadoc-detail-body">Gets the path of the build directory for the associated task. <p>
+ The returned path is the absolute execution path to the build directory of the task. This is affected by the
+ <a href="TaskExecutionParameters.html" title="class saker.build.task.TaskExecutionParameters" data-javadoc-kind="class">task execution parameters</a>. The result may be <code>null</code>, if there's
+ no build directory configured for the task or build execution.
+ <p>
+ The path is the same as <span class="javadoc-code-ref"><a href="TaskDirectoryContext.html" title="interface saker.build.task.TaskDirectoryContext" data-javadoc-kind="interface">TaskDirectoryContext</a>.<a href="TaskDirectoryContext.html#getTaskBuildDirectory--" title="TaskDirectoryContext.getTaskBuildDirectory()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface">getTaskBuildDirectory<span class="javadoc-code-ref">()</span></a></span><span class="javadoc-code-ref"><a href="../file/SakerFile.html#getSakerPath--" title="SakerFile.getSakerPath()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface">.getSakerPath()</a></span> would return.</div><div class="javadoc-method-detail-return javadoc-blocktag-section"><div class="javadoc-method-detail-return-body">The absolute path of the build directory or <code>null</code> if none.</div></div></div></div><div id="getTaskWorkingDirectoryPath--" class="javadoc-class-detail-method javadoc-class-detail-member"><div class="javadoc-class-detail-method-sig javadoc-member-sig"><div class="javadoc-method-annots javadoc-member-annots"><div class="javadoc-annot"><a href="../thirdparty/saker/rmi/annot/invoke/RMICacheResult.html" title="@interface saker.build.thirdparty.saker.rmi.annot.invoke.RMICacheResult" data-javadoc-kind="annotation_type">@RMICacheResult</a></div></div><span class="javadoc-kw">public abstract </span><span class="javadoc-code-ref"><a href="../file/path/SakerPath.html" title="class saker.build.file.path.SakerPath" data-javadoc-kind="class">SakerPath</a></span> <a href="#getTaskWorkingDirectoryPath--" title="TaskDirectoryPathContext.getTaskWorkingDirectoryPath()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">getTaskWorkingDirectoryPath</a><span class="javadoc-code-ref">()</span></div><div class="javadoc-class-detail-method-detail javadoc-member-detail"><div class="javadoc-detail-body">Gets the path of the working directory for the associated task. <p>
+ The returned path is the absolute execution path to the working directory of the task. This is affected by the
+ <a href="TaskExecutionParameters.html" title="class saker.build.task.TaskExecutionParameters" data-javadoc-kind="class">task execution parameters</a>.
+ <p>
+ The path is the same as <span class="javadoc-code-ref"><a href="TaskDirectoryContext.html" title="interface saker.build.task.TaskDirectoryContext" data-javadoc-kind="interface">TaskDirectoryContext</a>.<a href="TaskDirectoryContext.html#getTaskWorkingDirectory--" title="TaskDirectoryContext.getTaskWorkingDirectory()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface">getTaskWorkingDirectory<span class="javadoc-code-ref">()</span></a></span><span class="javadoc-code-ref"><a href="../file/SakerFile.html#getSakerPath--" title="SakerFile.getSakerPath()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface">.getSakerPath()</a></span> would return.
+ <p>
+ It can be used to resolve relative user arguments against it without actually querying the <span class="javadoc-code-ref"><a href="../file/SakerDirectory.html" title="interface saker.build.file.SakerDirectory" data-javadoc-kind="interface">SakerDirectory</a></span>
+ instance.</div><div class="javadoc-method-detail-return javadoc-blocktag-section"><div class="javadoc-method-detail-return-body">The absolute path of the working directory.</div></div></div></div></div></div>
+	</div>
+</div>
+<div class="doc-footer">
+	<div class="container">
+		<div class="row">
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">About</p>
+				<div><a href="/index.html" title="Saker.build home page">Home</a></div>
+				<div data-footer-location="doc-docs"><a href="../../../../index.html" title="saker.build documentation home">Documentation home</a></div>
+				<div><a href="../../../../../saker.build/index.html" title="Information about the saker.build system">saker.build system</a></div>
+				<div><a href="../../../../../saker.nest/index.html" title="Information about the saker.nest repository">saker.nest repository</a></div>
+				<div><a href="/contact.html" title="Contact us">Contact</a></div>
+			</div>
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">Resources</p>
+				<div data-footer-location="doc-docs"><a href="../../../../doc/index.html" title="saker.build documentation home">Documentation</a></div>
+				<div data-footer-location="doc-javadoc"><a href="../../../../javadoc/index.html" title="JavaDoc for saker.build">JavaDoc</a></div>
+				<div data-footer-location="doc-taskdoc"><a href="../../../../taskdoc/index.html"  title="Documentation of build tasks in saker.build">TaskDoc</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.nest package page</a></div>
+				<div><a href="https://github.com/sakerbuild/saker.build" title="saker.build on GitHub">GitHub</a></div>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col">
+			&copy; Bence Sipka 2020
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

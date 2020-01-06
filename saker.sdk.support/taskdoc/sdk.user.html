@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>sdk.user()&nbsp|&nbsp;saker.sdk.support</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+	
+	<link rel="stylesheet" href="../../res/bootstrap.min.css" >
+	<link rel="stylesheet" href="../../res/doc-saker.css" >
+</head>
+<body data-nav-location="taskdoc" data-subdoc-presence="nest-package packagedoc javadoc taskdoc">
+<div class="doc-nav-bar">
+	<div class="container">
+		<a class="home-link" href="../index.html" title="saker.sdk.support"><img style="height: 2.5em;" class="logo" src="../../res/logo.svg"/><span class="page-name">saker.sdk.support</span></a>
+		<a class="nav-location-item" data-nav-location="doc-docs" href="../doc/index.html" title="Documentation">Documentation</a>
+		<a class="nav-location-item" data-nav-location="doc-taskdoc" href="../taskdoc/index.html" title="Build task documentation">TaskDoc</a>
+		<a class="nav-location-item" data-nav-location="doc-javadoc" href="../javadoc/index.html"title="Java API documentation">JavaDoc</a>
+	</div>
+</div>
+<nav class="taskdoc-nav" data-nav-location="sdk.user">
+	<div class="container">
+		<span class="taskdoc-nav-title">TaskDoc</span>
+		<a class="nav-location-item" data-nav-location="taskdoc-index" href="index.html" title="Task doc index">Index</a>
+	</div>
+</nav>
+<div class="container page-contents taskdoc">
+	<div class="taskdoc-content">
+	<div class="taskdoc-header"><div class="taskdoc-header-sig"><div class="taskdoc-taskname"><a href="" title="Build task sdk.user()">sdk.user()</a></div><div class="taskdoc-return-type"><a href="types/SDKDescription.html" title="Type SDKDescription">SDKDescription</a></div></div><div class="taskdoc-container-bundle">In bundle: <a title="Bundle saker.sdk.support">saker.sdk.support</a></div></div><div class="taskdoc-info" taskdoc-info-format="format.plaintext">Creates an SDK description based on the specified parameters.
+The task can be used to create a new SDK description accepted by other tasks as their inputs. The arguments of this task is used to specify how the SDK behaves in the associated context.
+The paths, properties, and environment qualifier can be set to the created SDK description.</div><div class="taskdoc-idx"><div class="taskdoc-idx-title">Summary</div><div class="taskdoc-idx-section taskdoc-idx-parameters"><table><caption>Parameters</caption><tbody><tr class="taskdoc-idx-member"><td class="taskdoc-idx-param-meta"><a class="taskdoc-idx-paramname" href="#EnvironmentQualifier" title="Task parameter EnvironmentQualifier">EnvironmentQualifier</a></td><td class="taskdoc-idx-param-summary">Specifies the environment qualifier that is associated with the SDK description.
+</td></tr><tr class="taskdoc-idx-member"><td class="taskdoc-idx-param-meta"><a class="taskdoc-idx-paramname" href="#Paths" title="Task parameter Paths">Paths</a></td><td class="taskdoc-idx-param-summary">Specifies the paths for the corresponding identifiers in the created SDK description.
+</td></tr><tr class="taskdoc-idx-member"><td class="taskdoc-idx-param-meta"><a class="taskdoc-idx-paramname" href="#Properties" title="Task parameter Properties">Properties</a></td><td class="taskdoc-idx-param-summary">Specifies the properties for the corresponding identifiers in the created SDK description.
+</td></tr></tbody></table></div></div><div class="taskdoc-details-parameters"><div class="taskdoc-details-title">Parameters</div><div id="EnvironmentQualifier" class="taskdoc-detail-param"><div class="taskdoc-detail-param-header"><div class="taskdoc-detail-param-header-sig"><div class="taskdoc-detail-param-header-name"><a href="#EnvironmentQualifier" title="Task parameter EnvironmentQualifier">EnvironmentQualifier</a></div><div class="taskdoc-detail-param-header-type"><a href="types/EnvironmentQualifierTaskOption.html" title="Type EnvironmentQualifierTaskOption">EnvironmentQualifierTaskOption</a></div></div></div><div class="taskdoc-detail-member taskdoc-detail-param-detail" taskdoc-info-format="format.plaintext">Specifies the environment qualifier that is associated with the SDK description.
+The environment qualifier is used by the consumer of this SDK desription to determine the suitable build environment it can be used on.
+In general, the environment qualifier can be used to select an executor machine that contains the described SDK. This is particularly useful when build clusters are used.
+If not specified, the SDK description will be associated only with the local execution machine.
+Outputs of std.env.qualifier.*() tasks can be passed to this option.</div></div><div id="Paths" class="taskdoc-detail-param"><div class="taskdoc-detail-param-header"><div class="taskdoc-detail-param-header-sig"><div class="taskdoc-detail-param-header-name"><a href="#Paths" title="Task parameter Paths">Paths</a></div><div class="taskdoc-detail-param-header-type">Map of <a href="types/SDKIdentifier.html" title="Type SDKIdentifier">SDKIdentifier</a> : <a href="../../saker.build/javadoc/saker/build/file/path/SakerPath.html" title="SakerPath">SakerPath</a></div></div></div><div class="taskdoc-detail-member taskdoc-detail-param-detail" taskdoc-info-format="format.plaintext">Specifies the paths for the corresponding identifiers in the created SDK description.
+Each SDK can provide information about paths for the specified identifiers to be used in the consumer task context. The identifiers specified here is often used with the sdk.path() task.</div></div><div id="Properties" class="taskdoc-detail-param"><div class="taskdoc-detail-param-header"><div class="taskdoc-detail-param-header-sig"><div class="taskdoc-detail-param-header-name"><a href="#Properties" title="Task parameter Properties">Properties</a></div><div class="taskdoc-detail-param-header-type">Map of <a href="types/SDKIdentifier.html" title="Type SDKIdentifier">SDKIdentifier</a> : <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="String">String</a></div></div></div><div class="taskdoc-detail-member taskdoc-detail-param-detail" taskdoc-info-format="format.plaintext">Specifies the properties for the corresponding identifiers in the created SDK description.
+Each SDK can provide information about properties for the specified identifiers to be used in the consumer task context.</div></div></div>
+	</div>
+</div>
+<div class="doc-footer">
+	<div class="container">
+		<div class="row">
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">About</p>
+				<div><a href="/index.html" title="Saker.build home page">Home</a></div>
+				<div data-footer-location="doc-docs"><a href="../index.html" title="saker.sdk.support documentation home">Documentation home</a></div>
+				<div><a href="../../saker.build/index.html" title="Information about the saker.build system">saker.build system</a></div>
+				<div><a href="../../saker.nest/index.html" title="Information about the saker.nest repository">saker.nest repository</a></div>
+				<div><a href="/contact.html" title="Contact us">Contact</a></div>
+			</div>
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">Resources</p>
+				<div data-footer-location="doc-docs"><a href="../doc/index.html" title="saker.sdk.support documentation home">Documentation</a></div>
+				<div data-footer-location="doc-javadoc"><a href="../javadoc/index.html" title="JavaDoc for saker.sdk.support">JavaDoc</a></div>
+				<div data-footer-location="doc-taskdoc"><a href="../taskdoc/index.html"  title="Documentation of build tasks in saker.sdk.support">TaskDoc</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.sdk.support" title="saker.sdk.support | saker.nest">saker.nest package page</a></div>
+				<div><a href="https://github.com/sakerbuild/saker.sdk.support" title="saker.sdk.support on GitHub">GitHub</a></div>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col">
+			&copy; Bence Sipka 2020
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>LocalizeBundleWorkerTaskOutput</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+	
+	<link rel="stylesheet" type="text/css" href="../../../../../../../res/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../../../../../../../res/doc-saker.css">
+	
+</head>
+<body data-nav-location="javadoc" data-subdoc-presence="nest-package packagedoc javadoc taskdoc">
+<div class="doc-nav-bar">
+	<div class="container">
+		<a class="home-link" href="../../../../../../index.html" title="nest.repository.support"><img style="height: 2.5em;" class="logo" src="../../../../../../../res/logo.svg"/><span class="page-name">nest.repository.support</span></a>
+		<a class="nav-location-item" data-nav-location="doc-docs" href="../../../../../../doc/index.html" title="Documentation">Documentation</a>
+		<a class="nav-location-item" data-nav-location="doc-taskdoc" href="../../../../../../taskdoc/index.html" title="Build task documentation">TaskDoc</a>
+		<a class="nav-location-item" data-nav-location="doc-javadoc" href="../../../../../../javadoc/index.html"title="Java API documentation">JavaDoc</a>
+	</div>
+</div>
+<nav class="javadoc-nav" data-nav-location="LocalizeBundleWorkerTaskOutput">
+	<div class="container">
+		<span class="javadoc-nav-title">JavaDoc</span>
+		<a class="nav-location-item" data-nav-location="javadoc-packages" href="../../../../../index.html" title="Package index">Packages</a>
+		<a class="nav-location-item" data-nav-location="javadoc-all-classes" href="../../../../../all-classes.html" title="All classes">All classes</a>
+		<a class="nav-location-item" data-nav-location="javadoc-constants" href="../../../../../constants.html" title="All constants">Constants</a>
+	</div>
+</nav>
+<div class="container page-contents javadoc">
+	<div class="javadoc-content">
+	<div class="javadoc-class-header"><div class="javadoc-class-header-pkg"><span class="javadoc-code-ref"><span class="javadoc-kw">package</span> <a href="index.html" title="saker.nest.support.api.localize" data-javadoc-kind="package">saker.nest.support.api.localize</a></span></div><div class="javadoc-class-header-class"><span class="javadoc-kw">public interface </span><span class="javadoc-class-header-name">LocalizeBundleWorkerTaskOutput</span></div></div><div class="javadoc-class-doc"><div class="javadoc-class-doc-body">Output of a bundle localization worker task. <p>
+ The interface provides access to the localization result path as well as additional bundle information.
+ <p>
+ Clients shouldn't implement this interface.</div><div class="javadoc-detail-see javadoc-blocktag-section"><div class="javadoc-detail-see-entry"><span class="javadoc-code-ref"><a href="LocalizeBundleTaskOutput.html" title="interface saker.nest.support.api.localize.LocalizeBundleTaskOutput" data-javadoc-kind="interface">LocalizeBundleTaskOutput</a></span></div></div></div><div class="javadoc-class-idx"><div class="javadoc-class-idx-methods javadoc-idx-section"><table><caption>Methods</caption><thead><tr><th class="javadoc-th-method-meta"></th><th class="javadoc-th-method-details"></th></tr></thead><tbody><tr class="javadoc-class-idx-method javadoc-idx-member"><td class="javadoc-class-idx-method-meta javadoc-idx-member-meta"><span class="javadoc-kw">public default </span><span class="javadoc-code-ref"><a href="/saker.nest/javadoc/saker/nest/bundle/BundleIdentifier.html" title="class saker.nest.bundle.BundleIdentifier" data-javadoc-kind="class">BundleIdentifier</a></span></td><td class="javadoc-class-idx-method-sig javadoc-idx-member-sig"><div class="javadoc-class-idx-method-name javadoc-idx-member-name"><a href="#getBundleIdentifier--" title="LocalizeBundleWorkerTaskOutput.getBundleIdentifier()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">getBundleIdentifier</a><span class="javadoc-code-ref">()</span></div><div class="javadoc-class-idx-method-short javadoc-member-short">Gets the <a href="/saker.nest/javadoc/saker/nest/bundle/BundleIdentifier.html" title="class saker.nest.bundle.BundleIdentifier" data-javadoc-kind="class">bundle identifier</a> of the localized bundle.</div></td></tr><tr class="javadoc-class-idx-method javadoc-idx-member"><td class="javadoc-class-idx-method-meta javadoc-idx-member-meta"><span class="javadoc-kw">public </span><span class="javadoc-code-ref"><a href="/saker.nest/javadoc/saker/nest/bundle/BundleKey.html" title="interface saker.nest.bundle.BundleKey" data-javadoc-kind="interface">BundleKey</a></span></td><td class="javadoc-class-idx-method-sig javadoc-idx-member-sig"><div class="javadoc-class-idx-method-name javadoc-idx-member-name"><a href="#getBundleKey--" title="LocalizeBundleWorkerTaskOutput.getBundleKey()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">getBundleKey</a><span class="javadoc-code-ref">()</span></div><div class="javadoc-class-idx-method-short javadoc-member-short">Gets the <a href="/saker.nest/javadoc/saker/nest/bundle/BundleKey.html" title="interface saker.nest.bundle.BundleKey" data-javadoc-kind="interface">bundle key</a> of the localized bundle.</div></td></tr><tr class="javadoc-class-idx-method javadoc-idx-member"><td class="javadoc-class-idx-method-meta javadoc-idx-member-meta"><span class="javadoc-kw">public </span><span class="javadoc-code-ref"><a href="/saker.build/javadoc/saker/build/file/path/SakerPath.html" title="class saker.build.file.path.SakerPath" data-javadoc-kind="class">SakerPath</a></span></td><td class="javadoc-class-idx-method-sig javadoc-idx-member-sig"><div class="javadoc-class-idx-method-name javadoc-idx-member-name"><a href="#getLocalPath--" title="LocalizeBundleWorkerTaskOutput.getLocalPath()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">getLocalPath</a><span class="javadoc-code-ref">()</span></div><div class="javadoc-class-idx-method-short javadoc-member-short">Gets the absolute local file system path of the localized bundle.</div></td></tr></tbody></table></div></div><div class="javadoc-class-details"><div class="javadoc-class-details-methods javadoc-details-section"><div id="getBundleIdentifier--" class="javadoc-class-detail-method javadoc-class-detail-member"><div class="javadoc-class-detail-method-sig javadoc-member-sig"><span class="javadoc-kw">public default </span><span class="javadoc-code-ref"><a href="/saker.nest/javadoc/saker/nest/bundle/BundleIdentifier.html" title="class saker.nest.bundle.BundleIdentifier" data-javadoc-kind="class">BundleIdentifier</a></span> <a href="#getBundleIdentifier--" title="LocalizeBundleWorkerTaskOutput.getBundleIdentifier()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">getBundleIdentifier</a><span class="javadoc-code-ref">()</span></div><div class="javadoc-class-detail-method-detail javadoc-member-detail"><div class="javadoc-detail-body">Gets the <a href="/saker.nest/javadoc/saker/nest/bundle/BundleIdentifier.html" title="class saker.nest.bundle.BundleIdentifier" data-javadoc-kind="class">bundle identifier</a> of the localized bundle.</div><div class="javadoc-method-detail-return javadoc-blocktag-section"><div class="javadoc-method-detail-return-body">The bundle identifier.</div></div></div></div><div id="getBundleKey--" class="javadoc-class-detail-method javadoc-class-detail-member"><div class="javadoc-class-detail-method-sig javadoc-member-sig"><span class="javadoc-kw">public abstract </span><span class="javadoc-code-ref"><a href="/saker.nest/javadoc/saker/nest/bundle/BundleKey.html" title="interface saker.nest.bundle.BundleKey" data-javadoc-kind="interface">BundleKey</a></span> <a href="#getBundleKey--" title="LocalizeBundleWorkerTaskOutput.getBundleKey()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">getBundleKey</a><span class="javadoc-code-ref">()</span></div><div class="javadoc-class-detail-method-detail javadoc-member-detail"><div class="javadoc-detail-body">Gets the <a href="/saker.nest/javadoc/saker/nest/bundle/BundleKey.html" title="interface saker.nest.bundle.BundleKey" data-javadoc-kind="interface">bundle key</a> of the localized bundle.</div><div class="javadoc-method-detail-return javadoc-blocktag-section"><div class="javadoc-method-detail-return-body">The bundle key.</div></div></div></div><div id="getLocalPath--" class="javadoc-class-detail-method javadoc-class-detail-member"><div class="javadoc-class-detail-method-sig javadoc-member-sig"><span class="javadoc-kw">public abstract </span><span class="javadoc-code-ref"><a href="/saker.build/javadoc/saker/build/file/path/SakerPath.html" title="class saker.build.file.path.SakerPath" data-javadoc-kind="class">SakerPath</a></span> <a href="#getLocalPath--" title="LocalizeBundleWorkerTaskOutput.getLocalPath()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">getLocalPath</a><span class="javadoc-code-ref">()</span></div><div class="javadoc-class-detail-method-detail javadoc-member-detail"><div class="javadoc-detail-body">Gets the absolute local file system path of the localized bundle.</div><div class="javadoc-method-detail-return javadoc-blocktag-section"><div class="javadoc-method-detail-return-body">The result path.</div></div></div></div></div></div>
+	</div>
+</div>
+<div class="doc-footer">
+	<div class="container">
+		<div class="row">
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">About</p>
+				<div><a href="/index.html" title="Saker.build home page">Home</a></div>
+				<div data-footer-location="doc-docs"><a href="../../../../../../index.html" title="nest.repository.support documentation home">Documentation home</a></div>
+				<div><a href="../../../../../../../saker.build/index.html" title="Information about the saker.build system">saker.build system</a></div>
+				<div><a href="../../../../../../../saker.nest/index.html" title="Information about the saker.nest repository">saker.nest repository</a></div>
+				<div><a href="/contact.html" title="Contact us">Contact</a></div>
+			</div>
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">Resources</p>
+				<div data-footer-location="doc-docs"><a href="../../../../../../doc/index.html" title="nest.repository.support documentation home">Documentation</a></div>
+				<div data-footer-location="doc-javadoc"><a href="../../../../../../javadoc/index.html" title="JavaDoc for nest.repository.support">JavaDoc</a></div>
+				<div data-footer-location="doc-taskdoc"><a href="../../../../../../taskdoc/index.html"  title="Documentation of build tasks in nest.repository.support">TaskDoc</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/nest.repository.support" title="nest.repository.support | saker.nest">saker.nest package page</a></div>
+				<div><a href="https://github.com/sakerbuild/nest.repository.support" title="nest.repository.support on GitHub">GitHub</a></div>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col">
+			&copy; Bence Sipka 2020
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

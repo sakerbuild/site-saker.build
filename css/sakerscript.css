@@ -1,0 +1,25 @@
+.language-sakerscript .a{color:#0b6314;font-weight:bold;font-style:italic;}
+.language-sakerscript .b{color:#0000ff;}
+.language-sakerscript .c{color:#705208;font-weight:bold;}
+.language-sakerscript .d{color:#663300;}
+.language-sakerscript .e{font-weight:bold;}
+.language-sakerscript .f{color:#402626;font-style:italic;}
+.language-sakerscript .g{color:#7f0055;font-weight:bold;}
+.language-sakerscript .h{color:#3f7f5f;}
+.language-sakerscript .i{color:#402626;}
+.language-sakerscript .j{color:#054740;font-weight:bold;}
+.language-sakerscript .k{color:#3f5fbf;}
+@media all and (prefers-color-scheme: dark) {
+.language-sakerscript .a, .language-sakerscript .b, .language-sakerscript .c, .language-sakerscript .d, .language-sakerscript .e, .language-sakerscript .f, .language-sakerscript .g, .language-sakerscript .h, .language-sakerscript .i, .language-sakerscript .j, .language-sakerscript .k{ color:unset; background-color:unset; font-weight:unset; font-style:unset; text-decoration:unset; }
+.language-sakerscript .a{color:#4beb73;font-weight:bold;font-style:italic;}
+.language-sakerscript .b{color:#00ffe0;}
+.language-sakerscript .c{color:#c26410;font-weight:bold;}
+.language-sakerscript .d{color:#cca340;}
+.language-sakerscript .e{font-weight:bold;}
+.language-sakerscript .f{color:#a17e2b;font-style:italic;}
+.language-sakerscript .g{color:#b259b2;font-weight:bold;}
+.language-sakerscript .h{color:#85aa85;}
+.language-sakerscript .i{color:#a17e2b;}
+.language-sakerscript .j{color:#20b420;font-weight:bold;}
+.language-sakerscript .k{color:#82a014;}
+}

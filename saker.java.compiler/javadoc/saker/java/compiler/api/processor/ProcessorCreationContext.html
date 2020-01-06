@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ProcessorCreationContext</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+	
+	<link rel="stylesheet" type="text/css" href="../../../../../../../res/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../../../../../../../res/doc-saker.css">
+	
+</head>
+<body data-nav-location="javadoc" data-subdoc-presence="nest-package packagedoc javadoc taskdoc">
+<div class="doc-nav-bar">
+	<div class="container">
+		<a class="home-link" href="../../../../../../index.html" title="saker.java.compiler"><img style="height: 2.5em;" class="logo" src="../../../../../../../res/logo.svg"/><span class="page-name">saker.java.compiler</span></a>
+		<a class="nav-location-item" data-nav-location="doc-docs" href="../../../../../../doc/index.html" title="Documentation">Documentation</a>
+		<a class="nav-location-item" data-nav-location="doc-taskdoc" href="../../../../../../taskdoc/index.html" title="Build task documentation">TaskDoc</a>
+		<a class="nav-location-item" data-nav-location="doc-javadoc" href="../../../../../../javadoc/index.html"title="Java API documentation">JavaDoc</a>
+	</div>
+</div>
+<nav class="javadoc-nav" data-nav-location="ProcessorCreationContext">
+	<div class="container">
+		<span class="javadoc-nav-title">JavaDoc</span>
+		<a class="nav-location-item" data-nav-location="javadoc-packages" href="../../../../../index.html" title="Package index">Packages</a>
+		<a class="nav-location-item" data-nav-location="javadoc-all-classes" href="../../../../../all-classes.html" title="All classes">All classes</a>
+		<a class="nav-location-item" data-nav-location="javadoc-constants" href="../../../../../constants.html" title="All constants">Constants</a>
+	</div>
+</nav>
+<div class="container page-contents javadoc">
+	<div class="javadoc-content">
+	<div class="javadoc-class-header"><div class="javadoc-class-header-pkg"><span class="javadoc-code-ref"><span class="javadoc-kw">package</span> <a href="index.html" title="saker.java.compiler.api.processor" data-javadoc-kind="package">saker.java.compiler.api.processor</a></span></div><div class="javadoc-class-header-class"><span class="javadoc-kw">public interface </span><span class="javadoc-class-header-name">ProcessorCreationContext</span></div></div><div class="javadoc-class-doc"><div class="javadoc-class-doc-body">Context interface provided to <span class="javadoc-code-ref"><a href="ProcessorCreator.html" title="interface saker.java.compiler.api.processor.ProcessorCreator" data-javadoc-kind="interface">ProcessorCreator</a></span>s when the annotation processors are being instantiated. <p>
+ The context provides access to some features of the build environment in order for processor creators to be able to
+ perform operations related to creating the processor instances.
+ <p>
+ The interface doesn't provide any dependency management related functionality. If a processor creator needs to report
+ dependencies then it should do that when it is being constructed.
+ <p>
+ Clients shouldn't implement this interface.</div></div><div class="javadoc-class-idx"><div class="javadoc-class-idx-methods javadoc-idx-section"><table><caption>Methods</caption><thead><tr><th class="javadoc-th-method-meta"></th><th class="javadoc-th-method-details"></th></tr></thead><tbody><tr class="javadoc-class-idx-method javadoc-idx-member"><td class="javadoc-class-idx-method-meta javadoc-idx-member-meta"><span class="javadoc-kw">public </span><span class="javadoc-code-ref"><a href="/saker.build/javadoc/saker/build/runtime/environment/SakerEnvironment.html" title="interface saker.build.runtime.environment.SakerEnvironment" data-javadoc-kind="interface">SakerEnvironment</a></span></td><td class="javadoc-class-idx-method-sig javadoc-idx-member-sig"><div class="javadoc-class-idx-method-name javadoc-idx-member-name"><a href="#getEnvironment--" title="ProcessorCreationContext.getEnvironment()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">getEnvironment</a><span class="javadoc-code-ref">()</span></div><div class="javadoc-class-idx-method-short javadoc-member-short">Gets the build environment.</div></td></tr></tbody></table></div></div><div class="javadoc-class-details"><div class="javadoc-class-details-methods javadoc-details-section"><div id="getEnvironment--" class="javadoc-class-detail-method javadoc-class-detail-member"><div class="javadoc-class-detail-method-sig javadoc-member-sig"><span class="javadoc-kw">public abstract </span><span class="javadoc-code-ref"><a href="/saker.build/javadoc/saker/build/runtime/environment/SakerEnvironment.html" title="interface saker.build.runtime.environment.SakerEnvironment" data-javadoc-kind="interface">SakerEnvironment</a></span> <a href="#getEnvironment--" title="ProcessorCreationContext.getEnvironment()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">getEnvironment</a><span class="javadoc-code-ref">()</span></div><div class="javadoc-class-detail-method-detail javadoc-member-detail"><div class="javadoc-detail-body">Gets the build environment. <p>
+ The callers should only use the <span class="javadoc-code-ref"><a href="/saker.build/javadoc/saker/build/runtime/environment/SakerEnvironment.html" title="interface saker.build.runtime.environment.SakerEnvironment" data-javadoc-kind="interface">SakerEnvironment</a>.<a href="/saker.build/javadoc/saker/build/runtime/environment/SakerEnvironment.html#getEnvironmentPropertyCurrentValue-saker.build.runtime.environment.EnvironmentProperty-" title="SakerEnvironment.getEnvironmentPropertyCurrentValue(EnvironmentProperty<T>)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface">getEnvironmentPropertyCurrentValue<span class="javadoc-code-ref">(<wbr>EnvironmentProperty&lt;<wbr><span class="javadoc-tp" title="T of SakerEnvironment.getEnvironmentPropertyCurrentValue(EnvironmentProperty<T>)">T</span>&gt;)</span></a></span>
+ if they already reported a dependency to it when the processor creator was created.</div><div class="javadoc-method-detail-return javadoc-blocktag-section"><div class="javadoc-method-detail-return-body">The environment.</div></div></div></div></div></div>
+	</div>
+</div>
+<div class="doc-footer">
+	<div class="container">
+		<div class="row">
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">About</p>
+				<div><a href="/index.html" title="Saker.build home page">Home</a></div>
+				<div data-footer-location="doc-docs"><a href="../../../../../../index.html" title="saker.java.compiler documentation home">Documentation home</a></div>
+				<div><a href="../../../../../../../saker.build/index.html" title="Information about the saker.build system">saker.build system</a></div>
+				<div><a href="../../../../../../../saker.nest/index.html" title="Information about the saker.nest repository">saker.nest repository</a></div>
+				<div><a href="/contact.html" title="Contact us">Contact</a></div>
+			</div>
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">Resources</p>
+				<div data-footer-location="doc-docs"><a href="../../../../../../doc/index.html" title="saker.java.compiler documentation home">Documentation</a></div>
+				<div data-footer-location="doc-javadoc"><a href="../../../../../../javadoc/index.html" title="JavaDoc for saker.java.compiler">JavaDoc</a></div>
+				<div data-footer-location="doc-taskdoc"><a href="../../../../../../taskdoc/index.html"  title="Documentation of build tasks in saker.java.compiler">TaskDoc</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.java.compiler" title="saker.java.compiler | saker.nest">saker.nest package page</a></div>
+				<div><a href="https://github.com/sakerbuild/saker.java.compiler" title="saker.java.compiler on GitHub">GitHub</a></div>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col">
+			&copy; Bence Sipka 2020
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

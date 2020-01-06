@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>saker.nest.scriptinfo.reflection.annot</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+	
+	<link rel="stylesheet" type="text/css" href="../../../../../../../res/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../../../../../../../res/doc-saker.css">
+	
+</head>
+<body data-nav-location="javadoc" data-subdoc-presence="nest-package packagedoc javadoc">
+<div class="doc-nav-bar">
+	<div class="container">
+		<a class="home-link" href="../../../../../../index.html" title="saker.nest"><img style="height: 2.5em;" class="logo" src="../../../../../../../res/logo.svg"/><span class="page-name">saker.nest</span></a>
+		<a class="nav-location-item" data-nav-location="doc-docs" href="../../../../../../doc/index.html" title="Documentation">Documentation</a>
+		<a class="nav-location-item" data-nav-location="doc-taskdoc" href="../../../../../../taskdoc/index.html" title="Build task documentation">TaskDoc</a>
+		<a class="nav-location-item" data-nav-location="doc-javadoc" href="../../../../../../javadoc/index.html"title="Java API documentation">JavaDoc</a>
+	</div>
+</div>
+<nav class="javadoc-nav" data-nav-location="package-info">
+	<div class="container">
+		<span class="javadoc-nav-title">JavaDoc</span>
+		<a class="nav-location-item" data-nav-location="javadoc-packages" href="../../../../../index.html" title="Package index">Packages</a>
+		<a class="nav-location-item" data-nav-location="javadoc-all-classes" href="../../../../../all-classes.html" title="All classes">All classes</a>
+		<a class="nav-location-item" data-nav-location="javadoc-constants" href="../../../../../constants.html" title="All constants">Constants</a>
+	</div>
+</nav>
+<div class="container page-contents javadoc">
+	<div class="javadoc-content">
+	<div class="javadoc-package-header"><div class="javadoc-package-header-pkg"><span class="javadoc-code-ref"><span class="javadoc-kw">package</span> <span class="javadoc-package-header-name">saker.nest.scriptinfo.reflection.annot</span></span></div></div><div class="javadoc-package-doc"><div class="javadoc-package-doc-body">Contains annotation types which are interpreted by the Nest repository to provide scripting information for IDE
+ users. <p>
+ The annotations in this package can be used to annotate the tasks in bundles in order to provide content assist and
+ documentational features for them.
+ <p>
+ As an entry point for this facility, developers should annotate the classes defined in the
+ <a href="../../../bundle/BundleInformation.html#ENTRY_BUNDLE_TASKS" title="BundleInformation.ENTRY_BUNDLE_TASKS" data-javadoc-kind="field">bundle task declaration entry file</a>. Starting from
+ that, the referenced types should be annotated accordingly as well.
+ <p>
+ This facility of the Nest repository is <b>not</b> convenient, and serves as a temporary solution until a more
+ reified and complex implementation is created. It allows to declare the information directly on the classes that are
+ used with tasks, but due to the nature of annotations, it may be inconvenient to use.</div><div class="javadoc-detail-see javadoc-blocktag-section"><div class="javadoc-detail-see-entry"><span class="javadoc-code-ref"><a href="NestTaskInformation.html" title="@interface saker.nest.scriptinfo.reflection.annot.NestTaskInformation" data-javadoc-kind="annotation_type">NestTaskInformation</a></span></div><div class="javadoc-detail-see-entry"><span class="javadoc-code-ref"><a href="NestParameterInformation.html" title="@interface saker.nest.scriptinfo.reflection.annot.NestParameterInformation" data-javadoc-kind="annotation_type">NestParameterInformation</a></span></div></div></div><div class="javadoc-package-idx"><div class="javadoc-package-idx-annots javadoc-idx-section"><table><caption>Annotations</caption><thead><tr><th class="javadoc-th-type-name"></th><th class="javadoc-th-type-details"></th></tr></thead><tbody><tr class="javadoc-package-idx-annot javadoc-idx-member"><td class="javadoc-package-idx-annot-name javadoc-idx-member-meta"><a href="NestFieldContainer.html" title="@interface saker.nest.scriptinfo.reflection.annot.NestFieldContainer" data-javadoc-kind="annotation_type">NestFieldContainer</a></td><td class="javadoc-package-idx-annot-sig javadoc-idx-member-sig"><div class="javadoc-package-idx-annot-short javadoc-member-short">Container annotation for the repeatable <span class="javadoc-code-ref"><a href="NestFieldInformation.html" title="@interface saker.nest.scriptinfo.reflection.annot.NestFieldInformation" data-javadoc-kind="annotation_type">NestFieldInformation</a></span> annotation.</div></td></tr><tr class="javadoc-package-idx-annot javadoc-idx-member"><td class="javadoc-package-idx-annot-name javadoc-idx-member-meta"><a href="NestFieldInformation.html" title="@interface saker.nest.scriptinfo.reflection.annot.NestFieldInformation" data-javadoc-kind="annotation_type">NestFieldInformation</a></td><td class="javadoc-package-idx-annot-sig javadoc-idx-member-sig"><div class="javadoc-package-idx-annot-short javadoc-member-short">Annotation to specify information about a field of the annotated type.</div></td></tr><tr class="javadoc-package-idx-annot javadoc-idx-member"><td class="javadoc-package-idx-annot-name javadoc-idx-member-meta"><a href="NestInformation.html" title="@interface saker.nest.scriptinfo.reflection.annot.NestInformation" data-javadoc-kind="annotation_type">NestInformation</a></td><td class="javadoc-package-idx-annot-sig javadoc-idx-member-sig"><div class="javadoc-package-idx-annot-short javadoc-member-short">Annotation specifying a documentational information for the given element.</div></td></tr><tr class="javadoc-package-idx-annot javadoc-idx-member"><td class="javadoc-package-idx-annot-name javadoc-idx-member-meta"><a href="NestInformationContainer.html" title="@interface saker.nest.scriptinfo.reflection.annot.NestInformationContainer" data-javadoc-kind="annotation_type">NestInformationContainer</a></td><td class="javadoc-package-idx-annot-sig javadoc-idx-member-sig"><div class="javadoc-package-idx-annot-short javadoc-member-short">Container annotation for the repeatable <span class="javadoc-code-ref"><a href="NestInformation.html" title="@interface saker.nest.scriptinfo.reflection.annot.NestInformation" data-javadoc-kind="annotation_type">NestInformation</a></span> annotation.</div></td></tr><tr class="javadoc-package-idx-annot javadoc-idx-member"><td class="javadoc-package-idx-annot-name javadoc-idx-member-meta"><a href="NestParameterContainer.html" title="@interface saker.nest.scriptinfo.reflection.annot.NestParameterContainer" data-javadoc-kind="annotation_type">NestParameterContainer</a></td><td class="javadoc-package-idx-annot-sig javadoc-idx-member-sig"><div class="javadoc-package-idx-annot-short javadoc-member-short">Container annotation for the repeatable <span class="javadoc-code-ref"><a href="NestParameterInformation.html" title="@interface saker.nest.scriptinfo.reflection.annot.NestParameterInformation" data-javadoc-kind="annotation_type">NestParameterInformation</a></span> annotation.</div></td></tr><tr class="javadoc-package-idx-annot javadoc-idx-member"><td class="javadoc-package-idx-annot-name javadoc-idx-member-meta"><a href="NestParameterInformation.html" title="@interface saker.nest.scriptinfo.reflection.annot.NestParameterInformation" data-javadoc-kind="annotation_type">NestParameterInformation</a></td><td class="javadoc-package-idx-annot-sig javadoc-idx-member-sig"><div class="javadoc-package-idx-annot-short javadoc-member-short">Annotation to be placed on tasks to provide information about input parameters.</div></td></tr><tr class="javadoc-package-idx-annot javadoc-idx-member"><td class="javadoc-package-idx-annot-name javadoc-idx-member-meta"><a href="NestTaskInformation.html" title="@interface saker.nest.scriptinfo.reflection.annot.NestTaskInformation" data-javadoc-kind="annotation_type">NestTaskInformation</a></td><td class="javadoc-package-idx-annot-sig javadoc-idx-member-sig"><div class="javadoc-package-idx-annot-short javadoc-member-short">Annotation to be placed on tasks used with the Nest repository.</div></td></tr><tr class="javadoc-package-idx-annot javadoc-idx-member"><td class="javadoc-package-idx-annot-name javadoc-idx-member-meta"><a href="NestTypeInformation.html" title="@interface saker.nest.scriptinfo.reflection.annot.NestTypeInformation" data-javadoc-kind="annotation_type">NestTypeInformation</a></td><td class="javadoc-package-idx-annot-sig javadoc-idx-member-sig"><div class="javadoc-package-idx-annot-short javadoc-member-short">Annotation specifying scripting information about the annotated type.</div></td></tr><tr class="javadoc-package-idx-annot javadoc-idx-member"><td class="javadoc-package-idx-annot-name javadoc-idx-member-meta"><a href="NestTypeUsage.html" title="@interface saker.nest.scriptinfo.reflection.annot.NestTypeUsage" data-javadoc-kind="annotation_type">NestTypeUsage</a></td><td class="javadoc-package-idx-annot-sig javadoc-idx-member-sig"><div class="javadoc-package-idx-annot-short javadoc-member-short">Annotation for referencing an used type in regards of scripting information.</div></td></tr></tbody></table></div></div>
+	</div>
+</div>
+<div class="doc-footer">
+	<div class="container">
+		<div class="row">
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">About</p>
+				<div><a href="/index.html" title="Saker.build home page">Home</a></div>
+				<div data-footer-location="doc-docs"><a href="../../../../../../index.html" title="saker.nest documentation home">Documentation home</a></div>
+				<div><a href="../../../../../../../saker.build/index.html" title="Information about the saker.build system">saker.build system</a></div>
+				<div><a href="../../../../../../../saker.nest/index.html" title="Information about the saker.nest repository">saker.nest repository</a></div>
+				<div><a href="/contact.html" title="Contact us">Contact</a></div>
+			</div>
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">Resources</p>
+				<div data-footer-location="doc-docs"><a href="../../../../../../doc/index.html" title="saker.nest documentation home">Documentation</a></div>
+				<div data-footer-location="doc-javadoc"><a href="../../../../../../javadoc/index.html" title="JavaDoc for saker.nest">JavaDoc</a></div>
+				<div data-footer-location="doc-taskdoc"><a href="../../../../../../taskdoc/index.html"  title="Documentation of build tasks in saker.nest">TaskDoc</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.nest" title="saker.nest | saker.nest">saker.nest package page</a></div>
+				<div><a href="https://github.com/sakerbuild/saker.nest" title="saker.nest on GitHub">GitHub</a></div>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col">
+			&copy; Bence Sipka 2020
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

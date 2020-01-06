@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>nest.dependency.resolve()&nbsp|&nbsp;nest.repository.support</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+	
+	<link rel="stylesheet" href="../../res/bootstrap.min.css" >
+	<link rel="stylesheet" href="../../res/doc-saker.css" >
+</head>
+<body data-nav-location="taskdoc" data-subdoc-presence="nest-package packagedoc javadoc taskdoc">
+<div class="doc-nav-bar">
+	<div class="container">
+		<a class="home-link" href="../index.html" title="nest.repository.support"><img style="height: 2.5em;" class="logo" src="../../res/logo.svg"/><span class="page-name">nest.repository.support</span></a>
+		<a class="nav-location-item" data-nav-location="doc-docs" href="../doc/index.html" title="Documentation">Documentation</a>
+		<a class="nav-location-item" data-nav-location="doc-taskdoc" href="../taskdoc/index.html" title="Build task documentation">TaskDoc</a>
+		<a class="nav-location-item" data-nav-location="doc-javadoc" href="../javadoc/index.html"title="Java API documentation">JavaDoc</a>
+	</div>
+</div>
+<nav class="taskdoc-nav" data-nav-location="nest.dependency.resolve">
+	<div class="container">
+		<span class="taskdoc-nav-title">TaskDoc</span>
+		<a class="nav-location-item" data-nav-location="taskdoc-index" href="index.html" title="Task doc index">Index</a>
+	</div>
+</nav>
+<div class="container page-contents taskdoc">
+	<div class="taskdoc-content">
+	<div class="taskdoc-header"><div class="taskdoc-header-sig"><div class="taskdoc-taskname"><a href="" title="Build task nest.dependency.resolve()">nest.dependency.resolve()</a></div><div class="taskdoc-return-type"><a href="types/DependencyResolutionTaskOutput.html" title="Type DependencyResolutionTaskOutput">DependencyResolutionTaskOutput</a></div></div><div class="taskdoc-container-bundle">In bundle: <a title="Bundle nest.repository.support">nest.repository.support</a></div></div><div class="taskdoc-info" taskdoc-info-format="format.plaintext">Resolves saker.nest bundle dependencies.
+The task will execute the dependency resolution of the Nest repository for the given parameters.
+It will return the resolved bundle references. The callers are likely to pass it to another task that converts it to an usable input for other tasks. (E.g. classpath, downloading, etc...)
+This task may initiate network requests in order to complete its work.</div><div class="taskdoc-idx"><div class="taskdoc-idx-title">Summary</div><div class="taskdoc-idx-section taskdoc-idx-parameters"><table><caption>Parameters</caption><tbody><tr class="taskdoc-idx-member"><td class="taskdoc-idx-param-meta"><a class="taskdoc-idx-paramname" href="#Bundles" title="Task parameter Bundles">Bundles</a></td><td class="taskdoc-idx-param-summary">Specifies the bundle identifiers for which the dependencies should be resolved.
+</td></tr><tr class="taskdoc-idx-member"><td class="taskdoc-idx-param-meta"><a class="taskdoc-idx-paramname" href="#DependencyConstraints" title="Task parameter DependencyConstraints">DependencyConstraints</a></td><td class="taskdoc-idx-param-summary">Specifies the environmental dependency constraints which should be applied to the dependencies.
+</td></tr><tr class="taskdoc-idx-member"><td class="taskdoc-idx-param-meta"><a class="taskdoc-idx-paramname" href="#DependencyFile" title="Task parameter DependencyFile">DependencyFile</a></td><td class="taskdoc-idx-param-summary">Path to a saker.nest bundle dependency file from which the dependencies should be resolved.
+</td></tr><tr class="taskdoc-idx-member"><td class="taskdoc-idx-param-meta"><a class="taskdoc-idx-paramname" href="#Filters" title="Task parameter Filters">Filters</a></td><td class="taskdoc-idx-param-summary">Specifies one or more dependency filter to be used when resolving the dependencies.
+</td></tr><tr class="taskdoc-idx-member"><td class="taskdoc-idx-param-meta"><a class="taskdoc-idx-paramname" href="#SelfBundle" title="Task parameter SelfBundle">SelfBundle</a></td><td class="taskdoc-idx-param-summary">Specifies the self bundle in relation to the dependency resolution.
+</td></tr></tbody></table></div></div><div class="taskdoc-details-parameters"><div class="taskdoc-details-title">Parameters</div><div id="Bundles" class="taskdoc-detail-param"><div class="taskdoc-detail-param-header"><div class="taskdoc-detail-param-header-sig"><div class="taskdoc-detail-param-header-name"><a href="#Bundles" title="Task parameter Bundles">Bundles</a></div><div class="taskdoc-detail-param-header-type">Collection of <a href="types/BundleIdentifier.html" title="Type BundleIdentifier">BundleIdentifier</a></div></div><div class="taskdoc-detail-param-header-aliases">Aliases: <div class="taskdoc-detail-param-header-alias"><a title="Unnamed parameter">&lt;unnamed&gt;</a></div><div class="taskdoc-detail-param-header-alias">Bundle</div></div></div><div class="taskdoc-detail-member taskdoc-detail-param-detail" taskdoc-info-format="format.plaintext">Specifies the bundle identifiers for which the dependencies should be resolved.
+The dependencies of the specified bundles will be resolved for the specified dependency Kinds. 
+The bundle identifiers may or may not contain version numbers. If they do, they will be pinned for the dependency resolution. If they don&#39;t, then the resolution algorithm may freely choose a version that satisfies the dependencies. The attempted versions for satisfaction is descending by version number.
+If used together with DependencyFile, the specified bundles will be effectively added to the set of dependencies defined in the file. This parameter can also be used to pin bundles when a version numbers are specified.</div></div><div id="DependencyConstraints" class="taskdoc-detail-param"><div class="taskdoc-detail-param-header"><div class="taskdoc-detail-param-header-sig"><div class="taskdoc-detail-param-header-name"><a href="#DependencyConstraints" title="Task parameter DependencyConstraints">DependencyConstraints</a></div><div class="taskdoc-detail-param-header-type"><a href="types/DependencyConstraintsTaskOption.html" title="Type DependencyConstraintsTaskOption">DependencyConstraintsTaskOption</a></div></div></div><div class="taskdoc-detail-member taskdoc-detail-param-detail" taskdoc-info-format="format.plaintext">Specifies the environmental dependency constraints which should be applied to the dependencies.
+The constraints can be based on the JRE major version, Nest repository version, saker.build system version, or the native architecture. Any dependency that doesn&#39;t match the specified restrictions will omitted.
+Not all constraints need to be specified. If any constraint is missing, it will be filled out based on the current build execution constraint configuration for the Nest repository.</div></div><div id="DependencyFile" class="taskdoc-detail-param"><div class="taskdoc-detail-param-header"><div class="taskdoc-detail-param-header-sig"><div class="taskdoc-detail-param-header-name"><a href="#DependencyFile" title="Task parameter DependencyFile">DependencyFile</a></div><div class="taskdoc-detail-param-header-type"><a href="../../saker.build/javadoc/saker/build/file/path/SakerPath.html" title="SakerPath">SakerPath</a></div></div></div><div class="taskdoc-detail-member taskdoc-detail-param-detail" taskdoc-info-format="format.plaintext">Path to a saker.nest bundle dependency file from which the dependencies should be resolved.
+The argument is a path to a file present in Nest repository bundles, which describe the dependencies of an associated bundle. (Entry META-INF/nest/dependencies)
+The file will be parsed and the declared dependencies are resolved with the specified dependency Kinds.
+Any bundles specified in the Bundles argument will be effectively added to the dependencies declared in the file. During the resolution, the dependencies from the Bundles argument will take priority.
+The &quot;this&quot; token in the dependency file is resolved using the SelfBundle argument.</div></div><div id="Filters" class="taskdoc-detail-param"><div class="taskdoc-detail-param-header"><div class="taskdoc-detail-param-header-sig"><div class="taskdoc-detail-param-header-name"><a href="#Filters" title="Task parameter Filters">Filters</a></div><div class="taskdoc-detail-param-header-type">Collection of <a href="types/DependencyFilter.html" title="Type DependencyFilter">DependencyFilter</a></div></div><div class="taskdoc-detail-param-header-aliases">Aliases: <div class="taskdoc-detail-param-header-alias">Filter</div></div></div><div class="taskdoc-detail-member taskdoc-detail-param-detail" taskdoc-info-format="format.plaintext">Specifies one or more dependency filter to be used when resolving the dependencies.
+The dependency filters determine what kind of dependencies and how they should be applied when executing the dependency resolution. A dependency filter can be retrieved by any of the tasks that are used to configure them. E.g. nest.dependency.filter.kind() task or nest.dependency.filter.compile() task.
+If multiple dependency filters are specified, they are applied after each other. If no filters are specified, all dependencies are resolved, and they are not filtered.
+Other dependency filters can be applied when it is suitable for a given use-case. Dependency filters can be created by other Nest packages as well.</div></div><div id="SelfBundle" class="taskdoc-detail-param"><div class="taskdoc-detail-param-header"><div class="taskdoc-detail-param-header-sig"><div class="taskdoc-detail-param-header-name"><a href="#SelfBundle" title="Task parameter SelfBundle">SelfBundle</a></div><div class="taskdoc-detail-param-header-type"><a href="types/BundleIdentifier.html" title="Type BundleIdentifier">BundleIdentifier</a></div></div></div><div class="taskdoc-detail-member taskdoc-detail-param-detail" taskdoc-info-format="format.plaintext">Specifies the self bundle in relation to the dependency resolution.
+Any &quot;this&quot; tokens in the DependencyFile will be substituted with the self bundle argument.</div></div></div>
+	</div>
+</div>
+<div class="doc-footer">
+	<div class="container">
+		<div class="row">
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">About</p>
+				<div><a href="/index.html" title="Saker.build home page">Home</a></div>
+				<div data-footer-location="doc-docs"><a href="../index.html" title="nest.repository.support documentation home">Documentation home</a></div>
+				<div><a href="../../saker.build/index.html" title="Information about the saker.build system">saker.build system</a></div>
+				<div><a href="../../saker.nest/index.html" title="Information about the saker.nest repository">saker.nest repository</a></div>
+				<div><a href="/contact.html" title="Contact us">Contact</a></div>
+			</div>
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">Resources</p>
+				<div data-footer-location="doc-docs"><a href="../doc/index.html" title="nest.repository.support documentation home">Documentation</a></div>
+				<div data-footer-location="doc-javadoc"><a href="../javadoc/index.html" title="JavaDoc for nest.repository.support">JavaDoc</a></div>
+				<div data-footer-location="doc-taskdoc"><a href="../taskdoc/index.html"  title="Documentation of build tasks in nest.repository.support">TaskDoc</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/nest.repository.support" title="nest.repository.support | saker.nest">saker.nest package page</a></div>
+				<div><a href="https://github.com/sakerbuild/nest.repository.support" title="nest.repository.support on GitHub">GitHub</a></div>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col">
+			&copy; Bence Sipka 2020
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

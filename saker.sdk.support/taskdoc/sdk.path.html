@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>sdk.path()&nbsp|&nbsp;saker.sdk.support</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+	
+	<link rel="stylesheet" href="../../res/bootstrap.min.css" >
+	<link rel="stylesheet" href="../../res/doc-saker.css" >
+</head>
+<body data-nav-location="taskdoc" data-subdoc-presence="nest-package packagedoc javadoc taskdoc">
+<div class="doc-nav-bar">
+	<div class="container">
+		<a class="home-link" href="../index.html" title="saker.sdk.support"><img style="height: 2.5em;" class="logo" src="../../res/logo.svg"/><span class="page-name">saker.sdk.support</span></a>
+		<a class="nav-location-item" data-nav-location="doc-docs" href="../doc/index.html" title="Documentation">Documentation</a>
+		<a class="nav-location-item" data-nav-location="doc-taskdoc" href="../taskdoc/index.html" title="Build task documentation">TaskDoc</a>
+		<a class="nav-location-item" data-nav-location="doc-javadoc" href="../javadoc/index.html"title="Java API documentation">JavaDoc</a>
+	</div>
+</div>
+<nav class="taskdoc-nav" data-nav-location="sdk.path">
+	<div class="container">
+		<span class="taskdoc-nav-title">TaskDoc</span>
+		<a class="nav-location-item" data-nav-location="taskdoc-index" href="index.html" title="Task doc index">Index</a>
+	</div>
+</nav>
+<div class="container page-contents taskdoc">
+	<div class="taskdoc-content">
+	<div class="taskdoc-header"><div class="taskdoc-header-sig"><div class="taskdoc-taskname"><a href="" title="Build task sdk.path()">sdk.path()</a></div><div class="taskdoc-return-type"><a href="types/SDKPathReference.html" title="Type SDKPathReference">SDKPathReference</a></div></div><div class="taskdoc-container-bundle">In bundle: <a title="Bundle saker.sdk.support">saker.sdk.support</a></div></div><div class="taskdoc-info" taskdoc-info-format="format.plaintext">Creates a reference to a path in a given SDK.
+An SDK path reference constists of an SDK Name from which it looks up the path. A path Identifier that specifies the path that is contained in the SDK.
+SDK path references can be passed to tasks which support it. They are resolved against the SDKs which are also passed to the associated task as input.
+SDK path references are not useful on their own and they should always be used with other SDK inputs. They can be used to specify inputs which are not directly part of the build execution but are installed in the supported build environment.</div><div class="taskdoc-idx"><div class="taskdoc-idx-title">Summary</div><div class="taskdoc-idx-section taskdoc-idx-parameters"><table><caption>Parameters</caption><tbody><tr class="taskdoc-idx-member" taskdoc-required><td class="taskdoc-idx-param-meta"><a class="taskdoc-idx-paramname" href="#Identifier" title="Task parameter Identifier">Identifier</a></td><td class="taskdoc-idx-param-summary"><div class="taskdoc-required-parameter">Required parameter. </div>Specifies the path Identifier in the SDK.
+</td></tr><tr class="taskdoc-idx-member" taskdoc-required><td class="taskdoc-idx-param-meta"><a class="taskdoc-idx-paramname" href="#Name" title="Task parameter Name">Name</a></td><td class="taskdoc-idx-param-summary"><div class="taskdoc-required-parameter">Required parameter. </div>Specifies the SDK name that the path should be resolved against.
+</td></tr><tr class="taskdoc-idx-member"><td class="taskdoc-idx-param-meta"><a class="taskdoc-idx-paramname" href="#Relative" title="Task parameter Relative">Relative</a></td><td class="taskdoc-idx-param-summary">Specifies a relative path that should be resolved against the retrieved SDK path.
+</td></tr></tbody></table></div></div><div class="taskdoc-details-parameters"><div class="taskdoc-details-title">Parameters</div><div id="Identifier" class="taskdoc-detail-param" taskdoc-required><div class="taskdoc-detail-param-header"><div class="taskdoc-detail-param-header-sig"><div class="taskdoc-detail-param-header-name"><a href="#Identifier" title="Task parameter Identifier">Identifier</a></div><div class="taskdoc-detail-param-header-type"><a href="types/SDKIdentifier.html" title="Type SDKIdentifier">SDKIdentifier</a></div></div></div><div class="taskdoc-detail-member taskdoc-detail-param-detail" taskdoc-info-format="format.plaintext"><div class="taskdoc-required-parameter">Required parameter.</div>Specifies the path Identifier in the SDK.
+The specified Identifier will be used to retrieve the path from the associated SDK. The available supported identifiers are based on the associated SDK.</div></div><div id="Name" class="taskdoc-detail-param" taskdoc-required><div class="taskdoc-detail-param-header"><div class="taskdoc-detail-param-header-sig"><div class="taskdoc-detail-param-header-name"><a href="#Name" title="Task parameter Name">Name</a></div><div class="taskdoc-detail-param-header-type"><a href="types/SDKName.html" title="Type SDKName">SDKName</a></div></div><div class="taskdoc-detail-param-header-aliases">Aliases: <div class="taskdoc-detail-param-header-alias"><a title="Unnamed parameter">&lt;unnamed&gt;</a></div></div></div><div class="taskdoc-detail-member taskdoc-detail-param-detail" taskdoc-info-format="format.plaintext"><div class="taskdoc-required-parameter">Required parameter.</div>Specifies the SDK name that the path should be resolved against.
+The SDK names are compared in an ignore case manner. The actual SDK the path is resolved against is based on the usage context of the returned reference.</div></div><div id="Relative" class="taskdoc-detail-param"><div class="taskdoc-detail-param-header"><div class="taskdoc-detail-param-header-sig"><div class="taskdoc-detail-param-header-name"><a href="#Relative" title="Task parameter Relative">Relative</a></div><div class="taskdoc-detail-param-header-type"><a href="../../saker.build/javadoc/saker/build/file/path/SakerPath.html" title="SakerPath">SakerPath</a></div></div></div><div class="taskdoc-detail-member taskdoc-detail-param-detail" taskdoc-info-format="format.plaintext">Specifies a relative path that should be resolved against the retrieved SDK path.
+The specified relative path will be resolved against the path that was directly retrieved from the associated SDK.</div></div></div>
+	</div>
+</div>
+<div class="doc-footer">
+	<div class="container">
+		<div class="row">
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">About</p>
+				<div><a href="/index.html" title="Saker.build home page">Home</a></div>
+				<div data-footer-location="doc-docs"><a href="../index.html" title="saker.sdk.support documentation home">Documentation home</a></div>
+				<div><a href="../../saker.build/index.html" title="Information about the saker.build system">saker.build system</a></div>
+				<div><a href="../../saker.nest/index.html" title="Information about the saker.nest repository">saker.nest repository</a></div>
+				<div><a href="/contact.html" title="Contact us">Contact</a></div>
+			</div>
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">Resources</p>
+				<div data-footer-location="doc-docs"><a href="../doc/index.html" title="saker.sdk.support documentation home">Documentation</a></div>
+				<div data-footer-location="doc-javadoc"><a href="../javadoc/index.html" title="JavaDoc for saker.sdk.support">JavaDoc</a></div>
+				<div data-footer-location="doc-taskdoc"><a href="../taskdoc/index.html"  title="Documentation of build tasks in saker.sdk.support">TaskDoc</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.sdk.support" title="saker.sdk.support | saker.nest">saker.nest package page</a></div>
+				<div><a href="https://github.com/sakerbuild/saker.sdk.support" title="saker.sdk.support on GitHub">GitHub</a></div>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col">
+			&copy; Bence Sipka 2020
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

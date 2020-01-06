@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>RepositoryBuildEnvironment</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+	
+	<link rel="stylesheet" type="text/css" href="../../../../../../res/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../../../../../../res/doc-saker.css">
+	
+</head>
+<body data-nav-location="javadoc" data-subdoc-presence="nest-package packagedoc javadoc">
+<div class="doc-nav-bar">
+	<div class="container">
+		<a class="home-link" href="../../../../../index.html" title="saker.build"><img style="height: 2.5em;" class="logo" src="../../../../../../res/logo.svg"/><span class="page-name">saker.build</span></a>
+		<a class="nav-location-item" data-nav-location="doc-docs" href="../../../../../doc/index.html" title="Documentation">Documentation</a>
+		<a class="nav-location-item" data-nav-location="doc-taskdoc" href="../../../../../taskdoc/index.html" title="Build task documentation">TaskDoc</a>
+		<a class="nav-location-item" data-nav-location="doc-javadoc" href="../../../../../javadoc/index.html"title="Java API documentation">JavaDoc</a>
+	</div>
+</div>
+<nav class="javadoc-nav" data-nav-location="RepositoryBuildEnvironment">
+	<div class="container">
+		<span class="javadoc-nav-title">JavaDoc</span>
+		<a class="nav-location-item" data-nav-location="javadoc-packages" href="../../../../index.html" title="Package index">Packages</a>
+		<a class="nav-location-item" data-nav-location="javadoc-all-classes" href="../../../../all-classes.html" title="All classes">All classes</a>
+		<a class="nav-location-item" data-nav-location="javadoc-constants" href="../../../../constants.html" title="All constants">Constants</a>
+	</div>
+</nav>
+<div class="container page-contents javadoc">
+	<div class="javadoc-content">
+	<div class="javadoc-class-header"><div class="javadoc-class-header-pkg"><span class="javadoc-code-ref"><span class="javadoc-kw">package</span> <a href="index.html" title="saker.build.runtime.repository" data-javadoc-kind="package">saker.build.runtime.repository</a></span></div><div class="javadoc-class-header-class"><span class="javadoc-kw">public interface </span><span class="javadoc-class-header-name">RepositoryBuildEnvironment</span></div></div><div class="javadoc-class-doc"><div class="javadoc-class-doc-body">Interface representing the environment available for <span class="javadoc-code-ref"><a href="BuildRepository.html" title="interface saker.build.runtime.repository.BuildRepository" data-javadoc-kind="interface">build repositories</a></span>. <p>
+ An instance of this interface is passed to the build repositories during instantiation. They can operate based on the
+ configuration data available in this interface.
+ <p>
+ Build repositories are required to set the class lookup resolution appropriately in order for proper incremental
+ build handling. (See <span class="javadoc-code-ref"><a href="#getClassLoaderResolverRegistry--" title="RepositoryBuildEnvironment.getClassLoaderResolverRegistry()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface">getClassLoaderResolverRegistry<span class="javadoc-code-ref">()</span></a></span>)
+ <p>
+ The result of getter methods in this interface are considered to return the same objects, <b>unless otherwise
+ noted</b>.</div></div><div class="javadoc-class-idx"><div class="javadoc-class-idx-methods javadoc-idx-section"><table><caption>Methods</caption><thead><tr><th class="javadoc-th-method-meta"></th><th class="javadoc-th-method-details"></th></tr></thead><tbody><tr class="javadoc-class-idx-method javadoc-idx-member"><td class="javadoc-class-idx-method-meta javadoc-idx-member-meta"><span class="javadoc-kw">public </span><span class="javadoc-code-ref"><a href="../../thirdparty/saker/util/classloader/ClassLoaderResolverRegistry.html" title="class saker.build.thirdparty.saker.util.classloader.ClassLoaderResolverRegistry" data-javadoc-kind="class">ClassLoaderResolverRegistry</a></span></td><td class="javadoc-class-idx-method-sig javadoc-idx-member-sig"><div class="javadoc-class-idx-method-name javadoc-idx-member-name"><a href="#getClassLoaderResolverRegistry--" title="RepositoryBuildEnvironment.getClassLoaderResolverRegistry()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">getClassLoaderResolverRegistry</a><span class="javadoc-code-ref">()</span></div><div class="javadoc-class-idx-method-short javadoc-member-short">Gets the registry for class loader resolvers which is used during build execution.</div></td></tr><tr class="javadoc-class-idx-method javadoc-idx-member"><td class="javadoc-class-idx-method-meta javadoc-idx-member-meta"><span class="javadoc-kw">public </span><span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="class java.lang.String" data-javadoc-kind="class">String</a></span></td><td class="javadoc-class-idx-method-sig javadoc-idx-member-sig"><div class="javadoc-class-idx-method-name javadoc-idx-member-name"><a href="#getIdentifier--" title="RepositoryBuildEnvironment.getIdentifier()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">getIdentifier</a><span class="javadoc-code-ref">()</span></div><div class="javadoc-class-idx-method-short javadoc-member-short">Gets the identifier which was used for this repository.</div></td></tr><tr class="javadoc-class-idx-method javadoc-idx-member"><td class="javadoc-class-idx-method-meta javadoc-idx-member-meta"><span class="javadoc-kw">public </span><span class="javadoc-code-ref"><a href="../params/ExecutionPathConfiguration.html" title="class saker.build.runtime.params.ExecutionPathConfiguration" data-javadoc-kind="class">ExecutionPathConfiguration</a></span></td><td class="javadoc-class-idx-method-sig javadoc-idx-member-sig"><div class="javadoc-class-idx-method-name javadoc-idx-member-name"><a href="#getPathConfiguration--" title="RepositoryBuildEnvironment.getPathConfiguration()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">getPathConfiguration</a><span class="javadoc-code-ref">()</span></div><div class="javadoc-class-idx-method-short javadoc-member-short">Gets the path configuration used by the build execution.</div></td></tr><tr class="javadoc-class-idx-method javadoc-idx-member"><td class="javadoc-class-idx-method-meta javadoc-idx-member-meta"><span class="javadoc-kw">public </span><span class="javadoc-code-ref"><a href="../environment/SakerEnvironment.html" title="interface saker.build.runtime.environment.SakerEnvironment" data-javadoc-kind="interface">SakerEnvironment</a></span></td><td class="javadoc-class-idx-method-sig javadoc-idx-member-sig"><div class="javadoc-class-idx-method-name javadoc-idx-member-name"><a href="#getSakerEnvironment--" title="RepositoryBuildEnvironment.getSakerEnvironment()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">getSakerEnvironment</a><span class="javadoc-code-ref">()</span></div><div class="javadoc-class-idx-method-short javadoc-member-short">Gets the core build environment for the repository to use.</div></td></tr><tr class="javadoc-class-idx-method javadoc-idx-member"><td class="javadoc-class-idx-method-meta javadoc-idx-member-meta"><span class="javadoc-kw">public </span><span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Map.html" title="interface java.util.Map" data-javadoc-kind="interface">Map</a>&lt;<wbr><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="class java.lang.String" data-javadoc-kind="class">String</a>, <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="class java.lang.String" data-javadoc-kind="class">String</a>&gt;</span></td><td class="javadoc-class-idx-method-sig javadoc-idx-member-sig"><div class="javadoc-class-idx-method-name javadoc-idx-member-name"><a href="#getUserParameters--" title="RepositoryBuildEnvironment.getUserParameters()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">getUserParameters</a><span class="javadoc-code-ref">()</span></div><div class="javadoc-class-idx-method-short javadoc-member-short">Gets the arbitrary parameters which were specified by the user for the build execution.</div></td></tr></tbody></table></div></div><div class="javadoc-class-details"><div class="javadoc-class-details-methods javadoc-details-section"><div id="getClassLoaderResolverRegistry--" class="javadoc-class-detail-method javadoc-class-detail-member"><div class="javadoc-class-detail-method-sig javadoc-member-sig"><span class="javadoc-kw">public abstract </span><span class="javadoc-code-ref"><a href="../../thirdparty/saker/util/classloader/ClassLoaderResolverRegistry.html" title="class saker.build.thirdparty.saker.util.classloader.ClassLoaderResolverRegistry" data-javadoc-kind="class">ClassLoaderResolverRegistry</a></span> <a href="#getClassLoaderResolverRegistry--" title="RepositoryBuildEnvironment.getClassLoaderResolverRegistry()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">getClassLoaderResolverRegistry</a><span class="javadoc-code-ref">()</span></div><div class="javadoc-class-detail-method-detail javadoc-member-detail"><div class="javadoc-detail-body">Gets the registry for class loader resolvers which is used during build execution. <p>
+ Build repositories are required to set the class lookup resolution appropriately in order for proper incremental
+ build handling.
+ <p>
+ The registry is used during serialization of objects during builds. This is prevalent when the incremental state
+ of the build execution is persisted, and during builds with clusters.
+ <p>
+ If the associated build repository fails to set up the class resolution, then it will result in failures during
+ serialization of build results, using clusters will fail, or generally incremental builds will most likely not
+ work.
+ <p>
+ Build repositories are required to modify the class resolution appropriately, when
+ <a href="BuildRepository.html#handleChanges-java.lang.Object-" title="BuildRepository.handleChanges(Object)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface">change detection</a> results in modifications.
+ <p>
+ Build repositories are required to unregister their installed resolvers when they are
+ <a href="BuildRepository.html#close--" title="BuildRepository.close()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface">closed</a>.</div><div class="javadoc-method-detail-return javadoc-blocktag-section"><div class="javadoc-method-detail-return-body">The registry.</div></div></div></div><div id="getIdentifier--" class="javadoc-class-detail-method javadoc-class-detail-member"><div class="javadoc-class-detail-method-sig javadoc-member-sig"><span class="javadoc-kw">public abstract </span><span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="class java.lang.String" data-javadoc-kind="class">String</a></span> <a href="#getIdentifier--" title="RepositoryBuildEnvironment.getIdentifier()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">getIdentifier</a><span class="javadoc-code-ref">()</span></div><div class="javadoc-class-detail-method-detail javadoc-member-detail"><div class="javadoc-detail-body">Gets the identifier which was used for this repository. <p>
+ The repository identifier is specified by the user to reference the repository by a specific name. If an
+ identifier was not set by the user configuration, an automatically generated one is used.</div><div class="javadoc-method-detail-return javadoc-blocktag-section"><div class="javadoc-method-detail-return-body">The repository identifier.</div></div></div></div><div id="getPathConfiguration--" class="javadoc-class-detail-method javadoc-class-detail-member"><div class="javadoc-class-detail-method-sig javadoc-member-sig"><span class="javadoc-kw">public abstract </span><span class="javadoc-code-ref"><a href="../params/ExecutionPathConfiguration.html" title="class saker.build.runtime.params.ExecutionPathConfiguration" data-javadoc-kind="class">ExecutionPathConfiguration</a></span> <a href="#getPathConfiguration--" title="RepositoryBuildEnvironment.getPathConfiguration()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">getPathConfiguration</a><span class="javadoc-code-ref">()</span></div><div class="javadoc-class-detail-method-detail javadoc-member-detail"><div class="javadoc-detail-body">Gets the path configuration used by the build execution. <p>
+ This method may return different path configuration objects when the build system cache state is invalidated or
+ rebuilt in some ways. However, even if different path configurations are returned, they can only differ in
+ backing file provider objects, and they will not be different configurations.
+ <p>
+ Such scenarios can happen when connections to remote <a href="../../file/provider/SakerFileProvider.html" title="interface saker.build.file.provider.SakerFileProvider" data-javadoc-kind="interface">file providers</a> are broken up
+ and then reestablished later. In these cases using the previously returned file providers will most likely result
+ in RMI errors.
+ <p>
+ Callers are recommended <b>not</b> to cache any file providers acquired from this configuration.
+ <p>
+ While this method can return different objects, it will not return different objects while a build execution is
+ running. In general, clients only need to deal with this in <span class="javadoc-code-ref"><a href="BuildRepository.html" title="interface saker.build.runtime.repository.BuildRepository" data-javadoc-kind="interface">BuildRepository</a>.<a href="BuildRepository.html#detectChanges--" title="BuildRepository.detectChanges()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface">detectChanges<span class="javadoc-code-ref">()</span></a></span> and related
+ methods.</div><div class="javadoc-method-detail-return javadoc-blocktag-section"><div class="javadoc-method-detail-return-body">The path configuration.</div></div></div></div><div id="getSakerEnvironment--" class="javadoc-class-detail-method javadoc-class-detail-member"><div class="javadoc-class-detail-method-sig javadoc-member-sig"><span class="javadoc-kw">public abstract </span><span class="javadoc-code-ref"><a href="../environment/SakerEnvironment.html" title="interface saker.build.runtime.environment.SakerEnvironment" data-javadoc-kind="interface">SakerEnvironment</a></span> <a href="#getSakerEnvironment--" title="RepositoryBuildEnvironment.getSakerEnvironment()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">getSakerEnvironment</a><span class="javadoc-code-ref">()</span></div><div class="javadoc-class-detail-method-detail javadoc-member-detail"><div class="javadoc-detail-body">Gets the core build environment for the repository to use.</div><div class="javadoc-method-detail-return javadoc-blocktag-section"><div class="javadoc-method-detail-return-body">The build environment.</div></div></div></div><div id="getUserParameters--" class="javadoc-class-detail-method javadoc-class-detail-member"><div class="javadoc-class-detail-method-sig javadoc-member-sig"><span class="javadoc-kw">public abstract </span><span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Map.html" title="interface java.util.Map" data-javadoc-kind="interface">Map</a>&lt;<wbr><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="class java.lang.String" data-javadoc-kind="class">String</a>, <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="class java.lang.String" data-javadoc-kind="class">String</a>&gt;</span> <a href="#getUserParameters--" title="RepositoryBuildEnvironment.getUserParameters()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">getUserParameters</a><span class="javadoc-code-ref">()</span></div><div class="javadoc-class-detail-method-detail javadoc-member-detail"><div class="javadoc-detail-body">Gets the arbitrary parameters which were specified by the user for the build execution.</div><div class="javadoc-method-detail-return javadoc-blocktag-section"><div class="javadoc-method-detail-return-body">An unmodifiable map of user parameters.</div></div></div></div></div></div>
+	</div>
+</div>
+<div class="doc-footer">
+	<div class="container">
+		<div class="row">
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">About</p>
+				<div><a href="/index.html" title="Saker.build home page">Home</a></div>
+				<div data-footer-location="doc-docs"><a href="../../../../../index.html" title="saker.build documentation home">Documentation home</a></div>
+				<div><a href="../../../../../../saker.build/index.html" title="Information about the saker.build system">saker.build system</a></div>
+				<div><a href="../../../../../../saker.nest/index.html" title="Information about the saker.nest repository">saker.nest repository</a></div>
+				<div><a href="/contact.html" title="Contact us">Contact</a></div>
+			</div>
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">Resources</p>
+				<div data-footer-location="doc-docs"><a href="../../../../../doc/index.html" title="saker.build documentation home">Documentation</a></div>
+				<div data-footer-location="doc-javadoc"><a href="../../../../../javadoc/index.html" title="JavaDoc for saker.build">JavaDoc</a></div>
+				<div data-footer-location="doc-taskdoc"><a href="../../../../../taskdoc/index.html"  title="Documentation of build tasks in saker.build">TaskDoc</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.nest package page</a></div>
+				<div><a href="https://github.com/sakerbuild/saker.build" title="saker.build on GitHub">GitHub</a></div>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col">
+			&copy; Bence Sipka 2020
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>
