@@ -30,7 +30,7 @@
 					Navigation
 				</label>
 				<input style="display:none;" id="doc-collapse-nav-label" type="checkbox"/> 
-				<div class="doc-nav">  <div class="doc-section">    <p class="section-title">Package details</p><ul><li><a class="doc-nav-section-link" href="../index.html" title="Overview">Overview</a></li><li><a class="doc-nav-section-link" href="../gettingstarted.html" title="Getting started">Getting started</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Classpath</p><ul><li class="doc-active doc-active-parent"><a class="doc-nav-section-link" href="index.html" title="Usage">Usage</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Examples</p><ul><li><a class="doc-nav-section-link" href="../examples/index.html" title="Overview">Overview</a></li><li><a class="doc-nav-section-link" href="../examples/artifacts.html" title="Artifact classpath">Artifact classpath</a></li><li><a class="doc-nav-section-link" href="../examples/downloaded.html" title="Downloaded artifacts">Downloaded artifacts</a></li><li><a class="doc-nav-section-link" href="../examples/localized.html" title="Localized artifacts">Localized artifacts</a></li><li><a class="doc-nav-section-link" href="../examples/dependency.html" title="Dependency classpath">Dependency classpath</a></li><li><a class="doc-nav-section-link" href="../examples/compilation.html" title="Java compilation">Java compilation</a></li></ul>  </div></div>
+				<div class="doc-nav">  <div class="doc-section"><ul><li><a class="doc-nav-section-link" href="../../index.html" title="Index">Index</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Package details</p><ul><li><a class="doc-nav-section-link" href="../index.html" title="Overview">Overview</a></li><li><a class="doc-nav-section-link" href="../gettingstarted.html" title="Getting started">Getting started</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Classpath</p><ul><li class="doc-active doc-active-parent"><a class="doc-nav-section-link" href="index.html" title="Usage">Usage</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Examples</p><ul><li><a class="doc-nav-section-link" href="../examples/index.html" title="Overview">Overview</a></li><li><a class="doc-nav-section-link" href="../examples/artifacts.html" title="Artifact classpath">Artifact classpath</a></li><li><a class="doc-nav-section-link" href="../examples/downloaded.html" title="Downloaded artifacts">Downloaded artifacts</a></li><li><a class="doc-nav-section-link" href="../examples/localized.html" title="Localized artifacts">Localized artifacts</a></li><li><a class="doc-nav-section-link" href="../examples/dependency.html" title="Dependency classpath">Dependency classpath</a></li><li><a class="doc-nav-section-link" href="../examples/compilation.html" title="Java compilation">Java compilation</a></li></ul>  </div></div>
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
@@ -51,7 +51,7 @@
 	</div>
 </div>
 			<div class="doc-content"><h1 id="usage">Usage<a class="doc-heading-anchor" href="#usage"></a></h1>
-<p>The <a href="../../taskdoc/saker.maven.classpath.html"><code>saker.maven.classpath()</code></a> task works on Maven artifacts and creates a classpath object that can be passed to tasks in the <a href="../../../saker.java.compiler/index.html" title="saker.java.compiler">saker.java.compiler</a> package and to others which handle classpath input similarly.</p>
+<p>The <a href="../../taskdoc/saker.maven.classpath.html"><code>saker.maven.classpath()</code></a> task works on Maven artifacts and creates a classpath object that can be passed to tasks in the <a href="../../../saker.java.compiler/index.html" title="Index">saker.java.compiler</a> package and to others which handle classpath input similarly.</p>
 <p>The task takes artifact coordinates or already resolved dependencies from the <a href="../../../saker.maven.support/taskdoc/saker.maven.resolve.html"><code>saker.maven.resolve()</code></a> task. The <a href="../../taskdoc/saker.maven.classpath.html"><code>saker.maven.classpath()</code></a> task <strong>does not</strong> perform dependency resolution.</p>
 <p>When used in an IDE, the task automatically downloads the associated source artifacts if available.</p>
 <h2 id="artifact-classpath">Artifact classpath<a class="doc-heading-anchor" href="#artifact-classpath"></a></h2>
@@ -78,7 +78,7 @@
 </code></pre>
 <p>We used the <a href="../../../saker.maven.support/taskdoc/saker.maven.resolve.html"><code>saker.maven.resolve()</code></a> task to resolve the dependencies of the specified artifacts before passing them to the classpath task. This results in the <code>org.hamcrest:hamcrest-core:1.3</code> artifact being included in the classpath as well (<code>junit</code> depends on it). Usually this is the way you want to use the task.</p>
 <h2 id="repository-configuration">Repository configuration<a class="doc-heading-anchor" href="#repository-configuration"></a></h2>
-<p>The <a href="../../taskdoc/saker.maven.classpath.html"><code>saker.maven.classpath()</code></a> allows specifying how the repositories should be accessed. It works the same way as the <a href="../../../saker.maven.support/index.html" title="saker.maven.support">saker.maven.support</a> package allows configuring the repositories.</p>
+<p>The <a href="../../taskdoc/saker.maven.classpath.html"><code>saker.maven.classpath()</code></a> allows specifying how the repositories should be accessed. It works the same way as the <a href="../../../saker.maven.support/index.html" title="Index">saker.maven.support</a> package allows configuring the repositories.</p>
 <p>More information <a href="../../../saker.maven.support/doc/mavensupport/configuration.html" title="Configuration">here</a>.</p>
 <link href="../../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>
 			<div class="end-section-links">
@@ -103,14 +103,14 @@
 			<div class="footer-section col-6 col-sm-4 col-md-3">
 				<p class="footer-section-title">About</p>
 				<div><a href="/index.html" title="Saker.build home page">Home</a></div>
-				<div data-footer-location="doc-docs"><a href="../../index.html" title="saker.maven.classpath documentation home">Documentation home</a></div>
+				<div data-footer-location="doc-docs"><a href="../../index.html" title="saker.maven.classpath documentation index">Documentation index</a></div>
 				<div><a href="../../../saker.build/index.html" title="Information about the saker.build system">saker.build system</a></div>
 				<div><a href="../../../saker.nest/index.html" title="Information about the saker.nest repository">saker.nest repository</a></div>
 				<div><a href="/contact.html" title="Contact us">Contact</a></div>
 			</div>
 			<div class="footer-section col-6 col-sm-4 col-md-3">
 				<p class="footer-section-title">Resources</p>
-				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.maven.classpath documentation home">Documentation</a></div>
+				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.maven.classpath documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.maven.classpath">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.maven.classpath">TaskDoc</a></div>
 				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.maven.classpath" title="saker.maven.classpath | saker.nest">saker.nest package page</a></div>

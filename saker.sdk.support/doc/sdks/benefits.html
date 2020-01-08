@@ -30,7 +30,7 @@
 					Navigation
 				</label>
 				<input style="display:none;" id="doc-collapse-nav-label" type="checkbox"/> 
-				<div class="doc-nav">  <div class="doc-section">    <p class="section-title">Package details</p><ul><li><a class="doc-nav-section-link" href="../index.html" title="Overview">Overview</a></li><li><a class="doc-nav-section-link" href="../gettingstarted.html" title="Getting started">Getting started</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">SDKs</p><ul><li><a class="doc-nav-section-link" href="index.html" title="What is an SDK?">What is an SDK?</a></li><li><a class="doc-nav-section-link" href="contents.html" title="SDK contents">SDK contents</a></li><li><a class="doc-nav-section-link" href="support.html" title="SDK support">SDK support</a></li><li class="doc-active doc-active-parent"><a class="doc-nav-section-link" href="benefits.html" title="Usage benefits">Usage benefits</a></li><li><a class="doc-nav-section-link" href="sdknames.html" title="SDK names and identifiers">SDK names and identifiers</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Examples</p><ul><li><a class="doc-nav-section-link" href="../examples/index.html" title="Overview">Overview</a></li><li><a class="doc-nav-section-link" href="../examples/sdkpaths.html" title="SDK paths">SDK paths</a></li></ul>  </div></div>
+				<div class="doc-nav">  <div class="doc-section"><ul><li><a class="doc-nav-section-link" href="../../index.html" title="Index">Index</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Package details</p><ul><li><a class="doc-nav-section-link" href="../index.html" title="Overview">Overview</a></li><li><a class="doc-nav-section-link" href="../gettingstarted.html" title="Getting started">Getting started</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">SDKs</p><ul><li><a class="doc-nav-section-link" href="index.html" title="What is an SDK?">What is an SDK?</a></li><li><a class="doc-nav-section-link" href="contents.html" title="SDK contents">SDK contents</a></li><li><a class="doc-nav-section-link" href="support.html" title="SDK support">SDK support</a></li><li class="doc-active doc-active-parent"><a class="doc-nav-section-link" href="benefits.html" title="Usage benefits">Usage benefits</a></li><li><a class="doc-nav-section-link" href="sdknames.html" title="SDK names and identifiers">SDK names and identifiers</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Examples</p><ul><li><a class="doc-nav-section-link" href="../examples/index.html" title="Overview">Overview</a></li><li><a class="doc-nav-section-link" href="../examples/sdkpaths.html" title="SDK paths">SDK paths</a></li></ul>  </div></div>
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
@@ -52,7 +52,7 @@
 </div>
 			<div class="doc-content"><h1 id="usage-benefits">Usage benefits<a class="doc-heading-anchor" href="#usage-benefits"></a></h1>
 <p>One of the benefits of using SDKs is that the tasks that accept them can optimize their workload based on them. When supported, it also allows them to select an appropriate build machine to run on. This is important when the developers use build clusters for build execution.</p>
-<p>One example for this is the <a href="../../../saker.msvc/index.html" title="saker.msvc">saker.msvc</a> package that automatically distributes the compiled source files on the build clusters based on the SDKs specifications of the compilation task. It also enables that a given SDK doesn't need to be installed on the local build machine, but only on one of the many build clusters. E.g. if you use macOS to run your build, you can still use the MSVC toolchain if a Windows machine is added as a build cluster to your build. Note that this is not the direct benefits of the SDK usage, but the SDKs make this automatic distribution easier.</p>
+<p>One example for this is the <a href="../../../saker.msvc/index.html" title="Index">saker.msvc</a> package that automatically distributes the compiled source files on the build clusters based on the SDKs specifications of the compilation task. It also enables that a given SDK doesn't need to be installed on the local build machine, but only on one of the many build clusters. E.g. if you use macOS to run your build, you can still use the MSVC toolchain if a Windows machine is added as a build cluster to your build. Note that this is not the direct benefits of the SDK usage, but the SDKs make this automatic distribution easier.</p>
 <p>Another benefit is that the consumer of an SDK doesn't need to know <em>anything</em> about the SDK that is being used. One example for this is when we compile against the Java Native Interface. <a href="../../../saker.java.compiler/doc/examples/jnicompile.html" title="JNI compilation">An example from saker.java.compiler</a> showcases this, and you can see that while the include directories are added to the C compiler, nobody actually needs to keep track of the directory layout of the JDK, or even where the include directories reside in it.</p>
 <link href="../../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>
 			<div class="end-section-links">
@@ -77,14 +77,14 @@
 			<div class="footer-section col-6 col-sm-4 col-md-3">
 				<p class="footer-section-title">About</p>
 				<div><a href="/index.html" title="Saker.build home page">Home</a></div>
-				<div data-footer-location="doc-docs"><a href="../../index.html" title="saker.sdk.support documentation home">Documentation home</a></div>
+				<div data-footer-location="doc-docs"><a href="../../index.html" title="saker.sdk.support documentation index">Documentation index</a></div>
 				<div><a href="../../../saker.build/index.html" title="Information about the saker.build system">saker.build system</a></div>
 				<div><a href="../../../saker.nest/index.html" title="Information about the saker.nest repository">saker.nest repository</a></div>
 				<div><a href="/contact.html" title="Contact us">Contact</a></div>
 			</div>
 			<div class="footer-section col-6 col-sm-4 col-md-3">
 				<p class="footer-section-title">Resources</p>
-				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.sdk.support documentation home">Documentation</a></div>
+				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.sdk.support documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.sdk.support">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.sdk.support">TaskDoc</a></div>
 				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.sdk.support" title="saker.sdk.support | saker.nest">saker.nest package page</a></div>

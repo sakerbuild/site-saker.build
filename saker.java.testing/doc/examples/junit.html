@@ -30,7 +30,7 @@
 					Navigation
 				</label>
 				<input style="display:none;" id="doc-collapse-nav-label" type="checkbox"/> 
-				<div class="doc-nav">  <div class="doc-section">    <p class="section-title">Package details</p><ul><li><a class="doc-nav-section-link" href="../index.html" title="Overview">Overview</a></li><li><a class="doc-nav-section-link" href="../gettingstarted.html" title="Getting started">Getting started</a></li><li><a class="doc-nav-section-link" href="../performancecomparison.html" title="Performance comparison">Performance comparison</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Testing</p><ul><li><a class="doc-nav-section-link" href="../testing/index.html" title="Overview">Overview</a></li><li><a class="doc-nav-section-link" href="../testing/classpath.html" title="Test classpath">Test classpath</a></li><li><a class="doc-nav-section-link" href="../testing/testinvocation.html" title="Test invocation">Test invocation</a></li><li><a class="doc-nav-section-link" href="../testing/testparameters.html" title="Test parameters">Test parameters</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Examples</p><ul><li><a class="doc-nav-section-link" href="index.html" title="Overview">Overview</a></li><li class="doc-active doc-active-parent"><a class="doc-nav-section-link" href="junit.html" title="Using JUnit">Using JUnit</a></li></ul>  </div></div>
+				<div class="doc-nav">  <div class="doc-section"><ul><li><a class="doc-nav-section-link" href="../../index.html" title="Index">Index</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Package details</p><ul><li><a class="doc-nav-section-link" href="../index.html" title="Overview">Overview</a></li><li><a class="doc-nav-section-link" href="../gettingstarted.html" title="Getting started">Getting started</a></li><li><a class="doc-nav-section-link" href="../performancecomparison.html" title="Performance comparison">Performance comparison</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Testing</p><ul><li><a class="doc-nav-section-link" href="../testing/index.html" title="Overview">Overview</a></li><li><a class="doc-nav-section-link" href="../testing/classpath.html" title="Test classpath">Test classpath</a></li><li><a class="doc-nav-section-link" href="../testing/testinvocation.html" title="Test invocation">Test invocation</a></li><li><a class="doc-nav-section-link" href="../testing/testparameters.html" title="Test parameters">Test parameters</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Examples</p><ul><li><a class="doc-nav-section-link" href="index.html" title="Overview">Overview</a></li><li class="doc-active doc-active-parent"><a class="doc-nav-section-link" href="junit.html" title="Using JUnit">Using JUnit</a></li></ul>  </div></div>
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
@@ -79,7 +79,7 @@
 <span class="a">)</span>
 </code></pre>
 <p>The above is what we consider the absolute minimal example that uses JUnit. Let's break it apart:</p>
-<p>The <code>$junitcp</code> variable is set to represent a <a href="../../../saker.maven.classpath/index.html" title="saker.maven.classpath">Maven classpath</a>. It is passed as the input for the test compilation, and as well to the test runtime classpath.</p>
+<p>The <code>$junitcp</code> variable is set to represent a <a href="../../../saker.maven.classpath/index.html" title="Index">Maven classpath</a>. It is passed as the input for the test compilation, and as well to the test runtime classpath.</p>
 <p>The <code>$src</code> variable contains the compilation results of our Java app. The sources are under the <code>src</code> directory.</p>
 <p>The <code>$tests</code> variable is the result of the test compilation. It has the <code>$src</code> as one of its classpath input, as the tests are supposed to test the classes of our app.</p>
 <p>We call the <a href="../../taskdoc/saker.java.test.html"><code>saker.java.test()</code></a> task to invoke the testing. The <a href="../../taskdoc/saker.java.test.html#TestRunnerClassPath"><code>TestRunnerClassPath</code></a> contains the JUnit testing framework. The <a href="../../taskdoc/saker.java.test.html#ClassPath"><code>ClassPath</code></a> contains the classes that are the subject of testing.</p>
@@ -107,14 +107,14 @@
 			<div class="footer-section col-6 col-sm-4 col-md-3">
 				<p class="footer-section-title">About</p>
 				<div><a href="/index.html" title="Saker.build home page">Home</a></div>
-				<div data-footer-location="doc-docs"><a href="../../index.html" title="saker.java.testing documentation home">Documentation home</a></div>
+				<div data-footer-location="doc-docs"><a href="../../index.html" title="saker.java.testing documentation index">Documentation index</a></div>
 				<div><a href="../../../saker.build/index.html" title="Information about the saker.build system">saker.build system</a></div>
 				<div><a href="../../../saker.nest/index.html" title="Information about the saker.nest repository">saker.nest repository</a></div>
 				<div><a href="/contact.html" title="Contact us">Contact</a></div>
 			</div>
 			<div class="footer-section col-6 col-sm-4 col-md-3">
 				<p class="footer-section-title">Resources</p>
-				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.java.testing documentation home">Documentation</a></div>
+				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.java.testing documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.java.testing">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.java.testing">TaskDoc</a></div>
 				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.java.testing" title="saker.java.testing | saker.nest">saker.nest package page</a></div>
