@@ -66,21 +66,21 @@
 <h2 id="task-result">Task result<a class="doc-heading-anchor" href="#task-result"></a></h2>
 <p>The reference to the variable.</p>
 <h2 id="example">Example<a class="doc-heading-anchor" href="#example"></a></h2>
-<pre><code class="language-sakerscript"><span class="h"># the following is the same</span>
-<span class="d">$num</span> = <span class="b">3</span>
-<span class="a">var(</span><span class="d">num</span><span class="a">)</span> = <span class="b">3</span>
+<pre><code class="language-sakerscript"><span class="c"># the following is the same</span>
+<span class="d">$num</span> = <span class="f">3</span>
+<span class="e"><a href="../../../../saker.build/doc/scripting/builtintasks/var.html" title="Task: var()">var</a>(</span><span class="d">num</span><span class="e">)</span> = <span class="f">3</span>
 
-<span class="g">foreach </span><span class="d">$item</span><span class="g"> in </span><span class="e">[</span><span class="b">1</span><span class="e">,</span> <span class="b">2</span><span class="e">]</span> {
-	<span class="h"># accesses the item variable, not the loop variable</span>
-	<span class="a">var(</span><span class="d">item</span><span class="a">)</span>
-	<span class="h"># accesses the loop variable</span>
+<span class="j">foreach </span><span class="d">$item</span><span class="j"> in </span><span class="b">[</span><span class="f">1</span><span class="b">,</span> <span class="f">2</span><span class="b">]</span> {
+	<span class="c"># accesses the item variable, not the loop variable</span>
+	<span class="e"><a href="../../../../saker.build/doc/scripting/builtintasks/var.html" title="Task: var()">var</a>(</span><span class="d">item</span><span class="e">)</span>
+	<span class="c"># accesses the loop variable</span>
 	<span class="d">$item</span>
 }
 
-<span class="j">build(</span><span class="g">in</span> <span class="d">Input</span><span class="j">)</span> <span class="e">{</span>
-	<span class="h"># accesses the Input parameter</span>
-	<span class="a">var(</span><span class="d">Input</span><span class="a">)</span>
-<span class="e">}</span>
+<span class="a">build(</span><span class="j">in</span> <span class="d">Input</span><span class="a">)</span> <span class="b">{</span>
+	<span class="c"># accesses the Input parameter</span>
+	<span class="e"><a href="../../../../saker.build/doc/scripting/builtintasks/var.html" title="Task: var()">var</a>(</span><span class="d">Input</span><span class="e">)</span>
+<span class="b">}</span>
 </code></pre>
 <link href="../../../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>
 			<div class="end-section-links">

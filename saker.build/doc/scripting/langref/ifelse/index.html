@@ -52,16 +52,16 @@
 </div>
 			<div class="doc-content"><h1 id="if-else-statement">If-else statement<a class="doc-heading-anchor" href="#if-else-statement"></a></h1>
 <p>The language allows declaring conditional blocks which execute based on the result of a boolean expression evaluation. This is similar to the known if-else control statements in other languages.</p>
-<pre><code class="language-sakerscript"><span class="h"># if-else condition based on a variable</span>
-<span class="g">if </span><span class="d">$condition</span> {
-	<span class="a">handle.true()</span>
-}<span class="g"> else </span>{
-	<span class="a">handle.false()</span>
+<pre><code class="language-sakerscript"><span class="c"># if-else condition based on a variable</span>
+<span class="j">if </span><span class="d">$condition</span> {
+	<span class="e">handle.true()</span>
+}<span class="j"> else </span>{
+	<span class="e">handle.false()</span>
 }
 
-<span class="h"># if-only condition</span>
-<span class="g">if </span><span class="d">$condition</span> {
-	<span class="a">handle.true()</span>
+<span class="c"># if-only condition</span>
+<span class="j">if </span><span class="d">$condition</span> {
+	<span class="e">handle.true()</span>
 }
 </code></pre>
 <p>If-else statements are declared by starting the statement with an <code>if</code> phrase. Then a condition expression should be declared, and the expressions to execute inside curly braces (<code>{ }</code>). Optionally the statement can continue with an <code>else</code> branch that is executed when the condition evaluates to <code>false</code>.</p>
@@ -74,16 +74,16 @@
 <p>If the condition doesn't evaluate to <code>true</code>, and there is no <code>else</code> branch, no expressions will be evaluated after the condition.</p>
 <p>It's important to note that the if-else statement is <strong>not</strong> an expression, but a control statement. This means that it cannot be used in places where a value is expected. (E.g. at the right side of an assignment.)</p>
 <p>Developers should keep in mind that if they assign any variables inside condition branches, the variables will be accessible from outside of the branches. If you assign assign a variable, make sure to assign it in both branches, else the variable may stay unassigned and cause a deadlock.</p>
-<pre><code class="language-sakerscript"><span class="h"># if-else assigning a variable</span>
-<span class="g">if </span><span class="d">$condition</span> {
-	<span class="d">$var</span> = <span class="a">handle.true()</span>
-}<span class="g"> else </span>{
-	<span class="a">handle.false()</span>
+<pre><code class="language-sakerscript"><span class="c"># if-else assigning a variable</span>
+<span class="j">if </span><span class="d">$condition</span> {
+	<span class="d">$var</span> = <span class="e">handle.true()</span>
+}<span class="j"> else </span>{
+	<span class="e">handle.false()</span>
 }
 
-<span class="h"># if $condition is false, the following call may </span>
-<span class="h"># cause a deadlock if $var is not assigned elsewhere</span>
-<span class="a">outer.task(</span><span class="d">$var</span><span class="a">)</span>
+<span class="c"># if $condition is false, the following call may </span>
+<span class="c"># cause a deadlock if $var is not assigned elsewhere</span>
+<span class="e">outer.task(</span><span class="d">$var</span><span class="e">)</span>
 </code></pre>
 <link href="../../../../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>
 			<div class="end-section-links">

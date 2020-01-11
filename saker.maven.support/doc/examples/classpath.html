@@ -30,7 +30,7 @@
 					Navigation
 				</label>
 				<input style="display:none;" id="doc-collapse-nav-label" type="checkbox"/> 
-				<div class="doc-nav">  <div class="doc-section"><ul><li><a class="doc-nav-section-link" href="../../index.html" title="Index">Index</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Package details</p><ul><li><a class="doc-nav-section-link" href="../index.html" title="Overview">Overview</a></li><li><a class="doc-nav-section-link" href="../gettingstarted.html" title="Getting started">Getting started</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Maven support</p><ul><li><a class="doc-nav-section-link" href="../mavensupport/index.html" title="Basics">Basics</a></li><li><a class="doc-nav-section-link" href="../mavensupport/configuration.html" title="Configuration">Configuration</a></li><li><a class="doc-nav-section-link" href="../mavensupport/resolution.html" title="Dependency resolution">Dependency resolution</a></li><li><a class="doc-nav-section-link" href="../mavensupport/localization.html" title="Artifact localization">Artifact localization</a></li><li><a class="doc-nav-section-link" href="../mavensupport/downloading.html" title="Artifact downloading">Artifact downloading</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Examples</p><ul><li><a class="doc-nav-section-link" href="index.html" title="Overview">Overview</a></li><li class="doc-active doc-active-parent"><a class="doc-nav-section-link" href="classpath.html" title="Java classpath">Java classpath</a></li><li><a class="doc-nav-section-link" href="scopeselection.html" title="Scope selection">Scope selection</a></li></ul>  </div></div>
+				<div class="doc-nav">  <div class="doc-section"><ul><li><a class="doc-nav-section-link" href="../../index.html" title="Index">Index</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Package details</p><ul><li><a class="doc-nav-section-link" href="../index.html" title="Overview">Overview</a></li><li><a class="doc-nav-section-link" href="../gettingstarted.html" title="Getting started">Getting started</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Maven support</p><ul><li><a class="doc-nav-section-link" href="../mavensupport/index.html" title="Basics">Basics</a></li><li><a class="doc-nav-section-link" href="../mavensupport/configuration.html" title="Configuration">Configuration</a></li><li><a class="doc-nav-section-link" href="../mavensupport/authentication.html" title="Authentication">Authentication</a></li><li><a class="doc-nav-section-link" href="../mavensupport/resolution.html" title="Dependency resolution">Dependency resolution</a></li><li><a class="doc-nav-section-link" href="../mavensupport/localization.html" title="Artifact localization">Artifact localization</a></li><li><a class="doc-nav-section-link" href="../mavensupport/downloading.html" title="Artifact downloading">Artifact downloading</a></li><li><a class="doc-nav-section-link" href="../mavensupport/installing.html" title="Artifact installing">Artifact installing</a></li><li><a class="doc-nav-section-link" href="../mavensupport/deploying.html" title="Artifact deploying">Artifact deploying</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Examples</p><ul><li><a class="doc-nav-section-link" href="index.html" title="Overview">Overview</a></li><li class="doc-active doc-active-parent"><a class="doc-nav-section-link" href="classpath.html" title="Java classpath">Java classpath</a></li><li><a class="doc-nav-section-link" href="scopeselection.html" title="Scope selection">Scope selection</a></li></ul>  </div></div>
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
@@ -54,28 +54,28 @@
 <p>First of all, we recommend using the <a href="../../../saker.maven.classpath/index.html" title="Index">saker.maven.classpath</a> package for dealing with Maven artifacts as Java classpath. However, if you can't use that package, the following examples may apply:</p>
 <h4 id="localized-classpath">Localized classpath<a class="doc-heading-anchor" href="#localized-classpath"></a></h4>
 <p>If the receiver task supports it, you can specify the class path using localization:</p>
-<pre><code class="language-sakerscript"><span class="d">$localized</span> = <span class="a"><a href="../../../saker.maven.support/taskdoc/saker.maven.localize.html" title="Task: saker.maven.localize()">saker.maven.localize</a>(</span><span class="e">[</span>
-	<span class="b">&quot;org.slf4j:slf4j-api:1.7.19&quot;</span><span class="e">
-]</span><span class="a">)</span>
-<span class="a"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
-	<span class="c">SourceDirectories</span>: <span class="b">src</span>,
-	<span class="c">ClassPath: </span><span class="g">foreach </span><span class="d">$path</span><span class="g"> in </span><span class="d">$localized</span><span class="i">[</span><span class="f">ArtifactLocalPaths</span><span class="i">]</span>: 
-		<span class="e">[</span> <span class="a"><a href="../../../saker.standard/taskdoc/std.file.local.html" title="Task: std.file.local()">std.file.local</a>(</span><span class="d">$path</span><span class="a">)</span><span class="e"> ]</span> 
-<span class="a">)</span>	
+<pre><code class="language-sakerscript"><span class="d">$localized</span> = <span class="e"><a href="../../../saker.maven.support/taskdoc/saker.maven.localize.html" title="Task: saker.maven.localize()">saker.maven.localize</a>(</span><span class="b">[</span>
+	<span class="f">&quot;org.slf4j:slf4j-api:1.7.19&quot;</span><span class="b">
+]</span><span class="e">)</span>
+<span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
+	<span class="i">SourceDirectories</span>: <span class="f">src</span>,
+	<span class="i">ClassPath: </span><span class="j">foreach </span><span class="d">$path</span><span class="j"> in </span><span class="d">$localized</span><span class="g">[</span><span class="h">ArtifactLocalPaths</span><span class="g">]</span>: 
+		<span class="b">[</span> <span class="e"><a href="../../../saker.standard/taskdoc/std.file.local.html" title="Task: std.file.local()">std.file.local</a>(</span><span class="d">$path</span><span class="e">)</span><span class="b"> ]</span> 
+<span class="e">)</span>	
 </code></pre>
 <p>In the above, we localize the artifact with the coordinates of <code>org.slf4j:slf4j-api:1.7.19</code>. Then we use the localization result to convert the local paths of the artifacts to a local file reference. The <a href="../../../saker.standard/taskdoc/std.file.local.html"><code>std.file.local()</code></a> task is used to create a file path reference on the local file system.</p>
 <p>Note that the above requires that the receiver task supports classpath input using local files.</p>
 <p>This solution doesn't support automatic downloading of attached source artifacts.</p>
 <h4 id="downloaded-classpath">Downloaded classpath<a class="doc-heading-anchor" href="#downloaded-classpath"></a></h4>
 <p>If the receiver task doesn't support local paths as the classpath input, you may need to download the artifacts for the build execution:</p>
-<pre><code class="language-sakerscript"><span class="d">$downloaded</span> = <span class="a"><a href="../../../saker.maven.support/taskdoc/saker.maven.download.html" title="Task: saker.maven.download()">saker.maven.download</a>(</span><span class="e">[</span>
-	<span class="b">&quot;org.slf4j:slf4j-api:1.7.19&quot;</span><span class="e">
-]</span><span class="a">)</span>
-<span class="a"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
-	<span class="c">SourceDirectories</span>: <span class="b">src</span>,
-	<span class="c">ClassPath: </span><span class="g">foreach </span><span class="d">$path</span><span class="g"> in </span><span class="d">$downloaded</span><span class="i">[</span><span class="f">ArtifactPaths</span><span class="i">]</span>: 
-		<span class="e">[</span> <span class="d">$path</span><span class="e"> ]</span> 
-<span class="a">)</span>
+<pre><code class="language-sakerscript"><span class="d">$downloaded</span> = <span class="e"><a href="../../../saker.maven.support/taskdoc/saker.maven.download.html" title="Task: saker.maven.download()">saker.maven.download</a>(</span><span class="b">[</span>
+	<span class="f">&quot;org.slf4j:slf4j-api:1.7.19&quot;</span><span class="b">
+]</span><span class="e">)</span>
+<span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
+	<span class="i">SourceDirectories</span>: <span class="f">src</span>,
+	<span class="i">ClassPath: </span><span class="j">foreach </span><span class="d">$path</span><span class="j"> in </span><span class="d">$downloaded</span><span class="g">[</span><span class="h">ArtifactPaths</span><span class="g">]</span>: 
+		<span class="b">[</span> <span class="d">$path</span><span class="b"> ]</span> 
+<span class="e">)</span>
 </code></pre>
 <p>The above is similar to the <a href="classpath.html#localized-classpath" title="Localized classpath">Localized classpath</a> example, but doesn't need the paths to be converted to local file references, as the artifacts are available in the build file system.</p>
 <p>This solution has the disadvantage of requiring the artifacts to be copied for the build execution.</p>

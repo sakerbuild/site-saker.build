@@ -62,28 +62,28 @@
 <li>If any of the operand is from an external source, the equality is determined in an implementation dependent way.</li>
 <li>If any of the argument is <code>null</code>, the equality is <code>true</code> if the other operand is <code>null</code> as well.</li>
 </ul>
-<pre><code class="language-sakerscript"><span class="b">1</span> == <span class="b">0x1</span> <span class="h"># true</span>
-<span class="b">1</span> != <span class="b">0x1</span> <span class="h"># false</span>
-<span class="b">literal</span> == <span class="b">literal</span> <span class="h"># true</span>
-<span class="b">literal6</span> == <span class="b">&quot;literal</span>{ <span class="b">2</span> * <span class="b">3</span>}<span class="b">&quot;</span> <span class="h"># true</span>
-<span class="e">[</span><span class="b">1</span><span class="e">]</span> == <span class="e">[</span><span class="b">1</span><span class="e">]</span> <span class="h"># true</span>
-<span class="e">{</span> <span class="f">Key</span>: <span class="b">v</span><span class="e"> }</span> == <span class="e">{</span> <span class="f">Key</span>: <span class="b">v</span><span class="e"> }</span> <span class="h"># true</span>
-<span class="b">2</span> == (<span class="b">1</span> &lt;&lt; <span class="b">1</span>) <span class="h"># true</span>
+<pre><code class="language-sakerscript"><span class="f">1</span> == <span class="f">0x1</span> <span class="c"># true</span>
+<span class="f">1</span> != <span class="f">0x1</span> <span class="c"># false</span>
+<span class="f">literal</span> == <span class="f">literal</span> <span class="c"># true</span>
+<span class="f">literal6</span> == <span class="f">&quot;literal</span>{ <span class="f">2</span> * <span class="f">3</span>}<span class="f">&quot;</span> <span class="c"># true</span>
+<span class="b">[</span><span class="f">1</span><span class="b">]</span> == <span class="b">[</span><span class="f">1</span><span class="b">]</span> <span class="c"># true</span>
+<span class="b">{</span> <span class="h">Key</span>: <span class="f">v</span><span class="b"> }</span> == <span class="b">{</span> <span class="h">Key</span>: <span class="f">v</span><span class="b"> }</span> <span class="c"># true</span>
+<span class="f">2</span> == (<span class="f">1</span> &lt;&lt; <span class="f">1</span>) <span class="c"># true</span>
 
-<span class="b">1</span> == <span class="e">[</span><span class="b">1</span><span class="e">]</span> <span class="h"># false</span>
-<span class="e">{</span> <span class="e">}</span> == <span class="e">{</span> <span class="f">K</span>: <span class="b">v</span><span class="e"> }</span> <span class="h"># false</span>
+<span class="f">1</span> == <span class="b">[</span><span class="f">1</span><span class="b">]</span> <span class="c"># false</span>
+<span class="b">{</span> <span class="b">}</span> == <span class="b">{</span> <span class="h">K</span>: <span class="f">v</span><span class="b"> }</span> <span class="c"># false</span>
 
-<span class="g">true</span> != <span class="g">false</span> <span class="h"># true</span>
-<span class="g">false</span> == <span class="b">string</span> <span class="h"># false</span>
+<span class="j">true</span> != <span class="j">false</span> <span class="c"># true</span>
+<span class="j">false</span> == <span class="f">string</span> <span class="c"># false</span>
 
-<span class="d">$object</span> == <span class="a">example.task()</span> <span class="h"># implementation dependent</span>
+<span class="d">$object</span> == <span class="e">example.task()</span> <span class="c"># implementation dependent</span>
 
-<span class="g">null</span> == <span class="g">null</span> <span class="h"># true</span>
-<span class="g">null</span> == <span class="b">string</span> <span class="h"># false</span>
+<span class="j">null</span> == <span class="j">null</span> <span class="c"># true</span>
+<span class="j">null</span> == <span class="f">string</span> <span class="c"># false</span>
 
-<span class="h"># for any generic expression, the following is always true</span>
+<span class="c"># for any generic expression, the following is always true</span>
 (!(<span class="d">$a</span> == <span class="d">$b</span>)) == (<span class="d">$a</span> != <span class="d">$b</span>)
-(<span class="d">$a</span> == <span class="d">$b</span>) == (<span class="d">$b</span> == <span class="d">$a</span>) <span class="h"># commutative</span>
+(<span class="d">$a</span> == <span class="d">$b</span>) == (<span class="d">$b</span> == <span class="d">$a</span>) <span class="c"># commutative</span>
 </code></pre>
 <p>The <code>!=</code> operator is equivalent to the <code>==</code> operator with the resulting boolean negated. The equality operators are commutative, meaning that swapping the operands yields the same result.</p>
 <p>Developer are recommended not to compare complex objects to each other, but only check the equality of simple objects like strings, and numbers.</p>

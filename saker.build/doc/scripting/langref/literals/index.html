@@ -57,26 +57,26 @@
 <p>The language defines intergral and floating point number literals.</p>
 <h3 id="integers">Integers<a class="doc-heading-anchor" href="#integers"></a></h3>
 <p>The integral literals can be provided in either base-10 numeric format or hexadecimal format.</p>
-<pre><code class="language-sakerscript"><span class="h"># simple integer</span>
-<span class="d">$int</span> = <span class="b">123456789</span>
-<span class="h"># invalid integer</span>
-<span class="d">$invalid</span> = <span class="b">0452</span>
+<pre><code class="language-sakerscript"><span class="c"># simple integer</span>
+<span class="d">$int</span> = <span class="f">123456789</span>
+<span class="c"># invalid integer</span>
+<span class="d">$invalid</span> = <span class="f">0452</span>
 
-<span class="h"># hexadecimal format</span>
-<span class="d">$hexa</span> = <span class="b">0x012abCDf</span>
+<span class="c"># hexadecimal format</span>
+<span class="d">$hexa</span> = <span class="f">0x012abCDf</span>
 </code></pre>
 <p>The language doesn't support integers in the base-ten numeric format that start with <code>0</code>. This is in order to avoid confusion that comes with the Java language octal number syntax. (See <a href="https://docs.oracle.com/javase/specs/jls/se7/html/jls-3.html#jls-3.10.1" title="Chapter&nbsp;3.&nbsp;Lexical Structure">JLS 3.10.1</a>) This restriction doesn't apply to the hexadecimal format.</p>
 <h3 id="floating-point-numbers">Floating point numbers<a class="doc-heading-anchor" href="#floating-point-numbers"></a></h3>
 <p>The floating point literals can be declared in the same format as specified by the Java language. (See <a href="https://docs.oracle.com/javase/specs/jls/se7/html/jls-3.html#jls-3.10.2" title="Chapter&nbsp;3.&nbsp;Lexical Structure">JLS 3.10.2</a>) This can make easier to represent number between language boundaries, and provides a more straightforward implementation of the language.</p>
-<pre><code class="language-sakerscript"><span class="h"># simple double</span>
-<span class="d">$double</span> = <span class="b">1.23</span>
-<span class="h"># exponential format</span>
-<span class="d">$exponential</span> = <span class="b">1234.5E-6</span>
+<pre><code class="language-sakerscript"><span class="c"># simple double</span>
+<span class="d">$double</span> = <span class="f">1.23</span>
+<span class="c"># exponential format</span>
+<span class="d">$exponential</span> = <span class="f">1234.5E-6</span>
 
-<span class="h"># not a number</span>
-<span class="d">$nan</span> = <span class="b">NaN</span>
-<span class="h"># string &quot;NaN&quot; that's not interpreted as a number literal</span>
-<span class="d">$nanstr</span> = <span class="b">&quot;NaN&quot;</span>
+<span class="c"># not a number</span>
+<span class="d">$nan</span> = <span class="f">NaN</span>
+<span class="c"># string &quot;NaN&quot; that's not interpreted as a number literal</span>
+<span class="d">$nanstr</span> = <span class="f">&quot;NaN&quot;</span>
 </code></pre>
 <h3 id="precision">Precision<a class="doc-heading-anchor" href="#precision"></a></h3>
 <p>The definition doesn't include any precision requirements in regards of the numbers, but the backing implementation of the language should define that. It can be expected that all number literals have a minimum precision of 64 bits.</p>
@@ -85,44 +85,44 @@
 <p>String literals have two types in the language. Simple literals that are not handled specially and parsed as-is, and compound literals which provide additional features such as escaping, interpolation, and multi-line declaration.</p>
 <h3 id="simple-string-literals">Simple string literals<a class="doc-heading-anchor" href="#simple-string-literals"></a></h3>
 <p>Simple string literals are just continuous characters in the source code. They are only bounded by whitespace and special characters. Their format is that they match the following regular expression: <code>[^,\(\)\[\]\{\}:;\s]+</code>.</p>
-<pre><code class="language-sakerscript"><span class="h"># simple string</span>
-<span class="d">$simple</span> = <span class="b">some_string_value</span>
-<span class="h"># string for a file path</span>
-<span class="d">$filepath</span> = <span class="b">relative/path/to/a/file</span>
-<span class="h"># some base64 data</span>
-<span class="d">$base64</span> = <span class="b">VE9ETyBzb21ldGhpbmcgZnVubnk=</span>
-<span class="h"># special characters</span>
-<span class="d">$special</span> = <span class="b">some+string!containing?special-characters</span>
+<pre><code class="language-sakerscript"><span class="c"># simple string</span>
+<span class="d">$simple</span> = <span class="f">some_string_value</span>
+<span class="c"># string for a file path</span>
+<span class="d">$filepath</span> = <span class="f">relative/path/to/a/file</span>
+<span class="c"># some base64 data</span>
+<span class="d">$base64</span> = <span class="f">VE9ETyBzb21ldGhpbmcgZnVubnk=</span>
+<span class="c"># special characters</span>
+<span class="d">$special</span> = <span class="f">some+string!containing?special-characters</span>
 </code></pre>
 <p>The simple literals are parsed until any significant control characters are encountered, which are specified in the above regexp. This means that if developers need to use these literals in complex expressions that use operators, the literals need to be separated from the used operator via whitespace.</p>
 <p>Note that initially number literals are also parsed as simple string literals, but they are later converted to their appropriate numeric representation if possible.</p>
 <h3 id="compound-string-literals">Compound string literals<a class="doc-heading-anchor" href="#compound-string-literals"></a></h3>
 <p>Compount string literals allow reified representation of data. They are in a format of quoted characters that support escaping, whitespace, multi-line declaration, and interpolation.</p>
-<pre><code class="language-sakerscript"><span class="h"># simple compound string: </span>
-<span class="h">#quoted string</span>
-<span class="d">$simple</span> = <span class="b">&quot;quoted string&quot;</span>
+<pre><code class="language-sakerscript"><span class="c"># simple compound string: </span>
+<span class="c">#quoted string</span>
+<span class="d">$simple</span> = <span class="f">&quot;quoted string&quot;</span>
 
-<span class="h"># escape special characters:</span>
-<span class="d">$escaped</span> = <span class="b">&quot;escapes:\ \b\t\n\f\r\&quot;\'\\&quot;</span>
+<span class="c"># escape special characters:</span>
+<span class="d">$escaped</span> = <span class="f">&quot;escapes:\ \b\t\n\f\r\&quot;\'\\&quot;</span>
 
-<span class="h"># unicode:</span>
-<span class="h">#XY</span>
-<span class="d">$unicode</span> = <span class="b">&quot;\u0058\u0059&quot;</span>
+<span class="c"># unicode:</span>
+<span class="c">#XY</span>
+<span class="d">$unicode</span> = <span class="f">&quot;\u0058\u0059&quot;</span>
 
-<span class="h"># octal:</span>
-<span class="h">#X$</span>
-<span class="d">$octal</span> = <span class="b">&quot;\130\44&quot;</span>
+<span class="c"># octal:</span>
+<span class="c">#X$</span>
+<span class="d">$octal</span> = <span class="f">&quot;\130\44&quot;</span>
 
-<span class="h"># interpolate:</span>
-<span class="h">#money: 56 USD</span>
-<span class="d">$interpolated</span> = <span class="b">&quot;calculated: </span>{ <span class="b">7</span> * <span class="b">8</span> }<span class="b"> USD&quot;</span>
+<span class="c"># interpolate:</span>
+<span class="c">#money: 56 USD</span>
+<span class="d">$interpolated</span> = <span class="f">&quot;calculated: </span>{ <span class="f">7</span> * <span class="f">8</span> }<span class="f"> USD&quot;</span>
 
-<span class="h"># multi-line:</span>
-<span class="h">#first</span>
-<span class="h">#second</span>
-<span class="h">#    indented</span>
-<span class="h"># same as &quot;first\nsecond\n    indented&quot;</span>
-<span class="d">$multi</span> = <span class="b">&quot;first
+<span class="c"># multi-line:</span>
+<span class="c">#first</span>
+<span class="c">#second</span>
+<span class="c">#    indented</span>
+<span class="c"># same as &quot;first\nsecond\n    indented&quot;</span>
+<span class="d">$multi</span> = <span class="f">&quot;first
 second
     indented&quot;</span>
 </code></pre>
@@ -135,50 +135,50 @@ second
 <p>Some literals are handled specially by the language. Booleans and <code>null</code> are such and they are described in the following sections.</p>
 <h3 id="booleans">Booleans<a class="doc-heading-anchor" href="#booleans"></a></h3>
 <p>Booleans are logical values representing the state of <code>true</code> or <code>false</code>. They are specially handled by the language, and simple literals that match these states in a case-insensitive manner will be converted to them.</p>
-<pre><code class="language-sakerscript"><span class="h"># true boolean</span>
-<span class="d">$t</span> = <span class="g">true</span>
-<span class="h"># also true</span>
-<span class="d">$at</span> = <span class="g">TrUe</span>
+<pre><code class="language-sakerscript"><span class="c"># true boolean</span>
+<span class="d">$t</span> = <span class="j">true</span>
+<span class="c"># also true</span>
+<span class="d">$at</span> = <span class="j">TrUe</span>
 
-<span class="h"># false boolean</span>
-<span class="d">$f</span> = <span class="g">false</span>
-<span class="h"># also false</span>
-<span class="d">$af</span> = <span class="g">FalSE</span>
+<span class="c"># false boolean</span>
+<span class="d">$f</span> = <span class="j">false</span>
+<span class="c"># also false</span>
+<span class="d">$af</span> = <span class="j">FalSE</span>
 
-<span class="h"># not a boolean</span>
-<span class="d">$nb</span> = <span class="b">some_literal</span>
-<span class="h"># also not a boolean, but a string</span>
-<span class="d">$anb</span> = <span class="b">&quot;true&quot;</span>
+<span class="c"># not a boolean</span>
+<span class="d">$nb</span> = <span class="f">some_literal</span>
+<span class="c"># also not a boolean, but a string</span>
+<span class="d">$anb</span> = <span class="f">&quot;true&quot;</span>
 </code></pre>
 <h3 id="null"><code>null</code><a class="doc-heading-anchor" href="#null"></a></h3>
 <p>The <code>null</code> value in the language represents the absence of some data. Their main reason for its existence is the compatibility with the extension mechanism, as data types from external sources can be present in the language.</p>
 <p>Generally, you should not be using <code>null</code>s in your build script, but handle exceptional cases specified the task extensions of the language.</p>
 <p>Similar to booleans, <code>null</code>s are also interpreted in a case-insensitive manner.</p>
-<pre><code class="language-sakerscript"><span class="h"># set null to a variable</span>
-<span class="d">$var</span> = <span class="g">null</span>
-<span class="h"># also null, as it is interpreted in a case-insensitive manner</span>
-<span class="d">$var2</span> = <span class="g">NuLL</span>
-<span class="d">$var3</span> = <span class="g">NULL</span>
-<span class="h"># not null, but a string literal</span>
-<span class="d">$notnull</span> = <span class="b">&quot;null&quot;</span>
+<pre><code class="language-sakerscript"><span class="c"># set null to a variable</span>
+<span class="d">$var</span> = <span class="j">null</span>
+<span class="c"># also null, as it is interpreted in a case-insensitive manner</span>
+<span class="d">$var2</span> = <span class="j">NuLL</span>
+<span class="d">$var3</span> = <span class="j">NULL</span>
+<span class="c"># not null, but a string literal</span>
+<span class="d">$notnull</span> = <span class="f">&quot;null&quot;</span>
 </code></pre>
 <h2 id="complex-structures">Complex structures<a class="doc-heading-anchor" href="#complex-structures"></a></h2>
 <p>There are many use-cases when structured data needs to be represented in a language. SakerScript supports lists and maps as the base of these representations.</p>
 <h3 id="lists">Lists<a class="doc-heading-anchor" href="#lists"></a></h3>
 <p>Lists contain a sequence of elements in the order specified during construction. They can be declared by using square brackets (<code>[ ]</code>).</p>
-<pre><code class="language-sakerscript"><span class="h"># simple list</span>
-<span class="d">$list</span> = <span class="e">[</span><span class="b">1</span><span class="e">,</span> <span class="b">2</span><span class="e">,</span> <span class="b">3</span><span class="e">]</span>
-<span class="h"># nested list</span>
-<span class="d">$nested</span> = <span class="e">[[</span><span class="b">1</span><span class="e">,</span> <span class="b">2</span><span class="e">],</span> <span class="e">[</span><span class="b">3</span><span class="e">,</span> <span class="b">4</span><span class="e">]]</span>
+<pre><code class="language-sakerscript"><span class="c"># simple list</span>
+<span class="d">$list</span> = <span class="b">[</span><span class="f">1</span><span class="b">,</span> <span class="f">2</span><span class="b">,</span> <span class="f">3</span><span class="b">]</span>
+<span class="c"># nested list</span>
+<span class="d">$nested</span> = <span class="b">[[</span><span class="f">1</span><span class="b">,</span> <span class="f">2</span><span class="b">],</span> <span class="b">[</span><span class="f">3</span><span class="b">,</span> <span class="f">4</span><span class="b">]]</span>
 
-<span class="h"># mixed type list</span>
-<span class="d">$mixed</span> = <span class="e">[</span><span class="b">1</span><span class="e">,</span> <span class="b">&quot;string&quot;</span><span class="e">,</span> <span class="e">[</span><span class="b">item1</span><span class="e">,</span> <span class="b">item2</span><span class="e">]]</span>
+<span class="c"># mixed type list</span>
+<span class="d">$mixed</span> = <span class="b">[</span><span class="f">1</span><span class="b">,</span> <span class="f">&quot;string&quot;</span><span class="b">,</span> <span class="b">[</span><span class="f">item1</span><span class="b">,</span> <span class="f">item2</span><span class="b">]]</span>
 
-<span class="h"># empty list</span>
-<span class="d">$empty</span> = <span class="e">[]</span>
-<span class="h"># extra commas</span>
-<span class="h"># same as [1, 2]</span>
-<span class="d">$commas</span> = <span class="e">[,</span> <span class="b">1</span><span class="e">,,</span> <span class="b">2</span><span class="e">,</span> <span class="e">]</span>
+<span class="c"># empty list</span>
+<span class="d">$empty</span> = <span class="b">[]</span>
+<span class="c"># extra commas</span>
+<span class="c"># same as [1, 2]</span>
+<span class="d">$commas</span> = <span class="b">[,</span> <span class="f">1</span><span class="b">,,</span> <span class="f">2</span><span class="b">,</span> <span class="b">]</span>
 </code></pre>
 <p>Any kind of elements can be declared for lists, there is no requirement in regards to it. The lists have a fixed size after construction, and modifying later is not possible.</p>
 <p>Any extraneous commas in the declaration of a list are ignored.</p>
@@ -186,25 +186,25 @@ second
 <p>Lists can be used in <a href="../foreach/index.html" title="Foreach expression"><code>foreach</code> expressions</a>, and can be used as the subject of the <a href="../operators/subscript/index.html" title="Subscript">subscript operator</a>.</p>
 <h3 id="maps">Maps<a class="doc-heading-anchor" href="#maps"></a></h3>
 <p>Maps (also known as dictionaries in other languages) are a storage of key-value pairs. The keys in a map are unique strings, and declaring a map that has multiple values for the same key is considered an error. Maps can be declared by using the curly braces (<code>{ }</code>).</p>
-<pre><code class="language-sakerscript"><span class="h"># example map</span>
-<span class="d">$example</span> = <span class="e">{</span>
-	<span class="f">Number</span>: <span class="b">123</span><span class="e">,</span>
-	<span class="f">List</span>: <span class="e">[</span>
-		<span class="b">1</span><span class="e">,</span> 
-		<span class="b">2</span><span class="e">,</span>
-	<span class="e">],</span>
-	<span class="f">SubMap</span>: <span class="e">{</span>
-		<span class="f">String</span>: <span class="b">&quot;str&quot;</span><span class="e">,</span>
-	<span class="e">},</span>
-<span class="e">}</span>
+<pre><code class="language-sakerscript"><span class="c"># example map</span>
+<span class="d">$example</span> = <span class="b">{</span>
+	<span class="h">Number</span>: <span class="f">123</span><span class="b">,</span>
+	<span class="h">List</span>: <span class="b">[</span>
+		<span class="f">1</span><span class="b">,</span> 
+		<span class="f">2</span><span class="b">,</span>
+	<span class="b">],</span>
+	<span class="h">SubMap</span>: <span class="b">{</span>
+		<span class="h">String</span>: <span class="f">&quot;str&quot;</span><span class="b">,</span>
+	<span class="b">},</span>
+<span class="b">}</span>
 
-<span class="h"># computed key</span>
-<span class="d">$computed</span> = <span class="e">{</span>
-	<span class="b">&quot;Key</span>{ <span class="b">2</span> * <span class="b">3</span> }<span class="b">&quot;</span>: <span class="b">6</span><span class="e">,</span>
-<span class="e">}</span>
+<span class="c"># computed key</span>
+<span class="d">$computed</span> = <span class="b">{</span>
+	<span class="f">&quot;Key</span>{ <span class="f">2</span> * <span class="f">3</span> }<span class="f">&quot;</span>: <span class="f">6</span><span class="b">,</span>
+<span class="b">}</span>
 
-<span class="h"># empty map</span>
-<span class="d">$empty</span> = <span class="e">{</span> <span class="e">}</span>
+<span class="c"># empty map</span>
+<span class="d">$empty</span> = <span class="b">{</span> <span class="b">}</span>
 </code></pre>
 <p>The keys and values of a map declaration are general expressions, they are not subject to additional requirements. However, when the keys are evaluated, they are converted to a string representation. If there are multiple keys with the same name, an error will be thrown during evaluation.</p>
 <p>Any extraneous commas in the declaration of a map are ignored.</p>

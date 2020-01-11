@@ -61,31 +61,31 @@
 <p>You should <strong>not</strong> configure the build tasks in a ways that their outputs are produced to a location that is a possible input of theirs. If you configure a task that it writes the outputs to a location that is also the input of the same task, that may cause incorrect incremental builds.</p>
 <h2 id="don_t-hardcode-task-output-locations">Don't hardcode task output locations<a class="doc-heading-anchor" href="#don_t-hardcode-task-output-locations"></a></h2>
 <p>You should <strong>not</strong> use direct paths to outputs of build tasks if you expect them to be part of the input of one. An example:</p>
-<pre><code class="language-sakerscript"><span class="h"># !!! THIS IS BAD, don't do this !!!</span>
-<span class="a"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
-	<span class="c">SourceDirectories</span>: <span class="b">src</span>,
-	<span class="c">Identifier: </span><span class="b">main</span>,
-<span class="a">)</span>
-<span class="a"><a href="../../../saker.jar/taskdoc/saker.jar.create.html" title="Task: saker.jar.create()">saker.jar.create</a>(</span>
-	<span class="c">Resources</span>: <span class="e">{</span>
-		<span class="f">Directory</span>: <span class="b">&quot;builddir:/saker.java.compile/main/bin&quot;</span><span class="e">,</span>
-		<span class="f">Resources</span>: <span class="b">**/*.class</span><span class="e">,</span>
-	<span class="e">}</span>
-<span class="a">)</span>
-<span class="h"># !!! THIS IS BAD, don't do this !!!</span>
+<pre><code class="language-sakerscript"><span class="c"># !!! THIS IS BAD, don't do this !!!</span>
+<span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
+	<span class="i">SourceDirectories</span>: <span class="f">src</span>,
+	<span class="i">Identifier: </span><span class="f">main</span>,
+<span class="e">)</span>
+<span class="e"><a href="../../../saker.jar/taskdoc/saker.jar.create.html" title="Task: saker.jar.create()">saker.jar.create</a>(</span>
+	<span class="i">Resources</span>: <span class="b">{</span>
+		<span class="h">Directory</span>: <span class="f">&quot;builddir:/saker.java.compile/main/bin&quot;</span><span class="b">,</span>
+		<span class="h">Resources</span>: <span class="f">**/*.class</span><span class="b">,</span>
+	<span class="b">}</span>
+<span class="e">)</span>
+<span class="c"># !!! THIS IS BAD, don't do this !!!</span>
 </code></pre>
 <p>You can see that we compile the Java sources in the <code>src</code> directory, and want to package the <code>class</code> files into a <code>jar</code> Java archive. The above code <strong>will not work</strong> as the <code>saker.jar.create()</code> task may run before the compilation task therefore not seeing the produced <code>class</code> files.</p>
 <p>The correct way of doing the above is:</p>
-<pre><code class="language-sakerscript"><span class="d">$javac</span> = <span class="a"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
-	<span class="c">SourceDirectories</span>: <span class="b">src</span>,
-	<span class="c">Identifier: </span><span class="b">main</span>,
-<span class="a">)</span>
-<span class="a"><a href="../../../saker.jar/taskdoc/saker.jar.create.html" title="Task: saker.jar.create()">saker.jar.create</a>(</span>
-	<span class="c">Resources</span>: <span class="e">{</span>
-		<span class="f">Directory</span>: <span class="d">$javac</span><span class="i">[</span><span class="f">ClassDirectory</span><span class="i">]</span><span class="e">,</span>
-		<span class="f">Resources</span>: <span class="b">**/*.class</span><span class="e">,</span>
-	<span class="e">}</span>
-<span class="a">)</span>
+<pre><code class="language-sakerscript"><span class="d">$javac</span> = <span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
+	<span class="i">SourceDirectories</span>: <span class="f">src</span>,
+	<span class="i">Identifier: </span><span class="f">main</span>,
+<span class="e">)</span>
+<span class="e"><a href="../../../saker.jar/taskdoc/saker.jar.create.html" title="Task: saker.jar.create()">saker.jar.create</a>(</span>
+	<span class="i">Resources</span>: <span class="b">{</span>
+		<span class="h">Directory</span>: <span class="d">$javac</span><span class="g">[</span><span class="h">ClassDirectory</span><span class="g">]</span><span class="b">,</span>
+		<span class="h">Resources</span>: <span class="f">**/*.class</span><span class="b">,</span>
+	<span class="b">}</span>
+<span class="e">)</span>
 </code></pre>
 <p>You can see that we've replaced the hardcoded output location with the <code>$javac[ClassDirectory]</code> expression. This will cause the <code>saker.jar.create()</code> task to take the directory path from the Java compilation task. As the directory path is only available to be used <em>after</em> the Java compilation task completes, this will produce the expected output, as the <code>jar</code> creation will always wait the Java compilation to be done.</p>
 <link href="../../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>

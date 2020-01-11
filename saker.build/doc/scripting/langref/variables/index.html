@@ -52,57 +52,57 @@
 </div>
 			<div class="doc-content"><h1 id="variables">Variables<a class="doc-heading-anchor" href="#variables"></a></h1>
 <p>The language allows declaring variables which are named storages of an expression value. Variables are uniquely identified by their name, and share the same build target scope.</p>
-<pre><code class="language-sakerscript"><span class="h"># assignments</span>
-<span class="d">$var</span> = <span class="b">123</span>
-<span class="d">$multiplied</span> = <span class="d">$var</span> * <span class="b">3</span>
+<pre><code class="language-sakerscript"><span class="c"># assignments</span>
+<span class="d">$var</span> = <span class="f">123</span>
+<span class="d">$multiplied</span> = <span class="d">$var</span> * <span class="f">3</span>
 </code></pre>
 <p>Variables are dereferenced by using the <code>'$'</code> character before the subject expression. The dereferenced expression is usually a string literal, but other expressions are also allowed to support more refined usage of variables:</p>
-<pre><code class="language-sakerscript"><span class="h"># assigning non-literal variable names</span>
-<span class="d">$</span><span class="a">get.variable.name()</span> = <span class="b">some_value</span>
-<span class="d">$</span>(<span class="b">&quot;var</span>{ <span class="d">$varnum</span> }<span class="b">&quot;</span>) = <span class="b">123</span>
+<pre><code class="language-sakerscript"><span class="c"># assigning non-literal variable names</span>
+<span class="d">$</span><span class="e">get.variable.name()</span> = <span class="f">some_value</span>
+<span class="d">$</span>(<span class="f">&quot;var</span>{ <span class="d">$varnum</span> }<span class="f">&quot;</span>) = <span class="f">123</span>
 </code></pre>
 <p>A variable with a given name can only be assigned once in a build target. Once it has been assigned, any other assignments to it will result in an exception.</p>
 <p>The <a href="../operators/dereference/index.html" title="Dereference">dereference operator</a> is applied according to the <a href="../operators/index.html#precedence-table" title="Precedence table">precedence rules</a> of the language.</p>
 <p>Variables can also be accessed by using the <a href="../../builtintasks/var.html" title="var()"><code>var()</code></a> built-in task.</p>
 <h2 id="scope-of-variables">Scope of variables<a class="doc-heading-anchor" href="#scope-of-variables"></a></h2>
 <p>Variables share the scope of the build target they're declared in. There are no local variables, and assigning, using, or modifying a variable in a seemingly enclosed scope will be not limited to that scope, but to the whole build target scope.</p>
-<pre><code class="language-sakerscript"><span class="h"># variable among the global expressions</span>
-<span class="d">$outervar</span> = <span class="h"># ...</span>
-<span class="j">build</span><span class="e">{</span>
-	<span class="h"># variable in the build target, </span>
-	<span class="h"># named the same as used among the global expressions</span>
-	<span class="h"># they are different variables</span>
-	<span class="d">$outervar</span> = <span class="h">#...</span>
+<pre><code class="language-sakerscript"><span class="c"># variable among the global expressions</span>
+<span class="d">$outervar</span> = <span class="c"># ...</span>
+<span class="a">build</span><span class="b">{</span>
+	<span class="c"># variable in the build target, </span>
+	<span class="c"># named the same as used among the global expressions</span>
+	<span class="c"># they are different variables</span>
+	<span class="d">$outervar</span> = <span class="c">#...</span>
 	
-	<span class="d">$targetvar</span> = <span class="h">#...</span>
+	<span class="d">$targetvar</span> = <span class="c">#...</span>
 	
-	<span class="g">if </span><span class="a">example.condition.task()</span> {
-		<span class="h"># both references the vars in the build target:</span>
+	<span class="j">if </span><span class="e">example.condition.task()</span> {
+		<span class="c"># both references the vars in the build target:</span>
 		<span class="d">$outervar</span>
 		<span class="d">$targetvar</span>
-		<span class="h"># assign a variable of the build target</span>
-		<span class="d">$ifvar</span> = <span class="b">1</span>
-	}<span class="g"> else </span>{
-		<span class="h"># assign a variable of the build target</span>
-		<span class="d">$ifvar</span> = <span class="b">2</span>
+		<span class="c"># assign a variable of the build target</span>
+		<span class="d">$ifvar</span> = <span class="f">1</span>
+	}<span class="j"> else </span>{
+		<span class="c"># assign a variable of the build target</span>
+		<span class="d">$ifvar</span> = <span class="f">2</span>
 	}
 	
-	<span class="h"># use the variable assigned in the above if statement</span>
-	<span class="a">example.task(</span><span class="d">$ifvar</span><span class="a">)</span>
+	<span class="c"># use the variable assigned in the above if statement</span>
+	<span class="e">example.task(</span><span class="d">$ifvar</span><span class="e">)</span>
 	
-	<span class="h"># same named var as in the below loop</span>
-	<span class="d">$item</span> = <span class="h"># ...</span>
-	<span class="g">foreach </span><span class="d">$item</span><span class="g"> in </span><span class="e">[</span><span class="b">1</span><span class="e">,</span> <span class="b">2</span><span class="e">]</span> {
-		<span class="h"># shadows the $item variable in the build target scope</span>
+	<span class="c"># same named var as in the below loop</span>
+	<span class="d">$item</span> = <span class="c"># ...</span>
+	<span class="j">foreach </span><span class="d">$item</span><span class="j"> in </span><span class="b">[</span><span class="f">1</span><span class="b">,</span> <span class="f">2</span><span class="b">]</span> {
+		<span class="c"># shadows the $item variable in the build target scope</span>
 		<span class="d">$item</span>
-		<span class="h"># access the variable $item in the build target scope</span>
+		<span class="c"># access the variable $item in the build target scope</span>
 		<span class="d">$&quot;item&quot;</span>
 		
-		<span class="h"># assign a variable of the build target</span>
-		<span class="h"># probably erroneous as a variable may be assigned only once</span>
-		<span class="d">$foreachvar</span> = <span class="h"># ...</span>
+		<span class="c"># assign a variable of the build target</span>
+		<span class="c"># probably erroneous as a variable may be assigned only once</span>
+		<span class="d">$foreachvar</span> = <span class="c"># ...</span>
 	}
-<span class="e">}</span>
+<span class="b">}</span>
 </code></pre>
 <p>As variables can be declared among the global expressions, they cannot be accessed from any of the build target expressions. The global expressions are considered to be a separate build target scope of their own in regards to this.</p>
 <p>If a variable is assigned in an <a href="../ifelse/index.html" title="If-else statement"><code>if-else</code></a> statement then it will be visible in the enclosing build target scope.</p>
@@ -112,22 +112,22 @@
 <p>When a variable is dereferenced, the receiver expression (that is the one retrieving the value of the variable) will be put on hold. It will wait, until the variable is assigned. If the variable is already assigned when its value is being retrieved, the receiver expression will continue to run. If the variable has not yet been assigned, the execution of the receiver expression will be paused until it is assigned.</p>
 <p>Based on this logic, it is possible to deadlock the execution of a script. When the variables depend on each other in a circular way, the execution of the script is erroneous, and will result in an exception during the execution of it.
 One example for this:</p>
-<pre><code class="language-sakerscript"><span class="h"># circular variable dependency</span>
-<span class="d">$var</span> = <span class="d">$secondvar</span> * <span class="b">3</span>
-<span class="d">$secondvar</span> = <span class="a">some.task(</span><span class="b">Input</span><span class="c"> = </span><span class="d">$var</span><span class="a">)</span>
+<pre><code class="language-sakerscript"><span class="c"># circular variable dependency</span>
+<span class="d">$var</span> = <span class="d">$secondvar</span> * <span class="f">3</span>
+<span class="d">$secondvar</span> = <span class="e">some.task(</span><span class="f">Input</span><span class="i"> = </span><span class="d">$var</span><span class="e">)</span>
 </code></pre>
 <p>We can see that the assignment of <code>$var</code> will require the value of <code>$secondvar</code>. However, the assignment of <code>$secondvar</code> requires the output of <code>some.task(Input = $var)</code>, which needs the value of <code>$var</code> to run. In this case the execution of the script will deadlock.</p>
 <h2 id="build-target-parameters">Build target parameters<a class="doc-heading-anchor" href="#build-target-parameters"></a></h2>
 <p>The declared parameters of the build target affect the behaviour of variables. Any input variables of a build target cannot be assigned in the body of the target. All output parameters which doesn't have an assigned value in the parameter list must be assigned during the execution of the build target. See <a href="../sourcefile/index.html" title="Source file">Source file</a> for more information.</p>
-<pre><code class="language-sakerscript"><span class="j">build(</span>
-	<span class="g">in</span> <span class="d">InputParam</span>,
-	<span class="g">out</span> <span class="d">OutputResult</span>,
-<span class="j">)</span><span class="e">{</span>
-	<span class="h"># runtime error:</span>
-	<span class="d">$InputParam</span> = <span class="h">#...</span>
-	<span class="h"># assign the output of the target</span>
-	<span class="d">$OutputResult</span> = <span class="h">#...</span>
-<span class="e">}</span>
+<pre><code class="language-sakerscript"><span class="a">build(</span>
+	<span class="j">in</span> <span class="d">InputParam</span>,
+	<span class="j">out</span> <span class="d">OutputResult</span>,
+<span class="a">)</span><span class="b">{</span>
+	<span class="c"># runtime error:</span>
+	<span class="d">$InputParam</span> = <span class="c">#...</span>
+	<span class="c"># assign the output of the target</span>
+	<span class="d">$OutputResult</span> = <span class="c">#...</span>
+<span class="b">}</span>
 </code></pre>
 <link href="../../../../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>
 			<div class="end-section-links">

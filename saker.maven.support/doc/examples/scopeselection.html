@@ -30,7 +30,7 @@
 					Navigation
 				</label>
 				<input style="display:none;" id="doc-collapse-nav-label" type="checkbox"/> 
-				<div class="doc-nav">  <div class="doc-section"><ul><li><a class="doc-nav-section-link" href="../../index.html" title="Index">Index</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Package details</p><ul><li><a class="doc-nav-section-link" href="../index.html" title="Overview">Overview</a></li><li><a class="doc-nav-section-link" href="../gettingstarted.html" title="Getting started">Getting started</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Maven support</p><ul><li><a class="doc-nav-section-link" href="../mavensupport/index.html" title="Basics">Basics</a></li><li><a class="doc-nav-section-link" href="../mavensupport/configuration.html" title="Configuration">Configuration</a></li><li><a class="doc-nav-section-link" href="../mavensupport/resolution.html" title="Dependency resolution">Dependency resolution</a></li><li><a class="doc-nav-section-link" href="../mavensupport/localization.html" title="Artifact localization">Artifact localization</a></li><li><a class="doc-nav-section-link" href="../mavensupport/downloading.html" title="Artifact downloading">Artifact downloading</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Examples</p><ul><li><a class="doc-nav-section-link" href="index.html" title="Overview">Overview</a></li><li><a class="doc-nav-section-link" href="classpath.html" title="Java classpath">Java classpath</a></li><li class="doc-active doc-active-parent"><a class="doc-nav-section-link" href="scopeselection.html" title="Scope selection">Scope selection</a></li></ul>  </div></div>
+				<div class="doc-nav">  <div class="doc-section"><ul><li><a class="doc-nav-section-link" href="../../index.html" title="Index">Index</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Package details</p><ul><li><a class="doc-nav-section-link" href="../index.html" title="Overview">Overview</a></li><li><a class="doc-nav-section-link" href="../gettingstarted.html" title="Getting started">Getting started</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Maven support</p><ul><li><a class="doc-nav-section-link" href="../mavensupport/index.html" title="Basics">Basics</a></li><li><a class="doc-nav-section-link" href="../mavensupport/configuration.html" title="Configuration">Configuration</a></li><li><a class="doc-nav-section-link" href="../mavensupport/authentication.html" title="Authentication">Authentication</a></li><li><a class="doc-nav-section-link" href="../mavensupport/resolution.html" title="Dependency resolution">Dependency resolution</a></li><li><a class="doc-nav-section-link" href="../mavensupport/localization.html" title="Artifact localization">Artifact localization</a></li><li><a class="doc-nav-section-link" href="../mavensupport/downloading.html" title="Artifact downloading">Artifact downloading</a></li><li><a class="doc-nav-section-link" href="../mavensupport/installing.html" title="Artifact installing">Artifact installing</a></li><li><a class="doc-nav-section-link" href="../mavensupport/deploying.html" title="Artifact deploying">Artifact deploying</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Examples</p><ul><li><a class="doc-nav-section-link" href="index.html" title="Overview">Overview</a></li><li><a class="doc-nav-section-link" href="classpath.html" title="Java classpath">Java classpath</a></li><li class="doc-active doc-active-parent"><a class="doc-nav-section-link" href="scopeselection.html" title="Scope selection">Scope selection</a></li></ul>  </div></div>
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
@@ -53,11 +53,11 @@
 			<div class="doc-content"><h1 id="scope-selection">Scope selection<a class="doc-heading-anchor" href="#scope-selection"></a></h1>
 <p>See also: <a href="https://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html#Dependency_Scope" title="Maven &#x2013; Introduction to the Dependency Mechanism">Maven dependency scopes</a></p>
 <p>When you resolve dependencies, they may have different scopes associated with them. Using the result of the dependency resolution you can select the appropriate set or artifacts that you'd like to use:</p>
-<pre><code class="language-sakerscript"><span class="a"><a href="../../../saker.maven.support/taskdoc/saker.maven.resolve.html" title="Task: saker.maven.resolve()">saker.maven.resolve</a>(</span><span class="c">Dependencies</span>: <span class="e">{</span>
-	<span class="f">&quot;junit:junit:4.12&quot;</span>: <span class="b">test</span><span class="e">,</span>
-	<span class="f">&quot;org.slf4j:slf4j-api:1.7.19&quot;</span>: <span class="b">compile</span><span class="e">,</span>
-	<span class="f">&quot;javax.servlet:servlet-api:2.5&quot;</span>: <span class="b">provided</span><span class="e">
-}</span><span class="a">)</span>
+<pre><code class="language-sakerscript"><span class="e"><a href="../../../saker.maven.support/taskdoc/saker.maven.resolve.html" title="Task: saker.maven.resolve()">saker.maven.resolve</a>(</span><span class="i">Dependencies</span>: <span class="b">{</span>
+	<span class="h">&quot;junit:junit:4.12&quot;</span>: <span class="f">test</span><span class="b">,</span>
+	<span class="h">&quot;org.slf4j:slf4j-api:1.7.19&quot;</span>: <span class="f">compile</span><span class="b">,</span>
+	<span class="h">&quot;javax.servlet:servlet-api:2.5&quot;</span>: <span class="f">provided</span><span class="b">
+}</span><span class="e">)</span>
 </code></pre>
 <p>The result of the dependency resolution will be the following with the scopes included:</p>
 <pre><code class="language-plaintext">junit:junit:jar:4.12 - test
@@ -67,8 +67,8 @@ javax.servlet:servlet-api:jar:2.5 - provided
 </code></pre>
 <p>We may want to select different artifacts based on the operation that we'd like to perform.</p>
 <p>For example if we want to select the dependencies for compilation (not for testing):</p>
-<pre><code class="language-sakerscript"><span class="d">$resolved</span> = <span class="a"><a href="../../../saker.maven.support/taskdoc/saker.maven.resolve.html" title="Task: saker.maven.resolve()">saker.maven.resolve</a>(</span><span class="k">### ... ###</span><span class="a">)</span>
-<span class="d">$resolved</span><span class="i">[</span><span class="f">Scopes</span><span class="i">][</span><span class="f">Compilation</span><span class="i">]</span>
+<pre><code class="language-sakerscript"><span class="d">$resolved</span> = <span class="e"><a href="../../../saker.maven.support/taskdoc/saker.maven.resolve.html" title="Task: saker.maven.resolve()">saker.maven.resolve</a>(</span><span class="k">### ... ###</span><span class="e">)</span>
+<span class="d">$resolved</span><span class="g">[</span><span class="h">Scopes</span><span class="g">][</span><span class="h">Compilation</span><span class="g">]</span>
 </code></pre>
 <p>The <code>[Scopes]</code> field of the task output allows limiting the dependency set based on the scopes. The <code>[Compilation]</code> field will return only the dependencies for the <code>compile</code> and <code>provided</code> scopes. Applying it to the above resolution result will contain the following artifacts:</p>
 <pre><code class="language-plaintext">org.slf4j:slf4j-api:jar:1.7.19 - compile
@@ -76,8 +76,8 @@ javax.servlet:servlet-api:jar:2.5 - provided
 </code></pre>
 <p>The result of the scope limitation will have the same semantics as the direct output from the task.</p>
 <p>The scope limitation can be also specified for arbitrary scopes:</p>
-<pre><code class="language-sakerscript"><span class="d">$resolved</span> = <span class="a"><a href="../../../saker.maven.support/taskdoc/saker.maven.resolve.html" title="Task: saker.maven.resolve()">saker.maven.resolve</a>(</span><span class="k">### ... ###</span><span class="a">)</span>
-<span class="d">$resolved</span><span class="i">[</span><span class="f">Scopes</span><span class="i">][</span><span class="f">&quot;test | provided&quot;</span><span class="i">]</span>
+<pre><code class="language-sakerscript"><span class="d">$resolved</span> = <span class="e"><a href="../../../saker.maven.support/taskdoc/saker.maven.resolve.html" title="Task: saker.maven.resolve()">saker.maven.resolve</a>(</span><span class="k">### ... ###</span><span class="e">)</span>
+<span class="d">$resolved</span><span class="g">[</span><span class="h">Scopes</span><span class="g">][</span><span class="h">&quot;test | provided&quot;</span><span class="g">]</span>
 </code></pre>
 <p>In which case the result will contain the <code>test</code> and <code>provided</code> dependencies:</p>
 <pre><code class="language-plaintext">junit:junit:jar:4.12 - test

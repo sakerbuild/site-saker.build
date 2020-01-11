@@ -52,7 +52,7 @@
 </div>
 			<div class="doc-content"><h1 id="hello-world">Hello world<a class="doc-heading-anchor" href="#hello-world"></a></h1>
 <p>Let's get started with the simplest build possible. Writing out a message.</p>
-<pre><code class="language-sakerscript"><span class="a">print(</span><span class="b">&quot;Hello world!&quot;</span><span class="a">)</span>
+<pre><code class="language-sakerscript"><span class="e"><a href="../../../saker.build/doc/scripting/builtintasks/print.html" title="Task: print()">print</a>(</span><span class="f">&quot;Hello world!&quot;</span><span class="e">)</span>
 </code></pre>
 <p>The above will call the <a href="../scripting/builtintasks/print.html" title="print()"><code>print()</code></a> task that simply prints out the message. The build will successfully finish.</p>
 <p>In order to run a build, write the above in a build file called <code>saker.build</code>, and run the build by invoking the command: <br />
@@ -64,8 +64,8 @@
 <p>(Any following command line argument examples will not have the above <code>java -jar saker.jar</code> part included.)</p>
 <h2 id="variables">Variables<a class="doc-heading-anchor" href="#variables"></a></h2>
 <p>The build language allows you to declare variables. Variables are a named storage of data that can be assigned once. Each variable lives in the scope of its enclosing build target.</p>
-<pre><code class="language-sakerscript"><span class="d">$sum</span> = <span class="b">123</span> + <span class="b">456</span>
-<span class="a">print(</span><span class="d">$sum</span><span class="a">)</span>
+<pre><code class="language-sakerscript"><span class="d">$sum</span> = <span class="f">123</span> + <span class="f">456</span>
+<span class="e"><a href="../../../saker.build/doc/scripting/builtintasks/print.html" title="Task: print()">print</a>(</span><span class="d">$sum</span><span class="e">)</span>
 </code></pre>
 <p>Executing the above will print out the value of the <code>$sum</code> variable that is <code>579</code>.</p>
 <p>See also: <a href="../scripting/langref/variables/index.html" title="Variables">Variables</a>.</p>

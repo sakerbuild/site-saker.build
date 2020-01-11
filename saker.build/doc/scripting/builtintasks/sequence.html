@@ -69,23 +69,23 @@
 <h2 id="task-result">Task result<a class="doc-heading-anchor" href="#task-result"></a></h2>
 <p>A list that has each of its element correspond to the expression result of the argument at the same index.</p>
 <h2 id="example">Example<a class="doc-heading-anchor" href="#example"></a></h2>
-<pre><code class="language-sakerscript"><span class="h"># execute the following tasks in order</span>
-<span class="a">sequence(</span><span class="e">[</span>
-	<span class="a">example.compile.sources()</span><span class="e">,</span>
-	<span class="a">example.package.library()</span><span class="e">,</span>
-	<span class="a">example.publish.library()</span><span class="e">,</span>
-<span class="e">]</span><span class="a">)</span>
+<pre><code class="language-sakerscript"><span class="c"># execute the following tasks in order</span>
+<span class="e"><a href="../../../../saker.build/doc/scripting/builtintasks/sequence.html" title="Task: sequence()">sequence</a>(</span><span class="b">[</span>
+	<span class="e">example.compile.sources()</span><span class="b">,</span>
+	<span class="e">example.package.library()</span><span class="b">,</span>
+	<span class="e">example.publish.library()</span><span class="b">,</span>
+<span class="b">]</span><span class="e">)</span>
 </code></pre>
 <p>The above example will compile some sources, package the results into some format, and publish them to some location. It is strongly unrecommended to implement and use tasks this way, as this violates the build language task <a href="../langref/tasks/index.html#pure-functions" title="Pure functions">pure functional</a> requirements. This makes the build fragile, and reduce its performance.</p>
 <p>Instead of the above, tasks designers should strive to make them useable in the following structure:</p>
-<pre><code class="language-sakerscript"><span class="h"># compile sources</span>
-<span class="d">$compiled</span> = <span class="a">example.compile.sources()</span>
+<pre><code class="language-sakerscript"><span class="c"># compile sources</span>
+<span class="d">$compiled</span> = <span class="e">example.compile.sources()</span>
 
-<span class="h"># package the compiled sources</span>
-<span class="d">$package</span> = <span class="a">example.package.library(</span><span class="d">$compiled</span><span class="a">)</span>
+<span class="c"># package the compiled sources</span>
+<span class="d">$package</span> = <span class="e">example.package.library(</span><span class="d">$compiled</span><span class="e">)</span>
 
-<span class="h"># publish the created package</span>
-<span class="a">example.publish.library(</span><span class="d">$package</span><span class="a">)</span>
+<span class="c"># publish the created package</span>
+<span class="e">example.publish.library(</span><span class="d">$package</span><span class="e">)</span>
 </code></pre>
 <p>This way the build system and the language can properly parallelize the tasks, as their input and output dependencies define their ordering. The tasks should communicate using their inputs and outputs, and not via a shared resource only (e.g. file system). Not depending on the outputs of other tasks when necessary could lead to serious ordering issue and undeterministic builds.</p>
 <link href="../../../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>

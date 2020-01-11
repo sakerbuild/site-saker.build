@@ -30,7 +30,7 @@
 					Navigation
 				</label>
 				<input style="display:none;" id="doc-collapse-nav-label" type="checkbox"/> 
-				<div class="doc-nav">  <div class="doc-section"><ul><li><a class="doc-nav-section-link" href="../../index.html" title="Index">Index</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Package details</p><ul><li><a class="doc-nav-section-link" href="../index.html" title="Overview">Overview</a></li><li><a class="doc-nav-section-link" href="../gettingstarted.html" title="Getting started">Getting started</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Maven support</p><ul><li><a class="doc-nav-section-link" href="index.html" title="Basics">Basics</a></li><li><a class="doc-nav-section-link" href="configuration.html" title="Configuration">Configuration</a></li><li class="doc-active doc-active-parent"><a class="doc-nav-section-link" href="resolution.html" title="Dependency resolution">Dependency resolution</a></li><li><a class="doc-nav-section-link" href="localization.html" title="Artifact localization">Artifact localization</a></li><li><a class="doc-nav-section-link" href="downloading.html" title="Artifact downloading">Artifact downloading</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Examples</p><ul><li><a class="doc-nav-section-link" href="../examples/index.html" title="Overview">Overview</a></li><li><a class="doc-nav-section-link" href="../examples/classpath.html" title="Java classpath">Java classpath</a></li><li><a class="doc-nav-section-link" href="../examples/scopeselection.html" title="Scope selection">Scope selection</a></li></ul>  </div></div>
+				<div class="doc-nav">  <div class="doc-section"><ul><li><a class="doc-nav-section-link" href="../../index.html" title="Index">Index</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Package details</p><ul><li><a class="doc-nav-section-link" href="../index.html" title="Overview">Overview</a></li><li><a class="doc-nav-section-link" href="../gettingstarted.html" title="Getting started">Getting started</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Maven support</p><ul><li><a class="doc-nav-section-link" href="index.html" title="Basics">Basics</a></li><li><a class="doc-nav-section-link" href="configuration.html" title="Configuration">Configuration</a></li><li><a class="doc-nav-section-link" href="authentication.html" title="Authentication">Authentication</a></li><li class="doc-active doc-active-parent"><a class="doc-nav-section-link" href="resolution.html" title="Dependency resolution">Dependency resolution</a></li><li><a class="doc-nav-section-link" href="localization.html" title="Artifact localization">Artifact localization</a></li><li><a class="doc-nav-section-link" href="downloading.html" title="Artifact downloading">Artifact downloading</a></li><li><a class="doc-nav-section-link" href="installing.html" title="Artifact installing">Artifact installing</a></li><li><a class="doc-nav-section-link" href="deploying.html" title="Artifact deploying">Artifact deploying</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Examples</p><ul><li><a class="doc-nav-section-link" href="../examples/index.html" title="Overview">Overview</a></li><li><a class="doc-nav-section-link" href="../examples/classpath.html" title="Java classpath">Java classpath</a></li><li><a class="doc-nav-section-link" href="../examples/scopeselection.html" title="Scope selection">Scope selection</a></li></ul>  </div></div>
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
@@ -54,12 +54,12 @@
 <p>The <a href="../../taskdoc/saker.maven.resolve.html"><code>saker.maven.resolve()</code></a> task supports resolving artifact dependencies. The task can operate with any of the following inputs:</p>
 <h5 id="artifact-coordinates">Artifact coordinates<a class="doc-heading-anchor" href="#artifact-coordinates"></a></h5>
 <p>You can specify the artifact coordinates for which the dependencies should be resolved:</p>
-<pre><code class="language-sakerscript"><span class="a"><a href="../../../saker.maven.support/taskdoc/saker.maven.resolve.html" title="Task: saker.maven.resolve()">saker.maven.resolve</a>(</span>
-	<span class="c">Artifacts</span>: <span class="e">[</span>
-		<span class="b">&quot;junit:junit:4.12&quot;</span><span class="e">,</span>
-		<span class="b">&quot;org.slf4j:slf4j-api:1.7.19&quot;</span><span class="e">
+<pre><code class="language-sakerscript"><span class="e"><a href="../../../saker.maven.support/taskdoc/saker.maven.resolve.html" title="Task: saker.maven.resolve()">saker.maven.resolve</a>(</span>
+	<span class="i">Artifacts</span>: <span class="b">[</span>
+		<span class="f">&quot;junit:junit:4.12&quot;</span><span class="b">,</span>
+		<span class="f">&quot;org.slf4j:slf4j-api:1.7.19&quot;</span><span class="b">
 	]</span>
-<span class="a">)</span>
+<span class="e">)</span>
 </code></pre>
 <p>In this case the artifact dependencies are resolved using the <code>compile</code> scope. In the above scenario the result of the resolution will be:</p>
 <pre><code class="language-plaintext">junit:junit:jar:4.12
@@ -71,28 +71,28 @@ org.hamcrest:hamcrest-core:jar:1.3
 </code></pre>
 <h5 id="dependencies">Dependencies<a class="doc-heading-anchor" href="#dependencies"></a></h5>
 <p>The dependencies can also be speified with the scopes and exclusions as well:</p>
-<pre><code class="language-sakerscript"><span class="a"><a href="../../../saker.maven.support/taskdoc/saker.maven.resolve.html" title="Task: saker.maven.resolve()">saker.maven.resolve</a>(</span>
-	<span class="c">Dependencies</span>: <span class="e">{</span>
-		<span class="f">&quot;junit:junit:4.12&quot;</span>: <span class="e">{</span>
-			<span class="f">Scope</span>: <span class="b">test</span><span class="e">,</span>
-			<span class="f">Exclusions</span>: <span class="b">&quot;org.hamcrest:hamcrest-core&quot;</span><span class="e">
+<pre><code class="language-sakerscript"><span class="e"><a href="../../../saker.maven.support/taskdoc/saker.maven.resolve.html" title="Task: saker.maven.resolve()">saker.maven.resolve</a>(</span>
+	<span class="i">Dependencies</span>: <span class="b">{</span>
+		<span class="h">&quot;junit:junit:4.12&quot;</span>: <span class="b">{</span>
+			<span class="h">Scope</span>: <span class="f">test</span><span class="b">,</span>
+			<span class="h">Exclusions</span>: <span class="f">&quot;org.hamcrest:hamcrest-core&quot;</span><span class="b">
 		}
 	}</span>
-<span class="a">)</span>
+<span class="e">)</span>
 </code></pre>
 <p>In the above we specify a dependency on <code>junit</code> with the <code>test</code> scope, however exclude the transitive inclusion of the <code>org.hamcrest:hamcrest-core</code> artifact.</p>
 <p>The keys of the <code>Dependencies</code> map specify the dependency artifact, while the value map can configure the nature of the dependency. If we don't want to specify exclusions, we can simply pass the scope as the value:</p>
-<pre><code class="language-sakerscript"><span class="a"><a href="../../../saker.maven.support/taskdoc/saker.maven.resolve.html" title="Task: saker.maven.resolve()">saker.maven.resolve</a>(</span>
-	<span class="c">Dependencies</span>: <span class="e">{</span>
-		<span class="f">&quot;junit:junit:4.12&quot;</span>: <span class="b">test</span><span class="e">
+<pre><code class="language-sakerscript"><span class="e"><a href="../../../saker.maven.support/taskdoc/saker.maven.resolve.html" title="Task: saker.maven.resolve()">saker.maven.resolve</a>(</span>
+	<span class="i">Dependencies</span>: <span class="b">{</span>
+		<span class="h">&quot;junit:junit:4.12&quot;</span>: <span class="f">test</span><span class="b">
 	}</span>
-<span class="a">)</span>
+<span class="e">)</span>
 </code></pre>
 <h5 id="pom_xml"><code>pom.xml</code><a class="doc-heading-anchor" href="#pom_xml"></a></h5>
 <p>The task can also resolve the dependencies of a <code>pom.xml</code> file:</p>
-<pre><code class="language-sakerscript"><span class="a"><a href="../../../saker.maven.support/taskdoc/saker.maven.resolve.html" title="Task: saker.maven.resolve()">saker.maven.resolve</a>(</span>
-	<span class="c">Pom</span>: <span class="b">pom.xml</span>
-<span class="a">)</span>
+<pre><code class="language-sakerscript"><span class="e"><a href="../../../saker.maven.support/taskdoc/saker.maven.resolve.html" title="Task: saker.maven.resolve()">saker.maven.resolve</a>(</span>
+	<span class="i">Pom</span>: <span class="f">pom.xml</span>
+<span class="e">)</span>
 </code></pre>
 <p>The task will parse the specified POM file and resolve the dependencies from it. Note that only the dependencies are resolved, other parts of the POM file are note taken into account.</p>
 <h2 id="output">Output<a class="doc-heading-anchor" href="#output"></a></h2>
@@ -101,9 +101,9 @@ org.hamcrest:hamcrest-core:jar:1.3
 <link href="../../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>
 			<div class="end-section-links">
 				<div class="end-section-prev">
-					<a class="doc-prev-section" href="../../doc/mavensupport/configuration.html" title="Configuration"><svg class="doc-section-arrow" viewBox="0 0 24 24">
+					<a class="doc-prev-section" href="../../doc/mavensupport/authentication.html" title="Authentication"><svg class="doc-section-arrow" viewBox="0 0 24 24">
     <path fill="currentColor" d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" />
-</svg>Configuration</a>
+</svg>Authentication</a>
 				</div>
 				<div class="end-section-next">
 					<a class="doc-next-section" href="../../doc/mavensupport/localization.html" title="Artifact localization">Artifact localization<svg class="doc-section-arrow" viewBox="0 0 24 24">

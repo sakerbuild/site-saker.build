@@ -104,8 +104,8 @@ example.bundle-impl
 <p><strong>You don't always need an <code>-impl</code> bundle.</strong> If your use-case don't include others instantiating your implementational classes, you can avoid the need to create an <code>-impl</code> bundle. This can be a scenario when others would want to consume the output of your build task, but don't want to invoke the task itself in a programatic manner. In this case you don't need to separate the implementation to an <code>-impl</code> bundle, but only need to have the task output implement an appropriate interface from the <code>-api</code> bundle.</p>
 <p><strong>For simple use-cases, you don't even need an <code>-api</code> bundle.</strong> If you don't want others to interact with your classes in any way, you don't need to separate the bundles. However, note that if you plan on using the output of your build task as an input to another, then you are <strong>strongly</strong> recommended to create an <code>-api</code> bundle. Not doing so may cause incompatibility between your own tasks. <br />
 For example if your bundle contains build tasks with the names <code>first.task</code> and <code>second.task</code>:</p>
-<pre><code class="language-sakerscript"><span class="d">$firstout</span> = <span class="a">first.task-v1.0()</span>
-<span class="a">second.task-v2.0(</span><span class="d">$firstout</span><span class="a">)</span>
+<pre><code class="language-sakerscript"><span class="d">$firstout</span> = <span class="e">first.task-v1.0()</span>
+<span class="e">second.task-v2.0(</span><span class="d">$firstout</span><span class="e">)</span>
 </code></pre>
 <p>The above will most likely cause incompatibility if you don't have an <code>-api</code> bundle. The output of the <code>first.task</code> should implement an interface from the <code>-api</code> bundle, that the <code>second.task</code> should use to interpret its input.</p>
 <h2 id="native-libraries">Native libraries<a class="doc-heading-anchor" href="#native-libraries"></a></h2>

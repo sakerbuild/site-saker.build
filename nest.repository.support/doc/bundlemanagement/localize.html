@@ -53,10 +53,10 @@
 			<div class="doc-content"><h1 id="bundle-localization">Bundle localization<a class="doc-heading-anchor" href="#bundle-localization"></a></h1>
 <p>Bundle localization is the process of making the referenced bundles available on the local machine. It usually entails downloading or otherwise retrieving the given bundles and caching them in the local file system.</p>
 <p>Using the <a href="../../taskdoc/nest.bundle.localize.html"><code>nest.bundle.localize()</code></a> task can be beneficial if you don't need the bundles to be present in the build file system hierarchy, and can use them using a local file system reference.</p>
-<pre><code class="language-sakerscript"><span class="a"><a href="../../../nest.repository.support/taskdoc/nest.bundle.localize.html" title="Task: nest.bundle.localize()">nest.bundle.localize</a>(</span><span class="e">[</span>
-	<span class="b">example.bundle-v1.0</span><span class="e">,</span>
-	<span class="b">second.bundle-v2.0</span><span class="e">
-]</span><span class="a">)</span>
+<pre><code class="language-sakerscript"><span class="e"><a href="../../../nest.repository.support/taskdoc/nest.bundle.localize.html" title="Task: nest.bundle.localize()">nest.bundle.localize</a>(</span><span class="b">[</span>
+	<span class="f">example.bundle-v1.0</span><span class="b">,</span>
+	<span class="f">second.bundle-v2.0</span><span class="b">
+]</span><span class="e">)</span>
 </code></pre>
 <p>The above example will find the bundles with the specified identifiers, and localize them accordingly.</p>
 <p><strong>Note</strong> that the the task doesn't perform bundle or dependency resolution. The specified bundles must have a version qualifier. You can use the <a href="../../taskdoc/nest.dependency.resolve.html"><code>nest.dependency.resolve()</code></a> task to resolve the most recent version of a given bundle.</p>

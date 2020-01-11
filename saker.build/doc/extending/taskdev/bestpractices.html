@@ -122,11 +122,11 @@ if (prevstate != null) {
 </code></pre>
 <h2 id="worker-tasks">Worker tasks<a class="doc-heading-anchor" href="#worker-tasks"></a></h2>
 <p>When the build script is modified, or in some other cases your task may get reinvoked even though no real configuration change has happened. The following provides an example:</p>
-<pre><code class="language-sakerscript"><span class="a">example.task(</span><span class="c">Input</span>: <span class="b">123</span><span class="a">)</span>
+<pre><code class="language-sakerscript"><span class="e">example.task(</span><span class="i">Input</span>: <span class="f">123</span><span class="e">)</span>
 </code></pre>
 <p>When modified to:</p>
-<pre><code class="language-sakerscript"><span class="d">$var</span> = <span class="b">123</span>
-<span class="a">example.task(</span><span class="c">Input</span>: <span class="d">$var</span><span class="a">)</span>
+<pre><code class="language-sakerscript"><span class="d">$var</span> = <span class="f">123</span>
+<span class="e">example.task(</span><span class="i">Input</span>: <span class="d">$var</span><span class="e">)</span>
 </code></pre>
 <p>The <code>example.task</code> will be reinvoked even though the value of <code>Input</code> parameter haven't semantically changed. This is because the SakerScript implementation will assign different task identifiers to the invoked tasks therefore the two will be different.</p>
 <p>The above scenario can result in too many unnecessary reinvokactions therefore unnecessary work to be done and delaying the build execution.</p>

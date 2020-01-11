@@ -53,11 +53,11 @@
 			<div class="doc-content"><h1 id="local-install-bundle">Local install bundle<a class="doc-heading-anchor" href="#local-install-bundle"></a></h1>
 <p>See also: <a href="../bundlemanagement/install.html" title="Local installing">Local installing</a></p>
 <p>The <a href="../../taskdoc/nest.local.install.html"><code>nest.local.install()</code></a> task allows installing a saker.nest bundle to the local bundle storage. You need to specify the JAR file as the input to the task:</p>
-<pre><code class="language-sakerscript"><span class="h"># Create a bundle JAR</span>
-<span class="d">$jar</span> = <span class="a"><a href="../../../saker.jar/taskdoc/saker.jar.create.html" title="Task: saker.jar.create()">saker.jar.create</a>(</span><span class="k">### ... ###</span><span class="a">)</span>
-<span class="a"><a href="../../../nest.repository.support/taskdoc/nest.local.install.html" title="Task: nest.local.install()">nest.local.install</a>(</span>
-	<span class="c">Bundle</span>: <span class="d">$jar</span><span class="i">[</span><span class="f">Path</span><span class="i">]</span>
-<span class="a">)</span>
+<pre><code class="language-sakerscript"><span class="c"># Create a bundle JAR</span>
+<span class="d">$jar</span> = <span class="e"><a href="../../../saker.jar/taskdoc/saker.jar.create.html" title="Task: saker.jar.create()">saker.jar.create</a>(</span><span class="k">### ... ###</span><span class="e">)</span>
+<span class="e"><a href="../../../nest.repository.support/taskdoc/nest.local.install.html" title="Task: nest.local.install()">nest.local.install</a>(</span>
+	<span class="i">Bundle</span>: <span class="d">$jar</span><span class="g">[</span><span class="h">Path</span><span class="g">]</span>
+<span class="e">)</span>
 </code></pre>
 <p>The above example will create a JAR using the <a href="../../../saker.jar/taskdoc/saker.jar.create.html"><code>saker.jar.create()</code></a> task and install it in the local bundle storage that is configured for the current build execution.</p>
 <link href="../../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>

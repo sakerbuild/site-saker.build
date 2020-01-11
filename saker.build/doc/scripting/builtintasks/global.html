@@ -70,28 +70,28 @@
 <h2 id="example">Example<a class="doc-heading-anchor" href="#example"></a></h2>
 <p>The following example contains two files (<code>config.build</code>, and <code>saker.build</code>):</p>
 <p><code>config.build</code>:
-<pre><code class="language-sakerscript"><span class="h"># this file is not uploaded to source control</span>
-<span class="h"># contains secret data for the project</span>
-<span class="a">global(</span><span class="d">company.ENCRYPTION_KEY</span><span class="a">)</span> = <span class="b">abcd1234</span>
-<span class="a">global(</span><span class="d">company.PUBLISH_API_KEY</span><span class="a">)</span> = <span class="b">Y29tcGFueV9zZWNyZXQ=</span>
+<pre><code class="language-sakerscript"><span class="c"># this file is not uploaded to source control</span>
+<span class="c"># contains secret data for the project</span>
+<span class="e"><a href="../../../../saker.build/doc/scripting/builtintasks/global.html" title="Task: global()">global</a>(</span><span class="d">company.ENCRYPTION_KEY</span><span class="e">)</span> = <span class="f">abcd1234</span>
+<span class="e"><a href="../../../../saker.build/doc/scripting/builtintasks/global.html" title="Task: global()">global</a>(</span><span class="d">company.PUBLISH_API_KEY</span><span class="e">)</span> = <span class="f">Y29tcGFueV9zZWNyZXQ=</span>
 </code></pre>
 </p>
 <p><code>saker.build</code>:
-<pre><code class="language-sakerscript"><span class="h"># this file is the main entry point for builds</span>
-<span class="h"># include the configuration build file</span>
-<span class="a">include(</span><span class="c">Path</span>: <span class="b">config.build</span><span class="a">)</span>
-<span class="j">publish</span> <span class="e">{</span>
-	<span class="h"># encrypt some data with a secret key</span>
-	<span class="d">$data</span> = <span class="a">example.encrypt.data(</span>
-		<span class="c">Data</span>: <span class="b">exampledata</span>,
-		<span class="c">Key: </span><span class="a">global(</span><span class="d">company.ENCRYPTION_KEY</span><span class="a">)</span>
-	<span class="a">)</span>
-	<span class="h"># publish that data to somewhere</span>
-	<span class="a">example.company.publish(</span>
+<pre><code class="language-sakerscript"><span class="c"># this file is the main entry point for builds</span>
+<span class="c"># include the configuration build file</span>
+<span class="e"><a href="../../../../saker.build/doc/scripting/builtintasks/include.html" title="Task: include()">include</a>(</span><span class="i">Path</span>: <span class="f">config.build</span><span class="e">)</span>
+<span class="a">publish</span> <span class="b">{</span>
+	<span class="c"># encrypt some data with a secret key</span>
+	<span class="d">$data</span> = <span class="e">example.encrypt.data(</span>
+		<span class="i">Data</span>: <span class="f">exampledata</span>,
+		<span class="i">Key: </span><span class="e"><a href="../../../../saker.build/doc/scripting/builtintasks/global.html" title="Task: global()">global</a>(</span><span class="d">company.ENCRYPTION_KEY</span><span class="e">)</span>
+	<span class="e">)</span>
+	<span class="c"># publish that data to somewhere</span>
+	<span class="e">example.company.publish(</span>
 		<span class="d">$data</span>, 
-		<span class="c">ApiKey: </span><span class="a">global(</span><span class="d">company.PUBLISH_API_KEY</span><span class="a">)</span>
-	<span class="a">)</span>
-<span class="e">}</span>
+		<span class="i">ApiKey: </span><span class="e"><a href="../../../../saker.build/doc/scripting/builtintasks/global.html" title="Task: global()">global</a>(</span><span class="d">company.PUBLISH_API_KEY</span><span class="e">)</span>
+	<span class="e">)</span>
+<span class="b">}</span>
 </code></pre>
 </p>
 <p>The above example showcases one use-case for global variables. The <code>config.build</code> file is not published to any source control platforms, and contains secret data related to the operation of the associated project. The <code>saker.build</code> file is the main entry points for builds and developers use this to build the project.</p>

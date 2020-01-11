@@ -52,16 +52,16 @@
 </div>
 			<div class="doc-content"><h1 id="include-archive">Include archive<a class="doc-heading-anchor" href="#include-archive"></a></h1>
 <p>Including the contents of an archive into the created archive works very similarly as <a href="adddirectory.html" title="Add directory tree">adding directory contents</a>, however, you specify an archive instead of a directory as the root:</p>
-<pre><code class="language-sakerscript"><span class="a"><a href="../../../saker.zip/taskdoc/saker.zip.create.html" title="Task: saker.zip.create()">saker.zip.create</a>(</span>
-	<span class="c">Include</span>: <span class="e">[</span>
-		<span class="b">everything.zip</span><span class="e">,</span>
-		<span class="e">{</span>
-			<span class="f">Archive</span>: <span class="b">images.zip</span><span class="e">,</span>
-			<span class="f">Resources</span>: <span class="b">**/*.png</span><span class="e">,</span>
-			<span class="f">TargetDirectory</span>: <span class="b">img</span><span class="e">
+<pre><code class="language-sakerscript"><span class="e"><a href="../../../saker.zip/taskdoc/saker.zip.create.html" title="Task: saker.zip.create()">saker.zip.create</a>(</span>
+	<span class="i">Include</span>: <span class="b">[</span>
+		<span class="f">everything.zip</span><span class="b">,</span>
+		<span class="b">{</span>
+			<span class="h">Archive</span>: <span class="f">images.zip</span><span class="b">,</span>
+			<span class="h">Resources</span>: <span class="f">**/*.png</span><span class="b">,</span>
+			<span class="h">TargetDirectory</span>: <span class="f">img</span><span class="b">
 		}
 	]</span>
-<span class="a">)</span>
+<span class="e">)</span>
 </code></pre>
 <p>Let's assume that the referenced ZIP files have the following contents:</p>
 <p><code>everything.zip</code>:</p>

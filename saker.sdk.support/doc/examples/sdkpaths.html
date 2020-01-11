@@ -52,22 +52,22 @@
 </div>
 			<div class="doc-content"><h1 id="sdk-paths">SDK paths<a class="doc-heading-anchor" href="#sdk-paths"></a></h1>
 <p>SDK paths can be referenced using the <a href="../../taskdoc/sdk.path.html"><code>sdk.path()</code></a> task. This example is based on the <a href="../../../saker.java.compiler/doc/examples/jnicompile.html" title="JNI compilation">JNI compilation</a> example from the <a href="../../../saker.java.compiler/index.html" title="Index">saker.java.compiler</a> package.</p>
-<pre><code class="language-sakerscript"><span class="d">$javac</span> = <span class="a"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
-	<span class="h"># ...</span>
-<span class="a">)</span>
-<span class="a"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span>
-	<span class="e">{</span>
-		<span class="f">Files</span>: <span class="b">csrc/**/*.cpp</span><span class="e">,</span>
-		<span class="f">IncludeDirectories</span>: <span class="e">[</span>
-			<span class="a"><a href="../../../saker.sdk.support/taskdoc/sdk.path.html" title="Task: sdk.path()">sdk.path</a>(</span><span class="b">java</span>, <span class="c">Identifier: </span><span class="b">include</span><span class="a">)</span><span class="e">,</span>
-			<span class="a"><a href="../../../saker.sdk.support/taskdoc/sdk.path.html" title="Task: sdk.path()">sdk.path</a>(</span><span class="b">java</span>, <span class="c">Identifier: </span><span class="b">include.platform</span><span class="a">)</span><span class="e">,</span>
-			<span class="d">$javac</span><span class="i">[</span><span class="f">HeaderDirectory</span><span class="i">]</span><span class="e">
+<pre><code class="language-sakerscript"><span class="d">$javac</span> = <span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
+	<span class="c"># ...</span>
+<span class="e">)</span>
+<span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span>
+	<span class="b">{</span>
+		<span class="h">Files</span>: <span class="f">csrc/**/*.cpp</span><span class="b">,</span>
+		<span class="h">IncludeDirectories</span>: <span class="b">[</span>
+			<span class="e"><a href="../../../saker.sdk.support/taskdoc/sdk.path.html" title="Task: sdk.path()">sdk.path</a>(</span><span class="f">java</span>, <span class="i">Identifier: </span><span class="f">include</span><span class="e">)</span><span class="b">,</span>
+			<span class="e"><a href="../../../saker.sdk.support/taskdoc/sdk.path.html" title="Task: sdk.path()">sdk.path</a>(</span><span class="f">java</span>, <span class="i">Identifier: </span><span class="f">include.platform</span><span class="e">)</span><span class="b">,</span>
+			<span class="d">$javac</span><span class="g">[</span><span class="h">HeaderDirectory</span><span class="g">]</span><span class="b">
 		]
 	}</span>,
-	<span class="c">SDKs: </span><span class="e">{</span>
-		<span class="f">Java</span>: <span class="d">$javac</span><span class="i">[</span><span class="f">JavaSDK</span><span class="i">]</span><span class="e">
+	<span class="i">SDKs: </span><span class="b">{</span>
+		<span class="h">Java</span>: <span class="d">$javac</span><span class="g">[</span><span class="h">JavaSDK</span><span class="g">]</span><span class="b">
 	}</span>
-<span class="a">)</span>
+<span class="e">)</span>
 </code></pre>
 <p>In the above example we can see that for the <a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html"><code>saker.msvc.ccompile()</code></a> task, we specify the <code>Java</code> SDK as an input, and add include directories (<code>IncludeDirectories</code>) that are path references from the Java SDK.</p>
 <p>When the compiler task interprets the include directories, it will see that they are specified to be resolved against an SDK with the <code>java</code> name. It will retrieve the SDK reference for the <code>java</code> name, and use it to resolve the SDK paths with the identifier <code>include</code> and <code>include.platform</code>.</p>

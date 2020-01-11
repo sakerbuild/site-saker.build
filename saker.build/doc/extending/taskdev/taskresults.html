@@ -56,25 +56,25 @@
 <pre><code class="language-java">@SakerInputpublic int Left;@SakerInputpublic int Right;@Overridepublic Integer run(TaskContext taskcontext) throws Exception {	return this.Left + this.Right;}</code></pre>
 </p>
 <p>Using them in the following way:</p>
-<pre><code class="language-sakerscript"><span class="d">$firstsum</span> = <span class="a">example.sum(</span><span class="c">Left</span>: <span class="b">4</span>, <span class="c">Right: </span><span class="b">6</span><span class="a">)</span>
-<span class="a">print(</span><span class="d">$firstsum</span><span class="a">)</span>
+<pre><code class="language-sakerscript"><span class="d">$firstsum</span> = <span class="e">example.sum(</span><span class="i">Left</span>: <span class="f">4</span>, <span class="i">Right: </span><span class="f">6</span><span class="e">)</span>
+<span class="e"><a href="../../../../saker.build/doc/scripting/builtintasks/print.html" title="Task: print()">print</a>(</span><span class="d">$firstsum</span><span class="e">)</span>
 
-<span class="d">$secondsum</span> = <span class="a">example.sum(</span>
-	<span class="c">Left</span>: <span class="d">$firstsum</span>, 
-	<span class="c">Right: </span><span class="a">example.sum(</span><span class="c">Left</span>: <span class="b">10</span>, <span class="c">Right: </span><span class="b">30</span><span class="a">)</span>,
-<span class="a">)</span>
-<span class="a">print(</span><span class="d">$secondsum</span><span class="a">)</span>
+<span class="d">$secondsum</span> = <span class="e">example.sum(</span>
+	<span class="i">Left</span>: <span class="d">$firstsum</span>, 
+	<span class="i">Right: </span><span class="e">example.sum(</span><span class="i">Left</span>: <span class="f">10</span>, <span class="i">Right: </span><span class="f">30</span><span class="e">)</span>,
+<span class="e">)</span>
+<span class="e"><a href="../../../../saker.build/doc/scripting/builtintasks/print.html" title="Task: print()">print</a>(</span><span class="d">$secondsum</span><span class="e">)</span>
 </code></pre>
 <p>Will print out <code>10</code> for the first sum of <code>4 + 6</code>, and <code>50</code> for the <code>$secondsum</code>, as it will add <code>10</code> to <code>10 + 30</code>.</p>
 <p>When you run the build without any modifications, it will print out <code>10</code> and <code>50</code> again. However, if you decide to modify the first invocation of <code>example.sum</code>, like the following (<code>Right: 6</code> modified to <code>Right: 16</code>):</p>
-<pre><code class="language-sakerscript"><span class="d">$firstsum</span> = <span class="a">example.sum(</span><span class="c">Left</span>: <span class="b">4</span>, <span class="c">Right: </span><span class="b">16</span><span class="a">)</span>
-<span class="a">print(</span><span class="d">$firstsum</span><span class="a">)</span>
+<pre><code class="language-sakerscript"><span class="d">$firstsum</span> = <span class="e">example.sum(</span><span class="i">Left</span>: <span class="f">4</span>, <span class="i">Right: </span><span class="f">16</span><span class="e">)</span>
+<span class="e"><a href="../../../../saker.build/doc/scripting/builtintasks/print.html" title="Task: print()">print</a>(</span><span class="d">$firstsum</span><span class="e">)</span>
 
-<span class="d">$secondsum</span> = <span class="a">example.sum(</span>
-	<span class="c">Left</span>: <span class="d">$firstsum</span>, 
-	<span class="c">Right: </span><span class="a">example.sum(</span><span class="c">Left</span>: <span class="b">10</span>, <span class="c">Right: </span><span class="b">30</span><span class="a">)</span>,
-<span class="a">)</span>
-<span class="a">print(</span><span class="d">$secondsum</span><span class="a">)</span>
+<span class="d">$secondsum</span> = <span class="e">example.sum(</span>
+	<span class="i">Left</span>: <span class="d">$firstsum</span>, 
+	<span class="i">Right: </span><span class="e">example.sum(</span><span class="i">Left</span>: <span class="f">10</span>, <span class="i">Right: </span><span class="f">30</span><span class="e">)</span>,
+<span class="e">)</span>
+<span class="e"><a href="../../../../saker.build/doc/scripting/builtintasks/print.html" title="Task: print()">print</a>(</span><span class="d">$secondsum</span><span class="e">)</span>
 </code></pre>
 <p>Then with the modification, the first will print out <code>20</code>, and the second will print out <code>60</code>. You can notice that the modifications of the first task transitively caused all the dependent tasks to re-run, and print out the updated values.</p>
 <p>This happens because when you retrieve a result of a task, the build system will automatically record a dependency on the associated task. Whenever that task is considered to be changed, any dependent task will re-run.</p>
@@ -98,9 +98,9 @@
 <h2 id="structured-results">Structured results<a class="doc-heading-anchor" href="#structured-results"></a></h2>
 <p>The build system defines a special type that can be used as the return value of a task execution. They are an instance of the <code>StructuredTaskResult</code> interface which signals that the actual data behind the object are available via the results of other tasks.</p>
 <p>The interface was defined in order to increase the performance of the build by improving the concurrency of the executed task. We can see it by looking at the following example:</p>
-<pre><code class="language-sakerscript"><span class="d">$list</span> = <span class="e">[</span><span class="b">1</span><span class="e">,</span> <span class="a">long.running.task()</span><span class="e">,</span> <span class="b">3</span><span class="e">,</span> <span class="b">4</span><span class="e">]</span>
-<span class="g">foreach </span><span class="d">$item</span><span class="g"> in </span><span class="d">$list</span> {
-	<span class="h"># do something with the items</span>
+<pre><code class="language-sakerscript"><span class="d">$list</span> = <span class="b">[</span><span class="f">1</span><span class="b">,</span> <span class="e">long.running.task()</span><span class="b">,</span> <span class="f">3</span><span class="b">,</span> <span class="f">4</span><span class="b">]</span>
+<span class="j">foreach </span><span class="d">$item</span><span class="j"> in </span><span class="d">$list</span> {
+	<span class="c"># do something with the items</span>
 }
 </code></pre>
 <p>In the above example we execute some operations on each element of the list assigned to the <code>$list</code> variable. The <code>foreach</code> statement will get the value of the variable, and start the tasks for each element in the list. However, without the introduction of <code>StructuredTaskResult</code>, in order to retrieve the elements of the list, the <code>foreach</code> loop would need to wait for all of the elements in the list to evaluate.</p>

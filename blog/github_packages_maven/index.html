@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Using the GitHub packages Maven repository&nbsp;|&nbsp;saker.build blog</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+	
+	<link rel="stylesheet" href="../../res/bootstrap.min.css" >
+	<link rel="stylesheet" href="../../res/doc-saker.css" >
+	
+</head>
+<body data-nav-location="blog">
+<div class="doc-nav-bar">
+	<div class="container">
+		<a class="home-link" href="/index.html" title="saker.build"><img style="height: 2.5em;" class="logo" src="/res/logo.svg"/><span class="page-name">saker.build</span></a>
+		<div class="nav-bar-controls">
+			<a class="nav-bar-special" href="/saker.build/doc/installation.html" title="saker.build installation">Download</a>
+			<label class="d-lg-none nav-bar-collapse" for="collapse-nav-bar-label">
+				<svg style="height: 1.5em;" viewBox="0 0 24 24">
+				    <path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+				</svg>
+			</label>
+			<input style="display:none;" id="collapse-nav-bar-label" type="checkbox"/>
+			<div class="nav-bar-items">
+				<a href="/saker.build/doc/index.html" title="saker.build documentation">Documentation</a>
+				<a style="display:none;" href="/sponsor.html" title="Sponsoring development">Sponsor</a>
+				<a href="/blog/" title="saker.build system blog">Blog</a>
+				<a class="no-external-icon" href="https://github.com/sakerbuild/saker.build" title="saker.build GitHub repository">GitHub</a>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container page-contents packagedoc">
+	<div class="row">
+		<div class="col-12 col-lg-3 col-xl-2 p-lg-0">
+			<div class="doc-navigation-container">
+				<label class="d-lg-none nav-collapse" for="doc-collapse-nav-label">
+					<svg style="height: 1.5em;" viewBox="0 0 24 24">
+					    <path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+					</svg>
+					Navigation
+				</label>
+				<input style="display:none;" id="doc-collapse-nav-label" type="checkbox"/> 
+				<div class="doc-nav">  <div class="doc-section"><ul><li><a class="doc-nav-section-link" href="../index.html" title="Welcome">Welcome</a></li><li><a class="doc-nav-section-link" href="../archive.html" title="Blog archive">Blog archive</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Releases</p><ul><li><a class="doc-nav-section-link" href="../release_0.8.0.html" title="Release 0.8.0 (initial)">Release 0.8.0 (initial)</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Blog posts</p><ul><li class="doc-active doc-active-parent"><a class="doc-nav-section-link" href="index.html" title="Using the GitHub packages Maven repository">Using the GitHub packages Maven repository</a></li><li><a class="doc-nav-section-link" href="../odd_initial_release_number.html" title="0.8.0 seems like an odd initial release number">0.8.0 seems like an odd initial release number</a></li><li><a class="doc-nav-section-link" href="../another_buildsystem.html" title="Do we need another build system?">Do we need another build system?</a></li></ul>  </div></div>
+			</div>
+		</div>
+		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="sb-sponsors" style="display: none;">
+	<span class="sb-sponsors-title">Sponsors</span>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4 col-12">
+				<a class="sb-sponsors-link"></a>
+			</div>
+			<div class="col-md-4 col-12">
+				<a class="sb-sponsors-link"></a>
+			</div>
+			<div class="col-md-4 col-12">
+				<a class="sb-sponsors-link"></a>
+			</div>
+		</div>
+	</div>
+</div>
+			<div class="doc-content"><h1 id="using-the-github-packages-maven-repository">Using the GitHub packages Maven repository<a class="doc-heading-anchor" href="#using-the-github-packages-maven-repository"></a></h1>
+<p><small>2020 January 11</small></p>
+<p>You may've heard about <a href="https://github.com/features/packages" title="GitHub Packages: Your packages, at home with their code · GitHub">GitHub Packages</a> which allows you to publish and consume packages with various repositories. One in particular is Maven repositories, which we'll explore in detail in this post.</p>
+<p>You'll be needing the following:</p>
+<ul>
+<li>A GitHub account</li>
+<li>A <a href="../../saker.build/doc/installation.html" title="Installation">saker.build system release</a>. (Included in the example project.)</li>
+</ul>
+<h4 id="create-a-git-repository">Create a git repository<a class="doc-heading-anchor" href="#create-a-git-repository"></a></h4>
+<p>First we <a href="https://github.com/new" title="Create a New Repository">create a simple git repository on GitHub</a>. It can be private, you'll still be able to use the Maven repository features.</p>
+<p>We recommend that you initialize it with a README, so cloning it might be easier.</p>
+<p>After you've created it, you'll notice the <strong>0 packages</strong> link in the repository header. After clicking it, you'll be redirected to the site where the published artifacts will be visible.</p>
+<p><img src="get_started_with_packages.png" alt="" /></p>
+<h4 id="creating-your-app">Creating your app<a class="doc-heading-anchor" href="#creating-your-app"></a></h4>
+<p>You probably have something in mind that you want to publish to GitHub packages. For this example, we're going to have a simple utility class with a dependency on <a href="https://github.com/apache/commons-lang" title="GitHub - apache/commons-lang: Mirror of Apache Commons Lang">Apache Commons Lang</a>.</p>
+<p>You can set up your project in any way you like, or just clone the <a href="https://github.com/Sipkab/example-gh-maven" title="GitHub - Sipkab/example-gh-maven: Example repository showcasing Maven deployment to GitHub packages">example repository</a> that we use for this post. It simply resolves the Maven dependencies, compiles the app into a JAR, and deploys it to GitHub Packages.</p>
+<pre><code class="language-shell">git clone https://github.com/Sipkab/example-gh-maven.git
+</code></pre>
+<h4 id="creating-a-personal-access-token">Creating a personal access token<a class="doc-heading-anchor" href="#creating-a-personal-access-token"></a></h4>
+<p>In order to be able to publish to the Maven repository, you'll need to authenticate yourself with GitHub. In order to do that, you need a personal access token that you can use to log in when deploying the artifacts.</p>
+<p>You can create these access tokens by going to your account settings, navigate to <em>Developer settings</em> and select <em>Personal access tokens</em>.</p>
+<p><img src="github_menu_developersettings.png" alt="" /></p>
+<p>Once you're here, select <em>Generate new token</em>. The generated token will be used to access the repository you're deploying for. Select the <em>write:packages</em>, and <em>read:packages</em> scopes for your token. The <em>repo</em> scope will also be selected automatically for you.</p>
+<p><img src="new_access_token.png" alt="" /></p>
+<p>You can name your token any way that you'd like, its just for informational purposes.</p>
+<h4 id="back-to-the-project">Back to the project<a class="doc-heading-anchor" href="#back-to-the-project"></a></h4>
+<p>If you've checked out the example repository, you can build your project by running the following command:</p>
+<pre><code class="language-plaintext">java -jar saker.build.jar -bd build export
+</code></pre>
+<p>This will result in the creation of a JAR file at the <code>build/saker.jar.create/output.jar</code> path. It will contain the compiled classes from the <code>src/main/java</code> directory.</p>
+<p><small>Tip: you don't have to deal with command line when using the <a href="../../saker.build/doc/eclipseplugin.html" title="Eclipse plugin">Eclipse plugin</a>.</small></p>
+<h3 id="deploying-to-github">Deploying to GitHub<a class="doc-heading-anchor" href="#deploying-to-github"></a></h3>
+<p>For deployment, we use the <a href="../../saker.maven.support/taskdoc/saker.maven.deploy.html"><code>saker.maven.deploy()</code></a> build task. It will take the specified artifacts, and upload them to GitHub. Let's see it in more detail:</p>
+<pre><code class="language-sakerscript"><span class="a">deploy()</span> <span class="b">{</span>
+	<span class="c"># Replace USERNAME, REPOSITORY_NAME, and PERSONAL_ACCESS_TOKEN literals with your own</span>
+	<span class="d">$jar</span> = <span class="e"><a href="../../saker.build/doc/scripting/builtintasks/include.html" title="Task: include()">include</a>(</span><span class="f">export</span><span class="e">)</span><span class="g">[</span><span class="h">jar</span><span class="g">]</span>
+	<span class="e"><a href="../../saker.maven.support/taskdoc/saker.maven.deploy.html" title="Task: saker.maven.deploy()">saker.maven.deploy</a>(</span>
+		<span class="i">Artifacts</span>: <span class="b">{</span>
+			<span class="h">&quot;pom&quot;</span>: <span class="f">pom.xml</span><span class="b">,</span>
+			<span class="h">&quot;jar&quot;</span>: <span class="d">$jar</span><span class="g">[</span><span class="h">Path</span><span class="g">]</span><span class="b">,</span>
+		<span class="b">}</span>,
+		<span class="i">Coordinates: </span><span class="f">&quot;example.saker.build:maven-gh-packages:0.1.0&quot;</span>,
+		<span class="i">RemoteRepository: </span><span class="b">{</span>
+			<span class="h">Id</span>: <span class="f">github</span><span class="b">,</span>
+			<span class="h">Url</span>: <span class="f">&quot;https://maven.pkg.github.com/USERNAME/REPOSITORY_NAME&quot;</span><span class="b">,</span>
+			<span class="h">Authentication</span>: <span class="e"><a href="../../saker.maven.support/taskdoc/saker.maven.auth.account.html" title="Task: saker.maven.auth.account()">saker.maven.auth.account</a>(</span>
+				<span class="i">Username</span>: <span class="f">USERNAME</span>,
+				<span class="i">Password: </span><span class="f">PERSONAL_ACCESS_TOKEN</span>,
+			<span class="e">)</span><span class="b">
+		}</span>
+	<span class="e">)</span>
+<span class="b">}</span>
+
+</code></pre>
+<p><small>Tip: you can click on task names to view their documentation.</small></p>
+<p>You can run the above with the following command:</p>
+<pre><code class="language-plaintext">java -jar saker.build.jar -bd build deploy
+</code></pre>
+<p>We specify the artifacts using the <code>Artifacts</code> parameter. We deploy the <code>pom.xml</code> alongside our Java archive to GitHub. The <code>Coordinates</code> of the deployed artifacts need to be specified, so the <a href="../../saker.maven.support/taskdoc/saker.maven.deploy.html"><code>saker.maven.deploy()</code></a> task knows what it is publishing.</p>
+<p>The <code>RemoteRepository</code> parameter specifies the repository where we're publishing. The <code>Url</code> should be based on the above, but with the <code>USERNAME</code> and <code>REPOSITORY_NAME</code> replaced with your values.</p>
+<p>Remember the previously generated personal access token? We use it here by providing an account based authentication mechanism for the deployment. It needs to be set to the <code>Authentication</code> field of the <code>RemoteRepository</code>, and the credentials need to be given to the <a href="../../saker.maven.support/taskdoc/saker.maven.auth.account.html"><code>saker.maven.auth.account()</code></a> build task. Be sure to replace the <code>PERSONAL_ACCESS_TOKEN</code> literal with your own access token.</p>
+<p><strong>Important!</strong> After deploying artifacts to GitHub Packages, you won't be able to overwrite them! Not even <code>SNAPSHOT</code> artifacts. You can <a href="https://help.github.com/en/github/managing-packages-with-github-packages/deleting-a-package" title="Deleting a package - GitHub Help">delete</a> them, but it should be only used as a last resort.</p>
+<h3 id="using-the-repository">Using the repository<a class="doc-heading-anchor" href="#using-the-repository"></a></h3>
+<p>After deploying, you probably want to use your artifacts. You can authenticate yourself for other Maven build tasks the same way you did for deployment:</p>
+<pre><code class="language-sakerscript"><span class="e"><a href="../../saker.maven.support/taskdoc/saker.maven.resolve.html" title="Task: saker.maven.resolve()">saker.maven.resolve</a>(</span>
+	<span class="i">Artifacts</span>: <span class="f">&quot;example.saker.build:maven-gh-packages:0.1.0&quot;</span>,
+	<span class="i">Configuration: </span><span class="b">{</span>
+		<span class="h">Repositories</span>: <span class="b">[</span>
+			<span class="b">{</span>
+				<span class="h">Id</span>: <span class="f">central</span><span class="b">,</span>
+				<span class="h">Url</span>: <span class="f">&quot;https://repo.maven.apache.org/maven2/&quot;</span><span class="b">,</span>
+			<span class="b">},</span>
+			<span class="b">{</span>
+				<span class="h">Id</span>: <span class="f">github</span><span class="b">,</span>
+				<span class="h">Url</span>: <span class="f">&quot;https://maven.pkg.github.com/USERNAME/REPOSITORY_NAME&quot;</span><span class="b">,</span>
+				<span class="h">Authentication</span>: <span class="e"><a href="../../saker.maven.support/taskdoc/saker.maven.auth.account.html" title="Task: saker.maven.auth.account()">saker.maven.auth.account</a>(</span>
+					<span class="i">Username</span>: <span class="f">USERNAME</span>,
+					<span class="i">Password: </span><span class="f">PERSONAL_ACCESS_TOKEN</span>,
+				<span class="e">)</span><span class="b">,</span>
+			<span class="b">}
+		]
+	}</span>
+<span class="e">)</span>
+</code></pre>
+<p>The above will use the <code>central</code> repository as well as the one we deployed our artifact to. The dependencies of our artifact will be resolved, resulting in the following:</p>
+<pre><code class="language-plaintext">org.apache.commons:commons-lang3:jar:3.9
+example.saker.build:maven-gh-packages:jar:0.1.0
+</code></pre>
+<p>If your git repository is public, you can omit the <code>Authentication</code> when retrieving from the repository.</p>
+<h3 id="further-improvements">Further improvements<a class="doc-heading-anchor" href="#further-improvements"></a></h3>
+<p>You may've noticed that we specified the full configuration and credentials for accessing GitHub Packages in both of the examples. This would be very verbose and make the build scripts hard to follow. You can easily export this configuration to a <code>static</code> or <code>global</code> variable for the build, letting you define the congfiguration in a single place:</p>
+<pre><code class="language-sakerscript"><span class="e"><a href="../../saker.build/doc/scripting/builtintasks/static.html" title="Task: static()">static</a>(</span><span class="d">GITHUB_CONF</span><span class="e">)</span> = <span class="b">{</span>
+	<span class="h">Id</span>: <span class="f">github</span><span class="b">,</span>
+	<span class="h">Url</span>: <span class="f">&quot;https://maven.pkg.github.com/USERNAME/REPOSITORY_NAME&quot;</span><span class="b">,</span>
+	<span class="h">Authentication</span>: <span class="e"><a href="../../saker.maven.support/taskdoc/saker.maven.auth.account.html" title="Task: saker.maven.auth.account()">saker.maven.auth.account</a>(</span>
+		<span class="i">Username</span>: <span class="f">USERNAME</span>,
+		<span class="i">Password: </span><span class="f">PERSONAL_ACCESS_TOKEN</span>,
+	<span class="e">)</span><span class="b">
+}</span>
+<span class="e"><a href="../../saker.maven.support/taskdoc/saker.maven.deploy.html" title="Task: saker.maven.deploy()">saker.maven.deploy</a>(</span>
+	<span class="i">Artifacts</span>: <span class="b">{</span>
+		<span class="h">&quot;pom&quot;</span>: <span class="f">pom.xml</span><span class="b">,</span>
+		<span class="h">&quot;jar&quot;</span>: <span class="d">$jar</span><span class="g">[</span><span class="h">Path</span><span class="g">]</span><span class="b">,</span>
+	<span class="b">}</span>,
+	<span class="i">Coordinates: </span><span class="f">&quot;example.saker.build:maven-gh-packages:0.1.0&quot;</span>,
+	<span class="i">RemoteRepository: </span><span class="e"><a href="../../saker.build/doc/scripting/builtintasks/static.html" title="Task: static()">static</a>(</span><span class="d">GITHUB_CONF</span><span class="e">)</span>
+<span class="e">)</span>
+<span class="e"><a href="../../saker.maven.support/taskdoc/saker.maven.resolve.html" title="Task: saker.maven.resolve()">saker.maven.resolve</a>(</span>
+	<span class="i">Artifacts</span>: <span class="f">&quot;example.saker.build:maven-gh-packages:0.1.0&quot;</span>,
+	<span class="i">Configuration: </span><span class="b">{</span>
+		<span class="h">Repositories</span>: <span class="b">[</span>
+			<span class="b">{</span>
+				<span class="h">Id</span>: <span class="f">central</span><span class="b">,</span>
+				<span class="h">Url</span>: <span class="f">&quot;https://repo.maven.apache.org/maven2/&quot;</span><span class="b">,</span>
+			<span class="b">},</span>
+			<span class="e"><a href="../../saker.build/doc/scripting/builtintasks/static.html" title="Task: static()">static</a>(</span><span class="d">GITHUB_CONF</span><span class="e">)</span><span class="b">
+		]
+	}</span>
+<span class="e">)</span>
+</code></pre>
+<p>We also recommend exporting the whole <code>Configuration</code> parameter value of Maven operations.</p>
+<h2 id="conclusion">Conclusion<a class="doc-heading-anchor" href="#conclusion"></a></h2>
+<p>GitHub packages can be a nice place to distribute your Maven artifacts. Be it private or public use, having a free option (or paid for larget scale) to host some content allows you to experiment with your software and may require less hassle to maintain. It is also alongside your repository, making discoverability easier.</p>
+<p>However, others who consume the artifacts that you publish to GitHub Packages will need to add it to their Maven repositories. If a lot of people publishes to GitHub Packages, this list of repository configuration can grow significantly, making it hard to maintain. We recommend you publish to already established repositories to allow easier access to your artifacts.</p>
+<p><small>This post was made because the <a href="https://nest.saker.build/package/saker.maven.support?version=v0.8.2" title="saker.maven.support | saker.nest">saker.maven.support</a> package was just updated to support authentication, installation, and deployment. We wanted to showcase this through the publishing workflow to GitHub Packages that you can try right out.</small></p>
+<link href="../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>
+			<div class="doc-headings-nav">  <ul>    <li><a href="#using-the-github-packages-maven-repository" title="Using the GitHub packages Maven repository">Using the GitHub packages Maven repository</a>      <ul>        <li><a href="#create-a-git-repository" title="Create a git repository">Create a git repository</a>        </li>        <li><a href="#creating-your-app" title="Creating your app">Creating your app</a>        </li>        <li><a href="#creating-a-personal-access-token" title="Creating a personal access token">Creating a personal access token</a>        </li>        <li><a href="#back-to-the-project" title="Back to the project">Back to the project</a>        </li>        <li><a href="#deploying-to-github" title="Deploying to GitHub">Deploying to GitHub</a>        </li>        <li><a href="#using-the-repository" title="Using the repository">Using the repository</a>        </li>        <li><a href="#further-improvements" title="Further improvements">Further improvements</a>        </li>        <li><a href="#conclusion" title="Conclusion">Conclusion</a>        </li>      </ul>    </li>  </ul></div>
+		</div>
+	</div>
+</div>
+<div class="doc-footer">
+	<div class="container">
+		<div class="row">
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">About</p>
+				<div><a href="/" title="Saker.build home page">Home</a></div>
+				<div><a href="/saker.build/doc/roadmap.html" title="Saker.build development roadmap">Roadmap</a></div>
+				<div style="display:none;"><a href="/sponsor.html" title="Sponsoring development">Sponsor</a></div>
+				<div><a href="/saker.build/doc/contribute.html" title="Contributing to the saker.build system development">Contribute</a></div>
+				<div><a href="/contact.html" title="Contact us">Contact</a></div>
+			</div>
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">Resources</p>
+				<div><a href="/saker.build/doc/index.html" title="saker.build documentation">Documentation</a></div>
+				<div><a href="/saker.build/javadoc/index.html" title="Saker.build API JavaDoc">JavaDoc</a></div>
+				<div><a href="https://github.com/sakerbuild/saker.build" title="saker.build on GitHub">GitHub</a></div>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col">
+			&copy; Bence Sipka 2020
+			</div>
+		</div>
+	</div>
+</div>
+
+<link rel="stylesheet" href="../../res/hljs.css"><script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js" integrity="sha256-js+I1fdbke/DJrW2qXQlrw7VUEqmdeFeOW37UC0bEiU=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.13.1/build/languages/plaintext.min.js"></script><script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.13.1/build/languages/shell.min.js"></script>
+<script>
+if(window.hasOwnProperty("hljs")){
+	hljs.configure({
+	  languages: []
+	});
+	hljs.initHighlightingOnLoad();
+}
+</script>
+
+</body>
+</html>

@@ -52,12 +52,12 @@
 </div>
 			<div class="doc-content"><h1 id="unary-minus">Unary minus<a class="doc-heading-anchor" href="#unary-minus"></a></h1>
 <p>The unary minus operator is used in a prefix manner to a given expression. It can be applied only to numbers, in which case it will negate the numeric value of the subject expression.</p>
-<pre><code class="language-sakerscript"><span class="h"># negate a simple literal: -123</span>
--<span class="b">123</span>
-<span class="h"># negate an expression: -6</span>
--(<span class="b">2</span> * <span class="b">3</span>)
-<span class="h"># negate floating numbers: -1.23</span>
--<span class="b">1.23</span>
+<pre><code class="language-sakerscript"><span class="c"># negate a simple literal: -123</span>
+-<span class="f">123</span>
+<span class="c"># negate an expression: -6</span>
+-(<span class="f">2</span> * <span class="f">3</span>)
+<span class="c"># negate floating numbers: -1.23</span>
+-<span class="f">1.23</span>
 </code></pre>
 <p>The operator may promote the numeric precision of the subject value.</p>
 <p>E.g. if it is a <code>long</code> that equals the minimum value that can be represented in two's complement format (-9223372036854775808), then the negated value would overflow the 64 bit representation. In this case the implementation may either promote the value to an arbitrary precision integer, or proceed with the negation using 64 bits in an implementation dependent manner. <br />

@@ -52,13 +52,13 @@
 </div>
 			<div class="doc-content"><h1 id="artifact-classpath">Artifact classpath<a class="doc-heading-anchor" href="#artifact-classpath"></a></h1>
 <p>Creating a classpath for a simple set of artifacts can be done by passing the artifact coordinates to the task:</p>
-<pre><code class="language-sakerscript"><span class="a"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
-	<span class="c">SourceDirectories</span>: <span class="b">src</span>,
-	<span class="c">ClassPath: </span><span class="a"><a href="../../../saker.maven.classpath/taskdoc/saker.maven.classpath.html" title="Task: saker.maven.classpath()">saker.maven.classpath</a>(</span><span class="e">[</span>
-		<span class="b">&quot;junit:junit:4.12&quot;</span><span class="e">,</span>
-		<span class="b">&quot;org.slf4j:slf4j-api:1.7.19&quot;</span><span class="e">
-	]</span><span class="a">)</span>
-<span class="a">)</span>
+<pre><code class="language-sakerscript"><span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
+	<span class="i">SourceDirectories</span>: <span class="f">src</span>,
+	<span class="i">ClassPath: </span><span class="e"><a href="../../../saker.maven.classpath/taskdoc/saker.maven.classpath.html" title="Task: saker.maven.classpath()">saker.maven.classpath</a>(</span><span class="b">[</span>
+		<span class="f">&quot;junit:junit:4.12&quot;</span><span class="b">,</span>
+		<span class="f">&quot;org.slf4j:slf4j-api:1.7.19&quot;</span><span class="b">
+	]</span><span class="e">)</span>
+<span class="e">)</span>
 </code></pre>
 <p>In the above we create a classpath that references the <code>junit:junit:4.12</code> and <code>org.slf4j:slf4j-api:1.7.19</code> artifacts. Note that the dependencies of the artifacts are <strong>not</strong> resolved.</p>
 <link href="../../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>

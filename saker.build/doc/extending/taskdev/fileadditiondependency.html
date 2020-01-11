@@ -59,7 +59,7 @@
 @Overridepublic Void run(TaskContext taskcontext) throws Exception {	FileCollectionStrategy additiondep = WildcardFileCollectionStrategy.create(Files);	NavigableMap&lt;SakerPath, SakerFile&gt; foundfiles = 			taskcontext.getTaskUtilities()				.collectFilesReportInputFileAndAdditionDependency(null, additiondep);	for (SakerPath filepath : foundfiles.keySet()) {		taskcontext.println(filepath.toString());	}	return null;}</code></pre>
 </p>
 <p>If we call it the following way:</p>
-<pre><code class="language-sakerscript"><span class="a">example.print.files(</span><span class="c">Files</span>: <span class="b">**/*.txt</span><span class="a">)</span>
+<pre><code class="language-sakerscript"><span class="e">example.print.files(</span><span class="i">Files</span>: <span class="f">**/*.txt</span><span class="e">)</span>
 </code></pre>
 <p>That will print out the absolute paths of every file that is in the working directory tree and has the extension <code>.txt</code>. If any new file is added that is matched by the wildcard, the task will rerun accordingly.</p>
 <p>The interface <a href="../../../javadoc/saker/build/task/dependencies/FileCollectionStrategy.html"><code>FileCollectionStrategy</code></a> is responsible for providing the implementation for collecting the interested files. It consists of a <code>collectFiles</code> method that collects the files based on the directories of the task context and build execution. That method is also called by the build system in order to determine changes between executions.</p>

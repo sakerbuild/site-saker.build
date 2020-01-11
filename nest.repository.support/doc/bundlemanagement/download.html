@@ -53,10 +53,10 @@
 			<div class="doc-content"><h1 id="bundle-downloading">Bundle downloading<a class="doc-heading-anchor" href="#bundle-downloading"></a></h1>
 <p>Bundle downloading is the process of making the referenced bundle available in the build file system hierarchy. It usually entails <a href="localize.html" title="Bundle localization">localizing</a> the bundles and then copying them into the build directory.</p>
 <p>After downloading, you can retrieve the paths to the bundles and pass them to other tasks as input.</p>
-<pre><code class="language-sakerscript"><span class="a"><a href="../../../nest.repository.support/taskdoc/nest.bundle.download.html" title="Task: nest.bundle.download()">nest.bundle.download</a>(</span><span class="e">[</span>
-	<span class="b">example.bundle-v1.0</span><span class="e">,</span>
-	<span class="b">second.bundle-v2.0</span><span class="e">
-]</span><span class="a">)</span>
+<pre><code class="language-sakerscript"><span class="e"><a href="../../../nest.repository.support/taskdoc/nest.bundle.download.html" title="Task: nest.bundle.download()">nest.bundle.download</a>(</span><span class="b">[</span>
+	<span class="f">example.bundle-v1.0</span><span class="b">,</span>
+	<span class="f">second.bundle-v2.0</span><span class="b">
+]</span><span class="e">)</span>
 </code></pre>
 <p>The above example will find the bundles with the specified identifiers, and download them accordingly.</p>
 <p><strong>Note</strong> that the the task doesn't perform bundle or dependency resolution. The specified bundles must have a version qualifier. You can use the <a href="../../taskdoc/nest.dependency.resolve.html"><code>nest.dependency.resolve()</code></a> task to resolve the most recent version of a given bundle.</p>

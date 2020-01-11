@@ -52,11 +52,11 @@
 </div>
 			<div class="doc-content"><h1 id="native-headers">Native headers<a class="doc-heading-anchor" href="#native-headers"></a></h1>
 <p>The <a href="../../taskdoc/saker.java.compile.html"><code>saker.java.compile()</code></a> task can generate the native headers for your classes if you specify the <code>GenerateNativeHeaders</code> parameter. By default, it won't generate the headers.</p>
-<pre><code class="language-sakerscript"><span class="d">$javac</span> = <span class="a"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
-	<span class="c">SourceDirectories</span>: <span class="b">src</span>,
-	<span class="c">GenerateNativeHeaders: </span><span class="g">true</span>
-<span class="a">)</span>
-<span class="d">$javac</span><span class="i">[</span><span class="f">HeaderDirectory</span><span class="i">]</span>
+<pre><code class="language-sakerscript"><span class="d">$javac</span> = <span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
+	<span class="i">SourceDirectories</span>: <span class="f">src</span>,
+	<span class="i">GenerateNativeHeaders: </span><span class="j">true</span>
+<span class="e">)</span>
+<span class="d">$javac</span><span class="g">[</span><span class="h">HeaderDirectory</span><span class="g">]</span>
 </code></pre>
 <p>The path to the header directory can be retrieved using the <code>HeaderDirectory</code> field. It can be passed to other tasks as an include directory.</p>
 <link href="../../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>

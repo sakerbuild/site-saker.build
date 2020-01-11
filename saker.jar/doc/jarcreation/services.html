@@ -53,25 +53,25 @@
 			<div class="doc-content"><h1 id="services">Services<a class="doc-heading-anchor" href="#services"></a></h1>
 <p>The <a href="../../taskdoc/saker.jar.create.html"><code>saker.jar.create()</code></a> task allows specifying service classes that are included in the meta information of the created Java archive. For information about the service configuration files see the <a href="https://docs.oracle.com/javase/8/docs/technotes/guides/jar/jar.html#Service_Provider" title="JAR File Specification">Service provider specification</a>.</p>
 <p>The <code>Services</code> parameter of the task can be used to specify additional services for the archive:</p>
-<pre><code class="language-sakerscript"><span class="a"><a href="../../../saker.jar/taskdoc/saker.jar.create.html" title="Task: saker.jar.create()">saker.jar.create</a>(</span>
-	<span class="c">Services</span>: <span class="e">{</span>
-		<span class="f">example.Service</span>: <span class="b">example.ServiceImplementation</span><span class="e">
+<pre><code class="language-sakerscript"><span class="e"><a href="../../../saker.jar/taskdoc/saker.jar.create.html" title="Task: saker.jar.create()">saker.jar.create</a>(</span>
+	<span class="i">Services</span>: <span class="b">{</span>
+		<span class="h">example.Service</span>: <span class="f">example.ServiceImplementation</span><span class="b">
 	}</span>
-<span class="a">)</span>
+<span class="e">)</span>
 </code></pre>
 <p>The above will result in the resulting archive containing an entry at the path <code>META-INF/services/example.Service</code> with the contents of:</p>
 <pre><code class="language-plaintext">example.ServiceImplementation
 </code></pre>
 <p>You can specify multiple services for the parameter as well:</p>
-<pre><code class="language-sakerscript"><span class="a"><a href="../../../saker.jar/taskdoc/saker.jar.create.html" title="Task: saker.jar.create()">saker.jar.create</a>(</span>
-	<span class="c">Services</span>: <span class="e">{</span>
-		<span class="f">example.one.Service</span>: <span class="e">[</span>
-			<span class="b">example.one.FirstServiceImplementation</span><span class="e">,</span>
-			<span class="b">example.one.SecondServiceImplementation</span><span class="e">
+<pre><code class="language-sakerscript"><span class="e"><a href="../../../saker.jar/taskdoc/saker.jar.create.html" title="Task: saker.jar.create()">saker.jar.create</a>(</span>
+	<span class="i">Services</span>: <span class="b">{</span>
+		<span class="h">example.one.Service</span>: <span class="b">[</span>
+			<span class="f">example.one.FirstServiceImplementation</span><span class="b">,</span>
+			<span class="f">example.one.SecondServiceImplementation</span><span class="b">
 		],</span>
-		<span class="f">example.two.Service</span>: <span class="b">example.two.ServiceImplementation</span><span class="e">
+		<span class="h">example.two.Service</span>: <span class="f">example.two.ServiceImplementation</span><span class="b">
 	}</span>
-<span class="a">)</span>
+<span class="e">)</span>
 </code></pre>
 <p>In which case the service file for <code>example.one.Service</code> will contain both specified implementation class names.</p>
 <p>When specifying services via the task parameter, the service class names will be merged with any existing service files that were added to the archive.</p>

@@ -55,21 +55,21 @@
 <p><code>&lt;&lt;</code>: left shift <br />
 <code>&gt;&gt;</code>: right shift</p>
 <p>These operators take two operands, where the left is the number that is the subject of the bit manipulation and the right specifies the number of places to shift the bits.</p>
-<pre><code class="language-sakerscript"><span class="h"># shift left 1 by 4 places: 16</span>
-<span class="b">1</span> &lt;&lt; <span class="b">4</span>
-<span class="h"># shift left hexadecimal values: 0x380</span>
-<span class="b">0x1C</span> &lt;&lt; <span class="b">5</span>
+<pre><code class="language-sakerscript"><span class="c"># shift left 1 by 4 places: 16</span>
+<span class="f">1</span> &lt;&lt; <span class="f">4</span>
+<span class="c"># shift left hexadecimal values: 0x380</span>
+<span class="f">0x1C</span> &lt;&lt; <span class="f">5</span>
 
-<span class="h"># shift right positive numbers: 2</span>
-<span class="b">9</span> &gt;&gt; <span class="b">2</span>
-<span class="h"># shift right hexadecimal: 0x15</span>
-<span class="b">0x57</span> &gt;&gt; <span class="b">2</span>
-<span class="h"># shift right negative: -2</span>
--<span class="b">5</span> &gt;&gt; <span class="b">2</span>
-<span class="h"># right shifting -1 always results in -1</span>
--<span class="b">1</span> &gt;&gt; <span class="b">20</span>
+<span class="c"># shift right positive numbers: 2</span>
+<span class="f">9</span> &gt;&gt; <span class="f">2</span>
+<span class="c"># shift right hexadecimal: 0x15</span>
+<span class="f">0x57</span> &gt;&gt; <span class="f">2</span>
+<span class="c"># shift right negative: -2</span>
+-<span class="f">5</span> &gt;&gt; <span class="f">2</span>
+<span class="c"># right shifting -1 always results in -1</span>
+-<span class="f">1</span> &gt;&gt; <span class="f">20</span>
 
-<span class="h"># shifting by negative. the two expressions are the same</span>
+<span class="c"># shifting by negative. the two expressions are the same</span>
 <span class="d">$number</span> &lt;&lt; <span class="d">$shift</span>
 <span class="d">$number</span> &gt;&gt; -<span class="d">$shift</span>
 </code></pre>

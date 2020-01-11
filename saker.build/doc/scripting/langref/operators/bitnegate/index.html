@@ -54,11 +54,11 @@
 <p>The bitwise negate unary operator works on integers and flips every bit in the numeric representation. The operator expects the subject operand to be a number value. If not, a runtime exception is thrown.</p>
 <p>The bits of the number will be negated, meaning that all bits in the current binary integral representation of the number will be flipped. If the subject number has arbitrary precision, then all bits up to the bit length of the representation will be flipped alongside with the sign of the number. If the number has a fixed precision (e.g. 64 bit), then all bits are flipped including the unused ones.</p>
 <p>As bitwise operations are not applicable to floating point numbers, therefore implementations may convert the number to an integral representation in an implementation dependent manner or may thrown a runtime exception.</p>
-<pre><code class="language-sakerscript"><span class="h"># negate a literal: -2</span>
-~<span class="b">1</span>
-<span class="h"># negate hexadecimal: 0xFFFFFFFFFFFF8290 (64bit)</span>
-~<span class="b">0x7d6f</span>
-<span class="h"># negate a variable</span>
+<pre><code class="language-sakerscript"><span class="c"># negate a literal: -2</span>
+~<span class="f">1</span>
+<span class="c"># negate hexadecimal: 0xFFFFFFFFFFFF8290 (64bit)</span>
+~<span class="f">0x7d6f</span>
+<span class="c"># negate a variable</span>
 ~<span class="d">$var</span>
 </code></pre>
 <link href="../../../../../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>

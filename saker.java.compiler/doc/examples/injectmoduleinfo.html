@@ -53,11 +53,11 @@
 			<div class="doc-content"><h1 id="injecting-module-info-attributes">Injecting module-info attributes<a class="doc-heading-anchor" href="#injecting-module-info-attributes"></a></h1>
 <p>The <a href="../../taskdoc/saker.java.compile.html"><code>saker.java.compile()</code></a> task supports injecting the module version and main class attributes into the generated <code>module-info.class</code> file.</p>
 <p>This only applies if you're compiling for Java 9 or later, and have a <code>module-info.java</code> source file with a module declaration.</p>
-<pre><code class="language-sakerscript"><span class="a"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
-	<span class="c">SourceDirectories</span>: <span class="b">src</span>,
-	<span class="c">ModuleMainClass: </span><span class="b">example.Main</span>,
-	<span class="c">ModuleVersion: </span><span class="b">&quot;1.0&quot;</span>
-<span class="a">)</span>
+<pre><code class="language-sakerscript"><span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
+	<span class="i">SourceDirectories</span>: <span class="f">src</span>,
+	<span class="i">ModuleMainClass: </span><span class="f">example.Main</span>,
+	<span class="i">ModuleVersion: </span><span class="f">&quot;1.0&quot;</span>
+<span class="e">)</span>
 </code></pre>
 <p>The above will cause the compiler task to inject the specified attributes into the compiled <code>module-info.class</code> file.</p>
 <p>Note that it is important that you specify the version in quotes, as the simple <code>1.0</code> literal may be interpreted as a number by the build script.</p>

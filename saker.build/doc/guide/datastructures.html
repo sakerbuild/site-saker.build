@@ -52,34 +52,34 @@
 </div>
 			<div class="doc-content"><h1 id="data-structures">Data structures<a class="doc-heading-anchor" href="#data-structures"></a></h1>
 <p>There are no type system in SakerScript. However, you can declare composite data in the format of maps, lists, and literals:</p>
-<pre><code class="language-sakerscript"><span class="d">$map</span> = <span class="e">{</span>
-	<span class="f">Key</span>: <span class="b">value</span><span class="e">,</span>
-	<span class="f">ListKey</span>: <span class="e">[</span>
-		<span class="b">item1</span><span class="e">,</span>
-		<span class="b">item2</span><span class="e">,</span>
-	<span class="e">]
+<pre><code class="language-sakerscript"><span class="d">$map</span> = <span class="b">{</span>
+	<span class="h">Key</span>: <span class="f">value</span><span class="b">,</span>
+	<span class="h">ListKey</span>: <span class="b">[</span>
+		<span class="f">item1</span><span class="b">,</span>
+		<span class="f">item2</span><span class="b">,</span>
+	<span class="b">]
 }</span>
-<span class="d">$list</span> = <span class="e">[</span><span class="b">1</span><span class="e">,</span> <span class="b">2</span><span class="e">,</span> <span class="b">3</span><span class="e">]</span>
-<span class="d">$simpleliteral</span> = <span class="b">abcd1234</span>
-<span class="d">$compoundstring</span> = <span class="b">&quot;interpolated string number: </span>{ <span class="b">2</span> * <span class="b">3</span> }<span class="b">&quot;</span>
+<span class="d">$list</span> = <span class="b">[</span><span class="f">1</span><span class="b">,</span> <span class="f">2</span><span class="b">,</span> <span class="f">3</span><span class="b">]</span>
+<span class="d">$simpleliteral</span> = <span class="f">abcd1234</span>
+<span class="d">$compoundstring</span> = <span class="f">&quot;interpolated string number: </span>{ <span class="f">2</span> * <span class="f">3</span> }<span class="f">&quot;</span>
 </code></pre>
 <p>These structures can be used in various ways to configure the task invocations. It is mostly dependent on the implementation and purpose of the task, but the following example can shine some light on it:</p>
-<pre><code class="language-sakerscript"><span class="a">example.compile.sources(</span>
-	<span class="c">Sources</span>: <span class="e">[</span>
-		<span class="e">{</span>
-			<span class="f">Directory</span>: <span class="b">src</span><span class="e">,</span>
-			<span class="f">Sources</span>: <span class="b">**/*.cpp</span><span class="e">,</span>
-		<span class="e">},</span>
-		<span class="e">{</span>
-			<span class="f">Directory</span>: <span class="b">test</span><span class="e">,</span>
-			<span class="f">Sources</span>: <span class="b">**/test_*.cpp</span><span class="e">,</span>
-		<span class="e">},</span>
-	<span class="e">]</span>,
-	<span class="c">LinkLibraries: </span><span class="e">[</span>
-		<span class="b">lib1.lib</span><span class="e">,</span>
-		<span class="b">lib2.lib</span><span class="e">,</span>
-	<span class="e">]</span>,
-<span class="a">)</span>
+<pre><code class="language-sakerscript"><span class="e">example.compile.sources(</span>
+	<span class="i">Sources</span>: <span class="b">[</span>
+		<span class="b">{</span>
+			<span class="h">Directory</span>: <span class="f">src</span><span class="b">,</span>
+			<span class="h">Sources</span>: <span class="f">**/*.cpp</span><span class="b">,</span>
+		<span class="b">},</span>
+		<span class="b">{</span>
+			<span class="h">Directory</span>: <span class="f">test</span><span class="b">,</span>
+			<span class="h">Sources</span>: <span class="f">**/test_*.cpp</span><span class="b">,</span>
+		<span class="b">},</span>
+	<span class="b">]</span>,
+	<span class="i">LinkLibraries: </span><span class="b">[</span>
+		<span class="f">lib1.lib</span><span class="b">,</span>
+		<span class="f">lib2.lib</span><span class="b">,</span>
+	<span class="b">]</span>,
+<span class="e">)</span>
 </code></pre>
 <p>The above fictional task would compile the sources with the <code>.cpp</code> extension the the <code>src</code> directory, and the sources in <code>test</code> directory that begin with <code>test_</code> and end with <code>.cpp</code>. It would also link the libraries <code>lib1.lib</code> and <code>lib2.lib</code> to the resulting binary.</p>
 <p>Note that the data structures in the language are immutable, they cannot be modified after they've been constructed.</p>

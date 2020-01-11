@@ -53,23 +53,23 @@
 			<div class="doc-content"><h1 id="adding-services">Adding services<a class="doc-heading-anchor" href="#adding-services"></a></h1>
 <p>See also: <a href="../jarcreation/services.html" title="Services">Services</a></p>
 <p>You can add service declarations to your archive using the <code>Services</code> parameter:</p>
-<pre><code class="language-sakerscript"><span class="a"><a href="../../../saker.jar/taskdoc/saker.jar.create.html" title="Task: saker.jar.create()">saker.jar.create</a>(</span>
-	<span class="c">Services</span>: <span class="e">{</span>
-		<span class="f">javax.annotation.processing.Processor</span>: <span class="b">example.MyAnnotationProcessor</span><span class="e">
+<pre><code class="language-sakerscript"><span class="e"><a href="../../../saker.jar/taskdoc/saker.jar.create.html" title="Task: saker.jar.create()">saker.jar.create</a>(</span>
+	<span class="i">Services</span>: <span class="b">{</span>
+		<span class="h">javax.annotation.processing.Processor</span>: <span class="f">example.MyAnnotationProcessor</span><span class="b">
 	}</span>
-<span class="a">)</span>
+<span class="e">)</span>
 </code></pre>
 <p>The above will cause the archive to contain a service declaration file with the path <code>META-INF/services/javax.annotation.processing.Processor</code> that declares the <code>example.MyAnnotationProcessor</code> implementation class.</p>
 <p>You can specify multiple services and multiple implementation names as well:</p>
-<pre><code class="language-sakerscript"><span class="a"><a href="../../../saker.jar/taskdoc/saker.jar.create.html" title="Task: saker.jar.create()">saker.jar.create</a>(</span>
-	<span class="c">Services</span>: <span class="e">{</span>
-		<span class="f">example.one.Service</span>: <span class="e">[</span>
-			<span class="b">example.one.FirstServiceImplementation</span><span class="e">,</span>
-			<span class="b">example.one.SecondServiceImplementation</span><span class="e">
+<pre><code class="language-sakerscript"><span class="e"><a href="../../../saker.jar/taskdoc/saker.jar.create.html" title="Task: saker.jar.create()">saker.jar.create</a>(</span>
+	<span class="i">Services</span>: <span class="b">{</span>
+		<span class="h">example.one.Service</span>: <span class="b">[</span>
+			<span class="f">example.one.FirstServiceImplementation</span><span class="b">,</span>
+			<span class="f">example.one.SecondServiceImplementation</span><span class="b">
 		],</span>
-		<span class="f">example.two.Service</span>: <span class="b">example.two.ServiceImplementation</span><span class="e">
+		<span class="h">example.two.Service</span>: <span class="f">example.two.ServiceImplementation</span><span class="b">
 	}</span>
-<span class="a">)</span>
+<span class="e">)</span>
 </code></pre>
 <link href="../../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>
 			<div class="end-section-links">

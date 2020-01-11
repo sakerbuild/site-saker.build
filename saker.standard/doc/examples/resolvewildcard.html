@@ -52,15 +52,15 @@
 </div>
 			<div class="doc-content"><h1 id="resolve-wildcard-path">Resolve wildcard path<a class="doc-heading-anchor" href="#resolve-wildcard-path"></a></h1>
 <p>Wildcard paths can be used to represent a set of files during the build execution. However, sometimes you may want to deal with each matching file individually.</p>
-<pre><code class="language-sakerscript"><span class="g">foreach </span><span class="d">$file</span><span class="g"> in </span><span class="a"><a href="../../../saker.standard/taskdoc/std.file.wildcard.html" title="Task: std.file.wildcard()">std.file.wildcard</a>(</span><span class="b">*.txt</span><span class="a">)</span>{
-	<span class="a">print(</span><span class="d">$file</span><span class="i">[</span><span class="f">Path</span><span class="i">]</span><span class="a">)</span>
+<pre><code class="language-sakerscript"><span class="j">foreach </span><span class="d">$file</span><span class="j"> in </span><span class="e"><a href="../../../saker.standard/taskdoc/std.file.wildcard.html" title="Task: std.file.wildcard()">std.file.wildcard</a>(</span><span class="f">*.txt</span><span class="e">)</span>{
+	<span class="e"><a href="../../../saker.build/doc/scripting/builtintasks/print.html" title="Task: print()">print</a>(</span><span class="d">$file</span><span class="g">[</span><span class="h">Path</span><span class="g">]</span><span class="e">)</span>
 }
 </code></pre>
 <p>The above example will simply print out the paths for each file matching the <code>*.txt</code> wildcard in the current directory.</p>
 <p>The resolved files can be used in more complicated examples as well:</p>
-<pre><code class="language-sakerscript"><span class="a"><a href="../../../saker.zip/taskdoc/saker.zip.create.html" title="Task: saker.zip.create()">saker.zip.create</a>(</span>
-	<span class="c">Include</span>: <span class="a"><a href="../../../saker.standard/taskdoc/std.file.wildcard.html" title="Task: std.file.wildcard()">std.file.wildcard</a>(</span><span class="b">archives/*.zip</span><span class="a">)</span>
-<span class="a">)</span>
+<pre><code class="language-sakerscript"><span class="e"><a href="../../../saker.zip/taskdoc/saker.zip.create.html" title="Task: saker.zip.create()">saker.zip.create</a>(</span>
+	<span class="i">Include</span>: <span class="e"><a href="../../../saker.standard/taskdoc/std.file.wildcard.html" title="Task: std.file.wildcard()">std.file.wildcard</a>(</span><span class="f">archives/*.zip</span><span class="e">)</span>
+<span class="e">)</span>
 </code></pre>
 <p>The above example will generate a ZIP archive that contains <strong>all</strong> of the contents of every other <code>.zip</code> archive in the <code>archives</code> directory.</p>
 <link href="../../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>

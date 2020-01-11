@@ -57,7 +57,7 @@
 <pre><code class="language-java">@SakerInput(required = true)public WildcardPath Sources;@Overridepublic Void run(TaskContext taskcontext) throws Exception {	NavigableMap&lt;SakerPath, SakerFile&gt; files = taskcontext.getTaskUtilities()			.collectFilesReportAdditionDependency(null,					WildcardFileCollectionStrategy.create(Sources));	for (SakerPath path : files.keySet()) {		taskcontext.reportInputFileDependency(null, 				path, CommonTaskContentDescriptors.FILE_PRESENT);		taskcontext.startTask(				new WorkerTaskIdentifier(path), 				new CompilationWorkerTaskFactory(path), 				null);	}	return null;}</code></pre>
 </p>
 <p>It may be used by specifying the <code>Sources</code> parameter:</p>
-<pre><code class="language-sakerscript"><span class="a">example.compile(</span><span class="c">Sources</span>: <span class="b">*.cpp</span><span class="a">)</span>
+<pre><code class="language-sakerscript"><span class="e">example.compile(</span><span class="i">Sources</span>: <span class="f">*.cpp</span><span class="e">)</span>
 </code></pre>
 <p>The implementation will discover the files specified by the wildcard and report the appropriate file addition dependency. The path of the files will be iterated over, and a special content descriptor signaling only their presence will be reported for them as dependency.</p>
 <p>A new task that executes the compilation of the file is started for every found file. The build system will schedule the started tasks accordingly, and the compilations for each source file will run.</p>
@@ -70,7 +70,7 @@
 <p>Let's examine how the task execution works given the following scenarios.</p>
 <h3 id="simple-run">Simple run<a class="doc-heading-anchor" href="#simple-run"></a></h3>
 <p>If we have the following files in the working directory: <code>main.cpp</code>, <code>game.cpp</code>, <code>resource.txt</code>, then simply execution the task using the given script:</p>
-<pre><code class="language-sakerscript"><span class="a">example.compile(</span><span class="c">Sources</span>: <span class="b">*.cpp</span><span class="a">)</span>
+<pre><code class="language-sakerscript"><span class="e">example.compile(</span><span class="i">Sources</span>: <span class="f">*.cpp</span><span class="e">)</span>
 </code></pre>
 <p>Will occur in the following way:</p>
 <ol>

@@ -53,8 +53,8 @@
 			<div class="doc-content"><h1 id="retrieve-parameter-values">Retrieve parameter values<a class="doc-heading-anchor" href="#retrieve-parameter-values"></a></h1>
 <p>The tasks in the package allows accessing the <a href="../../../saker.build/doc/guide/execparams.html" title="Execution parameters">execution</a> and <a href="../../../saker.build/doc/guide/envconfig.html" title="Environment configuration">environment</a> user parameters during the build execution.</p>
 <p>The <a href="../../taskdoc/std.param.env.html"><code>std.param.env()</code></a> and <a href="../../taskdoc/std.param.exec.html"><code>std.param.exec()</code></a> tasks can be used in the build scripts to retrieve the given user parameters respectively:</p>
-<pre><code class="language-sakerscript"><span class="d">$envparam</span> = <span class="a"><a href="../../../saker.standard/taskdoc/std.param.env.html" title="Task: std.param.env()">std.param.env</a>(</span><span class="b">example.env.parameter</span><span class="a">)</span>
-<span class="d">$execparam</span> = <span class="a"><a href="../../../saker.standard/taskdoc/std.param.exec.html" title="Task: std.param.exec()">std.param.exec</a>(</span><span class="b">example.exec.parameter</span><span class="a">)</span>
+<pre><code class="language-sakerscript"><span class="d">$envparam</span> = <span class="e"><a href="../../../saker.standard/taskdoc/std.param.env.html" title="Task: std.param.env()">std.param.env</a>(</span><span class="f">example.env.parameter</span><span class="e">)</span>
+<span class="d">$execparam</span> = <span class="e"><a href="../../../saker.standard/taskdoc/std.param.exec.html" title="Task: std.param.exec()">std.param.exec</a>(</span><span class="f">example.exec.parameter</span><span class="e">)</span>
 </code></pre>
 <p>If we configure the build execution with the following command line:</p>
 <pre><code class="language-plaintext">-EUexample.env.parameter=123 -Uexample.exec.parameter=abc

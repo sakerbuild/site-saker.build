@@ -53,17 +53,17 @@
 			<div class="doc-content"><h1 id="multi-release-contents">Multi-release contents<a class="doc-heading-anchor" href="#multi-release-contents"></a></h1>
 <p>The <a href="../../taskdoc/saker.jar.create.html"><code>saker.jar.create()</code></a> task allows specifying contents for the archive that are automatically placed to the appropriate subdirectory location for <a href="https://openjdk.java.net/jeps/238" title="JEP 238: Multi-Release JAR Files">multi-release JAR files</a>.</p>
 <p>The contents for multi-release resources can be specified the same way as the normal contents are specified, but are bound to a given JRE major version:</p>
-<pre><code class="language-sakerscript"><span class="a"><a href="../../../saker.jar/taskdoc/saker.jar.create.html" title="Task: saker.jar.create()">saker.jar.create</a>(</span>
-	<span class="c">Resources</span>: <span class="b">readme.txt</span>,
-	<span class="c">MultiReleaseContents: </span><span class="e">{</span>
-		<span class="f">8</span>: <span class="e">{</span>
-			<span class="f">Resources</span>: <span class="b">v8/versioned.txt</span><span class="e">,</span>
-		<span class="e">},</span>
-		<span class="f">9</span>: <span class="e">{</span>
-			<span class="f">Resources</span>: <span class="b">v9/versioned.txt</span><span class="e">,</span>
-		<span class="e">},</span>
-	<span class="e">}</span>,
-<span class="a">)</span>
+<pre><code class="language-sakerscript"><span class="e"><a href="../../../saker.jar/taskdoc/saker.jar.create.html" title="Task: saker.jar.create()">saker.jar.create</a>(</span>
+	<span class="i">Resources</span>: <span class="f">readme.txt</span>,
+	<span class="i">MultiReleaseContents: </span><span class="b">{</span>
+		<span class="h">8</span>: <span class="b">{</span>
+			<span class="h">Resources</span>: <span class="f">v8/versioned.txt</span><span class="b">,</span>
+		<span class="b">},</span>
+		<span class="h">9</span>: <span class="b">{</span>
+			<span class="h">Resources</span>: <span class="f">v9/versioned.txt</span><span class="b">,</span>
+		<span class="b">},</span>
+	<span class="b">}</span>,
+<span class="e">)</span>
 </code></pre>
 <p>The above parameter values specify the JAR contents to be as follows:</p>
 <pre><code class="language-plaintext">readme.txt

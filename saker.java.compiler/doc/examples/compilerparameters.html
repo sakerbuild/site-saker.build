@@ -52,10 +52,10 @@
 </div>
 			<div class="doc-content"><h1 id="compiler-parameters">Compiler parameters<a class="doc-heading-anchor" href="#compiler-parameters"></a></h1>
 <p>You can pass parameters which are directly interpreted by <code>javac</code>:</p>
-<pre><code class="language-sakerscript"><span class="a"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
-	<span class="c">SourceDirectories</span>: <span class="b">src</span>,
-	<span class="c">Parameters: </span><span class="e">[</span> --<span class="b">release</span><span class="e">,</span> <span class="b">8</span><span class="e"> ]</span>,
-<span class="a">)</span>
+<pre><code class="language-sakerscript"><span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
+	<span class="i">SourceDirectories</span>: <span class="f">src</span>,
+	<span class="i">Parameters: </span><span class="b">[</span> --<span class="f">release</span><span class="b">,</span> <span class="f">8</span><span class="b"> ]</span>,
+<span class="e">)</span>
 </code></pre>
 <p>The above <code>--release 8</code> arguments will be passed to <code>javac</code> in order to execute the compilation for JDK 8. This can be useful when cross-compiling.</p>
 <p>For other parameters that may be passed to <code>javac</code>, see the <code>javac</code> tool documentation of the associated JDK:</p>

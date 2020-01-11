@@ -104,7 +104,7 @@
 <p>Saker.msvc supports dispatching compilation tasks to clusters. In the following measurements we'll be comparing the scheduling performance of the saker.msvc compilation build task to the <a href="https://www.incredibuild.com/" title="Home - Incredibuild">IncrediBuild</a> tool.</p>
 <p>We will be using the same test case as in the <a href="performancecomparison.html#ninja" title="Ninja">Ninja</a> comparison.</p>
 <p>We use a second PC that is attached as an agent/cluster to our main one. The second PC is slower than the coordinator. It usually takes 23 seconds to compile the test case using Ninja. Based on this, we assume that the agent has only the 41% performance compared to the coordinator. Based on this, the optimal scenario in which both PCs work on 100% during the compilation, the build would take around 7.25 seconds (without any network communication).</p>
-<p>IncrediBuild is run inside Visual Studio 2019. The linking times are not included in the results. The CPUs total in 17.6 GHz, and 6 cores. We're using the version 9.4.4 (build 3042).</p>
+<p>IncrediBuild is run inside Visual Studio 2019. The linking times are not included in the results. The CPUs total in 17.6 GHz, and 6 cores. We're using the verison 9.4.4 (build 3042).</p>
 <div id="perf-1000-cluster" style="--doc-metric:'ms';" class="doc-bar-graph" doc-label-y="duration">
 <div class="doc-bar-graph-title">Distributed compilation scheduling</div>
 <table>

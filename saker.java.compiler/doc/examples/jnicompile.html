@@ -53,32 +53,32 @@
 			<div class="doc-content"><h1 id="jni-compilation">JNI compilation<a class="doc-heading-anchor" href="#jni-compilation"></a></h1>
 <p>The following example showcases how you can compile a native library alongside your Java sources. We'll be using the <a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html"><code>saker.msvc.ccompile()</code></a> task to compile the C sources, and use <a href="../../../saker.msvc/taskdoc/saker.msvc.clink.html"><code>saker.msvc.clink()</code></a> to link the object files (from the <a href="../../../saker.msvc/index.html" title="Index">saker.msvc</a> package). These tasks use the Microsoft Visual C++ compiler.</p>
 <p>The example also uses the <a href="../../../saker.sdk.support/index.html" title="Index">saker.sdk.support</a> package.</p>
-<pre><code class="language-sakerscript"><span class="d">$javac</span> = <span class="a"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
-	<span class="c">SourceDirectories</span>: <span class="b">src</span>,
-	<span class="c">GenerateNativeHeaders: </span><span class="g">true</span>
-<span class="a">)</span>
-<span class="d">$ccompile</span> = <span class="a"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span>
-	<span class="e">{</span>
-		<span class="f">Files</span>: <span class="b">csrc/**/*.cpp</span><span class="e">,</span>
-		<span class="f">IncludeDirectories</span>: <span class="e">[</span>
-			<span class="a"><a href="../../../saker.sdk.support/taskdoc/sdk.path.html" title="Task: sdk.path()">sdk.path</a>(</span><span class="b">java</span>, <span class="c">Identifier: </span><span class="b">include</span><span class="a">)</span><span class="e">,</span>
-			<span class="a"><a href="../../../saker.sdk.support/taskdoc/sdk.path.html" title="Task: sdk.path()">sdk.path</a>(</span><span class="b">java</span>, <span class="c">Identifier: </span><span class="b">include.platform</span><span class="a">)</span><span class="e">,</span>
-			<span class="d">$javac</span><span class="i">[</span><span class="f">HeaderDirectory</span><span class="i">]</span><span class="e">
+<pre><code class="language-sakerscript"><span class="d">$javac</span> = <span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
+	<span class="i">SourceDirectories</span>: <span class="f">src</span>,
+	<span class="i">GenerateNativeHeaders: </span><span class="j">true</span>
+<span class="e">)</span>
+<span class="d">$ccompile</span> = <span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span>
+	<span class="b">{</span>
+		<span class="h">Files</span>: <span class="f">csrc/**/*.cpp</span><span class="b">,</span>
+		<span class="h">IncludeDirectories</span>: <span class="b">[</span>
+			<span class="e"><a href="../../../saker.sdk.support/taskdoc/sdk.path.html" title="Task: sdk.path()">sdk.path</a>(</span><span class="f">java</span>, <span class="i">Identifier: </span><span class="f">include</span><span class="e">)</span><span class="b">,</span>
+			<span class="e"><a href="../../../saker.sdk.support/taskdoc/sdk.path.html" title="Task: sdk.path()">sdk.path</a>(</span><span class="f">java</span>, <span class="i">Identifier: </span><span class="f">include.platform</span><span class="e">)</span><span class="b">,</span>
+			<span class="d">$javac</span><span class="g">[</span><span class="h">HeaderDirectory</span><span class="g">]</span><span class="b">
 		]
 	}</span>,
-	<span class="c">SDKs: </span><span class="e">{</span>
-		<span class="f">Java</span>: <span class="d">$javac</span><span class="i">[</span><span class="f">JavaSDK</span><span class="i">]</span><span class="e">
+	<span class="i">SDKs: </span><span class="b">{</span>
+		<span class="h">Java</span>: <span class="d">$javac</span><span class="g">[</span><span class="h">JavaSDK</span><span class="g">]</span><span class="b">
 	}</span>,
-	<span class="c">CompilerOptions: </span><span class="e">[</span>
-		<span class="a"><a href="../../../saker.msvc/taskdoc/saker.msvc.coptions.preset.html" title="Task: saker.msvc.coptions.preset()">saker.msvc.coptions.preset</a>(</span><span class="b">dll</span><span class="a">)</span><span class="e">
+	<span class="i">CompilerOptions: </span><span class="b">[</span>
+		<span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.coptions.preset.html" title="Task: saker.msvc.coptions.preset()">saker.msvc.coptions.preset</a>(</span><span class="f">dll</span><span class="e">)</span><span class="b">
 	]</span>
-<span class="a">)</span>
-<span class="a"><a href="../../../saker.msvc/taskdoc/saker.msvc.clink.html" title="Task: saker.msvc.clink()">saker.msvc.clink</a>(</span>
+<span class="e">)</span>
+<span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.clink.html" title="Task: saker.msvc.clink()">saker.msvc.clink</a>(</span>
 	<span class="d">$ccompile</span>,
-	<span class="c">LinkerOptions: </span><span class="e">[</span>
-		<span class="a"><a href="../../../saker.msvc/taskdoc/saker.msvc.coptions.preset.html" title="Task: saker.msvc.coptions.preset()">saker.msvc.coptions.preset</a>(</span><span class="b">dll</span><span class="a">)</span><span class="e">
+	<span class="i">LinkerOptions: </span><span class="b">[</span>
+		<span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.coptions.preset.html" title="Task: saker.msvc.coptions.preset()">saker.msvc.coptions.preset</a>(</span><span class="f">dll</span><span class="e">)</span><span class="b">
 	]</span>
-<span class="a">)</span>
+<span class="e">)</span>
 </code></pre>
 <p>The above example assumes that the Java sources are in the <code>src</code> directory, while the native sources that the library consists of is under the <code>csrc</code> directory.</p>
 <p>We'll simply compile our Java sources with <a href="nativeheaders.html" title="Native headers">native header generation</a> enabled. Later, we need to pass the include directories and the associated JDK to the C compiler so it can find the appropriate platform headers. We also pass the output header directory from our compilation process using <code>$javac[HeaderDirectory]</code>.</p>

@@ -53,13 +53,13 @@
 			<div class="doc-content"><h1 id="upload-bundle">Upload bundle<a class="doc-heading-anchor" href="#upload-bundle"></a></h1>
 <p>See also: <a href="../bundlemanagement/upload.html" title="Server upload">Server upload</a></p>
 <p>The <a href="../../taskdoc/nest.server.upload.html"><code>nest.server.upload()</code></a> task allows uploading the created saker.nest bundle during the build execution:</p>
-<pre><code class="language-sakerscript"><span class="h"># Create a bundle JAR</span>
-<span class="d">$jar</span> = <span class="a"><a href="../../../saker.jar/taskdoc/saker.jar.create.html" title="Task: saker.jar.create()">saker.jar.create</a>(</span><span class="k">### ... ###</span><span class="a">)</span>
-<span class="a"><a href="../../../nest.repository.support/taskdoc/nest.server.upload.html" title="Task: nest.server.upload()">nest.server.upload</a>(</span>
-	<span class="c">Bundle</span>: <span class="d">$jar</span><span class="i">[</span><span class="f">Path</span><span class="i">]</span>,
-	<span class="c">APIKey: </span><span class="k">### API key from bundle page ###</span>,
-	<span class="c">APISecret: </span><span class="k">### API secret from bundle page ###</span>
-<span class="a">)</span>
+<pre><code class="language-sakerscript"><span class="c"># Create a bundle JAR</span>
+<span class="d">$jar</span> = <span class="e"><a href="../../../saker.jar/taskdoc/saker.jar.create.html" title="Task: saker.jar.create()">saker.jar.create</a>(</span><span class="k">### ... ###</span><span class="e">)</span>
+<span class="e"><a href="../../../nest.repository.support/taskdoc/nest.server.upload.html" title="Task: nest.server.upload()">nest.server.upload</a>(</span>
+	<span class="i">Bundle</span>: <span class="d">$jar</span><span class="g">[</span><span class="h">Path</span><span class="g">]</span>,
+	<span class="i">APIKey: </span><span class="k">### API key from bundle page ###</span>,
+	<span class="i">APISecret: </span><span class="k">### API secret from bundle page ###</span>
+<span class="e">)</span>
 </code></pre>
 <p>The above example will create a JAR using the <a href="../../../saker.jar/taskdoc/saker.jar.create.html"><code>saker.jar.create()</code></a> task and upload it to the <code>https://api.nest.saker.build</code> API endpoint. You will need the API key and secrets for the package from the saker.nest repository website. You can view the API keys on the Bundles tab of the <a href="https://nest.saker.build/user/packages" title="Manage packages | saker.nest">bundle management page</a>. The task parameters take them in the same format as they are displayed on the page.</p>
 <link href="../../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>

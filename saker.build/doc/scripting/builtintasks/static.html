@@ -67,26 +67,26 @@
 <h2 id="task-result">Task result<a class="doc-heading-anchor" href="#task-result"></a></h2>
 <p>The reference to the static variable.</p>
 <h2 id="example">Example<a class="doc-heading-anchor" href="#example"></a></h2>
-<pre><code class="language-sakerscript"><span class="h"># declare file-level constants</span>
-<span class="a">static(</span><span class="d">TEST_PARAMETER</span><span class="a">)</span> = <span class="b">123</span>
-<span class="a">static(</span><span class="d">PACKAGE_VERSION</span><span class="a">)</span> = <span class="b">1.0</span>
-<span class="h"># compile some sources when a build target is invoked in this file</span>
-<span class="a">static(</span><span class="d">CompilationResult</span><span class="a">)</span> = <span class="a">example.compile.sources()</span>
+<pre><code class="language-sakerscript"><span class="c"># declare file-level constants</span>
+<span class="e"><a href="../../../../saker.build/doc/scripting/builtintasks/static.html" title="Task: static()">static</a>(</span><span class="d">TEST_PARAMETER</span><span class="e">)</span> = <span class="f">123</span>
+<span class="e"><a href="../../../../saker.build/doc/scripting/builtintasks/static.html" title="Task: static()">static</a>(</span><span class="d">PACKAGE_VERSION</span><span class="e">)</span> = <span class="f">1.0</span>
+<span class="c"># compile some sources when a build target is invoked in this file</span>
+<span class="e"><a href="../../../../saker.build/doc/scripting/builtintasks/static.html" title="Task: static()">static</a>(</span><span class="d">CompilationResult</span><span class="e">)</span> = <span class="e">example.compile.sources()</span>
 
-<span class="j">export</span> <span class="e">{</span>
-	<span class="h"># export the compiled binaries in some way</span>
-	<span class="a">example.export.compilation.result(</span>
-		<span class="a">static(</span><span class="d">CompilationResult</span><span class="a">)</span>,
-		<span class="c">Path: </span><span class="b">&quot;export-v</span>{ <span class="a">static(</span><span class="d">PACKAGE_VERSION</span><span class="a">)</span> }<span class="b">.pkg&quot;</span>,
-	<span class="a">)</span>
-<span class="e">}</span>
-<span class="j">test</span> <span class="e">{</span>
-	<span class="h"># test the result of the compilation</span>
-	<span class="a">example.test.compilation.result(</span>
-		<span class="a">static(</span><span class="d">CompilationResult</span><span class="a">)</span>, 
-		<span class="c">TestParam: </span><span class="a">static(</span><span class="d">TEST_PARAMETER</span><span class="a">)</span>,
-	<span class="a">)</span>
-<span class="e">}</span>
+<span class="a">export</span> <span class="b">{</span>
+	<span class="c"># export the compiled binaries in some way</span>
+	<span class="e">example.export.compilation.result(</span>
+		<span class="e"><a href="../../../../saker.build/doc/scripting/builtintasks/static.html" title="Task: static()">static</a>(</span><span class="d">CompilationResult</span><span class="e">)</span>,
+		<span class="i">Path: </span><span class="f">&quot;export-v</span>{ <span class="e"><a href="../../../../saker.build/doc/scripting/builtintasks/static.html" title="Task: static()">static</a>(</span><span class="d">PACKAGE_VERSION</span><span class="e">)</span> }<span class="f">.pkg&quot;</span>,
+	<span class="e">)</span>
+<span class="b">}</span>
+<span class="a">test</span> <span class="b">{</span>
+	<span class="c"># test the result of the compilation</span>
+	<span class="e">example.test.compilation.result(</span>
+		<span class="e"><a href="../../../../saker.build/doc/scripting/builtintasks/static.html" title="Task: static()">static</a>(</span><span class="d">CompilationResult</span><span class="e">)</span>, 
+		<span class="i">TestParam: </span><span class="e"><a href="../../../../saker.build/doc/scripting/builtintasks/static.html" title="Task: static()">static</a>(</span><span class="d">TEST_PARAMETER</span><span class="e">)</span>,
+	<span class="e">)</span>
+<span class="b">}</span>
 </code></pre>
 <p>In the above example we can see that <code>example.compile.sources()</code> task will compile the sources whenever any of the build targets of the file is invoked. This global declaration is useful, as you don't have to repeat code in both <code>export</code> and <code>test</code> build targets, and don't have to manually <a href="include.html" title="include()"><code>include()</code></a> some <code>compile</code> build target to have the sources compiled.</p>
 <p>The constants <code>TEST_PARAMETER</code> and <code>PACKAGE_VERSION</code> is declared at the top of the file, so you don't have to search the file when you need to modify these values, but can do it in one place.</p>

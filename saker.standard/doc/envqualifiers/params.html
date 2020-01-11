@@ -53,12 +53,12 @@
 			<div class="doc-content"><h1 id="parameter-qualifier">Parameter qualifier<a class="doc-heading-anchor" href="#parameter-qualifier"></a></h1>
 <p>The <a href="../../taskdoc/std.env.qualifier.params.html"><code>std.env.qualifier.params()</code></a> task can be used to get an environment qualifier that is based on the <a href="../../../saker.build/doc/guide/envconfig.html" title="Environment configuration">environment user parameters</a> of the build environment.</p>
 <p>The created qualifier will expect the specified parameters to have the expected values for them. If they match, the environment is considered to be suitable, otherwise not.</p>
-<pre><code class="language-sakerscript"><span class="a"><a href="../../../saker.standard/taskdoc/std.env.qualifier.params.html" title="Task: std.env.qualifier.params()">std.env.qualifier.params</a>(</span>
-	<span class="c">Parameters</span>: <span class="e">{</span>
-		<span class="f">example.parameter</span>: <span class="b">123</span><span class="e">,</span>
-		<span class="f">second.param</span>: <span class="b">abc</span><span class="e">
+<pre><code class="language-sakerscript"><span class="e"><a href="../../../saker.standard/taskdoc/std.env.qualifier.params.html" title="Task: std.env.qualifier.params()">std.env.qualifier.params</a>(</span>
+	<span class="i">Parameters</span>: <span class="b">{</span>
+		<span class="h">example.parameter</span>: <span class="f">123</span><span class="b">,</span>
+		<span class="h">second.param</span>: <span class="f">abc</span><span class="b">
 	}</span>
-<span class="a">)</span>
+<span class="e">)</span>
 </code></pre>
 <p>The above qualifier will only find an environment suitable if it has the <code>example.parameter</code> defined with the value of <code>123</code> and <code>second.param</code> with <code>abc</code>.</p>
 <link href="../../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>

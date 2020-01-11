@@ -52,13 +52,13 @@
 </div>
 			<div class="doc-content"><h1 id="foreach-loop">Foreach loop<a class="doc-heading-anchor" href="#foreach-loop"></a></h1>
 <p>The <code>foreach</code> loop in the build language can be used to iterate over elements of a list or map. Its main purpose is to allow executing the same operations for multiple configurations.</p>
-<pre><code class="language-sakerscript"><span class="g">foreach </span><span class="d">$arch</span><span class="g"> in </span><span class="e">[</span><span class="b">x64</span><span class="e">,</span> <span class="b">x86</span><span class="e">]</span> : <span class="e">[</span> 
-	<span class="a">example.compile.sources(</span><span class="c">SourceDirectory</span>: <span class="b">src</span>, <span class="c">Architecture: </span><span class="d">$arch</span><span class="a">)</span><span class="e"> 
+<pre><code class="language-sakerscript"><span class="j">foreach </span><span class="d">$arch</span><span class="j"> in </span><span class="b">[</span><span class="f">x64</span><span class="b">,</span> <span class="f">x86</span><span class="b">]</span> : <span class="b">[</span> 
+	<span class="e">example.compile.sources(</span><span class="i">SourceDirectory</span>: <span class="f">src</span>, <span class="i">Architecture: </span><span class="d">$arch</span><span class="e">)</span><span class="b"> 
 ]</span>
 </code></pre>
 <p>In the above example, we iterate over a list of architecture identifiers and invoke the compilation for each given architecture. It can also be used to build a project with different flavors:</p>
-<pre><code class="language-sakerscript"><span class="g">foreach </span><span class="d">$lang</span><span class="g"> in </span><span class="e">[</span><span class="b">en</span><span class="e">,</span> <span class="b">fr</span><span class="e">,</span> <span class="b">de</span><span class="e">]</span> : <span class="e">[</span> 
-	<span class="a">example.compile.sources(</span><span class="c">Sources</span>: <span class="e">[</span><span class="b">src</span><span class="e">,</span> <span class="b">&quot;lang-</span>{ <span class="d">$lang</span> }<span class="b">&quot;</span><span class="e">]</span><span class="a">)</span><span class="e"> 
+<pre><code class="language-sakerscript"><span class="j">foreach </span><span class="d">$lang</span><span class="j"> in </span><span class="b">[</span><span class="f">en</span><span class="b">,</span> <span class="f">fr</span><span class="b">,</span> <span class="f">de</span><span class="b">]</span> : <span class="b">[</span> 
+	<span class="e">example.compile.sources(</span><span class="i">Sources</span>: <span class="b">[</span><span class="f">src</span><span class="b">,</span> <span class="f">&quot;lang-</span>{ <span class="d">$lang</span> }<span class="f">&quot;</span><span class="b">]</span><span class="e">)</span><span class="b"> 
 ]</span>
 </code></pre>
 <p>The above example takes a list of languages, and compiles the project with the sources from the <code>src</code> directory, and the sources from the <code>lang-&lt;language&gt;</code> directory. This results in the project compiled for each specified language.</p>

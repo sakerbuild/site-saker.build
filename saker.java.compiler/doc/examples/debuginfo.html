@@ -54,23 +54,23 @@
 <p>The Java compiler may include debugging information in the generated class files for easier debugging and more readable exception stack traces.</p>
 <p>By default, the <a href="../../taskdoc/saker.java.compile.html"><code>saker.java.compile()</code></a> task will include <em>all</em> debugging information in the class files. (<code>-g</code> flag)</p>
 <p>You can configure it using the <code>DebugInfo</code> parameter.</p>
-<pre><code class="language-sakerscript"><span class="a"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
-	<span class="c">SourceDirectories</span>: <span class="b">src</span>,
-	<span class="c">DebugInfo: </span><span class="e">[</span>
-		<span class="b">source</span><span class="e">,</span> <span class="b">lines</span><span class="e">
+<pre><code class="language-sakerscript"><span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
+	<span class="i">SourceDirectories</span>: <span class="f">src</span>,
+	<span class="i">DebugInfo: </span><span class="b">[</span>
+		<span class="f">source</span><span class="b">,</span> <span class="f">lines</span><span class="b">
 	]</span>
-<span class="a">)</span>
+<span class="e">)</span>
 </code></pre>
 <p>The above will include the source and line debugging information, but not the local variables.</p>
 <p>You can turn debugging information off by specifying an empty list, or <code>none</code>:</p>
-<pre><code class="language-sakerscript"><span class="a"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
-	<span class="c">SourceDirectories</span>: <span class="b">src</span>,
-	<span class="c">DebugInfo: </span><span class="e">[]</span>
-<span class="a">)</span>
-<span class="a"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
-	<span class="c">SourceDirectories</span>: <span class="b">src</span>,
-	<span class="c">DebugInfo: </span><span class="b">none</span>
-<span class="a">)</span>
+<pre><code class="language-sakerscript"><span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
+	<span class="i">SourceDirectories</span>: <span class="f">src</span>,
+	<span class="i">DebugInfo: </span><span class="b">[]</span>
+<span class="e">)</span>
+<span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
+	<span class="i">SourceDirectories</span>: <span class="f">src</span>,
+	<span class="i">DebugInfo: </span><span class="f">none</span>
+<span class="e">)</span>
 </code></pre>
 <p>If you don't want to include debugging information, you may want to strip the <a href="parameternames.html" title="Reflection parameter names">parameter names</a> as well.</p>
 <link href="../../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>

@@ -54,19 +54,19 @@
 <p>Cross-compilation is the act of compiling the sources to be used with a different version than the current environment. E.g. if we're using JDK 10 to compile the sources, but we plan on running them on Java 8, then we'll be cross-compiling.</p>
 <p>The <a href="../../taskdoc/saker.java.compile.html"><code>saker.java.compile()</code></a> task supports cross-compilation the same way as <code>javac</code> does. It allows you to specify the source and target versions, and the <code>--release</code> option for JDK 9 or later.</p>
 <p>In the following example we compile the sources to run on Java 8.</p>
-<pre><code class="language-sakerscript"><span class="a"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
-	<span class="c">SourceDirectories</span>: <span class="b">src</span>,
-	<span class="c">SourceVersion: </span><span class="b">8</span>,
-	<span class="c">TargetVersion: </span><span class="b">8</span>
-<span class="a">)</span>
+<pre><code class="language-sakerscript"><span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
+	<span class="i">SourceDirectories</span>: <span class="f">src</span>,
+	<span class="i">SourceVersion: </span><span class="f">8</span>,
+	<span class="i">TargetVersion: </span><span class="f">8</span>
+<span class="e">)</span>
 </code></pre>
 <p>If we run the build on JDK 9 or later, then we may also need to specify the <code>--release</code> option for correctness:</p>
-<pre><code class="language-sakerscript"><span class="a"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
-	<span class="c">SourceDirectories</span>: <span class="b">src</span>,
-	<span class="c">SourceVersion: </span><span class="b">8</span>,
-	<span class="c">TargetVersion: </span><span class="b">8</span>,
-	<span class="c">Parameters: </span><span class="e">[</span> --<span class="b">release</span><span class="e">,</span> <span class="b">8</span><span class="e"> ]</span>
-<span class="a">)</span>
+<pre><code class="language-sakerscript"><span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
+	<span class="i">SourceDirectories</span>: <span class="f">src</span>,
+	<span class="i">SourceVersion: </span><span class="f">8</span>,
+	<span class="i">TargetVersion: </span><span class="f">8</span>,
+	<span class="i">Parameters: </span><span class="b">[</span> --<span class="f">release</span><span class="b">,</span> <span class="f">8</span><span class="b"> ]</span>
+<span class="e">)</span>
 </code></pre>
 <p>Note that the exact semantics are the same as the <a href="https://docs.oracle.com/javase/9/tools/javac.htm" title="javac"><code>javac</code></a> tool. The <code>SourceVersion</code> and <code>TargetVersion</code> corresponds to the <code>-source</code> and <code>-target</code> command line arguments accordingly.</p>
 <p>The <code>--release</code> parameter and its argument is ignored if the compilation is running on earlier versions than Java 9.</p>
@@ -74,12 +74,12 @@
 <p>In cases when you're compiling for a more recent Java version that the one the build execution is running on, you may want to use forked compilation. In this case the <a href="../../taskdoc/saker.java.compile.html"><code>saker.java.compile()</code></a> task will spawn a new <code>java</code> process that will execute the compilation.</p>
 <p>The spawned Java process will run on the target JDK, and will communicate with the compiler task in order to do its work. Using forked compilation may be slower than using the in-process method. The incremental compilation and annotation processing should work the same way nonetheless.</p>
 <p>Example for using JDK 13 to compile the Java sources:</p>
-<pre><code class="language-sakerscript"><span class="a"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
-	<span class="c">SourceDirectories</span>: <span class="b">src</span>,
-	<span class="c">SDKs: </span><span class="e">{</span>
-		<span class="f">Java</span>: <span class="a"><a href="../../../saker.java.compiler/taskdoc/saker.java.sdk.html" title="Task: saker.java.sdk()">saker.java.sdk</a>(</span><span class="b">13</span><span class="a">)</span><span class="e">
+<pre><code class="language-sakerscript"><span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
+	<span class="i">SourceDirectories</span>: <span class="f">src</span>,
+	<span class="i">SDKs: </span><span class="b">{</span>
+		<span class="h">Java</span>: <span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.sdk.html" title="Task: saker.java.sdk()">saker.java.sdk</a>(</span><span class="f">13</span><span class="e">)</span><span class="b">
 	}</span>
-<span class="a">)</span>
+<span class="e">)</span>
 </code></pre>
 <p>In order to setup the forked compilation, the task uses the <a href="../../../saker.sdk.support/doc/sdks/index.html" title="What is an SDK?">SDK mechanism</a> to pass the configuration. The <a href="../../taskdoc/saker.java.sdk.html"><code>saker.java.sdk()</code></a> task finds an appropriate JDK reference with the major version of 13, and that will be used to compile the sources.</p>
 <p>If the current build execution already runs on JDK 13, then the compilation will not be forked.</p>

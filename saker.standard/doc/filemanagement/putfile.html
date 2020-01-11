@@ -52,10 +52,10 @@
 </div>
 			<div class="doc-content"><h1 id="put-file">Put file<a class="doc-heading-anchor" href="#put-file"></a></h1>
 <p>The <a href="../../taskdoc/std.file.put.html"><code>std.file.put()</code></a> task can be used when you want to write some string contents to a given file. It simply takes the target file location and file contents as its input, and writes it to the given location:</p>
-<pre><code class="language-sakerscript"><span class="a"><a href="../../../saker.standard/taskdoc/std.file.put.html" title="Task: std.file.put()">std.file.put</a>(</span>
-	<span class="a"><a href="../../../saker.standard/taskdoc/std.file.local.html" title="Task: std.file.local()">std.file.local</a>(</span><span class="b">&quot;/home/user/file.txt&quot;</span><span class="a">)</span>,
-	<span class="c">Contents: </span><span class="b">&quot;example_content&quot;</span>
-<span class="a">)</span>
+<pre><code class="language-sakerscript"><span class="e"><a href="../../../saker.standard/taskdoc/std.file.put.html" title="Task: std.file.put()">std.file.put</a>(</span>
+	<span class="e"><a href="../../../saker.standard/taskdoc/std.file.local.html" title="Task: std.file.local()">std.file.local</a>(</span><span class="f">&quot;/home/user/file.txt&quot;</span><span class="e">)</span>,
+	<span class="i">Contents: </span><span class="f">&quot;example_content&quot;</span>
+<span class="e">)</span>
 </code></pre>
 <p>The above will result in a file created at the local file system path <code>/home/user/file.txt</code> with the contents <code>example_content</code>. The task can be used to put files to local and execution file locations. The <code>Charset</code> parameter can be used to specify the encoding of the bytes when the characters are written.</p>
 <p>It is generally not recommended to use this task to write files in the build execution hierarchy, only to write files that are the final output of the build. If you write a file that is an input to some other tasks, you need to ensure proper execution order of those tasks.</p>

@@ -57,12 +57,12 @@
 <p>The imperative execution model is the most common one, this is how common CPUs and programming languages work. You write your program code, and the interpreter (the CPU in most cases) will evaluate it step by step, after one another. Such programming languages are easy to understand, as you can easily determine the control flow of the program, just by looking at the subsequent expressions.</p>
 <p>The demand-driven execution model is another one, which is based on the requested data and its dependencies. In this model, expressions are only evaluated when there's a need for its results. We consider this model to not be suitable for a build system language, as not explicitly using the output of a task can result in it being omitted.</p>
 <p>When a data-driven execution model is used the expressions are evaluated, and when they complete, the dependent expressions are started to evaluate as well. This model provides the opportunity to greatly parallelize the execution while evaluating every expression that is required.</p>
-<pre><code class="language-sakerscript"><span class="j">build(</span>
-	<span class="g">out</span> <span class="d">Output</span>
-<span class="j">)</span> <span class="e">{</span>
-	<span class="d">$Output</span> = <span class="a">output.task()</span>
-	<span class="a">other.task()</span>
-<span class="e">}</span>
+<pre><code class="language-sakerscript"><span class="a">build(</span>
+	<span class="j">out</span> <span class="d">Output</span>
+<span class="a">)</span> <span class="b">{</span>
+	<span class="d">$Output</span> = <span class="e">output.task()</span>
+	<span class="e">other.task()</span>
+<span class="b">}</span>
 </code></pre>
 <p>Let's look at the above example with the respect of possible execution models.</p>
 <p><strong>In case of imperative model</strong>, we evaluate <code>output.task()</code>, assign it to <code>$Output</code>, and run <code>other.task()</code>. This produces the correct output as we expect both tasks to run, but provides no parallelization, therefore leaving computation resources unused, hindering performance.</p>
@@ -77,32 +77,32 @@ This execution model provides great parallelization, but limits proper usability
 <h2 id="eagerness">Eagerness<a class="doc-heading-anchor" href="#eagerness"></a></h2>
 <p>The evaluation of expressions is eager, meaning that <em>all</em> expressions are evaluated concurrently and they will be stalled when they attempt to use the result of another expression. This means that its the responsibility of the expressions to retrieve the results of their dependencies, not the language execution model to only evaluate an expression if all of the inputs are available.</p>
 <p>This results in the advantage that if an expression doesn't use an input of its, then it doesn't need to wait for the evaluation of it. We can see this in the following example:</p>
-<pre><code class="language-sakerscript"><span class="j">build(</span>
-	<span class="g">out</span> <span class="d">Output</span>
-<span class="j">)</span> <span class="e">{</span>
-	<span class="d">$Output</span> = <span class="a">include(</span><span class="b">second</span>, <span class="c">Input: </span><span class="d">$Unassigned</span><span class="a">)</span><span class="i">[</span><span class="f">SecondOut</span><span class="i">]</span>
-<span class="e">}</span>
-<span class="j">second(</span>
-	<span class="g">in</span> <span class="d">Input</span>,
-	<span class="g">out</span> <span class="d">SecondOut</span>,
-<span class="j">)</span> <span class="e">{</span>
-	<span class="d">$SecondOut</span> = <span class="a">second.task()</span>
-<span class="e">}</span>
+<pre><code class="language-sakerscript"><span class="a">build(</span>
+	<span class="j">out</span> <span class="d">Output</span>
+<span class="a">)</span> <span class="b">{</span>
+	<span class="d">$Output</span> = <span class="e"><a href="../../../saker.build/doc/scripting/builtintasks/include.html" title="Task: include()">include</a>(</span><span class="f">second</span>, <span class="i">Input: </span><span class="d">$Unassigned</span><span class="e">)</span><span class="g">[</span><span class="h">SecondOut</span><span class="g">]</span>
+<span class="b">}</span>
+<span class="a">second(</span>
+	<span class="j">in</span> <span class="d">Input</span>,
+	<span class="j">out</span> <span class="d">SecondOut</span>,
+<span class="a">)</span> <span class="b">{</span>
+	<span class="d">$SecondOut</span> = <span class="e">second.task()</span>
+<span class="b">}</span>
 </code></pre>
 <p>We run the <code>build</code> build target, which produces its <code>Output</code> based on the output of the <code>second</code> build target that it invoked using <code>include()</code>. The <code>Input</code> parameter with the variable value of <code>$Unassigned</code> is passed to the <code>second</code> build target. The variable <code>$Unassigned</code> is never assigned during execution.</p>
 <p>We can see that the <code>second</code> build target never uses its <code>Input</code> parameter, therefore the value of <code>$Unassigned</code> is never retrieved. If the value of <code>$Unassigned</code> was used, then the execution of the build target would deadlock, and fail. However, as the responsibility of retrieving the results of the dependencies of an expression has been assigned to the expressions instead of the execution model, this allows us to successfully complete the execution of the above example.</p>
 <h2 id="nonlinearity">Nonlinearity<a class="doc-heading-anchor" href="#nonlinearity"></a></h2>
 <p>As previously mentioned, the expressions declared in the language are not evaluated in the order they were declared in. This means that changing the order of expressions will yield the same results, irregardless of the order.</p>
-<pre><code class="language-sakerscript"><span class="j">build</span> <span class="e">{</span>
-	<span class="d">$firstOut</span> = <span class="a">first.task()</span>
-	<span class="a">second.task(</span><span class="d">$firstOut</span><span class="a">)</span>
-<span class="e">}</span>
+<pre><code class="language-sakerscript"><span class="a">build</span> <span class="b">{</span>
+	<span class="d">$firstOut</span> = <span class="e">first.task()</span>
+	<span class="e">second.task(</span><span class="d">$firstOut</span><span class="e">)</span>
+<span class="b">}</span>
 </code></pre>
 <p>The above will produce the same results as the following:</p>
-<pre><code class="language-sakerscript"><span class="j">build</span> <span class="e">{</span>
-	<span class="a">second.task(</span><span class="d">$firstOut</span><span class="a">)</span>
-	<span class="d">$firstOut</span> = <span class="a">first.task()</span>
-<span class="e">}</span>
+<pre><code class="language-sakerscript"><span class="a">build</span> <span class="b">{</span>
+	<span class="e">second.task(</span><span class="d">$firstOut</span><span class="e">)</span>
+	<span class="d">$firstOut</span> = <span class="e">first.task()</span>
+<span class="b">}</span>
 </code></pre>
 <p>This is a big advantage of the language. It provides great parallelization of the evaluation, while maintaining the readability of the code. You're able to write code that follows the logic of linear progression, while parallelizing the expressions automatically based on the data dependencies.</p>
 <p>This basically makes SakerScript a declarative language, in the sense that the execution flow depends on the data availability rather then the order of the expressions. We believe that this solution is most applicable for a build language.</p>

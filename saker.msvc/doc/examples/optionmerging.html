@@ -54,131 +54,131 @@
 <p>See also: <a href="../ccompile/compileroptions.html" title="Compiler options">Compiler options</a>, <a href="../ccompile/linkeroptions.html" title="Linker options">Linker options</a></p>
 <p>The <a href="../../taskdoc/saker.msvc.ccompile.html"><code>saker.msvc.ccompile()</code></a> and <a href="../../taskdoc/saker.msvc.clink.html"><code>saker.msvc.clink()</code></a> tasks allow you to specify options to be merged with the specified task parameters/properties. These parameters are dynamically merged with the task configuration based on the <code>Identifier</code>, <code>Architecture</code>, and <code>Language</code> of the subject.</p>
 <p>The feature allows you to configure the tasks in a way that is independent from the location of the task invocation:</p>
-<pre><code class="language-sakerscript"><span class="d">$options</span> = <span class="e">[</span>
-	<span class="e">{</span>
-		<span class="f">Architecture</span>: <span class="b">x86</span><span class="e">,</span>
-		<span class="f">MacroDefinitions</span>: <span class="e">{</span>
-			<span class="f">MARCHITECTURE</span>: <span class="b">X86</span><span class="e">
+<pre><code class="language-sakerscript"><span class="d">$options</span> = <span class="b">[</span>
+	<span class="b">{</span>
+		<span class="h">Architecture</span>: <span class="f">x86</span><span class="b">,</span>
+		<span class="h">MacroDefinitions</span>: <span class="b">{</span>
+			<span class="h">MARCHITECTURE</span>: <span class="f">X86</span><span class="b">
 		}
 	},</span>
-	<span class="e">{</span>
-		<span class="f">Architecture</span>: <span class="b">x64</span><span class="e">,</span>
-		<span class="f">MacroDefinitions</span>: <span class="e">{</span>
-			<span class="f">MARCHITECTURE</span>: <span class="b">X64</span><span class="e">
+	<span class="b">{</span>
+		<span class="h">Architecture</span>: <span class="f">x64</span><span class="b">,</span>
+		<span class="h">MacroDefinitions</span>: <span class="b">{</span>
+			<span class="h">MARCHITECTURE</span>: <span class="f">X64</span><span class="b">
 		}
 	},</span>
-<span class="e">]</span>
-<span class="a"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span>
-	<span class="b">src/**/*.cpp</span>,
-	<span class="c">Architecture: </span><span class="b">x86</span>,
-	<span class="c">CompilerOptions: </span><span class="d">$options</span>
-<span class="a">)</span>
-<span class="a"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span>
-	<span class="b">src/**/*.cpp</span>,
-	<span class="c">Architecture: </span><span class="b">x64</span>,
-	<span class="c">CompilerOptions: </span><span class="d">$options</span>
-<span class="a">)</span>
+<span class="b">]</span>
+<span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span>
+	<span class="f">src/**/*.cpp</span>,
+	<span class="i">Architecture: </span><span class="f">x86</span>,
+	<span class="i">CompilerOptions: </span><span class="d">$options</span>
+<span class="e">)</span>
+<span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span>
+	<span class="f">src/**/*.cpp</span>,
+	<span class="i">Architecture: </span><span class="f">x64</span>,
+	<span class="i">CompilerOptions: </span><span class="d">$options</span>
+<span class="e">)</span>
 </code></pre>
 <p>The compilation tasks will be set up in a way that the <code>MARCHITECTURE</code> preprocessor macro will be defined with the value of <code>X86</code> when compiling for <code>x86</code> and with the value of <code>X64</code> when compiling for <code>x64</code> architecture.</p>
 <h2 id="merging-criteria">Merging criteria<a class="doc-heading-anchor" href="#merging-criteria"></a></h2>
 <p>The mergeability of the options are determined based on the associated <code>Identifier</code>, <code>Language</code>, and <code>Architecture</code> of the options. The options can be defined in the following way:</p>
-<pre><code class="language-sakerscript"><span class="e">{</span>
-	<span class="f">Architecture</span>: <span class="b">x64</span><span class="e">,</span>
-	<span class="f">Language</span>: <span class="b">C++</span><span class="e">,</span>
-	<span class="f">Identifier</span>: <span class="b">app</span><span class="e">,</span>
-	<span class="h"># ... other options</span>
-<span class="e">}</span>
+<pre><code class="language-sakerscript"><span class="b">{</span>
+	<span class="h">Architecture</span>: <span class="f">x64</span><span class="b">,</span>
+	<span class="h">Language</span>: <span class="f">C++</span><span class="b">,</span>
+	<span class="h">Identifier</span>: <span class="f">app</span><span class="b">,</span>
+	<span class="c"># ... other options</span>
+<span class="b">}</span>
 </code></pre>
 <p>The above option will be only merged if the compilation is being done using <code>C++</code> language, and if the target architecture is <code>x64</code>. It also checks if the pass identifier contains the <code>app</code> component. The option is able to merged with the following example:</p>
-<pre><code class="language-sakerscript"><span class="a"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span>
-	<span class="b">src/**/*.cpp</span>,
-	<span class="c">Architecture: </span><span class="b">x64</span>,
-	<span class="c">Identifier: </span><span class="b">main-app</span>
-<span class="a">)</span>
+<pre><code class="language-sakerscript"><span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span>
+	<span class="f">src/**/*.cpp</span>,
+	<span class="i">Architecture: </span><span class="f">x64</span>,
+	<span class="i">Identifier: </span><span class="f">main-app</span>
+<span class="e">)</span>
 </code></pre>
 <p>If the <code>Architecture</code> parameter is not specified, and the inferred target architecture is <code>x64</code>, then the option merging will be done in that caes as well.</p>
 <p>The option won't be merged with any of the following examples:</p>
-<pre><code class="language-sakerscript"><span class="h"># Different language, C instead of C++</span>
-<span class="a"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span>
-	<span class="b">src/**/*.c</span>,
-	<span class="c">Architecture: </span><span class="b">x64</span>,
-	<span class="c">Identifier: </span><span class="b">main-app</span>
-<span class="a">)</span>
-<span class="h"># Different target architecture</span>
-<span class="a"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span>
-	<span class="b">src/**/*.cpp</span>,
-	<span class="c">Architecture: </span><span class="b">x86</span>,
-	<span class="c">Identifier: </span><span class="b">main-app</span>
-<span class="a">)</span>
-<span class="h"># The app identifier component is missing</span>
-<span class="a"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span>
-	<span class="b">src/**/*.cpp</span>,
-	<span class="c">Architecture: </span><span class="b">x64</span>,
-	<span class="c">Identifier: </span><span class="b">main</span>
-<span class="a">)</span>
+<pre><code class="language-sakerscript"><span class="c"># Different language, C instead of C++</span>
+<span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span>
+	<span class="f">src/**/*.c</span>,
+	<span class="i">Architecture: </span><span class="f">x64</span>,
+	<span class="i">Identifier: </span><span class="f">main-app</span>
+<span class="e">)</span>
+<span class="c"># Different target architecture</span>
+<span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span>
+	<span class="f">src/**/*.cpp</span>,
+	<span class="i">Architecture: </span><span class="f">x86</span>,
+	<span class="i">Identifier: </span><span class="f">main-app</span>
+<span class="e">)</span>
+<span class="c"># The app identifier component is missing</span>
+<span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span>
+	<span class="f">src/**/*.cpp</span>,
+	<span class="i">Architecture: </span><span class="f">x64</span>,
+	<span class="i">Identifier: </span><span class="f">main</span>
+<span class="e">)</span>
 </code></pre>
 <p>Note that the above option can be also merged to the <a href="../../taskdoc/saker.msvc.clink.html"><code>saker.msvc.clink()</code></a> task. In those cases, the <code>Language</code> criteria is not taken into account.</p>
 <p>If an option doesn't have some criteria defined for it, then that won't be taken into account. For example to define an option that can be merged to any task:</p>
-<pre><code class="language-sakerscript"><span class="d">$option</span> = <span class="e">{</span>
-	<span class="f">MacroDefinitions</span>: <span class="e">{</span>
-		<span class="f">EXAMPLE_APP</span>: <span class="b">1</span><span class="e">
+<pre><code class="language-sakerscript"><span class="d">$option</span> = <span class="b">{</span>
+	<span class="h">MacroDefinitions</span>: <span class="b">{</span>
+		<span class="h">EXAMPLE_APP</span>: <span class="f">1</span><span class="b">
 	}
 }</span>
-<span class="a"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span>
-	<span class="b">src/**/*.cpp</span>,
-	<span class="c">CompilerOptions: </span><span class="d">$option</span>
-<span class="a">)</span>
+<span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span>
+	<span class="f">src/**/*.cpp</span>,
+	<span class="i">CompilerOptions: </span><span class="d">$option</span>
+<span class="e">)</span>
 </code></pre>
 <p>The above will have the <code>EXAMPLE_APP</code> macro defined for the compiled files, as the specified option with the macro definitions doesn't have any criteria that limits its merging.</p>
 <h2 id="compilation-input-options">Compilation input options<a class="doc-heading-anchor" href="#compilation-input-options"></a></h2>
 <p>The <a href="../../taskdoc/saker.msvc.ccompile.html"><code>saker.msvc.ccompile()</code></a> tasks allows complex configuration of each compiled input set. You can specify different merge options for each input set:</p>
-<pre><code class="language-sakerscript"><span class="d">$options</span> = <span class="e">[</span> <span class="k">### ... ###</span> <span class="e">]</span>
-<span class="d">$coreoptions</span> = <span class="e">[</span> <span class="k">### ... ###</span> <span class="e">]</span>
-<span class="d">$sideoptions</span> = <span class="e">[</span> <span class="k">### ... ###</span> <span class="e">]</span>
-<span class="a"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span>
-	<span class="c">Input</span>: <span class="e">[</span>
-		<span class="e">{</span>
-			<span class="f">Files</span>: <span class="b">src/core/**/*.cpp</span><span class="e">,</span>
-			<span class="f">CompilerOptions</span>: <span class="d">$coreoptions</span><span class="e">
+<pre><code class="language-sakerscript"><span class="d">$options</span> = <span class="b">[</span> <span class="k">### ... ###</span> <span class="b">]</span>
+<span class="d">$coreoptions</span> = <span class="b">[</span> <span class="k">### ... ###</span> <span class="b">]</span>
+<span class="d">$sideoptions</span> = <span class="b">[</span> <span class="k">### ... ###</span> <span class="b">]</span>
+<span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span>
+	<span class="i">Input</span>: <span class="b">[</span>
+		<span class="b">{</span>
+			<span class="h">Files</span>: <span class="f">src/core/**/*.cpp</span><span class="b">,</span>
+			<span class="h">CompilerOptions</span>: <span class="d">$coreoptions</span><span class="b">
 		},</span>
-		<span class="e">{</span>
-			<span class="f">Files</span>: <span class="b">src/side/**/*.cpp</span><span class="e">,</span>
-			<span class="f">CompilerOptions</span>: <span class="d">$sideoptions</span><span class="e">
+		<span class="b">{</span>
+			<span class="h">Files</span>: <span class="f">src/side/**/*.cpp</span><span class="b">,</span>
+			<span class="h">CompilerOptions</span>: <span class="d">$sideoptions</span><span class="b">
 		}
 	]</span>,
-	<span class="c">CompilerOptions: </span><span class="d">$options</span>,
-	<span class="c">Identifier: </span><span class="b">main</span>
-<span class="a">)</span>
+	<span class="i">CompilerOptions: </span><span class="d">$options</span>,
+	<span class="i">Identifier: </span><span class="f">main</span>
+<span class="e">)</span>
 </code></pre>
 <p>The above showcases 3 different option definitions assigned to the appropriate variables. The <code>$options</code> will be attempted to be merged to all inputs for the compilation task.</p>
 <p>The options specified in <code>$coreoptions</code> will be only merged for the compiled files defined by <code>src/core/**/*.cpp</code>. <br />
 The options specified in <code>$sideoptions</code> will be only merged for the compiled files defined by <code>src/side/**/*.cpp</code>.</p>
 <p>Specifying compiler options in the <code>CompilerOptions</code> property for an input set can be used to apply options privately only to that given input set.</p>
 <p>You can also achieve this by using the <code>SubIdentifier</code> property:</p>
-<pre><code class="language-sakerscript"><span class="d">$options</span> = <span class="e">[</span>
-	<span class="e">{</span>
-		<span class="f">Identifier</span>: <span class="b">core</span><span class="e">,</span>
-		<span class="h"># ...</span>
-	<span class="e">},</span>
-	<span class="e">{</span>
-		<span class="f">Identifier</span>: <span class="b">side</span><span class="e">,</span>
-		<span class="h"># ...</span>
-	<span class="e">},</span>
-<span class="e">]</span>
-<span class="a"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span>
-	<span class="c">Input</span>: <span class="e">[</span>
-		<span class="e">{</span>
-			<span class="f">Files</span>: <span class="b">src/core/**/*.cpp</span><span class="e">,</span>
-			<span class="f">SubIdentifier</span>: <span class="b">core</span><span class="e">
+<pre><code class="language-sakerscript"><span class="d">$options</span> = <span class="b">[</span>
+	<span class="b">{</span>
+		<span class="h">Identifier</span>: <span class="f">core</span><span class="b">,</span>
+		<span class="c"># ...</span>
+	<span class="b">},</span>
+	<span class="b">{</span>
+		<span class="h">Identifier</span>: <span class="f">side</span><span class="b">,</span>
+		<span class="c"># ...</span>
+	<span class="b">},</span>
+<span class="b">]</span>
+<span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span>
+	<span class="i">Input</span>: <span class="b">[</span>
+		<span class="b">{</span>
+			<span class="h">Files</span>: <span class="f">src/core/**/*.cpp</span><span class="b">,</span>
+			<span class="h">SubIdentifier</span>: <span class="f">core</span><span class="b">
 		},</span>
-		<span class="e">{</span>
-			<span class="f">Files</span>: <span class="b">src/side/**/*.cpp</span><span class="e">,</span>
-			<span class="f">SubIdentifier</span>: <span class="b">side</span><span class="e">
+		<span class="b">{</span>
+			<span class="h">Files</span>: <span class="f">src/side/**/*.cpp</span><span class="b">,</span>
+			<span class="h">SubIdentifier</span>: <span class="f">side</span><span class="b">
 		}
 	]</span>,
-	<span class="c">CompilerOptions: </span><span class="d">$options</span>,
-	<span class="c">Identifier: </span><span class="b">main</span>
-<span class="a">)</span>
+	<span class="i">CompilerOptions: </span><span class="d">$options</span>,
+	<span class="i">Identifier: </span><span class="f">main</span>
+<span class="e">)</span>
 </code></pre>
 <p>If any <code>SubIdentifier</code> is specified for an input set, then when merging the specified options, the <code>SubIdentifier</code> is effectively combined with the <code>Identifier</code> parameter if any. Therefore, in the above the merging will commence for the <code>main-core</code> and the <code>main-side</code> identifiers respectively. The merging will result in the appropriate options being used as specified in <code>$options</code>.</p>
 <link href="../../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>

@@ -55,11 +55,11 @@
 <p>Dereferencing a variable is semantically the same as using the <a href="../../../builtintasks/var.html" title="var()"><code>var()</code></a> task. Additionally, dereferencing differs from <code>var()</code> in a way that it can be used to access loop and local variables in the body of a <a href="../../foreach/index.html" title="Foreach expression"><code>foreach</code></a> expression.</p>
 <p>Both simple and complex expressions can be the subject of dereferencing.</p>
 <p>See <a href="../../variables/index.html" title="Variables">Variables</a> for more information.</p>
-<pre><code class="language-sakerscript"><span class="h"># assign 123 to the variable named &quot;var&quot;</span>
-<span class="d">$var</span> = <span class="b">123</span>
-<span class="h"># assign 456 to the variable named &quot;var6&quot;</span>
-<span class="d">$</span><span class="b">&quot;var</span>{ <span class="b">2</span> * <span class="b">3</span> }<span class="b">&quot;</span> = <span class="b">456</span>
-<span class="h"># assign the value of $var to $alias</span>
+<pre><code class="language-sakerscript"><span class="c"># assign 123 to the variable named &quot;var&quot;</span>
+<span class="d">$var</span> = <span class="f">123</span>
+<span class="c"># assign 456 to the variable named &quot;var6&quot;</span>
+<span class="d">$</span><span class="f">&quot;var</span>{ <span class="f">2</span> * <span class="f">3</span> }<span class="f">&quot;</span> = <span class="f">456</span>
+<span class="c"># assign the value of $var to $alias</span>
 <span class="d">$alias</span> = <span class="d">$var</span>
 </code></pre>
 <link href="../../../../../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>

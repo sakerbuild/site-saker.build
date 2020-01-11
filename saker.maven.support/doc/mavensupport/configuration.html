@@ -30,7 +30,7 @@
 					Navigation
 				</label>
 				<input style="display:none;" id="doc-collapse-nav-label" type="checkbox"/> 
-				<div class="doc-nav">  <div class="doc-section"><ul><li><a class="doc-nav-section-link" href="../../index.html" title="Index">Index</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Package details</p><ul><li><a class="doc-nav-section-link" href="../index.html" title="Overview">Overview</a></li><li><a class="doc-nav-section-link" href="../gettingstarted.html" title="Getting started">Getting started</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Maven support</p><ul><li><a class="doc-nav-section-link" href="index.html" title="Basics">Basics</a></li><li class="doc-active doc-active-parent"><a class="doc-nav-section-link" href="configuration.html" title="Configuration">Configuration</a></li><li><a class="doc-nav-section-link" href="resolution.html" title="Dependency resolution">Dependency resolution</a></li><li><a class="doc-nav-section-link" href="localization.html" title="Artifact localization">Artifact localization</a></li><li><a class="doc-nav-section-link" href="downloading.html" title="Artifact downloading">Artifact downloading</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Examples</p><ul><li><a class="doc-nav-section-link" href="../examples/index.html" title="Overview">Overview</a></li><li><a class="doc-nav-section-link" href="../examples/classpath.html" title="Java classpath">Java classpath</a></li><li><a class="doc-nav-section-link" href="../examples/scopeselection.html" title="Scope selection">Scope selection</a></li></ul>  </div></div>
+				<div class="doc-nav">  <div class="doc-section"><ul><li><a class="doc-nav-section-link" href="../../index.html" title="Index">Index</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Package details</p><ul><li><a class="doc-nav-section-link" href="../index.html" title="Overview">Overview</a></li><li><a class="doc-nav-section-link" href="../gettingstarted.html" title="Getting started">Getting started</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Maven support</p><ul><li><a class="doc-nav-section-link" href="index.html" title="Basics">Basics</a></li><li class="doc-active doc-active-parent"><a class="doc-nav-section-link" href="configuration.html" title="Configuration">Configuration</a></li><li><a class="doc-nav-section-link" href="authentication.html" title="Authentication">Authentication</a></li><li><a class="doc-nav-section-link" href="resolution.html" title="Dependency resolution">Dependency resolution</a></li><li><a class="doc-nav-section-link" href="localization.html" title="Artifact localization">Artifact localization</a></li><li><a class="doc-nav-section-link" href="downloading.html" title="Artifact downloading">Artifact downloading</a></li><li><a class="doc-nav-section-link" href="installing.html" title="Artifact installing">Artifact installing</a></li><li><a class="doc-nav-section-link" href="deploying.html" title="Artifact deploying">Artifact deploying</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Examples</p><ul><li><a class="doc-nav-section-link" href="../examples/index.html" title="Overview">Overview</a></li><li><a class="doc-nav-section-link" href="../examples/classpath.html" title="Java classpath">Java classpath</a></li><li><a class="doc-nav-section-link" href="../examples/scopeselection.html" title="Scope selection">Scope selection</a></li></ul>  </div></div>
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
@@ -52,42 +52,42 @@
 </div>
 			<div class="doc-content"><h1 id="configuration">Configuration<a class="doc-heading-anchor" href="#configuration"></a></h1>
 <p>The repository configuration of the tasks can be specified by specifying the <code>Configuration</code> parameter:</p>
-<pre><code class="language-sakerscript"><span class="a"><a href="../../../saker.maven.support/taskdoc/saker.maven.resolve.html" title="Task: saker.maven.resolve()">saker.maven.resolve</a>(</span>
-	<span class="h"># ... other parameters ...</span>
-	<span class="c">Configuration</span>: <span class="e">{</span>
-		<span class="f">LocalRepositoryPath</span>: <span class="b">&quot;c:/Users/user/.m2/repository&quot;</span><span class="e">,</span>
-		<span class="f">Repositories</span>: <span class="e">[</span>
-			<span class="e">{</span>
-				<span class="f">Id</span>: <span class="b">central</span><span class="e">,</span>
-				<span class="f">Url</span>: <span class="b">&quot;https://repo.maven.apache.org/maven2/&quot;</span><span class="e">,</span>
-			<span class="e">},</span>
-			<span class="e">{</span>
-				<span class="f">Id</span>: <span class="b">jcenter</span><span class="e">,</span>
-				<span class="f">Url</span>: <span class="b">&quot;https://jcenter.bintray.com/&quot;</span><span class="e">,</span>
-			<span class="e">}
+<pre><code class="language-sakerscript"><span class="e"><a href="../../../saker.maven.support/taskdoc/saker.maven.resolve.html" title="Task: saker.maven.resolve()">saker.maven.resolve</a>(</span>
+	<span class="c"># ... other parameters ...</span>
+	<span class="i">Configuration</span>: <span class="b">{</span>
+		<span class="h">LocalRepositoryPath</span>: <span class="f">&quot;c:/Users/user/.m2/repository&quot;</span><span class="b">,</span>
+		<span class="h">Repositories</span>: <span class="b">[</span>
+			<span class="b">{</span>
+				<span class="h">Id</span>: <span class="f">central</span><span class="b">,</span>
+				<span class="h">Url</span>: <span class="f">&quot;https://repo.maven.apache.org/maven2/&quot;</span><span class="b">,</span>
+			<span class="b">},</span>
+			<span class="b">{</span>
+				<span class="h">Id</span>: <span class="f">jcenter</span><span class="b">,</span>
+				<span class="h">Url</span>: <span class="f">&quot;https://jcenter.bintray.com/&quot;</span><span class="b">,</span>
+			<span class="b">}
 		]
 	}</span>
-<span class="a">)</span>
+<span class="e">)</span>
 </code></pre>
 <p>In the above example we set the local repository path and the repositories to be used when the dependencies are resolved. The <code>LocalRepositoryPath</code> parameter specifies the path to the local repository where the artifacts can be stored and cached. The <code>Repositories</code> list the repositories that should be used when resolving artifacts and dependencies.</p>
 <p>If no configuration is specified, the local repository path will be <code>{user.dir}/.m2/repository</code>. If no repositories are specified, the <code>central</code> repository is used with the <code>Url</code> of <code>https://repo.maven.apache.org/maven2/</code>.</p>
 <p>The snapshot and release policy can also be configured for the repositories:</p>
-<pre><code class="language-sakerscript"><span class="a"><a href="../../../saker.maven.support/taskdoc/saker.maven.resolve.html" title="Task: saker.maven.resolve()">saker.maven.resolve</a>(</span>
-	<span class="h"># ... other parameters ...</span>
-	<span class="c">Configuration</span>: <span class="e">{</span>
-		<span class="f">LocalRepositoryPath</span>: <span class="b">&quot;c:/Users/user/.m2/repository&quot;</span><span class="e">,</span>
-		<span class="f">Repositories</span>: <span class="e">[</span>
-			<span class="e">{</span>
-				<span class="f">Id</span>: <span class="b">central</span><span class="e">,</span>
-				<span class="f">Url</span>: <span class="b">&quot;https://repo.maven.apache.org/maven2/&quot;</span><span class="e">,</span>
-				<span class="f">Snapshots</span>: <span class="g">false</span><span class="e">,</span>
-				<span class="f">Releases</span>: <span class="e">{</span>
-					<span class="f">UpdatePolicy</span>: <span class="b">daily</span><span class="e">
+<pre><code class="language-sakerscript"><span class="e"><a href="../../../saker.maven.support/taskdoc/saker.maven.resolve.html" title="Task: saker.maven.resolve()">saker.maven.resolve</a>(</span>
+	<span class="c"># ... other parameters ...</span>
+	<span class="i">Configuration</span>: <span class="b">{</span>
+		<span class="h">LocalRepositoryPath</span>: <span class="f">&quot;c:/Users/user/.m2/repository&quot;</span><span class="b">,</span>
+		<span class="h">Repositories</span>: <span class="b">[</span>
+			<span class="b">{</span>
+				<span class="h">Id</span>: <span class="f">central</span><span class="b">,</span>
+				<span class="h">Url</span>: <span class="f">&quot;https://repo.maven.apache.org/maven2/&quot;</span><span class="b">,</span>
+				<span class="h">Snapshots</span>: <span class="j">false</span><span class="b">,</span>
+				<span class="h">Releases</span>: <span class="b">{</span>
+					<span class="h">UpdatePolicy</span>: <span class="f">daily</span><span class="b">
 				}
 			},</span>
-		<span class="e">]
+		<span class="b">]
 	}</span>
-<span class="a">)</span>
+<span class="e">)</span>
 </code></pre>
 <p>The above showcases that snapshot artifacts are disabled, and the release artifacts should be updated on a daily basis.</p>
 <link href="../../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>
@@ -98,7 +98,7 @@
 </svg>Basics</a>
 				</div>
 				<div class="end-section-next">
-					<a class="doc-next-section" href="../../doc/mavensupport/resolution.html" title="Dependency resolution">Dependency resolution<svg class="doc-section-arrow" viewBox="0 0 24 24">
+					<a class="doc-next-section" href="../../doc/mavensupport/authentication.html" title="Authentication">Authentication<svg class="doc-section-arrow" viewBox="0 0 24 24">
     <path fill="currentColor" d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z" />
 </svg></a>
 				</div>

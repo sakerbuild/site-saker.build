@@ -57,21 +57,21 @@
 <p>See <a href="../../../saker.java.compiler/doc/examples/nestbundleclasspath.html" title="Nest bundle classpath">Nest bundle classpath</a> for usage example.</p>
 <h4 id="localized-bundles">Localized bundles<a class="doc-heading-anchor" href="#localized-bundles"></a></h4>
 <p>You can <a href="../bundlemanagement/localize.html" title="Bundle localization">localize</a> the given bundles, and then pass them to the <a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html"><code>saker.java.compile()</code></a> as local path references:</p>
-<pre><code class="language-sakerscript"><span class="d">$localized</span> = <span class="a"><a href="../../../nest.repository.support/taskdoc/nest.bundle.localize.html" title="Task: nest.bundle.localize()">nest.bundle.localize</a>(</span><span class="k">### ... ###</span><span class="a">)</span>
-<span class="a"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
-	<span class="c">SourceDirectories</span>: <span class="b">src</span>,
-	<span class="c">ClassPath: </span><span class="g">foreach </span><span class="d">$path</span><span class="g"> in </span><span class="d">$localized</span><span class="i">[</span><span class="f">BundleLocalPaths</span><span class="i">]</span>: 
-		<span class="e">[</span> <span class="a"><a href="../../../saker.standard/taskdoc/std.file.local.html" title="Task: std.file.local()">std.file.local</a>(</span><span class="d">$path</span><span class="a">)</span><span class="e"> ]</span>
-<span class="a">)</span>
+<pre><code class="language-sakerscript"><span class="d">$localized</span> = <span class="e"><a href="../../../nest.repository.support/taskdoc/nest.bundle.localize.html" title="Task: nest.bundle.localize()">nest.bundle.localize</a>(</span><span class="k">### ... ###</span><span class="e">)</span>
+<span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
+	<span class="i">SourceDirectories</span>: <span class="f">src</span>,
+	<span class="i">ClassPath: </span><span class="j">foreach </span><span class="d">$path</span><span class="j"> in </span><span class="d">$localized</span><span class="g">[</span><span class="h">BundleLocalPaths</span><span class="g">]</span>: 
+		<span class="b">[</span> <span class="e"><a href="../../../saker.standard/taskdoc/std.file.local.html" title="Task: std.file.local()">std.file.local</a>(</span><span class="d">$path</span><span class="e">)</span><span class="b"> ]</span>
+<span class="e">)</span>
 </code></pre>
 <p>This way the bundles don't have to be copied into the build system file hierarchy.</p>
 <h4 id="downloaded-bundles">Downloaded bundles<a class="doc-heading-anchor" href="#downloaded-bundles"></a></h4>
-<pre><code class="language-sakerscript"><span class="d">$downloaded</span> = <span class="a"><a href="../../../nest.repository.support/taskdoc/nest.bundle.download.html" title="Task: nest.bundle.download()">nest.bundle.download</a>(</span><span class="k">### ... ###</span><span class="a">)</span>
-<span class="a"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
-	<span class="c">SourceDirectories</span>: <span class="b">src</span>,
-	<span class="c">ClassPath: </span><span class="g">foreach </span><span class="d">$path</span><span class="g"> in </span><span class="d">$downloaded</span><span class="i">[</span><span class="f">BundlePaths</span><span class="i">]</span>: 
-		<span class="e">[</span> <span class="d">$path</span><span class="e"> ]</span>
-<span class="a">)</span>
+<pre><code class="language-sakerscript"><span class="d">$downloaded</span> = <span class="e"><a href="../../../nest.repository.support/taskdoc/nest.bundle.download.html" title="Task: nest.bundle.download()">nest.bundle.download</a>(</span><span class="k">### ... ###</span><span class="e">)</span>
+<span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
+	<span class="i">SourceDirectories</span>: <span class="f">src</span>,
+	<span class="i">ClassPath: </span><span class="j">foreach </span><span class="d">$path</span><span class="j"> in </span><span class="d">$downloaded</span><span class="g">[</span><span class="h">BundlePaths</span><span class="g">]</span>: 
+		<span class="b">[</span> <span class="d">$path</span><span class="b"> ]</span>
+<span class="e">)</span>
 </code></pre>
 <p>The above will <a href="../bundlemanagement/download.html" title="Bundle downloading">download</a> the bundles, and the pass their paths as input to the Java compiler task.</p>
 <link href="../../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>

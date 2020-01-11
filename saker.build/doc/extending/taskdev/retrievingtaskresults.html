@@ -63,14 +63,14 @@
 		@Override		public void initParameters(TaskContext taskcontext,				NavigableMap&lt;String, ? extends TaskIdentifier&gt; parameters)						throws TaskParameterException {			parameter = taskcontext.getTaskResult(parameters.get(&quot;Parameter&quot;));		}	};}</code></pre>
 </p>
 <p>Using it the following way:</p>
-<pre><code class="language-sakerscript"><span class="d">$paramvalue</span> = <span class="b">&quot;Hello world!&quot;</span>
-<span class="a">example.task(</span><span class="c">Parameter</span>: <span class="d">$paramvalue</span><span class="a">)</span>
+<pre><code class="language-sakerscript"><span class="d">$paramvalue</span> = <span class="f">&quot;Hello world!&quot;</span>
+<span class="e">example.task(</span><span class="i">Parameter</span>: <span class="d">$paramvalue</span><span class="e">)</span>
 </code></pre>
 <p>In the <code>initParameters</code> function we get the <code>Parameter</code> provided by the user, and retrieve the task result for the task that is associated with it. In the above example, the parameter task will get the value of the <code>$paramvalue</code> variable.</p>
 <p>As the task result for the variable has been retrieved by our task, the build system will record a dependency for it. If we run the build without any modification, no tasks will rerun, as expected.</p>
 <p>However, if we modify the value of <code>$paramvalue</code>:</p>
-<pre><code class="language-sakerscript"><span class="d">$paramvalue</span> = <span class="b">&quot;Modified world!&quot;</span>
-<span class="a">example.task(</span><span class="c">Parameter</span>: <span class="d">$paramvalue</span><span class="a">)</span>
+<pre><code class="language-sakerscript"><span class="d">$paramvalue</span> = <span class="f">&quot;Modified world!&quot;</span>
+<span class="e">example.task(</span><span class="i">Parameter</span>: <span class="d">$paramvalue</span><span class="e">)</span>
 </code></pre>
 <p>The build system will detect this, and discover that one of the input task dependency for <code>example.task</code> has been modified. This will cause it to be rerun, and print the <code>&quot;Modified world!&quot;</code> string accordingly.</p>
 <h2 id="task-futures">Task futures<a class="doc-heading-anchor" href="#task-futures"></a></h2>
@@ -84,7 +84,7 @@
 @Overridepublic void initParameters(TaskContext taskcontext, 		NavigableMap&lt;String, ? extends TaskIdentifier&gt; parameters) 				throws TaskParameterException {	this.inputTaskId = parameters.get(&quot;&quot;);	ParameterizableTask.super.initParameters(taskcontext, parameters);}</code></pre>
 </p>
 <p>The task uses the built-in parameter assignment mechanism for the range of the substring, and initializes the unnamed input parameter directly to retrieve the task result later.</p>
-<pre><code class="language-sakerscript"><span class="a">example.substring(</span><span class="b">&quot;hello world&quot;</span>, <span class="c">Start: </span><span class="b">3</span>, <span class="c">End: </span><span class="b">8</span><span class="a">)</span>
+<pre><code class="language-sakerscript"><span class="e">example.substring(</span><span class="f">&quot;hello world&quot;</span>, <span class="i">Start: </span><span class="f">3</span>, <span class="i">End: </span><span class="f">8</span><span class="e">)</span>
 </code></pre>
 <p>The above will result in the string <code>&quot;lo wo&quot;</code>. As the first statement of the task, we retrieve a <code>TaskFuture</code> for the input parameter task identifier. Calling <code>get()</code> on it will wait for the task to finish, and retrieve the result for in. In this case this will be <code>&quot;hello world&quot;</code>. We use the other parameters to calculate the string range to return, and call the <code>substring</code> method accordingly.</p>
 <p>We could've used the previously mentioned <code>getTaskResult</code> method to retrieve the result, but we used a future to showcase its usage.</p>
@@ -92,12 +92,12 @@
 <p>In many cases you might only be interested partially in the result of a task. In these cases if other aspects of a task change than the ones you consume, you probably don't want your task to be rerun, as the produced result will be the same.</p>
 <p>One example for this if we look at the previously implemented <code>example.substring</code> task. If we pass <code>&quot;hello world&quot;</code> or <code>&quot;xyzlo woabc&quot;</code> to it with the same range arguments, it will still produce the same <code>&quot;lo wo&quot;</code> result. Therefore, if the argument string changes only outside of the interested range, we don't want our <code>example.substring</code> task to be reinvoked, as that could cause unnecessary computations during build execution.</p>
 <p>So in order to demonstrate this, we start with the following build script:</p>
-<pre><code class="language-sakerscript"><span class="d">$inputstring</span> = <span class="b">&quot;hello world&quot;</span>
-<span class="a">example.substring(</span><span class="d">$inputstring</span>, <span class="c">Start: </span><span class="b">3</span>, <span class="c">End: </span><span class="b">8</span><span class="a">)</span>
+<pre><code class="language-sakerscript"><span class="d">$inputstring</span> = <span class="f">&quot;hello world&quot;</span>
+<span class="e">example.substring(</span><span class="d">$inputstring</span>, <span class="i">Start: </span><span class="f">3</span>, <span class="i">End: </span><span class="f">8</span><span class="e">)</span>
 </code></pre>
 <p>Then we modify it to the following:</p>
-<pre><code class="language-sakerscript"><span class="d">$inputstring</span> = <span class="b">&quot;xyzlo woabc&quot;</span>
-<span class="a">example.substring(</span><span class="d">$inputstring</span>, <span class="c">Start: </span><span class="b">3</span>, <span class="c">End: </span><span class="b">8</span><span class="a">)</span>
+<pre><code class="language-sakerscript"><span class="d">$inputstring</span> = <span class="f">&quot;xyzlo woabc&quot;</span>
+<span class="e">example.substring(</span><span class="d">$inputstring</span>, <span class="i">Start: </span><span class="f">3</span>, <span class="i">End: </span><span class="f">8</span><span class="e">)</span>
 </code></pre>
 <p>In both cases our <code>example.substring</code> task will produce the <code>&quot;lo wo&quot;</code> result, so we expect our task <strong>not</strong> to be reinvoked when the above changes occur in the build script.</p>
 <p>We can achieve this by using the <code>TaskDependencyResult</code> interface in the modified implementation of our task:</p>
