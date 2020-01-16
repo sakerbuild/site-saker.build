@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/feature.saker.build.ide.eclipse_0.8.1.202001161239.jar" id="feature.saker.build.ide.eclipse" version="0.8.1.202001161239">
+   <feature url="features/feature.saker.build.ide.eclipse_0.8.1.202001161331.jar" id="feature.saker.build.ide.eclipse" version="0.8.1.202001161331">
       <category name="category.saker.build.system"/>
    </feature>
-   <feature url="features/features.saker.java.ide.eclipse_0.8.1.202001161239.jar" id="features.saker.java.ide.eclipse" version="0.8.1.202001161239">
+   <feature url="features/features.saker.java.ide.eclipse_0.8.1.202001161331.jar" id="features.saker.java.ide.eclipse" version="0.8.1.202001161331">
       <category name="category.saker.build.ide.config"/>
    </feature>
    <category-def name="category.saker.build.system" label="Saker.build system">
