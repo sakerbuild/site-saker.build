@@ -56,22 +56,29 @@
 <p>Saker.build has a single and only dependency on the Java Runtime Environment (JRE). In order to use it you first need to install it for your operating system of choice.</p>
 <ol>
 <li>Install an appropriate Java Development Kit (version 8+)</li>
-<li><a href="https://api.nest.saker.build/bundle/download/saker.build-v0.8.0" title="Download saker.build-v0.8.0">Download</a> the saker.build distribution</li>
+<li><a href="https://api.nest.saker.build/bundle/download/saker.build-v0.8.1" title="Download saker.build-v0.8.1">Download</a> the saker.build distribution</li>
 <li>Run <code>java -jar saker.build.jar</code></li>
 </ol>
-<p>You can also use command line tools  to download the release:</p>
+<p>You can also use command line tools to download a release with a specific version:</p>
 <p>cURL:</p>
-<pre><code class="language-plaintext code-wrap">curl https://api.nest.saker.build/bundle/download/saker.build-v0.8.0 -o saker.build.jar
+<pre><code class="language-plaintext code-wrap">curl https://api.nest.saker.build/bundle/download/saker.build-v0.8.1 -o saker.build.jar
 </code></pre>
 <p>PowerShell:</p>
-<pre><code class="language-powershell code-wrap">Invoke-WebRequest &quot;https://api.nest.saker.build/bundle/download/saker.build-v0.8.0&quot; -OutFile saker.build.jar
+<pre><code class="language-plaintext code-wrap">Invoke-WebRequest &quot;https://api.nest.saker.build/bundle/download/saker.build-v0.8.1&quot; -OutFile saker.build.jar
+</code></pre>
+<p>You can also use the following commands to download the latest version:</p>
+<p>cURL:</p>
+<pre><code class="language-plaintext code-wrap">curl https://api.nest.saker.build/bundle/download/saker.build-v$(curl -s https://mirror.nest.saker.build/badges/saker.build/latest.txt) -o saker.build.jar
+</code></pre>
+<p>PowerShell:</p>
+<pre><code class="language-plaintext code-wrap">Invoke-WebRequest &quot;https://api.nest.saker.build/bundle/download/saker.build-v$((Invoke-WebRequest &quot;https://mirror.nest.saker.build/badges/saker.build/latest.txt&quot; -UseBasicParsing).Content)&quot; -OutFile saker.build.jar
 </code></pre>
 <p>The saker.build system can also be added to the supported <a href="installation.html#ides" title="IDEs">IDEs</a> as plugins.</p>
 <h2 id="java">Java<a class="doc-heading-anchor" href="#java"></a></h2>
 <p>Saker.build requires the minimum JRE version of 8. You can download it from <a href="https://adoptopenjdk.net" title="AdoptOpenJDK - Open source, prebuilt OpenJDK binaries">AdoptOpenJDK.net</a> or from the <a href="https://www.oracle.com/technetwork/java/javase/downloads/index.html" title="Java SE - Downloads | Oracle Technology Network | Oracle">Oracle Website</a>. You can also use other installation mechanisms depending on your environment, but in the end, make sure to have a properly configured JVM installed on your machine.</p>
 <p>When you're given the choice whether you want to install the JRE or JDK (Java Development Kit), we recommend choosing JDK, as that enables compiling Java sources and contains other development tools.</p>
 <h2 id="saker_build">Saker.build<a class="doc-heading-anchor" href="#saker_build"></a></h2>
-<p>The build system is distributed as a single self-contained Java Archive. You can download the latest release JAR file using <a href="https://api.nest.saker.build/bundle/download/saker.build-v0.8.0" title="Download saker.build-v0.8.0">this link</a>.</p>
+<p>The build system is distributed as a single self-contained Java Archive. You can download the latest release JAR file using <a href="https://api.nest.saker.build/bundle/download/saker.build-v0.8.1" title="Download saker.build-v0.8.1">this link</a>.</p>
 <p>You can also download older releases by visiting the <a href="releasearchive.html" title="Release archive">release archive</a>.</p>
 <h2 id="ides">IDEs<a class="doc-heading-anchor" href="#ides"></a></h2>
 <p>Saker.build support is available for the following Integrated Development Environment(s).</p>
@@ -79,7 +86,7 @@
 <p>The steps to install the saker.build plugin for <a href="https://www.eclipse.org/eclipseide/" title="Eclipse IDE 2019-12 | The Eclipse Foundation">Eclipse</a> are the following:</p>
 <ol>
 <li>Open Eclipse and select the Help &gt; Install New Software... menu.</li>
-<li>Enter the <code>https://saker.build/saker.build.ide.eclipse/update-site/v0.8.0</code> link for the update site. (&quot;Work with:&quot; textbox)</li>
+<li>Enter the <code>https://saker.build/saker.build.ide.eclipse/update-site/v0.8.1</code> link for the update site. (&quot;Work with:&quot; textbox)</li>
 <li>Select the plugins and install them.
 <ul>
 <li>If you don't see the plugins, uncheck 'Group items by category'. (Eclipse <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=278673" title="278673 &ndash; update site feature category does not work">bugs</a> may cause categories to not show up.)</li>
@@ -132,7 +139,7 @@
 	</div>
 </div>
 
-<link rel="stylesheet" href="../../res/hljs.css"><script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js" integrity="sha256-js+I1fdbke/DJrW2qXQlrw7VUEqmdeFeOW37UC0bEiU=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.13.1/build/languages/plaintext.min.js"></script><script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.13.1/build/languages/powershell.min.js"></script>
+<link rel="stylesheet" href="../../res/hljs.css"><script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js" integrity="sha256-js+I1fdbke/DJrW2qXQlrw7VUEqmdeFeOW37UC0bEiU=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.13.1/build/languages/plaintext.min.js"></script>
 <script>
 if(window.hasOwnProperty("hljs")){
 	hljs.configure({

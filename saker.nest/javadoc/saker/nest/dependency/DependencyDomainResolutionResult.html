@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>DependencyDomainResolutionResult</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+	
+	<link rel="stylesheet" type="text/css" href="../../../../../res/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../../../../../res/doc-saker.css">
+	
+</head>
+<body data-nav-location="javadoc" data-subdoc-presence="nest-package packagedoc javadoc">
+<div class="doc-nav-bar">
+	<div class="container">
+		<a class="home-link" href="../../../../index.html" title="saker.nest"><img style="height: 2.5em;" class="logo" src="../../../../../res/logo.svg"/><span class="page-name">saker.nest</span></a>
+		<a class="nav-location-item" data-nav-location="doc-docs" href="../../../../doc/index.html" title="Documentation">Documentation</a>
+		<a class="nav-location-item" data-nav-location="doc-taskdoc" href="../../../../taskdoc/index.html" title="Build task documentation">TaskDoc</a>
+		<a class="nav-location-item" data-nav-location="doc-javadoc" href="../../../../javadoc/index.html"title="Java API documentation">JavaDoc</a>
+	</div>
+</div>
+<nav class="javadoc-nav" data-nav-location="DependencyDomainResolutionResult">
+	<div class="container">
+		<span class="javadoc-nav-title">JavaDoc</span>
+		<a class="nav-location-item" data-nav-location="javadoc-packages" href="../../../index.html" title="Package index">Packages</a>
+		<a class="nav-location-item" data-nav-location="javadoc-all-classes" href="../../../all-classes.html" title="All classes">All classes</a>
+		<a class="nav-location-item" data-nav-location="javadoc-constants" href="../../../constants.html" title="All constants">Constants</a>
+	</div>
+</nav>
+<div class="container page-contents javadoc">
+	<div class="javadoc-content">
+	<div class="javadoc-class-header"><div class="javadoc-class-header-pkg"><span class="javadoc-code-ref"><span class="javadoc-kw">package</span> <a href="index.html" title="saker.nest.dependency" data-javadoc-kind="package">saker.nest.dependency</a></span></div><div class="javadoc-class-header-class"><span class="javadoc-kw">public interface </span><span class="javadoc-class-header-name">DependencyDomainResolutionResult</span>&lt;<wbr><span class="javadoc-tp">BK</span>&nbsp;<span class="javadoc-kw">extends</span> <span class="javadoc-code-ref"><a href="../bundle/BundleIdentifierHolder.html" title="interface saker.nest.bundle.BundleIdentifierHolder" data-javadoc-kind="interface">BundleIdentifierHolder</a></span>, <span class="javadoc-tp">BC</span>&gt;</div></div><div class="javadoc-class-doc"><div class="javadoc-class-doc-body">Interface providing access to the result of a dependency resolution. <p>
+ The interface allows accessing the direct dependencies of an associated bundle. The each dependency may also have
+ additional transitive dependencies. The dependencies may be recursive and circular.
+ <p>
+ This interface is not to be implemented by clients.</div><div class="javadoc-detail-typeparams javadoc-blocktag-section"><div class="javadoc-detail-typeparam"><span class="javadoc-detail-typeparam-name">BK</span><span class="javadoc-detail-typeparam-detail">The bundle key type used during resolution.</span></div><div class="javadoc-detail-typeparam"><span class="javadoc-detail-typeparam-name">BC</span><span class="javadoc-detail-typeparam-detail">The
+            bundle context type used during resolution.</span></div></div><div class="javadoc-detail-see javadoc-blocktag-section"><div class="javadoc-detail-see-entry"><span class="javadoc-code-ref"><a href="DependencyUtils.html#satisfyDependencyDomain-BK-BC-saker.nest.bundle.BundleDependencyInformation-java.util.function.BiFunction-java.util.function.BiFunction-saker.nest.dependency.DependencyResolutionLogger-" title="DependencyUtils.satisfyDependencyDomain(BK, BC, BundleDependencyInformation, BiFunction<? super BundleIdentifier, ? super BC, ? extends Iterable<? extends Entry<? extends BK, ? extends BC>>>, BiFunction<? super BK, ? super BC, ? extends BundleDependencyInformation>, DependencyResolutionLogger<? super BC>)" data-javadoc-kind="method" data-javadoc-enclosing-kind="class">DependencyUtils.satisfyDependencyDomain<span class="javadoc-code-ref">(<wbr><span class="javadoc-tp" title="BK extends BundleIdentifierHolder of DependencyUtils.satisfyDependencyDomain(BK, BC, BundleDependencyInformation, BiFunction<? super BundleIdentifier, ? super BC, ? extends Iterable<? extends Entry<? extends BK, ? extends BC>>>, BiFunction<? super BK, ? super BC, ? extends BundleDependencyInformation>, DependencyResolutionLogger<? super BC>)">BK</span>, <span class="javadoc-tp" title="BC of DependencyUtils.satisfyDependencyDomain(BK, BC, BundleDependencyInformation, BiFunction<? super BundleIdentifier, ? super BC, ? extends Iterable<? extends Entry<? extends BK, ? extends BC>>>, BiFunction<? super BK, ? super BC, ? extends BundleDependencyInformation>, DependencyResolutionLogger<? super BC>)">BC</span>, BundleDependencyInformation, BiFunction&lt;<wbr>?&nbsp;<span class="javadoc-kw">super</span> BundleIdentifier, ?&nbsp;<span class="javadoc-kw">super</span> <span class="javadoc-tp" title="BC of DependencyUtils.satisfyDependencyDomain(BK, BC, BundleDependencyInformation, BiFunction<? super BundleIdentifier, ? super BC, ? extends Iterable<? extends Entry<? extends BK, ? extends BC>>>, BiFunction<? super BK, ? super BC, ? extends BundleDependencyInformation>, DependencyResolutionLogger<? super BC>)">BC</span>, ?&nbsp;<span class="javadoc-kw">extends</span> Iterable&lt;<wbr>?&nbsp;<span class="javadoc-kw">extends</span> Entry&lt;<wbr>?&nbsp;<span class="javadoc-kw">extends</span> <span class="javadoc-tp" title="BK extends BundleIdentifierHolder of DependencyUtils.satisfyDependencyDomain(BK, BC, BundleDependencyInformation, BiFunction<? super BundleIdentifier, ? super BC, ? extends Iterable<? extends Entry<? extends BK, ? extends BC>>>, BiFunction<? super BK, ? super BC, ? extends BundleDependencyInformation>, DependencyResolutionLogger<? super BC>)">BK</span>, ?&nbsp;<span class="javadoc-kw">extends</span> <span class="javadoc-tp" title="BC of DependencyUtils.satisfyDependencyDomain(BK, BC, BundleDependencyInformation, BiFunction<? super BundleIdentifier, ? super BC, ? extends Iterable<? extends Entry<? extends BK, ? extends BC>>>, BiFunction<? super BK, ? super BC, ? extends BundleDependencyInformation>, DependencyResolutionLogger<? super BC>)">BC</span>&gt;&gt;&gt;, BiFunction&lt;<wbr>?&nbsp;<span class="javadoc-kw">super</span> <span class="javadoc-tp" title="BK extends BundleIdentifierHolder of DependencyUtils.satisfyDependencyDomain(BK, BC, BundleDependencyInformation, BiFunction<? super BundleIdentifier, ? super BC, ? extends Iterable<? extends Entry<? extends BK, ? extends BC>>>, BiFunction<? super BK, ? super BC, ? extends BundleDependencyInformation>, DependencyResolutionLogger<? super BC>)">BK</span>, ?&nbsp;<span class="javadoc-kw">super</span> <span class="javadoc-tp" title="BC of DependencyUtils.satisfyDependencyDomain(BK, BC, BundleDependencyInformation, BiFunction<? super BundleIdentifier, ? super BC, ? extends Iterable<? extends Entry<? extends BK, ? extends BC>>>, BiFunction<? super BK, ? super BC, ? extends BundleDependencyInformation>, DependencyResolutionLogger<? super BC>)">BC</span>, ?&nbsp;<span class="javadoc-kw">extends</span> BundleDependencyInformation&gt;, DependencyResolutionLogger&lt;<wbr>?&nbsp;<span class="javadoc-kw">super</span> <span class="javadoc-tp" title="BC of DependencyUtils.satisfyDependencyDomain(BK, BC, BundleDependencyInformation, BiFunction<? super BundleIdentifier, ? super BC, ? extends Iterable<? extends Entry<? extends BK, ? extends BC>>>, BiFunction<? super BK, ? super BC, ? extends BundleDependencyInformation>, DependencyResolutionLogger<? super BC>)">BC</span>&gt;)</span></a></span></div></div><div class="javadoc-detail-since javadoc-blocktag-section"><div class="javadoc-detail-since-entry">saker.nest 0.8.1</div></div></div><div class="javadoc-class-idx"><div class="javadoc-class-idx-methods javadoc-idx-section"><table><caption>Methods</caption><thead><tr><th class="javadoc-th-method-meta"></th><th class="javadoc-th-method-details"></th></tr></thead><tbody><tr class="javadoc-class-idx-method javadoc-idx-member"><td class="javadoc-class-idx-method-meta javadoc-idx-member-meta"><span class="javadoc-kw">public </span><span class="javadoc-code-ref"><span class="javadoc-kw">boolean</span></span></td><td class="javadoc-class-idx-method-sig javadoc-idx-member-sig"><div class="javadoc-class-idx-method-name javadoc-idx-member-name"><a href="#equals-java.lang.Object-" title="DependencyDomainResolutionResult.equals(Object)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">equals</a><span class="javadoc-code-ref">(<wbr><span class="javadoc-method-param"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html" title="class java.lang.Object" data-javadoc-kind="class">Object</a> obj</span>)</span></div><div class="javadoc-class-idx-method-short javadoc-member-short">Checks if this dependency domain equals the argument.</div></td></tr><tr class="javadoc-class-idx-method javadoc-idx-member"><td class="javadoc-class-idx-method-meta javadoc-idx-member-meta"><span class="javadoc-kw">public </span><span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Map.html" title="interface java.util.Map" data-javadoc-kind="interface">Map</a>&lt;<wbr><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Map.Entry.html" title="interface java.util.Map.Entry" data-javadoc-kind="interface">Entry</a>&lt;<wbr>?&nbsp;<span class="javadoc-kw">extends</span> <span class="javadoc-tp" title="BK extends BundleIdentifierHolder of interface saker.nest.dependency.DependencyDomainResolutionResult">BK</span>, ?&nbsp;<span class="javadoc-kw">extends</span> <span class="javadoc-tp" title="BC of interface saker.nest.dependency.DependencyDomainResolutionResult">BC</span>&gt;, ?&nbsp;<span class="javadoc-kw">extends</span> <a href="#" title="interface saker.nest.dependency.DependencyDomainResolutionResult" data-javadoc-kind="interface">DependencyDomainResolutionResult</a>&lt;<wbr><span class="javadoc-tp" title="BK extends BundleIdentifierHolder of interface saker.nest.dependency.DependencyDomainResolutionResult">BK</span>, <span class="javadoc-tp" title="BC of interface saker.nest.dependency.DependencyDomainResolutionResult">BC</span>&gt;&gt;</span></td><td class="javadoc-class-idx-method-sig javadoc-idx-member-sig"><div class="javadoc-class-idx-method-name javadoc-idx-member-name"><a href="#getDirectDependencies--" title="DependencyDomainResolutionResult.getDirectDependencies()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">getDirectDependencies</a><span class="javadoc-code-ref">()</span></div><div class="javadoc-class-idx-method-short javadoc-member-short">Gets the direct dependencies of the associated bundle.</div></td></tr><tr class="javadoc-class-idx-method javadoc-idx-member"><td class="javadoc-class-idx-method-meta javadoc-idx-member-meta"><span class="javadoc-kw">public </span><span class="javadoc-code-ref"><span class="javadoc-kw">int</span></span></td><td class="javadoc-class-idx-method-sig javadoc-idx-member-sig"><div class="javadoc-class-idx-method-name javadoc-idx-member-name"><a href="#hashCode--" title="DependencyDomainResolutionResult.hashCode()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">hashCode</a><span class="javadoc-code-ref">()</span></div><div class="javadoc-class-idx-method-short javadoc-member-short">Gets the hash code for this dependency domain.</div></td></tr></tbody></table></div></div><div class="javadoc-class-details"><div class="javadoc-class-details-methods javadoc-details-section"><div id="equals-java.lang.Object-" class="javadoc-class-detail-method javadoc-class-detail-member"><div class="javadoc-class-detail-method-sig javadoc-member-sig"><span class="javadoc-kw">public abstract </span><span class="javadoc-code-ref"><span class="javadoc-kw">boolean</span></span> <a href="#equals-java.lang.Object-" title="DependencyDomainResolutionResult.equals(Object)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">equals</a><span class="javadoc-code-ref">(<wbr><span class="javadoc-method-param"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html" title="class java.lang.Object" data-javadoc-kind="class">Object</a> obj</span>)</span></div><div class="javadoc-class-detail-method-detail javadoc-member-detail"><div class="javadoc-detail-body">Checks if this dependency domain equals the argument. <p>
+ The equality checks if this domain has the same direct dependencies as the argument, and the domains of those
+ dependencies equal as well. The equality is checked recursively for transitive dependencies, but will not cause
+ stack overflow.
+ <p>
+ Indicates whether some other object is "equal to" this one.<p>
+ The <code>equals</code> method implements an equivalence relation on non-null object references:
+ <ul>
+ <li>It is <i>reflexive</i>: for any non-null reference value <code>x</code>, <code>x.equals(x)</code> should return
+ <code>true</code>.
+ <li>It is <i>symmetric</i>: for any non-null reference values <code>x</code> and <code>y</code>, <code>x.equals(y)</code> should
+ return <code>true</code> if and only if <code>y.equals(x)</code> returns <code>true</code>.
+ <li>It is <i>transitive</i>: for any non-null reference values <code>x</code>, <code>y</code>, and <code>z</code>, if
+ <code>x.equals(y)</code> returns <code>true</code> and <code>y.equals(z)</code> returns <code>true</code>, then <code>x.equals(z)</code>
+ should return <code>true</code>.
+ <li>It is <i>consistent</i>: for any non-null reference values <code>x</code> and <code>y</code>, multiple invocations of
+ <code>x.equals(y)</code> consistently return <code>true</code> or consistently return <code>false</code>, provided no
+ information used in <code>equals</code> comparisons on the objects is modified.
+ <li>For any non-null reference value <code>x</code>, <code>x.equals(null)</code> should return <code>false</code>.
+ </ul>
+ <p>
+ The <code>equals</code> method for class <code>Object</code> implements the most discriminating possible equivalence
+ relation on objects; that is, for any non-null reference values <code>x</code> and <code>y</code>, this method returns
+ <code>true</code> if and only if <code>x</code> and <code>y</code> refer to the same object (<code>x == y</code> has the value
+ <code>true</code>).
+ <p>
+ Note that it is generally necessary to override the <code>hashCode</code> method whenever this method is overridden,
+ so as to maintain the general contract for the <code>hashCode</code> method, which states that equal objects must have
+ equal hash codes.</div><div class="javadoc-method-detail-return javadoc-blocktag-section"><div class="javadoc-method-detail-return-body"><code>true</code> if this object is the same as the obj argument; <code>false</code> otherwise.</div></div></div></div><div id="getDirectDependencies--" class="javadoc-class-detail-method javadoc-class-detail-member"><div class="javadoc-class-detail-method-sig javadoc-member-sig"><span class="javadoc-kw">public abstract </span><span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Map.html" title="interface java.util.Map" data-javadoc-kind="interface">Map</a>&lt;<wbr><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Map.Entry.html" title="interface java.util.Map.Entry" data-javadoc-kind="interface">Entry</a>&lt;<wbr>?&nbsp;<span class="javadoc-kw">extends</span> <span class="javadoc-tp" title="BK extends BundleIdentifierHolder of interface saker.nest.dependency.DependencyDomainResolutionResult">BK</span>, ?&nbsp;<span class="javadoc-kw">extends</span> <span class="javadoc-tp" title="BC of interface saker.nest.dependency.DependencyDomainResolutionResult">BC</span>&gt;, ?&nbsp;<span class="javadoc-kw">extends</span> <a href="#" title="interface saker.nest.dependency.DependencyDomainResolutionResult" data-javadoc-kind="interface">DependencyDomainResolutionResult</a>&lt;<wbr><span class="javadoc-tp" title="BK extends BundleIdentifierHolder of interface saker.nest.dependency.DependencyDomainResolutionResult">BK</span>, <span class="javadoc-tp" title="BC of interface saker.nest.dependency.DependencyDomainResolutionResult">BC</span>&gt;&gt;</span> <a href="#getDirectDependencies--" title="DependencyDomainResolutionResult.getDirectDependencies()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">getDirectDependencies</a><span class="javadoc-code-ref">()</span></div><div class="javadoc-class-detail-method-detail javadoc-member-detail"><div class="javadoc-detail-body">Gets the direct dependencies of the associated bundle. <p>
+ The returned map contains the resolved bundles mapped to their own dependency domains. The map has a
+ deterministic iteration order that is defined by the <span class="javadoc-code-ref"><a href="../bundle/BundleDependencyInformation.html" title="class saker.nest.bundle.BundleDependencyInformation" data-javadoc-kind="class">BundleDependencyInformation</a></span> of the bundle.
+ <p>
+ <b>Note:</b> the returned map may containg circular transitive dependencies and can cause stack overflows if not
+ handled properly.</div><div class="javadoc-method-detail-return javadoc-blocktag-section"><div class="javadoc-method-detail-return-body">An immutable map of resolved direct dependencies.</div></div></div></div><div id="hashCode--" class="javadoc-class-detail-method javadoc-class-detail-member"><div class="javadoc-class-detail-method-sig javadoc-member-sig"><span class="javadoc-kw">public abstract </span><span class="javadoc-code-ref"><span class="javadoc-kw">int</span></span> <a href="#hashCode--" title="DependencyDomainResolutionResult.hashCode()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">hashCode</a><span class="javadoc-code-ref">()</span></div><div class="javadoc-class-detail-method-detail javadoc-member-detail"><div class="javadoc-detail-body">Gets the hash code for this dependency domain. <p>
+ The hash code consists of the key entries of the <a href="#getDirectDependencies--" title="DependencyDomainResolutionResult.getDirectDependencies()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface">direct dependencies</a>. The
+ hash code is non-transitive.
+ <p>
+ Returns a hash code value for the object.This method is supported for the benefit of hash tables such as those
+ provided by <span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/util/HashMap.html" title="class java.util.HashMap" data-javadoc-kind="class">HashMap</a></span>.
+ <p>
+ The general contract of <code>hashCode</code> is:
+ <ul>
+ <li>Whenever it is invoked on the same object more than once during an execution of a Java application, the
+ <code>hashCode</code> method must consistently return the same integer, provided no information used in <code>equals</code>
+ comparisons on the object is modified. This integer need not remain consistent from one execution of an
+ application to another execution of the same application.
+ <li>If two objects are equal according to the <code>equals(Object)</code> method, then calling the <code>hashCode</code>
+ method on each of the two objects must produce the same integer result.
+ <li>It is <em>not</em> required that if two objects are unequal according to the
+ <span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html#equals-java.lang.Object-" title="Object.equals(Object)" data-javadoc-kind="method" data-javadoc-enclosing-kind="class">equals<span class="javadoc-code-ref">(<wbr>Object)</span></a></span> method, then calling the <code>hashCode</code> method on each of the
+ two objects must produce distinct integer results. However, the programmer should be aware that producing
+ distinct integer results for unequal objects may improve the performance of hash tables.
+ </ul>
+ <p>
+ As much as is reasonably practical, the hashCode method defined by class <code>Object</code> does return distinct
+ integers for distinct objects. (This is typically implemented by converting the internal address of the object
+ into an integer, but this implementation technique is not required by the Java&trade; programming language.)</div><div class="javadoc-method-detail-return javadoc-blocktag-section"><div class="javadoc-method-detail-return-body">a hash code value for this object.</div></div></div></div></div></div>
+	</div>
+</div>
+<div class="doc-footer">
+	<div class="container">
+		<div class="row">
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">About</p>
+				<div><a href="/index.html" title="Saker.build home page">Home</a></div>
+				<div data-footer-location="doc-docs"><a href="../../../../index.html" title="saker.nest documentation index">Documentation index</a></div>
+				<div><a href="../../../../../saker.build/index.html" title="Information about the saker.build system">saker.build system</a></div>
+				<div><a href="../../../../../saker.nest/index.html" title="Information about the saker.nest repository">saker.nest repository</a></div>
+				<div><a href="/contact.html" title="Contact us">Contact</a></div>
+			</div>
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">Resources</p>
+				<div data-footer-location="doc-docs"><a href="../../../../doc/index.html" title="saker.nest documentation index">Documentation</a></div>
+				<div data-footer-location="doc-javadoc"><a href="../../../../javadoc/index.html" title="JavaDoc for saker.nest">JavaDoc</a></div>
+				<div data-footer-location="doc-taskdoc"><a href="../../../../taskdoc/index.html"  title="Documentation of build tasks in saker.nest">TaskDoc</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.nest" title="saker.nest | saker.nest">saker.nest package page</a></div>
+				<div><a href="https://github.com/sakerbuild/saker.nest" title="saker.nest on GitHub">GitHub</a></div>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col">
+			&copy; Bence Sipka 2020
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

@@ -962,6 +962,10 @@ td.javadoc-idx-member-meta, td.javadoc-index-constants-entry-meta {
 	content: 'See also:';
 	display: block;
 }
+.javadoc-detail-since:before {
+	content: 'Since:';
+	display: block;
+}
 .javadoc-detail-typeparam-name, 
 .javadoc-method-detail-param-name,
 .javadoc-method-detail-throw-name {
