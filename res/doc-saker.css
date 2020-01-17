@@ -101,6 +101,7 @@ h1, h2, h3, h4, h5, h6 {
 .doc-content table img {
 	margin: 5px 0px;
 	max-width: 100%;
+	display: inline-block;
 }
 .doc-content {
 	margin-top: 10px;
