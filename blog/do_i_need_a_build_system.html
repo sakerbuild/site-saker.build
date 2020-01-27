@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Do I need a build system?&nbsp;|&nbsp;saker.build blog</title>
+	<title>"Do I need a build system?"&nbsp;|&nbsp;saker.build blog</title>
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
@@ -43,7 +43,7 @@
 					Navigation
 				</label>
 				<input style="display:none;" id="doc-collapse-nav-label" type="checkbox"/> 
-				<div class="doc-nav">  <div class="doc-section"><ul><li><a class="doc-nav-section-link" href="index.html" title="Welcome">Welcome</a></li><li><a class="doc-nav-section-link" href="archive.html" title="Blog archive">Blog archive</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Releases</p><ul><li><a class="doc-nav-section-link" href="release_0.8.0.html" title="Release 0.8.0 (initial)">Release 0.8.0 (initial)</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Blog posts</p><ul><li><a class="doc-nav-section-link" href="github_packages_maven/index.html" title="Using the GitHub packages Maven repository">Using the GitHub packages Maven repository</a></li><li><a class="doc-nav-section-link" href="odd_initial_release_number.html" title="0.8.0 seems like an odd initial release number">0.8.0 seems like an odd initial release number</a></li><li><a class="doc-nav-section-link" href="another_buildsystem.html" title="Do we need another build system?">Do we need another build system?</a></li></ul>  </div></div>
+				<div class="doc-nav">  <div class="doc-section"><ul><li><a class="doc-nav-section-link" href="index.html" title="Welcome">Welcome</a></li><li><a class="doc-nav-section-link" href="archive.html" title="Blog archive">Blog archive</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Releases</p><ul><li><a class="doc-nav-section-link" href="release_0.8.0.html" title="Release 0.8.0 (initial)">Release 0.8.0 (initial)</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Blog posts</p><ul><li class="doc-active doc-active-parent"><a class="doc-nav-section-link" href="do_i_need_a_build_system.html" title=""Do I need a build system?"">"Do I need a build system?"</a></li><li><a class="doc-nav-section-link" href="github_packages_maven/index.html" title="Using the GitHub packages Maven repository">Using the GitHub packages Maven repository</a></li><li><a class="doc-nav-section-link" href="odd_initial_release_number.html" title="0.8.0 seems like an odd initial release number">0.8.0 seems like an odd initial release number</a></li><li><a class="doc-nav-section-link" href="another_buildsystem.html" title="Do we need another build system?">Do we need another build system?</a></li></ul>  </div></div>
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
@@ -63,14 +63,99 @@
 		</div>
 	</div>
 </div>
-			<div class="doc-content"><h1 id="do-i-need-a-build-system_">Do I need a build system?<a class="doc-heading-anchor" href="#do-i-need-a-build-system_"></a></h1>
-<p>The question for which the answer is always ...</p>
-<div class="doc-wip">
-<p>Great to have you here. This article is not yet public but a draft, so you probably ended up here by browsing the website sources on GitHub. If you like browsing code and also do other stuff, you should consider <a href="../saker.build/doc/contribute.html" title="Contribute">contributing</a>.</p>
-<p>Back to the topic, the answer may surprise you...</p>
+			<div class="doc-content"><h1 id="_do-i-need-a-build-system__">&quot;Do I need a build system?&quot;<a class="doc-heading-anchor" href="#_do-i-need-a-build-system__"></a></h1>
+<p><small>2020 January 27</small></p>
+<p>A question for which the answer is always <strong>no</strong>.</p>
+<p>That sounds strange from a blog of a build system. To be clear, we're not saying you shouldn't use a build system, but only that the answer to the above question is always <em>no</em>. In general, you can think of the question as <em>&quot;Do I need X?&quot;</em>, and we'll examine it in regard to the development of software projects.</p>
+<p>The concept of engineering is the process of finding a solution for a given problem. This applies to many fields as well as to developing software. Everything you do when you create an application should help you achieve the goal of solving the initial problem.</p>
+<p>It's important to keep in mind during development that with every introduced component to the project, you also introduce complexity. By adding new tools, infrastructure, services, you may need to keep these parts of the project in mind when proceeding further.</p>
+<p>There will be a point in time where you'll need set the scope of your project and stop introducing new components. At this point, you'll set the requirements for your project, choose the components that satisfy them and help you develop the solution for your problem. You won't be asking <em>&quot;Do I need X?&quot;</em> but will start asking <em>&quot;What requirements does X satisfy?&quot;</em>. If the answer is not an empty set, then you have a chance that using <em>X</em> will be useful for developing your solution.</p>
+<h3 id="it_s-all-backwards">It's all backwards<a class="doc-heading-anchor" href="#it_s-all-backwards"></a></h3>
+<p>We've seen that the process of engineering presumes an initial problem. The interesting thing about the question <em>&quot;Do I need a build system?&quot;</em> is that it's all backwards.</p>
+<p>During engineering, we have a problem, and search for a solution. When asking <em>&quot;Do I need a build system?&quot;</em>, <strong>we have a solution, and search for a problem</strong>. By asking this, we search for a reason to add a build system, although it doesn't provide any actual benefit for us other than being there.</p>
+<p>And this is were we can conclude that the answer for the question is always <strong>no</strong>, as if an addition to the project doesn't further its goal, there's no reason to perform it. Asking the question <em>&quot;Do I need X?&quot;</em> displays an intent for using a given technology rather than solving the initial problem.</p>
+<p>Solve problems with the appropriate tools, don't add more problems in order to use a tool.</p>
+<h5 id="but-what-if-i_ll-need-it-later_"><em>But what if I'll need it later?</em><a class="doc-heading-anchor" href="#but-what-if-i_ll-need-it-later_"></a></h5>
+<p>You may need a build system later as the project advances. If that happens, you should deal with it then rather when you don't actually need it. Maintaining a build system for a project when you don't even benefit from it just increases complexity rather than add value to it.</p>
+<p>It may also take less effort to integrate it at a later time rather than add it sooner and maintain it on the way.</p>
+<h3 id="examples">Examples<a class="doc-heading-anchor" href="#examples"></a></h3>
+<p>Without any claim to completeness, here are a few examples when you would benefit or not from using a build system:</p>
+<h5 id="cons-of-using-a-build-system">Cons of using a build system<a class="doc-heading-anchor" href="#cons-of-using-a-build-system"></a></h5>
+<ul>
+<li>A hobby project that can be compiled in an IDE.
+<ul>
+<li>E.g. a simple Java project in Eclipse, or project in Visual Studio.</li>
+</ul>
+</li>
+<li>No other contributors.
+<ul>
+<li>If you develop alone, you may be fine without a build system as an uniform build process is not a requirement.</li>
+</ul>
+</li>
+<li>No dependencies.
+<ul>
+<li>If you don't consume third party components.</li>
+</ul>
+</li>
+<li>Static dependencies.
+<ul>
+<li>If you don't need to auto-upgrade dependencies, you can just simply download and use them without the need of actively managing them.</li>
+</ul>
+</li>
+<li>Simple build process.
+<ul>
+<li>If you just simply want to create an executable, but don't write any tests or perform static verifications.</li>
+</ul>
+</li>
+</ul>
+<p>You may think that the above points only apply to a very small number of projects, and you're right. Build systems are awesome, and provide many benefits for managing a software development process. Most production grade projects are usually set up in a more complex way. However, if you can get by without using one, it can spare you some trouble.</p>
+<h5 id="benefits-of-a-build-system">Benefits of a build system<a class="doc-heading-anchor" href="#benefits-of-a-build-system"></a></h5>
+<ul>
+<li>Uniform build process.
+<ul>
+<li>The build should run the same way on any machine of the contributors. A build system can be used to properly set up the development environment for the programmers.</li>
+</ul>
+</li>
+<li>Testing, static verification.
+<ul>
+<li>A build system can manage the testing and verification of your software before you release a new version.</li>
+</ul>
+</li>
+<li>Managing dependencies.
+<ul>
+<li>Build systems can automatically download, upgrade, package, and otherwise manage the dependencies you include in your project.</li>
+</ul>
+</li>
+<li>Incremental builds.
+<ul>
+<li>For large projects it's important to keep the build times as short as possible. Incrementally building a project based on the previous results can result in much quicker modify-build-run cycle.</li>
+</ul>
+</li>
+<li>Distributed builds.
+<ul>
+<li>As your project gets larger, build times increase as well. Using multiple computers can reduce the build times significantly.</li>
+</ul>
+</li>
+<li>Build-time resource generation.
+<ul>
+<li>Generating source files or other resources during the build process can make many tasks easier. (E.g. accessing resources, communication between components, logging, etc...)</li>
+</ul>
+</li>
+<li>Caching.
+<ul>
+<li>A build cache can store the outputs of your build so you don't have to perform a clean build when you check out the codebase.</li>
+</ul>
+</li>
+<li>Education.
+<ul>
+<li>Learning new tools can be great to extend your toolbox.</li>
+</ul>
+</li>
+</ul>
+<h2 id="conclusion">Conclusion<a class="doc-heading-anchor" href="#conclusion"></a></h2>
+<p>Using a build system to build your project is great when you have an use-case for it. However, you should always keep in mind that adding it to your project nearly always increases its complexity. If you're just messing around, the maintenance burden may outweigh the benefits, however, for production grade projects, using one can greatly improve the development process.</p>
 </div>
-</div>
-			
+			<div class="doc-headings-nav">  <ul>    <li><a href="#_do-i-need-a-build-system__" title=""Do I need a build system?"">"Do I need a build system?"</a>      <ul>        <li><a href="#it_s-all-backwards" title="It's all backwards">It's all backwards</a>          <ul>            <li><a href="#but-what-if-i_ll-need-it-later_" title="But what if I'll need it later?">But what if I'll need it later?</a>            </li>          </ul>        </li>        <li><a href="#examples" title="Examples">Examples</a>          <ul>            <li><a href="#cons-of-using-a-build-system" title="Cons of using a build system">Cons of using a build system</a>            </li>            <li><a href="#benefits-of-a-build-system" title="Benefits of a build system">Benefits of a build system</a>            </li>          </ul>        </li>        <li><a href="#conclusion" title="Conclusion">Conclusion</a>        </li>      </ul>    </li>  </ul></div>
 		</div>
 	</div>
 </div>
