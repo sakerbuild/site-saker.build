@@ -85,7 +85,7 @@
 <p>The <code>include.platform</code> SDK path identifier corresponds to the include directory that is associated with the current operating system that the build is running on. If you want a platform specific directory, you can use any of the following instead of <code>include.platform</code>: <code>include.win32</code> (Windows), <code>include.darwin</code> (macOS), <code>include.linus</code> (Linux), or <code>include.solaris</code> (Solaris).<br />
 The <code>include</code> path identifier corresponds to the JDK <code>include</code> directory that contains <code>jni.h</code>.</p>
 <p>We need to pass the Java SDK to the C compile task that our compilation task used, so it can resolve the above path identifiers for the include directories.</p>
-<p>The <code>saker.msvc.coptions.present()</code> task loads some predefined options that causes the compiler and linker to create a native library. (DLL)</p>
+<p>The <a href="../../../saker.msvc/taskdoc/saker.msvc.coptions.preset.html"><code>saker.msvc.coptions.preset()</code></a> task loads some predefined options that causes the compiler and linker to create a native library. (DLL)</p>
 <p>You may want to further adapt the example for release, debug builds, and based on your needs.</p>
 <link href="../../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>
 			<div class="end-section-links">
