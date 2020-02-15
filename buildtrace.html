@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta charset="UTF-8">
 	<title>Build trace | saker.build</title>
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -39,6 +40,7 @@
 	--color-failure: #d00;
 	--color-success: #0b0;
 	--color-warning: #fc0;
+	--color-warning-text: #ffc107;
 	
 	--table-selection-border: solid #eee 1px;
 	--timeline-scrollbar-height: 10px;
@@ -160,7 +162,7 @@
 	clip-path: inset(0);
 	clip: rect(0px, auto, auto, 0px); /* IE11/Edge (not that IE11 supports sticky anyway!) */
 }
-.timeline-block-failure {
+.timeline-block-state-circle {
 	position: absolute;
 	height: 10px;
 	width: 10px;
@@ -168,8 +170,13 @@
 	pointer-events: none;
 	z-index: 10;
 }
-.x-svg-red-circle {
+.svg-red-circle {
 	background-color: var(--color-failure);
+	color: white;
+	border-radius: 50%;
+}
+.svg-warning-circle {
+	background-color: var(--color-warning);
 	color: white;
 	border-radius: 50%;
 }
@@ -341,6 +348,10 @@ tr.task-details-row>td:last-child {
 	border-bottom: var(--table-selection-border);
 	display: block;
     padding: 5px 10px;
+}
+
+.task-title-emphasis {
+	font-weight: 600;
 }
 
 .task-details-contents {
@@ -565,7 +576,7 @@ td.task-exception-summary {
 	font-weight: 600;
 	font-size: 1.2em;
 }
-.trace-summary-head-success, .trace-summary-head-fail {
+.trace-summary-head-state {
 	font-size: 1.5em;
 	font-weight: 600;
 }
@@ -574,6 +585,10 @@ td.task-exception-summary {
 }
 .trace-summary-head-success {
 	color: var(--color-success);
+}
+.trace-summary-head-info {
+	margin-left: 2em;
+	font-weight: 600;
 }
 .trace-summary-env-name {
 	font-weight: 600;
@@ -623,6 +638,9 @@ td.task-exception-summary {
 }
 .color-warning {
 	color: var(--color-warning);
+}
+.color-warning-text {
+	color: var(--color-warning-text);
 }
 
 [data-tooltip]:not(.no-help-cursor) {
@@ -846,6 +864,11 @@ tr.trace-summary-embed-table-p2>td:first-child {
 	const TICK_SVG = `
 <svg viewBox="0 0 24 24">
     <path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z" />
+</svg>
+	`;
+	const EXCLAMATION_SVG = `
+<svg viewBox="0 0 24 24">
+    <path fill="currentColor" d="M10 3H14V14H10V3M10 21V17H14V21H10Z" />
 </svg>
 	`;
 	const X_SVG = `
@@ -1203,16 +1226,18 @@ tr.trace-summary-embed-table-p2>td:first-child {
 	}
 	
 	function getMachineName(bt, machineuuid) {
-		if (bt.connections == null || machineuuid == null){
+		if (machineuuid == null){
 			return undefined;
 		}
 		let result = undefined;
-		$.each(bt.connections, function(key, value){
-			if (value.machine_uuid == machineuuid) {
-				result = key;
-				return false;
-			}
-		});
+		if(bt.connections != null) {
+			$.each(bt.connections, function(key, value){
+				if (value.machine_uuid == machineuuid) {
+					result = key;
+					return false;
+				}
+			});
+		}
 		$.each(bt.environments, function(index, env){
 			if (env.machine_uuid == machineuuid) {
 				if (env.env_uuid == bt.execution_environment_uuid) {
@@ -1305,6 +1330,9 @@ tr.trace-summary-embed-table-p2>td:first-child {
 				(task.abort_exceptions != null && task.abort_exceptions.length > 0) || 
 				(task.ignored_exceptions != null && task.ignored_exceptions.length > 0) ||
 				(task.inner_tasks != null && isAnyTaskListException(task.inner_tasks));
+	}
+	function isAnyTaskWarning(task) {
+		return task._warning_count > 0;
 	}
 	function isAnyTaskListException(tasks) {
 		let result = false;
@@ -1420,6 +1448,7 @@ tr.trace-summary-embed-table-p2>td:first-child {
 					++machineidx;
 				}
 				let isanyfailure = isAnyFailureException(range.task);
+				let isanywarning = isAnyTaskWarning(range.task);
 				
 				let blockleft = (range.startpct * 100);
 				let blockwidth = ((range.endpct - range.startpct) * 100);
@@ -1452,14 +1481,27 @@ tr.trace-summary-embed-table-p2>td:first-child {
 					block.addClass('timeline-block-failed');
 					timelineholder.append(
 						$(document.createElement('div'))
-						.addClass('timeline-block-failure')
-						.addClass('x-svg-red-circle')
+						.addClass('timeline-block-state-circle')
+						.addClass('svg-red-circle')
 						.addClass('timeline-view')
 						.attr('data-trace-id', range.task.trace_id)
 						.attr('title', timelinelabel)
 						.css('top', (blocktoppx) + "px")
 						.css('left', (blockleft + blockwidth) + "%")
 						.append($(X_SVG).css('display', 'block'))
+					);
+				} else if(isanywarning) {
+					block.addClass('timeline-block-warning');
+					timelineholder.append(
+						$(document.createElement('div'))
+						.addClass('timeline-block-state-circle')
+						.addClass('svg-warning-circle')
+						.addClass('timeline-view')
+						.attr('data-trace-id', range.task.trace_id)
+						.attr('title', timelinelabel)
+						.css('top', (blocktoppx) + "px")
+						.css('left', (blockleft + blockwidth) + "%")
+						.append($(EXCLAMATION_SVG).css('display', 'block'))
 					);
 				}
 				
@@ -1792,20 +1834,40 @@ tr.trace-summary-embed-table-p2>td:first-child {
 				let tasktitle = getTaskTitle(task);
 				let isuptodate = task.up_to_date === true; 
 				let isanyfailure = isAnyFailureException(task);
+				let isanywarning = isAnyTaskWarning(task);
+				let tasktitleelem;
+				let tasktitledotidx = tasktitle.indexOf(':');
+				let tasktitletd = $(document.createElement('td'))
+					.append(
+						(
+							isanyfailure ? 
+							$(X_SVG).addClass('color-failure') : 
+							(
+								isanywarning ? 
+								$(EXCLAMATION_SVG).addClass('color-warning') :
+								$(TICK_SVG).addClass('color-success')
+							)
+						).addClass('inline-svg')
+					);
+				if(tasktitledotidx < 0) {
+					tasktitletd.append(document.createTextNode(tasktitle));
+				} else {
+					tasktitletd
+						.append(
+							$(document.createElement('span'))
+							.addClass('task-title-emphasis')
+							.text(tasktitle.substring(0, tasktitledotidx))
+						)
+						.append(
+							document.createTextNode(tasktitle.substring(tasktitledotidx))
+						)
+				}
 				let taskrow = $(document.createElement('tr'))
 					.attr('data-trace-id', task.trace_id)
 					.addClass('task-row-entry')
 					.attr('timeline-css-id', timelinecssid)
 					.append(
-						$(document.createElement('td'))
-						.append(
-							(
-								isanyfailure ? 
-								$(X_SVG).addClass('color-failure') : 
-								$(TICK_SVG).addClass('color-success')
-							).addClass('inline-svg')
-						)
-						.append(document.createTextNode(tasktitle))
+						tasktitletd
 					)
 					.append(
 						$(document.createElement('td'))
@@ -1821,6 +1883,9 @@ tr.trace-summary-embed-table-p2>td:first-child {
 					);
 				if (isanyfailure) {
 					taskrow.addClass('task-state-failed')
+				}
+				if(isanywarning) {
+					taskrow.addClass('task-state-warning')
 				}
 				let detailstd = $(document.createElement('td'))
 						.addClass('task-details-contents')
@@ -2581,7 +2646,7 @@ tr.trace-summary-embed-table-p2>td:first-child {
 					let icon = $(document.createElement('span'))
 						.append(
 							$(X_SVG)
-							.addClass('x-svg-red-circle')
+							.addClass('svg-red-circle')
 							.addClass('inline-svg')
 							.css('height', '0.95em')
 							.css('margin-bottom', '2px')
@@ -2850,6 +2915,7 @@ tr.trace-summary-embed-table-p2>td:first-child {
 		if (bt.successful) {
 			headdiv.append(
 				$(document.createElement('div'))
+				.addClass('trace-summary-head-state')
 				.addClass('trace-summary-head-success')
 				.append($(TICK_SVG).addClass('inline-svg').addClass('color-success'))
 				.append(document.createTextNode('Build successful'))
@@ -2857,10 +2923,44 @@ tr.trace-summary-embed-table-p2>td:first-child {
 		} else {
 			headdiv.append(
 				$(document.createElement('div'))
+				.addClass('trace-summary-head-state')
 				.addClass('trace-summary-head-fail')
 				.append($(X_SVG).addClass('inline-svg').addClass('color-failure'))
 				.append(document.createTextNode('Build failed'))
 			);
+		}
+		if (bt._exception_count > 0) {
+			let excseverityelem;
+			switch(bt._exception_severity) {
+				case 'fatal': {
+					excseverityelem = $(EXC_SVG).addClass('color-failure').addClass('inline-svg');
+					break;
+				}
+				case 'abort': {
+					excseverityelem = $(X_SVG).addClass('color-failure').addClass('inline-svg');
+					break;
+				}
+				case 'ignored': {
+					excseverityelem = $(EXCLAMATION_SVG).addClass('color-failure').addClass('inline-svg');
+					break;
+				}
+			}
+			headdiv.append(
+				$(document.createElement('div'))
+				.addClass('color-failure')
+				.addClass('trace-summary-head-info')
+				.append(excseverityelem)
+				.append(
+					$(document.createElement('span'))
+					.text(bt._exception_count + ' exception' + (bt._exception_count == 1 ? '' : 's'))
+					.css('cursor', 'pointer')
+					.click(function(e){
+						e.preventDefault();
+						showPageWithId('page-exceptions')
+					})
+				)
+			);
+			
 			headlinks.append(
 				$(document.createElement('a'))
 				.text('View exceptions')
@@ -2869,6 +2969,23 @@ tr.trace-summary-embed-table-p2>td:first-child {
 					e.preventDefault();
 					showPageWithId('page-exceptions')
 				})
+			);
+		}
+		if (bt._warning_count > 0) {
+			headdiv.append(
+				$(document.createElement('div'))
+				.addClass('color-warning-text')
+				.addClass('trace-summary-head-info')
+				.append($(EXCLAMATION_SVG).addClass('color-warning').addClass('inline-svg'))
+				.append(
+					$(document.createElement('span'))
+					.text(bt._warning_count + ' warning' + (bt._warning_count == 1 ? '' : 's'))
+					.css('cursor', 'pointer')
+					.click(function(e){
+						e.preventDefault();
+						showPageWithId('page-console')
+					})
+				)
 			);
 		}
 		headdiv.append(headlinks);
@@ -3048,6 +3165,21 @@ tr.trace-summary-embed-table-p2>td:first-child {
 				}
 				case 'jar': {
 					//TODO
+					let name = getMachineNameDefaulted(bt, cp.file_provider);
+					td
+						.append(
+							$(document.createElement('div'))
+							.append(document.createTextNode('JAR loaded from: ' + name))
+							.attr('data-tooltip', 'The build environment name from which the JAR is loaded.')
+						)
+						.append(
+							$(document.createElement('div'))
+							.addClass('code-font')
+							.addClass('trace-path-mounted')
+							.append(document.createTextNode(cp.path))
+							.attr('data-tooltip', 'The local filesystem path on the given build environment for the JAR.')
+						);
+					console.log(cp);
 					break;
 				}
 				case 'nest': {
@@ -3083,6 +3215,19 @@ tr.trace-summary-embed-table-p2>td:first-child {
 				case 'nest': {
 					td.text('saker.nest repository')
 						.attr('data-tooltip', 'The saker.nest repository is loaded.');
+					break;
+				}
+				case 'service_loader': {
+					td
+						.append(
+							$(document.createTextNode('Service: '))
+						)
+						.append(
+							$(document.createElement('span'))
+							.addClass('code-font')
+							.text(serv.class)
+						)
+						.attr('data-tooltip', 'A service is loaded for the given class name.');
 					break;
 				}
 				case 'unrecognized': {

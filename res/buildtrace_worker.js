@@ -162,6 +162,16 @@ function readObject(buffer) {
 	}
 }
 
+const CONSOLE_MARKER_STR_PATTERN = /[ \t]*(\\[(?:.*?)\\])?[ \t]*(((.*?)(:(-?[0-9]+)(:([0-9]*)(-([0-9]+))?)?)?):)?[ ]*([wW]arning|[eE]rror|[iI]nfo|[sS]uccess|[fF]atal [eE]rror):[ ]*(.*)/;
+const CONSOLE_MARKER_GROUP_DISPLAY_ID = 1;
+const CONSOLE_MARKER_GROUP_PATHANDLOCATION = 3;
+const CONSOLE_MARKER_GROUP_FILEPATH = 4;
+const CONSOLE_MARKER_GROUP_LINE = 6;
+const CONSOLE_MARKER_GROUP_LINESTART = 8;
+const CONSOLE_MARKER_GROUP_LINEEND = 10;
+const CONSOLE_MARKER_GROUP_SEVERITY = 11;
+const CONSOLE_MARKER_GROUP_MESSAGE = 12;
+
 function parseInput(buffer) {
 	let magic = readInt(buffer);
 	if (magic != 0x45a8f96a) {
@@ -206,6 +216,9 @@ function parseInput(buffer) {
 			task.inner_tasks.sort(compareDuration);
 		}
 	});
+	let totalwarningcount = 0;
+	let totalexceptioncount = 0;
+	let exceptionseverity = 10;
 	bt.tasks.forEach(function(task){
 		if (task.created_tasks != null && task.created_tasks.length > 0) {
 			task.created_tasks.forEach(function(createdtasktraceid){
@@ -216,7 +229,60 @@ function parseInput(buffer) {
 				createdtask._created_by.push(task);
 			});
 		}
+		let exceptioncount = 0;
+		let warningcount = 0;
+			
+		if(task.exception != null) {
+			++exceptioncount;
+			exceptionseverity = 1;
+		}
+		if(task.abort_exceptions != null) {
+			exceptioncount += task.abort_exceptions.length;
+			exceptionseverity = Math.min(exceptionseverity, 2);
+		}
+		if(task.ignored_exceptions != null) {
+			exceptioncount += task.ignored_exceptions.length;
+			exceptionseverity = Math.min(exceptionseverity, 3);
+		}
+		
+		if (task.stdout != null) {
+			let arrayOfLines = task.stdout.match(/[^\r\n]+/g);
+			for (let i = 0; i < arrayOfLines.length; ++i){
+				let line = arrayOfLines[i];
+				let match = CONSOLE_MARKER_STR_PATTERN.exec(line);
+				if (match != null) {
+					let severity = match[CONSOLE_MARKER_GROUP_SEVERITY];
+					if (severity != null) {
+						if(severity.toLowerCase() == 'warning') {
+							++warningcount;
+						}
+					}
+				}
+			}
+		}
+		
+		task._exception_count = exceptioncount;
+		totalexceptioncount += exceptioncount;
+		
+		task._warning_count = warningcount;
+		totalwarningcount += warningcount;
 	});
+	bt._warning_count = totalwarningcount;
+	bt._exception_count = totalexceptioncount;
+	switch(exceptionseverity) {
+		case 1: {
+			bt._exception_severity = 'fatal';
+			break;
+		}
+		case 2: {
+			bt._exception_severity = 'abort';
+			break;
+		}
+		case 3: {
+			bt._exception_severity = 'ignored';
+			break;
+		}
+	}
 	return bt;
 }
 
