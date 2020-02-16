@@ -461,9 +461,6 @@ input.vis-toggle + label.vis-toggle + div {
 #page-console, #page-exceptions, #page-scripts, #page-artifacts {
 	padding: 10px 25px;
 }
-#trace-contents:not([data-console-highlight]) .trace-console-clear-highlight {
-	display: none;
-}
 
 #page-exceptions .exceptions-table {
 	width: 100%;
@@ -473,6 +470,9 @@ input.vis-toggle + label.vis-toggle + div {
 	background-color: var(--task-row-entry-hover-color);
 }
 .script-details-show-toggle:hover {
+	background-color: var(--task-row-entry-hover-color);
+}
+.task-details-deltas-show-toggle:hover, .task-details-input-files-show-toggle:hover, .task-details-output-files-show-toggle:hover, .task-details-inner-tasks-show-toggle:hover {
 	background-color: var(--task-row-entry-hover-color);
 }
 input:checked+.script-details-show-toggle {
@@ -2274,7 +2274,7 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 								)
 								.append(
 									$(document.createElement('label'))
-									.addClass('task-details-files-show-toggle')
+									.addClass('task-details-input-files-show-toggle')
 									.addClass('vis-toggle')
 									.attr('for', 'toggle-input-' + task.trace_id)
 									.append(
@@ -2304,7 +2304,7 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 								)
 								.append(
 									$(document.createElement('label'))
-									.addClass('task-details-files-show-toggle')
+									.addClass('task-details-output-files-show-toggle')
 									.addClass('vis-toggle')
 									.attr('for', 'toggle-output-' + task.trace_id)
 									.append(
@@ -2483,7 +2483,12 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 				.attr('data-trace-id', task.trace_id)
 				.click(function(e){
 					e.preventDefault();
-					$('#trace-contents').attr('data-console-highlight', task.trace_id);
+					let tc = $('#trace-contents');
+					if (tc.attr('data-console-highlight') == task.trace_id) {
+						tc.removeAttr('data-console-highlight');
+					}else{
+						tc.attr('data-console-highlight', task.trace_id);
+					}
 				});
 			let lastseverity = null;
 			let lastlines = [];
@@ -2573,16 +2578,6 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 			$(document.createElement('div'))
 			.addClass('trace-see-links')
 			.append(dlelem)
-			.append(
-				$(document.createElement('a'))
-				.addClass('trace-console-clear-highlight')
-				.attr('href', '#')
-				.text('Clear highlight')
-				.click(function(e){
-					e.preventDefault();
-					$('#trace-contents').removeAttr('data-console-highlight');
-				})
-			)
 		);
 		
 		pagediv.append(stdoutdiv);
@@ -2789,7 +2784,7 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 						)
 						.attr('data-tooltip', 'An exception was ignored/not handled by the task.')
 					;
-					appendExceptionRows(exc);
+					appendExceptionRows(exc, icon);
 				});
 			}
 			if (task.inner_tasks != null) {
