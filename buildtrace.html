@@ -1269,36 +1269,40 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 	}
 	
 	function getExecutionEnvironmentConnectionInfo(bt, envuuid) {
-		if (bt.connections == null || envuuid == null){
+		if (envuuid == null){
 			return undefined;
 		}
 		if (envuuid == bt.execution_environment_uuid) {
 			return null;
 		}
 		let result = undefined;
-		$.each(bt.connections, function(key, value){
-			if (value.env_uuid == envuuid) {
-				result = value;
-				return false;
-			}
-		});
+		if(bt.connections != null) {
+			$.each(bt.connections, function(key, value){
+				if (value.env_uuid == envuuid) {
+					result = value;
+					return false;
+				}
+			});
+		}
 		return result;
 	}
 	
 	function getExecutionEnvironmentName(bt, envuuid){
-		if (bt.connections == null || envuuid == null){
+		if (envuuid == null){
 			return undefined;
 		}
 		if (envuuid == bt.execution_environment_uuid) {
 			return null;
 		}
 		let result = undefined;
-		$.each(bt.connections, function(key, value){
-			if (value.env_uuid == envuuid) {
-				result = key;
-				return false;
-			}
-		});
+		if(bt.connections != null) {
+			$.each(bt.connections, function(key, value){
+				if (value.env_uuid == envuuid) {
+					result = key;
+					return false;
+				}
+			});
+		}
 		return result;
 	}
 	
