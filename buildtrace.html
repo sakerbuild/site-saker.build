@@ -254,17 +254,22 @@
 #trace-body[data-selected-page=page-timeline] #page-timeline.trace-page,
 #trace-body[data-selected-page=page-scripts] #page-scripts.trace-page,
 #trace-body[data-selected-page=page-console] #page-console.trace-page,
-#trace-body[data-selected-page=page-exceptions] #page-exceptions.trace-page {
+#trace-body[data-selected-page=page-exceptions] #page-exceptions.trace-page,
+#trace-body[data-selected-page=page-artifacts] #page-artifacts.trace-page {
 	display: block;
 }
 #trace-body[data-selected-page=page-summary] .trace-menu-element[data-selects=page-summary],
 #trace-body[data-selected-page=page-timeline] .trace-menu-element[data-selects=page-timeline],
 #trace-body[data-selected-page=page-scripts] .trace-menu-element[data-selects=page-scripts],
 #trace-body[data-selected-page=page-console] .trace-menu-element[data-selects=page-console],
-#trace-body[data-selected-page=page-exceptions] .trace-menu-element[data-selects=page-exceptions] {
+#trace-body[data-selected-page=page-exceptions] .trace-menu-element[data-selects=page-exceptions],
+#trace-body[data-selected-page=page-artifacts] .trace-menu-element[data-selects=page-artifacts] {
 	font-weight: 600;
 }
-#trace-body[data-has-exceptions=false] .trace-menu-element[data-selects=page-exceptions] {
+#trace-body:not([data-has-exceptions=true]) .trace-menu-element[data-selects=page-exceptions] {
+	display: none;
+}
+#trace-body:not([data-has-artifacts=true]) .trace-menu-element[data-selects=page-artifacts] {
 	display: none;
 }
 #trace-menu .trace-menu-element {
@@ -361,18 +366,41 @@ tr.task-details-row>td:last-child {
 	padding-left: 1.4em;
 }
 label.vis-toggle:before {
+	transition: border-top var(--common-transitions-time) linear, 
+		border-bottom var(--common-transitions-time) linear, 
+		border-left var(--common-transitions-time) linear, 
+		border-right var(--common-transitions-time) linear,
+		margin-left var(--common-transitions-time) linear,
+		transform var(--common-transitions-time);
+}
+label.vis-toggle:not(.vis-toggle-no-arrow):before {
 	content: ' ';
 	margin: auto 5px auto 5px;
 	display: inline-block;
 	vertical-align: middle;
 
+}
+label.vis-toggle:not(.vis-toggle-no-arrow):not(.vis-toggle-side-arrow):before {
 	border-left: 0.4em solid transparent;
 	border-right: 0.4em solid transparent;
 	border-bottom: 0em solid transparent;
 	border-top: 0.4em solid var(--color-doc-section-arrow);
-	transition: border-top var(--common-transitions-time), border-bottom var(--common-transitions-time);
 }
-input.vis-toggle:checked + label.vis-toggle:before {
+input.vis-toggle:checked + label.vis-toggle:not(.vis-toggle-side-arrow):before {
+	border-top: 0em solid transparent;
+	border-bottom: 0.4em solid var(--color-doc-section-arrow);
+}
+label.vis-toggle.vis-toggle-side-arrow:not(.vis-toggle-no-arrow):before {
+	margin-left: calc(5px + 0.2em);
+	border-right: 0.2em solid transparent;
+	border-top: 0.4em solid transparent;
+	border-bottom: 0.4em solid transparent;
+	border-left: 0.4em solid var(--color-doc-section-arrow);
+}
+input.vis-toggle:checked + label.vis-toggle.vis-toggle-side-arrow:not(.vis-toggle-no-arrow):before {
+	margin-left: 5px;
+	border-right: 0.4em solid transparent;
+	border-left: 0.4em solid transparent;
 	border-top: 0em solid transparent;
 	border-bottom: 0.4em solid var(--color-doc-section-arrow);
 }
@@ -430,7 +458,7 @@ input.vis-toggle + label.vis-toggle + div {
 	width: 100%;
 }
 
-#page-console, #page-exceptions, #page-scripts {
+#page-console, #page-exceptions, #page-scripts, #page-artifacts {
 	padding: 10px 25px;
 }
 #trace-contents:not([data-console-highlight]) .trace-console-clear-highlight {
@@ -590,6 +618,9 @@ td.task-exception-summary {
 	margin-left: 2em;
 	font-weight: 600;
 }
+.trace-summary-head-info-artifacts {
+	color: #555;
+}
 .trace-summary-env-name {
 	font-weight: 600;
 	font-size: 1.05em;
@@ -659,6 +690,7 @@ a[data-tooltip][href] {
 	top: 0;
 	left: 0;
     transform: translateY(-100%);
+    word-break: break-word;
 	
 	z-index: 100;
 	background-color: white;
@@ -750,9 +782,58 @@ tr.trace-summary-embed-table-p2>td:first-child {
 	min-width: 100px;
 }
 
+.trace-file-node {
+}
+.trace-file-leaf {
+	margin-left: var(--vis-toggled-margin-left);
+}
+.trace-file-children {
+	border-left: 3px solid var(--task-row-entry-hover-color);
+	margin-left: calc(var(--vis-toggled-margin-left) + 7px) !important;
+}
+
+.trace-file-toggle:hover {
+	background-color: var(--task-row-entry-hover-color);
+}
+.tree-file-contents-toggle {
+	color: var(--color-link);
+	font-weight: 600;
+}
+.tree-file-contents-toggle:before {
+	content: ' ';
+	margin: auto calc(5px + 0.2em) auto calc(5px + 0.2em);
+	display: inline-block;
+	vertical-align: middle;
+	
+	border-left: 0.2em solid var(--color-doc-section-arrow);
+	border-right: 0.2em solid var(--color-doc-section-arrow);
+	border-bottom: 0.2em solid var(--color-doc-section-arrow);
+	border-top: 0.2em solid var(--color-doc-section-arrow);
+	transform: rotate(45deg);
+}
+.tree-file-contents-toggle:hover {
+	color: var(--color-link-hover);
+}
+.tree-file-contents {
+	margin-left: 0px !important;
+	padding-left: var(--vis-toggled-margin-left);
+}
+.trace-file-tree:not([data-trace-tree-item-count="1"]) .tree-file-contents {
+	border-bottom: 3px solid var(--task-row-entry-hover-color);
+}
+
+input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:before {
+	transform: rotate(0deg);
+}
+.page-artifacts-head-summary, .page-exceptions-head-summary {
+	padding: 10px;
+	font-weight: 600;
+}
+
+
 </style>
 
-<div id="trace-body" data-has-exceptions="false" data-selected-page="page-summary">
+<div id="trace-body" data-has-artifacts="false" data-has-exceptions="false" data-selected-page="page-summary">
 
 	<div id="trace-menu">
 		<div id="trace-menu-container">
@@ -769,8 +850,11 @@ tr.trace-summary-embed-table-p2>td:first-child {
     <path fill="currentColor" d="M13,13H11V7H13M12,17.3A1.3,1.3 0 0,1 10.7,16A1.3,1.3 0 0,1 12,14.7A1.3,1.3 0 0,1 13.3,16A1.3,1.3 0 0,1 12,17.3M15.73,3H8.27L3,8.27V15.73L8.27,21H15.73L21,15.73V8.27L15.73,3Z" />
 </svg>Exceptions</a>
 			<a href="#" class="trace-menu-element" data-selects="page-scripts"><svg class="menu-icon" viewBox="0 0 24 24">
-    <path fill="currentColor" d="M14 2H6C4.89 2 4 2.9 4 4V20C4 21.11 4.89 22 6 22H18C19.11 22 20 21.11 20 20V8L14 2M18 20H6V4H13V9H18V20M9.54 15.65L11.63 17.74L10.35 19L7 15.65L10.35 12.3L11.63 13.56L9.54 15.65M17 15.65L13.65 19L12.38 17.74L14.47 15.65L12.38 13.56L13.65 12.3L17 15.65Z" />
+    <path fill="currentColor" d="M13,9H18.5L13,3.5V9M6,2H14L20,8V20A2,2 0 0,1 18,22H6C4.89,22 4,21.1 4,20V4C4,2.89 4.89,2 6,2M6.12,15.5L9.86,19.24L11.28,17.83L8.95,15.5L11.28,13.17L9.86,11.76L6.12,15.5M17.28,15.5L13.54,11.76L12.12,13.17L14.45,15.5L12.12,17.83L13.54,19.24L17.28,15.5Z" />
 </svg>Build scripts</a>
+			<a href="#" class="trace-menu-element" data-selects="page-artifacts"><svg class="menu-icon" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M3,3H21V7H3V3M4,8H20V21H4V8M9.5,11A0.5,0.5 0 0,0 9,11.5V13H15V11.5A0.5,0.5 0 0,0 14.5,11H9.5Z" />
+</svg>Artifacts</a>
 
 			<div class="trace-menu-secondary">
 				<a id="btn-reload" title="Reload build trace" href="#" class="trace-menu-element"><svg class="menu-icon" viewBox="0 0 24 24">
@@ -791,6 +875,8 @@ tr.trace-summary-embed-table-p2>td:first-child {
 		<div id="page-exceptions" class="trace-page">
 		</div>
 		<div id="page-scripts" class="trace-page">
+		</div>
+		<div id="page-artifacts" class="trace-page">
 		</div>
 	</div>
 	<div id="trace-open-page" class="container">
@@ -886,6 +972,11 @@ tr.trace-summary-embed-table-p2>td:first-child {
     <path fill="currentColor" d="M13,13H11V7H13M12,17.3A1.3,1.3 0 0,1 10.7,16A1.3,1.3 0 0,1 12,14.7A1.3,1.3 0 0,1 13.3,16A1.3,1.3 0 0,1 12,17.3M15.73,3H8.27L3,8.27V15.73L8.27,21H15.73L21,15.73V8.27L15.73,3Z" />
 </svg>
 	`;
+	const ARTIFACTS_SVG = `
+<svg viewBox="0 0 24 24">
+    <path fill="currentColor" d="M20 21H4V10H6V19H18V10H20V21M3 3H21V9H3V3M9.5 11H14.5C14.78 11 15 11.22 15 11.5V13H9V11.5C9 11.22 9.22 11 9.5 11M5 5V7H19V5H5Z" />
+</svg>
+	`
 	
 	function getDocumentationToolipLinkSvg(href, title) {
 		let result = $(`<a>${ DOC_SVG }</a>`);
@@ -1628,6 +1719,7 @@ tr.trace-summary-embed-table-p2>td:first-child {
 			console.log(bt);
 			
 			$('#trace-body').attr('data-has-exceptions', isAnyBuildTraceException(bt));
+			$('#trace-body').attr('data-has-artifacts', bt._artifact_count > 0);
 			
 			fillPageWithId($('#trace-body').attr('data-selected-page'));
 		}
@@ -1768,15 +1860,21 @@ tr.trace-summary-embed-table-p2>td:first-child {
 		let timelinetasks = [];
 		let tabletasks = [];
 		bt.tasks.forEach(function(task){
+			let isuptodate = task.up_to_date === true;
 			if (alwaystimelinefilter(task)) {
 				tabletasks.push(task);
-				timelinetasks.push(task);
+				if(!isuptodate) {
+					timelinetasks.push(task);
+				}
 				return;
 			}
 			if (!filter(task)) {
 				return;
 			}
 			tabletasks.push(task);
+			if(isuptodate) {
+				return;
+			}
 			let duration = task.end - task.start;
 			let durpct = duration / totalduration;
 			if(durpct >= 0.005) {
@@ -1784,6 +1882,10 @@ tr.trace-summary-embed-table-p2>td:first-child {
 				timelinetasks.push(task);
 			}
 		});
+		if(timelinetasks.length == 0) {
+			//all tasks were too short to display display them all, whatever.
+			timelinetasks = tabletasks;
+		}
 		
 		let timeline = createTaskListTimeline(bt, timelinetasks);
 		
@@ -2180,17 +2282,13 @@ tr.trace-summary-embed-table-p2>td:first-child {
 								);
 							let filelistdiv = $(document.createElement('div'))
 								.addClass('task-details-input-files');
+								
+							filelistdiv.append(createFileTree(task.input_files, function(fp) { return fp; }));
+								
 							filesdiv.append(filelistdiv);
-							task.input_files.forEach(function(filepath){
-								filelistdiv.append(
-									$(document.createElement('div'))
-									.addClass('task-details-input-file-path')
-									.addClass('code-font')
-									.text(filepath)
-								);
-							});
 							detailstd.append(filesdiv);
 						}
+						let anyartifactout = false;
 						if (task.output_files != null && task.output_files.length > 0){
 							let filesdiv = $(document.createElement('div'))
 								.addClass('task-details-output-files')
@@ -2214,14 +2312,14 @@ tr.trace-summary-embed-table-p2>td:first-child {
 								);
 							let filelistdiv = $(document.createElement('div'))
 								.addClass('task-details-output-files');
+								
+							filelistdiv.append(createFileTree(task.output_files, function(fp) { return fp; }));
+								
 							filesdiv.append(filelistdiv);
 							task.output_files.forEach(function(filepath){
-								filelistdiv.append(
-									$(document.createElement('div'))
-									.addClass('task-details-output-file-path')
-									.addClass('code-font')
-									.text(filepath)
-								);
+								if(!anyartifactout && bt.artifacts != null && bt.artifacts[filepath] != null) {
+									anyartifactout = true;
+								}
 							});
 							detailstd.append(filesdiv);
 						}
@@ -2288,6 +2386,18 @@ tr.trace-summary-embed-table-p2>td:first-child {
 						let seelinks = $(document.createElement('div'))
 							.addClass('trace-see-links');
 						detailstd.append(seelinks);
+						if(anyartifactout) {
+							seelinks.append(
+								$(document.createElement('a'))
+								.text('View artifacts')
+								.attr('href', '#')
+								.click(function(e){
+									e.preventDefault();
+									showPageWithId('page-artifacts');
+									//TODO highlight artifact
+								})
+							);
+						}
 						if (task.stdout != null && task.stdout.length > 0) {
 							seelinks.append(
 								$(document.createElement('a'))
@@ -2451,6 +2561,7 @@ tr.trace-summary-embed-table-p2>td:first-child {
 		
 		let dlelem = document.createElement('a');
 		dlelem.setAttribute('href', '#');
+		//TODO revoke url
 		dlelem.href = window.URL.createObjectURL(new Blob([consolebytes], {type: "text/plain"}));
 		dlelem.download = "console.txt";
 		dlelem.innerHTML = 'Download';
@@ -2486,6 +2597,12 @@ tr.trace-summary-embed-table-p2>td:first-child {
 		});
 		exceptiontasks.sort(function(l, r){ return l.start - r.start; });
 		let pagediv = $('#page-exceptions.trace-page').empty();
+		
+		pagediv.append(
+			$(document.createElement('div'))
+			.addClass('page-exceptions-head-summary')
+			.text(bt._exception_count + ' exception' + (bt._artifact_count == 1 ? '' : 's') + ' was recorded during the build.')
+		);
 		
 		let tasksbody = $(document.createElement('tbody'))
 		
@@ -2949,6 +3066,7 @@ tr.trace-summary-embed-table-p2>td:first-child {
 				$(document.createElement('div'))
 				.addClass('color-failure')
 				.addClass('trace-summary-head-info')
+				.addClass('trace-summary-head-info-exceptions')
 				.append(excseverityelem)
 				.append(
 					$(document.createElement('span'))
@@ -2976,6 +3094,7 @@ tr.trace-summary-embed-table-p2>td:first-child {
 				$(document.createElement('div'))
 				.addClass('color-warning-text')
 				.addClass('trace-summary-head-info')
+				.addClass('trace-summary-head-info-warnings')
 				.append($(EXCLAMATION_SVG).addClass('color-warning').addClass('inline-svg'))
 				.append(
 					$(document.createElement('span'))
@@ -2986,6 +3105,32 @@ tr.trace-summary-embed-table-p2>td:first-child {
 						showPageWithId('page-console')
 					})
 				)
+			);
+		}
+		if(bt._artifact_count > 0) {
+			headdiv.append(
+				$(document.createElement('div'))
+				.addClass('trace-summary-head-info')
+				.addClass('trace-summary-head-info-artifacts')
+				.append($(ARTIFACTS_SVG).addClass('inline-svg'))
+				.append(
+					$(document.createElement('span'))
+					.text(bt._artifact_count + ' output artifact' + (bt._artifact_count == 1 ? '' : 's'))
+					.css('cursor', 'pointer')
+					.click(function(e){
+						e.preventDefault();
+						showPageWithId('page-artifacts')
+					})
+				)
+			);
+			headlinks.append(
+				$(document.createElement('a'))
+				.text('View artifacts')
+				.attr('href', '#')
+				.click(function(e){
+					e.preventDefault();
+					showPageWithId('page-artifacts')
+				})
 			);
 		}
 		headdiv.append(headlinks);
@@ -3164,7 +3309,6 @@ tr.trace-summary-embed-table-p2>td:first-child {
 					break;
 				}
 				case 'jar': {
-					//TODO
 					let name = getMachineNameDefaulted(bt, cp.file_provider);
 					td
 						.append(
@@ -3179,7 +3323,6 @@ tr.trace-summary-embed-table-p2>td:first-child {
 							.append(document.createTextNode(cp.path))
 							.attr('data-tooltip', 'The local filesystem path on the given build environment for the JAR.')
 						);
-					console.log(cp);
 					break;
 				}
 				case 'nest': {
@@ -3647,7 +3790,261 @@ tr.trace-summary-embed-table-p2>td:first-child {
 			});
 			pagediv.append(envsdiv);
 		}
+	}
+	
+	let fileTreeIds = 0;
+	
+	function createFileTree(items, itempathgetter, itemcontentsgetter) {
+		if (itemcontentsgetter == null) {
+			itemcontentsgetter = function() { return null; };
+		}
+		let result = $(document.createElement('div'))
+			.addClass('trace-file-tree')
+			.attr('data-trace-tree-item-count', items.length);
+		let sorted = [];
+		items.forEach(function(item) {
+			let path = itempathgetter(item);
+			let pathelems = path.split(/[\/\\]+/g);
+			if (pathelems.length == 0) {
+				//no path. don't display
+				return;
+			}
+			if (pathelems[0] == "") {
+				pathelems[0] = "/";
+			}
+			sorted.push({
+				path: path,
+				split: pathelems,
+				item: item
+			});
+		});
+		let tree = {
+			_keys: {
 			
+			}
+		};
+		sorted.forEach(function(elem) {
+			let currenttree = tree;
+			for(let i = 0; i < elem.split.length; ++i) {
+				let t = currenttree._keys[elem.split[i]];
+				if(t == null) {
+					let ntree = {
+						_keys: {
+						},
+						_name: elem.split[i]
+					};
+					currenttree._keys[elem.split[i]] = ntree;
+					currenttree = ntree;
+				} else {
+					currenttree = t;
+				}
+			}
+			currenttree._elem = elem;
+		});
+		
+		function collapse(node) {
+			let nodeid = fileTreeIds++;
+			node._node_id = nodeid;
+			node._children = [];
+			$.each(node._keys, function(k, vnode){
+				if(vnode._elem == null) {
+					node._children.push(vnode);
+				}
+			});
+			$.each(node._keys, function(k, vnode){
+				if(vnode._elem != null) {
+					node._children.push(vnode);
+				}
+			});
+			delete node._keys;
+			
+			if(node._children.length == 1) {
+				let child = node._children[0];
+				node._keys = child._keys;
+				if(node._name == null) {
+					//for the root
+					node._name = child._name;
+				} else if(node._name == "/") {
+					//handle slash root
+					node._name += child._name;
+				}else{
+					node._name = node._name + '/' + child._name;
+				}
+				if(child._elem != null) {
+					node._elem = child._elem;
+				}
+				delete node._children;
+				//go again
+				collapse(node);
+				return;
+			}
+			
+			if (node._children.length == 0) {
+				delete node._children;
+			} else {
+				node._children.forEach(function(child){
+					collapse(child);	
+				});
+			}
+		}
+		collapse(tree);
+		
+		function createNodeTree(node) {
+			let nodeid = node._node_id;
+			let nodediv = $(document.createElement('div'))
+				.addClass('trace-file-node');
+				
+			let contents = null;
+			if (node._elem != null) {
+				contents = itemcontentsgetter(node._elem.item);
+			}
+			
+			if (node._children != null || contents != null) {
+				let label = $(document.createElement('label'))
+					.text(node._name)
+					.addClass('vis-toggle')
+					.addClass('vis-toggle-side-arrow')
+					.addClass('code-font')
+					.addClass('trace-file-toggle')
+					.attr('for', 'toggle-filetree-' + nodeid);
+				nodediv
+					.append(
+						$(document.createElement('input'))
+						.attr('type', 'checkbox')
+						.addClass('vis-toggle')
+						.addClass('vis-toggle-side-arrow')
+						.attr('id', 'toggle-filetree-' + nodeid)
+					)
+					.append(
+						label
+					);
+				if (contents != null) {
+					label.addClass('vis-toggle-no-arrow')
+						.addClass('tree-file-contents-toggle');
+				}
+			}
+			if (node._children != null) {
+				let nodechildrendiv = $(document.createElement('div'))
+					.addClass('trace-file-children');
+				node._children.forEach(function(child){
+					nodechildrendiv.append(createNodeTree(child));
+				});
+				nodediv.append(nodechildrendiv);
+			} else if(contents != null) {
+				nodediv.append(
+					$(document.createElement('div'))
+						.addClass('tree-file-contents')
+						.append(contents)
+				);
+			} else {
+				nodediv.append(
+					$(document.createElement('span'))
+					.addClass('trace-file-leaf')
+					.addClass('code-font')
+					.text(node._name)
+				);
+			}
+			return nodediv;
+		}
+		let nodetree = createNodeTree(tree);
+		result.append(nodetree);
+		
+		if (tree._name != null) {
+			nodetree.find('#toggle-filetree-' + tree._node_id).prop('checked', true);
+		} 
+		
+		return result;
+	}
+	
+	function fillArtifactsPage(bt) {
+		let pagediv = $('#page-artifacts.trace-page').empty();
+		
+		pagediv.append(
+			$(document.createElement('div'))
+			.addClass('page-artifacts-head-summary')
+			.text(bt._artifact_count + ' output artifact' + (bt._artifact_count == 1 ? '' : 's') + ' was produced during the build.')
+		);
+		
+		let artarray = [];
+		$.each(bt.artifacts, function(path, artobj){
+			artarray.push({
+				path: path,
+				artifact: artobj
+			});
+		});
+		artarray.sort(function(l, r){ return l.path.localeCompare(r.path); });
+		
+		let ft = createFileTree(
+			artarray, 
+			function(a) { return a.path; },
+			function(a){
+				let adiv = $(document.createElement('div'));
+				if(a.artifact.type != null) {
+					switch(a.artifact.type) {
+						case "bytes": {
+							adiv.append(
+								$(document.createElement('span'))
+									.attr('data-trace-artifact-type', a.artifact.type)
+									.text('Artifact contents are available for download.')
+							);
+							let seelinks = $(document.createElement('div'))
+								.addClass('trace-see-links');
+							seelinks.append(
+								$(document.createElement('a'))
+								.text('Download artifact')
+								.attr('href', '#')
+								.click(function(e){
+									e.preventDefault();
+									
+									let dlelem = document.createElement('a');
+									dlelem.setAttribute('href', '#');
+									//TODO revoke url
+									let ourl = window.URL.createObjectURL(new Blob([a.artifact.bytes]))
+									dlelem.href = ourl;
+									dlelem.download = a.path.substring(a.path.lastIndexOf('/') + 1);
+									dlelem.click();
+								})
+							);
+							adiv.append(seelinks);
+							break;
+						}
+						case "read-error": {
+							adiv.append(
+								$(document.createElement('span'))
+									.attr('data-trace-artifact-type', a.artifact.type)
+									.text('Artifact content retrieval failed during build trace recording.')
+							);
+							break;
+						}
+						case "require-confidental": {
+							adiv.append(
+								$(document.createElement('span'))
+									.attr('data-trace-artifact-type', a.artifact.type)
+									.text('Artifact contents require build trace password.')
+							);
+							break;
+						}
+						case "not-embedded": 
+						default: {
+							adiv.append(
+								$(document.createElement('span'))
+									.attr('data-trace-artifact-type', a.artifact.type)
+									.text('Artifact contents are not present in the build trace.')
+							);
+							break;
+						}
+					}
+				} else {
+					adiv.append(
+						$(document.createElement('span'))
+						.attr('data-trace-artifact-type', 'not-embedded')
+						.addClass('trace-artifact-not-embedded')
+						.text('Artifact contents are not present in the build trace.')
+					);
+				}
+				return adiv;
+			});
+		pagediv.append(ft);
 	}
 	
 	function fillPageWithId(pageid) {
@@ -3673,6 +4070,10 @@ tr.trace-summary-embed-table-p2>td:first-child {
 			}
 			case 'page-scripts': {
 				fillScriptsPage(currentBuildTrace);
+				break;
+			}
+			case 'page-artifacts': {
+				fillArtifactsPage(currentBuildTrace);
 				break;
 			}
 		}

@@ -269,6 +269,7 @@ function parseInput(buffer) {
 	});
 	bt._warning_count = totalwarningcount;
 	bt._exception_count = totalexceptioncount;
+	bt._artifact_count = bt.artifacts == null ? 0 : Object.keys(bt.artifacts).length;
 	switch(exceptionseverity) {
 		case 1: {
 			bt._exception_severity = 'fatal';
