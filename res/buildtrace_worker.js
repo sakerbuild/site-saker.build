@@ -287,19 +287,98 @@ function parseInput(buffer) {
 	return bt;
 }
 
-self.addEventListener('message', function(e) {
+function parseBufferInputImpl(buffer, zipentryname){
 	let bt;
 	try {
-		bt = parseInput(e.data);
+		bt = parseInput(buffer);
 	}catch (e) {
 		self.postMessage({
 			type: 'exception',
-			exception: e
+			exception: e,
+			zip_entry_name: zipentryname
 		});
 		return;
 	}
 	self.postMessage({
 		type: 'done',
-		result: bt
+		result: bt,
+		zip_entry_name: zipentryname
 	});
+}
+
+self.addEventListener('message', function(e) {
+	let mimetype = e.data.mime_type;
+	let entryname = e.data.zip_entry_name;
+	if (mimetype != null && mimetype.indexOf('application/zip') >= 0) {
+		//read as zip
+		self.importScripts('jszip.min.js');
+		
+		new JSZip().loadAsync(e.data.buffer.buffer)
+		.then(function(zip) {
+		    let loadfile;
+		    if(entryname != null) {
+		    	loadfile = zip.files[entryname];
+		    	if(loadfile == null) {
+		    		let entrynames = [];
+		    		Object.values(zip.files).forEach(function(fobj){
+				    	if (fobj.dir) {
+				    		return;
+				    	}
+				    	entrynames.push(fobj.name);
+				    });
+		    		self.postMessage({
+						type: 'exception',
+						exception: 'ZIP entry not found: ' + entryname,
+						zip_entry_names: entrynames
+					});
+		    		return;
+		    	}
+		    }else{
+				let thefiles = [];
+			    Object.values(zip.files).forEach(function(fobj){
+			    	if (fobj.dir) {
+			    		return;
+			    	}
+			    	thefiles.push(fobj);
+			    });
+			    if(thefiles.length == 0) {
+			    	self.postMessage({
+						type: 'exception',
+						exception: 'No files found in ZIP archive.'
+					});
+					return;
+			    }
+			    if(thefiles.length == 1) {
+			    	loadfile = thefiles[0];
+			    } else {
+			    	let traceending = [];
+			    	thefiles.forEach(function(f) {
+			    		if(f.name.toLowerCase().endsWith('.trace')) {
+			    			traceending.push(f);
+			    		}
+			    	});
+			    	if(traceending.length == 1) {
+			    		loadfile = traceending[0];
+			    	} else {
+			    		let entrynames = [];
+			    		thefiles.forEach(function(f){ entrynames.push(f.name); });
+			    		self.postMessage({
+							type: 'exception',
+							exception: 'Failed to determine build trace file to load from ZIP.',
+							zip_entry_names: entrynames
+						});
+						return;
+			    	}
+			    }
+		    }
+		    loadfile.async('uint8array').then(function(data){
+		    	parseBufferInputImpl({
+		    		buffer: data,
+		    		idx: 0
+		    	}, loadfile.name);
+		    });
+		});
+		return;
+	}
+	parseBufferInputImpl(e.data.buffer);
 }, false);

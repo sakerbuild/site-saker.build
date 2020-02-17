@@ -829,6 +829,15 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 	padding: 10px;
 	font-weight: 600;
 }
+.zip-entry-chooser {
+	color: var(--color-link);
+	font-weight: 600;
+}
+.zip-entry-chooser:hover {
+	cursor: pointer;
+	color: var(--color-link-hover);
+	background-color: var(--task-row-entry-hover-color);
+}
 
 
 </style>
@@ -923,8 +932,7 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 	          <span aria-hidden="true">&times;</span>
 	        </button>
 	      </div>
-	      <div class="modal-body">
-	        <p id="modal-message"></p>
+	      <div id="modal-message-body" class="modal-body">
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -976,7 +984,7 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 <svg viewBox="0 0 24 24">
     <path fill="currentColor" d="M20 21H4V10H6V19H18V10H20V21M3 3H21V9H3V3M9.5 11H14.5C14.78 11 15 11.22 15 11.5V13H9V11.5C9 11.22 9.22 11 9.5 11M5 5V7H19V5H5Z" />
 </svg>
-	`
+	`;
 	
 	function getDocumentationToolipLinkSvg(href, title) {
 		let result = $(`<a>${ DOC_SVG }</a>`);
@@ -995,7 +1003,7 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 	
 	let nextTimelineControlCssId = 0;
 	
-	var currentBuildTrace = null;
+	let currentBuildTrace = null;
 	function createTimelineControl() {
 		let zoomstate = {
 			zoom: 1,
@@ -1086,8 +1094,9 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 				zoomstate.knobprevpos[id] = e.clientX;
 				let knobl = parseFloat(window.getComputedStyle(knob).getPropertyValue('left'));
 				let knobr = parseFloat(window.getComputedStyle(knob).getPropertyValue('right'));
+				let nval;
 				if (isleft) {
-					let nval = Math.max(
+					nval = Math.max(
 							Math.min(
 								(knobl - dx),
 								scrollbar.offsetWidth - knobr - lefthandle.offsetWidth - righthandle.offsetWidth - scrollbar.offsetWidth * 0.05
@@ -1097,7 +1106,7 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 					knob.style.left = nval + "px";
 					zoomstate.lknobpct = nval / scrollbar.offsetWidth;
 				} else {
-					let nval = Math.max(
+					nval = Math.max(
 							Math.min(
 								(knobr + dx),
 								scrollbar.offsetWidth - knobl - lefthandle.offsetWidth - righthandle.offsetWidth - scrollbar.offsetWidth * 0.05
@@ -1155,17 +1164,21 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 			}
 		}
 		return timelinecontrol;
-	};
+	}
 	
-	function readUrlImpl(url){
+	function getCurrentZipEntryName() {
+		return $('.trace-page').attr('data-trace-zip-entry');
+	}
+	
+	function readUrlImpl(url, zipentryname){
 		let old_element = document.getElementById("btn-reload");
 		let new_element = old_element.cloneNode(true);
 		old_element.parentNode.replaceChild(new_element, old_element);
 		new_element.addEventListener("click", function(e){
 			e.preventDefault();
-			readUrlImpl(url);
+			readUrlImpl(url, getCurrentZipEntryName());
 		});
-		var oReq = new XMLHttpRequest();
+		let oReq = new XMLHttpRequest();
 		oReq.open("GET", url, true);
 		oReq.responseType = "arraybuffer";
 		oReq.onreadystatechange = function(){
@@ -1173,12 +1186,13 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 				if(oReq.response == null || oReq.status == null || oReq.status < 200 || oReq.status > 299) {
 					$('#modal-error-dialog .modal-title').text('Request error');
 					if(oReq.status == 0) {
-						$('#modal-error-dialog #modal-message')
+						$('#modal-error-dialog #modal-message-body')
 							.empty()
-							.append('Failed to load build trace file, unknown error code. (0)<br>Note: some links may be blocked due to Cross-Origin Resource Sharing.');
+							.append('<p>Failed to load build trace file, unknown error code. (0)<br>Note: some links may be blocked due to Cross-Origin Resource Sharing.</p>');
 					} else {
-						$('#modal-error-dialog #modal-message')
-							.text('Failed to load build trace file, error code: ' + oReq.status);
+						$('#modal-error-dialog #modal-message-body')
+							.empty()
+							.append('<p>Failed to load build trace file, error code: ' + oReq.status + '</p>');
 					}
 					$('#modal-error-dialog').modal('show');
 					return;
@@ -1187,8 +1201,8 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 				
 				displayContents({
 					buffer: byteArray,
-					idx: 0,
-				});
+					idx: 0
+				}, oReq.getResponseHeader('content-type'), zipentryname, true);
 				showPageWithId('page-summary');
 				let docurl = new URL(document.location);
 				docurl.searchParams.delete('url');
@@ -1200,35 +1214,41 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 		oReq.ontimeout = function(){
 			oReq.onreadystatechange = null;
 			$('#modal-error-dialog .modal-title').text('Request timeout');
-			$('#modal-error-dialog #modal-message').text('Build trace download timed out.');
+			$('#modal-error-dialog #modal-message-body')
+				.empty()
+				.append('<p>Build trace download timed out.</p>');
 			$('#modal-error-dialog').modal('show');
 		};
 		oReq.withCredentials = false;
 		oReq.send();
 	}
 	
-	function readSingleFileImpl(file) {
+	function readSingleFileImpl(file, zipentryname) {
 		let old_element = document.getElementById("btn-reload");
 		let new_element = old_element.cloneNode(true);
 		old_element.parentNode.replaceChild(new_element, old_element);
 		new_element.addEventListener("click", function(e){
 			e.preventDefault();
-			readSingleFileImpl(file);
+			readSingleFileImpl(file, getCurrentZipEntryName());
 		});
 		let reader = new FileReader();
-		reader.onprogress = function(e){
+		//reader.onprogress = function(e){
 			//console.log("File progress: " + e.loaded / e.total);
 			//TODO display load progress somewhere
-		};
+		//};
 		reader.onload = function(e) {
 			let docurl = new URL(document.location);
 			docurl.searchParams.delete('url');
 			window.history.replaceState(null, "", docurl.toString());
 			
+			let mimetype = null;
+			if (file.name.toLowerCase().endsWith('.zip')) {
+				mimetype = "application/zip";
+			}
 			displayContents({
 				buffer: new Uint8Array(e.target.result),
-				idx: 0,
-			});
+				idx: 0
+			}, mimetype, zipentryname, false);
 			showPageWithId('page-summary');
 		};
 		reader.readAsArrayBuffer(file);
@@ -1711,11 +1731,16 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 		styleelem.innerHTML = timelinecss;
 	}
 	
-	function displayContents(buffer) {
+	function displayContents(buffer, mimetype, zipentryname, addzipurlparam) {
 		function displayImpl(bt) {
 			//clear all pages
 			
 			$('.trace-page').empty();
+			if (zipentryname == null) {
+				$('.trace-page').removeAttr('data-trace-zip-entry');
+			} else {
+				$('.trace-page').attr('data-trace-zip-entry', zipentryname);
+			}
 			$('#trace-contents').removeAttr('data-console-highlight');
 			$('#trace-body').attr('data-trace-open', true);
 			
@@ -1735,17 +1760,46 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 				//TODO handle progress
 				//console.log('Progress: ' + e.data.percent);
 			} else if (e.data.type == 'done') {
+				let docurl = new URL(document.location);
+				docurl.searchParams.delete('zip_entry');
+				if (e.data.zip_entry_name != null && addzipurlparam) {
+					docurl.searchParams.append('zip_entry', e.data.zip_entry_name);
+				}
+				window.history.replaceState(null, "", docurl.toString());
+				
 				let bt = e.data.result;
 				displayImpl(bt);
 				worker1.terminate();
 			} else if (e.data.type == 'exception') {
-				$('#modal-error-dialog .modal-title').text('Load error');
-				$('#modal-error-dialog #modal-message').text('Failed to load build trace file: ' + e.data.exception);
-				$('#modal-error-dialog').modal('show');
+				let dialogjq = $('#modal-error-dialog');
+				
+				dialogjq.find('.modal-title').text('Load error');
+				let dialogbody = dialogjq.find('#modal-message-body')
+					.empty()
+					.append(
+						$(document.createElement('p'))
+						.text('Failed to load build trace file: ' + e.data.exception)
+					);
+				if (e.data.zip_entry_names != null) {
+					let ft = createFileTree(e.data.zip_entry_names, function(p) { return p; });
+					ft.find('[data-file-tree-path]').addClass('zip-entry-chooser').click(function() {
+						let chosenfilepath = $(this).attr('data-file-tree-path');
+						dialogjq.modal('hide');
+						displayContents(buffer, mimetype, chosenfilepath, addzipurlparam);
+					});
+					dialogbody.append(ft);
+				}
+				
+				dialogjq.modal('show');
+				worker1.terminate();
 			}
 		}, false);
 		
-		worker1.postMessage(buffer); 
+		worker1.postMessage({
+			buffer: buffer,
+			mime_type: mimetype,
+			zip_entry_name: zipentryname
+		}); 
 	}
 	
 	function getTransitivelyCreatedByExternalTask(task, checkedtasktraceids) {
@@ -2898,7 +2952,7 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 		let monthNames = [
 			"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"
 		];
-		return `${ date.getFullYear() }. ${ monthNames[date.getMonth()] } ${ date.getDay() }. ${ date.getHours() }:${ pad(date.getMinutes(), 2) }:${ pad(date.getSeconds(), 2) }`;
+		return `${ date.getFullYear() }. ${ monthNames[date.getMonth()] } ${ date.getDate() }. ${ date.getHours() }:${ pad(date.getMinutes(), 2) }:${ pad(date.getSeconds(), 2) }`;
 	}
 	function fillSummaryPage(bt) {
 		let pagediv = $('#page-summary.trace-page').empty();
@@ -3896,6 +3950,7 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 			let contents = null;
 			if (node._elem != null) {
 				contents = itemcontentsgetter(node._elem.item);
+				nodediv.attr('data-file-tree-path', node._elem.path);
 			}
 			
 			if (node._children != null || contents != null) {
@@ -3925,7 +3980,7 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 			if (node._children != null) {
 				let nodechildrendiv = $(document.createElement('div'))
 					.addClass('trace-file-children');
-				node._children.forEach(function(child){
+				node._children.forEach(function(child) {
 					nodechildrendiv.append(createNodeTree(child));
 				});
 				nodediv.append(nodechildrendiv);
@@ -3946,11 +4001,15 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 			return nodediv;
 		}
 		let nodetree = createNodeTree(tree);
-		result.append(nodetree);
 		
 		if (tree._name != null) {
+			result.append(nodetree);
 			nodetree.find('#toggle-filetree-' + tree._node_id).prop('checked', true);
-		} 
+		} else {
+			//promote first child level
+			let fchildren = nodetree.children('.trace-file-children').children('.trace-file-node');
+			result.append(fchildren);
+		}
 		
 		return result;
 	}
@@ -3998,7 +4057,7 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 									let dlelem = document.createElement('a');
 									dlelem.setAttribute('href', '#');
 									//TODO revoke url
-									let ourl = window.URL.createObjectURL(new Blob([a.artifact.bytes]))
+									let ourl = window.URL.createObjectURL(new Blob([a.artifact.bytes]));
 									dlelem.href = ourl;
 									dlelem.download = a.path.substring(a.path.lastIndexOf('/') + 1);
 									dlelem.click();
@@ -4087,7 +4146,7 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 	}
 	
 	document.getElementById('file-input')
-		.addEventListener('change', readSingleFile, false);
+		.addEventListener('change', function(f) { return readSingleFile(f); }, false);
 	$('.trace-menu-element').click(function(e){
 		e.preventDefault();
 		let pageid = $(this).attr('data-selects');
@@ -4141,7 +4200,9 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 					//no files, silently ignore
 				} else if(ev.dataTransfer.items.length > 1) {
 					$('#modal-error-dialog .modal-title').text('Error');
-					$('#modal-error-dialog #modal-message').text('Too many files were drag & dropped.');
+					$('#modal-error-dialog #modal-message-body')
+						.empty()
+						.append('<p>Too many files were drag & dropped.</p>');
 					$('#modal-error-dialog').modal('show');
 				} else {
 					if (ev.dataTransfer.items[0].kind === 'file') {
@@ -4164,7 +4225,7 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 	let starturl = docurl.searchParams.get('url');
 	if (starturl != null && starturl.length > 0) {
 		$('#trace-url-open-form #url-input').val(starturl);
-		$('#trace-url-open-form #url-input').submit();
+		readUrlImpl(starturl, docurl.searchParams.get('zip_entry'));
 	}
 })();
 </script>
