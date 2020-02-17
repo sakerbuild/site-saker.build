@@ -829,11 +829,11 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 	padding: 10px;
 	font-weight: 600;
 }
-.zip-entry-chooser {
+.file-tree-entry-chooser {
 	color: var(--color-link);
 	font-weight: 600;
 }
-.zip-entry-chooser:hover {
+.file-tree-entry-chooser:hover {
 	cursor: pointer;
 	color: var(--color-link-hover);
 	background-color: var(--task-row-entry-hover-color);
@@ -1170,7 +1170,7 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 		return $('.trace-page').attr('data-trace-zip-entry');
 	}
 	
-	function readUrlImpl(url, zipentryname){
+	function readUrlContentsImpl(url, zipentryname) {
 		let old_element = document.getElementById("btn-reload");
 		let new_element = old_element.cloneNode(true);
 		old_element.parentNode.replaceChild(new_element, old_element);
@@ -1221,6 +1221,90 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 		};
 		oReq.withCredentials = false;
 		oReq.send();
+	}
+	
+	function readUrlImpl(url, zipentryname){
+		try {
+			let loadurl = new URL(url);
+			if (loadurl.hostname == 'dev.azure.com') {
+				//support loading trace result of artifacts from azure devops
+				let split = loadurl.pathname.split(/\//g);
+				if(split.length >= 4) {
+					//[0] is ""
+					if(split[3] == "_build") {
+						let org = split[1];
+						let project = split[2];
+						let buildid = loadurl.searchParams.get('buildId');
+						if (buildid != null) {
+							//get the artifact list
+							// https://docs.microsoft.com/en-us/rest/api/azure/devops/build/artifacts/list?view=azure-devops-rest-5.1
+							$.ajax(`https://dev.azure.com/${ org }/${ project }/_apis/build/builds/${ buildid }/artifacts?api-version=5.1`)
+								.then(function(data){
+									console.log(data);
+									if (data.count > 0) {
+										if (data.count == 1) {
+											readUrlContentsImpl(data.value[0].resource.downloadUrl, zipentryname);
+										} else {
+											let dialogjq = $('#modal-error-dialog');
+				
+											dialogjq.find('.modal-title').text('Choose Azure artifact');
+											let dialogbody = dialogjq.find('#modal-message-body')
+												.empty()
+												.append(
+													$(document.createElement('p'))
+													.text('Multiple published build artifacts found.')
+												);
+											let ft = createFileTree(
+												data.value, 
+												function(a) { return a.name; },
+												null,
+												function(nodejq, a) {
+													nodejq.attr('data-azure-download-url', a.resource.downloadUrl);
+												}
+											);
+											ft.find('[data-file-tree-path]')
+												.addClass('file-tree-entry-chooser')
+												.click(function() {
+													let chosendownloadurl = $(this).attr('data-azure-download-url');
+													dialogjq.modal('hide');
+													readUrlContentsImpl(chosendownloadurl, zipentryname);
+												});
+											dialogbody.append(
+												$(document.createElement('p'))
+												.text('Select the build trace you want to load:')
+											);
+											dialogbody.append(ft);
+											
+											dialogjq.modal('show');
+										}
+									} else {
+										let dialogjq = $('#modal-error-dialog');
+				
+										dialogjq.find('.modal-title').text('Azure Pipelines load error');
+										dialogjq.find('#modal-message-body')
+											.empty()
+											.append(
+												$(document.createElement('p'))
+												.text('No published artifacts found for Azupre Pipelines build.')
+											);
+										dialogjq.modal('show');
+									}
+								})
+								.fail(function(){
+									//Azure devops API error, or something
+									//fall back to original URL
+									readUrlContentsImpl(url, zipentryname);
+								});
+							return;
+						}
+					}
+				}
+			}
+		} catch(e) {
+			//ignore
+		}
+	
+		readUrlContentsImpl(url, zipentryname);	
 	}
 	
 	function readSingleFileImpl(file, zipentryname) {
@@ -1731,17 +1815,28 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 		styleelem.innerHTML = timelinecss;
 	}
 	
+	function clearTrace() {
+		$('.trace-page').empty();
+		$('.trace-page').removeAttr('data-trace-zip-entry');
+		$('#trace-contents').removeAttr('data-console-highlight');
+		$('#trace-body').attr('data-trace-open', false);
+		
+		$('#trace-body').attr('data-has-exceptions', false);
+		$('#trace-body').attr('data-has-artifacts', false);
+		
+		currentBuildTrace = null;
+	}
+	
 	function displayContents(buffer, mimetype, zipentryname, addzipurlparam) {
 		function displayImpl(bt) {
 			//clear all pages
 			
+			clearTrace();
+			
 			$('.trace-page').empty();
-			if (zipentryname == null) {
-				$('.trace-page').removeAttr('data-trace-zip-entry');
-			} else {
+			if (zipentryname != null) {
 				$('.trace-page').attr('data-trace-zip-entry', zipentryname);
 			}
-			$('#trace-contents').removeAttr('data-console-highlight');
 			$('#trace-body').attr('data-trace-open', true);
 			
 			currentBuildTrace = bt;
@@ -1780,13 +1875,17 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 						$(document.createElement('p'))
 						.text('Failed to load build trace file: ' + e.data.exception)
 					);
-				if (e.data.zip_entry_names != null) {
+				if (e.data.zip_entry_names != null && e.data.zip_entry_names.length > 0) {
 					let ft = createFileTree(e.data.zip_entry_names, function(p) { return p; });
-					ft.find('[data-file-tree-path]').addClass('zip-entry-chooser').click(function() {
+					ft.find('[data-file-tree-path]').addClass('file-tree-entry-chooser').click(function() {
 						let chosenfilepath = $(this).attr('data-file-tree-path');
 						dialogjq.modal('hide');
 						displayContents(buffer, mimetype, chosenfilepath, addzipurlparam);
 					});
+					dialogbody.append(
+						$(document.createElement('p'))
+						.text('Select a ZIP entry to load the build trace:')
+					);
 					dialogbody.append(ft);
 				}
 				
@@ -3847,9 +3946,12 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 	
 	let fileTreeIds = 0;
 	
-	function createFileTree(items, itempathgetter, itemcontentsgetter) {
+	function createFileTree(items, itempathgetter, itemcontentsgetter, nodecustomizer) {
 		if (itemcontentsgetter == null) {
 			itemcontentsgetter = function() { return null; };
+		}
+		if (nodecustomizer == null) {
+			nodecustomizer = function() { return null; };
 		}
 		let result = $(document.createElement('div'))
 			.addClass('trace-file-tree')
@@ -3910,6 +4012,19 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 				}
 			});
 			delete node._keys;
+			
+			node._children.sort(function(l, r) {
+				if(l._elem == null) {
+					if(r._elem == null) {
+						return l._name.localeCompare(r._name);
+					}
+					return -1;
+				}
+				if(r._elem == null) {
+					return 1;
+				}
+				return l._name.localeCompare(r._name);
+			});
 			
 			if(node._children.length == 1) {
 				let child = node._children[0];
@@ -3997,6 +4112,9 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 					.addClass('code-font')
 					.text(node._name)
 				);
+			}
+			if(node._elem != null) {
+				nodecustomizer(nodediv, node._elem.item);
 			}
 			return nodediv;
 		}
