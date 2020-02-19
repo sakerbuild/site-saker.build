@@ -268,6 +268,13 @@ function parseInput(buffer) {
 				}
 			}
 		}
+		if (task.inner_tasks != null) {
+			task.inner_tasks.forEach(function(innertask) {
+				if(innertask.exception != null) {
+					++exceptioncount;
+				}
+			});
+		}
 		
 		task._exception_count = exceptioncount;
 		totalexceptioncount += exceptioncount;
