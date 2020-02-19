@@ -1747,11 +1747,11 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 		if (task.title != null && task.title != "") {
 			return task.title;
 		}
-		if (task.display != null && task.display != "") {
-			return task.display;
-		}
 		if (task.label_timeline != null && task.label_timeline != "") {
 			return task.label_timeline;
+		}
+		if (task.display != null && task.display != "") {
+			return task.display;
 		}
 		if (task.task_class != null && task.task_class != "") {
 			return getShortenedTaskFactoryClassName(task.task_class);
