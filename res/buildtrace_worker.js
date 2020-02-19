@@ -11,6 +11,8 @@ const TYPE_OBJECT_EMPTY_BOUNDED = 10;
 const TYPE_BYTE_ARRAY = 11;
 const TYPE_BOOLEAN_TRUE = 12;
 const TYPE_BOOLEAN_FALSE = 13;
+const TYPE_FLOAT_AS_STRING = 14;
+const TYPE_DOUBLE_AS_STRING = 15;
 function readProgress(buffer) {
 	let percent = buffer.idx / buffer.buffer.length;
 	if (buffer.lastPercent == null || percent - buffer.lastPercent > 0.01) {
@@ -155,6 +157,12 @@ function readObject(buffer) {
 		}
 		case TYPE_BOOLEAN_FALSE: {
 			return false;
+		}
+		case TYPE_FLOAT_AS_STRING:
+		case TYPE_DOUBLE_AS_STRING: {
+			let str = readString(buffer);
+			readProgress(buffer);
+			return Number(str);
 		}
 		default: {
 			throw "unknown-type " + type;

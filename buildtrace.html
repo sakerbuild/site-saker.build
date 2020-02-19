@@ -391,6 +391,7 @@ input.vis-toggle:checked + label.vis-toggle:not(.vis-toggle-side-arrow):before {
 	border-bottom: 0.4em solid var(--color-doc-section-arrow);
 }
 label.vis-toggle.vis-toggle-side-arrow:not(.vis-toggle-no-arrow):before {
+	transition: unset;
 	margin-left: calc(5px + 0.2em);
 	border-right: 0.2em solid transparent;
 	border-top: 0.4em solid transparent;
@@ -418,6 +419,7 @@ input.vis-toggle + label.vis-toggle + div {
     margin-left: var(--vis-toggled-margin-left);
 }
 .task-details-properties-table {
+	width: 100%;
 }
 .task-details-properties-table:not(:last-child) {
 	margin-bottom: 5px;
@@ -469,7 +471,10 @@ input.vis-toggle + label.vis-toggle + div {
 .task-row-entry:hover {
 	background-color: var(--task-row-entry-hover-color);
 }
-.script-details-show-toggle:hover {
+.custom-value-show-toggle {
+	width: 100%;
+}
+.script-details-show-toggle:hover, .custom-value-show-toggle:hover {
 	background-color: var(--task-row-entry-hover-color);
 }
 .task-details-deltas-show-toggle:hover, .task-details-input-files-show-toggle:hover, .task-details-output-files-show-toggle:hover, .task-details-inner-tasks-show-toggle:hover {
@@ -638,9 +643,15 @@ td.task-exception-summary {
 .trace-summary-section td {
 	word-break: break-word;
 }
+.trace-summary-section table.summary-top-table {
+	width: 100%;
+}
 .trace-summary-section table.summary-top-table>tbody>tr>td:first-child{
 	white-space: nowrap;
 	min-width: 300px;
+}
+.trace-summary-section table.summary-top-table>tbody>tr>td:last-child{
+	width: 100%;
 }
 
 .trace-summary-section table td {
@@ -839,6 +850,28 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 	background-color: var(--task-row-entry-hover-color);
 }
 
+.trace-custom-values {
+	margin-top: 10px;
+}
+.trace-custom-value-map {
+	width: 100%;
+}
+.trace-custom-value-map>tbody>tr>td:last-child {
+	width: 100%;
+	white-space: normal;
+}
+#page-summary .trace-custom-value-map>tbody>tr>td:first-child {
+	min-width: 290px;
+	padding-right: 10px !important;
+}
+.trace-custom-value-map>tbody>tr>td:first-child {
+	white-space: nowrap;
+	word-break: break-all;
+}
+.task-details-properties-table .trace-custom-value-map>tbody>tr>td:first-child {
+	min-width: calc(200px - 1.4em);
+	padding-left: 0px;
+}
 
 </style>
 
@@ -892,14 +925,16 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 		<div class="row">
 			<div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1">
 				<h1>Build trace viewer</h1>
+				<noscript><p><b>Note: The build trace viewer requires JavaScript to render. Please enable it to view build traces.</b></p></noscript>
 				<p>Build traces provide insights into the build process and its performance. This page allows you to visualise a generated build trace file. See the <a href="/saker.build/doc/guide/buildtrace.html">documentation</a> for more information.</p>
 				<p>Build traces that you open on this page are not transferred over the network.</p>
 				<p>Drag & drop a file or link, or use the inputs below to open a build trace.</p>
+				<p>You can also open build traces from ZIP files, or published artifacts from Azure Pipelines for public projects.</p>
 				<table class="open-page-form-table">
 					<tr>
 						<td>Open file:</td>
 						<td>
-							<label for="file-input">Browse...</label>
+							<label for="file-input" title="Open build trace or ZIP">Browse...</label>
 							<input type="file" id="file-input" />
 						</td>
 					</tr>
@@ -908,7 +943,7 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 						<td>
 							<form id="trace-url-open-form">
 								<input name="url" type="url" id="url-input" placeholder="Build trace URL" required/>
-								<input type="submit" value="Open"/>
+								<input type="submit" title="Open build trace link" value="Open"/>
 							</form>
 						</td>
 					</tr>
@@ -1223,85 +1258,152 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 		oReq.send();
 	}
 	
+	function readAzureUrlWithBuildId(org, project, buildid, zipentryname) {
+		//get the artifact list
+		// https://docs.microsoft.com/en-us/rest/api/azure/devops/build/artifacts/list?view=azure-devops-rest-5.1
+		$.ajax(`https://dev.azure.com/${ org }/${ project }/_apis/build/builds/${ buildid }/artifacts?api-version=5.1`)
+			.then(function(data){
+				console.log(data);
+				if (data.count > 0) {
+					if (data.count == 1) {
+						readUrlContentsImpl(data.value[0].resource.downloadUrl, zipentryname);
+					} else {
+						let dialogjq = $('#modal-error-dialog');
+
+						dialogjq.find('.modal-title').text('Choose Azure artifact');
+						let dialogbody = dialogjq.find('#modal-message-body')
+							.empty()
+							.append(
+								$(document.createElement('p'))
+								.text(`Multiple published Azure pipelines build artifacts found. (${org}/${project}/buildId=${buildid})`)
+							);
+						let ft = createFileTree(
+							data.value, 
+							function(a) { return a.name; },
+							null,
+							function(nodejq, a) {
+								nodejq.attr('data-azure-download-url', a.resource.downloadUrl);
+							}
+						);
+						ft.find('[data-file-tree-path]')
+							.addClass('file-tree-entry-chooser')
+							.click(function() {
+								let chosendownloadurl = $(this).attr('data-azure-download-url');
+								dialogjq.modal('hide');
+								readUrlContentsImpl(chosendownloadurl, zipentryname);
+							});
+						dialogbody.append(
+							$(document.createElement('p'))
+							.text('Select the build trace you want to load:')
+						);
+						dialogbody.append(ft);
+						
+						dialogjq.modal('show');
+						return;
+					}
+				} else {
+					let dialogjq = $('#modal-error-dialog');
+					dialogjq.find('.modal-title').text('Azure Pipelines load error');
+					dialogjq.find('#modal-message-body')
+						.empty()
+						.append(
+							$(document.createElement('p'))
+							.text(`No published artifacts found for Azupre Pipelines build. (${org}/${project}/buildId=${buildid})`)
+						);
+					dialogjq.modal('show');
+					return;
+				}
+			})
+			.fail(function(){
+				let dialogjq = $('#modal-error-dialog');
+				dialogjq.find('.modal-title').text('Azure Pipelines load error');
+				dialogjq.find('#modal-message-body')
+					.empty()
+					.append(
+						$(document.createElement('p'))
+						.text(`Failed to retrieve published artifacts for Azure pipelines build. (${org}/${project}/buildId=${buildid})`)
+					);
+				dialogjq.modal('show');
+				return;
+			});
+	}
+	function readAzureUrl(org, project, buildid, zipentryname) {
+		if (buildid != null) {
+			readAzureUrlWithBuildId(org, project, buildid, zipentryname);
+		} else {
+			//no buildid 
+			//get the latest
+			//https://dev.azure.com/sakerbuild/saker.build/_apis/build/builds?api-version=5.1
+			$.ajax(`https://dev.azure.com/${ org }/${ project }/_apis/build/builds?api-version=5.1`)
+				.done(function(data){
+					console.log(data);
+					let completedbuilds = [];
+					data.value.forEach(function(b){
+						if(b.status == 'completed') {
+							completedbuilds.push(b);
+						}
+					});
+					if(completedbuilds.length == 0) {
+						let dialogjq = $('#modal-error-dialog');
+						dialogjq.find('.modal-title').text('Azure Pipelines load error');
+						dialogjq.find('#modal-message-body')
+							.empty()
+							.append(
+								$(document.createElement('p'))
+								.text(`No completed Azure pipelines build found for project. (${org}/${project})`)
+							);
+						dialogjq.modal('show');
+						return;
+					}
+					completedbuilds.sort(function(l, r){
+						//descending
+						return new Date(r.startTime) - new Date(l.startTime);
+					});
+					let b = completedbuilds[0];
+					readAzureUrlWithBuildId(org, project, b.id, zipentryname);
+				})
+				.fail(function(){
+					let dialogjq = $('#modal-error-dialog');
+					dialogjq.find('.modal-title').text('Azure Pipelines load error');
+					dialogjq.find('#modal-message-body')
+						.empty()
+						.append(
+							$(document.createElement('p'))
+							.text(`Failed to retrieve latest builds for Azure pipelines project. (${org}/${project})`)
+						);
+					dialogjq.modal('show');
+					return;
+				});
+		}
+	}
+	
 	function readUrlImpl(url, zipentryname){
 		try {
 			let loadurl = new URL(url);
 			if (loadurl.hostname == 'dev.azure.com') {
 				//support loading trace result of artifacts from azure devops
 				let split = loadurl.pathname.split(/\//g);
-				if(split.length >= 4) {
+				if(split.length >= 3) {
 					//[0] is ""
-					if(split[3] == "_build") {
-						let org = split[1];
-						let project = split[2];
+					let org = split[1];
+					let project = split[2];
+					if (split.length == 3) {
+						//no further path names. no build id.
+						readAzureUrl(org, project, null, zipentryname);
+					} else if(split[3] == "_apis") {
+						//if the user entered an _apis URL, open that directly
+						//continue the method
+					} else {
+						//else get the buildid search parameter and open
 						let buildid = loadurl.searchParams.get('buildId');
-						if (buildid != null) {
-							//get the artifact list
-							// https://docs.microsoft.com/en-us/rest/api/azure/devops/build/artifacts/list?view=azure-devops-rest-5.1
-							$.ajax(`https://dev.azure.com/${ org }/${ project }/_apis/build/builds/${ buildid }/artifacts?api-version=5.1`)
-								.then(function(data){
-									console.log(data);
-									if (data.count > 0) {
-										if (data.count == 1) {
-											readUrlContentsImpl(data.value[0].resource.downloadUrl, zipentryname);
-										} else {
-											let dialogjq = $('#modal-error-dialog');
-				
-											dialogjq.find('.modal-title').text('Choose Azure artifact');
-											let dialogbody = dialogjq.find('#modal-message-body')
-												.empty()
-												.append(
-													$(document.createElement('p'))
-													.text('Multiple published build artifacts found.')
-												);
-											let ft = createFileTree(
-												data.value, 
-												function(a) { return a.name; },
-												null,
-												function(nodejq, a) {
-													nodejq.attr('data-azure-download-url', a.resource.downloadUrl);
-												}
-											);
-											ft.find('[data-file-tree-path]')
-												.addClass('file-tree-entry-chooser')
-												.click(function() {
-													let chosendownloadurl = $(this).attr('data-azure-download-url');
-													dialogjq.modal('hide');
-													readUrlContentsImpl(chosendownloadurl, zipentryname);
-												});
-											dialogbody.append(
-												$(document.createElement('p'))
-												.text('Select the build trace you want to load:')
-											);
-											dialogbody.append(ft);
-											
-											dialogjq.modal('show');
-										}
-									} else {
-										let dialogjq = $('#modal-error-dialog');
-				
-										dialogjq.find('.modal-title').text('Azure Pipelines load error');
-										dialogjq.find('#modal-message-body')
-											.empty()
-											.append(
-												$(document.createElement('p'))
-												.text('No published artifacts found for Azupre Pipelines build.')
-											);
-										dialogjq.modal('show');
-									}
-								})
-								.fail(function(){
-									//Azure devops API error, or something
-									//fall back to original URL
-									readUrlContentsImpl(url, zipentryname);
-								});
-							return;
-						}
+						readAzureUrl(org, project, buildid, zipentryname);
+						return;
 					}
 				}
 			}
 		} catch(e) {
 			//ignore
+			console.log(e);
 		}
 	
 		readUrlContentsImpl(url, zipentryname);	
@@ -1455,53 +1557,124 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 		return mn;
 	}
 	
+	function getLongestTaskIndexInTaskList(tasklist) {
+		let result = undefined;
+		let resdur = -1;
+		for(let i = 0; i < tasklist.length; ++i) {
+			let task = tasklist[i];
+			let dur = task.end - task.start;
+			if(dur > resdur) {
+				result = i;
+				resdur = dur;
+			}
+		}
+		return result;
+	}
+	
+	function findClosestTaskIndexToTimestampInTaskListImpl(tasklist, executionenv, tsdifffunction){
+		let result = undefined;
+		let reslen = -1;
+		let resdiff = undefined;
+		for (let i = 0; i < tasklist.length; ++i) {
+			let task = tasklist[i];
+			if (task.execution_env != executionenv) {
+				continue;
+			}
+			let diff = tsdifffunction(task);
+			if (diff < 0) {
+				continue;
+			}
+			let tlen = task.end - task.start;
+			if (diff == 0) {
+				if (resdiff == 0) {
+					if(tlen < reslen) {
+						continue;
+					}
+				}
+				result = i;
+				reslen = tlen;
+				resdiff = 0;
+				continue;
+			}
+			if (resdiff === undefined || diff < resdiff) {
+				result = i;
+				reslen = tlen;
+				resdiff = diff;
+				continue;
+			}
+		}
+		return result;
+	}
+	
+	function findClosestToEndTaskIndexInTaskList(tasklist, end, executionenv) {
+		return findClosestTaskIndexToTimestampInTaskListImpl(
+			tasklist, 
+			executionenv, 
+			function(task){ return task.start - end; }
+		);
+	}
+	function findClosestToStartTaskIndexInTaskList(tasklist, start, executionenv) {
+		return findClosestTaskIndexToTimestampInTaskListImpl(
+			tasklist, 
+			executionenv, 
+			function(task){ return start - task.end; }
+		);
+	}
+	
 	function createTaskListTimeline(bt, tasklist) {
 		let durationobj = getTaskListTotalDuration(tasklist);
 		let totalduration = durationobj.duration;
 		let lines = [];
-		tasklist.forEach(function(elem){
-			let duration = elem.end - elem.start;
-			let durpct = duration / totalduration;
-			let startpct = (elem.start - durationobj.start) / totalduration;
-			let endpct = (elem.end - durationobj.start) / totalduration;
-			
-			let foundline = null;
-			let index = null;
-			for (let i = 0; i < lines.length; ++i) {
-				let l = lines[i];
-				function isRangesOverlaps() {
-					for (let j = 0; j < l.ranges.length; ++j) {
-						let r = l.ranges[j];
-						if (startpct < r.endpct && r.startpct < endpct) {
-							return true;
-						}
+		let listcopy = tasklist.slice();
+		while (listcopy.length > 0) {
+			let longesttaskidx = getLongestTaskIndexInTaskList(listcopy);
+			let longesttask = listcopy[longesttaskidx];
+			let line = {
+				ranges: [
+					{
+						task: longesttask,
+						startpct: (longesttask.start - durationobj.start) / totalduration,
+						endpct: (longesttask.end - durationobj.start) / totalduration
 					}
-					return false;
-				}
-				if (l.execution_env != elem.execution_env) {
-					continue;
-				}
-				if (!isRangesOverlaps()) {
-					foundline = l;
-					index = i;
+				],
+				execution_env: longesttask.execution_env,
+				connection_name: getExecutionEnvironmentName(bt, longesttask.execution_env)
+			};
+			listcopy.splice(longesttaskidx, 1);
+			
+			let start = longesttask.start;
+			while(true) {
+				let closeststart = findClosestToStartTaskIndexInTaskList(listcopy, start, line.execution_env);
+				if (closeststart == null) {
 					break;
 				}
+				let ctask = listcopy[closeststart];
+				line.ranges.unshift({
+					task: ctask,
+					startpct: (ctask.start - durationobj.start) / totalduration,
+					endpct: (ctask.end - durationobj.start) / totalduration
+				});
+				listcopy.splice(closeststart, 1);
+				start = ctask.start;
 			}
-			if (foundline == null) {
-				foundline = {
-					ranges: [],
-					execution_env: elem.execution_env,
-					connection_name: getExecutionEnvironmentName(bt, elem.execution_env)
-				};
-				index = lines.length;
-				lines.push(foundline);
+			let end = longesttask.end;
+			while(true) {
+				let closestend = findClosestToEndTaskIndexInTaskList(listcopy, end, line.execution_env);
+				if (closestend == null) {
+					break;
+				}
+				let ctask = listcopy[closestend];
+				line.ranges.push({
+					task: ctask,
+					startpct: (ctask.start - durationobj.start) / totalduration,
+					endpct: (ctask.end - durationobj.start) / totalduration
+				});
+				listcopy.splice(closestend, 1);
+				end = ctask.end;
 			}
-			foundline.ranges.push({
-				startpct: startpct,
-				endpct: endpct,
-				task: elem
-			});
-		});
+			
+			lines.push(line);
+		}
 		return {
 			lines: lines
 		};
@@ -2294,6 +2467,18 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 								.append($(document.createElement('td')).addClass('code-font').text(task.build_dir))
 							);
 						}
+						
+						if (task.values != null) {
+							detailtbody.append(
+								$(document.createElement('tr'))
+								.append(
+									$(document.createElement('td'))
+									.attr('colspan', 2)
+									.append(createCustomValuesView(task.values))
+								)
+							);
+						}
+						
 						detailstd.append(detailtable);
 						if (task.deltas != null && task.deltas.length > 0) {
 							let deltasdiv = $(document.createElement('div'))
@@ -2833,7 +3018,7 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 				return elem;
 			}
 			
-			function appendExceptionRows(exc, iconelemjq) {
+			function appendExceptionRows(exc, iconelemjq, traceid) {
 				if (exc == null) {
 					return;
 				}
@@ -2849,12 +3034,12 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 				}
 					
 				let taskrow = $(document.createElement('tr'))
-					.attr('data-trace-id', task.trace_id)
+					.attr('data-trace-id', traceid)
 					.addClass('task-row-entry')
 					.append(tasktitletd)
 					.append(exctd);
 				let detailsrow = $(document.createElement('tr'))
-					.attr('data-trace-id', task.trace_id)
+					.attr('data-trace-id', traceid)
 					.addClass('task-details-row')
 					.append(detailstd);
 					
@@ -2907,7 +3092,7 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 					)
 					.attr('data-tooltip', 'The task terminated abruptly by throwing an exception.')
 				;
-				appendExceptionRows(task.exception, icon);
+				appendExceptionRows(task.exception, icon, task.trace_id);
 			}
 			
 			if (task.abort_exceptions != null) {
@@ -2924,7 +3109,7 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 						)
 						.attr('data-tooltip', 'The task failed gracefully by aborting with an exception.')
 					;
-					appendExceptionRows(exc, icon);
+					appendExceptionRows(exc, icon, task.trace_id);
 				});
 			}
 			if (task.ignored_exceptions != null) {
@@ -2937,7 +3122,7 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 						)
 						.attr('data-tooltip', 'An exception was ignored/not handled by the task.')
 					;
-					appendExceptionRows(exc, icon);
+					appendExceptionRows(exc, icon, task.trace_id);
 				});
 			}
 			if (task.inner_tasks != null) {
@@ -2946,7 +3131,7 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 						.addClass('color-failure')
 						.addClass('inline-svg');
 					//TODO signal that it is an inner task
-					appendExceptionRows(innertask.exception);
+					appendExceptionRows(innertask.exception, icon, innertask.trace_id);
 				});
 			}
 		});
@@ -3053,6 +3238,99 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 		];
 		return `${ date.getFullYear() }. ${ monthNames[date.getMonth()] } ${ date.getDate() }. ${ date.getHours() }:${ pad(date.getMinutes(), 2) }:${ pad(date.getSeconds(), 2) }`;
 	}
+	
+	let customValueIdCounter = 0;
+	
+	function appendSingleCustomValueView(value, container) {
+		if (Array.isArray(value)) {
+			let listdiv = $(document.createElement('div'))
+				.addClass('trace-custom-list-list');
+			value.forEach(function(v){
+				let entrydiv = $(document.createElement('div'))
+					.addClass('trace-custom-list-entry');
+				appendSingleCustomValueView(v, entrydiv);
+				listdiv.append(entrydiv);
+			});
+			container.append(listdiv);
+		} else if(typeof value === 'string') {
+			container.append(
+				$(document.createElement('span'))
+				.addClass('trace-custom-value-string')
+				.text(value)
+			);
+		} else if(typeof value === 'number') {
+			container.append(
+				$(document.createElement('span'))
+				.addClass('trace-custom-value-number')
+				.text(value)
+			);
+		} else if(typeof value === 'boolean') {
+			container.append(
+				$(document.createElement('span'))
+				.addClass('trace-custom-value-boolean')
+				.text(value)
+			);
+		} else if(typeof value === 'object') {
+			let table = $(document.createElement('table'))
+				.addClass('trace-custom-value-map');
+			let tbody = $(document.createElement('tbody'));
+			$.each(value, function(k, v) {
+				let tr = $(document.createElement('tr'));
+				if (Array.isArray(v) || typeof v === 'object') {
+					let td = $(document.createElement('td'))
+						.attr('colspan', 2);
+					//TODO style more, and visibility toggle
+					
+					let cvalid = customValueIdCounter++;
+					
+					td.append(
+						$(document.createElement('input'))
+						.attr('type', 'checkbox')
+						.addClass('vis-toggle')
+						.attr('id', 'toggle-custom-value-' + cvalid)
+					)
+					.append(
+						$(document.createElement('label'))
+						.addClass('custom-value-show-toggle')
+						.addClass('vis-toggle')
+						.attr('for', 'toggle-custom-value-' + cvalid)
+						.text(k)
+					);
+					
+					let cvaldiv = $(document.createElement('div'));
+					
+					appendSingleCustomValueView(v, cvaldiv);
+					
+					td.append(cvaldiv);
+					tr.append(td);
+				} else {
+					let td2 = $(document.createElement('td'));
+					appendSingleCustomValueView(v, td2);
+					tr.append(
+						$(document.createElement('td')).text(k)
+					);
+					tr.append(td2);
+				}
+				tbody.append(tr);
+			});
+			table.append(tbody);
+			container.append(table);
+		} else {
+			console.log(value);
+			container.append(
+				$(document.createElement('div'))
+				.addClass('trace-custom-value-render-failure')
+				.text('Failed to render custom value. (unknown type)')
+			);
+		}
+	}
+	function createCustomValuesView(values) {
+		let result = $(document.createElement('div'))
+			.addClass('trace-custom-values');
+		appendSingleCustomValueView(values, result);
+		return result;
+	}
+	
 	function fillSummaryPage(bt) {
 		let pagediv = $('#page-summary.trace-page').empty();
 		
@@ -3568,7 +3846,7 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 						.append(
 							$(document.createElement('td'))
 							.text('Service: ')
-							.attr('data-tooltip', 'The service configuration specifying how the repository should be loaded..')
+							.attr('data-tooltip', 'The service configuration specifying how the repository should be loaded.')
 						)
 						.append(applyServiceDescription($(document.createElement('td')), repo.service))
 					);
@@ -3591,6 +3869,7 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 					$(document.createElement('tr'))
 					.append(
 						$(document.createElement('td'))
+						.attr('colspan', 2)
 						.addClass('code-font')
 						.text(wildcard)
 						.attr('data-tooltip', 'The wildcard the following script configuration applies to.')
@@ -3682,6 +3961,7 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 						$(document.createElement('tr'))
 						.append(
 							$(document.createElement('td'))
+							.attr('colspan', 2)
 							.text(name)
 							.attr('data-tooltip', 'The name of the build environment the rules are specified for.')
 						)
@@ -3895,6 +4175,7 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 						$(document.createElement('tr'))
 						.append(
 							$(document.createElement('td'))
+							.attr('colspan', 2)
 							.text('Environment parameters')
 							.attr('data-tooltip', 'User provided key-value pairs for the build environment.')
 						)
@@ -3918,6 +4199,16 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 							.attr('data-tooltip', 'The unique identifier of the computer this environment is running on.')
 						)
 						.append($(document.createElement('td')).text(env.machine_uuid))
+					);
+				}
+				if (env.values != null) {
+					envtbody.append(
+						$(document.createElement('tr'))
+						.append(
+							$(document.createElement('td'))
+							.attr('colspan', 2)
+							.append(createCustomValuesView(env.values))
+						)
 					);
 				}
 				envdiv.append(
