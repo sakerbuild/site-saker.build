@@ -92,7 +92,7 @@
 	position: relative;
 }
 .timeline-main {
-	padding: 10px 25px;
+	margin: 10px 25px;
 }
 .timeline-inner {
 	padding: 10px 0;
@@ -4443,7 +4443,7 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 		pagediv.append(
 			$(document.createElement('div'))
 			.addClass('page-artifacts-head-summary')
-			.text(bt._artifact_count + ' output artifact' + (bt._artifact_count == 1 ? '' : 's') + ' was produced during the build.')
+			.text(bt._artifact_count + ' output artifact' + (bt._artifact_count == 1 ? ' was' : 's were') + ' produced during the build.')
 		);
 		
 		let artarray = [];
