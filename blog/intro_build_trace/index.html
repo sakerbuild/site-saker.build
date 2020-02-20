@@ -67,7 +67,7 @@
 </div>
 			<div class="doc-content"><h1 id="introducing-the-build-trace-for-saker_build">Introducing the build trace for saker.build<a class="doc-heading-anchor" href="#introducing-the-build-trace-for-saker_build"></a></h1>
 <p><small>2020 February 20</small></p>
-<p>Build failures and performance bottlenecks can be hard to debug. You most likely don't want to spend most of your work time deciphering build logs or error stacktraces to overcome these issues. This is where the new build trace for saker.build comes in.</p>
+<p>Build failures and performance bottlenecks can be hard to debug. You most likely don't want to spend your work time deciphering build logs or error stacktraces to overcome these issues. This is where the new build trace feature for saker.build comes in.</p>
 <p>A build trace is a recording of your build execution with the most relevant information collected in it. It records the build configuration, task executions, exceptions, build output, script contents, output artifacts and other information and can be displayed for you to examine possible issues.</p>
 <p>Let's see how it works.</p>
 <h4 id="create-and-view-a-build-trace">Create and view a build trace<a class="doc-heading-anchor" href="#create-and-view-a-build-trace"></a></h4>
@@ -124,7 +124,7 @@
 <ol>
 <li>Create a build trace during builds.
 <ul>
-<li>Quite simply by using the <a href="../../saker.build/doc/guide/cmdlineref/build.html#-trace" title="-trace"><code>-trace</code></a> command line option.</li>
+<li>Quite simple by using the <a href="../../saker.build/doc/guide/cmdlineref/build.html#-trace" title="-trace"><code>-trace</code></a> command line option.</li>
 </ul>
 </li>
 <li>Retrieve the build trace artifacts and open them in the build trace viewer.
@@ -153,14 +153,14 @@
 <p><small>Note: Don't forget to add the <code>condition: always()</code> line to the publishing task so your build trace is published even if the build fails!</small></p>
 <h3 id="one-more-thing___">One more thing...<a class="doc-heading-anchor" href="#one-more-thing___"></a></h3>
 <p>Downloading and opening the build trace file feels like too much hassle. And it is. That's why we implemented support for automatically querying and opening the build artifacts as build trace files.</p>
-<p>Simply drag the <em>1 published</em> link from the Azure dashboard to the build trace viewer. If you have published multiple build traces for the build, don't worry, the viewer will asks you which one to open.</p>
+<p>Simply drag the <em>1 published</em> link from the Azure dashboard to the build trace viewer. If you have published multiple build traces for the build, don't worry, the viewer will ask you which one to open.</p>
 <p><a href="azure_open_artifact.gif"><img src="azure_open_artifact.gif" alt="Open CI artifact as build trace" /></a></p>
 <small style="text-align: center;">
 <p>Open CI artifact as build trace by dragging and dropping</p>
 </small>
 <p>You can also drag &amp; drop other Azure build links which contain the organization, project name, and the <code>buildId</code> parameter.</p>
 <h2 id="further-improvements">Further improvements<a class="doc-heading-anchor" href="#further-improvements"></a></h2>
-<p>There are still a few things that we wish for the build trace to contain. Various dependency informations, additional informations about the tasks, the task dependencies and their relations, more information about remote execution, and more. We consider the current implementation as a <em>good start</em> for implementing great build trace support for the saker.build system.</p>
+<p>There are still a few things that we wish for the build trace to contain. Various dependency informations, additional information about the tasks, the task dependencies and their relations, more information about remote execution, and others. We consider the current implementation as a <em>good start</em> for implementing great build trace support for the saker.build system.</p>
 <p>We'll be continuously improving the build trace UI and recording as time goes on, however, you can still try it out as it was released in the 0.8.6 version of the saker.build system just a week ago.</p>
 <p>If you want to report an issue, or just want to find us on GitHub, see more at <a href="https://github.com/sakerbuild/saker.build" title="GitHub - sakerbuild/saker.build: A modern build system focusing on fast and incremental builds for all project sizes">sakerbuild/saker.build</a>.</p>
 <link href="../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>
