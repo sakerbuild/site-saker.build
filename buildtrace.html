@@ -4051,7 +4051,7 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 				);
 				
 				let envtbody = $(document.createElement('tbody'));
-				if (env.os_name != null) {
+				if (env.os_name != null && env.os_name != "") {
 					let osstr = env.os_name + (env.os_version == null ? "" : " (" + env.os_version + ")");
 					envtbody.append(
 						$(document.createElement('tr'))
@@ -4063,7 +4063,7 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 						.append($(document.createElement('td')).text(osstr))
 					);
 				}
-				if (env.os_arch != null) {
+				if (env.os_arch != null && env.os_arch != "") {
 					envtbody.append(
 						$(document.createElement('tr'))
 						.append(
@@ -4074,7 +4074,7 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 						.append($(document.createElement('td')).text(env.os_arch))
 					);
 				}
-				if (env.java_vm_vendor != null) {
+				if (env.java_vm_vendor != null && env.java_vm_vendor != "") {
 					envtbody.append(
 						$(document.createElement('tr'))
 						.append(
@@ -4085,7 +4085,7 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 						.append($(document.createElement('td')).text(env.java_vm_vendor))
 					);
 				}
-				if (env.java_vm_name != null) {
+				if (env.java_vm_name != null && env.java_vm_name != "") {
 					envtbody.append(
 						$(document.createElement('tr'))
 						.append(
@@ -4096,7 +4096,7 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 						.append($(document.createElement('td')).text(env.java_vm_name))
 					);
 				}
-				if (env.java_version != null) {
+				if (env.java_version != null && env.java_version != "") {
 					envtbody.append(
 						$(document.createElement('tr'))
 						.append(
@@ -4107,7 +4107,7 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 						.append($(document.createElement('td')).text(env.java_version))
 					);
 				}
-				if (env.java_home != null) {
+				if (env.java_home != null && env.java_home != "") {
 					envtbody.append(
 						$(document.createElement('tr'))
 						.append(
@@ -4118,7 +4118,7 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 						.append($(document.createElement('td')).addClass('code-font').text(env.java_home))
 					);
 				}
-				if (env.saker_build_version != null) {
+				if (env.saker_build_version != null && env.saker_build_version != "") {
 					envtbody.append(
 						$(document.createElement('tr'))
 						.append(
