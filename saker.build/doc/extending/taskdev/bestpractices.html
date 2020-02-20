@@ -150,7 +150,7 @@ if (prevstate != null) {
 <p>The front-end task (that gets invoked by the script) is as follows:</p>
 <p>
 <pre><code class="language-java">@SakerInputpublic int Input;
-@Overridepublic Object run(TaskContext taskcontext) throws Exception {	TaskIdentifier taskid = TaskIdentifier			.builder(WorkerTaskFactory.class)			.field(&quot;input&quot;, this.Input).build();	taskcontext.startTask(taskid, 			new WorkerTaskFactory(this.Input), null);	return new SimpleStructuredObjectTaskResult(taskid);}</code></pre>
+@Overridepublic Object run(TaskContext taskcontext) throws Exception {	TaskIdentifier taskid = TaskIdentifier			.builder(WorkerTaskFactory.class.getName())			.field(&quot;input&quot;, this.Input).build();	taskcontext.startTask(taskid, 			new WorkerTaskFactory(this.Input), null);	return new SimpleStructuredObjectTaskResult(taskid);}</code></pre>
 </p>
 <p>We create a task identifier for our worker task and start it accordingly through the task context. The <a href="taskresults.html#structured-results" title="Structured results">structured task result</a> is used to return the result of the worker task to anyone who wishes to use it.</p>
 <p>Note that in a real world scenario, the task identifier should be implemented directly by the developer instead of using the simplified identifier, and it should represent a given worker in a non-configuration dependent way.</p>
