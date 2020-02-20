@@ -4496,7 +4496,7 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 							adiv.append(
 								$(document.createElement('span'))
 									.attr('data-trace-artifact-type', a.artifact.type)
-									.text('Artifact contents are not present in the build trace.')
+									.html('Artifact contents are not present in the build trace. Use the <a class="code-font" href="/saker.build/doc/guide/cmdlineref/build.html#-trace-artifacts-embed">-trace-artifacts-embed</a> command line argument to include them in the build trace.')
 							);
 							break;
 						}
