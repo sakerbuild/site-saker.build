@@ -1370,6 +1370,10 @@ td.taskdoc-idx-param-meta, td.taskdoc-task-idx-meta, td.taskdoc-type-idx-meta {
 	border-radius: 5px;
 	border-top-right-radius: 0;
 }
+.nav-bar-items a {
+	white-space: nowrap;
+	display: block;
+}
 
 .nav-bar-controls .nav-bar-special {
 	border: 1px solid #ddd;
@@ -1399,6 +1403,10 @@ td.taskdoc-idx-param-meta, td.taskdoc-task-idx-meta, td.taskdoc-type-idx-meta {
 		text-align: unset;
 		box-shadow: unset;
 	}
+	body[data-nav-location="landing"] .nav-bar-items a,
+	body[data-nav-location="blog"] .nav-bar-items a {
+		display: inline-block;
+	}
 }
 @media (min-width: 1200px) {
 	body:not([data-nav-location="landing"]):not([data-nav-location="blog"]) .nav-bar-collapse + input ~ .nav-bar-items {
@@ -1413,6 +1421,9 @@ td.taskdoc-idx-param-meta, td.taskdoc-task-idx-meta, td.taskdoc-type-idx-meta {
 		padding: unset;
 		text-align: unset;
 		box-shadow: unset;
+	}
+	body:not([data-nav-location="landing"]):not([data-nav-location="blog"]) .nav-bar-items a {
+		display: inline-block;
 	}
 }
 
