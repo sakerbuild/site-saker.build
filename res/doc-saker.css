@@ -1384,10 +1384,27 @@ td.taskdoc-idx-param-meta, td.taskdoc-task-idx-meta, td.taskdoc-type-idx-meta {
 }
 
 @media (min-width: 992px) {
-	.nav-bar-collapse + input ~ .nav-bar-items {
+	body[data-nav-location="landing"] .nav-bar-collapse + input ~ .nav-bar-items,
+	body[data-nav-location="blog"] .nav-bar-collapse + input ~ .nav-bar-items {
 		display: inline-block;
 	}
-	.nav-bar-items {
+	body[data-nav-location="landing"] .nav-bar-items,
+	body[data-nav-location="blog"] .nav-bar-items {
+		position: unset;
+		background: unset;
+		bottom: unset;
+		right: unset;
+		transform: unset;
+		padding: unset;
+		text-align: unset;
+		box-shadow: unset;
+	}
+}
+@media (min-width: 1200px) {
+	body:not([data-nav-location="landing"]):not([data-nav-location="blog"]) .nav-bar-collapse + input ~ .nav-bar-items {
+		display: inline-block;
+	}
+	body:not([data-nav-location="landing"]):not([data-nav-location="blog"]) .nav-bar-items {
 		position: unset;
 		background: unset;
 		bottom: unset;

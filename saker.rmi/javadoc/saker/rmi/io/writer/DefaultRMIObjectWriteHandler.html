@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta charset="UTF-8">
 	<title>DefaultRMIObjectWriteHandler</title>
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,6 +19,21 @@
 		<a class="nav-location-item" data-nav-location="doc-docs" href="../../../../../doc/index.html" title="Documentation">Documentation</a>
 		<a class="nav-location-item" data-nav-location="doc-taskdoc" href="../../../../../taskdoc/index.html" title="Build task documentation">TaskDoc</a>
 		<a class="nav-location-item" data-nav-location="doc-javadoc" href="../../../../../javadoc/index.html"title="Java API documentation">JavaDoc</a>
+		<div class="nav-bar-controls">
+			<label class="d-xl-none nav-bar-collapse" for="collapse-nav-bar-label">
+				<svg style="height: 1.5em;" viewBox="0 0 24 24">
+				    <path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+				</svg>
+			</label>
+			<input style="display:none;" id="collapse-nav-bar-label" type="checkbox"/>
+			<div class="nav-bar-items">
+				<a href="/" title="saker.build home page">Home</a>
+				<a href="/buildtrace.html" title="Build trace viewer">Build trace</a>
+				<a style="display:none;" href="/sponsor.html" title="Sponsoring development">Sponsor</a>
+				<a href="/blog/" title="saker.build system blog">Blog</a>
+				<a class="no-external-icon" href="https://github.com/sakerbuild/saker.build" title="saker.build GitHub repository">GitHub</a>
+			</div>
+		</div>
 	</div>
 </div>
 <nav class="javadoc-nav" data-nav-location="DefaultRMIObjectWriteHandler">
@@ -64,6 +80,8 @@
  The object is not written using <span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/io/ObjectOutputStream.html" title="class java.io.ObjectOutputStream" data-javadoc-kind="class">ObjectOutputStream</a></span>, but the <span class="javadoc-code-ref"><a href="../RMIObjectOutput.html" title="interface saker.rmi.io.RMIObjectOutput" data-javadoc-kind="interface">RMIObjectOutput</a></span> interface will be used to
  call <span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/io/Externalizable.html" title="interface java.io.Externalizable" data-javadoc-kind="interface">Externalizable</a>.<a href="https://docs.oracle.com/javase/8/docs/api/java/io/Externalizable.html#writeExternal-java.io.ObjectOutput-" title="Externalizable.writeExternal(ObjectOutput)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface">writeExternal<span class="javadoc-code-ref">(<wbr>ObjectOutput)</span></a></span>. Any <span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/io/ObjectOutput.html" title="interface java.io.ObjectOutput" data-javadoc-kind="interface">ObjectOutput</a>.<a href="https://docs.oracle.com/javase/8/docs/api/java/io/ObjectOutput.html#writeObject-java.lang.Object-" title="ObjectOutput.writeObject(Object)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface">writeObject<span class="javadoc-code-ref">(<wbr>Object)</span></a></span> calls will use the default object
  writing strategy, and <span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html" title="class java.lang.Object" data-javadoc-kind="class">Object</a></span> target type.</li>
+ <li>If the object is an instace of <span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Throwable.html" title="class java.lang.Throwable" data-javadoc-kind="class">Throwable</a></span>, it will be attempted to be transferred as a serializable
+ object. See <span class="javadoc-code-ref"><a href="SerializeRMIObjectWriteHandler.html" title="class saker.rmi.io.writer.SerializeRMIObjectWriteHandler" data-javadoc-kind="class">SerializeRMIObjectWriteHandler</a></span>. (Since saker.rmi 0.8.1)</li>
  <li>As a fallback mechanism, the RMI runtime will write the given object as a remote to the other side. This means
  that if the actual target type can not accept an interface, then the RMI request will likely fail. This can be
  considered an undefined behavior and the user should attempt to properly choose the interfaces and instances for RMI
