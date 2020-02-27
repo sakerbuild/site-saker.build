@@ -211,6 +211,10 @@ ul>li {
 	}
 }
 
+.code-block-pad {
+	margin-left: 2em;
+}
+
 .doc-headings-nav ul {
 	list-style: none;
 	padding-left: 10px;
