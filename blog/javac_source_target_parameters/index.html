@@ -106,7 +106,7 @@ public class Compile8Test {
 <pre><code class="language-plaintext code-block-pad">Exception in thread &quot;main&quot; java.lang.NoSuchMethodError: java.nio.ByteBuffer.flip()Ljava/nio/ByteBuffer;
         at Compile8Test.main(Compile8Test.java:6)
 </code></pre>
-<p>Okay, so what's up? Well the fact is that although we specified the source and target leves to conform to Java 8, the compilation is still done against the classes in JDK 9! Issues don't surface often because of this, as Java is generally developed in a backward compatible way. However, a new method was introduced in <code>ByteBuffer</code> in JDK 9:</p>
+<p>Okay, so what's up? Well the fact is that although we specified the source and target levels to conform to Java 8, the compilation is still done against the classes in JDK 9! Issues don't surface often because of this, as Java is generally developed in a backward compatible way. However, a new method was introduced in <code>ByteBuffer</code> in JDK 9:</p>
 <pre><code class="language-java code-block-pad">@Override
 public ByteBuffer flip() {
     super.flip();
