@@ -2176,6 +2176,10 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 						//don't display configuration tasks by default
 						return false;
 					}
+					case "transformation": {
+						//don't display transformation tasks by default
+						return false;
+					}
 				}
 			}
 			if (task.inner_task_computational == true) {
