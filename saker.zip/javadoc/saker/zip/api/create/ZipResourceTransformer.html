@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>ZipResourceTransformer</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+	
+	<link rel="stylesheet" type="text/css" href="../../../../../../res/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../../../../../../res/doc-saker.css">
+	
+</head>
+<body data-nav-location="javadoc" data-subdoc-presence="nest-package packagedoc javadoc taskdoc">
+<div class="doc-nav-bar">
+	<div class="container">
+		<a class="home-link" href="../../../../../index.html" title="saker.zip"><img style="height: 2.5em;" class="logo" src="../../../../../../res/logo.svg"/><span class="page-name">saker.zip</span></a>
+		<a class="nav-location-item" data-nav-location="doc-docs" href="../../../../../doc/index.html" title="Documentation">Documentation</a>
+		<a class="nav-location-item" data-nav-location="doc-taskdoc" href="../../../../../taskdoc/index.html" title="Build task documentation">TaskDoc</a>
+		<a class="nav-location-item" data-nav-location="doc-javadoc" href="../../../../../javadoc/index.html"title="Java API documentation">JavaDoc</a>
+		<div class="nav-bar-controls">
+			<label class="d-xl-none nav-bar-collapse" for="collapse-nav-bar-label">
+				<svg style="height: 1.5em;" viewBox="0 0 24 24">
+				    <path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+				</svg>
+			</label>
+			<input style="display:none;" id="collapse-nav-bar-label" type="checkbox"/>
+			<div class="nav-bar-items">
+				<a href="/" title="saker.build home page">Home</a>
+				<a href="/buildtrace.html" title="Build trace viewer">Build trace</a>
+				<a style="display:none;" href="/sponsor.html" title="Sponsoring development">Sponsor</a>
+				<a href="/blog/" title="saker.build system blog">Blog</a>
+				<a class="no-external-icon" href="https://github.com/sakerbuild/saker.build" title="saker.build GitHub repository">GitHub</a>
+			</div>
+		</div>
+	</div>
+</div>
+<nav class="javadoc-nav" data-nav-location="ZipResourceTransformer">
+	<div class="container">
+		<span class="javadoc-nav-title">JavaDoc</span>
+		<a class="nav-location-item" data-nav-location="javadoc-packages" href="../../../../index.html" title="Package index">Packages</a>
+		<a class="nav-location-item" data-nav-location="javadoc-all-classes" href="../../../../all-classes.html" title="All classes">All classes</a>
+		<a class="nav-location-item" data-nav-location="javadoc-constants" href="../../../../constants.html" title="All constants">Constants</a>
+	</div>
+</nav>
+<div class="container page-contents javadoc">
+	<div class="javadoc-content">
+	<div class="javadoc-class-header"><div class="javadoc-class-header-pkg"><span class="javadoc-code-ref"><span class="javadoc-kw">package</span> <a href="index.html" title="saker.zip.api.create" data-javadoc-kind="package">saker.zip.api.create</a></span></div><div class="javadoc-class-header-class"><span class="javadoc-kw">public interface </span><span class="javadoc-class-header-name">ZipResourceTransformer</span></div></div><div class="javadoc-class-doc"><div class="javadoc-class-doc-body">A streaming ZIP archive resource transformer interface. <p>
+ ZIP resource transformers are used to manipulate the contents of the created archive. They are created by a
+ <span class="javadoc-code-ref"><a href="ZipResourceTransformerFactory.html" title="interface saker.zip.api.create.ZipResourceTransformerFactory" data-javadoc-kind="interface">ZipResourceTransformerFactory</a></span>, and instantiated when the ZIP archive creation is started.
+ <p>
+ The resource transformers process the archive entries in a streaming way, meaning that as the entries are being
+ written to the result archive, the transformers are presented an opportunity to examine and modify or otherwise
+ manipulate the contents of an entry.
+ <p>
+ Resource transformers may modify the contents, write new entries, omit entries, and otherwise manipulate the created
+ archive. They work with a <span class="javadoc-code-ref"><a href="ZipResourceTransformationContext.html" title="interface saker.zip.api.create.ZipResourceTransformationContext" data-javadoc-kind="interface">ZipResourceTransformationContext</a></span> that provides write access to the created ZIP.
+ <p>
+ During an archive creation, multiple resource transformers may be present. When there are multiple transformers, the
+ processing will be done after each other. It may be the case that a resource transformer works with an already
+ transformed entry.
+ <p>
+ The methods <span class="javadoc-code-ref"><a href="#process-saker.zip.api.create.ZipResourceTransformationContext-saker.build.file.path.SakerPath-java.io.InputStream-" title="ZipResourceTransformer.process(ZipResourceTransformationContext, SakerPath, InputStream)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface">process</a></span>,
+ <span class="javadoc-code-ref"><a href="#flush-saker.zip.api.create.ZipResourceTransformationContext-" title="ZipResourceTransformer.flush(ZipResourceTransformationContext)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface">flush</a></span> and <span class="javadoc-code-ref"><a href="#end-saker.zip.api.create.ZipResourceTransformationContext-" title="ZipResourceTransformer.end(ZipResourceTransformationContext)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface">end</a></span> are
+ called on a transformer in this order. The <span class="javadoc-code-ref"><a href="#process-saker.zip.api.create.ZipResourceTransformationContext-saker.build.file.path.SakerPath-java.io.InputStream-" title="ZipResourceTransformer.process(ZipResourceTransformationContext, SakerPath, InputStream)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface">process</a></span> method is called multiple times for each processed entry.
+ <p>
+ Clients should implement this interface.</div></div><div class="javadoc-class-idx"><div class="javadoc-class-idx-methods javadoc-idx-section"><table><caption>Methods</caption><thead><tr><th class="javadoc-th-method-meta"></th><th class="javadoc-th-method-details"></th></tr></thead><tbody><tr class="javadoc-class-idx-method javadoc-idx-member"><td class="javadoc-class-idx-method-meta javadoc-idx-member-meta"><span class="javadoc-kw">public default </span><span class="javadoc-code-ref"><span class="javadoc-kw">void</span></span></td><td class="javadoc-class-idx-method-sig javadoc-idx-member-sig"><div class="javadoc-class-idx-method-name javadoc-idx-member-name"><a href="#end-saker.zip.api.create.ZipResourceTransformationContext-" title="ZipResourceTransformer.end(ZipResourceTransformationContext)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">end</a><span class="javadoc-code-ref">(<wbr><span class="javadoc-method-param"><a href="ZipResourceTransformationContext.html" title="interface saker.zip.api.create.ZipResourceTransformationContext" data-javadoc-kind="interface">ZipResourceTransformationContext</a> context</span>)</span></div><div class="javadoc-class-idx-method-short javadoc-member-short">Ends the transformation for this transformer.</div></td></tr><tr class="javadoc-class-idx-method javadoc-idx-member"><td class="javadoc-class-idx-method-meta javadoc-idx-member-meta"><span class="javadoc-kw">public default </span><span class="javadoc-code-ref"><span class="javadoc-kw">void</span></span></td><td class="javadoc-class-idx-method-sig javadoc-idx-member-sig"><div class="javadoc-class-idx-method-name javadoc-idx-member-name"><a href="#flush-saker.zip.api.create.ZipResourceTransformationContext-" title="ZipResourceTransformer.flush(ZipResourceTransformationContext)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">flush</a><span class="javadoc-code-ref">(<wbr><span class="javadoc-method-param"><a href="ZipResourceTransformationContext.html" title="interface saker.zip.api.create.ZipResourceTransformationContext" data-javadoc-kind="interface">ZipResourceTransformationContext</a> context</span>)</span></div><div class="javadoc-class-idx-method-short javadoc-member-short">Asks the processor to write any pending resources to the ZIP archive.</div></td></tr><tr class="javadoc-class-idx-method javadoc-idx-member"><td class="javadoc-class-idx-method-meta javadoc-idx-member-meta"><span class="javadoc-kw">public </span><span class="javadoc-code-ref"><span class="javadoc-kw">boolean</span></span></td><td class="javadoc-class-idx-method-sig javadoc-idx-member-sig"><div class="javadoc-class-idx-method-name javadoc-idx-member-name"><a href="#process-saker.zip.api.create.ZipResourceTransformationContext-saker.build.file.path.SakerPath-java.io.InputStream-" title="ZipResourceTransformer.process(ZipResourceTransformationContext, SakerPath, InputStream)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">process</a><span class="javadoc-code-ref">(<wbr><span class="javadoc-method-param"><a href="ZipResourceTransformationContext.html" title="interface saker.zip.api.create.ZipResourceTransformationContext" data-javadoc-kind="interface">ZipResourceTransformationContext</a> context, </span><span class="javadoc-method-param"><a href="/saker.build/javadoc/saker/build/file/path/SakerPath.html" title="class saker.build.file.path.SakerPath" data-javadoc-kind="class">SakerPath</a> resourcepath, </span><span class="javadoc-method-param"><a href="https://docs.oracle.com/javase/8/docs/api/java/io/InputStream.html" title="class java.io.InputStream" data-javadoc-kind="class">InputStream</a> resourceinput</span>)</span></div><div class="javadoc-class-idx-method-short javadoc-member-short">Processes the ZIP resource specified by the arguments.</div></td></tr></tbody></table></div></div><div class="javadoc-class-details"><div class="javadoc-class-details-methods javadoc-details-section"><div id="end-saker.zip.api.create.ZipResourceTransformationContext-" class="javadoc-class-detail-method javadoc-class-detail-member"><div class="javadoc-class-detail-method-sig javadoc-member-sig"><span class="javadoc-kw">public default </span><span class="javadoc-code-ref"><span class="javadoc-kw">void</span></span> <a href="#end-saker.zip.api.create.ZipResourceTransformationContext-" title="ZipResourceTransformer.end(ZipResourceTransformationContext)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">end</a><span class="javadoc-code-ref">(<wbr><span class="javadoc-method-param"><a href="ZipResourceTransformationContext.html" title="interface saker.zip.api.create.ZipResourceTransformationContext" data-javadoc-kind="interface">ZipResourceTransformationContext</a> context</span>)</span><span class="javadoc-method-throws"><span class="javadoc-kw">&nbsp;throws</span> <span class="javadoc-method-throws-entries"><span class="javadoc-method-exc"><span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html" title="class java.io.IOException" data-javadoc-kind="class">IOException</a></span></span></span></span></div><div class="javadoc-class-detail-method-detail javadoc-member-detail"><div class="javadoc-detail-body">Ends the transformation for this transformer. <p>
+ This method is similar to <span class="javadoc-code-ref"><a href="#flush-saker.zip.api.create.ZipResourceTransformationContext-" title="ZipResourceTransformer.flush(ZipResourceTransformationContext)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface">flush<span class="javadoc-code-ref">(<wbr>ZipResourceTransformationContext)</span></a></span>, however, this transformer won't be
+ called for any more resource transformations.
+ <p>
+ Any generated resources won't be passed to
+ <span class="javadoc-code-ref"><a href="#process-saker.zip.api.create.ZipResourceTransformationContext-saker.build.file.path.SakerPath-java.io.InputStream-" title="ZipResourceTransformer.process(ZipResourceTransformationContext, SakerPath, InputStream)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface">process<span class="javadoc-code-ref">(<wbr>ZipResourceTransformationContext, SakerPath, InputStream)</span></a></span>, however, they will be processed by
+ subsequent transformers.
+ <p>
+ After this method is called, the transformer won't be used any more.
+ <p>
+ It is generally recommended to use <span class="javadoc-code-ref"><a href="#flush-saker.zip.api.create.ZipResourceTransformationContext-" title="ZipResourceTransformer.flush(ZipResourceTransformationContext)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface">flush<span class="javadoc-code-ref">(<wbr>ZipResourceTransformationContext)</span></a></span> for end-of-transformation
+ resource generation.
+ <p>
+ The default implementation does nothing.</div><div class="javadoc-method-detail-params javadoc-blocktag-section"><div class="javadoc-method-detail-param"><span class="javadoc-method-detail-param-name">context</span><span class="javadoc-method-detail-param-detail">The transformation context.</span></div></div><div class="javadoc-method-detail-throwdeclarations javadoc-blocktag-section"><div class="javadoc-method-detail-throw" data-javadoc-exception-checked><span class="javadoc-method-detail-throw-name"><span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html" title="class java.io.IOException" data-javadoc-kind="class">IOException</a></span></span><span class="javadoc-method-detail-throw-detail">Transformers may throw in case of errors.</span></div></div></div></div><div id="flush-saker.zip.api.create.ZipResourceTransformationContext-" class="javadoc-class-detail-method javadoc-class-detail-member"><div class="javadoc-class-detail-method-sig javadoc-member-sig"><span class="javadoc-kw">public default </span><span class="javadoc-code-ref"><span class="javadoc-kw">void</span></span> <a href="#flush-saker.zip.api.create.ZipResourceTransformationContext-" title="ZipResourceTransformer.flush(ZipResourceTransformationContext)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">flush</a><span class="javadoc-code-ref">(<wbr><span class="javadoc-method-param"><a href="ZipResourceTransformationContext.html" title="interface saker.zip.api.create.ZipResourceTransformationContext" data-javadoc-kind="interface">ZipResourceTransformationContext</a> context</span>)</span><span class="javadoc-method-throws"><span class="javadoc-kw">&nbsp;throws</span> <span class="javadoc-method-throws-entries"><span class="javadoc-method-exc"><span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html" title="class java.io.IOException" data-javadoc-kind="class">IOException</a></span></span></span></span></div><div class="javadoc-class-detail-method-detail javadoc-member-detail"><div class="javadoc-detail-body">Asks the processor to write any pending resources to the ZIP archive. <p>
+ Any written resources will be subject to further processing. Implementations should handle if
+ <span class="javadoc-code-ref"><a href="#process-saker.zip.api.create.ZipResourceTransformationContext-saker.build.file.path.SakerPath-java.io.InputStream-" title="ZipResourceTransformer.process(ZipResourceTransformationContext, SakerPath, InputStream)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface">process<span class="javadoc-code-ref">(<wbr>ZipResourceTransformationContext, SakerPath, InputStream)</span></a></span> is called after this function being
+ called.
+ <p>
+ The default implementation does nothing.</div><div class="javadoc-method-detail-params javadoc-blocktag-section"><div class="javadoc-method-detail-param"><span class="javadoc-method-detail-param-name">context</span><span class="javadoc-method-detail-param-detail">The transformation context.</span></div></div><div class="javadoc-method-detail-throwdeclarations javadoc-blocktag-section"><div class="javadoc-method-detail-throw" data-javadoc-exception-checked><span class="javadoc-method-detail-throw-name"><span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html" title="class java.io.IOException" data-javadoc-kind="class">IOException</a></span></span><span class="javadoc-method-detail-throw-detail">Transformers may throw in case of errors.</span></div></div></div></div><div id="process-saker.zip.api.create.ZipResourceTransformationContext-saker.build.file.path.SakerPath-java.io.InputStream-" class="javadoc-class-detail-method javadoc-class-detail-member"><div class="javadoc-class-detail-method-sig javadoc-member-sig"><span class="javadoc-kw">public abstract </span><span class="javadoc-code-ref"><span class="javadoc-kw">boolean</span></span> <a href="#process-saker.zip.api.create.ZipResourceTransformationContext-saker.build.file.path.SakerPath-java.io.InputStream-" title="ZipResourceTransformer.process(ZipResourceTransformationContext, SakerPath, InputStream)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">process</a><span class="javadoc-code-ref">(<wbr><span class="javadoc-method-param"><a href="ZipResourceTransformationContext.html" title="interface saker.zip.api.create.ZipResourceTransformationContext" data-javadoc-kind="interface">ZipResourceTransformationContext</a> context, </span><span class="javadoc-method-param"><a href="/saker.build/javadoc/saker/build/file/path/SakerPath.html" title="class saker.build.file.path.SakerPath" data-javadoc-kind="class">SakerPath</a> resourcepath, </span><span class="javadoc-method-param"><a href="https://docs.oracle.com/javase/8/docs/api/java/io/InputStream.html" title="class java.io.InputStream" data-javadoc-kind="class">InputStream</a> resourceinput</span>)</span><span class="javadoc-method-throws"><span class="javadoc-kw">&nbsp;throws</span> <span class="javadoc-method-throws-entries"><span class="javadoc-method-exc"><span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html" title="class java.io.IOException" data-javadoc-kind="class">IOException</a></span></span></span></span></div><div class="javadoc-class-detail-method-detail javadoc-member-detail"><div class="javadoc-detail-body">Processes the ZIP resource specified by the arguments. <p>
+ This method is called by the ZIP archiver to ask the transformer to process the specified resource. The
+ transformer can either consume the resource or not.
+ <p>
+ When a resource is consumed, it will not be passed to subsequent transformers, and will not be written to the ZIP
+ archive output.
+ <p>
+ The transformers can decide to consume the resource, and write a resource to the archive using the transformation
+ context.
+ <p>
+ If the transformer doesn't consume the resource, subsequent transformers will be asked to process it. If no
+ transformer consumes the resource, it will be written to the archive as is.
+ <p>
+ Implementations should take care to implement guarding when they process and generate a resource with the same
+ name. Not employing guarding may result in infinite looping by the transformation context.</div><div class="javadoc-method-detail-params javadoc-blocktag-section"><div class="javadoc-method-detail-param"><span class="javadoc-method-detail-param-name">context</span><span class="javadoc-method-detail-param-detail">The transformation context.</span></div><div class="javadoc-method-detail-param"><span class="javadoc-method-detail-param-name">resourcepath</span><span class="javadoc-method-detail-param-detail">The path of the resource in the archive.</span></div><div class="javadoc-method-detail-param"><span class="javadoc-method-detail-param-name">resourceinput</span><span class="javadoc-method-detail-param-detail">The input stream to the resource bytes, or <code>null</code> if the resource is a directory.</span></div></div><div class="javadoc-method-detail-return javadoc-blocktag-section"><div class="javadoc-method-detail-return-body"><code>true</code> if the resource is consumed by this transformer, and shouldn't be written to the
+             output. <code>false</code> if the transformer doesn't consume this resource.</div></div><div class="javadoc-method-detail-throwdeclarations javadoc-blocktag-section"><div class="javadoc-method-detail-throw" data-javadoc-exception-checked><span class="javadoc-method-detail-throw-name"><span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html" title="class java.io.IOException" data-javadoc-kind="class">IOException</a></span></span><span class="javadoc-method-detail-throw-detail">Transformers may throw in case of errors.</span></div></div></div></div></div></div>
+	</div>
+</div>
+<div class="doc-footer">
+	<div class="container">
+		<div class="row">
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">About</p>
+				<div><a href="/index.html" title="Saker.build home page">Home</a></div>
+				<div data-footer-location="doc-docs"><a href="../../../../../index.html" title="saker.zip documentation index">Documentation index</a></div>
+				<div><a href="../../../../../../saker.build/index.html" title="Information about the saker.build system">saker.build system</a></div>
+				<div><a href="../../../../../../saker.nest/index.html" title="Information about the saker.nest repository">saker.nest repository</a></div>
+				<div><a href="/contact.html" title="Contact us">Contact</a></div>
+			</div>
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">Resources</p>
+				<div data-footer-location="doc-docs"><a href="../../../../../doc/index.html" title="saker.zip documentation index">Documentation</a></div>
+				<div data-footer-location="doc-javadoc"><a href="../../../../../javadoc/index.html" title="JavaDoc for saker.zip">JavaDoc</a></div>
+				<div data-footer-location="doc-taskdoc"><a href="../../../../../taskdoc/index.html"  title="Documentation of build tasks in saker.zip">TaskDoc</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.zip" title="saker.zip | saker.nest">saker.nest package page</a></div>
+				<div><a href="https://github.com/sakerbuild/saker.zip" title="saker.zip on GitHub">GitHub</a></div>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col">
+			&copy; Bence Sipka 2020
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

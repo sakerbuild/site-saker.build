@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>nest.test.instrument()&nbsp|&nbsp;nest.repository.support</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+	
+	<link rel="stylesheet" href="../../res/bootstrap.min.css" >
+	<link rel="stylesheet" href="../../res/doc-saker.css" >
+</head>
+<body data-nav-location="taskdoc" data-subdoc-presence="nest-package packagedoc javadoc taskdoc">
+<div class="doc-nav-bar">
+	<div class="container">
+		<a class="home-link" href="../index.html" title="nest.repository.support"><img style="height: 2.5em;" class="logo" src="../../res/logo.svg"/><span class="page-name">nest.repository.support</span></a>
+		<a class="nav-location-item" data-nav-location="doc-docs" href="../doc/index.html" title="Documentation">Documentation</a>
+		<a class="nav-location-item" data-nav-location="doc-taskdoc" href="../taskdoc/index.html" title="Build task documentation">TaskDoc</a>
+		<a class="nav-location-item" data-nav-location="doc-javadoc" href="../javadoc/index.html"title="Java API documentation">JavaDoc</a>
+		<div class="nav-bar-controls">
+			<label class="d-xl-none nav-bar-collapse" for="collapse-nav-bar-label">
+				<svg style="height: 1.5em;" viewBox="0 0 24 24">
+				    <path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+				</svg>
+			</label>
+			<input style="display:none;" id="collapse-nav-bar-label" type="checkbox"/>
+			<div class="nav-bar-items">
+				<a href="/" title="saker.build home page">Home</a>
+				<a href="/buildtrace.html" title="Build trace viewer">Build trace</a>
+				<a style="display:none;" href="/sponsor.html" title="Sponsoring development">Sponsor</a>
+				<a href="/blog/" title="saker.build system blog">Blog</a>
+				<a class="no-external-icon" href="https://github.com/sakerbuild/saker.build" title="saker.build GitHub repository">GitHub</a>
+			</div>
+		</div>
+	</div>
+</div>
+<nav class="taskdoc-nav" data-nav-location="nest.test.instrument">
+	<div class="container">
+		<span class="taskdoc-nav-title">TaskDoc</span>
+		<a class="nav-location-item" data-nav-location="taskdoc-index" href="index.html" title="Task doc index">Index</a>
+	</div>
+</nav>
+<div class="container page-contents taskdoc">
+	<div class="taskdoc-content">
+	<div class="taskdoc-header"><div class="taskdoc-header-sig"><div class="taskdoc-taskname"><a href="" title="Build task nest.test.instrument()">nest.test.instrument()</a></div><div class="taskdoc-return-type"><a href="types/SakerPath.html" title="Type SakerPath">SakerPath</a></div></div><div class="taskdoc-container-bundle">In bundle: <a title="Bundle nest.repository.support">nest.repository.support</a></div></div><div class="taskdoc-info" taskdoc-info-format="format.plaintext">Adds saker.nest test instrumentation to the specified archive.
+The task will load the saker.nest-test-instrumentation bundle for the specified version and create a new archive that contains the classes from it, in addition with the specified base archive.
+The resulting archive can be used for integration testting with the saker.nest repository.</div><div class="taskdoc-idx"><div class="taskdoc-idx-title">Summary</div><div class="taskdoc-idx-section taskdoc-idx-parameters"><table><caption>Parameters</caption><tbody><tr class="taskdoc-idx-member" taskdoc-required><td class="taskdoc-idx-param-meta"><a class="taskdoc-idx-paramname" href="#Archive" title="Task parameter Archive">Archive</a></td><td class="taskdoc-idx-param-summary"><div class="taskdoc-required-parameter">Required parameter. </div>Path to the base archive to which the instrumentation should be added.
+</td></tr><tr class="taskdoc-idx-member"><td class="taskdoc-idx-param-meta"><a class="taskdoc-idx-paramname" href="#NestVersion" title="Task parameter NestVersion">NestVersion</a></td><td class="taskdoc-idx-param-summary">Specifies the version of the saker.nest-test-instrumentation bundle that should be added as the instrumentation to the base archive.
+</td></tr><tr class="taskdoc-idx-member"><td class="taskdoc-idx-param-meta"><a class="taskdoc-idx-paramname" href="#Output" title="Task parameter Output">Output</a></td><td class="taskdoc-idx-param-summary">Specifies a relative output path where the instrumented archive should be created.
+</td></tr></tbody></table></div></div><div class="taskdoc-details-parameters"><div class="taskdoc-details-title">Parameters</div><div id="Archive" class="taskdoc-detail-param" taskdoc-required><div class="taskdoc-detail-param-header"><div class="taskdoc-detail-param-header-sig"><div class="taskdoc-detail-param-header-name"><a href="#Archive" title="Task parameter Archive">Archive</a></div><div class="taskdoc-detail-param-header-type"><a href="../../saker.build/javadoc/saker/build/file/path/SakerPath.html" title="SakerPath">SakerPath</a></div></div><div class="taskdoc-detail-param-header-aliases">Aliases: <div class="taskdoc-detail-param-header-alias"><a title="Unnamed parameter">&lt;unnamed&gt;</a></div></div></div><div class="taskdoc-detail-member taskdoc-detail-param-detail" taskdoc-info-format="format.plaintext"><div class="taskdoc-required-parameter">Required parameter.</div>Path to the base archive to which the instrumentation should be added.
+The archive itself is not modified, but a new archive is created with the contents of the base archive and the instrumentation classes.</div></div><div id="NestVersion" class="taskdoc-detail-param"><div class="taskdoc-detail-param-header"><div class="taskdoc-detail-param-header-sig"><div class="taskdoc-detail-param-header-name"><a href="#NestVersion" title="Task parameter NestVersion">NestVersion</a></div><div class="taskdoc-detail-param-header-type"><a href="types/String.html" title="Type String">String</a></div></div></div><div class="taskdoc-detail-member taskdoc-detail-param-detail" taskdoc-info-format="format.plaintext">Specifies the version of the saker.nest-test-instrumentation bundle that should be added as the instrumentation to the base archive.
+If not specified, the latest release is used.</div></div><div id="Output" class="taskdoc-detail-param"><div class="taskdoc-detail-param-header"><div class="taskdoc-detail-param-header-sig"><div class="taskdoc-detail-param-header-name"><a href="#Output" title="Task parameter Output">Output</a></div><div class="taskdoc-detail-param-header-type"><a href="../../saker.build/javadoc/saker/build/file/path/SakerPath.html" title="SakerPath">SakerPath</a></div></div></div><div class="taskdoc-detail-member taskdoc-detail-param-detail" taskdoc-info-format="format.plaintext">Specifies a relative output path where the instrumented archive should be created.
+The path is the relative path under the nest.test.instrument directory in the build directory.</div></div></div>
+	</div>
+</div>
+<div class="doc-footer">
+	<div class="container">
+		<div class="row">
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">About</p>
+				<div><a href="/index.html" title="Saker.build home page">Home</a></div>
+				<div data-footer-location="doc-docs"><a href="../index.html" title="nest.repository.support documentation index">Documentation index</a></div>
+				<div><a href="../../saker.build/index.html" title="Information about the saker.build system">saker.build system</a></div>
+				<div><a href="../../saker.nest/index.html" title="Information about the saker.nest repository">saker.nest repository</a></div>
+				<div><a href="/contact.html" title="Contact us">Contact</a></div>
+			</div>
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">Resources</p>
+				<div data-footer-location="doc-docs"><a href="../doc/index.html" title="nest.repository.support documentation index">Documentation</a></div>
+				<div data-footer-location="doc-javadoc"><a href="../javadoc/index.html" title="JavaDoc for nest.repository.support">JavaDoc</a></div>
+				<div data-footer-location="doc-taskdoc"><a href="../taskdoc/index.html"  title="Documentation of build tasks in nest.repository.support">TaskDoc</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/nest.repository.support" title="nest.repository.support | saker.nest">saker.nest package page</a></div>
+				<div><a href="https://github.com/sakerbuild/nest.repository.support" title="nest.repository.support on GitHub">GitHub</a></div>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col">
+			&copy; Bence Sipka 2020
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

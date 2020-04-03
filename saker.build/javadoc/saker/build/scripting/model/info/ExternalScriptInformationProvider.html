@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>ExternalScriptInformationProvider</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+	
+	<link rel="stylesheet" type="text/css" href="../../../../../../../res/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../../../../../../../res/doc-saker.css">
+	
+</head>
+<body data-nav-location="javadoc" data-subdoc-presence="nest-package packagedoc javadoc">
+<div class="doc-nav-bar">
+	<div class="container">
+		<a class="home-link" href="../../../../../../index.html" title="saker.build"><img style="height: 2.5em;" class="logo" src="../../../../../../../res/logo.svg"/><span class="page-name">saker.build</span></a>
+		<a class="nav-location-item" data-nav-location="doc-docs" href="../../../../../../doc/index.html" title="Documentation">Documentation</a>
+		<a class="nav-location-item" data-nav-location="doc-taskdoc" href="../../../../../../taskdoc/index.html" title="Build task documentation">TaskDoc</a>
+		<a class="nav-location-item" data-nav-location="doc-javadoc" href="../../../../../../javadoc/index.html"title="Java API documentation">JavaDoc</a>
+		<div class="nav-bar-controls">
+			<label class="d-xl-none nav-bar-collapse" for="collapse-nav-bar-label">
+				<svg style="height: 1.5em;" viewBox="0 0 24 24">
+				    <path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+				</svg>
+			</label>
+			<input style="display:none;" id="collapse-nav-bar-label" type="checkbox"/>
+			<div class="nav-bar-items">
+				<a href="/" title="saker.build home page">Home</a>
+				<a href="/buildtrace.html" title="Build trace viewer">Build trace</a>
+				<a style="display:none;" href="/sponsor.html" title="Sponsoring development">Sponsor</a>
+				<a href="/blog/" title="saker.build system blog">Blog</a>
+				<a class="no-external-icon" href="https://github.com/sakerbuild/saker.build" title="saker.build GitHub repository">GitHub</a>
+			</div>
+		</div>
+	</div>
+</div>
+<nav class="javadoc-nav" data-nav-location="ExternalScriptInformationProvider">
+	<div class="container">
+		<span class="javadoc-nav-title">JavaDoc</span>
+		<a class="nav-location-item" data-nav-location="javadoc-packages" href="../../../../../index.html" title="Package index">Packages</a>
+		<a class="nav-location-item" data-nav-location="javadoc-all-classes" href="../../../../../all-classes.html" title="All classes">All classes</a>
+		<a class="nav-location-item" data-nav-location="javadoc-constants" href="../../../../../constants.html" title="All constants">Constants</a>
+	</div>
+</nav>
+<div class="container page-contents javadoc">
+	<div class="javadoc-content">
+	<div class="javadoc-class-header"><div class="javadoc-class-header-pkg"><span class="javadoc-code-ref"><span class="javadoc-kw">package</span> <a href="index.html" title="saker.build.scripting.model.info" data-javadoc-kind="package">saker.build.scripting.model.info</a></span></div><div class="javadoc-class-header-class"><span class="javadoc-kw">public interface </span><span class="javadoc-class-header-name">ExternalScriptInformationProvider</span></div></div><div class="javadoc-class-doc"><div class="javadoc-class-doc-body">Interface for providing information for script models to improve user experience. <p>
+ External script information providers are used by <a href="../ScriptSyntaxModel.html" title="interface saker.build.scripting.model.ScriptSyntaxModel" data-javadoc-kind="interface">scripting models</a> to provide better
+ information about various script elements. Information providers can be queried to provide suggestions for script
+ models, or retrieve information for a given context. Most commonly they are used to enhance information tooltips and
+ better content assist proposals based on the contextual informations in the script.
+ <p>
+ <b>Important: </b>Implementations of external script information providers should provide their results as quickly as
+ possible. It is in order to not hinder user experience, and to be able to provide information to the user quickly. If
+ they need to fetch information over the network, they should start a background thread, asynchronously retrieve the
+ related data and cache it for future callse. When the next time an information is queried, they can return the cached
+ data quickly, without contacting the servers again.
+ <p>
+ It is acceptable to return incomplete data for the first calls of the methods, and return complete data after the
+ background fetch is done.
+ <p>
+ External script information providers often have a parent object which might have shorter lifetime. (E.g. a
+ <span class="javadoc-code-ref"><a href="../../../runtime/repository/BuildRepository.html" title="interface saker.build.runtime.repository.BuildRepository" data-javadoc-kind="interface">BuildRepository</a></span> might be closed before the information provider is released) <br>
+ When the parent object is closed, the information provider should gracefully handle that and not throw any
+ exceptions, but return empty results. Closing the parent object should stop any background fetching.
+ <p>
+ The scheduling of background communication is implementation dependent to the information provider.</div></div><div class="javadoc-class-idx"><div class="javadoc-class-idx-methods javadoc-idx-section"><table><caption>Methods</caption><thead><tr><th class="javadoc-th-method-meta"></th><th class="javadoc-th-method-details"></th></tr></thead><tbody><tr class="javadoc-class-idx-method javadoc-idx-member"><td class="javadoc-class-idx-method-meta javadoc-idx-member-meta"><span class="javadoc-kw">public default </span><span class="javadoc-code-ref"><a href="LiteralInformation.html" title="interface saker.build.scripting.model.info.LiteralInformation" data-javadoc-kind="interface">LiteralInformation</a></span></td><td class="javadoc-class-idx-method-sig javadoc-idx-member-sig"><div class="javadoc-class-idx-method-name javadoc-idx-member-name"><a href="#getLiteralInformation-java.lang.String-saker.build.scripting.model.info.TypeInformation-" title="ExternalScriptInformationProvider.getLiteralInformation(String, TypeInformation)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">getLiteralInformation</a><span class="javadoc-code-ref">(<wbr><span class="javadoc-method-param"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="class java.lang.String" data-javadoc-kind="class">String</a> literal, </span><span class="javadoc-method-param"><a href="TypeInformation.html" title="interface saker.build.scripting.model.info.TypeInformation" data-javadoc-kind="interface">TypeInformation</a> typecontext</span>)</span></div><div class="javadoc-class-idx-method-short javadoc-member-short">Gets information about a literal with optional type context hint.</div></td></tr><tr class="javadoc-class-idx-method javadoc-idx-member"><td class="javadoc-class-idx-method-meta javadoc-idx-member-meta"><span class="javadoc-kw">public default </span><span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Collection.html" title="interface java.util.Collection" data-javadoc-kind="interface">Collection</a>&lt;<wbr>?&nbsp;<span class="javadoc-kw">extends</span> <a href="LiteralInformation.html" title="interface saker.build.scripting.model.info.LiteralInformation" data-javadoc-kind="interface">LiteralInformation</a>&gt;</span></td><td class="javadoc-class-idx-method-sig javadoc-idx-member-sig"><div class="javadoc-class-idx-method-name javadoc-idx-member-name"><a href="#getLiterals-java.lang.String-saker.build.scripting.model.info.TypeInformation-" title="ExternalScriptInformationProvider.getLiterals(String, TypeInformation)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">getLiterals</a><span class="javadoc-code-ref">(<wbr><span class="javadoc-method-param"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="class java.lang.String" data-javadoc-kind="class">String</a> literalkeyword, </span><span class="javadoc-method-param"><a href="TypeInformation.html" title="interface saker.build.scripting.model.info.TypeInformation" data-javadoc-kind="interface">TypeInformation</a> typecontext</span>)</span></div><div class="javadoc-class-idx-method-short javadoc-member-short">Gets information about literals based on a hint keyword and type context hint.</div></td></tr><tr class="javadoc-class-idx-method javadoc-idx-member"><td class="javadoc-class-idx-method-meta javadoc-idx-member-meta"><span class="javadoc-kw">public default </span><span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Map.html" title="interface java.util.Map" data-javadoc-kind="interface">Map</a>&lt;<wbr><a href="../../../task/TaskName.html" title="class saker.build.task.TaskName" data-javadoc-kind="class">TaskName</a>, ?&nbsp;<span class="javadoc-kw">extends</span> <a href="TaskInformation.html" title="interface saker.build.scripting.model.info.TaskInformation" data-javadoc-kind="interface">TaskInformation</a>&gt;</span></td><td class="javadoc-class-idx-method-sig javadoc-idx-member-sig"><div class="javadoc-class-idx-method-name javadoc-idx-member-name"><a href="#getTaskInformation-saker.build.task.TaskName-" title="ExternalScriptInformationProvider.getTaskInformation(TaskName)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">getTaskInformation</a><span class="javadoc-code-ref">(<wbr><span class="javadoc-method-param"><a href="../../../task/TaskName.html" title="class saker.build.task.TaskName" data-javadoc-kind="class">TaskName</a> taskname</span>)</span></div><div class="javadoc-class-idx-method-short javadoc-member-short">Gets the task informations based on a task name hint.</div></td></tr><tr class="javadoc-class-idx-method javadoc-idx-member"><td class="javadoc-class-idx-method-meta javadoc-idx-member-meta"><span class="javadoc-kw">public default </span><span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Map.html" title="interface java.util.Map" data-javadoc-kind="interface">Map</a>&lt;<wbr><a href="../../../task/TaskName.html" title="class saker.build.task.TaskName" data-javadoc-kind="class">TaskName</a>, ?&nbsp;<span class="javadoc-kw">extends</span> <a href="TaskParameterInformation.html" title="interface saker.build.scripting.model.info.TaskParameterInformation" data-javadoc-kind="interface">TaskParameterInformation</a>&gt;</span></td><td class="javadoc-class-idx-method-sig javadoc-idx-member-sig"><div class="javadoc-class-idx-method-name javadoc-idx-member-name"><a href="#getTaskParameterInformation-saker.build.task.TaskName-java.lang.String-" title="ExternalScriptInformationProvider.getTaskParameterInformation(TaskName, String)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">getTaskParameterInformation</a><span class="javadoc-code-ref">(<wbr><span class="javadoc-method-param"><a href="../../../task/TaskName.html" title="class saker.build.task.TaskName" data-javadoc-kind="class">TaskName</a> taskname, </span><span class="javadoc-method-param"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="class java.lang.String" data-javadoc-kind="class">String</a> parametername</span>)</span></div><div class="javadoc-class-idx-method-short javadoc-member-short">Gets information about a task parameter.</div></td></tr><tr class="javadoc-class-idx-method javadoc-idx-member"><td class="javadoc-class-idx-method-meta javadoc-idx-member-meta"><span class="javadoc-kw">public default </span><span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Map.html" title="interface java.util.Map" data-javadoc-kind="interface">Map</a>&lt;<wbr><a href="../../../task/TaskName.html" title="class saker.build.task.TaskName" data-javadoc-kind="class">TaskName</a>, ?&nbsp;<span class="javadoc-kw">extends</span> <a href="TaskInformation.html" title="interface saker.build.scripting.model.info.TaskInformation" data-javadoc-kind="interface">TaskInformation</a>&gt;</span></td><td class="javadoc-class-idx-method-sig javadoc-idx-member-sig"><div class="javadoc-class-idx-method-name javadoc-idx-member-name"><a href="#getTasks-java.lang.String-" title="ExternalScriptInformationProvider.getTasks(String)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">getTasks</a><span class="javadoc-code-ref">(<wbr><span class="javadoc-method-param"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="class java.lang.String" data-javadoc-kind="class">String</a> tasknamekeyword</span>)</span></div><div class="javadoc-class-idx-method-short javadoc-member-short">Gets information about tasks based on a hint keyword.</div></td></tr></tbody></table></div></div><div class="javadoc-class-details"><div class="javadoc-class-details-methods javadoc-details-section"><div id="getLiteralInformation-java.lang.String-saker.build.scripting.model.info.TypeInformation-" class="javadoc-class-detail-method javadoc-class-detail-member"><div class="javadoc-class-detail-method-sig javadoc-member-sig"><span class="javadoc-kw">public default </span><span class="javadoc-code-ref"><a href="LiteralInformation.html" title="interface saker.build.scripting.model.info.LiteralInformation" data-javadoc-kind="interface">LiteralInformation</a></span> <a href="#getLiteralInformation-java.lang.String-saker.build.scripting.model.info.TypeInformation-" title="ExternalScriptInformationProvider.getLiteralInformation(String, TypeInformation)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">getLiteralInformation</a><span class="javadoc-code-ref">(<wbr><span class="javadoc-method-param"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="class java.lang.String" data-javadoc-kind="class">String</a> literal, </span><span class="javadoc-method-param"><a href="TypeInformation.html" title="interface saker.build.scripting.model.info.TypeInformation" data-javadoc-kind="interface">TypeInformation</a> typecontext</span>)</span></div><div class="javadoc-class-detail-method-detail javadoc-member-detail"><div class="javadoc-detail-body">Gets information about a literal with optional type context hint. <p>
+ Implementations should return information about the literal to display to the user. The literal should be exactly
+ matched, and not as a keyword hint.
+ <p>
+ The type context information may be used to determine how to interpred the argument literal. It may be
+ <code>null</code>. It should be an instance that this information provider previously returned, however
+ implementations are recommended to handle the case when the caller fails to adhere to this requirement.
+ <p>
+ This method is usually used when the user explicitly requests information about a given literal token in the
+ script.</div><div class="javadoc-method-detail-params javadoc-blocktag-section"><div class="javadoc-method-detail-param"><span class="javadoc-method-detail-param-name">literal</span><span class="javadoc-method-detail-param-detail">The literal to query the informations for.</span></div><div class="javadoc-method-detail-param"><span class="javadoc-method-detail-param-name">typecontext</span><span class="javadoc-method-detail-param-detail">The type information context hint or <code>null</code> if not available.</span></div></div><div class="javadoc-method-detail-return javadoc-blocktag-section"><div class="javadoc-method-detail-return-body">The information about the literal or <code>null</code> if not available.</div></div></div></div><div id="getLiterals-java.lang.String-saker.build.scripting.model.info.TypeInformation-" class="javadoc-class-detail-method javadoc-class-detail-member"><div class="javadoc-class-detail-method-sig javadoc-member-sig"><span class="javadoc-kw">public default </span><span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Collection.html" title="interface java.util.Collection" data-javadoc-kind="interface">Collection</a>&lt;<wbr>?&nbsp;<span class="javadoc-kw">extends</span> <a href="LiteralInformation.html" title="interface saker.build.scripting.model.info.LiteralInformation" data-javadoc-kind="interface">LiteralInformation</a>&gt;</span> <a href="#getLiterals-java.lang.String-saker.build.scripting.model.info.TypeInformation-" title="ExternalScriptInformationProvider.getLiterals(String, TypeInformation)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">getLiterals</a><span class="javadoc-code-ref">(<wbr><span class="javadoc-method-param"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="class java.lang.String" data-javadoc-kind="class">String</a> literalkeyword, </span><span class="javadoc-method-param"><a href="TypeInformation.html" title="interface saker.build.scripting.model.info.TypeInformation" data-javadoc-kind="interface">TypeInformation</a> typecontext</span>)</span></div><div class="javadoc-class-detail-method-detail javadoc-member-detail"><div class="javadoc-detail-body">Gets information about literals based on a hint keyword and type context hint. <p>
+ Implementations should discover possible literals that are related with the given keyword. The key word can be
+ interpreted in any way the implementation decides to handle. As a general rule of thumb the key word should be
+ used to discover literals that start with it, however implementations can deviate from this rule.
+ <p>
+ The type context information can serve as a hint to what kind of literals should be returned. It should be an
+ instance that this information provider previously returned, however implementations are recommended to handle
+ the case when the caller fails to adhere to this requirement.
+ <p>
+ The literal and type context hints may be <code>null</code>, but at least one of them will be
+ non-<code>null</code>.
+ <p>
+ The resulting collection should be ordered based on relevance to the hint parameters.
+ <p>
+ This method is usually useful when creating completion proposals for a script model.</div><div class="javadoc-method-detail-params javadoc-blocktag-section"><div class="javadoc-method-detail-param"><span class="javadoc-method-detail-param-name">literalkeyword</span><span class="javadoc-method-detail-param-detail">The literal hint or <code>null</code> if not available.</span></div><div class="javadoc-method-detail-param"><span class="javadoc-method-detail-param-name">typecontext</span><span class="javadoc-method-detail-param-detail">The type information context hint or <code>null</code> if not available.</span></div></div><div class="javadoc-method-detail-return javadoc-blocktag-section"><div class="javadoc-method-detail-return-body">The literal informations.</div></div></div></div><div id="getTaskInformation-saker.build.task.TaskName-" class="javadoc-class-detail-method javadoc-class-detail-member"><div class="javadoc-class-detail-method-sig javadoc-member-sig"><span class="javadoc-kw">public default </span><span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Map.html" title="interface java.util.Map" data-javadoc-kind="interface">Map</a>&lt;<wbr><a href="../../../task/TaskName.html" title="class saker.build.task.TaskName" data-javadoc-kind="class">TaskName</a>, ?&nbsp;<span class="javadoc-kw">extends</span> <a href="TaskInformation.html" title="interface saker.build.scripting.model.info.TaskInformation" data-javadoc-kind="interface">TaskInformation</a>&gt;</span> <a href="#getTaskInformation-saker.build.task.TaskName-" title="ExternalScriptInformationProvider.getTaskInformation(TaskName)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">getTaskInformation</a><span class="javadoc-code-ref">(<wbr><span class="javadoc-method-param"><a href="../../../task/TaskName.html" title="class saker.build.task.TaskName" data-javadoc-kind="class">TaskName</a> taskname</span>)</span></div><div class="javadoc-class-detail-method-detail javadoc-member-detail"><div class="javadoc-detail-body">Gets the task informations based on a task name hint. <p>
+ This method queries the information provider for task informations based on a hint task name. The provider should
+ interpret the task name as an exact match, and the task qualifiers as a hint for the returned results.
+ <p>
+ The returned map should be ordered based on the relevance of the related task. Implementations are recommended to
+ use a map which keeps the insertion order, such as <span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/util/LinkedHashMap.html" title="class java.util.LinkedHashMap" data-javadoc-kind="class">LinkedHashMap</a></span>.
+ <p>
+ The value informations in the returned map are allowed to be lazily populated. The values in the map can be
+ <code>null</code> to signal that they are not available or are still pending due to background retrieval.</div><div class="javadoc-method-detail-params javadoc-blocktag-section"><div class="javadoc-method-detail-param"><span class="javadoc-method-detail-param-name">taskname</span><span class="javadoc-method-detail-param-detail">The task name hint. Never <code>null</code>.</span></div></div><div class="javadoc-method-detail-return javadoc-blocktag-section"><div class="javadoc-method-detail-return-body">The informations for related tasks.</div></div></div></div><div id="getTaskParameterInformation-saker.build.task.TaskName-java.lang.String-" class="javadoc-class-detail-method javadoc-class-detail-member"><div class="javadoc-class-detail-method-sig javadoc-member-sig"><span class="javadoc-kw">public default </span><span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Map.html" title="interface java.util.Map" data-javadoc-kind="interface">Map</a>&lt;<wbr><a href="../../../task/TaskName.html" title="class saker.build.task.TaskName" data-javadoc-kind="class">TaskName</a>, ?&nbsp;<span class="javadoc-kw">extends</span> <a href="TaskParameterInformation.html" title="interface saker.build.scripting.model.info.TaskParameterInformation" data-javadoc-kind="interface">TaskParameterInformation</a>&gt;</span> <a href="#getTaskParameterInformation-saker.build.task.TaskName-java.lang.String-" title="ExternalScriptInformationProvider.getTaskParameterInformation(TaskName, String)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">getTaskParameterInformation</a><span class="javadoc-code-ref">(<wbr><span class="javadoc-method-param"><a href="../../../task/TaskName.html" title="class saker.build.task.TaskName" data-javadoc-kind="class">TaskName</a> taskname, </span><span class="javadoc-method-param"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="class java.lang.String" data-javadoc-kind="class">String</a> parametername</span>)</span></div><div class="javadoc-class-detail-method-detail javadoc-member-detail"><div class="javadoc-detail-body">Gets information about a task parameter. <p>
+ This method queries the information provider for task parameter informations based on a hint task name and an
+ exact parameter name. The parameter name passed as argument should match the informations returned in the result.
+ The provider should interpret the task name as an exact match, and the task qualifiers as a hint for the returned
+ results.
+ <p>
+ The returned map should be ordered based on the relevance of the related task. Implementations are recommended to
+ use a map which keeps the insertion order, such as <span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/util/LinkedHashMap.html" title="class java.util.LinkedHashMap" data-javadoc-kind="class">LinkedHashMap</a></span>.
+ <p>
+ The value informations in the returned map are allowed to be lazily populated. The values in the map cannot be
+ <code>null</code>.
+ <p>
+ Task parameter names should be matched using the rules specified in <span class="javadoc-code-ref"><a href="TaskParameterInformation.html" title="interface saker.build.scripting.model.info.TaskParameterInformation" data-javadoc-kind="interface">TaskParameterInformation</a></span>. Also see
+ <span class="javadoc-code-ref"><a href="ScriptInfoUtils.html" title="class saker.build.scripting.model.info.ScriptInfoUtils" data-javadoc-kind="class">ScriptInfoUtils</a>.<a href="ScriptInfoUtils.html#isCompatibleParameterName-java.lang.String-saker.build.scripting.model.info.TaskParameterInformation-" title="ScriptInfoUtils.isCompatibleParameterName(String, TaskParameterInformation)" data-javadoc-kind="method" data-javadoc-enclosing-kind="class">isCompatibleParameterName<span class="javadoc-code-ref">(<wbr>String, TaskParameterInformation)</span></a></span> for more information.</div><div class="javadoc-method-detail-params javadoc-blocktag-section"><div class="javadoc-method-detail-param"><span class="javadoc-method-detail-param-name">taskname</span><span class="javadoc-method-detail-param-detail">The task name hint.</span></div><div class="javadoc-method-detail-param"><span class="javadoc-method-detail-param-name">parametername</span><span class="javadoc-method-detail-param-detail">The parameter name to match.</span></div></div><div class="javadoc-method-detail-return javadoc-blocktag-section"><div class="javadoc-method-detail-return-body">The task parameter informations mapped to their corresponding tasks.</div></div></div></div><div id="getTasks-java.lang.String-" class="javadoc-class-detail-method javadoc-class-detail-member"><div class="javadoc-class-detail-method-sig javadoc-member-sig"><span class="javadoc-kw">public default </span><span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Map.html" title="interface java.util.Map" data-javadoc-kind="interface">Map</a>&lt;<wbr><a href="../../../task/TaskName.html" title="class saker.build.task.TaskName" data-javadoc-kind="class">TaskName</a>, ?&nbsp;<span class="javadoc-kw">extends</span> <a href="TaskInformation.html" title="interface saker.build.scripting.model.info.TaskInformation" data-javadoc-kind="interface">TaskInformation</a>&gt;</span> <a href="#getTasks-java.lang.String-" title="ExternalScriptInformationProvider.getTasks(String)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">getTasks</a><span class="javadoc-code-ref">(<wbr><span class="javadoc-method-param"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="class java.lang.String" data-javadoc-kind="class">String</a> tasknamekeyword</span>)</span></div><div class="javadoc-class-detail-method-detail javadoc-member-detail"><div class="javadoc-detail-body">Gets information about tasks based on a hint keyword. <p>
+ This method queries the information provider for task informations based on a hint task name keyword. The
+ provider can interpret the keyword in any way it sees fit.
+ <p>
+ The returned map should be ordered based on the relevance of the related task. Implementations are recommended to
+ use a map which keeps the insertion order, such as <span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/util/LinkedHashMap.html" title="class java.util.LinkedHashMap" data-javadoc-kind="class">LinkedHashMap</a></span>.
+ <p>
+ The hint keyword might be <code>null</code> in which case implementations should list as many tasks it can
+ currently provide. In this case implementations are not required to list <b>all</b> task relations, only the ones
+ it has information about. (I.e. there is no need to build a full index of all the tasks in a given
+ implementation, as that could result in too big work. E.g. no need to retrieve all tasks from a repository, only
+ return the ones it currently knows about.)
+ <p>
+ The value informations in the returned map are allowed to be lazily populated. The values in the map can be
+ <code>null</code> to signal that they are not available or are still pending due to background retrieval.</div><div class="javadoc-method-detail-params javadoc-blocktag-section"><div class="javadoc-method-detail-param"><span class="javadoc-method-detail-param-name">tasknamekeyword</span><span class="javadoc-method-detail-param-detail">The task name hint keyword or <code>null</code>.</span></div></div><div class="javadoc-method-detail-return javadoc-blocktag-section"><div class="javadoc-method-detail-return-body">The informations for the related tasks.</div></div></div></div></div></div>
+	</div>
+</div>
+<div class="doc-footer">
+	<div class="container">
+		<div class="row">
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">About</p>
+				<div><a href="/index.html" title="Saker.build home page">Home</a></div>
+				<div data-footer-location="doc-docs"><a href="../../../../../../index.html" title="saker.build documentation index">Documentation index</a></div>
+				<div><a href="../../../../../../../saker.build/index.html" title="Information about the saker.build system">saker.build system</a></div>
+				<div><a href="../../../../../../../saker.nest/index.html" title="Information about the saker.nest repository">saker.nest repository</a></div>
+				<div><a href="/contact.html" title="Contact us">Contact</a></div>
+			</div>
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">Resources</p>
+				<div data-footer-location="doc-docs"><a href="../../../../../../doc/index.html" title="saker.build documentation index">Documentation</a></div>
+				<div data-footer-location="doc-javadoc"><a href="../../../../../../javadoc/index.html" title="JavaDoc for saker.build">JavaDoc</a></div>
+				<div data-footer-location="doc-taskdoc"><a href="../../../../../../taskdoc/index.html"  title="Documentation of build tasks in saker.build">TaskDoc</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.nest package page</a></div>
+				<div><a href="https://github.com/sakerbuild/saker.build" title="saker.build on GitHub">GitHub</a></div>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col">
+			&copy; Bence Sipka 2020
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

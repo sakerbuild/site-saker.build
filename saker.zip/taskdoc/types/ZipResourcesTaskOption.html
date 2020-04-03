@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>ZipResourcesTaskOption&nbsp|&nbsp;saker.zip</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+	
+	<link rel="stylesheet" href="../../../res/bootstrap.min.css" >
+	<link rel="stylesheet" href="../../../res/doc-saker.css" >
+</head>
+<body data-nav-location="taskdoc" data-subdoc-presence="nest-package packagedoc javadoc taskdoc">
+<div class="doc-nav-bar">
+	<div class="container">
+		<a class="home-link" href="../../index.html" title="saker.zip"><img style="height: 2.5em;" class="logo" src="../../../res/logo.svg"/><span class="page-name">saker.zip</span></a>
+		<a class="nav-location-item" data-nav-location="doc-docs" href="../../doc/index.html" title="Documentation">Documentation</a>
+		<a class="nav-location-item" data-nav-location="doc-taskdoc" href="../../taskdoc/index.html" title="Build task documentation">TaskDoc</a>
+		<a class="nav-location-item" data-nav-location="doc-javadoc" href="../../javadoc/index.html"title="Java API documentation">JavaDoc</a>
+		<div class="nav-bar-controls">
+			<label class="d-xl-none nav-bar-collapse" for="collapse-nav-bar-label">
+				<svg style="height: 1.5em;" viewBox="0 0 24 24">
+				    <path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+				</svg>
+			</label>
+			<input style="display:none;" id="collapse-nav-bar-label" type="checkbox"/>
+			<div class="nav-bar-items">
+				<a href="/" title="saker.build home page">Home</a>
+				<a href="/buildtrace.html" title="Build trace viewer">Build trace</a>
+				<a style="display:none;" href="/sponsor.html" title="Sponsoring development">Sponsor</a>
+				<a href="/blog/" title="saker.build system blog">Blog</a>
+				<a class="no-external-icon" href="https://github.com/sakerbuild/saker.build" title="saker.build GitHub repository">GitHub</a>
+			</div>
+		</div>
+	</div>
+</div>
+<nav class="taskdoc-nav" data-nav-location="ZipResourcesTaskOption">
+	<div class="container">
+		<span class="taskdoc-nav-title">TaskDoc</span>
+		<a class="nav-location-item" data-nav-location="taskdoc-index" href="../index.html" title="Task doc index">Index</a>
+	</div>
+</nav>
+<div class="container page-contents taskdoc">
+	<div class="taskdoc-content">
+	<div class="typedoc-header"><div class="typedoc-typename"><a href="" title="Type ZipResourcesTaskOption">ZipResourcesTaskOption</a></div><div class="typedoc-container-bundle">In bundle: <a title="Package saker.zip">saker.zip</a></div></div><div class="typedoc-info" taskdoc-info-format="format.plaintext">Represents an resource configuration for ZIP archive creation.
+Accepts simple paths, file locations, file collections or may be configured directly.
+The target path of a resource is determined based on the way the option was configured.
+- If a simple file path or file location is specified, the resource is added to the archive with the file name of the path. E.g. if path/to/resource.txt is specified, it will have take resource.txt name in the archive.
+- In case of file collections, each file is added individually as a simple file.
+- In other cases, the TargetDirectory field and the relative path of each resource from the associated Directory is used to determine the archive path.</div><div class="typedoc-idx"><div class="typedoc-idx-title">Summary</div><div class="typedoc-idx-section typedoc-idx-fields"><table><caption>Fields</caption><tbody><tr class="taskdoc-idx-member"><td><a class="typedoc-idx-field-name" href="#f-Directory" title="Field Directory">Directory</a></td><td>Specifies one or more directory paths which are used as a base to find Resources to add to the archive.
+</td></tr><tr class="taskdoc-idx-member"><td><a class="typedoc-idx-field-name" href="#f-Files" title="Field Files">Files</a></td><td>Specifies one or more files that should be added to the archive.
+</td></tr><tr class="taskdoc-idx-member"><td><a class="typedoc-idx-field-name" href="#f-Resources" title="Field Resources">Resources</a></td><td>Wildcard patterns used to find resources relative to the specified Directories.
+</td></tr><tr class="taskdoc-idx-member"><td><a class="typedoc-idx-field-name" href="#f-TargetDirectory" title="Field TargetDirectory">TargetDirectory</a></td><td>Specifies the target directory under which the entries specified in the configuration should be placed.
+</td></tr></tbody></table></div></div><div class="typedoc-details-fields"><div class="typedoc-details-title">Fields</div><div id="f-Directory" class="typedoc-detail-member typedoc-detail-field"><div class="typedoc-detail-param-header-sig"><div class="typedoc-detail-field-name"><a href="#f-Directory" title="Field Directory">Directory</a></div><div class="typedoc-detail-field-type">Collection of <a href="MultiFileLocationTaskOption.html" title="Type MultiFileLocationTaskOption">MultiFileLocationTaskOption</a></div></div><div class="typedoc-detail-field-detail" taskdoc-info-format="format.plaintext">Specifies one or more directory paths which are used as a base to find Resources to add to the archive.
+Each wildcard specified in the Resources field will be matched relative to the Directory paths specified.
+The archive path will be the concatenation of the TargetDirectory field, and the relative path from the Directory to each found Resource.
+If no directory is specified, the current working path of the task will be used.
+This option cannot be used with Files.</div></div><div id="f-Files" class="typedoc-detail-member typedoc-detail-field"><div class="typedoc-detail-param-header-sig"><div class="typedoc-detail-field-name"><a href="#f-Files" title="Field Files">Files</a></div><div class="typedoc-detail-field-type">Collection of <a href="MultiFileLocationTaskOption.html" title="Type MultiFileLocationTaskOption">MultiFileLocationTaskOption</a></div></div><div class="typedoc-detail-field-detail" taskdoc-info-format="format.plaintext">Specifies one or more files that should be added to the archive.
+The files can be specified using simple paths, wildcards, file locations or file collections.
+The final archive path of each file will be the concatenation of the TargetDirectory and the file name of the specified files.
+This option cannot be used with Directory and Resources.</div></div><div id="f-Resources" class="typedoc-detail-member typedoc-detail-field"><div class="typedoc-detail-param-header-sig"><div class="typedoc-detail-field-name"><a href="#f-Resources" title="Field Resources">Resources</a></div><div class="typedoc-detail-field-type">Collection of <a href="../../../saker.build/javadoc/saker/build/file/path/WildcardPath.html" title="WildcardPath">WildcardPath</a></div></div><div class="typedoc-detail-field-detail" taskdoc-info-format="format.plaintext">Wildcard patterns used to find resources relative to the specified Directories.
+The specified wildcard paths in this field will be used to match the input files under the directories specified in Directory. Each matched file will be included in the archive with the path that is the concatenation of TargetDirectory and the relative path from the associated Directory.
+The wildcards can be used to match both files and directories to add to the archive.
+This option cannot be used with Files.</div></div><div id="f-TargetDirectory" class="typedoc-detail-member typedoc-detail-field"><div class="typedoc-detail-param-header-sig"><div class="typedoc-detail-field-name"><a href="#f-TargetDirectory" title="Field TargetDirectory">TargetDirectory</a></div><div class="typedoc-detail-field-type"><a href="../../../saker.build/javadoc/saker/build/file/path/SakerPath.html" title="SakerPath">SakerPath</a></div></div><div class="typedoc-detail-field-detail" taskdoc-info-format="format.plaintext">Specifies the target directory under which the entries specified in the configuration should be placed.
+Any input file that is matched by this configuration will have their archive paths prepended by the value of this field.
+The specified path must be forward relative. By default, no target directory is used.</div></div></div>
+	</div>
+</div>
+<div class="doc-footer">
+	<div class="container">
+		<div class="row">
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">About</p>
+				<div><a href="/index.html" title="Saker.build home page">Home</a></div>
+				<div data-footer-location="doc-docs"><a href="../../index.html" title="saker.zip documentation index">Documentation index</a></div>
+				<div><a href="../../../saker.build/index.html" title="Information about the saker.build system">saker.build system</a></div>
+				<div><a href="../../../saker.nest/index.html" title="Information about the saker.nest repository">saker.nest repository</a></div>
+				<div><a href="/contact.html" title="Contact us">Contact</a></div>
+			</div>
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">Resources</p>
+				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.zip documentation index">Documentation</a></div>
+				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.zip">JavaDoc</a></div>
+				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.zip">TaskDoc</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.zip" title="saker.zip | saker.nest">saker.nest package page</a></div>
+				<div><a href="https://github.com/sakerbuild/saker.zip" title="saker.zip on GitHub">GitHub</a></div>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col">
+			&copy; Bence Sipka 2020
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

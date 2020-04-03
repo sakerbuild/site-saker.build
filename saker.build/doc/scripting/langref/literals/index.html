@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Literals&nbsp;|&nbsp;saker.build</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+	
+	<link rel="stylesheet" href="../../../../../res/bootstrap.min.css" >
+	<link rel="stylesheet" href="../../../../../res/doc-saker.css" >
+</head>
+<body data-nav-location="packagedoc" data-subdoc-presence="nest-package packagedoc javadoc">
+<div class="doc-nav-bar">
+	<div class="container">
+		<a class="home-link" href="../../../../index.html" title="saker.build"><img style="height: 2.5em;" class="logo" src="../../../../../res/logo.svg"/><span class="page-name">saker.build</span></a>
+		<a class="nav-location-item" data-nav-location="doc-docs" href="../../../../doc/index.html" title="Documentation">Documentation</a>
+		<a class="nav-location-item" data-nav-location="doc-taskdoc" href="../../../../taskdoc/index.html" title="Build task documentation">TaskDoc</a>
+		<a class="nav-location-item" data-nav-location="doc-javadoc" href="../../../../javadoc/index.html"title="Java API documentation">JavaDoc</a>
+		<div class="nav-bar-controls">
+			<label class="d-xl-none nav-bar-collapse" for="collapse-nav-bar-label">
+				<svg style="height: 1.5em;" viewBox="0 0 24 24">
+				    <path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+				</svg>
+			</label>
+			<input style="display:none;" id="collapse-nav-bar-label" type="checkbox"/>
+			<div class="nav-bar-items">
+				<a href="/" title="saker.build home page">Home</a>
+				<a href="/buildtrace.html" title="Build trace viewer">Build trace</a>
+				<a style="display:none;" href="/sponsor.html" title="Sponsoring development">Sponsor</a>
+				<a href="/blog/" title="saker.build system blog">Blog</a>
+				<a class="no-external-icon" href="https://github.com/sakerbuild/saker.build" title="saker.build GitHub repository">GitHub</a>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container page-contents packagedoc">
+	<div class="row">
+		<div class="col-12 col-lg-3 col-xl-2 p-lg-0">
+			<div class="doc-navigation-container">
+				<label class="d-lg-none nav-collapse" for="doc-collapse-nav-label">
+					<svg style="height: 1.5em;" viewBox="0 0 24 24">
+					    <path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+					</svg>
+					Navigation
+				</label>
+				<input style="display:none;" id="doc-collapse-nav-label" type="checkbox"/> 
+				<div class="doc-nav">  <div class="doc-section"><ul><li><a class="doc-nav-section-link" href="../../../../index.html" title="Index">Index</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Introduction</p><ul><li><a class="doc-nav-section-link" href="../../../index.html" title="Overview">Overview</a></li><li><label class="doc-nav-collapse" for="_doc_collapse_id_0"><a class="doc-nav-section-link" href="../../../installation.html" title="Installation">Installation</a></label><input style="display:none;" id="_doc_collapse_id_0" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_0"></label><ul><li><a class="doc-nav-section-link" href="../../../eclipseplugin.html" title="Eclipse plugin">Eclipse plugin</a></li><li><a class="doc-nav-section-link" href="../../../releasearchive.html" title="Release archive">Release archive</a></li></ul></li><li><a class="doc-nav-section-link" href="../../../perfcomparison.html" title="Performance comparisons">Performance comparisons</a></li><li><a class="doc-nav-section-link" href="../../../roadmap.html" title="Roadmap">Roadmap</a></li><li><label class="doc-nav-collapse" for="_doc_collapse_id_1"><a class="doc-nav-section-link" href="../../../contribute.html" title="Contribute">Contribute</a></label><input style="display:none;" id="_doc_collapse_id_1" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_1"></label><ul><li><a class="doc-nav-section-link" href="../../../buildstatus.html" title="Build status">Build status</a></li></ul></li></ul>  </div>  <div class="doc-section">    <p class="section-title">User guide</p><ul><li><label class="doc-nav-collapse" for="_doc_collapse_id_2"><a class="doc-nav-section-link" href="../../../guide/index.html" title="Introduction">Introduction</a></label><input style="display:none;" id="_doc_collapse_id_2" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_2"></label><ul><li><a class="doc-nav-section-link" href="../../../guide/helloworld.html" title="Hello world">Hello world</a></li><li><a class="doc-nav-section-link" href="../../../guide/buildtargets.html" title="Build targets">Build targets</a></li><li><a class="doc-nav-section-link" href="../../../guide/datastructures.html" title="Data structures">Data structures</a></li><li><a class="doc-nav-section-link" href="../../../guide/foreach.html" title="Foreach loop">Foreach loop</a></li><li><a class="doc-nav-section-link" href="../../../guide/controlflow.html" title="Control flow">Control flow</a></li></ul></li><li><a class="doc-nav-section-link" href="../../../guide/incremental.html" title="Incremental builds">Incremental builds</a></li><li><a class="doc-nav-section-link" href="../../../guide/runtime.html" title="Build system runtime">Build system runtime</a></li><li><a class="doc-nav-section-link" href="../../../guide/envconfig.html" title="Environment configuration">Environment configuration</a></li><li><a class="doc-nav-section-link" href="../../../guide/execparams.html" title="Execution parameters">Execution parameters</a></li><li><a class="doc-nav-section-link" href="../../../guide/pathconfiguration.html" title="Path configuration">Path configuration</a></li><li><a class="doc-nav-section-link" href="../../../guide/repositories.html" title="Task repositories">Task repositories</a></li><li><a class="doc-nav-section-link" href="../../../guide/scriptlanguages.html" title="Script languages">Script languages</a></li><li><a class="doc-nav-section-link" href="../../../guide/daemon.html" title="Build daemon">Build daemon</a></li><li><a class="doc-nav-section-link" href="../../../guide/filechangetracking.html" title="File change tracking">File change tracking</a></li><li><a class="doc-nav-section-link" href="../../../guide/remotebuild.html" title="Remote build execution">Remote build execution</a></li><li><a class="doc-nav-section-link" href="../../../guide/buildclusters.html" title="Build clusters">Build clusters</a></li><li><a class="doc-nav-section-link" href="../../../guide/buildcache.html" title="Build cache">Build cache</a></li><li><a class="doc-nav-section-link" href="../../../guide/buildtrace.html" title="Build trace">Build trace</a></li><li><a class="doc-nav-section-link" href="../../../guide/reproducible.html" title="Reproducible builds">Reproducible builds</a></li><li><a class="doc-nav-section-link" href="../../../guide/wildcards.html" title="Wildcard paths">Wildcard paths</a></li><li><label class="doc-nav-collapse" for="_doc_collapse_id_3"><a class="doc-nav-section-link" href="../../../guide/cmdlineref/index.html" title="Command line reference">Command line reference</a></label><input style="display:none;" id="_doc_collapse_id_3" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_3"></label><ul><li><a class="doc-nav-section-link" href="../../../guide/cmdlineref/build.html" title="build">build</a></li><li><label class="doc-nav-collapse" for="_doc_collapse_id_4"><a class="doc-nav-section-link" href="../../../guide/cmdlineref/daemon.html" title="daemon">daemon</a></label><input style="display:none;" id="_doc_collapse_id_4" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_4"></label><ul><li><a class="doc-nav-section-link" href="../../../guide/cmdlineref/daemon_start.html" title="start">start</a></li><li><a class="doc-nav-section-link" href="../../../guide/cmdlineref/daemon_stop.html" title="stop">stop</a></li><li><a class="doc-nav-section-link" href="../../../guide/cmdlineref/daemon_run.html" title="run">run</a></li><li><a class="doc-nav-section-link" href="../../../guide/cmdlineref/daemon_io.html" title="io">io</a></li><li><a class="doc-nav-section-link" href="../../../guide/cmdlineref/daemon_info.html" title="info">info</a></li></ul></li><li><a class="doc-nav-section-link" href="../../../guide/cmdlineref/action.html" title="action">action</a></li><li><a class="doc-nav-section-link" href="../../../guide/cmdlineref/licenses.html" title="licenses">licenses</a></li><li><a class="doc-nav-section-link" href="../../../guide/cmdlineref/version.html" title="version">version</a></li></ul></li><li><a class="doc-nav-section-link" href="../../../guide/scriptstyleguide.html" title="Build script style guide">Build script style guide</a></li><li><a class="doc-nav-section-link" href="../../../guide/bestpractices.html" title="Best practices">Best practices</a></li><li><a class="doc-nav-section-link" href="../../../examplecollection.html" title="Example collection">Example collection</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Scripting language</p><ul><li><a class="doc-nav-section-link" href="../../index.html" title="Overview">Overview</a></li><li><a class="doc-nav-section-link" href="../../executionmodel.html" title="Execution model">Execution model</a></li><li class=" doc-active-parent"><label class="doc-nav-collapse" for="_doc_collapse_id_5"><a class="doc-nav-section-link" href="../index.html" title="Language reference">Language reference</a></label><input style="display:none;" id="_doc_collapse_id_5" type="checkbox" checked/><label class="doc-nav-section-arrow" for="_doc_collapse_id_5"></label><ul><li><a class="doc-nav-section-link" href="../sourcefile/index.html" title="Source file">Source file</a></li><li><a class="doc-nav-section-link" href="../expressions/index.html" title="Expressions">Expressions</a></li><li><a class="doc-nav-section-link" href="../comments/index.html" title="Comments">Comments</a></li><li class="doc-active doc-active-parent"><a class="doc-nav-section-link" href="index.html" title="Literals">Literals</a></li><li><a class="doc-nav-section-link" href="../variables/index.html" title="Variables">Variables</a></li><li><a class="doc-nav-section-link" href="../tasks/index.html" title="Task extensions">Task extensions</a></li><li><label class="doc-nav-collapse" for="_doc_collapse_id_6"><a class="doc-nav-section-link" href="../operators/index.html" title="Operators">Operators</a></label><input style="display:none;" id="_doc_collapse_id_6" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_6"></label><ul><li><a class="doc-nav-section-link" href="../operators/addition/index.html" title="Addition">Addition</a></li><li><a class="doc-nav-section-link" href="../operators/assignment/index.html" title="Assignment">Assignment</a></li><li><a class="doc-nav-section-link" href="../operators/bitnegate/index.html" title="Bitwise negate">Bitwise negate</a></li><li><a class="doc-nav-section-link" href="../operators/bitoperators/index.html" title="Bitwise operators">Bitwise operators</a></li><li><a class="doc-nav-section-link" href="../operators/bitshiftoperators/index.html" title="Bitwise shift operators">Bitwise shift operators</a></li><li><a class="doc-nav-section-link" href="../operators/boolnegate/index.html" title="Boolean negate">Boolean negate</a></li><li><a class="doc-nav-section-link" href="../operators/booloperators/index.html" title="Boolean operators">Boolean operators</a></li><li><a class="doc-nav-section-link" href="../operators/dereference/index.html" title="Dereference">Dereference</a></li><li><a class="doc-nav-section-link" href="../operators/equality/index.html" title="Equality comparison">Equality comparison</a></li><li><a class="doc-nav-section-link" href="../operators/mathoperators/index.html" title="Mathematic operators">Mathematic operators</a></li><li><a class="doc-nav-section-link" href="../operators/comparison/index.html" title="Numeric comparison">Numeric comparison</a></li><li><a class="doc-nav-section-link" href="../operators/parentheses/index.html" title="Parentheses">Parentheses</a></li><li><a class="doc-nav-section-link" href="../operators/subscript/index.html" title="Subscript">Subscript</a></li><li><a class="doc-nav-section-link" href="../operators/ternary/index.html" title="Ternary">Ternary</a></li><li><a class="doc-nav-section-link" href="../operators/unaryminus/index.html" title="Unary minus">Unary minus</a></li></ul></li><li><a class="doc-nav-section-link" href="../ifelse/index.html" title="If-else statement">If-else statement</a></li><li><a class="doc-nav-section-link" href="../foreach/index.html" title="Foreach expression">Foreach expression</a></li></ul></li><li><label class="doc-nav-collapse" for="_doc_collapse_id_7"><a class="doc-nav-section-link" href="../../builtintasks/index.html" title="Built-in tasks">Built-in tasks</a></label><input style="display:none;" id="_doc_collapse_id_7" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_7"></label><ul><li><a class="doc-nav-section-link" href="../../builtintasks/abort.html" title="abort()">abort()</a></li><li><a class="doc-nav-section-link" href="../../builtintasks/global.html" title="global()">global()</a></li><li><a class="doc-nav-section-link" href="../../builtintasks/include.html" title="include()">include()</a></li><li><a class="doc-nav-section-link" href="../../builtintasks/path.html" title="path()">path()</a></li><li><a class="doc-nav-section-link" href="../../builtintasks/print.html" title="print()">print()</a></li><li><a class="doc-nav-section-link" href="../../builtintasks/sequence.html" title="sequence()">sequence()</a></li><li><a class="doc-nav-section-link" href="../../builtintasks/static.html" title="static()">static()</a></li><li><a class="doc-nav-section-link" href="../../builtintasks/var.html" title="var()">var()</a></li></ul></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Extending saker.build</p><ul><li><a class="doc-nav-section-link" href="../../../extending/index.html" title="Overview">Overview</a></li><li><a class="doc-nav-section-link" href="../../../extending/api.html" title="Build system API">Build system API</a></li><li><label class="doc-nav-collapse" for="_doc_collapse_id_8"><a class="doc-nav-section-link" href="../../../extending/taskdev/index.html" title="Task development">Task development</a></label><input style="display:none;" id="_doc_collapse_id_8" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_8"></label><ul><li><a class="doc-nav-section-link" href="../../../extending/taskdev/helloworld.html" title="Hello world">Hello world</a></li><li><a class="doc-nav-section-link" href="../../../extending/taskdev/taskparameters.html" title="Task parameters">Task parameters</a></li><li><a class="doc-nav-section-link" href="../../../extending/taskdev/taskresults.html" title="Task results">Task results</a></li><li><label class="doc-nav-collapse" for="_doc_collapse_id_9"><a class="doc-nav-section-link" href="../../../extending/taskdev/filehandling.html" title="File handling">File handling</a></label><input style="display:none;" id="_doc_collapse_id_9" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_9"></label><ul><li><a class="doc-nav-section-link" href="../../../extending/taskdev/filedependencies.html" title="File dependencies">File dependencies</a></li><li><a class="doc-nav-section-link" href="../../../extending/taskdev/fileadditiondependency.html" title="File addition dependency">File addition dependency</a></li><li><a class="doc-nav-section-link" href="../../../extending/taskdev/customfiles.html" title="Custom files">Custom files</a></li><li><a class="doc-nav-section-link" href="../../../extending/taskdev/filemirroring.html" title="File mirroring">File mirroring</a></li></ul></li><li><a class="doc-nav-section-link" href="../../../extending/taskdev/propertydependencies.html" title="Property dependencies">Property dependencies</a></li><li><label class="doc-nav-collapse" for="_doc_collapse_id_10"><a class="doc-nav-section-link" href="../../../extending/taskdev/taskmanagement.html" title="Task management">Task management</a></label><input style="display:none;" id="_doc_collapse_id_10" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_10"></label><ul><li><a class="doc-nav-section-link" href="../../../extending/taskdev/startingtasks.html" title="Starting tasks">Starting tasks</a></li><li><a class="doc-nav-section-link" href="../../../extending/taskdev/retrievingtaskresults.html" title="Retrieving task results">Retrieving task results</a></li></ul></li><li><a class="doc-nav-section-link" href="../../../extending/taskdev/incrementaldeltas.html" title="Incremental deltas">Incremental deltas</a></li><li><a class="doc-nav-section-link" href="../../../extending/taskdev/taskcapabilities.html" title="Task capabilities">Task capabilities</a></li><li><a class="doc-nav-section-link" href="../../../extending/taskdev/parameterparsing.html" title="Parameter parsing">Parameter parsing</a></li><li><a class="doc-nav-section-link" href="../../../extending/taskdev/innertasks.html" title="Inner tasks">Inner tasks</a></li><li><a class="doc-nav-section-link" href="../../../extending/taskdev/taskworkflow.html" title="Task workflow">Task workflow</a></li><li><a class="doc-nav-section-link" href="../../../extending/taskdev/taskcaching.html" title="Task caching">Task caching</a></li><li><a class="doc-nav-section-link" href="../../../extending/taskdev/buildclusters.html" title="Build clusters">Build clusters</a></li><li><a class="doc-nav-section-link" href="../../../extending/taskdev/standardio.html" title="Standard I/O">Standard I/O</a></li><li><a class="doc-nav-section-link" href="../../../extending/taskdev/serialization.html" title="Serialization">Serialization</a></li><li><a class="doc-nav-section-link" href="../../../extending/taskdev/ideconfig.html" title="IDE configuration">IDE configuration</a></li><li><a class="doc-nav-section-link" href="../../../extending/taskdev/reproducible.html" title="Reproducible builds">Reproducible builds</a></li><li><a class="doc-nav-section-link" href="../../../extending/taskdev/bestpractices.html" title="Best practices">Best practices</a></li></ul></li><li><label class="doc-nav-collapse" for="_doc_collapse_id_11"><a class="doc-nav-section-link" href="../../../extending/scriptdev/index.html" title="Script language development">Script language development</a></label><input style="display:none;" id="_doc_collapse_id_11" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_11"></label><ul><li><a class="doc-nav-section-link" href="../../../extending/scriptdev/structure.html" title="API structure">API structure</a></li><li><a class="doc-nav-section-link" href="../../../extending/scriptdev/packaging.html" title="Packaging">Packaging</a></li><li><a class="doc-nav-section-link" href="../../../extending/scriptdev/workflow.html" title="Development workflow">Development workflow</a></li></ul></li><li><label class="doc-nav-collapse" for="_doc_collapse_id_12"><a class="doc-nav-section-link" href="../../../extending/repositorydev/index.html" title="Repository development">Repository development</a></label><input style="display:none;" id="_doc_collapse_id_12" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_12"></label><ul><li><a class="doc-nav-section-link" href="../../../extending/repositorydev/structure.html" title="API structure">API structure</a></li><li><a class="doc-nav-section-link" href="../../../extending/repositorydev/packaging.html" title="Packaging">Packaging</a></li></ul></li><li><a class="doc-nav-section-link" href="../../../extending/testing/index.html" title="Integration testing">Integration testing</a></li></ul>  </div></div>
+			</div>
+		</div>
+		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="sb-sponsors" style="display: none;">
+	<span class="sb-sponsors-title">Sponsors</span>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4 col-12">
+				<a class="sb-sponsors-link"></a>
+			</div>
+			<div class="col-md-4 col-12">
+				<a class="sb-sponsors-link"></a>
+			</div>
+			<div class="col-md-4 col-12">
+				<a class="sb-sponsors-link"></a>
+			</div>
+		</div>
+	</div>
+</div>
+			<div class="doc-content"><h1 id="literals">Literals<a class="doc-heading-anchor" href="#literals"></a></h1>
+<p>The language allows the usage of literals which are the basic instances of data in the script. Literals are such as numbers, strings, lists, and maps. These structures may be familiar from other languages.</p>
+<p>All data structures defined in the language are immutable after construction.</p>
+<h2 id="numbers">Numbers<a class="doc-heading-anchor" href="#numbers"></a></h2>
+<p>The language defines intergral and floating point number literals.</p>
+<h3 id="integers">Integers<a class="doc-heading-anchor" href="#integers"></a></h3>
+<p>The integral literals can be provided in either base-10 numeric format or hexadecimal format.</p>
+<pre><code class="language-sakerscript"><span class="c"># simple integer</span>
+<span class="d">$int</span> = <span class="f">123456789</span>
+<span class="c"># invalid integer</span>
+<span class="d">$invalid</span> = <span class="f">0452</span>
+
+<span class="c"># hexadecimal format</span>
+<span class="d">$hexa</span> = <span class="f">0x012abCDf</span>
+</code></pre>
+<p>The language doesn't support integers in the base-ten numeric format that start with <code>0</code>. This is in order to avoid confusion that comes with the Java language octal number syntax. (See <a href="https://docs.oracle.com/javase/specs/jls/se7/html/jls-3.html#jls-3.10.1" title="Chapter&nbsp;3.&nbsp;Lexical Structure">JLS 3.10.1</a>) This restriction doesn't apply to the hexadecimal format.</p>
+<h3 id="floating-point-numbers">Floating point numbers<a class="doc-heading-anchor" href="#floating-point-numbers"></a></h3>
+<p>The floating point literals can be declared in the same format as specified by the Java language. (See <a href="https://docs.oracle.com/javase/specs/jls/se7/html/jls-3.html#jls-3.10.2" title="Chapter&nbsp;3.&nbsp;Lexical Structure">JLS 3.10.2</a>) This can make easier to represent number between language boundaries, and provides a more straightforward implementation of the language.</p>
+<pre><code class="language-sakerscript"><span class="c"># simple double</span>
+<span class="d">$double</span> = <span class="f">1.23</span>
+<span class="c"># exponential format</span>
+<span class="d">$exponential</span> = <span class="f">1234.5E-6</span>
+
+<span class="c"># not a number</span>
+<span class="d">$nan</span> = <span class="f">NaN</span>
+<span class="c"># string &quot;NaN&quot; that's not interpreted as a number literal</span>
+<span class="d">$nanstr</span> = <span class="f">&quot;NaN&quot;</span>
+</code></pre>
+<h3 id="precision">Precision<a class="doc-heading-anchor" href="#precision"></a></h3>
+<p>The definition doesn't include any precision requirements in regards of the numbers, but the backing implementation of the language should define that. It can be expected that all number literals have a minimum precision of 64 bits.</p>
+<p>The current implementation for the build system allows arbitrary precision integrals (via <code>BigInteger</code> if necessary), but limits the floating point representation to 64 bits (via <code>double</code>).</p>
+<h2 id="string-literals">String literals<a class="doc-heading-anchor" href="#string-literals"></a></h2>
+<p>String literals have two types in the language. Simple literals that are not handled specially and parsed as-is, and compound literals which provide additional features such as escaping, interpolation, and multi-line declaration.</p>
+<h3 id="simple-string-literals">Simple string literals<a class="doc-heading-anchor" href="#simple-string-literals"></a></h3>
+<p>Simple string literals are just continuous characters in the source code. They are only bounded by whitespace and special characters. Their format is that they match the following regular expression: <code>[^,\(\)\[\]\{\}:;\s]+</code>.</p>
+<pre><code class="language-sakerscript"><span class="c"># simple string</span>
+<span class="d">$simple</span> = <span class="f">some_string_value</span>
+<span class="c"># string for a file path</span>
+<span class="d">$filepath</span> = <span class="f">relative/path/to/a/file</span>
+<span class="c"># some base64 data</span>
+<span class="d">$base64</span> = <span class="f">VE9ETyBzb21ldGhpbmcgZnVubnk=</span>
+<span class="c"># special characters</span>
+<span class="d">$special</span> = <span class="f">some+string!containing?special-characters</span>
+</code></pre>
+<p>The simple literals are parsed until any significant control characters are encountered, which are specified in the above regexp. This means that if developers need to use these literals in complex expressions that use operators, the literals need to be separated from the used operator via whitespace.</p>
+<p>Note that initially number literals are also parsed as simple string literals, but they are later converted to their appropriate numeric representation if possible.</p>
+<h3 id="compound-string-literals">Compound string literals<a class="doc-heading-anchor" href="#compound-string-literals"></a></h3>
+<p>Compount string literals allow reified representation of data. They are in a format of quoted characters that support escaping, whitespace, multi-line declaration, and interpolation.</p>
+<pre><code class="language-sakerscript"><span class="c"># simple compound string: </span>
+<span class="c">#quoted string</span>
+<span class="d">$simple</span> = <span class="f">&quot;quoted string&quot;</span>
+
+<span class="c"># escape special characters:</span>
+<span class="d">$escaped</span> = <span class="f">&quot;escapes:\ \b\t\n\f\r\&quot;\'\\&quot;</span>
+
+<span class="c"># unicode:</span>
+<span class="c">#XY</span>
+<span class="d">$unicode</span> = <span class="f">&quot;\u0058\u0059&quot;</span>
+
+<span class="c"># octal:</span>
+<span class="c">#X$</span>
+<span class="d">$octal</span> = <span class="f">&quot;\130\44&quot;</span>
+
+<span class="c"># interpolate:</span>
+<span class="c">#money: 56 USD</span>
+<span class="d">$interpolated</span> = <span class="f">&quot;calculated: </span>{ <span class="f">7</span> * <span class="f">8</span> }<span class="f"> USD&quot;</span>
+
+<span class="c"># multi-line:</span>
+<span class="c">#first</span>
+<span class="c">#second</span>
+<span class="c">#    indented</span>
+<span class="c"># same as &quot;first\nsecond\n    indented&quot;</span>
+<span class="d">$multi</span> = <span class="f">&quot;first
+second
+    indented&quot;</span>
+</code></pre>
+<p>Character escaping works similarly as in the Java language. (See <a href="https://docs.oracle.com/javase/specs/jls/se7/html/jls-3.html#jls-3.10.6" title="Chapter&nbsp;3.&nbsp;Lexical Structure">JLS 3.10.6</a>) It supports escaping special characters, quotes, backslash, and accepts declaration format in octal and unicode representation. Additionally to this, the language allows escaping opening braces (<code>'{'</code>) to allow compatibility with interpolation and a simple space (<code>' '</code>) in order to provide compatibility for using strings from external sources.</p>
+<p>The unicode escape sequence expects 4 hexadecimal characters that specify the described unicode character. The octal escape sequence expect the numbers in a base-8 numeric format with at most of 3 numbers.</p>
+<p>The compound string literals will end when an unescaped <code>'&quot;'</code> character is encountered. This allows multi-line strings to be declared. The indentation of multi-line strings will not be stripped. The line endings of such strings will be normalized to a single <code>'\n'</code> character.</p>
+<p>String interpolation can be used by including arbitary expressions enclosed by curly brace characters. The interpolated expression will be evaluated, and a string representation of it will be included in the string at the corresponding position.</p>
+<p>Compound string literals are always interpreted as string types, and their final value is never handled specially by the language.</p>
+<h2 id="special-literals">Special literals<a class="doc-heading-anchor" href="#special-literals"></a></h2>
+<p>Some literals are handled specially by the language. Booleans and <code>null</code> are such and they are described in the following sections.</p>
+<h3 id="booleans">Booleans<a class="doc-heading-anchor" href="#booleans"></a></h3>
+<p>Booleans are logical values representing the state of <code>true</code> or <code>false</code>. They are specially handled by the language, and simple literals that match these states in a case-insensitive manner will be converted to them.</p>
+<pre><code class="language-sakerscript"><span class="c"># true boolean</span>
+<span class="d">$t</span> = <span class="j">true</span>
+<span class="c"># also true</span>
+<span class="d">$at</span> = <span class="j">TrUe</span>
+
+<span class="c"># false boolean</span>
+<span class="d">$f</span> = <span class="j">false</span>
+<span class="c"># also false</span>
+<span class="d">$af</span> = <span class="j">FalSE</span>
+
+<span class="c"># not a boolean</span>
+<span class="d">$nb</span> = <span class="f">some_literal</span>
+<span class="c"># also not a boolean, but a string</span>
+<span class="d">$anb</span> = <span class="f">&quot;true&quot;</span>
+</code></pre>
+<h3 id="null"><code>null</code><a class="doc-heading-anchor" href="#null"></a></h3>
+<p>The <code>null</code> value in the language represents the absence of some data. Their main reason for its existence is the compatibility with the extension mechanism, as data types from external sources can be present in the language.</p>
+<p>Generally, you should not be using <code>null</code>s in your build script, but handle exceptional cases specified the task extensions of the language.</p>
+<p>Similar to booleans, <code>null</code>s are also interpreted in a case-insensitive manner.</p>
+<pre><code class="language-sakerscript"><span class="c"># set null to a variable</span>
+<span class="d">$var</span> = <span class="j">null</span>
+<span class="c"># also null, as it is interpreted in a case-insensitive manner</span>
+<span class="d">$var2</span> = <span class="j">NuLL</span>
+<span class="d">$var3</span> = <span class="j">NULL</span>
+<span class="c"># not null, but a string literal</span>
+<span class="d">$notnull</span> = <span class="f">&quot;null&quot;</span>
+</code></pre>
+<h2 id="complex-structures">Complex structures<a class="doc-heading-anchor" href="#complex-structures"></a></h2>
+<p>There are many use-cases when structured data needs to be represented in a language. SakerScript supports lists and maps as the base of these representations.</p>
+<h3 id="lists">Lists<a class="doc-heading-anchor" href="#lists"></a></h3>
+<p>Lists contain a sequence of elements in the order specified during construction. They can be declared by using square brackets (<code>[ ]</code>).</p>
+<pre><code class="language-sakerscript"><span class="c"># simple list</span>
+<span class="d">$list</span> = <span class="b">[</span><span class="f">1</span><span class="b">,</span> <span class="f">2</span><span class="b">,</span> <span class="f">3</span><span class="b">]</span>
+<span class="c"># nested list</span>
+<span class="d">$nested</span> = <span class="b">[[</span><span class="f">1</span><span class="b">,</span> <span class="f">2</span><span class="b">],</span> <span class="b">[</span><span class="f">3</span><span class="b">,</span> <span class="f">4</span><span class="b">]]</span>
+
+<span class="c"># mixed type list</span>
+<span class="d">$mixed</span> = <span class="b">[</span><span class="f">1</span><span class="b">,</span> <span class="f">&quot;string&quot;</span><span class="b">,</span> <span class="b">[</span><span class="f">item1</span><span class="b">,</span> <span class="f">item2</span><span class="b">]]</span>
+
+<span class="c"># empty list</span>
+<span class="d">$empty</span> = <span class="b">[]</span>
+<span class="c"># extra commas</span>
+<span class="c"># same as [1, 2]</span>
+<span class="d">$commas</span> = <span class="b">[,</span> <span class="f">1</span><span class="b">,,</span> <span class="f">2</span><span class="b">,</span> <span class="b">]</span>
+</code></pre>
+<p>Any kind of elements can be declared for lists, there is no requirement in regards to it. The lists have a fixed size after construction, and modifying later is not possible.</p>
+<p>Any extraneous commas in the declaration of a list are ignored.</p>
+<p>It is generally recommended to have the elements of a list the same data structure, rather than mixing different kinds of data in one.</p>
+<p>Lists can be used in <a href="../foreach/index.html" title="Foreach expression"><code>foreach</code> expressions</a>, and can be used as the subject of the <a href="../operators/subscript/index.html" title="Subscript">subscript operator</a>.</p>
+<h3 id="maps">Maps<a class="doc-heading-anchor" href="#maps"></a></h3>
+<p>Maps (also known as dictionaries in other languages) are a storage of key-value pairs. The keys in a map are unique strings, and declaring a map that has multiple values for the same key is considered an error. Maps can be declared by using the curly braces (<code>{ }</code>).</p>
+<pre><code class="language-sakerscript"><span class="c"># example map</span>
+<span class="d">$example</span> = <span class="b">{</span>
+	<span class="h">Number</span>: <span class="f">123</span><span class="b">,</span>
+	<span class="h">List</span>: <span class="b">[</span>
+		<span class="f">1</span><span class="b">,</span> 
+		<span class="f">2</span><span class="b">,</span>
+	<span class="b">],</span>
+	<span class="h">SubMap</span>: <span class="b">{</span>
+		<span class="h">String</span>: <span class="f">&quot;str&quot;</span><span class="b">,</span>
+	<span class="b">},</span>
+<span class="b">}</span>
+
+<span class="c"># computed key</span>
+<span class="d">$computed</span> = <span class="b">{</span>
+	<span class="f">&quot;Key</span>{ <span class="f">2</span> * <span class="f">3</span> }<span class="f">&quot;</span>: <span class="f">6</span><span class="b">,</span>
+<span class="b">}</span>
+
+<span class="c"># empty map</span>
+<span class="d">$empty</span> = <span class="b">{</span> <span class="b">}</span>
+</code></pre>
+<p>The keys and values of a map declaration are general expressions, they are not subject to additional requirements. However, when the keys are evaluated, they are converted to a string representation. If there are multiple keys with the same name, an error will be thrown during evaluation.</p>
+<p>Any extraneous commas in the declaration of a map are ignored.</p>
+<p>It is generally recommended to only use simple literals for the keys of a map, and use computed keys rarely when necessary.</p>
+<p>Maps can be used in <a href="../foreach/index.html" title="Foreach expression"><code>foreach</code> expressions</a>, and can be used as the subject of the <a href="../operators/subscript/index.html" title="Subscript">subscript operator</a>.</p>
+<p>The order of keys in the maps are unspecified and implementation dependent. Users should not rely on map objects to have any specific iteration order of their key-value entries.</p>
+<link href="../../../../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>
+			<div class="end-section-links">
+				<div class="end-section-prev">
+					<a class="doc-prev-section" href="../../../../doc/scripting/langref/comments/index.html" title="Comments"><svg class="doc-section-arrow" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" />
+</svg>Comments</a>
+				</div>
+				<div class="end-section-next">
+					<a class="doc-next-section" href="../../../../doc/scripting/langref/variables/index.html" title="Variables">Variables<svg class="doc-section-arrow" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z" />
+</svg></a>
+				</div>
+			</div>
+			<div class="doc-headings-nav">  <ul>    <li><a href="#literals" title="Literals">Literals</a>      <ul>        <li><a href="#numbers" title="Numbers">Numbers</a>          <ul>            <li><a href="#integers" title="Integers">Integers</a>            </li>            <li><a href="#floating-point-numbers" title="Floating point numbers">Floating point numbers</a>            </li>            <li><a href="#precision" title="Precision">Precision</a>            </li>          </ul>        </li>        <li><a href="#string-literals" title="String literals">String literals</a>          <ul>            <li><a href="#simple-string-literals" title="Simple string literals">Simple string literals</a>            </li>            <li><a href="#compound-string-literals" title="Compound string literals">Compound string literals</a>            </li>          </ul>        </li>        <li><a href="#special-literals" title="Special literals">Special literals</a>          <ul>            <li><a href="#booleans" title="Booleans">Booleans</a>            </li>            <li><a href="#null" title="null">null</a>            </li>          </ul>        </li>        <li><a href="#complex-structures" title="Complex structures">Complex structures</a>          <ul>            <li><a href="#lists" title="Lists">Lists</a>            </li>            <li><a href="#maps" title="Maps">Maps</a>            </li>          </ul>        </li>      </ul>    </li>  </ul></div>
+		</div>
+	</div>
+</div>
+<div class="doc-footer">
+	<div class="container">
+		<div class="row">
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">About</p>
+				<div><a href="/index.html" title="Saker.build home page">Home</a></div>
+				<div data-footer-location="doc-docs"><a href="../../../../index.html" title="saker.build documentation index">Documentation index</a></div>
+				<div><a href="../../../../../saker.build/index.html" title="Information about the saker.build system">saker.build system</a></div>
+				<div><a href="../../../../../saker.nest/index.html" title="Information about the saker.nest repository">saker.nest repository</a></div>
+				<div><a href="/contact.html" title="Contact us">Contact</a></div>
+			</div>
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">Resources</p>
+				<div data-footer-location="doc-docs"><a href="../../../../doc/index.html" title="saker.build documentation index">Documentation</a></div>
+				<div data-footer-location="doc-javadoc"><a href="../../../../javadoc/index.html" title="JavaDoc for saker.build">JavaDoc</a></div>
+				<div data-footer-location="doc-taskdoc"><a href="../../../../taskdoc/index.html"  title="Documentation of build tasks in saker.build">TaskDoc</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.nest package page</a></div>
+				<div><a href="https://github.com/sakerbuild/saker.build" title="saker.build on GitHub">GitHub</a></div>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col">
+			&copy; Bence Sipka 2020
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script>
+if(window.hasOwnProperty("hljs")){
+	hljs.configure({
+	  languages: []
+	});
+	hljs.initHighlightingOnLoad();
+}
+</script>
+
+</body>
+</html>

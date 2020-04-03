@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>BuildRepository</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+	
+	<link rel="stylesheet" type="text/css" href="../../../../../../res/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../../../../../../res/doc-saker.css">
+	
+</head>
+<body data-nav-location="javadoc" data-subdoc-presence="nest-package packagedoc javadoc">
+<div class="doc-nav-bar">
+	<div class="container">
+		<a class="home-link" href="../../../../../index.html" title="saker.build"><img style="height: 2.5em;" class="logo" src="../../../../../../res/logo.svg"/><span class="page-name">saker.build</span></a>
+		<a class="nav-location-item" data-nav-location="doc-docs" href="../../../../../doc/index.html" title="Documentation">Documentation</a>
+		<a class="nav-location-item" data-nav-location="doc-taskdoc" href="../../../../../taskdoc/index.html" title="Build task documentation">TaskDoc</a>
+		<a class="nav-location-item" data-nav-location="doc-javadoc" href="../../../../../javadoc/index.html"title="Java API documentation">JavaDoc</a>
+		<div class="nav-bar-controls">
+			<label class="d-xl-none nav-bar-collapse" for="collapse-nav-bar-label">
+				<svg style="height: 1.5em;" viewBox="0 0 24 24">
+				    <path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+				</svg>
+			</label>
+			<input style="display:none;" id="collapse-nav-bar-label" type="checkbox"/>
+			<div class="nav-bar-items">
+				<a href="/" title="saker.build home page">Home</a>
+				<a href="/buildtrace.html" title="Build trace viewer">Build trace</a>
+				<a style="display:none;" href="/sponsor.html" title="Sponsoring development">Sponsor</a>
+				<a href="/blog/" title="saker.build system blog">Blog</a>
+				<a class="no-external-icon" href="https://github.com/sakerbuild/saker.build" title="saker.build GitHub repository">GitHub</a>
+			</div>
+		</div>
+	</div>
+</div>
+<nav class="javadoc-nav" data-nav-location="BuildRepository">
+	<div class="container">
+		<span class="javadoc-nav-title">JavaDoc</span>
+		<a class="nav-location-item" data-nav-location="javadoc-packages" href="../../../../index.html" title="Package index">Packages</a>
+		<a class="nav-location-item" data-nav-location="javadoc-all-classes" href="../../../../all-classes.html" title="All classes">All classes</a>
+		<a class="nav-location-item" data-nav-location="javadoc-constants" href="../../../../constants.html" title="All constants">Constants</a>
+	</div>
+</nav>
+<div class="container page-contents javadoc">
+	<div class="javadoc-content">
+	<div class="javadoc-class-header"><div class="javadoc-class-header-pkg"><span class="javadoc-code-ref"><span class="javadoc-kw">package</span> <a href="index.html" title="saker.build.runtime.repository" data-javadoc-kind="package">saker.build.runtime.repository</a></span></div><div class="javadoc-class-header-class"><span class="javadoc-kw">public interface </span><span class="javadoc-class-header-name">BuildRepository</span>&nbsp;<span class="javadoc-kw">extends</span> <span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseable.html" title="interface java.lang.AutoCloseable" data-javadoc-kind="interface">AutoCloseable</a></span></div></div><div class="javadoc-class-super-hierarchy"><div class="javadoc-class-super-hierarchy-entry"><span class="javadoc-code-ref"><a href="#" title="interface saker.build.runtime.repository.BuildRepository" data-javadoc-kind="interface">saker.build.runtime.repository.BuildRepository</a></span><div class="javadoc-class-super-hierarchy-entry"><span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseable.html" title="interface java.lang.AutoCloseable" data-javadoc-kind="interface">java.lang.AutoCloseable</a></span></div></div></div><div class="javadoc-class-doc"><div class="javadoc-class-doc-body">A build repository is a view to its enclosing <span class="javadoc-code-ref"><a href="SakerRepository.html" title="interface saker.build.runtime.repository.SakerRepository" data-javadoc-kind="interface">SakerRepository</a></span> configured for a specific build execution. <p>
+ As differently configured executions might require different repository behaviours, it is necessary to have a
+ repostiory interface which has the same lifetime as the execution itself. The <span class="javadoc-code-ref"><a href="#" title="interface saker.build.runtime.repository.BuildRepository" data-javadoc-kind="interface">BuildRepository</a></span> interface
+ serves the purpose of this.
+ <p>
+ Build repositories are responsible for holding data that can be configured using user defined build parameters. Based
+ on these parameters the repositories can work in an execution specific way that is independent from other executions.
+ <p>
+ Build repositories can be created using their enclosing repositories, with a specific
+ <a href="RepositoryBuildEnvironment.html" title="interface saker.build.runtime.repository.RepositoryBuildEnvironment" data-javadoc-kind="interface">environment</a> configured for the current use-case. (See
+ <span class="javadoc-code-ref"><a href="SakerRepository.html" title="interface saker.build.runtime.repository.SakerRepository" data-javadoc-kind="interface">SakerRepository</a>.<a href="SakerRepository.html#createBuildRepository-saker.build.runtime.repository.RepositoryBuildEnvironment-" title="SakerRepository.createBuildRepository(RepositoryBuildEnvironment)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface">createBuildRepository<span class="javadoc-code-ref">(<wbr>RepositoryBuildEnvironment)</span></a></span>)
+ <p>
+ The build repositories are responsible for looking up tasks that can be used during execution. The tasks are named
+ using the <span class="javadoc-code-ref"><a href="../../task/TaskName.html" title="class saker.build.task.TaskName" data-javadoc-kind="class">TaskName</a></span> class. The build repository can choose how they wish to interpret these names.
+ <p>
+ The lifecycle of a build repository depends on how the build system wishes to handle it. It can be longer than a
+ single build execution, and they can even exist without even one build running with it.
+ <p>
+ The lifetime of a build repository is the following:
+ <ol>
+ <li>Instantiation by <span class="javadoc-code-ref"><a href="SakerRepository.html" title="interface saker.build.runtime.repository.SakerRepository" data-javadoc-kind="interface">SakerRepository</a>.<a href="SakerRepository.html#createBuildRepository-saker.build.runtime.repository.RepositoryBuildEnvironment-" title="SakerRepository.createBuildRepository(RepositoryBuildEnvironment)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface">createBuildRepository<span class="javadoc-code-ref">(<wbr>RepositoryBuildEnvironment)</span></a></span></li>
+ <li>A build execution is started.</li>
+ <li>The build repository is used during the execution.</li>
+ <li>The build execution is finished.</li>
+ <li><span class="javadoc-code-ref"><a href="#close--" title="BuildRepository.close()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface">close<span class="javadoc-code-ref">()</span></a></span> is called on the build repository.</li>
+ </ol>
+ The steps 2-4 can occur zero, one, or multiple times during its lifetime. The build repositories should be usable
+ even when they are not being part of an execution, as IDE related features might be required to enhance user
+ experience.
+ <p>
+ Repositories can be cached to improve load performance for executions. When they are cached, <span class="javadoc-code-ref"><a href="#detectChanges--" title="BuildRepository.detectChanges()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface">detectChanges<span class="javadoc-code-ref">()</span></a></span>
+ will be called to detect any changes to the repository which would cause it to require reloading. See the
+ <a href="#detectChanges--" title="BuildRepository.detectChanges()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface">method documentation</a> for more information.
+ <p>
+ The build repositories can provide dynamic information about its contents for IDE usage. It is strongly recommended
+ (but optional) that build repositories implement at least basic support for providing these informations via
+ <span class="javadoc-code-ref"><a href="#getScriptInformationProvider--" title="BuildRepository.getScriptInformationProvider()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface">getScriptInformationProvider<span class="javadoc-code-ref">()</span></a></span>.
+ <p>
+ Build repositories should not access the <span class="javadoc-code-ref"><a href="../environment/SakerEnvironment.html" title="interface saker.build.runtime.environment.SakerEnvironment" data-javadoc-kind="interface">SakerEnvironment</a></span> caching functionality asynchronously. Meaning, that
+ a build repository should not use <a href="../environment/SakerEnvironment.html#getCachedData-saker.build.util.cache.CacheKey-" title="SakerEnvironment.getCachedData(CacheKey<DataType, ?>)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface">cache keys</a> and
+ <span class="javadoc-code-ref"><a href="../environment/SakerEnvironment.html#getEnvironmentPropertyCurrentValue-saker.build.runtime.environment.EnvironmentProperty-" title="SakerEnvironment.getEnvironmentPropertyCurrentValue(EnvironmentProperty<T>)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface">environment properties</a></span> when they're
+ not called during a build execution. Using it may lead unexpected <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/LinkageError.html" title="class java.lang.LinkageError" data-javadoc-kind="class">linkage errors</a> when
+ closing the repositories.</div></div><div class="javadoc-class-idx"><div class="javadoc-class-idx-methods javadoc-idx-section"><table><caption>Methods</caption><thead><tr><th class="javadoc-th-method-meta"></th><th class="javadoc-th-method-details"></th></tr></thead><tbody><tr class="javadoc-class-idx-method javadoc-idx-member"><td class="javadoc-class-idx-method-meta javadoc-idx-member-meta"><span class="javadoc-kw">public </span><span class="javadoc-code-ref"><span class="javadoc-kw">void</span></span></td><td class="javadoc-class-idx-method-sig javadoc-idx-member-sig"><div class="javadoc-class-idx-method-name javadoc-idx-member-name"><a href="#close--" title="BuildRepository.close()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">close</a><span class="javadoc-code-ref">()</span></div><div class="javadoc-class-idx-method-short javadoc-member-short">Closes this build repository.</div></td></tr><tr class="javadoc-class-idx-method javadoc-idx-member"><td class="javadoc-class-idx-method-meta javadoc-idx-member-meta"><span class="javadoc-kw">public default </span><span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html" title="class java.lang.Object" data-javadoc-kind="class">Object</a></span></td><td class="javadoc-class-idx-method-sig javadoc-idx-member-sig"><div class="javadoc-class-idx-method-name javadoc-idx-member-name"><a href="#detectChanges--" title="BuildRepository.detectChanges()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">detectChanges</a><span class="javadoc-code-ref">()</span></div><div class="javadoc-class-idx-method-short javadoc-member-short">Detects any changes in the underlying repository that occurred since the last execution finished.</div></td></tr><tr class="javadoc-class-idx-method javadoc-idx-member"><td class="javadoc-class-idx-method-meta javadoc-idx-member-meta"><span class="javadoc-kw">public default </span><span class="javadoc-code-ref"><a href="../../scripting/model/info/ExternalScriptInformationProvider.html" title="interface saker.build.scripting.model.info.ExternalScriptInformationProvider" data-javadoc-kind="interface">ExternalScriptInformationProvider</a></span></td><td class="javadoc-class-idx-method-sig javadoc-idx-member-sig"><div class="javadoc-class-idx-method-name javadoc-idx-member-name"><a href="#getScriptInformationProvider--" title="BuildRepository.getScriptInformationProvider()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">getScriptInformationProvider</a><span class="javadoc-code-ref">()</span></div><div class="javadoc-class-idx-method-short javadoc-member-short">Gets the information provider for this repository that can be used to provide development assistance to the user.</div></td></tr><tr class="javadoc-class-idx-method javadoc-idx-member"><td class="javadoc-class-idx-method-meta javadoc-idx-member-meta"><span class="javadoc-kw">public default </span><span class="javadoc-code-ref"><span class="javadoc-kw">void</span></span></td><td class="javadoc-class-idx-method-sig javadoc-idx-member-sig"><div class="javadoc-class-idx-method-name javadoc-idx-member-name"><a href="#handleChanges-java.lang.Object-" title="BuildRepository.handleChanges(Object)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">handleChanges</a><span class="javadoc-code-ref">(<wbr><span class="javadoc-method-param"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html" title="class java.lang.Object" data-javadoc-kind="class">Object</a> detectedchanges</span>)</span></div><div class="javadoc-class-idx-method-short javadoc-member-short">Handles the previously detected changes in <span class="javadoc-code-ref"><a href="#detectChanges--" title="BuildRepository.detectChanges()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface">detectChanges<span class="javadoc-code-ref">()</span></a></span>.</div></td></tr><tr class="javadoc-class-idx-method javadoc-idx-member"><td class="javadoc-class-idx-method-meta javadoc-idx-member-meta"><span class="javadoc-kw">public </span><span class="javadoc-code-ref"><a href="../../task/TaskFactory.html" title="interface saker.build.task.TaskFactory" data-javadoc-kind="interface">TaskFactory</a>&lt;<wbr>?&gt;</span></td><td class="javadoc-class-idx-method-sig javadoc-idx-member-sig"><div class="javadoc-class-idx-method-name javadoc-idx-member-name"><a href="#lookupTask-saker.build.task.TaskName-" title="BuildRepository.lookupTask(TaskName)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">lookupTask</a><span class="javadoc-code-ref">(<wbr><span class="javadoc-method-param"><a href="../../task/TaskName.html" title="class saker.build.task.TaskName" data-javadoc-kind="class">TaskName</a> taskname</span>)</span></div><div class="javadoc-class-idx-method-short javadoc-member-short">Searches the corresponding task for the specified name.</div></td></tr></tbody></table></div></div><div class="javadoc-class-details"><div class="javadoc-class-details-methods javadoc-details-section"><div id="close--" class="javadoc-class-detail-method javadoc-class-detail-member"><div class="javadoc-class-detail-method-sig javadoc-member-sig"><span class="javadoc-kw">public abstract </span><span class="javadoc-code-ref"><span class="javadoc-kw">void</span></span> <a href="#close--" title="BuildRepository.close()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">close</a><span class="javadoc-code-ref">()</span><span class="javadoc-method-throws"><span class="javadoc-kw">&nbsp;throws</span> <span class="javadoc-method-throws-entries"><span class="javadoc-method-exc"><span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html" title="class java.io.IOException" data-javadoc-kind="class">IOException</a></span></span></span></span></div><div class="javadoc-class-detail-method-detail javadoc-member-detail"><div class="javadoc-detail-body">Closes this build repository. <p>
+ Calling this method signals that the build repository is not going to be used anymore. Implementations can
+ release any resource related to this build repository, however they are not required to do so, and are allowed to
+ keep resources cached in the enclosing <span class="javadoc-code-ref"><a href="SakerRepository.html" title="interface saker.build.runtime.repository.SakerRepository" data-javadoc-kind="interface">SakerRepository</a></span> parent. Closing of the parent repository should
+ release those resources nonetheless.
+ <p>
+ Build repositories are required to unregister their installed class resolvers when they are closed. (See
+ <span class="javadoc-code-ref"><a href="RepositoryBuildEnvironment.html" title="interface saker.build.runtime.repository.RepositoryBuildEnvironment" data-javadoc-kind="interface">RepositoryBuildEnvironment</a>.<a href="RepositoryBuildEnvironment.html#getClassLoaderResolverRegistry--" title="RepositoryBuildEnvironment.getClassLoaderResolverRegistry()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface">getClassLoaderResolverRegistry<span class="javadoc-code-ref">()</span></a></span>)
+ <p>
+ Calling this method again after the first call should be a no-op. I.e. this method should be idempotent.</div><div class="javadoc-method-detail-throwdeclarations javadoc-blocktag-section"><div class="javadoc-method-detail-throw" data-javadoc-exception-checked><span class="javadoc-method-detail-throw-name"><span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html" title="class java.io.IOException" data-javadoc-kind="class">IOException</a></span></span><span class="javadoc-method-detail-throw-detail">In case of any error.</span></div></div></div></div><div id="detectChanges--" class="javadoc-class-detail-method javadoc-class-detail-member"><div class="javadoc-class-detail-method-sig javadoc-member-sig"><span class="javadoc-kw">public default </span><span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html" title="class java.lang.Object" data-javadoc-kind="class">Object</a></span> <a href="#detectChanges--" title="BuildRepository.detectChanges()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">detectChanges</a><span class="javadoc-code-ref">()</span></div><div class="javadoc-class-detail-method-detail javadoc-member-detail"><div class="javadoc-detail-body">Detects any changes in the underlying repository that occurred since the last execution finished. <p>
+ Build repositories can be cached between executions to improve startup time for subsequent builds. Given the fact
+ that repositories are shared objects, their underlying resources can be changed externally by external processes.
+ In order to keep a valid state of cache between executions it is necessary to determine any changes that occurred
+ before the next build execution.
+ <p>
+ Implementations of build repositories should detect any possible changes in the repository resources that can
+ require reloading of cached resources. (E.g. classes, chached data, etc...)
+ <p>
+ Implementations of this method should take the possible file provider object changes described in
+ <span class="javadoc-code-ref"><a href="RepositoryBuildEnvironment.html" title="interface saker.build.runtime.repository.RepositoryBuildEnvironment" data-javadoc-kind="interface">RepositoryBuildEnvironment</a>.<a href="RepositoryBuildEnvironment.html#getPathConfiguration--" title="RepositoryBuildEnvironment.getPathConfiguration()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface">getPathConfiguration<span class="javadoc-code-ref">()</span></a></span> into account.
+ <p>
+ Example: <br>
+ A repository implementation is backed by JARs to look up the tasks by name. A build repository is created, and an
+ execution is run with it. During this execution, the repository loads a task implementation from the JAR
+ <i>task.jar</i>. The build finishes successfully, and the build system caches this repository for future re-use.
+ <br>
+ During two consecutive executions, some external agents decide to modify this <i>task.jar</i> which contains the
+ task used by the execution. <br>
+ As the next incremental build execution starts, this build repository will be re-used by the build system. It
+ will call <span class="javadoc-code-ref"><a href="#detectChanges--" title="BuildRepository.detectChanges()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface">detectChanges<span class="javadoc-code-ref">()</span></a></span> to determine if any resources for the repository has changed. The
+ implementation should detect, that <i>task.jar</i> was modified externally, and return non-<code>null</code> from
+ this method to signal the changes. <br>
+ The cache will later call <span class="javadoc-code-ref"><a href="#handleChanges-java.lang.Object-" title="BuildRepository.handleChanges(Object)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface">handleChanges<span class="javadoc-code-ref">(<wbr>Object)</span></a></span> with the previously returned object to handle the
+ detected changes. If the repository fails to handle the changes, then it should throw an appropriate
+ <span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/RuntimeException.html" title="class java.lang.RuntimeException" data-javadoc-kind="class">RuntimeException</a></span>. This exception will be reported to the user and the next execution will fail to start.
+ <p>
+ If this method throws an exception, then all of the repository related cached data will be cleared/closed, and a
+ completely new build repository instance will be created for the next execution.
+ <p>
+ The change detection is separated into two phases in order to avoid possible runtime errors after closing some
+ classpath related to repositories. After calling <span class="javadoc-code-ref"><a href="#detectChanges--" title="BuildRepository.detectChanges()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface">detectChanges<span class="javadoc-code-ref">()</span></a></span>, the execution will clear cached data
+ in the build environment, and later call <span class="javadoc-code-ref"><a href="#handleChanges-java.lang.Object-" title="BuildRepository.handleChanges(Object)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface">handleChanges<span class="javadoc-code-ref">(<wbr>Object)</span></a></span> in order to actually handle the detected
+ changes. If the build system didn't separate the two phases, then clearing the cached data from the environment
+ could result in <span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/NoClassDefFoundError.html" title="class java.lang.NoClassDefFoundError" data-javadoc-kind="class">NoClassDefFoundError</a></span> or other related <span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/LinkageError.html" title="class java.lang.LinkageError" data-javadoc-kind="class">LinkageErrors</a></span> when such code
+ is invoked which has its classpath already closed.
+ <p>
+ It is possible that after <span class="javadoc-code-ref"><a href="#detectChanges--" title="BuildRepository.detectChanges()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface">detectChanges<span class="javadoc-code-ref">()</span></a></span> returning non-<code>null</code>, the
+ <span class="javadoc-code-ref"><a href="#handleChanges-java.lang.Object-" title="BuildRepository.handleChanges(Object)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface">handleChanges<span class="javadoc-code-ref">(<wbr>Object)</span></a></span> won't be called. This might be due to other repositories throwing exceptions and
+ prematurely aborting the execution. To avoid errors related to this, implementations shouldn't lock resources in
+ this method.
+ <p>
+ Note: A repository implementation can decide that it doesn't implement change detection. This means that it will
+ be harder for clients of the repository to implement plugins for it (if possible), and users will need to
+ manually clear the build environment cache. This can result in slower incremental builds.
+ <p>
+ In general, changes in repositories should occur rarely, unless specific development is done. It can happen often
+ if one is developing a plugin for a repository, but should happen rarely (preferably never) if one is just using
+ the services provided by a repository.</div><div class="javadoc-method-detail-return javadoc-blocktag-section"><div class="javadoc-method-detail-return-body">Non-<code>null</code> if any changes were detected.</div></div></div></div><div id="getScriptInformationProvider--" class="javadoc-class-detail-method javadoc-class-detail-member"><div class="javadoc-class-detail-method-sig javadoc-member-sig"><span class="javadoc-kw">public default </span><span class="javadoc-code-ref"><a href="../../scripting/model/info/ExternalScriptInformationProvider.html" title="interface saker.build.scripting.model.info.ExternalScriptInformationProvider" data-javadoc-kind="interface">ExternalScriptInformationProvider</a></span> <a href="#getScriptInformationProvider--" title="BuildRepository.getScriptInformationProvider()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">getScriptInformationProvider</a><span class="javadoc-code-ref">()</span></div><div class="javadoc-class-detail-method-detail javadoc-member-detail"><div class="javadoc-detail-body">Gets the information provider for this repository that can be used to provide development assistance to the user.</div><div class="javadoc-method-detail-return javadoc-blocktag-section"><div class="javadoc-method-detail-return-body">The script information provider.</div></div></div></div><div id="handleChanges-java.lang.Object-" class="javadoc-class-detail-method javadoc-class-detail-member"><div class="javadoc-class-detail-method-sig javadoc-member-sig"><span class="javadoc-kw">public default </span><span class="javadoc-code-ref"><span class="javadoc-kw">void</span></span> <a href="#handleChanges-java.lang.Object-" title="BuildRepository.handleChanges(Object)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">handleChanges</a><span class="javadoc-code-ref">(<wbr><span class="javadoc-method-param"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html" title="class java.lang.Object" data-javadoc-kind="class">Object</a> detectedchanges</span>)</span></div><div class="javadoc-class-detail-method-detail javadoc-member-detail"><div class="javadoc-detail-body">Handles the previously detected changes in <span class="javadoc-code-ref"><a href="#detectChanges--" title="BuildRepository.detectChanges()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface">detectChanges<span class="javadoc-code-ref">()</span></a></span>. <p>
+ This method is only called if <span class="javadoc-code-ref"><a href="#detectChanges--" title="BuildRepository.detectChanges()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface">detectChanges<span class="javadoc-code-ref">()</span></a></span> prevously returned non-<code>null</code>.
+ <p>
+ Implementations should handle the previously detected changes. They can throw an appropriate
+ <span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/RuntimeException.html" title="class java.lang.RuntimeException" data-javadoc-kind="class">RuntimeException</a></span> to signal any errors during handling the changes. Throwing an exception from this method
+ will cause the build execution to abort.</div><div class="javadoc-method-detail-params javadoc-blocktag-section"><div class="javadoc-method-detail-param"><span class="javadoc-method-detail-param-name">detectedchanges</span><span class="javadoc-method-detail-param-detail">The previous return value from <span class="javadoc-code-ref"><a href="#detectChanges--" title="BuildRepository.detectChanges()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface">detectChanges<span class="javadoc-code-ref">()</span></a></span>.</span></div></div></div></div><div id="lookupTask-saker.build.task.TaskName-" class="javadoc-class-detail-method javadoc-class-detail-member"><div class="javadoc-class-detail-method-sig javadoc-member-sig"><span class="javadoc-kw">public abstract </span><span class="javadoc-code-ref"><a href="../../task/TaskFactory.html" title="interface saker.build.task.TaskFactory" data-javadoc-kind="interface">TaskFactory</a>&lt;<wbr>?&gt;</span> <a href="#lookupTask-saker.build.task.TaskName-" title="BuildRepository.lookupTask(TaskName)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">lookupTask</a><span class="javadoc-code-ref">(<wbr><span class="javadoc-method-param"><a href="../../task/TaskName.html" title="class saker.build.task.TaskName" data-javadoc-kind="class">TaskName</a> taskname</span>)</span><span class="javadoc-method-throws"><span class="javadoc-kw">&nbsp;throws</span> <span class="javadoc-method-throws-entries"><span class="javadoc-method-exc"><span class="javadoc-code-ref"><a href="TaskNotFoundException.html" title="class saker.build.runtime.repository.TaskNotFoundException" data-javadoc-kind="class">TaskNotFoundException</a></span></span></span></span></div><div class="javadoc-class-detail-method-detail javadoc-member-detail"><div class="javadoc-detail-body">Searches the corresponding task for the specified name. <p>
+ Looks up the task in this repository for the given name. An exception thrown with an explanation if the task
+ cannot be found in this repository.
+ <p>
+ The lookup algorithm is implementation dependent for each repository.
+ <p>
+ Repository implementations are not required to return the same instances for the same name if this method is
+ called consecutively.</div><div class="javadoc-method-detail-params javadoc-blocktag-section"><div class="javadoc-method-detail-param"><span class="javadoc-method-detail-param-name">taskname</span><span class="javadoc-method-detail-param-detail">The name of the task to look up.</span></div></div><div class="javadoc-method-detail-return javadoc-blocktag-section"><div class="javadoc-method-detail-return-body">The found task for the given name.</div></div><div class="javadoc-method-detail-throwdeclarations javadoc-blocktag-section"><div class="javadoc-method-detail-throw"><span class="javadoc-method-detail-throw-name"><span class="javadoc-code-ref"><a href="TaskNotFoundException.html" title="class saker.build.runtime.repository.TaskNotFoundException" data-javadoc-kind="class">TaskNotFoundException</a></span></span><span class="javadoc-method-detail-throw-detail">If the task was not found.</span></div></div></div></div></div></div>
+	</div>
+</div>
+<div class="doc-footer">
+	<div class="container">
+		<div class="row">
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">About</p>
+				<div><a href="/index.html" title="Saker.build home page">Home</a></div>
+				<div data-footer-location="doc-docs"><a href="../../../../../index.html" title="saker.build documentation index">Documentation index</a></div>
+				<div><a href="../../../../../../saker.build/index.html" title="Information about the saker.build system">saker.build system</a></div>
+				<div><a href="../../../../../../saker.nest/index.html" title="Information about the saker.nest repository">saker.nest repository</a></div>
+				<div><a href="/contact.html" title="Contact us">Contact</a></div>
+			</div>
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">Resources</p>
+				<div data-footer-location="doc-docs"><a href="../../../../../doc/index.html" title="saker.build documentation index">Documentation</a></div>
+				<div data-footer-location="doc-javadoc"><a href="../../../../../javadoc/index.html" title="JavaDoc for saker.build">JavaDoc</a></div>
+				<div data-footer-location="doc-taskdoc"><a href="../../../../../taskdoc/index.html"  title="Documentation of build tasks in saker.build">TaskDoc</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.nest package page</a></div>
+				<div><a href="https://github.com/sakerbuild/saker.build" title="saker.build on GitHub">GitHub</a></div>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col">
+			&copy; Bence Sipka 2020
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

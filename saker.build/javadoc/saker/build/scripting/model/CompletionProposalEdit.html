@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>CompletionProposalEdit</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+	
+	<link rel="stylesheet" type="text/css" href="../../../../../../res/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../../../../../../res/doc-saker.css">
+	
+</head>
+<body data-nav-location="javadoc" data-subdoc-presence="nest-package packagedoc javadoc">
+<div class="doc-nav-bar">
+	<div class="container">
+		<a class="home-link" href="../../../../../index.html" title="saker.build"><img style="height: 2.5em;" class="logo" src="../../../../../../res/logo.svg"/><span class="page-name">saker.build</span></a>
+		<a class="nav-location-item" data-nav-location="doc-docs" href="../../../../../doc/index.html" title="Documentation">Documentation</a>
+		<a class="nav-location-item" data-nav-location="doc-taskdoc" href="../../../../../taskdoc/index.html" title="Build task documentation">TaskDoc</a>
+		<a class="nav-location-item" data-nav-location="doc-javadoc" href="../../../../../javadoc/index.html"title="Java API documentation">JavaDoc</a>
+		<div class="nav-bar-controls">
+			<label class="d-xl-none nav-bar-collapse" for="collapse-nav-bar-label">
+				<svg style="height: 1.5em;" viewBox="0 0 24 24">
+				    <path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+				</svg>
+			</label>
+			<input style="display:none;" id="collapse-nav-bar-label" type="checkbox"/>
+			<div class="nav-bar-items">
+				<a href="/" title="saker.build home page">Home</a>
+				<a href="/buildtrace.html" title="Build trace viewer">Build trace</a>
+				<a style="display:none;" href="/sponsor.html" title="Sponsoring development">Sponsor</a>
+				<a href="/blog/" title="saker.build system blog">Blog</a>
+				<a class="no-external-icon" href="https://github.com/sakerbuild/saker.build" title="saker.build GitHub repository">GitHub</a>
+			</div>
+		</div>
+	</div>
+</div>
+<nav class="javadoc-nav" data-nav-location="CompletionProposalEdit">
+	<div class="container">
+		<span class="javadoc-nav-title">JavaDoc</span>
+		<a class="nav-location-item" data-nav-location="javadoc-packages" href="../../../../index.html" title="Package index">Packages</a>
+		<a class="nav-location-item" data-nav-location="javadoc-all-classes" href="../../../../all-classes.html" title="All classes">All classes</a>
+		<a class="nav-location-item" data-nav-location="javadoc-constants" href="../../../../constants.html" title="All constants">Constants</a>
+	</div>
+</nav>
+<div class="container page-contents javadoc">
+	<div class="javadoc-content">
+	<div class="javadoc-class-header"><div class="javadoc-class-header-pkg"><span class="javadoc-code-ref"><span class="javadoc-kw">package</span> <a href="index.html" title="saker.build.scripting.model" data-javadoc-kind="package">saker.build.scripting.model</a></span></div><div class="javadoc-class-header-class"><span class="javadoc-kw">public interface </span><span class="javadoc-class-header-name">CompletionProposalEdit</span></div></div><div class="javadoc-class-subtypes"><div class="javadoc-class-subtypes-list"><span class="javadoc-code-ref"><span class="javadoc-subtype"><a href="InsertCompletionProposalEdit.html" title="class saker.build.scripting.model.InsertCompletionProposalEdit" data-javadoc-kind="class">InsertCompletionProposalEdit</a></span></span></div></div><div class="javadoc-class-doc"><div class="javadoc-class-doc-body">Common superinterface for the possible completion proposal related document changes. <p>
+ The actual change is based on the <a href="#getKind--" title="CompletionProposalEdit.getKind()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface">kind of the edit</a> and the related implementation class.
+ <p>
+ Each completion proposal edit has a range which it replaces in the originating source document. The range is defined
+ by a <a href="#getOffset--" title="CompletionProposalEdit.getOffset()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface">file offset</a> and a <a href="#getLength--" title="CompletionProposalEdit.getLength()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface">region length</a>. When the edit is applied,
+ the characters will be replaced in the document to the contents of the edit based on its kind. The specified range
+ may be empty to signal an insertion. The offsets in the range is relative to the file offsets of the original
+ document when the proposal request was invoked.
+ <p>
+ Subsequent proposal edits in a <a href="ScriptCompletionProposal.html" title="interface saker.build.scripting.model.ScriptCompletionProposal" data-javadoc-kind="interface">proposal</a> may not overlap in range.</div></div><div class="javadoc-class-idx"><div class="javadoc-class-idx-methods javadoc-idx-section"><table><caption>Methods</caption><thead><tr><th class="javadoc-th-method-meta"></th><th class="javadoc-th-method-details"></th></tr></thead><tbody><tr class="javadoc-class-idx-method javadoc-idx-member"><td class="javadoc-class-idx-method-meta javadoc-idx-member-meta"><span class="javadoc-kw">public </span><span class="javadoc-code-ref"><span class="javadoc-kw">boolean</span></span></td><td class="javadoc-class-idx-method-sig javadoc-idx-member-sig"><div class="javadoc-class-idx-method-name javadoc-idx-member-name"><a href="#equals-java.lang.Object-" title="CompletionProposalEdit.equals(Object)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">equals</a><span class="javadoc-code-ref">(<wbr><span class="javadoc-method-param"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html" title="class java.lang.Object" data-javadoc-kind="class">Object</a> obj</span>)</span></div><div class="javadoc-class-idx-method-short javadoc-member-short">Checks if this completion proposal edit has the same kind and semantics as the parameter.</div></td></tr><tr class="javadoc-class-idx-method javadoc-idx-member"><td class="javadoc-class-idx-method-meta javadoc-idx-member-meta"><span class="javadoc-kw">public </span><span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="class java.lang.String" data-javadoc-kind="class">String</a></span></td><td class="javadoc-class-idx-method-sig javadoc-idx-member-sig"><div class="javadoc-class-idx-method-name javadoc-idx-member-name"><a href="#getKind--" title="CompletionProposalEdit.getKind()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">getKind</a><span class="javadoc-code-ref">()</span></div><div class="javadoc-class-idx-method-short javadoc-member-short">The kind of the edit to be applied to the document.</div></td></tr><tr class="javadoc-class-idx-method javadoc-idx-member"><td class="javadoc-class-idx-method-meta javadoc-idx-member-meta"><span class="javadoc-kw">public </span><span class="javadoc-code-ref"><span class="javadoc-kw">int</span></span></td><td class="javadoc-class-idx-method-sig javadoc-idx-member-sig"><div class="javadoc-class-idx-method-name javadoc-idx-member-name"><a href="#getLength--" title="CompletionProposalEdit.getLength()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">getLength</a><span class="javadoc-code-ref">()</span></div><div class="javadoc-class-idx-method-short javadoc-member-short">Gets the region length of this proposal edit.</div></td></tr><tr class="javadoc-class-idx-method javadoc-idx-member"><td class="javadoc-class-idx-method-meta javadoc-idx-member-meta"><span class="javadoc-kw">public </span><span class="javadoc-code-ref"><span class="javadoc-kw">int</span></span></td><td class="javadoc-class-idx-method-sig javadoc-idx-member-sig"><div class="javadoc-class-idx-method-name javadoc-idx-member-name"><a href="#getOffset--" title="CompletionProposalEdit.getOffset()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">getOffset</a><span class="javadoc-code-ref">()</span></div><div class="javadoc-class-idx-method-short javadoc-member-short">Gets the region starting offset of this proposal edit.</div></td></tr><tr class="javadoc-class-idx-method javadoc-idx-member"><td class="javadoc-class-idx-method-meta javadoc-idx-member-meta"><span class="javadoc-kw">public </span><span class="javadoc-code-ref"><span class="javadoc-kw">int</span></span></td><td class="javadoc-class-idx-method-sig javadoc-idx-member-sig"><div class="javadoc-class-idx-method-name javadoc-idx-member-name"><a href="#hashCode--" title="CompletionProposalEdit.hashCode()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">hashCode</a><span class="javadoc-code-ref">()</span></div><div class="javadoc-class-idx-method-short javadoc-member-short">Gets the hash code of this completion proposal edit.</div></td></tr><tr class="javadoc-class-idx-method javadoc-idx-member"><td class="javadoc-class-idx-method-meta javadoc-idx-member-meta"><span class="javadoc-kw">public static </span><span class="javadoc-code-ref"><span class="javadoc-kw">boolean</span></span></td><td class="javadoc-class-idx-method-sig javadoc-idx-member-sig"><div class="javadoc-class-idx-method-name javadoc-idx-member-name"><a href="#overlaps-saker.build.scripting.model.CompletionProposalEdit-saker.build.scripting.model.CompletionProposalEdit-" title="CompletionProposalEdit.overlaps(CompletionProposalEdit, CompletionProposalEdit)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">overlaps</a><span class="javadoc-code-ref">(<wbr><span class="javadoc-method-param"><a href="#" title="interface saker.build.scripting.model.CompletionProposalEdit" data-javadoc-kind="interface">CompletionProposalEdit</a> r1, </span><span class="javadoc-method-param"><a href="#" title="interface saker.build.scripting.model.CompletionProposalEdit" data-javadoc-kind="interface">CompletionProposalEdit</a> r2</span>)</span></div><div class="javadoc-class-idx-method-short javadoc-member-short">Checks if the ranges specified by the argument proposal edits overlap.</div></td></tr></tbody></table></div></div><div class="javadoc-class-details"><div class="javadoc-class-details-methods javadoc-details-section"><div id="equals-java.lang.Object-" class="javadoc-class-detail-method javadoc-class-detail-member"><div class="javadoc-class-detail-method-sig javadoc-member-sig"><span class="javadoc-kw">public abstract </span><span class="javadoc-code-ref"><span class="javadoc-kw">boolean</span></span> <a href="#equals-java.lang.Object-" title="CompletionProposalEdit.equals(Object)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">equals</a><span class="javadoc-code-ref">(<wbr><span class="javadoc-method-param"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html" title="class java.lang.Object" data-javadoc-kind="class">Object</a> obj</span>)</span></div><div class="javadoc-class-detail-method-detail javadoc-member-detail"><div class="javadoc-detail-body">Checks if this completion proposal edit has the same kind and semantics as the parameter. <p>
+ Indicates whether some other object is "equal to" this one.<p>
+ The <code>equals</code> method implements an equivalence relation on non-null object references:
+ <ul>
+ <li>It is <i>reflexive</i>: for any non-null reference value <code>x</code>, <code>x.equals(x)</code> should return
+ <code>true</code>.
+ <li>It is <i>symmetric</i>: for any non-null reference values <code>x</code> and <code>y</code>, <code>x.equals(y)</code> should
+ return <code>true</code> if and only if <code>y.equals(x)</code> returns <code>true</code>.
+ <li>It is <i>transitive</i>: for any non-null reference values <code>x</code>, <code>y</code>, and <code>z</code>, if
+ <code>x.equals(y)</code> returns <code>true</code> and <code>y.equals(z)</code> returns <code>true</code>, then <code>x.equals(z)</code>
+ should return <code>true</code>.
+ <li>It is <i>consistent</i>: for any non-null reference values <code>x</code> and <code>y</code>, multiple invocations of
+ <code>x.equals(y)</code> consistently return <code>true</code> or consistently return <code>false</code>, provided no
+ information used in <code>equals</code> comparisons on the objects is modified.
+ <li>For any non-null reference value <code>x</code>, <code>x.equals(null)</code> should return <code>false</code>.
+ </ul>
+ <p>
+ The <code>equals</code> method for class <code>Object</code> implements the most discriminating possible equivalence
+ relation on objects; that is, for any non-null reference values <code>x</code> and <code>y</code>, this method returns
+ <code>true</code> if and only if <code>x</code> and <code>y</code> refer to the same object (<code>x == y</code> has the value
+ <code>true</code>).
+ <p>
+ Note that it is generally necessary to override the <code>hashCode</code> method whenever this method is overridden,
+ so as to maintain the general contract for the <code>hashCode</code> method, which states that equal objects must have
+ equal hash codes.</div><div class="javadoc-method-detail-return javadoc-blocktag-section"><div class="javadoc-method-detail-return-body"><code>true</code> if this object is the same as the obj argument; <code>false</code> otherwise.</div></div></div></div><div id="getKind--" class="javadoc-class-detail-method javadoc-class-detail-member"><div class="javadoc-class-detail-method-sig javadoc-member-sig"><span class="javadoc-kw">public abstract </span><span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="class java.lang.String" data-javadoc-kind="class">String</a></span> <a href="#getKind--" title="CompletionProposalEdit.getKind()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">getKind</a><span class="javadoc-code-ref">()</span></div><div class="javadoc-class-detail-method-detail javadoc-member-detail"><div class="javadoc-detail-body">The kind of the edit to be applied to the document.</div><div class="javadoc-method-detail-return javadoc-blocktag-section"><div class="javadoc-method-detail-return-body">The kind.</div></div></div></div><div id="getLength--" class="javadoc-class-detail-method javadoc-class-detail-member"><div class="javadoc-class-detail-method-sig javadoc-member-sig"><span class="javadoc-kw">public abstract </span><span class="javadoc-code-ref"><span class="javadoc-kw">int</span></span> <a href="#getLength--" title="CompletionProposalEdit.getLength()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">getLength</a><span class="javadoc-code-ref">()</span></div><div class="javadoc-class-detail-method-detail javadoc-member-detail"><div class="javadoc-detail-body">Gets the region length of this proposal edit.</div><div class="javadoc-method-detail-return javadoc-blocktag-section"><div class="javadoc-method-detail-return-body">The region length.</div></div></div></div><div id="getOffset--" class="javadoc-class-detail-method javadoc-class-detail-member"><div class="javadoc-class-detail-method-sig javadoc-member-sig"><span class="javadoc-kw">public abstract </span><span class="javadoc-code-ref"><span class="javadoc-kw">int</span></span> <a href="#getOffset--" title="CompletionProposalEdit.getOffset()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">getOffset</a><span class="javadoc-code-ref">()</span></div><div class="javadoc-class-detail-method-detail javadoc-member-detail"><div class="javadoc-detail-body">Gets the region starting offset of this proposal edit.</div><div class="javadoc-method-detail-return javadoc-blocktag-section"><div class="javadoc-method-detail-return-body">The offset.</div></div></div></div><div id="hashCode--" class="javadoc-class-detail-method javadoc-class-detail-member"><div class="javadoc-class-detail-method-sig javadoc-member-sig"><span class="javadoc-kw">public abstract </span><span class="javadoc-code-ref"><span class="javadoc-kw">int</span></span> <a href="#hashCode--" title="CompletionProposalEdit.hashCode()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">hashCode</a><span class="javadoc-code-ref">()</span></div><div class="javadoc-class-detail-method-detail javadoc-member-detail"><div class="javadoc-detail-body">Gets the hash code of this completion proposal edit. <p>
+ The hash code is defined to be the hash code of the following:
+ 
+ <pre>
+ getKind().hashCode() ^ getOffset() ^ getLength()
+ </pre>
+ <p>
+ Returns a hash code value for the object.This method is supported for the benefit of hash tables such as those
+ provided by <span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/util/HashMap.html" title="class java.util.HashMap" data-javadoc-kind="class">HashMap</a></span>.
+ <p>
+ The general contract of <code>hashCode</code> is:
+ <ul>
+ <li>Whenever it is invoked on the same object more than once during an execution of a Java application, the
+ <code>hashCode</code> method must consistently return the same integer, provided no information used in <code>equals</code>
+ comparisons on the object is modified. This integer need not remain consistent from one execution of an
+ application to another execution of the same application.
+ <li>If two objects are equal according to the <code>equals(Object)</code> method, then calling the <code>hashCode</code>
+ method on each of the two objects must produce the same integer result.
+ <li>It is <em>not</em> required that if two objects are unequal according to the
+ <span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html#equals-java.lang.Object-" title="Object.equals(Object)" data-javadoc-kind="method" data-javadoc-enclosing-kind="class">equals<span class="javadoc-code-ref">(<wbr>Object)</span></a></span> method, then calling the <code>hashCode</code> method on each of the
+ two objects must produce distinct integer results. However, the programmer should be aware that producing
+ distinct integer results for unequal objects may improve the performance of hash tables.
+ </ul>
+ <p>
+ As much as is reasonably practical, the hashCode method defined by class <code>Object</code> does return distinct
+ integers for distinct objects. (This is typically implemented by converting the internal address of the object
+ into an integer, but this implementation technique is not required by the Java&trade; programming language.)</div><div class="javadoc-method-detail-return javadoc-blocktag-section"><div class="javadoc-method-detail-return-body">a hash code value for this object.</div></div></div></div><div id="overlaps-saker.build.scripting.model.CompletionProposalEdit-saker.build.scripting.model.CompletionProposalEdit-" class="javadoc-class-detail-method javadoc-class-detail-member"><div class="javadoc-class-detail-method-sig javadoc-member-sig"><span class="javadoc-kw">public static </span><span class="javadoc-code-ref"><span class="javadoc-kw">boolean</span></span> <a href="#overlaps-saker.build.scripting.model.CompletionProposalEdit-saker.build.scripting.model.CompletionProposalEdit-" title="CompletionProposalEdit.overlaps(CompletionProposalEdit, CompletionProposalEdit)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">overlaps</a><span class="javadoc-code-ref">(<wbr><span class="javadoc-method-param"><a href="#" title="interface saker.build.scripting.model.CompletionProposalEdit" data-javadoc-kind="interface">CompletionProposalEdit</a> r1, </span><span class="javadoc-method-param"><a href="#" title="interface saker.build.scripting.model.CompletionProposalEdit" data-javadoc-kind="interface">CompletionProposalEdit</a> r2</span>)</span></div><div class="javadoc-class-detail-method-detail javadoc-member-detail"><div class="javadoc-detail-body">Checks if the ranges specified by the argument proposal edits overlap.</div><div class="javadoc-method-detail-params javadoc-blocktag-section"><div class="javadoc-method-detail-param"><span class="javadoc-method-detail-param-name">r1</span><span class="javadoc-method-detail-param-detail">The first proposal edit.</span></div><div class="javadoc-method-detail-param"><span class="javadoc-method-detail-param-name">r2</span><span class="javadoc-method-detail-param-detail">The second proposal edit.</span></div></div><div class="javadoc-method-detail-return javadoc-blocktag-section"><div class="javadoc-method-detail-return-body"><code>true</code> if the ranges overlap.</div></div></div></div></div></div>
+	</div>
+</div>
+<div class="doc-footer">
+	<div class="container">
+		<div class="row">
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">About</p>
+				<div><a href="/index.html" title="Saker.build home page">Home</a></div>
+				<div data-footer-location="doc-docs"><a href="../../../../../index.html" title="saker.build documentation index">Documentation index</a></div>
+				<div><a href="../../../../../../saker.build/index.html" title="Information about the saker.build system">saker.build system</a></div>
+				<div><a href="../../../../../../saker.nest/index.html" title="Information about the saker.nest repository">saker.nest repository</a></div>
+				<div><a href="/contact.html" title="Contact us">Contact</a></div>
+			</div>
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">Resources</p>
+				<div data-footer-location="doc-docs"><a href="../../../../../doc/index.html" title="saker.build documentation index">Documentation</a></div>
+				<div data-footer-location="doc-javadoc"><a href="../../../../../javadoc/index.html" title="JavaDoc for saker.build">JavaDoc</a></div>
+				<div data-footer-location="doc-taskdoc"><a href="../../../../../taskdoc/index.html"  title="Documentation of build tasks in saker.build">TaskDoc</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.nest package page</a></div>
+				<div><a href="https://github.com/sakerbuild/saker.build" title="saker.build on GitHub">GitHub</a></div>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col">
+			&copy; Bence Sipka 2020
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

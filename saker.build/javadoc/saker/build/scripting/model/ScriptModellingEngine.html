@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>ScriptModellingEngine</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+	
+	<link rel="stylesheet" type="text/css" href="../../../../../../res/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../../../../../../res/doc-saker.css">
+	
+</head>
+<body data-nav-location="javadoc" data-subdoc-presence="nest-package packagedoc javadoc">
+<div class="doc-nav-bar">
+	<div class="container">
+		<a class="home-link" href="../../../../../index.html" title="saker.build"><img style="height: 2.5em;" class="logo" src="../../../../../../res/logo.svg"/><span class="page-name">saker.build</span></a>
+		<a class="nav-location-item" data-nav-location="doc-docs" href="../../../../../doc/index.html" title="Documentation">Documentation</a>
+		<a class="nav-location-item" data-nav-location="doc-taskdoc" href="../../../../../taskdoc/index.html" title="Build task documentation">TaskDoc</a>
+		<a class="nav-location-item" data-nav-location="doc-javadoc" href="../../../../../javadoc/index.html"title="Java API documentation">JavaDoc</a>
+		<div class="nav-bar-controls">
+			<label class="d-xl-none nav-bar-collapse" for="collapse-nav-bar-label">
+				<svg style="height: 1.5em;" viewBox="0 0 24 24">
+				    <path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+				</svg>
+			</label>
+			<input style="display:none;" id="collapse-nav-bar-label" type="checkbox"/>
+			<div class="nav-bar-items">
+				<a href="/" title="saker.build home page">Home</a>
+				<a href="/buildtrace.html" title="Build trace viewer">Build trace</a>
+				<a style="display:none;" href="/sponsor.html" title="Sponsoring development">Sponsor</a>
+				<a href="/blog/" title="saker.build system blog">Blog</a>
+				<a class="no-external-icon" href="https://github.com/sakerbuild/saker.build" title="saker.build GitHub repository">GitHub</a>
+			</div>
+		</div>
+	</div>
+</div>
+<nav class="javadoc-nav" data-nav-location="ScriptModellingEngine">
+	<div class="container">
+		<span class="javadoc-nav-title">JavaDoc</span>
+		<a class="nav-location-item" data-nav-location="javadoc-packages" href="../../../../index.html" title="Package index">Packages</a>
+		<a class="nav-location-item" data-nav-location="javadoc-all-classes" href="../../../../all-classes.html" title="All classes">All classes</a>
+		<a class="nav-location-item" data-nav-location="javadoc-constants" href="../../../../constants.html" title="All constants">Constants</a>
+	</div>
+</nav>
+<div class="container page-contents javadoc">
+	<div class="javadoc-content">
+	<div class="javadoc-class-header"><div class="javadoc-class-header-pkg"><span class="javadoc-code-ref"><span class="javadoc-kw">package</span> <a href="index.html" title="saker.build.scripting.model" data-javadoc-kind="package">saker.build.scripting.model</a></span></div><div class="javadoc-class-header-class"><span class="javadoc-kw">public interface </span><span class="javadoc-class-header-name">ScriptModellingEngine</span>&nbsp;<span class="javadoc-kw">extends</span> <span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseable.html" title="interface java.lang.AutoCloseable" data-javadoc-kind="interface">AutoCloseable</a></span></div></div><div class="javadoc-class-super-hierarchy"><div class="javadoc-class-super-hierarchy-entry"><span class="javadoc-code-ref"><a href="#" title="interface saker.build.scripting.model.ScriptModellingEngine" data-javadoc-kind="interface">saker.build.scripting.model.ScriptModellingEngine</a></span><div class="javadoc-class-super-hierarchy-entry"><span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseable.html" title="interface java.lang.AutoCloseable" data-javadoc-kind="interface">java.lang.AutoCloseable</a></span></div></div></div><div class="javadoc-class-doc"><div class="javadoc-class-doc-body">Interface for providing modelling related functionality for a scripting language. <p>
+ <a href="ScriptSyntaxModel.html" title="interface saker.build.scripting.model.ScriptSyntaxModel" data-javadoc-kind="interface">Script models</a> are used to retrieve various informations from scripts. The
+ responsibility of a modelling engine is to provide a context for the models to share information.
+ <p>
+ Modelling engines work with <a href="ScriptModellingEnvironment.html" title="interface saker.build.scripting.model.ScriptModellingEnvironment" data-javadoc-kind="interface">modelling environment</a> which provide overall
+ information about the present scripts for a build configuration. The modelling environment is passed to the engine at
+ creation time.
+ <p>
+ Modelling engines should not hold references to unmanaged data. (E.g. file handles, network connections, etc...)
+ <p>
+ Modelling engines are not shared by modelling environments.</div></div><div class="javadoc-class-idx"><div class="javadoc-class-idx-methods javadoc-idx-section"><table><caption>Methods</caption><thead><tr><th class="javadoc-th-method-meta"></th><th class="javadoc-th-method-details"></th></tr></thead><tbody><tr class="javadoc-class-idx-method javadoc-idx-member"><td class="javadoc-class-idx-method-meta javadoc-idx-member-meta"><span class="javadoc-kw">public </span><span class="javadoc-code-ref"><span class="javadoc-kw">void</span></span></td><td class="javadoc-class-idx-method-sig javadoc-idx-member-sig"><div class="javadoc-class-idx-method-name javadoc-idx-member-name"><a href="#close--" title="ScriptModellingEngine.close()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">close</a><span class="javadoc-code-ref">()</span></div><div class="javadoc-class-idx-method-short javadoc-member-short">Closes this modelling engine.</div></td></tr><tr class="javadoc-class-idx-method javadoc-idx-member"><td class="javadoc-class-idx-method-meta javadoc-idx-member-meta"><span class="javadoc-kw">public </span><span class="javadoc-code-ref"><a href="ScriptSyntaxModel.html" title="interface saker.build.scripting.model.ScriptSyntaxModel" data-javadoc-kind="interface">ScriptSyntaxModel</a></span></td><td class="javadoc-class-idx-method-sig javadoc-idx-member-sig"><div class="javadoc-class-idx-method-name javadoc-idx-member-name"><a href="#createModel-saker.build.scripting.ScriptParsingOptions-saker.build.thirdparty.saker.util.io.function.IOSupplier-" title="ScriptModellingEngine.createModel(ScriptParsingOptions, IOSupplier<? extends ByteSource>)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">createModel</a><span class="javadoc-code-ref">(<wbr><span class="javadoc-method-param"><a href="../ScriptParsingOptions.html" title="interface saker.build.scripting.ScriptParsingOptions" data-javadoc-kind="interface">ScriptParsingOptions</a> parsingoptions, </span><span class="javadoc-method-param"><a href="../../thirdparty/saker/util/io/function/IOSupplier.html" title="interface saker.build.thirdparty.saker.util.io.function.IOSupplier" data-javadoc-kind="interface">IOSupplier</a>&lt;<wbr>?&nbsp;<span class="javadoc-kw">extends</span> <a href="../../thirdparty/saker/util/io/ByteSource.html" title="interface saker.build.thirdparty.saker.util.io.ByteSource" data-javadoc-kind="interface">ByteSource</a>&gt; baseinputsupplier</span>)</span></div><div class="javadoc-class-idx-method-short javadoc-member-short">Creates a model representation for the given script identified by the parsing options.</div></td></tr><tr class="javadoc-class-idx-method javadoc-idx-member"><td class="javadoc-class-idx-method-meta javadoc-idx-member-meta"><span class="javadoc-kw">public </span><span class="javadoc-code-ref"><span class="javadoc-kw">void</span></span></td><td class="javadoc-class-idx-method-sig javadoc-idx-member-sig"><div class="javadoc-class-idx-method-name javadoc-idx-member-name"><a href="#destroyModel-saker.build.scripting.model.ScriptSyntaxModel-" title="ScriptModellingEngine.destroyModel(ScriptSyntaxModel)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">destroyModel</a><span class="javadoc-code-ref">(<wbr><span class="javadoc-method-param"><a href="ScriptSyntaxModel.html" title="interface saker.build.scripting.model.ScriptSyntaxModel" data-javadoc-kind="interface">ScriptSyntaxModel</a> model</span>)</span></div><div class="javadoc-class-idx-method-short javadoc-member-short">Destroys a previously created script model from this engine.</div></td></tr></tbody></table></div></div><div class="javadoc-class-details"><div class="javadoc-class-details-methods javadoc-details-section"><div id="close--" class="javadoc-class-detail-method javadoc-class-detail-member"><div class="javadoc-class-detail-method-sig javadoc-member-sig"><span class="javadoc-kw">public abstract </span><span class="javadoc-code-ref"><span class="javadoc-kw">void</span></span> <a href="#close--" title="ScriptModellingEngine.close()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">close</a><span class="javadoc-code-ref">()</span></div><div class="javadoc-class-detail-method-detail javadoc-member-detail"><div class="javadoc-detail-body">Closes this modelling engine. <p>
+ The engine should release references to models, and treat them as invalidated. The engine should not make any
+ further calls to the modelling environment. After closing a modelling engine, further calls to its models might
+ be made, but they should be treated as invalid script models.
+ <p>
+ This method throws no checked exceptions, as it should not fail. Modelling engines should not keep references to
+ unmanaged resources like files, network connections, etc...</div></div></div><div id="createModel-saker.build.scripting.ScriptParsingOptions-saker.build.thirdparty.saker.util.io.function.IOSupplier-" class="javadoc-class-detail-method javadoc-class-detail-member"><div class="javadoc-class-detail-method-sig javadoc-member-sig"><span class="javadoc-kw">public abstract </span><span class="javadoc-code-ref"><a href="ScriptSyntaxModel.html" title="interface saker.build.scripting.model.ScriptSyntaxModel" data-javadoc-kind="interface">ScriptSyntaxModel</a></span> <a href="#createModel-saker.build.scripting.ScriptParsingOptions-saker.build.thirdparty.saker.util.io.function.IOSupplier-" title="ScriptModellingEngine.createModel(ScriptParsingOptions, IOSupplier<? extends ByteSource>)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">createModel</a><span class="javadoc-code-ref">(<wbr><span class="javadoc-method-param"><a href="../ScriptParsingOptions.html" title="interface saker.build.scripting.ScriptParsingOptions" data-javadoc-kind="interface">ScriptParsingOptions</a> parsingoptions, </span><span class="javadoc-method-param"><a href="../../thirdparty/saker/util/io/function/IOSupplier.html" title="interface saker.build.thirdparty.saker.util.io.function.IOSupplier" data-javadoc-kind="interface">IOSupplier</a>&lt;<wbr>?&nbsp;<span class="javadoc-kw">extends</span> <a href="../../thirdparty/saker/util/io/ByteSource.html" title="interface saker.build.thirdparty.saker.util.io.ByteSource" data-javadoc-kind="interface">ByteSource</a>&gt; baseinputsupplier</span>)</span></div><div class="javadoc-class-detail-method-detail javadoc-member-detail"><div class="javadoc-detail-body">Creates a model representation for the given script identified by the parsing options. <p>
+ The created model is to be lazily populated, meaning that creating a model does not entitle parsing it at the
+ time of this function call.</div><div class="javadoc-method-detail-params javadoc-blocktag-section"><div class="javadoc-method-detail-param"><span class="javadoc-method-detail-param-name">parsingoptions</span><span class="javadoc-method-detail-param-detail">The parsing options associated with the created script model.</span></div><div class="javadoc-method-detail-param"><span class="javadoc-method-detail-param-name">baseinputsupplier</span><span class="javadoc-method-detail-param-detail">The base input supplier. (See documentation of <span class="javadoc-code-ref"><a href="ScriptSyntaxModel.html" title="interface saker.build.scripting.model.ScriptSyntaxModel" data-javadoc-kind="interface">ScriptSyntaxModel</a></span>)</span></div></div><div class="javadoc-method-detail-return javadoc-blocktag-section"><div class="javadoc-method-detail-return-body">The created script model.</div></div><div class="javadoc-detail-see javadoc-blocktag-section"><div class="javadoc-detail-see-entry"><span class="javadoc-code-ref"><a href="ScriptSyntaxModel.html" title="interface saker.build.scripting.model.ScriptSyntaxModel" data-javadoc-kind="interface">ScriptSyntaxModel</a></span></div><div class="javadoc-detail-see-entry"><span class="javadoc-code-ref"><a href="../../runtime/params/ExecutionScriptConfiguration.html" title="class saker.build.runtime.params.ExecutionScriptConfiguration" data-javadoc-kind="class">ExecutionScriptConfiguration</a></span></div></div></div></div><div id="destroyModel-saker.build.scripting.model.ScriptSyntaxModel-" class="javadoc-class-detail-method javadoc-class-detail-member"><div class="javadoc-class-detail-method-sig javadoc-member-sig"><span class="javadoc-kw">public abstract </span><span class="javadoc-code-ref"><span class="javadoc-kw">void</span></span> <a href="#destroyModel-saker.build.scripting.model.ScriptSyntaxModel-" title="ScriptModellingEngine.destroyModel(ScriptSyntaxModel)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">destroyModel</a><span class="javadoc-code-ref">(<wbr><span class="javadoc-method-param"><a href="ScriptSyntaxModel.html" title="interface saker.build.scripting.model.ScriptSyntaxModel" data-javadoc-kind="interface">ScriptSyntaxModel</a> model</span>)</span></div><div class="javadoc-class-detail-method-detail javadoc-member-detail"><div class="javadoc-detail-body">Destroys a previously created script model from this engine. <p>
+ Destroying a model should result in releasing any resources associated to it, and treating the corresponding
+ script as no longer existing. Any other models that depend on the currently destroyed model should update their
+ underlying data.</div><div class="javadoc-method-detail-params javadoc-blocktag-section"><div class="javadoc-method-detail-param"><span class="javadoc-method-detail-param-name">model</span><span class="javadoc-method-detail-param-detail">The model to destroy.</span></div></div></div></div></div></div>
+	</div>
+</div>
+<div class="doc-footer">
+	<div class="container">
+		<div class="row">
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">About</p>
+				<div><a href="/index.html" title="Saker.build home page">Home</a></div>
+				<div data-footer-location="doc-docs"><a href="../../../../../index.html" title="saker.build documentation index">Documentation index</a></div>
+				<div><a href="../../../../../../saker.build/index.html" title="Information about the saker.build system">saker.build system</a></div>
+				<div><a href="../../../../../../saker.nest/index.html" title="Information about the saker.nest repository">saker.nest repository</a></div>
+				<div><a href="/contact.html" title="Contact us">Contact</a></div>
+			</div>
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">Resources</p>
+				<div data-footer-location="doc-docs"><a href="../../../../../doc/index.html" title="saker.build documentation index">Documentation</a></div>
+				<div data-footer-location="doc-javadoc"><a href="../../../../../javadoc/index.html" title="JavaDoc for saker.build">JavaDoc</a></div>
+				<div data-footer-location="doc-taskdoc"><a href="../../../../../taskdoc/index.html"  title="Documentation of build tasks in saker.build">TaskDoc</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.nest package page</a></div>
+				<div><a href="https://github.com/sakerbuild/saker.build" title="saker.build on GitHub">GitHub</a></div>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col">
+			&copy; Bence Sipka 2020
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

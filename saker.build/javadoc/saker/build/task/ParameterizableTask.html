@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>ParameterizableTask</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+	
+	<link rel="stylesheet" type="text/css" href="../../../../../res/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../../../../../res/doc-saker.css">
+	
+</head>
+<body data-nav-location="javadoc" data-subdoc-presence="nest-package packagedoc javadoc">
+<div class="doc-nav-bar">
+	<div class="container">
+		<a class="home-link" href="../../../../index.html" title="saker.build"><img style="height: 2.5em;" class="logo" src="../../../../../res/logo.svg"/><span class="page-name">saker.build</span></a>
+		<a class="nav-location-item" data-nav-location="doc-docs" href="../../../../doc/index.html" title="Documentation">Documentation</a>
+		<a class="nav-location-item" data-nav-location="doc-taskdoc" href="../../../../taskdoc/index.html" title="Build task documentation">TaskDoc</a>
+		<a class="nav-location-item" data-nav-location="doc-javadoc" href="../../../../javadoc/index.html"title="Java API documentation">JavaDoc</a>
+		<div class="nav-bar-controls">
+			<label class="d-xl-none nav-bar-collapse" for="collapse-nav-bar-label">
+				<svg style="height: 1.5em;" viewBox="0 0 24 24">
+				    <path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+				</svg>
+			</label>
+			<input style="display:none;" id="collapse-nav-bar-label" type="checkbox"/>
+			<div class="nav-bar-items">
+				<a href="/" title="saker.build home page">Home</a>
+				<a href="/buildtrace.html" title="Build trace viewer">Build trace</a>
+				<a style="display:none;" href="/sponsor.html" title="Sponsoring development">Sponsor</a>
+				<a href="/blog/" title="saker.build system blog">Blog</a>
+				<a class="no-external-icon" href="https://github.com/sakerbuild/saker.build" title="saker.build GitHub repository">GitHub</a>
+			</div>
+		</div>
+	</div>
+</div>
+<nav class="javadoc-nav" data-nav-location="ParameterizableTask">
+	<div class="container">
+		<span class="javadoc-nav-title">JavaDoc</span>
+		<a class="nav-location-item" data-nav-location="javadoc-packages" href="../../../index.html" title="Package index">Packages</a>
+		<a class="nav-location-item" data-nav-location="javadoc-all-classes" href="../../../all-classes.html" title="All classes">All classes</a>
+		<a class="nav-location-item" data-nav-location="javadoc-constants" href="../../../constants.html" title="All constants">Constants</a>
+	</div>
+</nav>
+<div class="container page-contents javadoc">
+	<div class="javadoc-content">
+	<div class="javadoc-class-header"><div class="javadoc-class-header-pkg"><span class="javadoc-code-ref"><span class="javadoc-kw">package</span> <a href="index.html" title="saker.build.task" data-javadoc-kind="package">saker.build.task</a></span></div><div class="javadoc-class-header-class"><span class="javadoc-kw">public interface </span><span class="javadoc-class-header-name">ParameterizableTask</span>&lt;<wbr><span class="javadoc-tp">R</span>&gt;&nbsp;<span class="javadoc-kw">extends</span> <span class="javadoc-code-ref"><a href="Task.html" title="interface saker.build.task.Task" data-javadoc-kind="interface">Task</a>&lt;<wbr><span class="javadoc-tp" title="R of interface saker.build.task.ParameterizableTask">R</span>&gt;</span></div></div><div class="javadoc-class-super-hierarchy"><div class="javadoc-class-super-hierarchy-entry"><span class="javadoc-code-ref"><a href="#" title="interface saker.build.task.ParameterizableTask" data-javadoc-kind="interface">saker.build.task.ParameterizableTask</a>&lt;<wbr><span class="javadoc-tp" title="R of interface saker.build.task.ParameterizableTask">R</span>&gt;</span><div class="javadoc-class-super-hierarchy-entry"><span class="javadoc-code-ref"><a href="Task.html" title="interface saker.build.task.Task" data-javadoc-kind="interface">saker.build.task.Task</a>&lt;<wbr><span class="javadoc-tp" title="R of interface saker.build.task.ParameterizableTask">R</span>&gt;</span></div></div></div><div class="javadoc-class-subtypes"><div class="javadoc-class-subtypes-list"><span class="javadoc-code-ref"><span class="javadoc-subtype"><a href="BuildTargetTask.html" title="interface saker.build.task.BuildTargetTask" data-javadoc-kind="interface">BuildTargetTask</a></span></span></div></div><div class="javadoc-class-doc"><div class="javadoc-class-doc-body">Extension interface for <span class="javadoc-code-ref"><a href="Task.html" title="interface saker.build.task.Task" data-javadoc-kind="interface">Task</a></span> for representing a task that can be parameterized. <p>
+ Clients of this interface must call <span class="javadoc-code-ref"><a href="#initParameters-saker.build.task.TaskContext-java.util.NavigableMap-" title="ParameterizableTask.initParameters(TaskContext, NavigableMap<String, ? extends TaskIdentifier>)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface">initParameters<span class="javadoc-code-ref">(<wbr>TaskContext, NavigableMap&lt;<wbr>String, ?&nbsp;<span class="javadoc-kw">extends</span> TaskIdentifier&gt;)</span></a></span> before calling
+ <span class="javadoc-code-ref"><a href="Task.html" title="interface saker.build.task.Task" data-javadoc-kind="interface">Task</a>.<a href="Task.html#run-saker.build.task.TaskContext-" title="Task.run(TaskContext)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface">run<span class="javadoc-code-ref">(<wbr>TaskContext)</span></a></span>, even if no parameters were specified for the task.</div><div class="javadoc-detail-typeparams javadoc-blocktag-section"><div class="javadoc-detail-typeparam"><span class="javadoc-detail-typeparam-name">R</span><span class="javadoc-detail-typeparam-detail">The return type of the task.</span></div></div></div><div class="javadoc-class-idx"><div class="javadoc-class-idx-methods javadoc-idx-section"><table><caption>Methods</caption><thead><tr><th class="javadoc-th-method-meta"></th><th class="javadoc-th-method-details"></th></tr></thead><tbody><tr class="javadoc-class-idx-method javadoc-idx-member"><td class="javadoc-class-idx-method-meta javadoc-idx-member-meta"><span class="javadoc-kw">public default </span><span class="javadoc-code-ref"><span class="javadoc-kw">void</span></span></td><td class="javadoc-class-idx-method-sig javadoc-idx-member-sig"><div class="javadoc-class-idx-method-name javadoc-idx-member-name"><a href="#initParameters-saker.build.task.TaskContext-java.util.NavigableMap-" title="ParameterizableTask.initParameters(TaskContext, NavigableMap<String, ? extends TaskIdentifier>)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">initParameters</a><span class="javadoc-code-ref">(<wbr><span class="javadoc-method-param"><a href="TaskContext.html" title="interface saker.build.task.TaskContext" data-javadoc-kind="interface">TaskContext</a> taskcontext, </span><span class="javadoc-method-param"><a href="https://docs.oracle.com/javase/8/docs/api/java/util/NavigableMap.html" title="interface java.util.NavigableMap" data-javadoc-kind="interface">NavigableMap</a>&lt;<wbr><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="class java.lang.String" data-javadoc-kind="class">String</a>, ?&nbsp;<span class="javadoc-kw">extends</span> <a href="identifier/TaskIdentifier.html" title="interface saker.build.task.identifier.TaskIdentifier" data-javadoc-kind="interface">TaskIdentifier</a>&gt; parameters</span>)</span></div><div class="javadoc-class-idx-method-short javadoc-member-short">Initializes the parameters of this task.</div></td></tr></tbody></table></div><div class="javadoc-class-idx-inherited-methods javadoc-idx-section"><table><caption>Inherited methods</caption><tbody><tr class="javadoc-class-idx-inherited-methods-entry"><td><div class="javadoc-class-idx-inherited-methods-title">From: <span class="javadoc-code-ref"><a href="Task.html" title="interface saker.build.task.Task" data-javadoc-kind="interface">Task</a>&lt;<wbr><span class="javadoc-tp" title="R of interface saker.build.task.ParameterizableTask">R</span>&gt;</span></div><div class="javadoc-class-idx-inherited-methods-list"><span class="javadoc-code-ref"><a href="Task.html#run-saker.build.task.TaskContext-" title="Task.run(TaskContext)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface">run</a></span></div></td></tr></tbody></table></div></div><div class="javadoc-class-details"><div class="javadoc-class-details-methods javadoc-details-section"><div id="initParameters-saker.build.task.TaskContext-java.util.NavigableMap-" class="javadoc-class-detail-method javadoc-class-detail-member"><div class="javadoc-class-detail-method-sig javadoc-member-sig"><div class="javadoc-method-annots javadoc-member-annots"><div class="javadoc-annot"><a href="../thirdparty/saker/rmi/annot/invoke/RMIForbidden.html" title="@interface saker.build.thirdparty.saker.rmi.annot.invoke.RMIForbidden" data-javadoc-kind="annotation_type">@RMIForbidden</a></div></div><span class="javadoc-kw">public default </span><span class="javadoc-code-ref"><span class="javadoc-kw">void</span></span> <a href="#initParameters-saker.build.task.TaskContext-java.util.NavigableMap-" title="ParameterizableTask.initParameters(TaskContext, NavigableMap<String, ? extends TaskIdentifier>)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">initParameters</a><span class="javadoc-code-ref">(<wbr><span class="javadoc-method-param"><a href="TaskContext.html" title="interface saker.build.task.TaskContext" data-javadoc-kind="interface">TaskContext</a> taskcontext, </span><span class="javadoc-method-param"><a href="https://docs.oracle.com/javase/8/docs/api/java/util/NavigableMap.html" title="interface java.util.NavigableMap" data-javadoc-kind="interface">NavigableMap</a>&lt;<wbr><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="class java.lang.String" data-javadoc-kind="class">String</a>, ?&nbsp;<span class="javadoc-kw">extends</span> <a href="identifier/TaskIdentifier.html" title="interface saker.build.task.identifier.TaskIdentifier" data-javadoc-kind="interface">TaskIdentifier</a>&gt; parameters</span>)</span><span class="javadoc-method-throws"><span class="javadoc-kw">&nbsp;throws</span> <span class="javadoc-method-throws-entries"><span class="javadoc-method-exc"><span class="javadoc-code-ref"><a href="exception/TaskParameterException.html" title="class saker.build.task.exception.TaskParameterException" data-javadoc-kind="class">TaskParameterException</a></span></span></span></span></div><div class="javadoc-class-detail-method-detail javadoc-member-detail"><div class="javadoc-detail-body">Initializes the parameters of this task. <p>
+ This method is called at most once during the lifetime of the task object and always before
+ <span class="javadoc-code-ref"><a href="Task.html" title="interface saker.build.task.Task" data-javadoc-kind="interface">Task</a>.<a href="Task.html#run-saker.build.task.TaskContext-" title="Task.run(TaskContext)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface">run<span class="javadoc-code-ref">(<wbr>TaskContext)</span></a></span>.
+ <p>
+ The default implementation initializes the parameters of <code>this</code> task instance by looking at its
+ declared fields annotated with <span class="javadoc-code-ref"><a href="utils/annot/SakerInput.html" title="@interface saker.build.task.utils.annot.SakerInput" data-javadoc-kind="annotation_type">SakerInput</a></span> and related annotations.
+ <p>
+ The unnamed parameter (if any) is available in the argument map with the <code>""</code> (empty string) key.</div><div class="javadoc-method-detail-params javadoc-blocktag-section"><div class="javadoc-method-detail-param"><span class="javadoc-method-detail-param-name">taskcontext</span><span class="javadoc-method-detail-param-detail">The task context to communicate with the build system.</span></div><div class="javadoc-method-detail-param"><span class="javadoc-method-detail-param-name">parameters</span><span class="javadoc-method-detail-param-detail">The parameters mapped by parameter name to corresponding tasks.</span></div></div><div class="javadoc-method-detail-throwdeclarations javadoc-blocktag-section"><div class="javadoc-method-detail-throw"><span class="javadoc-method-detail-throw-name"><span class="javadoc-code-ref"><a href="exception/TaskParameterException.html" title="class saker.build.task.exception.TaskParameterException" data-javadoc-kind="class">TaskParameterException</a></span></span><span class="javadoc-method-detail-throw-detail">In case of parameter initialization error.</span></div></div><div class="javadoc-detail-see javadoc-blocktag-section"><div class="javadoc-detail-see-entry"><span class="javadoc-code-ref"><a href="utils/TaskUtils.html#initParametersOfTask-saker.build.task.TaskContext-java.lang.Object-java.util.Map-" title="TaskUtils.initParametersOfTask(TaskContext, Object, Map<String, ? extends TaskIdentifier>)" data-javadoc-kind="method" data-javadoc-enclosing-kind="class">TaskUtils.initParametersOfTask<span class="javadoc-code-ref">(<wbr>TaskContext, Object, Map&lt;<wbr>String, ?&nbsp;<span class="javadoc-kw">extends</span> TaskIdentifier&gt;)</span></a></span></div></div></div></div></div></div>
+	</div>
+</div>
+<div class="doc-footer">
+	<div class="container">
+		<div class="row">
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">About</p>
+				<div><a href="/index.html" title="Saker.build home page">Home</a></div>
+				<div data-footer-location="doc-docs"><a href="../../../../index.html" title="saker.build documentation index">Documentation index</a></div>
+				<div><a href="../../../../../saker.build/index.html" title="Information about the saker.build system">saker.build system</a></div>
+				<div><a href="../../../../../saker.nest/index.html" title="Information about the saker.nest repository">saker.nest repository</a></div>
+				<div><a href="/contact.html" title="Contact us">Contact</a></div>
+			</div>
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">Resources</p>
+				<div data-footer-location="doc-docs"><a href="../../../../doc/index.html" title="saker.build documentation index">Documentation</a></div>
+				<div data-footer-location="doc-javadoc"><a href="../../../../javadoc/index.html" title="JavaDoc for saker.build">JavaDoc</a></div>
+				<div data-footer-location="doc-taskdoc"><a href="../../../../taskdoc/index.html"  title="Documentation of build tasks in saker.build">TaskDoc</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.nest package page</a></div>
+				<div><a href="https://github.com/sakerbuild/saker.build" title="saker.build on GitHub">GitHub</a></div>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col">
+			&copy; Bence Sipka 2020
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

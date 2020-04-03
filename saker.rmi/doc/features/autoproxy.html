@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Automatic proxies&nbsp;|&nbsp;saker.rmi</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+	
+	<link rel="stylesheet" href="../../../res/bootstrap.min.css" >
+	<link rel="stylesheet" href="../../../res/doc-saker.css" >
+</head>
+<body data-nav-location="packagedoc" data-subdoc-presence="nest-package packagedoc javadoc">
+<div class="doc-nav-bar">
+	<div class="container">
+		<a class="home-link" href="../../index.html" title="saker.rmi"><img style="height: 2.5em;" class="logo" src="../../../res/logo.svg"/><span class="page-name">saker.rmi</span></a>
+		<a class="nav-location-item" data-nav-location="doc-docs" href="../../doc/index.html" title="Documentation">Documentation</a>
+		<a class="nav-location-item" data-nav-location="doc-taskdoc" href="../../taskdoc/index.html" title="Build task documentation">TaskDoc</a>
+		<a class="nav-location-item" data-nav-location="doc-javadoc" href="../../javadoc/index.html"title="Java API documentation">JavaDoc</a>
+		<div class="nav-bar-controls">
+			<label class="d-xl-none nav-bar-collapse" for="collapse-nav-bar-label">
+				<svg style="height: 1.5em;" viewBox="0 0 24 24">
+				    <path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+				</svg>
+			</label>
+			<input style="display:none;" id="collapse-nav-bar-label" type="checkbox"/>
+			<div class="nav-bar-items">
+				<a href="/" title="saker.build home page">Home</a>
+				<a href="/buildtrace.html" title="Build trace viewer">Build trace</a>
+				<a style="display:none;" href="/sponsor.html" title="Sponsoring development">Sponsor</a>
+				<a href="/blog/" title="saker.build system blog">Blog</a>
+				<a class="no-external-icon" href="https://github.com/sakerbuild/saker.build" title="saker.build GitHub repository">GitHub</a>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container page-contents packagedoc">
+	<div class="row">
+		<div class="col-12 col-lg-3 col-xl-2 p-lg-0">
+			<div class="doc-navigation-container">
+				<label class="d-lg-none nav-collapse" for="doc-collapse-nav-label">
+					<svg style="height: 1.5em;" viewBox="0 0 24 24">
+					    <path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+					</svg>
+					Navigation
+				</label>
+				<input style="display:none;" id="doc-collapse-nav-label" type="checkbox"/> 
+				<div class="doc-nav">  <div class="doc-section"><ul><li><a class="doc-nav-section-link" href="../../index.html" title="Index">Index</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Package details</p><ul><li><a class="doc-nav-section-link" href="../index.html" title="Overview">Overview</a></li><li><label class="doc-nav-collapse" for="_doc_collapse_id_0"><a class="doc-nav-section-link" href="../gettingstarted.html" title="Getting started">Getting started</a></label><input style="display:none;" id="_doc_collapse_id_0" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_0"></label><ul><li><a class="doc-nav-section-link" href="../addclasspath.html" title="Classpath">Classpath</a></li><li><a class="doc-nav-section-link" href="../downloadlib.html" title="Download the library">Download the library</a></li><li><a class="doc-nav-section-link" href="../asbundledependency.html" title="As bundle dependency">As bundle dependency</a></li></ul></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Features</p><ul><li><a class="doc-nav-section-link" href="index.html" title="Overview">Overview</a></li><li><a class="doc-nav-section-link" href="transparency.html" title="Transparency">Transparency</a></li><li><a class="doc-nav-section-link" href="backdispatch.html" title="Request back dispatch">Request back dispatch</a></li><li class="doc-active doc-active-parent"><a class="doc-nav-section-link" href="autoproxy.html" title="Automatic proxies">Automatic proxies</a></li><li><a class="doc-nav-section-link" href="garbagecollection.html" title="Garbage collection">Garbage collection</a></li></ul>  </div></div>
+			</div>
+		</div>
+		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="sb-sponsors" style="display: none;">
+	<span class="sb-sponsors-title">Sponsors</span>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4 col-12">
+				<a class="sb-sponsors-link"></a>
+			</div>
+			<div class="col-md-4 col-12">
+				<a class="sb-sponsors-link"></a>
+			</div>
+			<div class="col-md-4 col-12">
+				<a class="sb-sponsors-link"></a>
+			</div>
+		</div>
+	</div>
+</div>
+			<div class="doc-content"><h1 id="automatic-proxies">Automatic proxies<a class="doc-heading-anchor" href="#automatic-proxies"></a></h1>
+<p>The Saker.rmi library automatically creates proxies when necessary. This is in order to provide the implementational <a href="transparency.html" title="Transparency">transparency</a> for the callers, and for proper cooperation between the connection endpoints.</p>
+<p>By default, you can retrieve RMI proxies by either accessing them by name, or explicitly constructing a new object on the other endpoint. However, when calling methods on proxy objects, the arguments or results may be passed as proxy objects rather by serializing them in other ways.</p>
+<p>Taking the example from <a href="backdispatch.html" title="Request back dispatch">Request back dispatch</a>, we work with the following <code>Stub</code>:</p>
+<pre><code class="language-java">public interface Stub {
+	public int count(IntPredicate predicate);
+}
+</code></pre>
+<p>When we call the <code>count()</code> method with additional RMI connection configuration in place, the argument will be transferred as a new RMI proxy.</p>
+<pre><code class="language-java">Stub s;
+s.count(i -&gt; i % 2 == 0);
+</code></pre>
+<p>In the above, the lambda argument will be transferred as a proxy. This means that every time its <code>test()</code> method is called, a new RMI request is issued on the connection. In this case, the repeated calls of <code>test()</code> in a loop may cause performance degradation and we recommend specifying the transfer configuration for that argument in a way that is efficient.</p>
+<p>The automatic proxy creation is important to keep the <a href="transparency.html" title="Transparency">transparency</a> requirements of the library, while also allows convenient service declaration. An example for this when one wants to access a specific service from a service provider:</p>
+<pre><code class="language-java">public interface ServiceProviderStub {
+	public FileSystemStub getFileSystem();
+}
+</code></pre>
+<p>In the above no additional configuration is required to call the <code>getFileSystem()</code> remote method, the returned object will be automatically transferred as a proxy to the receiver.</p>
+<p>Developers should design their interfaces and RMI configurations so the operations can be executed in a performant way.</p>
+<link href="../../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>
+			<div class="end-section-links">
+				<div class="end-section-prev">
+					<a class="doc-prev-section" href="../../doc/features/backdispatch.html" title="Request back dispatch"><svg class="doc-section-arrow" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" />
+</svg>Request back dispatch</a>
+				</div>
+				<div class="end-section-next">
+					<a class="doc-next-section" href="../../doc/features/garbagecollection.html" title="Garbage collection">Garbage collection<svg class="doc-section-arrow" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z" />
+</svg></a>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+</div>
+<div class="doc-footer">
+	<div class="container">
+		<div class="row">
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">About</p>
+				<div><a href="/index.html" title="Saker.build home page">Home</a></div>
+				<div data-footer-location="doc-docs"><a href="../../index.html" title="saker.rmi documentation index">Documentation index</a></div>
+				<div><a href="../../../saker.build/index.html" title="Information about the saker.build system">saker.build system</a></div>
+				<div><a href="../../../saker.nest/index.html" title="Information about the saker.nest repository">saker.nest repository</a></div>
+				<div><a href="/contact.html" title="Contact us">Contact</a></div>
+			</div>
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">Resources</p>
+				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.rmi documentation index">Documentation</a></div>
+				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.rmi">JavaDoc</a></div>
+				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.rmi">TaskDoc</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.rmi" title="saker.rmi | saker.nest">saker.nest package page</a></div>
+				<div><a href="https://github.com/sakerbuild/saker.rmi" title="saker.rmi on GitHub">GitHub</a></div>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col">
+			&copy; Bence Sipka 2020
+			</div>
+		</div>
+	</div>
+</div>
+
+<link rel="stylesheet" href="../../../res/hljs.css"><script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js" integrity="sha256-js+I1fdbke/DJrW2qXQlrw7VUEqmdeFeOW37UC0bEiU=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.13.1/build/languages/java.min.js"></script>
+<script>
+if(window.hasOwnProperty("hljs")){
+	hljs.configure({
+	  languages: []
+	});
+	hljs.initHighlightingOnLoad();
+}
+</script>
+
+</body>
+</html>

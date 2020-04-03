@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>IDEConfiguration</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+	
+	<link rel="stylesheet" type="text/css" href="../../../../../../res/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../../../../../../res/doc-saker.css">
+	
+</head>
+<body data-nav-location="javadoc" data-subdoc-presence="nest-package packagedoc javadoc">
+<div class="doc-nav-bar">
+	<div class="container">
+		<a class="home-link" href="../../../../../index.html" title="saker.build"><img style="height: 2.5em;" class="logo" src="../../../../../../res/logo.svg"/><span class="page-name">saker.build</span></a>
+		<a class="nav-location-item" data-nav-location="doc-docs" href="../../../../../doc/index.html" title="Documentation">Documentation</a>
+		<a class="nav-location-item" data-nav-location="doc-taskdoc" href="../../../../../taskdoc/index.html" title="Build task documentation">TaskDoc</a>
+		<a class="nav-location-item" data-nav-location="doc-javadoc" href="../../../../../javadoc/index.html"title="Java API documentation">JavaDoc</a>
+		<div class="nav-bar-controls">
+			<label class="d-xl-none nav-bar-collapse" for="collapse-nav-bar-label">
+				<svg style="height: 1.5em;" viewBox="0 0 24 24">
+				    <path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+				</svg>
+			</label>
+			<input style="display:none;" id="collapse-nav-bar-label" type="checkbox"/>
+			<div class="nav-bar-items">
+				<a href="/" title="saker.build home page">Home</a>
+				<a href="/buildtrace.html" title="Build trace viewer">Build trace</a>
+				<a style="display:none;" href="/sponsor.html" title="Sponsoring development">Sponsor</a>
+				<a href="/blog/" title="saker.build system blog">Blog</a>
+				<a class="no-external-icon" href="https://github.com/sakerbuild/saker.build" title="saker.build GitHub repository">GitHub</a>
+			</div>
+		</div>
+	</div>
+</div>
+<nav class="javadoc-nav" data-nav-location="IDEConfiguration">
+	<div class="container">
+		<span class="javadoc-nav-title">JavaDoc</span>
+		<a class="nav-location-item" data-nav-location="javadoc-packages" href="../../../../index.html" title="Package index">Packages</a>
+		<a class="nav-location-item" data-nav-location="javadoc-all-classes" href="../../../../all-classes.html" title="All classes">All classes</a>
+		<a class="nav-location-item" data-nav-location="javadoc-constants" href="../../../../constants.html" title="All constants">Constants</a>
+	</div>
+</nav>
+<div class="container page-contents javadoc">
+	<div class="javadoc-content">
+	<div class="javadoc-class-header"><div class="javadoc-class-header-pkg"><span class="javadoc-code-ref"><span class="javadoc-kw">package</span> <a href="index.html" title="saker.build.ide.configuration" data-javadoc-kind="package">saker.build.ide.configuration</a></span></div><div class="javadoc-class-header-class"><span class="javadoc-kw">public interface </span><span class="javadoc-class-header-name">IDEConfiguration</span></div></div><div class="javadoc-class-subtypes"><div class="javadoc-class-subtypes-list"><span class="javadoc-code-ref"><span class="javadoc-subtype"><a href="SimpleIDEConfiguration.html" title="class saker.build.ide.configuration.SimpleIDEConfiguration" data-javadoc-kind="class">SimpleIDEConfiguration</a></span></span></div></div><div class="javadoc-class-doc"><div class="javadoc-class-doc-body">Holds properties for properly configuring an IDE project to provide development assistant features. <p>
+ Instances of this interface holds data in order to properly configure an IDE project for a user, to be able to take
+ advantage of IDE related features. (E.g. content assist) Instances should contain the data necessary to configure an
+ IDE project for convenient and daily use.
+ <p>
+ Examples:
+ <ul>
+ <li>A Java IDE configuration should contain the source directories, classpath, and other related data.</li>
+ <li>A C/C++ IDE configuration should contain the compiled sources, include directories, linked libraries, and other
+ related data.</li>
+ </ul>
+ <p>
+ The data contained in an IDE configuration can be accessed via the <span class="javadoc-code-ref"><a href="#getField-java.lang.String-" title="IDEConfiguration.getField(String)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface">getField<span class="javadoc-code-ref">(<wbr>String)</span></a></span> function. The data
+ available through this function should be determined based on the type (<span class="javadoc-code-ref"><a href="#getType--" title="IDEConfiguration.getType()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface">getType<span class="javadoc-code-ref">()</span></a></span>) of the IDE configuration.
+ <p>
+ An IDE configuration should consist of boxed primitives, <span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="class java.lang.String" data-javadoc-kind="class">String</a></span>, <span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Collection.html" title="interface java.util.Collection" data-javadoc-kind="interface">Collection&lt;?></a></span>,
+ <span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Map.html" title="interface java.util.Map" data-javadoc-kind="interface">Map&lt;String, ?&gt;</a></span> instances and their compositions. This is to ensure that IDE configuration objects
+ can be transferred properly between processes, and they can be serialized into arbitrary external formats (E.g. JSON,
+ XML). Boxed primitive objects should be handled without precision, meaning that a value should have the same
+ semantics regardless if they're represented using a <span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Short.html" title="class java.lang.Short" data-javadoc-kind="class">Short</a></span> or <span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Long.html" title="class java.lang.Long" data-javadoc-kind="class">Long</a></span>.
+ <p>
+ When including path related information about the build, it is recommended to use execution related absolute paths.
+ Unless they are directly associated with another file system (local or remote), the paths should point to a file or
+ directory that are accessible using the execution path configuration roots.
+ <p>
+ Implementation of this interface should be <span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/io/Serializable.html" title="interface java.io.Serializable" data-javadoc-kind="interface">Serializable</a></span>, preferably <span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/io/Externalizable.html" title="interface java.io.Externalizable" data-javadoc-kind="interface">Externalizable</a></span>.</div><div class="javadoc-detail-see javadoc-blocktag-section"><div class="javadoc-detail-see-entry"><span class="javadoc-code-ref"><a href="SimpleIDEConfiguration.html" title="class saker.build.ide.configuration.SimpleIDEConfiguration" data-javadoc-kind="class">SimpleIDEConfiguration</a></span></div></div></div><div class="javadoc-class-idx"><div class="javadoc-class-idx-methods javadoc-idx-section"><table><caption>Methods</caption><thead><tr><th class="javadoc-th-method-meta"></th><th class="javadoc-th-method-details"></th></tr></thead><tbody><tr class="javadoc-class-idx-method javadoc-idx-member"><td class="javadoc-class-idx-method-meta javadoc-idx-member-meta"><span class="javadoc-kw">public </span><span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html" title="class java.lang.Object" data-javadoc-kind="class">Object</a></span></td><td class="javadoc-class-idx-method-sig javadoc-idx-member-sig"><div class="javadoc-class-idx-method-name javadoc-idx-member-name"><a href="#getField-java.lang.String-" title="IDEConfiguration.getField(String)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">getField</a><span class="javadoc-code-ref">(<wbr><span class="javadoc-method-param"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="class java.lang.String" data-javadoc-kind="class">String</a> fieldname</span>)</span></div><div class="javadoc-class-idx-method-short javadoc-member-short">Gets the value for a field in this configuration.</div></td></tr><tr class="javadoc-class-idx-method javadoc-idx-member"><td class="javadoc-class-idx-method-meta javadoc-idx-member-meta"><span class="javadoc-kw">public </span><span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Set.html" title="interface java.util.Set" data-javadoc-kind="interface">Set</a>&lt;<wbr><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="class java.lang.String" data-javadoc-kind="class">String</a>&gt;</span></td><td class="javadoc-class-idx-method-sig javadoc-idx-member-sig"><div class="javadoc-class-idx-method-name javadoc-idx-member-name"><a href="#getFieldNames--" title="IDEConfiguration.getFieldNames()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">getFieldNames</a><span class="javadoc-code-ref">()</span></div><div class="javadoc-class-idx-method-short javadoc-member-short">Gets the field names present in this configuration.</div></td></tr><tr class="javadoc-class-idx-method javadoc-idx-member"><td class="javadoc-class-idx-method-meta javadoc-idx-member-meta"><span class="javadoc-kw">public </span><span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="class java.lang.String" data-javadoc-kind="class">String</a></span></td><td class="javadoc-class-idx-method-sig javadoc-idx-member-sig"><div class="javadoc-class-idx-method-name javadoc-idx-member-name"><a href="#getIdentifier--" title="IDEConfiguration.getIdentifier()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">getIdentifier</a><span class="javadoc-code-ref">()</span></div><div class="javadoc-class-idx-method-short javadoc-member-short">Gets an user readable identifier for this IDE configuration.</div></td></tr><tr class="javadoc-class-idx-method javadoc-idx-member"><td class="javadoc-class-idx-method-meta javadoc-idx-member-meta"><span class="javadoc-kw">public </span><span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="class java.lang.String" data-javadoc-kind="class">String</a></span></td><td class="javadoc-class-idx-method-sig javadoc-idx-member-sig"><div class="javadoc-class-idx-method-name javadoc-idx-member-name"><a href="#getType--" title="IDEConfiguration.getType()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">getType</a><span class="javadoc-code-ref">()</span></div><div class="javadoc-class-idx-method-short javadoc-member-short">Gets the type of this IDE configuration.</div></td></tr></tbody></table></div></div><div class="javadoc-class-details"><div class="javadoc-class-details-methods javadoc-details-section"><div id="getField-java.lang.String-" class="javadoc-class-detail-method javadoc-class-detail-member"><div class="javadoc-class-detail-method-sig javadoc-member-sig"><span class="javadoc-kw">public abstract </span><span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html" title="class java.lang.Object" data-javadoc-kind="class">Object</a></span> <a href="#getField-java.lang.String-" title="IDEConfiguration.getField(String)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">getField</a><span class="javadoc-code-ref">(<wbr><span class="javadoc-method-param"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="class java.lang.String" data-javadoc-kind="class">String</a> fieldname</span>)</span></div><div class="javadoc-class-detail-method-detail javadoc-member-detail"><div class="javadoc-detail-body">Gets the value for a field in this configuration. <p>
+ The field names can be arbitrary. They should represent their meaning for a project configuration. It is best
+ that they are short and describe what kind of aspect they correspond to.
+ <p>
+ If a field has a multiple value then its name should be plural. (E.g. <code>source_dirs</code>,
+ <code>include_dirs</code>) <br>
+ Although it is not necessary if the usage does not require it. (E.g. both <code>classpath</code> and
+ <code>classpaths</code> should be okay)
+ <p>
+ Field values should be boxed primitives, <span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="class java.lang.String" data-javadoc-kind="class">String</a></span>, <span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Collection.html" title="interface java.util.Collection" data-javadoc-kind="interface">Collection</a></span>, <span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Map.html" title="interface java.util.Map" data-javadoc-kind="interface">Map&lt;String, ?&gt;</a></span> and
+ compositions of their instances.
+ <p>
+ Any returned field values should be immutable.</div><div class="javadoc-method-detail-params javadoc-blocktag-section"><div class="javadoc-method-detail-param"><span class="javadoc-method-detail-param-name">fieldname</span><span class="javadoc-method-detail-param-detail">The field name to look up.</span></div></div><div class="javadoc-method-detail-return javadoc-blocktag-section"><div class="javadoc-method-detail-return-body">The value of the field or <code>null</code> if it is not set.</div></div></div></div><div id="getFieldNames--" class="javadoc-class-detail-method javadoc-class-detail-member"><div class="javadoc-class-detail-method-sig javadoc-member-sig"><span class="javadoc-kw">public abstract </span><span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Set.html" title="interface java.util.Set" data-javadoc-kind="interface">Set</a>&lt;<wbr><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="class java.lang.String" data-javadoc-kind="class">String</a>&gt;</span> <a href="#getFieldNames--" title="IDEConfiguration.getFieldNames()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">getFieldNames</a><span class="javadoc-code-ref">()</span></div><div class="javadoc-class-detail-method-detail javadoc-member-detail"><div class="javadoc-detail-body">Gets the field names present in this configuration. <p>
+ If a field name is present in this returned collection then <span class="javadoc-code-ref"><a href="#getField-java.lang.String-" title="IDEConfiguration.getField(String)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface">getField<span class="javadoc-code-ref">(<wbr>String)</span></a></span> should return
+ non-<code>null</code>. It is an error to return <code>null</code> if the field name is present in this
+ collection, but users of this class should be able to handle that gracefully.</div><div class="javadoc-method-detail-return javadoc-blocktag-section"><div class="javadoc-method-detail-return-body">An immutable collection of field names.</div></div></div></div><div id="getIdentifier--" class="javadoc-class-detail-method javadoc-class-detail-member"><div class="javadoc-class-detail-method-sig javadoc-member-sig"><span class="javadoc-kw">public abstract </span><span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="class java.lang.String" data-javadoc-kind="class">String</a></span> <a href="#getIdentifier--" title="IDEConfiguration.getIdentifier()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">getIdentifier</a><span class="javadoc-code-ref">()</span></div><div class="javadoc-class-detail-method-detail javadoc-member-detail"><div class="javadoc-detail-body">Gets an user readable identifier for this IDE configuration. <p>
+ This identifier should be based on a build step or location so the user can identify its correspondence to a
+ build task. It is best if it's unique for a given IDE configuration type.
+ <p>
+ For example it can be an explicitly assigned identifier by the user, or a base source directory for the task
+ which generated this configuration.</div><div class="javadoc-method-detail-return javadoc-blocktag-section"><div class="javadoc-method-detail-return-body">The identifier for this IDE configuration.</div></div></div></div><div id="getType--" class="javadoc-class-detail-method javadoc-class-detail-member"><div class="javadoc-class-detail-method-sig javadoc-member-sig"><span class="javadoc-kw">public abstract </span><span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="class java.lang.String" data-javadoc-kind="class">String</a></span> <a href="#getType--" title="IDEConfiguration.getType()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">getType</a><span class="javadoc-code-ref">()</span></div><div class="javadoc-class-detail-method-detail javadoc-member-detail"><div class="javadoc-detail-body">Gets the type of this IDE configuration. <p>
+ The type can be an arbitrary string which uniquely identifies a type of an IDE configuration. It is recommended
+ that it is a dot separated name identified by the developer domain. (Like reverse domain naming in Java
+ packages.)
+ <p>
+ The available field names for a given type should be documented by the developer of the given typed IDE
+ configuration.</div><div class="javadoc-method-detail-return javadoc-blocktag-section"><div class="javadoc-method-detail-return-body">The type of this IDE configuration.</div></div></div></div></div></div>
+	</div>
+</div>
+<div class="doc-footer">
+	<div class="container">
+		<div class="row">
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">About</p>
+				<div><a href="/index.html" title="Saker.build home page">Home</a></div>
+				<div data-footer-location="doc-docs"><a href="../../../../../index.html" title="saker.build documentation index">Documentation index</a></div>
+				<div><a href="../../../../../../saker.build/index.html" title="Information about the saker.build system">saker.build system</a></div>
+				<div><a href="../../../../../../saker.nest/index.html" title="Information about the saker.nest repository">saker.nest repository</a></div>
+				<div><a href="/contact.html" title="Contact us">Contact</a></div>
+			</div>
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">Resources</p>
+				<div data-footer-location="doc-docs"><a href="../../../../../doc/index.html" title="saker.build documentation index">Documentation</a></div>
+				<div data-footer-location="doc-javadoc"><a href="../../../../../javadoc/index.html" title="JavaDoc for saker.build">JavaDoc</a></div>
+				<div data-footer-location="doc-taskdoc"><a href="../../../../../taskdoc/index.html"  title="Documentation of build tasks in saker.build">TaskDoc</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.nest package page</a></div>
+				<div><a href="https://github.com/sakerbuild/saker.build" title="saker.build on GitHub">GitHub</a></div>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col">
+			&copy; Bence Sipka 2020
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

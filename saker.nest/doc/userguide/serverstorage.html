@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Server storage&nbsp;|&nbsp;saker.nest</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+	
+	<link rel="stylesheet" href="../../../res/bootstrap.min.css" >
+	<link rel="stylesheet" href="../../../res/doc-saker.css" >
+</head>
+<body data-nav-location="packagedoc" data-subdoc-presence="nest-package packagedoc javadoc">
+<div class="doc-nav-bar">
+	<div class="container">
+		<a class="home-link" href="../../index.html" title="saker.nest"><img style="height: 2.5em;" class="logo" src="../../../res/logo.svg"/><span class="page-name">saker.nest</span></a>
+		<a class="nav-location-item" data-nav-location="doc-docs" href="../../doc/index.html" title="Documentation">Documentation</a>
+		<a class="nav-location-item" data-nav-location="doc-taskdoc" href="../../taskdoc/index.html" title="Build task documentation">TaskDoc</a>
+		<a class="nav-location-item" data-nav-location="doc-javadoc" href="../../javadoc/index.html"title="Java API documentation">JavaDoc</a>
+		<div class="nav-bar-controls">
+			<label class="d-xl-none nav-bar-collapse" for="collapse-nav-bar-label">
+				<svg style="height: 1.5em;" viewBox="0 0 24 24">
+				    <path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+				</svg>
+			</label>
+			<input style="display:none;" id="collapse-nav-bar-label" type="checkbox"/>
+			<div class="nav-bar-items">
+				<a href="/" title="saker.build home page">Home</a>
+				<a href="/buildtrace.html" title="Build trace viewer">Build trace</a>
+				<a style="display:none;" href="/sponsor.html" title="Sponsoring development">Sponsor</a>
+				<a href="/blog/" title="saker.build system blog">Blog</a>
+				<a class="no-external-icon" href="https://github.com/sakerbuild/saker.build" title="saker.build GitHub repository">GitHub</a>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container page-contents packagedoc">
+	<div class="row">
+		<div class="col-12 col-lg-3 col-xl-2 p-lg-0">
+			<div class="doc-navigation-container">
+				<label class="d-lg-none nav-collapse" for="doc-collapse-nav-label">
+					<svg style="height: 1.5em;" viewBox="0 0 24 24">
+					    <path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+					</svg>
+					Navigation
+				</label>
+				<input style="display:none;" id="doc-collapse-nav-label" type="checkbox"/> 
+				<div class="doc-nav">  <div class="doc-section"><ul><li><a class="doc-nav-section-link" href="../../index.html" title="Index">Index</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Introduction</p><ul><li><a class="doc-nav-section-link" href="../index.html" title="Overview">Overview</a></li><li><label class="doc-nav-collapse" for="_doc_collapse_id_0"><a class="doc-nav-section-link" href="../installation.html" title="Installation">Installation</a></label><input style="display:none;" id="_doc_collapse_id_0" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_0"></label><ul><li><a class="doc-nav-section-link" href="../releasearchive.html" title="Release archive">Release archive</a></li></ul></li><li><a class="doc-nav-section-link" href="../roadmap.html" title="Roadmap">Roadmap</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">User guide</p><ul><li><a class="doc-nav-section-link" href="index.html" title="Repository structure">Repository structure</a></li><li><a class="doc-nav-section-link" href="buildtasks.html" title="Build tasks">Build tasks</a></li><li><a class="doc-nav-section-link" href="versioning.html" title="Versioning">Versioning</a></li><li class=" doc-active-parent"><label class="doc-nav-collapse" for="_doc_collapse_id_1"><a class="doc-nav-section-link" href="configuration.html" title="Runtime configuration">Runtime configuration</a></label><input style="display:none;" id="_doc_collapse_id_1" type="checkbox" checked/><label class="doc-nav-section-arrow" for="_doc_collapse_id_1"></label><ul><li class="doc-active doc-active-parent"><a class="doc-nav-section-link" href="serverstorage.html" title="Server storage">Server storage</a></li><li><a class="doc-nav-section-link" href="localstorage.html" title="Local storage">Local storage</a></li><li><a class="doc-nav-section-link" href="paramsstorage.html" title="Parameter storage">Parameter storage</a></li><li><a class="doc-nav-section-link" href="constraints.html" title="Constraint properties">Constraint properties</a></li></ul></li><li><a class="doc-nav-section-link" href="localbundles.html" title="Local bundles">Local bundles</a></li><li><label class="doc-nav-collapse" for="_doc_collapse_id_2"><a class="doc-nav-section-link" href="cmdlineref/index.html" title="Command line reference">Command line reference</a></label><input style="display:none;" id="_doc_collapse_id_2" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_2"></label><ul><li><a class="doc-nav-section-link" href="cmdlineref/main.html" title="main">main</a></li><li><label class="doc-nav-collapse" for="_doc_collapse_id_3"><a class="doc-nav-section-link" href="cmdlineref/local.html" title="local">local</a></label><input style="display:none;" id="_doc_collapse_id_3" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_3"></label><ul><li><a class="doc-nav-section-link" href="cmdlineref/local_install.html" title="install">install</a></li></ul></li><li><label class="doc-nav-collapse" for="_doc_collapse_id_4"><a class="doc-nav-section-link" href="cmdlineref/server.html" title="server">server</a></label><input style="display:none;" id="_doc_collapse_id_4" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_4"></label><ul><li><a class="doc-nav-section-link" href="cmdlineref/server_upload.html" title="upload">upload</a></li><li><label class="doc-nav-collapse" for="_doc_collapse_id_5"><a class="doc-nav-section-link" href="cmdlineref/server_index.html" title="index">index</a></label><input style="display:none;" id="_doc_collapse_id_5" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_5"></label><ul><li><a class="doc-nav-section-link" href="cmdlineref/server_index_update.html" title="update">update</a></li></ul></li></ul></li><li><a class="doc-nav-section-link" href="cmdlineref/version.html" title="version">version</a></li></ul></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Repository website</p><ul><li><a class="doc-nav-section-link" href="../websiteguide/index.html" title="Overview">Overview</a></li><li><a class="doc-nav-section-link" href="../websiteguide/naming.html" title="Naming">Naming</a></li><li><a class="doc-nav-section-link" href="../websiteguide/uploading.html" title="Uploading bundles">Uploading bundles</a></li><li><a class="doc-nav-section-link" href="../websiteguide/publishing.html" title="Publishing">Publishing</a></li><li><a class="doc-nav-section-link" href="../websiteguide/descriptions.html" title="Descriptions">Descriptions</a></li><li><a class="doc-nav-section-link" href="../websiteguide/faq.html" title="FAQ">FAQ</a></li><li><a class="doc-nav-section-link" href="../websiteguide/repository_api.html" title="Repository web API">Repository web API</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Development guide</p><ul><li><a class="doc-nav-section-link" href="../devguide/index.html" title="Overview">Overview</a></li><li><a class="doc-nav-section-link" href="../devguide/bundleformat.html" title="Bundle format">Bundle format</a></li><li><a class="doc-nav-section-link" href="../devguide/dependencies.html" title="Dependencies">Dependencies</a></li><li><a class="doc-nav-section-link" href="../devguide/classpath.html" title="Bundle classpath">Bundle classpath</a></li><li><a class="doc-nav-section-link" href="../devguide/dependencyhell.html" title="Dependency hell">Dependency hell</a></li><li><a class="doc-nav-section-link" href="../devguide/tasks.html" title="Build tasks">Build tasks</a></li><li><a class="doc-nav-section-link" href="../devguide/runtimeaccess.html" title="Accessing the repository runtime">Accessing the repository runtime</a></li><li><a class="doc-nav-section-link" href="../devguide/testing.html" title="Integration testing">Integration testing</a></li></ul>  </div></div>
+			</div>
+		</div>
+		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="sb-sponsors" style="display: none;">
+	<span class="sb-sponsors-title">Sponsors</span>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4 col-12">
+				<a class="sb-sponsors-link"></a>
+			</div>
+			<div class="col-md-4 col-12">
+				<a class="sb-sponsors-link"></a>
+			</div>
+			<div class="col-md-4 col-12">
+				<a class="sb-sponsors-link"></a>
+			</div>
+		</div>
+	</div>
+</div>
+			<div class="doc-content"><h1 id="server-storage">Server storage<a class="doc-heading-anchor" href="#server-storage"></a></h1>
+<p>A server storage provides acces to bundles available from the saker.nest repository server. When a bundle for a given identifier is requested from it, it will look up using the bundle index provided by the server, and download the appropriate bundle.</p>
+<p>The storage caches the downloaded bundles locally, and won't make unnecessary network requests. The server storage also validates the bundle contents to ensure that they've been downloaded from the appropriate server. This is done for security reasons.</p>
+<p>The storage can be configured to communicate with different servers, to operate in offline mode, or change the signature verification mechanism.</p>
+<p>The following sections list the possible parameters for the server storage. All parameters are to be interpreted in the <code>&lt;repo-id&gt;.&lt;storage-name&gt;.&lt;parameter&gt;</code> format defined in the <a href="configuration.html" title="Runtime configuration">Runtime configuration</a> document.</p>
+<h2 id="url"><code>url</code><a class="doc-heading-anchor" href="#url"></a></h2>
+<p>Specifies the server URL to be used by the storage to access bundles of the repository.</p>
+<p>The default value is <code>https://api.nest.saker.build</code>.</p>
+<p>In some case the <a href="serverstorage.html#url_secondary" title="url.secondary">secondary URL</a> can take precedence when issuing requests for load balancing purposes.</p>
+<p>The specified URL shouldn't have a slash separator at the end.</p>
+<h2 id="url_secondary"><code>url.secondary</code><a class="doc-heading-anchor" href="#url_secondary"></a></h2>
+<p>Specifies the secondary URL that can be used for load balancing when making network requests.</p>
+<p>The secondary URL is used first to retrieve the bundle and task indexes from the server. As they might be often queried by clients, the secondary URL help taking the load off the primary server and lets it deal with other requests.</p>
+<p>If the request to the secondary URL fails, the request will be tried again from the primary server.</p>
+<p>Bundle downloads always use the primary URL.</p>
+<p>The specified URL shouldn't have a slash separator at the end.</p>
+<p>Secondary URL can be disabled by setting the empty or <code>&quot;null&quot;</code> value to it.</p>
+<h2 id="offline"><code>offline</code><a class="doc-heading-anchor" href="#offline"></a></h2>
+<p>Specifies if the server storage should operate in offline mode.</p>
+<p>If the storage is set to operate in offline mode, any operations that require making network requests will result in an exception. The storage is still safe to operate on locally cached bundles and indexes.</p>
+<h2 id="signature_verify"><code>signature.verify</code><a class="doc-heading-anchor" href="#signature_verify"></a></h2>
+<p>Specifies if the bundle signature verification should be disabled by the storage.</p>
+<p>If the value of this parameter equals to <code>&quot;false&quot;</code> in a case-insensitive manner, the storage will
+<strong>not</strong> verify the downloaded bundle integrity, and will load them without verifying that they've been
+downloaded from the expected server.</p>
+<p>In general, developers shouldn't disable the signature verification, as errors in the verification process either
+signal an internal implementation error, security breach, or other serious issue with the supporting environment.
+In case you feel the need to disable it, it is recommended to throughly examine the cause of error and verify
+that it is acceptable to impose the security risk caused by the lack of verification.</p>
+<h2 id="signature_version_min"><code>signature.version.min</code><a class="doc-heading-anchor" href="#signature_version_min"></a></h2>
+<p>Parameter setting the minimum accepted server provided signature version.</p>
+<p>The expected value of this parameter is an integer that specifies the minimum version.</p>
+<p>By default, the verification mechanism only accepts the latest signature version for a downloaded bundle.
+Lowering the minimum accepted version may result in increased security risk as it may allow the loading of
+bundles that were signed with a compromised private key.</p>
+<p>Newer releases of the Nest repository runtime will always use the signature version that is the most recent at
+the time of release. However, there may be cases when the signature version is increased by the server and older
+releases of the repository needs to be used by the developer. In these cases it is recommended to use the
+parameter to <i>increase</i> the minimum accepted signature version to the one that is provided by the server.
+This will prevent loading cached bundles that was signed with signature version more recent than the repository
+runtime release, but older than the version provided by the server.</p>
+<p>In general, if the value of this parameter needs to be set below the version that is currently advertised by the
+server, that can signal serious issues in relation of security or internal implementation. Make sure to examine
+throughly the possible security consequences of such action.</p>
+<link href="../../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>
+			<div class="end-section-links">
+				<div class="end-section-prev">
+					<a class="doc-prev-section" href="../../doc/userguide/configuration.html" title="Runtime configuration"><svg class="doc-section-arrow" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" />
+</svg>Runtime configuration</a>
+				</div>
+				<div class="end-section-next">
+					<a class="doc-next-section" href="../../doc/userguide/localstorage.html" title="Local storage">Local storage<svg class="doc-section-arrow" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z" />
+</svg></a>
+				</div>
+			</div>
+			<div class="doc-headings-nav">  <ul>    <li><a href="#server-storage" title="Server storage">Server storage</a>      <ul>        <li><a href="#url" title="url">url</a>        </li>        <li><a href="#url_secondary" title="url.secondary">url.secondary</a>        </li>        <li><a href="#offline" title="offline">offline</a>        </li>        <li><a href="#signature_verify" title="signature.verify">signature.verify</a>        </li>        <li><a href="#signature_version_min" title="signature.version.min">signature.version.min</a>        </li>      </ul>    </li>  </ul></div>
+		</div>
+	</div>
+</div>
+<div class="doc-footer">
+	<div class="container">
+		<div class="row">
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">About</p>
+				<div><a href="/index.html" title="Saker.build home page">Home</a></div>
+				<div data-footer-location="doc-docs"><a href="../../index.html" title="saker.nest documentation index">Documentation index</a></div>
+				<div><a href="../../../saker.build/index.html" title="Information about the saker.build system">saker.build system</a></div>
+				<div><a href="../../../saker.nest/index.html" title="Information about the saker.nest repository">saker.nest repository</a></div>
+				<div><a href="/contact.html" title="Contact us">Contact</a></div>
+			</div>
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">Resources</p>
+				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.nest documentation index">Documentation</a></div>
+				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.nest">JavaDoc</a></div>
+				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.nest">TaskDoc</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.nest" title="saker.nest | saker.nest">saker.nest package page</a></div>
+				<div><a href="https://github.com/sakerbuild/saker.nest" title="saker.nest on GitHub">GitHub</a></div>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col">
+			&copy; Bence Sipka 2020
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script>
+if(window.hasOwnProperty("hljs")){
+	hljs.configure({
+	  languages: []
+	});
+	hljs.initHighlightingOnLoad();
+}
+</script>
+
+</body>
+</html>

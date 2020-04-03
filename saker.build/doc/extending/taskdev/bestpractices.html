@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Best practices&nbsp;|&nbsp;saker.build</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+	
+	<link rel="stylesheet" href="../../../../res/bootstrap.min.css" >
+	<link rel="stylesheet" href="../../../../res/doc-saker.css" >
+</head>
+<body data-nav-location="packagedoc" data-subdoc-presence="nest-package packagedoc javadoc">
+<div class="doc-nav-bar">
+	<div class="container">
+		<a class="home-link" href="../../../index.html" title="saker.build"><img style="height: 2.5em;" class="logo" src="../../../../res/logo.svg"/><span class="page-name">saker.build</span></a>
+		<a class="nav-location-item" data-nav-location="doc-docs" href="../../../doc/index.html" title="Documentation">Documentation</a>
+		<a class="nav-location-item" data-nav-location="doc-taskdoc" href="../../../taskdoc/index.html" title="Build task documentation">TaskDoc</a>
+		<a class="nav-location-item" data-nav-location="doc-javadoc" href="../../../javadoc/index.html"title="Java API documentation">JavaDoc</a>
+		<div class="nav-bar-controls">
+			<label class="d-xl-none nav-bar-collapse" for="collapse-nav-bar-label">
+				<svg style="height: 1.5em;" viewBox="0 0 24 24">
+				    <path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+				</svg>
+			</label>
+			<input style="display:none;" id="collapse-nav-bar-label" type="checkbox"/>
+			<div class="nav-bar-items">
+				<a href="/" title="saker.build home page">Home</a>
+				<a href="/buildtrace.html" title="Build trace viewer">Build trace</a>
+				<a style="display:none;" href="/sponsor.html" title="Sponsoring development">Sponsor</a>
+				<a href="/blog/" title="saker.build system blog">Blog</a>
+				<a class="no-external-icon" href="https://github.com/sakerbuild/saker.build" title="saker.build GitHub repository">GitHub</a>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container page-contents packagedoc">
+	<div class="row">
+		<div class="col-12 col-lg-3 col-xl-2 p-lg-0">
+			<div class="doc-navigation-container">
+				<label class="d-lg-none nav-collapse" for="doc-collapse-nav-label">
+					<svg style="height: 1.5em;" viewBox="0 0 24 24">
+					    <path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+					</svg>
+					Navigation
+				</label>
+				<input style="display:none;" id="doc-collapse-nav-label" type="checkbox"/> 
+				<div class="doc-nav">  <div class="doc-section"><ul><li><a class="doc-nav-section-link" href="../../../index.html" title="Index">Index</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Introduction</p><ul><li><a class="doc-nav-section-link" href="../../index.html" title="Overview">Overview</a></li><li><label class="doc-nav-collapse" for="_doc_collapse_id_0"><a class="doc-nav-section-link" href="../../installation.html" title="Installation">Installation</a></label><input style="display:none;" id="_doc_collapse_id_0" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_0"></label><ul><li><a class="doc-nav-section-link" href="../../eclipseplugin.html" title="Eclipse plugin">Eclipse plugin</a></li><li><a class="doc-nav-section-link" href="../../releasearchive.html" title="Release archive">Release archive</a></li></ul></li><li><a class="doc-nav-section-link" href="../../perfcomparison.html" title="Performance comparisons">Performance comparisons</a></li><li><a class="doc-nav-section-link" href="../../roadmap.html" title="Roadmap">Roadmap</a></li><li><label class="doc-nav-collapse" for="_doc_collapse_id_1"><a class="doc-nav-section-link" href="../../contribute.html" title="Contribute">Contribute</a></label><input style="display:none;" id="_doc_collapse_id_1" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_1"></label><ul><li><a class="doc-nav-section-link" href="../../buildstatus.html" title="Build status">Build status</a></li></ul></li></ul>  </div>  <div class="doc-section">    <p class="section-title">User guide</p><ul><li><label class="doc-nav-collapse" for="_doc_collapse_id_2"><a class="doc-nav-section-link" href="../../guide/index.html" title="Introduction">Introduction</a></label><input style="display:none;" id="_doc_collapse_id_2" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_2"></label><ul><li><a class="doc-nav-section-link" href="../../guide/helloworld.html" title="Hello world">Hello world</a></li><li><a class="doc-nav-section-link" href="../../guide/buildtargets.html" title="Build targets">Build targets</a></li><li><a class="doc-nav-section-link" href="../../guide/datastructures.html" title="Data structures">Data structures</a></li><li><a class="doc-nav-section-link" href="../../guide/foreach.html" title="Foreach loop">Foreach loop</a></li><li><a class="doc-nav-section-link" href="../../guide/controlflow.html" title="Control flow">Control flow</a></li></ul></li><li><a class="doc-nav-section-link" href="../../guide/incremental.html" title="Incremental builds">Incremental builds</a></li><li><a class="doc-nav-section-link" href="../../guide/runtime.html" title="Build system runtime">Build system runtime</a></li><li><a class="doc-nav-section-link" href="../../guide/envconfig.html" title="Environment configuration">Environment configuration</a></li><li><a class="doc-nav-section-link" href="../../guide/execparams.html" title="Execution parameters">Execution parameters</a></li><li><a class="doc-nav-section-link" href="../../guide/pathconfiguration.html" title="Path configuration">Path configuration</a></li><li><a class="doc-nav-section-link" href="../../guide/repositories.html" title="Task repositories">Task repositories</a></li><li><a class="doc-nav-section-link" href="../../guide/scriptlanguages.html" title="Script languages">Script languages</a></li><li><a class="doc-nav-section-link" href="../../guide/daemon.html" title="Build daemon">Build daemon</a></li><li><a class="doc-nav-section-link" href="../../guide/filechangetracking.html" title="File change tracking">File change tracking</a></li><li><a class="doc-nav-section-link" href="../../guide/remotebuild.html" title="Remote build execution">Remote build execution</a></li><li><a class="doc-nav-section-link" href="../../guide/buildclusters.html" title="Build clusters">Build clusters</a></li><li><a class="doc-nav-section-link" href="../../guide/buildcache.html" title="Build cache">Build cache</a></li><li><a class="doc-nav-section-link" href="../../guide/buildtrace.html" title="Build trace">Build trace</a></li><li><a class="doc-nav-section-link" href="../../guide/reproducible.html" title="Reproducible builds">Reproducible builds</a></li><li><a class="doc-nav-section-link" href="../../guide/wildcards.html" title="Wildcard paths">Wildcard paths</a></li><li><label class="doc-nav-collapse" for="_doc_collapse_id_3"><a class="doc-nav-section-link" href="../../guide/cmdlineref/index.html" title="Command line reference">Command line reference</a></label><input style="display:none;" id="_doc_collapse_id_3" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_3"></label><ul><li><a class="doc-nav-section-link" href="../../guide/cmdlineref/build.html" title="build">build</a></li><li><label class="doc-nav-collapse" for="_doc_collapse_id_4"><a class="doc-nav-section-link" href="../../guide/cmdlineref/daemon.html" title="daemon">daemon</a></label><input style="display:none;" id="_doc_collapse_id_4" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_4"></label><ul><li><a class="doc-nav-section-link" href="../../guide/cmdlineref/daemon_start.html" title="start">start</a></li><li><a class="doc-nav-section-link" href="../../guide/cmdlineref/daemon_stop.html" title="stop">stop</a></li><li><a class="doc-nav-section-link" href="../../guide/cmdlineref/daemon_run.html" title="run">run</a></li><li><a class="doc-nav-section-link" href="../../guide/cmdlineref/daemon_io.html" title="io">io</a></li><li><a class="doc-nav-section-link" href="../../guide/cmdlineref/daemon_info.html" title="info">info</a></li></ul></li><li><a class="doc-nav-section-link" href="../../guide/cmdlineref/action.html" title="action">action</a></li><li><a class="doc-nav-section-link" href="../../guide/cmdlineref/licenses.html" title="licenses">licenses</a></li><li><a class="doc-nav-section-link" href="../../guide/cmdlineref/version.html" title="version">version</a></li></ul></li><li><a class="doc-nav-section-link" href="../../guide/scriptstyleguide.html" title="Build script style guide">Build script style guide</a></li><li><a class="doc-nav-section-link" href="../../guide/bestpractices.html" title="Best practices">Best practices</a></li><li><a class="doc-nav-section-link" href="../../examplecollection.html" title="Example collection">Example collection</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Scripting language</p><ul><li><a class="doc-nav-section-link" href="../../scripting/index.html" title="Overview">Overview</a></li><li><a class="doc-nav-section-link" href="../../scripting/executionmodel.html" title="Execution model">Execution model</a></li><li><label class="doc-nav-collapse" for="_doc_collapse_id_5"><a class="doc-nav-section-link" href="../../scripting/langref/index.html" title="Language reference">Language reference</a></label><input style="display:none;" id="_doc_collapse_id_5" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_5"></label><ul><li><a class="doc-nav-section-link" href="../../scripting/langref/sourcefile/index.html" title="Source file">Source file</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/expressions/index.html" title="Expressions">Expressions</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/comments/index.html" title="Comments">Comments</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/literals/index.html" title="Literals">Literals</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/variables/index.html" title="Variables">Variables</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/tasks/index.html" title="Task extensions">Task extensions</a></li><li><label class="doc-nav-collapse" for="_doc_collapse_id_6"><a class="doc-nav-section-link" href="../../scripting/langref/operators/index.html" title="Operators">Operators</a></label><input style="display:none;" id="_doc_collapse_id_6" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_6"></label><ul><li><a class="doc-nav-section-link" href="../../scripting/langref/operators/addition/index.html" title="Addition">Addition</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/operators/assignment/index.html" title="Assignment">Assignment</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/operators/bitnegate/index.html" title="Bitwise negate">Bitwise negate</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/operators/bitoperators/index.html" title="Bitwise operators">Bitwise operators</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/operators/bitshiftoperators/index.html" title="Bitwise shift operators">Bitwise shift operators</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/operators/boolnegate/index.html" title="Boolean negate">Boolean negate</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/operators/booloperators/index.html" title="Boolean operators">Boolean operators</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/operators/dereference/index.html" title="Dereference">Dereference</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/operators/equality/index.html" title="Equality comparison">Equality comparison</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/operators/mathoperators/index.html" title="Mathematic operators">Mathematic operators</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/operators/comparison/index.html" title="Numeric comparison">Numeric comparison</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/operators/parentheses/index.html" title="Parentheses">Parentheses</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/operators/subscript/index.html" title="Subscript">Subscript</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/operators/ternary/index.html" title="Ternary">Ternary</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/operators/unaryminus/index.html" title="Unary minus">Unary minus</a></li></ul></li><li><a class="doc-nav-section-link" href="../../scripting/langref/ifelse/index.html" title="If-else statement">If-else statement</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/foreach/index.html" title="Foreach expression">Foreach expression</a></li></ul></li><li><label class="doc-nav-collapse" for="_doc_collapse_id_7"><a class="doc-nav-section-link" href="../../scripting/builtintasks/index.html" title="Built-in tasks">Built-in tasks</a></label><input style="display:none;" id="_doc_collapse_id_7" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_7"></label><ul><li><a class="doc-nav-section-link" href="../../scripting/builtintasks/abort.html" title="abort()">abort()</a></li><li><a class="doc-nav-section-link" href="../../scripting/builtintasks/global.html" title="global()">global()</a></li><li><a class="doc-nav-section-link" href="../../scripting/builtintasks/include.html" title="include()">include()</a></li><li><a class="doc-nav-section-link" href="../../scripting/builtintasks/path.html" title="path()">path()</a></li><li><a class="doc-nav-section-link" href="../../scripting/builtintasks/print.html" title="print()">print()</a></li><li><a class="doc-nav-section-link" href="../../scripting/builtintasks/sequence.html" title="sequence()">sequence()</a></li><li><a class="doc-nav-section-link" href="../../scripting/builtintasks/static.html" title="static()">static()</a></li><li><a class="doc-nav-section-link" href="../../scripting/builtintasks/var.html" title="var()">var()</a></li></ul></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Extending saker.build</p><ul><li><a class="doc-nav-section-link" href="../index.html" title="Overview">Overview</a></li><li><a class="doc-nav-section-link" href="../api.html" title="Build system API">Build system API</a></li><li class=" doc-active-parent"><label class="doc-nav-collapse" for="_doc_collapse_id_8"><a class="doc-nav-section-link" href="index.html" title="Task development">Task development</a></label><input style="display:none;" id="_doc_collapse_id_8" type="checkbox" checked/><label class="doc-nav-section-arrow" for="_doc_collapse_id_8"></label><ul><li><a class="doc-nav-section-link" href="helloworld.html" title="Hello world">Hello world</a></li><li><a class="doc-nav-section-link" href="taskparameters.html" title="Task parameters">Task parameters</a></li><li><a class="doc-nav-section-link" href="taskresults.html" title="Task results">Task results</a></li><li><label class="doc-nav-collapse" for="_doc_collapse_id_9"><a class="doc-nav-section-link" href="filehandling.html" title="File handling">File handling</a></label><input style="display:none;" id="_doc_collapse_id_9" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_9"></label><ul><li><a class="doc-nav-section-link" href="filedependencies.html" title="File dependencies">File dependencies</a></li><li><a class="doc-nav-section-link" href="fileadditiondependency.html" title="File addition dependency">File addition dependency</a></li><li><a class="doc-nav-section-link" href="customfiles.html" title="Custom files">Custom files</a></li><li><a class="doc-nav-section-link" href="filemirroring.html" title="File mirroring">File mirroring</a></li></ul></li><li><a class="doc-nav-section-link" href="propertydependencies.html" title="Property dependencies">Property dependencies</a></li><li><label class="doc-nav-collapse" for="_doc_collapse_id_10"><a class="doc-nav-section-link" href="taskmanagement.html" title="Task management">Task management</a></label><input style="display:none;" id="_doc_collapse_id_10" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_10"></label><ul><li><a class="doc-nav-section-link" href="startingtasks.html" title="Starting tasks">Starting tasks</a></li><li><a class="doc-nav-section-link" href="retrievingtaskresults.html" title="Retrieving task results">Retrieving task results</a></li></ul></li><li><a class="doc-nav-section-link" href="incrementaldeltas.html" title="Incremental deltas">Incremental deltas</a></li><li><a class="doc-nav-section-link" href="taskcapabilities.html" title="Task capabilities">Task capabilities</a></li><li><a class="doc-nav-section-link" href="parameterparsing.html" title="Parameter parsing">Parameter parsing</a></li><li><a class="doc-nav-section-link" href="innertasks.html" title="Inner tasks">Inner tasks</a></li><li><a class="doc-nav-section-link" href="taskworkflow.html" title="Task workflow">Task workflow</a></li><li><a class="doc-nav-section-link" href="taskcaching.html" title="Task caching">Task caching</a></li><li><a class="doc-nav-section-link" href="buildclusters.html" title="Build clusters">Build clusters</a></li><li><a class="doc-nav-section-link" href="standardio.html" title="Standard I/O">Standard I/O</a></li><li><a class="doc-nav-section-link" href="serialization.html" title="Serialization">Serialization</a></li><li><a class="doc-nav-section-link" href="ideconfig.html" title="IDE configuration">IDE configuration</a></li><li><a class="doc-nav-section-link" href="reproducible.html" title="Reproducible builds">Reproducible builds</a></li><li class="doc-active doc-active-parent"><a class="doc-nav-section-link" href="bestpractices.html" title="Best practices">Best practices</a></li></ul></li><li><label class="doc-nav-collapse" for="_doc_collapse_id_11"><a class="doc-nav-section-link" href="../scriptdev/index.html" title="Script language development">Script language development</a></label><input style="display:none;" id="_doc_collapse_id_11" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_11"></label><ul><li><a class="doc-nav-section-link" href="../scriptdev/structure.html" title="API structure">API structure</a></li><li><a class="doc-nav-section-link" href="../scriptdev/packaging.html" title="Packaging">Packaging</a></li><li><a class="doc-nav-section-link" href="../scriptdev/workflow.html" title="Development workflow">Development workflow</a></li></ul></li><li><label class="doc-nav-collapse" for="_doc_collapse_id_12"><a class="doc-nav-section-link" href="../repositorydev/index.html" title="Repository development">Repository development</a></label><input style="display:none;" id="_doc_collapse_id_12" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_12"></label><ul><li><a class="doc-nav-section-link" href="../repositorydev/structure.html" title="API structure">API structure</a></li><li><a class="doc-nav-section-link" href="../repositorydev/packaging.html" title="Packaging">Packaging</a></li></ul></li><li><a class="doc-nav-section-link" href="../testing/index.html" title="Integration testing">Integration testing</a></li></ul>  </div></div>
+			</div>
+		</div>
+		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="sb-sponsors" style="display: none;">
+	<span class="sb-sponsors-title">Sponsors</span>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4 col-12">
+				<a class="sb-sponsors-link"></a>
+			</div>
+			<div class="col-md-4 col-12">
+				<a class="sb-sponsors-link"></a>
+			</div>
+			<div class="col-md-4 col-12">
+				<a class="sb-sponsors-link"></a>
+			</div>
+		</div>
+	</div>
+</div>
+			<div class="doc-content"><h1 id="best-practices">Best practices<a class="doc-heading-anchor" href="#best-practices"></a></h1>
+<p>This article contains best practices which we recommend following when implementing your own tasks.</p>
+<h2 id="storing-execution-state">Storing execution state<a class="doc-heading-anchor" href="#storing-execution-state"></a></h2>
+<p>When handling incremental builds, tasks will likely need to store some state related data between executions. The build system supports this by making tasks able to store arbitrary key-value data pairs which are only visible to them.</p>
+<p>The <code>TaskContext.setTaskOutput</code> function allows tasks to store implementation related data which can be queried using the <code>TaskContext.getPreviousTaskOutput(Object, Class&lt;T&gt;)</code> function. If the function returns non-null, then the tasks can work based on the state from the previous execution and the deltas which cause the task to be invoked.</p>
+<pre><code class="language-java">public class MyTaskState { /* ... */ }
+
+MyTaskState state = taskcontext.getPreviousTaskOutput(&quot;state&quot;, MyTaskState.class);
+MyTaskState newstate;
+if (state != null) {
+	// execute the task in an incremental way
+	newstate = new MyTaskState(/* ... */);
+} else {
+	// no previous run, do a clean execution of the task
+	newstate = new MyTaskState(/* ... */);
+}
+taskcontext.setTaskOutput(&quot;state&quot;, newstate);
+</code></pre>
+<p>Although these functions are named as <code>TaskOutput</code>, any values that you set will not be externally visible to other tasks. You can also retrieve the object returned from the previous <code>Task.run(TaskContext)</code> execution by using <code>TaskContext.getPreviousTaskOutput(Class&lt;T&gt;)</code>.</p>
+<h2 id="clean-execution">Clean execution<a class="doc-heading-anchor" href="#clean-execution"></a></h2>
+<p>When your task is executed for the first time, or in case of some configuration changes, it might need to do a clean execution. This entails that there is no previous state or data available for it to make the execution incremental, and therefore build cleanly.</p>
+<p>In these cases it is important to remove possible stale resources from output directories. Like in the <a href="bestpractices.html#storing-execution-state" title="Storing execution state">above case</a> where no previous state is available, it is necessary to clean the output directories.</p>
+<pre><code class="language-java">SakerDirectory outputdir = /* ... */;
+boolean shouldcleanlybuild = /* is there any reuseable state? */;
+if (shouldcleanlybuild) {
+	outputdir.clear();
+}
+// execute the build ...
+outputdir.synchronize();
+</code></pre>
+<p>In the above scenario we clear the output directory where we would place the resulting files of our task. This is strongly recommended as when some configuration changes occur, there may be leftover files from unrelated operations which should not be part of the results of our task.</p>
+<p>See also: <a href="reproducible.html#delete-stale-outputs" title="Delete stale outputs">Delete stale outputs</a>.</p>
+<h2 id="task-workflow">Task workflow<a class="doc-heading-anchor" href="#task-workflow"></a></h2>
+<p>It is important to keep the <a href="incrementaldeltas.html#incremental-workflow" title="Incremental workflow">recommended workflow</a> of task execution when implementing one. We recommend doing the following to adhere this requirement:</p>
+<ol>
+<li>Parse any parameters of the task (if any).
+<ul>
+<li>This entails that the user provided parameters should be parsed and converted into an internal representation.</li>
+<li>This also means that all the tasks which may be an input for our task is waited for.</li>
+<li>This phase can be important, as in some cases if parameter contents are accessed after the file deltas have been calculated, an implicit dependency may be added for the associated task. Using the <code>@SakerInput</code> annotations may cause unexpected behaviour if the parameters are accessed later.</li>
+</ul>
+</li>
+<li>Examine the state of the task and determine any incremental work to be done.
+<ul>
+<li>If the task is not being run for the first time, it may reuse the state of a previous execution. If it determines to do so, the task should determine what work it should actually do to make the output up to date.</li>
+</ul>
+</li>
+<li>Execute the work that needs to be done.
+<ul>
+<li>Based on the previously parsed configuration and incremental state, execute the work of the task.</li>
+</ul>
+</li>
+</ol>
+<p>A simplified example for the above is the following:</p>
+<pre><code class="language-java">@SakerInput
+public Map&lt;String, String&gt; Inputs;
+
+// convert the input map to our internal representation
+//     all the useful entries are accessed
+Map&lt;String, String&gt; actualinputs = new TreeMap&lt;&gt;(this.Inputs);
+MyTaskState prevstate = taskcontext.getPreviousTaskOutput(&quot;state&quot;, MyTaskState.class);
+if (prevstate != null) {
+	// do incremental build
+	//    e.g. examine the file deltas
+	TaskFileDeltas filedeltas = taskcontext.getFileDeltas();
+	// ...
+} else {
+	// do a clean build for the task
+}
+</code></pre>
+<h2 id="worker-tasks">Worker tasks<a class="doc-heading-anchor" href="#worker-tasks"></a></h2>
+<p>When the build script is modified, or in some other cases your task may get reinvoked even though no real configuration change has happened. The following provides an example:</p>
+<pre><code class="language-sakerscript"><span class="e">example.task(</span><span class="i">Input</span>: <span class="f">123</span><span class="e">)</span>
+</code></pre>
+<p>When modified to:</p>
+<pre><code class="language-sakerscript"><span class="d">$var</span> = <span class="f">123</span>
+<span class="e">example.task(</span><span class="i">Input</span>: <span class="d">$var</span><span class="e">)</span>
+</code></pre>
+<p>The <code>example.task</code> will be reinvoked even though the value of <code>Input</code> parameter haven't semantically changed. This is because the SakerScript implementation will assign different task identifiers to the invoked tasks therefore the two will be different.</p>
+<p>The above scenario can result in too many unnecessary reinvokactions therefore unnecessary work to be done and delaying the build execution.</p>
+<p>In order to avoid this, task implementations are recommended to use worker tasks, which contain the exact configuration in their task factory. A minimal example is the following:</p>
+<p>The front-end task (that gets invoked by the script) is as follows:</p>
+<p>
+<pre><code class="language-java">@SakerInputpublic int Input;
+@Overridepublic Object run(TaskContext taskcontext) throws Exception {	TaskIdentifier taskid = TaskIdentifier			.builder(WorkerTaskFactory.class.getName())			.field(&quot;input&quot;, this.Input).build();	taskcontext.startTask(taskid, 			new WorkerTaskFactory(this.Input), null);	return new SimpleStructuredObjectTaskResult(taskid);}</code></pre>
+</p>
+<p>We create a task identifier for our worker task and start it accordingly through the task context. The <a href="taskresults.html#structured-results" title="Structured results">structured task result</a> is used to return the result of the worker task to anyone who wishes to use it.</p>
+<p>Note that in a real world scenario, the task identifier should be implemented directly by the developer instead of using the simplified identifier, and it should represent a given worker in a non-configuration dependent way.</p>
+<p>The worker task factory is implemented as follows:</p>
+<p>
+<pre><code class="language-java">return new Task&lt;Object&gt;() {	@Override	public Object run(TaskContext taskcontext) throws Exception {		// execute the work of the task based on the configuration ...		//   return some result value of the task		return WorkerTaskFactory.this.input;	}};</code></pre>
+</p>
+<p>For simplicity, we only return the input integer as the result of the task. In a real scenario, the worker task executes its designated work and returns a task result accordingly.</p>
+<p>Additional benefits of the worker task approach is that is can integrate well with <a href="taskcapabilities.html#computation-tokens" title="Computation tokens">computation tokens</a>, <a href="taskcaching.html" title="Task caching">cacheability</a> and <a href="buildclusters.html" title="Build clusters">build clusters</a>.</p>
+<h2 id="overwriting-files">Overwriting files<a class="doc-heading-anchor" href="#overwriting-files"></a></h2>
+<p>Tasks should not overwrite any of their input files. Doing so may incur race conditions when multiple tasks use the same input files and can result in unexpected incremental builds.</p>
+<p>The tasks should take the contents of the input files and put their output files to a predefined location. Unless the user specifies otherwise, this should be the build directory.</p>
+<h2 id="build-directory">Build directory<a class="doc-heading-anchor" href="#build-directory"></a></h2>
+<p>The tasks should put their results in the build directory of the build execution. Implementations should note that the build directory is a shared output location with all the tasks in the build execution. Keeping this in mind, it is recommended that they specify their unique output location somewhere in the build directory.</p>
+<p>As a convention, we recommend that the tasks put their results in the <code>builddir/task.name/identifier</code> directory. Where <code>task.name</code> is the preferably globally unique name of the task and the <code>identifier</code> is some user specified or configuration derived name for the task.</p>
+<p>In the following example we create a file with the contents <code>outdata</code> and add it to the output directory that has the location of <code>builddir/example.task/default/output.txt</code>:</p>
+<p>
+<pre><code class="language-java">SakerFile outputfile = new ByteArraySakerFile(&quot;output.txt&quot;, 		&quot;outdata&quot;.getBytes());// determine the output directorySakerDirectory outputdir = taskcontext.getTaskUtilities()		.resolveDirectoryAtPathCreate(taskcontext.getTaskBuildDirectory(), 				SakerPath.valueOf(&quot;example.task/default&quot;));outputdir.add(outputfile);// synchronize the output fileoutputfile.synchronize();// report the files as a dependencytaskcontext.getTaskUtilities().reportOutputFileDependency(null, outputfile);</code></pre>
+</p>
+<p>An other identifier than <code>default</code> may be chosen based on user parameters or other configuration related information. It's recommended that task developers make sure that only a single task places their files in a given directory.</p>
+<small>
+<p>Also note that the above example should be modified when used with clusters according to the recommendations for <a href="buildclusters.html#output-files" title="Output files">output files</a>.</p>
+</small>
+<link href="../../../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>
+			<div class="end-section-links">
+				<div class="end-section-prev">
+					<a class="doc-prev-section" href="../../../doc/extending/taskdev/reproducible.html" title="Reproducible builds"><svg class="doc-section-arrow" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" />
+</svg>Reproducible builds</a>
+				</div>
+				<div class="end-section-next">
+					<a class="doc-next-section" href="../../../doc/extending/scriptdev/index.html" title="Script language development">Script language development<svg class="doc-section-arrow" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z" />
+</svg></a>
+				</div>
+			</div>
+			<div class="doc-headings-nav">  <ul>    <li><a href="#best-practices" title="Best practices">Best practices</a>      <ul>        <li><a href="#storing-execution-state" title="Storing execution state">Storing execution state</a>        </li>        <li><a href="#clean-execution" title="Clean execution">Clean execution</a>        </li>        <li><a href="#task-workflow" title="Task workflow">Task workflow</a>        </li>        <li><a href="#worker-tasks" title="Worker tasks">Worker tasks</a>        </li>        <li><a href="#overwriting-files" title="Overwriting files">Overwriting files</a>        </li>        <li><a href="#build-directory" title="Build directory">Build directory</a>        </li>      </ul>    </li>  </ul></div>
+		</div>
+	</div>
+</div>
+<div class="doc-footer">
+	<div class="container">
+		<div class="row">
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">About</p>
+				<div><a href="/index.html" title="Saker.build home page">Home</a></div>
+				<div data-footer-location="doc-docs"><a href="../../../index.html" title="saker.build documentation index">Documentation index</a></div>
+				<div><a href="../../../../saker.build/index.html" title="Information about the saker.build system">saker.build system</a></div>
+				<div><a href="../../../../saker.nest/index.html" title="Information about the saker.nest repository">saker.nest repository</a></div>
+				<div><a href="/contact.html" title="Contact us">Contact</a></div>
+			</div>
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">Resources</p>
+				<div data-footer-location="doc-docs"><a href="../../../doc/index.html" title="saker.build documentation index">Documentation</a></div>
+				<div data-footer-location="doc-javadoc"><a href="../../../javadoc/index.html" title="JavaDoc for saker.build">JavaDoc</a></div>
+				<div data-footer-location="doc-taskdoc"><a href="../../../taskdoc/index.html"  title="Documentation of build tasks in saker.build">TaskDoc</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.nest package page</a></div>
+				<div><a href="https://github.com/sakerbuild/saker.build" title="saker.build on GitHub">GitHub</a></div>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col">
+			&copy; Bence Sipka 2020
+			</div>
+		</div>
+	</div>
+</div>
+
+<link rel="stylesheet" href="../../../../res/hljs.css"><script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js" integrity="sha256-js+I1fdbke/DJrW2qXQlrw7VUEqmdeFeOW37UC0bEiU=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.13.1/build/languages/java.min.js"></script>
+<script>
+if(window.hasOwnProperty("hljs")){
+	hljs.configure({
+	  languages: []
+	});
+	hljs.initHighlightingOnLoad();
+}
+</script>
+
+</body>
+</html>

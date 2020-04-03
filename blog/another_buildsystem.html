@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Do we need another build system?&nbsp;|&nbsp;saker.build blog</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+	
+	<link rel="stylesheet" href="../res/bootstrap.min.css" >
+	<link rel="stylesheet" href="../res/doc-saker.css" >
+	
+</head>
+<body data-nav-location="blog">
+<div class="doc-nav-bar">
+	<div class="container">
+		<a class="home-link" href="/index.html" title="saker.build"><img style="height: 2.5em;" class="logo" src="/res/logo.svg"/><span class="page-name">saker.build</span></a>
+		<div class="nav-bar-controls">
+			<a class="nav-bar-special" href="/saker.build/doc/installation.html" title="saker.build installation">Download</a>
+			<label class="d-lg-none nav-bar-collapse" for="collapse-nav-bar-label">
+				<svg style="height: 1.5em;" viewBox="0 0 24 24">
+				    <path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+				</svg>
+			</label>
+			<input style="display:none;" id="collapse-nav-bar-label" type="checkbox"/>
+			<div class="nav-bar-items">
+				<a href="/saker.build/doc/index.html" title="saker.build documentation">Documentation</a>
+				<a href="/buildtrace.html" title="Build trace viewer">Build trace</a>
+				<a style="display:none;" href="/sponsor.html" title="Sponsoring development">Sponsor</a>
+				<a href="/blog/" title="saker.build system blog">Blog</a>
+				<a class="no-external-icon" href="https://github.com/sakerbuild/saker.build" title="saker.build GitHub repository">GitHub</a>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container page-contents packagedoc">
+	<div class="row">
+		<div class="col-12 col-lg-3 col-xl-2 p-lg-0">
+			<div class="doc-navigation-container">
+				<label class="d-lg-none nav-collapse" for="doc-collapse-nav-label">
+					<svg style="height: 1.5em;" viewBox="0 0 24 24">
+					    <path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+					</svg>
+					Navigation
+				</label>
+				<input style="display:none;" id="doc-collapse-nav-label" type="checkbox"/> 
+				<div class="doc-nav">  <div class="doc-section"><ul><li><a class="doc-nav-section-link" href="index.html" title="Welcome">Welcome</a></li><li><a class="doc-nav-section-link" href="archive.html" title="Blog archive">Blog archive</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Releases</p><ul><li><a class="doc-nav-section-link" href="release_0.8.0.html" title="Release 0.8.0 (initial)">Release 0.8.0 (initial)</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Blog posts</p><ul><li><a class="doc-nav-section-link" href="javac_source_target_parameters/index.html" title="Beware of the -source and -target javac parameters">Beware of the -source and -target javac parameters</a></li><li><a class="doc-nav-section-link" href="intro_build_trace/index.html" title="Introducing the build trace for saker.build">Introducing the build trace for saker.build</a></li><li><a class="doc-nav-section-link" href="do_i_need_a_build_system.html" title=""Do I need a build system?"">"Do I need a build system?"</a></li><li><a class="doc-nav-section-link" href="github_packages_maven/index.html" title="Using the GitHub packages Maven repository">Using the GitHub packages Maven repository</a></li><li><a class="doc-nav-section-link" href="odd_initial_release_number.html" title="0.8.0 seems like an odd initial release number">0.8.0 seems like an odd initial release number</a></li><li class="doc-active doc-active-parent"><a class="doc-nav-section-link" href="another_buildsystem.html" title="Do we need another build system?">Do we need another build system?</a></li></ul>  </div></div>
+			</div>
+		</div>
+		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="sb-sponsors" style="display: none;">
+	<span class="sb-sponsors-title">Sponsors</span>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4 col-12">
+				<a class="sb-sponsors-link"></a>
+			</div>
+			<div class="col-md-4 col-12">
+				<a class="sb-sponsors-link"></a>
+			</div>
+			<div class="col-md-4 col-12">
+				<a class="sb-sponsors-link"></a>
+			</div>
+		</div>
+	</div>
+</div>
+			<div class="doc-content"><h1 id="do-we-need-another-build-system_">Do we need another build system?<a class="doc-heading-anchor" href="#do-we-need-another-build-system_"></a></h1>
+<p><small>2020 January 6</small></p>
+<p>Let us begin with the infamous xkcd: Standards.</p>
+<p><img src="res/xkcd_standards.png" alt="Standards" title="Fortunately, the charging one has been solved now that we've all standardized on mini-USB. Or is it micro-USB? Shit." /></p>
+<small style="text-align: center;">
+<p>From <a href="https://xkcd.com/927/" title="xkcd: Standards">xkcd: Standards</a>.</p>
+</small>
+<p>Basically <em>every</em> discussion on the internet about builds system reference the above xkcd sooner or later. Build systems are very often a heated or controversial topic, sometimes even more than build languages. Everyone has their preferences and opinions about build systems.</p>
+<p>So the question is straight forward, <em>&quot;Why, oh why do we need another build system?&quot;</em>.</p>
+<p>The answer is however, not. If you've clicked on this article looking for the answer, we're sorry for tricking you. We're going to look at how saker.build became to exist, and how it provides something else and what differentiates it from other build systems.</p>
+<h3 id="history">History<a class="doc-heading-anchor" href="#history"></a></h3>
+<p>We've made a build system by accident. Okay, but let's not jump so forward.</p>
+<p>In the beginning, we didn't want a build system. We wanted to execute a simple thing part of our build process. We had an Android hobby project back when it was still using Eclipse as its IDE. We needed a simple program that parsed some XML and spew out some C++ code for the project. Doing this was plain and simple. Implemented it in Java, and added it as an external build step for the project.</p>
+<p>As time went on, we added more and more functionality to this build step, and the Java program grew quite a bit. The offline processing of the resources was much easier than doing it when the app was running. (We were using the Android NDK for the project, and resource processing in Java is easier than in C++.)</p>
+<p>Later on, extending the build step became more and more tedious as the added features to it became interlaced and hard to maintain. So naturally we've modified it to load the different parts dynamically, have the components loosely coupled, and put an execution engine behind it.</p>
+<p>You can probably see where this is headin. After a few more iterations of the above, we've ended up with a little program that could perform the build by on its own. It was able to build the app for multiple platforms with multiple languages. (The Android app ended up to be a cross-platform app with C++.)</p>
+<p>Between then and now, the program got rewritten a few times, and this is how we ended up with saker.build. However, we feel like there is still a question in the back of your mind.</p>
+<p><strong>Why haven't we switched to using a build system?</strong></p>
+<p>The first and most important reason is that we had no incentive to. The project was a hobby project, and we had <em>fun</em> building it in any way. Build-time resource processing is awesome, and we strongly encourage everyone to perform the operations they can during builds instead of runtime.</p>
+<p>Secondly, we were deep in <a href="https://en.wikipedia.org/wiki/Technical_debt" title="Technical debt - Wikipedia">tech dept</a>. Pulling in a new build system for the project and integrating the external build step into it didn't seem like a feasible thing to do. We had it working, and it worked the way we liked it. Throwing this state away for something that <em>may</em> work didn't make much sense.</p>
+<p>Thirdly, we haven't found a build system that supported the platforms we've targeted. The associated Android project ended up to be a multi-platform C++ based project that supported Android, iOS, macOS, UWP, Win32, and Linux. We've wanted a single tool to build our project and we've had/made it.</p>
+<h3 id="technicalities">Technicalities<a class="doc-heading-anchor" href="#technicalities"></a></h3>
+<p>In the last paragraph of the previous section we've arrived what was the core requirement for the build system that we wanted to use and ended up with. <em>To be a single tool that manages the build process.</em></p>
+<p>Well, all build systems do that don't they? No. There are lot of build systems that require integration with other tools, like <a href="https://en.wikipedia.org/wiki/List_of_build_automation_software#Meta-build" title="List of build automation software - Wikipedia">meta-build systems</a> and <a href="https://en.wikipedia.org/wiki/List_of_build_automation_software#Build_script_generation" title="List of build automation software - Wikipedia">build script generators</a>. Some build systems doesn't support modern features like build clusters and build cache. But even if they do, they may usually require you to download and use additional programs alongside your build system.</p>
+<h2 id="conclusion">Conclusion<a class="doc-heading-anchor" href="#conclusion"></a></h2>
+<p>We've seen that there's no (or we haven't found one yet) build system available for developers that provide built-in support for all modern build features. This include incremental builds, scalability, extensibility, build caching, build clusters, and others. Saker.build aims to work as an all-in-one build system that doesn't need other tools to be downloaded in order to provide all the mentioned features.</p>
+<p>While the above doesn't answer why we need <em>another</em> build system, we hope it answers why saker.build has a reason to exist.</p>
+</div>
+			<div class="doc-headings-nav">  <ul>    <li><a href="#do-we-need-another-build-system_" title="Do we need another build system?">Do we need another build system?</a>      <ul>        <li><a href="#history" title="History">History</a>        </li>        <li><a href="#technicalities" title="Technicalities">Technicalities</a>        </li>        <li><a href="#conclusion" title="Conclusion">Conclusion</a>        </li>      </ul>    </li>  </ul></div>
+		</div>
+	</div>
+</div>
+<div class="doc-footer">
+	<div class="container">
+		<div class="row">
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">About</p>
+				<div><a href="/" title="Saker.build home page">Home</a></div>
+				<div><a href="/saker.build/doc/roadmap.html" title="Saker.build development roadmap">Roadmap</a></div>
+				<div style="display:none;"><a href="/sponsor.html" title="Sponsoring development">Sponsor</a></div>
+				<div><a href="/saker.build/doc/contribute.html" title="Contributing to the saker.build system development">Contribute</a></div>
+				<div><a href="/contact.html" title="Contact us">Contact</a></div>
+			</div>
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">Resources</p>
+				<div><a href="/saker.build/doc/index.html" title="saker.build documentation">Documentation</a></div>
+				<div><a href="/saker.build/javadoc/index.html" title="Saker.build API JavaDoc">JavaDoc</a></div>
+				<div><a href="https://github.com/sakerbuild/saker.build" title="saker.build on GitHub">GitHub</a></div>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col">
+			&copy; Bence Sipka 2020
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script>
+if(window.hasOwnProperty("hljs")){
+	hljs.configure({
+	  languages: []
+	});
+	hljs.initHighlightingOnLoad();
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Introducing the build trace for saker.build&nbsp;|&nbsp;saker.build blog</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+	
+	<link rel="stylesheet" href="../../res/bootstrap.min.css" >
+	<link rel="stylesheet" href="../../res/doc-saker.css" >
+	
+</head>
+<body data-nav-location="blog">
+<div class="doc-nav-bar">
+	<div class="container">
+		<a class="home-link" href="/index.html" title="saker.build"><img style="height: 2.5em;" class="logo" src="/res/logo.svg"/><span class="page-name">saker.build</span></a>
+		<div class="nav-bar-controls">
+			<a class="nav-bar-special" href="/saker.build/doc/installation.html" title="saker.build installation">Download</a>
+			<label class="d-lg-none nav-bar-collapse" for="collapse-nav-bar-label">
+				<svg style="height: 1.5em;" viewBox="0 0 24 24">
+				    <path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+				</svg>
+			</label>
+			<input style="display:none;" id="collapse-nav-bar-label" type="checkbox"/>
+			<div class="nav-bar-items">
+				<a href="/saker.build/doc/index.html" title="saker.build documentation">Documentation</a>
+				<a href="/buildtrace.html" title="Build trace viewer">Build trace</a>
+				<a style="display:none;" href="/sponsor.html" title="Sponsoring development">Sponsor</a>
+				<a href="/blog/" title="saker.build system blog">Blog</a>
+				<a class="no-external-icon" href="https://github.com/sakerbuild/saker.build" title="saker.build GitHub repository">GitHub</a>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container page-contents packagedoc">
+	<div class="row">
+		<div class="col-12 col-lg-3 col-xl-2 p-lg-0">
+			<div class="doc-navigation-container">
+				<label class="d-lg-none nav-collapse" for="doc-collapse-nav-label">
+					<svg style="height: 1.5em;" viewBox="0 0 24 24">
+					    <path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+					</svg>
+					Navigation
+				</label>
+				<input style="display:none;" id="doc-collapse-nav-label" type="checkbox"/> 
+				<div class="doc-nav">  <div class="doc-section"><ul><li><a class="doc-nav-section-link" href="../index.html" title="Welcome">Welcome</a></li><li><a class="doc-nav-section-link" href="../archive.html" title="Blog archive">Blog archive</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Releases</p><ul><li><a class="doc-nav-section-link" href="../release_0.8.0.html" title="Release 0.8.0 (initial)">Release 0.8.0 (initial)</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Blog posts</p><ul><li><a class="doc-nav-section-link" href="../javac_source_target_parameters/index.html" title="Beware of the -source and -target javac parameters">Beware of the -source and -target javac parameters</a></li><li class="doc-active doc-active-parent"><a class="doc-nav-section-link" href="index.html" title="Introducing the build trace for saker.build">Introducing the build trace for saker.build</a></li><li><a class="doc-nav-section-link" href="../do_i_need_a_build_system.html" title=""Do I need a build system?"">"Do I need a build system?"</a></li><li><a class="doc-nav-section-link" href="../github_packages_maven/index.html" title="Using the GitHub packages Maven repository">Using the GitHub packages Maven repository</a></li><li><a class="doc-nav-section-link" href="../odd_initial_release_number.html" title="0.8.0 seems like an odd initial release number">0.8.0 seems like an odd initial release number</a></li><li><a class="doc-nav-section-link" href="../another_buildsystem.html" title="Do we need another build system?">Do we need another build system?</a></li></ul>  </div></div>
+			</div>
+		</div>
+		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="sb-sponsors" style="display: none;">
+	<span class="sb-sponsors-title">Sponsors</span>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4 col-12">
+				<a class="sb-sponsors-link"></a>
+			</div>
+			<div class="col-md-4 col-12">
+				<a class="sb-sponsors-link"></a>
+			</div>
+			<div class="col-md-4 col-12">
+				<a class="sb-sponsors-link"></a>
+			</div>
+		</div>
+	</div>
+</div>
+			<div class="doc-content"><h1 id="introducing-the-build-trace-for-saker_build">Introducing the build trace for saker.build<a class="doc-heading-anchor" href="#introducing-the-build-trace-for-saker_build"></a></h1>
+<p><small>2020 February 20</small></p>
+<p>Build failures and performance bottlenecks can be hard to debug. You most likely don't want to spend your work time deciphering build logs or error stacktraces to overcome these issues. This is where the new build trace feature for saker.build comes in.</p>
+<p>A build trace is a recording of your build execution with the most relevant information collected in it. It records the build configuration, task executions, exceptions, build output, script contents, output artifacts and other information and can be displayed for you to examine possible issues.</p>
+<p>Let's see how it works.</p>
+<h4 id="create-and-view-a-build-trace">Create and view a build trace<a class="doc-heading-anchor" href="#create-and-view-a-build-trace"></a></h4>
+<p><small>If you're not already using saker.build see the <a href="../../saker.build/doc/installation.html" title="Installation">Installation</a> guide.</small></p>
+<p>Generating a build trace is as easy as adding a command line argument to your build:</p>
+<pre><code class="language-plaintext code-wrap">java -jar saker.build.jar -trace pwd://build/build.trace [...]
+</code></pre>
+<p>The <a href="../../saker.build/doc/guide/cmdlineref/build.html#-trace" title="-trace"><code>-trace</code></a> option specifies that a build trace should be generated at the specified path.</p>
+<p><small>In the above example we generate it in the <code>[working-directory]/build/build.trace</code> file. You can also create a build trace by changing your IDE project configuration.</small></p>
+<p>After your build has run, you can view it by opening it on the <a href="/buildtrace.html" title="Build trace | saker.build">saker.build/buildtrace</a> page. <strong>Your build trace file is not uploaded, and purely opened in your browser only.</strong></p>
+<p>You can view <a href="/buildtrace.html?url=%2Fres%2Ftrace_example_saker.build.trace">this example build trace</a> if you'd like to follow along.</p>
+<h3 id="build-summary">Build summary<a class="doc-heading-anchor" href="#build-summary"></a></h3>
+<p>The first page that greets you when opening a build trace is the summary of the result and build configuration.</p>
+<p><a href="trace_summary.png"><img src="trace_summary.png" alt="Build summary" /></a></p>
+<small style="text-align: center;">
+<p>Build result and execution time summary</p>
+</small>
+<p>The most crucial information of your build is its result and performance right at the start. If you look further, you can view the actual build configuration that was used. (Open <a href="/buildtrace.html?url=%2Fres%2Ftrace_example_saker.build.trace">the example build trace</a> to view for yourself.)</p>
+<p>Let's move on to my favorite page, the timeline.</p>
+<h3 id="timeline">Timeline<a class="doc-heading-anchor" href="#timeline"></a></h3>
+<p>The timeline page is where you can see the task executions on an interactive chart. You can easily determine which tasks took how much time during build execution and also view their individual configurations.</p>
+<p><a href="trace_timeline_build.gif"><img src="trace_timeline_build.gif" alt="Build timeline" /></a></p>
+<small style="text-align: center;">
+<p>Build timeline</p>
+</small>
+<p>We can immediately see that the <em>java.test</em> task took the most time during the build, which is not surprising as testing often takes longer than compilation. Rest of the build consisted of Java compilations. It is also apparent that the build automatically parallelized itself to 3 concurrent tasks as the same time.</p>
+<p>You can view the details of each task by clicking on a task in the timeline, or finding them in the below table by yourself:</p>
+<p><a href="trace_task_details.png"><img src="trace_task_details.png" alt="Task details" /></a></p>
+<small style="text-align: center;">
+<p>Task details</p>
+</small>
+<h5 id="build-clusters">Build clusters<a class="doc-heading-anchor" href="#build-clusters"></a></h5>
+<p>You may've noticed the <em>My computer</em> section on the above timeline. It signals that a given task was executed on that build machine. It becomes of significance when you use build clusters for your build.</p>
+<p><a href="trace_timeline_inner_tasks_cluster.png"><img src="trace_timeline_inner_tasks_cluster.png" alt="Build cluster timeline" /></a></p>
+<small style="text-align: center;">
+<p>Build cluster timeline</p>
+</small>
+<p>The above timeline was taken from <a href="/buildtrace.html?url=%2Fres%2Ftrace_example_msvc_clusters.trace">the C++ example build trace</a>. You can see that while most of the compilations were done on <em>My computer</em> which is the main PC we perform our build on, some of the compilations were delegated to the <em>laptop</em> build cluster.</p>
+<p>You can easily identify how much performance improvement can the addition of a build cluster give, and how much it was utilized during the build.</p>
+<p><small>You can view this timeline by opening the <em>Inner tasks</em> option of the <em>saker.msvc.ccompile:default/x64</em> task in the mentioned build trace.</small></p>
+<h3 id="additional-information">Additional information<a class="doc-heading-anchor" href="#additional-information"></a></h3>
+<p>The <em>Console output</em> page contains the complete output log of the build. It may be slightly different than the one you see in the build console during execution, as the individual output lines are deinterlaced so you can view the output of each task without interfering with others.</p>
+<p>The <em>Artifacts</em> page allows you to browse the notable build output artifacts that were produced during the execution. You can also retrieve these files from the build trace if you configured the build accordingly. (See <a href="../../saker.build/doc/guide/cmdlineref/build.html#-trace-artifacts-embed" title="-trace-artifacts-embed"><code>-trace-artifacts-embed</code></a> command line option.)</p>
+<p><a href="trace_artifacts.png"><img src="trace_artifacts.png" alt="Output artifacts" /></a></p>
+<small style="text-align: center;">
+<p>Output artifacts</p>
+</small>
+<h2 id="advantages">Advantages<a class="doc-heading-anchor" href="#advantages"></a></h2>
+<p>If you're reached this point of the article and somewhat familiar with Java build systems, you may notice that the build trace feature of saker.build has similar features to the <a href="https://gradle.com/build-scans/" title="Build scans | Gradle Enterprise">Gradle Build Scan</a>.</p>
+<p>The major advantage of build trace for saker.build is that it is offline. You don't need internet connection to create a build trace, and don't need to upload it to a server to be able to view it. You don't need an enterprise subscription neither need to accept any terms and conditions. You can simply share the build trace file with others to collaborate or publish it to some public or private site as the build trace viewer can also open URLs.</p>
+<h2 id="bonus-azure-pipelines-support">Bonus Azure Pipelines support<a class="doc-heading-anchor" href="#bonus-azure-pipelines-support"></a></h2>
+<p>For building saker.build and related projects, we use Azure Pipelines as the CI server. In case of build failures, we want to examine the causes of it, and the build trace is one of the best practices for this rather than dealing with the logs directly on the Azure Pipelines website.</p>
+<p>So in order to do this, we need to configure the CI builds as follows:</p>
+<ol>
+<li>Create a build trace during builds.
+<ul>
+<li>Quite simple by using the <a href="../../saker.build/doc/guide/cmdlineref/build.html#-trace" title="-trace"><code>-trace</code></a> command line option.</li>
+</ul>
+</li>
+<li>Retrieve the build trace artifacts and open them in the build trace viewer.
+<ul>
+<li>This is a bit trickier.</li>
+</ul>
+</li>
+</ol>
+<p>First, we need to configure the CI builds to publish the build trace artifacts. We can do that by using the <a href="https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/utility/publish-build-artifacts?view=azure-devops" title="Publish Build Artifacts task - Azure Pipelines | Microsoft Docs"><code>PublishBuildArtifacts@1</code></a> Azure Pipelines task.</p>
+<p>The setup in YAML:</p>
+<pre><code class="language-plaintext">- script: java -jar saker.build.jar -bd build -trace pwd://build/build.trace -trace-artifacts-embed export
+  displayName: 'Export'
+- task: PublishBuildArtifacts@1
+  condition: always()
+  displayName: 'Publish build trace'
+  inputs:
+    pathtoPublish: build/build.trace
+    artifactName: trace
+</code></pre>
+<p>The above specifies two tasks. The first one builds our project, and creates the build trace as the <code>build/build.trace</code> file. The second task publishes the created build trace as a build artifact, and you will be able to manually download it.</p>
+<p><a href="azure_dashboard.png"><img src="azure_dashboard.png" alt="Azure Pipelines dashboard" /></a></p>
+<small style="text-align: center;">
+<p>Azure Pipelines dashboard (See bottom right corner)</p>
+</small>
+<p>If you click on the <em>1 published</em> link, you can download the published artifacts for the build, which includes the created build trace. You can then unzip and open the downloaded file in the build trace viewer.</p>
+<p><small>Note: Don't forget to add the <code>condition: always()</code> line to the publishing task so your build trace is published even if the build fails!</small></p>
+<h3 id="one-more-thing___">One more thing...<a class="doc-heading-anchor" href="#one-more-thing___"></a></h3>
+<p>Downloading and opening the build trace file feels like too much hassle. And it is. That's why we implemented support for automatically querying and opening the build artifacts as build trace files.</p>
+<p>Simply drag the <em>1 published</em> link from the Azure dashboard to the build trace viewer. If you have published multiple build traces for the build, don't worry, the viewer will ask you which one to open.</p>
+<p><a href="azure_open_artifact.gif"><img src="azure_open_artifact.gif" alt="Open CI artifact as build trace" /></a></p>
+<small style="text-align: center;">
+<p>Open CI artifact as build trace by dragging and dropping</p>
+</small>
+<p>You can also drag &amp; drop other Azure build links which contain the organization, project name, and the <code>buildId</code> parameter.</p>
+<h2 id="further-improvements">Further improvements<a class="doc-heading-anchor" href="#further-improvements"></a></h2>
+<p>There are still a few things that we wish for the build trace to contain. Various dependency information, additional information about the tasks, the task dependencies and their relations, more information about remote execution, and others. We consider the current implementation as a <em>good start</em> for implementing great build trace support for the saker.build system.</p>
+<p>We'll be continuously improving the build trace UI and recording as time goes on, however, you can still try it out as it was released in the 0.8.6 version of the saker.build system just a week ago.</p>
+<p>If you want to report an issue, or just want to find us on GitHub, see more at <a href="https://github.com/sakerbuild/saker.build" title="GitHub - sakerbuild/saker.build: A modern build system focusing on fast and incremental builds for all project sizes">sakerbuild/saker.build</a>.</p>
+<link href="../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>
+			<div class="doc-headings-nav">  <ul>    <li><a href="#introducing-the-build-trace-for-saker_build" title="Introducing the build trace for saker.build">Introducing the build trace for saker.build</a>      <ul>        <li><a href="#create-and-view-a-build-trace" title="Create and view a build trace">Create and view a build trace</a>        </li>        <li><a href="#build-summary" title="Build summary">Build summary</a>        </li>        <li><a href="#timeline" title="Timeline">Timeline</a>          <ul>            <li><a href="#build-clusters" title="Build clusters">Build clusters</a>            </li>          </ul>        </li>        <li><a href="#additional-information" title="Additional information">Additional information</a>        </li>        <li><a href="#advantages" title="Advantages">Advantages</a>        </li>        <li><a href="#bonus-azure-pipelines-support" title="Bonus Azure Pipelines support">Bonus Azure Pipelines support</a>          <ul>            <li><a href="#one-more-thing___" title="One more thing...">One more thing...</a>            </li>          </ul>        </li>        <li><a href="#further-improvements" title="Further improvements">Further improvements</a>        </li>      </ul>    </li>  </ul></div>
+		</div>
+	</div>
+</div>
+<div class="doc-footer">
+	<div class="container">
+		<div class="row">
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">About</p>
+				<div><a href="/" title="Saker.build home page">Home</a></div>
+				<div><a href="/saker.build/doc/roadmap.html" title="Saker.build development roadmap">Roadmap</a></div>
+				<div style="display:none;"><a href="/sponsor.html" title="Sponsoring development">Sponsor</a></div>
+				<div><a href="/saker.build/doc/contribute.html" title="Contributing to the saker.build system development">Contribute</a></div>
+				<div><a href="/contact.html" title="Contact us">Contact</a></div>
+			</div>
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">Resources</p>
+				<div><a href="/saker.build/doc/index.html" title="saker.build documentation">Documentation</a></div>
+				<div><a href="/saker.build/javadoc/index.html" title="Saker.build API JavaDoc">JavaDoc</a></div>
+				<div><a href="https://github.com/sakerbuild/saker.build" title="saker.build on GitHub">GitHub</a></div>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col">
+			&copy; Bence Sipka 2020
+			</div>
+		</div>
+	</div>
+</div>
+
+<link rel="stylesheet" href="../../res/hljs.css"><script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js" integrity="sha256-js+I1fdbke/DJrW2qXQlrw7VUEqmdeFeOW37UC0bEiU=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.13.1/build/languages/plaintext.min.js"></script>
+<script>
+if(window.hasOwnProperty("hljs")){
+	hljs.configure({
+	  languages: []
+	});
+	hljs.initHighlightingOnLoad();
+}
+</script>
+
+</body>
+</html>

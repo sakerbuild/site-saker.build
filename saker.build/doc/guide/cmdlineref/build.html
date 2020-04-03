@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>build&nbsp;|&nbsp;saker.build</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+	
+	<link rel="stylesheet" href="../../../../res/bootstrap.min.css" >
+	<link rel="stylesheet" href="../../../../res/doc-saker.css" >
+</head>
+<body data-nav-location="packagedoc" data-subdoc-presence="nest-package packagedoc javadoc">
+<div class="doc-nav-bar">
+	<div class="container">
+		<a class="home-link" href="../../../index.html" title="saker.build"><img style="height: 2.5em;" class="logo" src="../../../../res/logo.svg"/><span class="page-name">saker.build</span></a>
+		<a class="nav-location-item" data-nav-location="doc-docs" href="../../../doc/index.html" title="Documentation">Documentation</a>
+		<a class="nav-location-item" data-nav-location="doc-taskdoc" href="../../../taskdoc/index.html" title="Build task documentation">TaskDoc</a>
+		<a class="nav-location-item" data-nav-location="doc-javadoc" href="../../../javadoc/index.html"title="Java API documentation">JavaDoc</a>
+		<div class="nav-bar-controls">
+			<label class="d-xl-none nav-bar-collapse" for="collapse-nav-bar-label">
+				<svg style="height: 1.5em;" viewBox="0 0 24 24">
+				    <path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+				</svg>
+			</label>
+			<input style="display:none;" id="collapse-nav-bar-label" type="checkbox"/>
+			<div class="nav-bar-items">
+				<a href="/" title="saker.build home page">Home</a>
+				<a href="/buildtrace.html" title="Build trace viewer">Build trace</a>
+				<a style="display:none;" href="/sponsor.html" title="Sponsoring development">Sponsor</a>
+				<a href="/blog/" title="saker.build system blog">Blog</a>
+				<a class="no-external-icon" href="https://github.com/sakerbuild/saker.build" title="saker.build GitHub repository">GitHub</a>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container page-contents packagedoc">
+	<div class="row">
+		<div class="col-12 col-lg-3 col-xl-2 p-lg-0">
+			<div class="doc-navigation-container">
+				<label class="d-lg-none nav-collapse" for="doc-collapse-nav-label">
+					<svg style="height: 1.5em;" viewBox="0 0 24 24">
+					    <path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+					</svg>
+					Navigation
+				</label>
+				<input style="display:none;" id="doc-collapse-nav-label" type="checkbox"/> 
+				<div class="doc-nav">  <div class="doc-section"><ul><li><a class="doc-nav-section-link" href="../../../index.html" title="Index">Index</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Introduction</p><ul><li><a class="doc-nav-section-link" href="../../index.html" title="Overview">Overview</a></li><li><label class="doc-nav-collapse" for="_doc_collapse_id_0"><a class="doc-nav-section-link" href="../../installation.html" title="Installation">Installation</a></label><input style="display:none;" id="_doc_collapse_id_0" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_0"></label><ul><li><a class="doc-nav-section-link" href="../../eclipseplugin.html" title="Eclipse plugin">Eclipse plugin</a></li><li><a class="doc-nav-section-link" href="../../releasearchive.html" title="Release archive">Release archive</a></li></ul></li><li><a class="doc-nav-section-link" href="../../perfcomparison.html" title="Performance comparisons">Performance comparisons</a></li><li><a class="doc-nav-section-link" href="../../roadmap.html" title="Roadmap">Roadmap</a></li><li><label class="doc-nav-collapse" for="_doc_collapse_id_1"><a class="doc-nav-section-link" href="../../contribute.html" title="Contribute">Contribute</a></label><input style="display:none;" id="_doc_collapse_id_1" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_1"></label><ul><li><a class="doc-nav-section-link" href="../../buildstatus.html" title="Build status">Build status</a></li></ul></li></ul>  </div>  <div class="doc-section">    <p class="section-title">User guide</p><ul><li><label class="doc-nav-collapse" for="_doc_collapse_id_2"><a class="doc-nav-section-link" href="../index.html" title="Introduction">Introduction</a></label><input style="display:none;" id="_doc_collapse_id_2" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_2"></label><ul><li><a class="doc-nav-section-link" href="../helloworld.html" title="Hello world">Hello world</a></li><li><a class="doc-nav-section-link" href="../buildtargets.html" title="Build targets">Build targets</a></li><li><a class="doc-nav-section-link" href="../datastructures.html" title="Data structures">Data structures</a></li><li><a class="doc-nav-section-link" href="../foreach.html" title="Foreach loop">Foreach loop</a></li><li><a class="doc-nav-section-link" href="../controlflow.html" title="Control flow">Control flow</a></li></ul></li><li><a class="doc-nav-section-link" href="../incremental.html" title="Incremental builds">Incremental builds</a></li><li><a class="doc-nav-section-link" href="../runtime.html" title="Build system runtime">Build system runtime</a></li><li><a class="doc-nav-section-link" href="../envconfig.html" title="Environment configuration">Environment configuration</a></li><li><a class="doc-nav-section-link" href="../execparams.html" title="Execution parameters">Execution parameters</a></li><li><a class="doc-nav-section-link" href="../pathconfiguration.html" title="Path configuration">Path configuration</a></li><li><a class="doc-nav-section-link" href="../repositories.html" title="Task repositories">Task repositories</a></li><li><a class="doc-nav-section-link" href="../scriptlanguages.html" title="Script languages">Script languages</a></li><li><a class="doc-nav-section-link" href="../daemon.html" title="Build daemon">Build daemon</a></li><li><a class="doc-nav-section-link" href="../filechangetracking.html" title="File change tracking">File change tracking</a></li><li><a class="doc-nav-section-link" href="../remotebuild.html" title="Remote build execution">Remote build execution</a></li><li><a class="doc-nav-section-link" href="../buildclusters.html" title="Build clusters">Build clusters</a></li><li><a class="doc-nav-section-link" href="../buildcache.html" title="Build cache">Build cache</a></li><li><a class="doc-nav-section-link" href="../buildtrace.html" title="Build trace">Build trace</a></li><li><a class="doc-nav-section-link" href="../reproducible.html" title="Reproducible builds">Reproducible builds</a></li><li><a class="doc-nav-section-link" href="../wildcards.html" title="Wildcard paths">Wildcard paths</a></li><li class=" doc-active-parent"><label class="doc-nav-collapse" for="_doc_collapse_id_3"><a class="doc-nav-section-link" href="index.html" title="Command line reference">Command line reference</a></label><input style="display:none;" id="_doc_collapse_id_3" type="checkbox" checked/><label class="doc-nav-section-arrow" for="_doc_collapse_id_3"></label><ul><li class="doc-active doc-active-parent"><a class="doc-nav-section-link" href="build.html" title="build">build</a></li><li><label class="doc-nav-collapse" for="_doc_collapse_id_4"><a class="doc-nav-section-link" href="daemon.html" title="daemon">daemon</a></label><input style="display:none;" id="_doc_collapse_id_4" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_4"></label><ul><li><a class="doc-nav-section-link" href="daemon_start.html" title="start">start</a></li><li><a class="doc-nav-section-link" href="daemon_stop.html" title="stop">stop</a></li><li><a class="doc-nav-section-link" href="daemon_run.html" title="run">run</a></li><li><a class="doc-nav-section-link" href="daemon_io.html" title="io">io</a></li><li><a class="doc-nav-section-link" href="daemon_info.html" title="info">info</a></li></ul></li><li><a class="doc-nav-section-link" href="action.html" title="action">action</a></li><li><a class="doc-nav-section-link" href="licenses.html" title="licenses">licenses</a></li><li><a class="doc-nav-section-link" href="version.html" title="version">version</a></li></ul></li><li><a class="doc-nav-section-link" href="../scriptstyleguide.html" title="Build script style guide">Build script style guide</a></li><li><a class="doc-nav-section-link" href="../bestpractices.html" title="Best practices">Best practices</a></li><li><a class="doc-nav-section-link" href="../../examplecollection.html" title="Example collection">Example collection</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Scripting language</p><ul><li><a class="doc-nav-section-link" href="../../scripting/index.html" title="Overview">Overview</a></li><li><a class="doc-nav-section-link" href="../../scripting/executionmodel.html" title="Execution model">Execution model</a></li><li><label class="doc-nav-collapse" for="_doc_collapse_id_5"><a class="doc-nav-section-link" href="../../scripting/langref/index.html" title="Language reference">Language reference</a></label><input style="display:none;" id="_doc_collapse_id_5" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_5"></label><ul><li><a class="doc-nav-section-link" href="../../scripting/langref/sourcefile/index.html" title="Source file">Source file</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/expressions/index.html" title="Expressions">Expressions</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/comments/index.html" title="Comments">Comments</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/literals/index.html" title="Literals">Literals</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/variables/index.html" title="Variables">Variables</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/tasks/index.html" title="Task extensions">Task extensions</a></li><li><label class="doc-nav-collapse" for="_doc_collapse_id_6"><a class="doc-nav-section-link" href="../../scripting/langref/operators/index.html" title="Operators">Operators</a></label><input style="display:none;" id="_doc_collapse_id_6" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_6"></label><ul><li><a class="doc-nav-section-link" href="../../scripting/langref/operators/addition/index.html" title="Addition">Addition</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/operators/assignment/index.html" title="Assignment">Assignment</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/operators/bitnegate/index.html" title="Bitwise negate">Bitwise negate</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/operators/bitoperators/index.html" title="Bitwise operators">Bitwise operators</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/operators/bitshiftoperators/index.html" title="Bitwise shift operators">Bitwise shift operators</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/operators/boolnegate/index.html" title="Boolean negate">Boolean negate</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/operators/booloperators/index.html" title="Boolean operators">Boolean operators</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/operators/dereference/index.html" title="Dereference">Dereference</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/operators/equality/index.html" title="Equality comparison">Equality comparison</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/operators/mathoperators/index.html" title="Mathematic operators">Mathematic operators</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/operators/comparison/index.html" title="Numeric comparison">Numeric comparison</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/operators/parentheses/index.html" title="Parentheses">Parentheses</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/operators/subscript/index.html" title="Subscript">Subscript</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/operators/ternary/index.html" title="Ternary">Ternary</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/operators/unaryminus/index.html" title="Unary minus">Unary minus</a></li></ul></li><li><a class="doc-nav-section-link" href="../../scripting/langref/ifelse/index.html" title="If-else statement">If-else statement</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/foreach/index.html" title="Foreach expression">Foreach expression</a></li></ul></li><li><label class="doc-nav-collapse" for="_doc_collapse_id_7"><a class="doc-nav-section-link" href="../../scripting/builtintasks/index.html" title="Built-in tasks">Built-in tasks</a></label><input style="display:none;" id="_doc_collapse_id_7" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_7"></label><ul><li><a class="doc-nav-section-link" href="../../scripting/builtintasks/abort.html" title="abort()">abort()</a></li><li><a class="doc-nav-section-link" href="../../scripting/builtintasks/global.html" title="global()">global()</a></li><li><a class="doc-nav-section-link" href="../../scripting/builtintasks/include.html" title="include()">include()</a></li><li><a class="doc-nav-section-link" href="../../scripting/builtintasks/path.html" title="path()">path()</a></li><li><a class="doc-nav-section-link" href="../../scripting/builtintasks/print.html" title="print()">print()</a></li><li><a class="doc-nav-section-link" href="../../scripting/builtintasks/sequence.html" title="sequence()">sequence()</a></li><li><a class="doc-nav-section-link" href="../../scripting/builtintasks/static.html" title="static()">static()</a></li><li><a class="doc-nav-section-link" href="../../scripting/builtintasks/var.html" title="var()">var()</a></li></ul></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Extending saker.build</p><ul><li><a class="doc-nav-section-link" href="../../extending/index.html" title="Overview">Overview</a></li><li><a class="doc-nav-section-link" href="../../extending/api.html" title="Build system API">Build system API</a></li><li><label class="doc-nav-collapse" for="_doc_collapse_id_8"><a class="doc-nav-section-link" href="../../extending/taskdev/index.html" title="Task development">Task development</a></label><input style="display:none;" id="_doc_collapse_id_8" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_8"></label><ul><li><a class="doc-nav-section-link" href="../../extending/taskdev/helloworld.html" title="Hello world">Hello world</a></li><li><a class="doc-nav-section-link" href="../../extending/taskdev/taskparameters.html" title="Task parameters">Task parameters</a></li><li><a class="doc-nav-section-link" href="../../extending/taskdev/taskresults.html" title="Task results">Task results</a></li><li><label class="doc-nav-collapse" for="_doc_collapse_id_9"><a class="doc-nav-section-link" href="../../extending/taskdev/filehandling.html" title="File handling">File handling</a></label><input style="display:none;" id="_doc_collapse_id_9" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_9"></label><ul><li><a class="doc-nav-section-link" href="../../extending/taskdev/filedependencies.html" title="File dependencies">File dependencies</a></li><li><a class="doc-nav-section-link" href="../../extending/taskdev/fileadditiondependency.html" title="File addition dependency">File addition dependency</a></li><li><a class="doc-nav-section-link" href="../../extending/taskdev/customfiles.html" title="Custom files">Custom files</a></li><li><a class="doc-nav-section-link" href="../../extending/taskdev/filemirroring.html" title="File mirroring">File mirroring</a></li></ul></li><li><a class="doc-nav-section-link" href="../../extending/taskdev/propertydependencies.html" title="Property dependencies">Property dependencies</a></li><li><label class="doc-nav-collapse" for="_doc_collapse_id_10"><a class="doc-nav-section-link" href="../../extending/taskdev/taskmanagement.html" title="Task management">Task management</a></label><input style="display:none;" id="_doc_collapse_id_10" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_10"></label><ul><li><a class="doc-nav-section-link" href="../../extending/taskdev/startingtasks.html" title="Starting tasks">Starting tasks</a></li><li><a class="doc-nav-section-link" href="../../extending/taskdev/retrievingtaskresults.html" title="Retrieving task results">Retrieving task results</a></li></ul></li><li><a class="doc-nav-section-link" href="../../extending/taskdev/incrementaldeltas.html" title="Incremental deltas">Incremental deltas</a></li><li><a class="doc-nav-section-link" href="../../extending/taskdev/taskcapabilities.html" title="Task capabilities">Task capabilities</a></li><li><a class="doc-nav-section-link" href="../../extending/taskdev/parameterparsing.html" title="Parameter parsing">Parameter parsing</a></li><li><a class="doc-nav-section-link" href="../../extending/taskdev/innertasks.html" title="Inner tasks">Inner tasks</a></li><li><a class="doc-nav-section-link" href="../../extending/taskdev/taskworkflow.html" title="Task workflow">Task workflow</a></li><li><a class="doc-nav-section-link" href="../../extending/taskdev/taskcaching.html" title="Task caching">Task caching</a></li><li><a class="doc-nav-section-link" href="../../extending/taskdev/buildclusters.html" title="Build clusters">Build clusters</a></li><li><a class="doc-nav-section-link" href="../../extending/taskdev/standardio.html" title="Standard I/O">Standard I/O</a></li><li><a class="doc-nav-section-link" href="../../extending/taskdev/serialization.html" title="Serialization">Serialization</a></li><li><a class="doc-nav-section-link" href="../../extending/taskdev/ideconfig.html" title="IDE configuration">IDE configuration</a></li><li><a class="doc-nav-section-link" href="../../extending/taskdev/reproducible.html" title="Reproducible builds">Reproducible builds</a></li><li><a class="doc-nav-section-link" href="../../extending/taskdev/bestpractices.html" title="Best practices">Best practices</a></li></ul></li><li><label class="doc-nav-collapse" for="_doc_collapse_id_11"><a class="doc-nav-section-link" href="../../extending/scriptdev/index.html" title="Script language development">Script language development</a></label><input style="display:none;" id="_doc_collapse_id_11" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_11"></label><ul><li><a class="doc-nav-section-link" href="../../extending/scriptdev/structure.html" title="API structure">API structure</a></li><li><a class="doc-nav-section-link" href="../../extending/scriptdev/packaging.html" title="Packaging">Packaging</a></li><li><a class="doc-nav-section-link" href="../../extending/scriptdev/workflow.html" title="Development workflow">Development workflow</a></li></ul></li><li><label class="doc-nav-collapse" for="_doc_collapse_id_12"><a class="doc-nav-section-link" href="../../extending/repositorydev/index.html" title="Repository development">Repository development</a></label><input style="display:none;" id="_doc_collapse_id_12" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_12"></label><ul><li><a class="doc-nav-section-link" href="../../extending/repositorydev/structure.html" title="API structure">API structure</a></li><li><a class="doc-nav-section-link" href="../../extending/repositorydev/packaging.html" title="Packaging">Packaging</a></li></ul></li><li><a class="doc-nav-section-link" href="../../extending/testing/index.html" title="Integration testing">Integration testing</a></li></ul>  </div></div>
+			</div>
+		</div>
+		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="sb-sponsors" style="display: none;">
+	<span class="sb-sponsors-title">Sponsors</span>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4 col-12">
+				<a class="sb-sponsors-link"></a>
+			</div>
+			<div class="col-md-4 col-12">
+				<a class="sb-sponsors-link"></a>
+			</div>
+			<div class="col-md-4 col-12">
+				<a class="sb-sponsors-link"></a>
+			</div>
+		</div>
+	</div>
+</div>
+			<div class="doc-content"><h1 id="build">build<a class="doc-heading-anchor" href="#build"></a></h1>
+<div class="doc-cmdref-cmd-usage">
+<p>build [@command-file] [parameters] target? build-script?</p>
+</div>
+<div class="doc-cmdref-cmd-doc">
+<p>Execute a build with the given parameters.</p>
+<p>A build can be configured to run in this process, use a local daemon,
+or use a remote daemon.
+The build daemon is only used if either the -daemon flag or the -daemon-address
+parameter is defined.</p>
+</div>
+<h5 id="_command-file">@command-file<a class="doc-heading-anchor" href="#_command-file"></a></h5>
+<div class="doc-cmdref-param-aliases">@command-file
+</div>
+<div class="doc-cmdref-param-flags">
+</div>
+<div class="doc-cmdref-param-doc">
+<p>File path prefixed with '@' to directly include arguments from the
+specified file. Each argument is on its separate line. They are
+directly inserted in place of the @command-file argument.
+The argument can appear anywhere on the command line. Escaping
+is not supported for arguments in the command file.
+The file path may be absolute or relative.</p>
+<p>E.g: @path/to/arguments.txt</p>
+</div>
+<h5 id="-working-directory">-working-directory<a class="doc-heading-anchor" href="#-working-directory"></a></h5>
+<div class="doc-cmdref-param-aliases">-working-directory &lt;path&gt;
+-working-dir &lt;path&gt;
+-wd &lt;path&gt;
+</div>
+<div class="doc-cmdref-param-flags">
+</div>
+<div class="doc-cmdref-param-doc">
+<p>Specifies the working directory for the build execution.</p>
+<p>The specified path will be resolved based on the build path configuration.
+This means that absolute paths will be based against
+the root directories for the execution, not against the current file system
+that is executing the process.</p>
+</div>
+<h5 id="-build-directory">-build-directory<a class="doc-heading-anchor" href="#-build-directory"></a></h5>
+<div class="doc-cmdref-param-aliases">-build-directory &lt;path&gt;
+-build-dir &lt;path&gt;
+-bd &lt;path&gt;
+</div>
+<div class="doc-cmdref-param-flags">
+</div>
+<div class="doc-cmdref-param-doc">
+<p>Specifies the build directory for the build execution.</p>
+<p>In general, most of the outputs of the build will be placed in the
+specified build directory.
+The given path can be absolute or relative. Relative paths will be
+resolved against the specified working directory. Absolute paths
+are resolved against the build path configuration. (Similar to
+the working directory.)</p>
+</div>
+<h5 id="-mirror-directory">-mirror-directory<a class="doc-heading-anchor" href="#-mirror-directory"></a></h5>
+<div class="doc-cmdref-param-aliases">-mirror-directory &lt;path&gt;
+-mirror-dir &lt;path&gt;
+-md &lt;path&gt;
+</div>
+<div class="doc-cmdref-param-flags">
+</div>
+<div class="doc-cmdref-param-doc">
+<p>Specifies the mirror directory for the build execution.</p>
+<p>The mirror directory is a path on the local file system, which is used when
+files need to be present on the file system. This can be the case when some tasks
+need to invoke external processes to execute their work.</p>
+<p>If the mirror directory is not specified, the build system will try to use a
+directory under the build directory. If the build directory doesn't reside
+on the local file system, no mirror directory will be used by default.</p>
+<p>The specified path must be absolute and will be resolved against
+the local file system (that is the file system of the build machine).
+(Unlike the working directory.)</p>
+</div>
+<h5 id="-mount">-mount<a class="doc-heading-anchor" href="#-mount"></a></h5>
+<div class="doc-cmdref-param-aliases">-mount &lt;mount-path&gt; &lt;root-name&gt;
+</div>
+<div class="doc-cmdref-param-flags">
+Multi-parameter. 
+</div>
+<div class="doc-cmdref-param-doc">
+<p>Mounts a given directory for the build execution.</p>
+<p>The mounted directory will be added to the build execution, and it will be
+available for the tasks as a root directory for files.</p>
+<p>The arguments for this parameter is in the following format:</p>
+<pre><code>name://absolute/path/to/directory mounted:
+</code></pre>
+<p>In which case the the &quot;/absolute/path/to/directory&quot; on the connection &quot;name&quot;
+will be mounted as the root directory &quot;mounted:&quot;.</p>
+<p>For Windows file system paths the path can be specified as:</p>
+<pre><code>name:/c:/absolute/path
+</code></pre>
+<p>Where &quot;name&quot; is the connection name and &quot;c:&quot; is the drive letter for the
+absolute path.</p>
+<p>The &quot;name:/&quot; part can be omitted, in which case the remaining part will be
+interpreted for the local file system.</p>
+<p>If the name &quot;local&quot; is specified, the remaining absolute path is interpreted
+for the local file system.
+If the name &quot;remote&quot; is specified, the remaining absolute path is interpreted
+for the file system of the daemon (if any) that is running the build.
+If the name &quot;pwd&quot; is specified, the remaining absolute path names are
+interpreted against the process working directory.</p>
+<p>Can be used multiple times to mount multiple directories.</p>
+</div>
+<h5 id="-u">-U<a class="doc-heading-anchor" href="#-u"></a></h5>
+<div class="doc-cmdref-param-aliases">-U&lt;key&gt;=&lt;value&gt;
+</div>
+<div class="doc-cmdref-param-flags">
+Multi-parameter. 
+</div>
+<div class="doc-cmdref-param-doc">
+<p>Species user parameters for the build execution.</p>
+<p>User parameters are arbitrary key-value pairs which can be used to dynamically
+configure different aspects of the build system. This is usually applicable for
+configuring repositories or specific tasks you're executing.</p>
+<p>Can be used multiple times to define multiple entries.</p>
+</div>
+<h5 id="-repository-no-nest">-repository-no-nest<a class="doc-heading-anchor" href="#-repository-no-nest"></a></h5>
+<div class="doc-cmdref-param-aliases">-repository-no-nest
+-repo-no-nest
+</div>
+<div class="doc-cmdref-param-flags">
+</div>
+<div class="doc-cmdref-param-doc">
+<p>Flag to specify that the saker.nest repository shouldn't be
+automatically included for the build.</p>
+<p>The saker.nest repository is the default repository associated with the build
+system. Specify this flag to disable its automatic inclusion.</p>
+</div>
+<h5 id="-repository">-repository<a class="doc-heading-anchor" href="#-repository"></a></h5>
+<div class="doc-cmdref-param-aliases">-repository &lt;classpath&gt;
+-repo &lt;classpath&gt;
+</div>
+<div class="doc-cmdref-param-meta">
+<span class="dod-cmdref-param-meta-name">[repository]</span></div>
+<div class="doc-cmdref-param-flags">
+Multi-parameter. 
+</div>
+<div class="doc-cmdref-param-doc">
+<p>Starts a repository configuration with a given classpath.</p>
+<p>The classpath may be an HTTP URL by starting it with the
+'http://' or 'https://' phrases.
+It can also be a file path in the format specified by -mount.
+The paths are resolved against the path configuration of the build.</p>
+<p>It can also be in the format of 'nest:/version/&lt;version-number&gt;'
+where the &lt;version-number&gt; is the version of the saker.nest repository
+you want to use. The &lt;version-number&gt; can also be 'latest' in which
+case the most recent known saker.nest nest repository release is used.</p>
+<p>Any following -repository parameters will modify this configuration.</p>
+</div>
+<h5 id="-repository-class">-repository-class<a class="doc-heading-anchor" href="#-repository-class"></a></h5>
+<div class="doc-cmdref-param-aliases">-repository-class &lt;class name&gt;
+-repo-class &lt;class name&gt;
+</div>
+<div class="doc-cmdref-param-meta">
+<span class="dod-cmdref-param-meta-name">[repository]</span></div>
+<div class="doc-cmdref-param-flags">
+Multi-parameter. 
+</div>
+<div class="doc-cmdref-param-doc">
+<p>Specifies the name of the repository class for the previously
+started repository configuration.</p>
+<p>The class should be an instance of
+saker.build.runtime.repository.SakerRepositoryFactory.</p>
+<p>If not specified, the service configuration of the classpath will
+be used to load the repository. See the ServiceLoader Java class
+for more information.</p>
+</div>
+<h5 id="-repository-id">-repository-id<a class="doc-heading-anchor" href="#-repository-id"></a></h5>
+<div class="doc-cmdref-param-aliases">-repository-id &lt;string&gt;
+-repo-id &lt;string&gt;
+</div>
+<div class="doc-cmdref-param-meta">
+<span class="dod-cmdref-param-meta-name">[repository]</span></div>
+<div class="doc-cmdref-param-flags">
+Multi-parameter. 
+</div>
+<div class="doc-cmdref-param-doc">
+<p>Specifies the identifier of the repository for the previously
+started repository configuration.</p>
+<p>The repository identifier should be unique for each repository
+and they can be used to differentiate them in appropriate contexts.</p>
+<p>E.g. when invoking tasks, the @repositoryid syntax can be used to
+specify where to look for the task implementation.</p>
+</div>
+<h5 id="-script-files">-script-files<a class="doc-heading-anchor" href="#-script-files"></a></h5>
+<div class="doc-cmdref-param-aliases">-script-files &lt;wildcard&gt;
+</div>
+<div class="doc-cmdref-param-meta">
+<span class="dod-cmdref-param-meta-name">[script]</span></div>
+<div class="doc-cmdref-param-flags">
+Multi-parameter. 
+</div>
+<div class="doc-cmdref-param-doc">
+<p>Starts a script configuration that applies to the files specified
+by the parameter wildcard.</p>
+<p>Script configurations specify how a given build script should be
+parsed when used during the build. If the specified wildcard matches
+the full absolute path of the build script, then it will be used
+to parse the script.</p>
+<p>Scripts configurations allow different languages to be used and enable
+configuring custom options for them.</p>
+<p>Any following -script and -SO parameters will modify this configuration.</p>
+</div>
+<h5 id="-script-classpath">-script-classpath<a class="doc-heading-anchor" href="#-script-classpath"></a></h5>
+<div class="doc-cmdref-param-aliases">-script-classpath &lt;classpath&gt;
+-script-cp &lt;classpath&gt;
+</div>
+<div class="doc-cmdref-param-meta">
+<span class="dod-cmdref-param-meta-name">[script]</span></div>
+<div class="doc-cmdref-param-flags">
+Multi-parameter. 
+</div>
+<div class="doc-cmdref-param-doc">
+<p>Specifies the classpath of the script parser for the
+previously started script configuration.</p>
+<p>The classpath is in the same format as in -repository parameter.</p>
+</div>
+<h5 id="-script-class">-script-class<a class="doc-heading-anchor" href="#-script-class"></a></h5>
+<div class="doc-cmdref-param-aliases">-script-class &lt;class name&gt;
+</div>
+<div class="doc-cmdref-param-meta">
+<span class="dod-cmdref-param-meta-name">[script]</span></div>
+<div class="doc-cmdref-param-flags">
+Multi-parameter. 
+</div>
+<div class="doc-cmdref-param-doc">
+<p>Specifies the class name of the script parser for the
+previously started script configuration.</p>
+<p>The class should be an instance of
+saker.build.scripting.ScriptAccessProvider.</p>
+<p>If not specified, the service configuration of the classpath will
+be used to load the parser. See the ServiceLoader Java class
+for more information.</p>
+</div>
+<h5 id="-so">-SO<a class="doc-heading-anchor" href="#-so"></a></h5>
+<div class="doc-cmdref-param-aliases">-SO&lt;key&gt;=&lt;value&gt;
+</div>
+<div class="doc-cmdref-param-meta">
+<span class="dod-cmdref-param-meta-name">[script]</span></div>
+<div class="doc-cmdref-param-flags">
+Multi-parameter. 
+</div>
+<div class="doc-cmdref-param-doc">
+<p>Specifies a script option for the previously started script configuration.</p>
+<p>Script options are string key-value pairs that are interpreted by the
+script parser in an implementation dependent way.</p>
+<p>See the documentation of the associated scripting language to see
+what kind of options they accept.</p>
+</div>
+<h5 id="-dbconfig-fallback">-dbconfig-fallback<a class="doc-heading-anchor" href="#-dbconfig-fallback"></a></h5>
+<div class="doc-cmdref-param-aliases">-dbconfig-fallback &lt;type&gt;
+</div>
+<div class="doc-cmdref-param-flags">
+</div>
+<div class="doc-cmdref-param-doc">
+<p>Specifies the file content change detection mechanism for the
+build database.</p>
+<p>The specified mechanism will be used to determine if the contents
+of a given file has been changed between build executions. Accepted
+values are the following:
+attr
+The file attributes and size will be used to compare the state
+of the file.
+This is the default value for the build system.
+md5
+The contents of the files will be hashed using MD5, and the
+hash will be compared to the previous state of the file.</p>
+<p>This parameter specifies the mechanism for the files which have not
+been matched by any of the wildcards specified using -dbconfig-path.</p>
+<p>To specify a mechanism for all files, use this parameter, and don't
+specify anything for -dbconfig-path.</p>
+</div>
+<h5 id="-dbconfig-path">-dbconfig-path<a class="doc-heading-anchor" href="#-dbconfig-path"></a></h5>
+<div class="doc-cmdref-param-aliases">-dbconfig-path &lt;connection-name&gt; &lt;wildcard&gt; &lt;type&gt;
+</div>
+<div class="doc-cmdref-param-flags">
+Multi-parameter. 
+</div>
+<div class="doc-cmdref-param-doc">
+<p>Specifies the file content change detection mechanism for the
+build database for the files matched by the given wildcard.</p>
+<p>The &lt;type&gt; argument accepts the same values as -dbconfig-fallback.</p>
+<p>The &lt;wildcard&gt; applies to all files that is accesible through the
+given connection.</p>
+<p>The &lt;connection-name&gt; parameter is interpreted in
+the same way as in name part of -mount parameter paths.</p>
+</div>
+<h5 id="-cluster">-cluster<a class="doc-heading-anchor" href="#-cluster"></a></h5>
+<div class="doc-cmdref-param-aliases">-cluster &lt;connection-name&gt;
+</div>
+<div class="doc-cmdref-param-flags">
+Multi-parameter. 
+</div>
+<div class="doc-cmdref-param-doc">
+<p>Specifies a daemon connection that should be used as a cluster for the build</p>
+<p>This parameter adds connection specified by the given name as cluster to
+the build execution. Clusters can be used to execute a build over multiple
+computers by delegating tasks to it.</p>
+<p>Note, that only those tasks can be delegated to clusters which actually
+support this feature.</p>
+<p>Connections can be specified using the -connect parameter.</p>
+<p>This parameter can be specified multiple times.
+Specifying a connection multiple times as a cluster has no additional
+effects.</p>
+</div>
+<h5 id="-connect">-connect<a class="doc-heading-anchor" href="#-connect"></a></h5>
+<div class="doc-cmdref-param-aliases">-connect &lt;address&gt; &lt;name&gt;
+</div>
+<div class="doc-cmdref-param-flags">
+Multi-parameter. 
+</div>
+<div class="doc-cmdref-param-doc">
+<p>Specifies a connection to a given address and identifies it by the specified name.</p>
+<p>A connection will be established to the build system daemon
+running at the given address. The connection can be used to add
+file systems to the build, run the build itself on that daemon, or others.</p>
+<p>The established connection can be referenced by its name in other parameters.
+The names for the connections must be unique, only one connection
+can be specified for a given name.</p>
+<p>This parameter can be specified multiple times.</p>
+<p>Connection names which represent well known URL protocols or identifiers,
+may be reserved and an exception will be thrown. Such names are:</p>
+<pre><code>local, remote, http, https, file, jar, ftp and others...
+  (The list of names may change incompatibly in the future.)
+</code></pre>
+<p>If you encounter incompatibility, simply choose a different name for your
+connection.</p>
+<p>The default port for the addresses is 3500.</p>
+</div>
+<h5 id="-daemon">-daemon<a class="doc-heading-anchor" href="#-daemon"></a></h5>
+<div class="doc-cmdref-param-aliases">-daemon
+</div>
+<div class="doc-cmdref-param-flags">
+</div>
+<div class="doc-cmdref-param-doc">
+<p>Flag for specifying if a daemon should be used for build execution.</p>
+<p>If this flag is specified, a daemon on the local machine will
+be used for the execution of the build. If the daemon is not
+running, it will be started with the properties specified by
+other -daemon parameters.</p>
+<p>If a daemon is already running, then that will be used if the configuration
+of it is acceptable. If there is a configuration mismatch between
+the expected and actual configurations, an exception will be thrown.</p>
+<p>If -daemon-address is also specified, this flag specifies that
+a daemon process on the local machine can be started if necessary.
+The -daemon parameters will be used when starting the new daemon.</p>
+</div>
+<h5 id="-daemon-address">-daemon-address<a class="doc-heading-anchor" href="#-daemon-address"></a></h5>
+<div class="doc-cmdref-param-aliases">-daemon-address &lt;address&gt;
+</div>
+<div class="doc-cmdref-param-flags">
+</div>
+<div class="doc-cmdref-param-doc">
+<p>Specifies the address of the daemon that should be used for build execution.</p>
+<p>The default port for the address is 3500.</p>
+<p>If this parameter is specified, a local daemon will only be instantiated
+if required and the -daemon flag is specified.</p>
+<p>Specifying a loopback or local address is the same as specifying the
+-daemon flag.</p>
+<p>See -daemon parameter flag.</p>
+</div>
+<h5 id="-daemon-storage-directory">-daemon-storage-directory<a class="doc-heading-anchor" href="#-daemon-storage-directory"></a></h5>
+<div class="doc-cmdref-param-aliases">-daemon-storage-directory &lt;path&gt;
+-daemon-storage-dir &lt;path&gt;
+-daemon-sd &lt;path&gt;
+</div>
+<div class="doc-cmdref-param-flags">
+</div>
+<div class="doc-cmdref-param-doc">
+<p>Specifies the storage directory that the build environment can use
+to store its files and various data.</p>
+<p>Note that only a single daemon can be running in a given storage directory.</p>
+</div>
+<h5 id="-daemon-server">-daemon-server<a class="doc-heading-anchor" href="#-daemon-server"></a></h5>
+<div class="doc-cmdref-param-aliases">-daemon-server
+</div>
+<div class="doc-cmdref-param-flags">
+</div>
+<div class="doc-cmdref-param-doc">
+<p>Flag that specifies whether or not the daemon should act as a server.
+A server daemon can accept incoming connections from any network addresses.
+A non-server daemon can only accept connections from the localhost.</p>
+</div>
+<h5 id="-daemon-port">-daemon-port<a class="doc-heading-anchor" href="#-daemon-port"></a></h5>
+<div class="doc-cmdref-param-aliases">-daemon-port &lt;int[0-65535]&gt;
+</div>
+<div class="doc-cmdref-param-flags">
+</div>
+<div class="doc-cmdref-param-doc">
+<p>Specifies the port on which the daemon should listen for incoming connections.</p>
+<p>If the port is 0, it will be assigned by the operating system, therefore
+it may be random.</p>
+<p>If not specified, the default port of 3500 will be used.</p>
+</div>
+<h5 id="-daemon-cluster-enable">-daemon-cluster-enable<a class="doc-heading-anchor" href="#-daemon-cluster-enable"></a></h5>
+<div class="doc-cmdref-param-aliases">-daemon-cluster-enable
+</div>
+<div class="doc-cmdref-param-flags">
+</div>
+<div class="doc-cmdref-param-doc">
+<p>Flag that specifies if the daemon can be used as a cluster for build executions.</p>
+<p>By default, daemons may not be used as clusters, only if this flag is specified.
+Clusters can improve the performance of build executions by enabling distributing
+various tasks over a network of build machines.</p>
+</div>
+<h5 id="-daemon-cluster-mirror-directory">-daemon-cluster-mirror-directory<a class="doc-heading-anchor" href="#-daemon-cluster-mirror-directory"></a></h5>
+<div class="doc-cmdref-param-aliases">-daemon-cluster-mirror-directory &lt;path&gt;
+-daemon-cluster-mirror-dir &lt;path&gt;
+-daemon-cmirrord &lt;path&gt;
+</div>
+<div class="doc-cmdref-param-flags">
+</div>
+<div class="doc-cmdref-param-doc">
+<p>Specifies the mirror directory when the daemon is used as a cluster.</p>
+<p>The cluster mirror directory is used by executed tasks to cache and use files
+on the local file system. As many tasks may require the files to be present
+on the local file system for invoking external processes on it, it is strongly
+recommended to have a mirror directory for clusters.</p>
+<p>Specifying this is not required, but strongly recommended. The directory can
+be any directory on the local file system. If you specify this flag, the
+daemon takes ownership of the contents in the directory, and may delete files in it.</p>
+</div>
+<h5 id="-eu">-EU<a class="doc-heading-anchor" href="#-eu"></a></h5>
+<div class="doc-cmdref-param-aliases">-EU&lt;key&gt;=&lt;value&gt;
+</div>
+<div class="doc-cmdref-param-flags">
+Multi-parameter. 
+</div>
+<div class="doc-cmdref-param-doc">
+<p>Specifies an environment user parameter for the build environment.</p>
+<p>The build environment will be constructed with the specified user parameters.
+The user parameters may be arbitrary key-value pairs that can be used to
+configure different aspects of the build environment. They are usually used
+to specify the properties of the machine the environment is running on.
+E.g. tooling install locations, version informations, etc...</p>
+<p>Can be used multiple times to define multiple entries.</p>
+</div>
+<h5 id="-thread-factor">-thread-factor<a class="doc-heading-anchor" href="#-thread-factor"></a></h5>
+<div class="doc-cmdref-param-aliases">-thread-factor &lt;int&gt;
+</div>
+<div class="doc-cmdref-param-flags">
+</div>
+<div class="doc-cmdref-param-doc">
+<p>Sets the thread factor for the build environment.</p>
+<p>The thread factor is a hint for the build environment to set the recommended
+number of threads when dealing with multi-threaded worker threads.</p>
+<p>If unspecified, 0, or negative, the thread factor will be determined in an
+implementation dependent manner. (Usually based on the number of cores the CPU has.)</p>
+</div>
+<h5 id="-saker-jar">-saker-jar<a class="doc-heading-anchor" href="#-saker-jar"></a></h5>
+<div class="doc-cmdref-param-aliases">-saker-jar &lt;path&gt;
+</div>
+<div class="doc-cmdref-param-flags">
+</div>
+<div class="doc-cmdref-param-doc">
+<p>Specifies the location of the build system runtime.</p>
+<p>The build system requires its distribution JAR for proper operation,
+as it may be necessary for some tasks to start new processes
+to do their work.</p>
+<p>Under normal circumstances the build system can locate the appropriate
+JAR location based on the classpath of the current process. If it fails,
+an exception will be thrown and you might need to specify this if required.</p>
+<p>The path will be resolved against the local file system, relative paths
+are resolved against the working directory of the process.</p>
+<p>(If you ever encounter a bug in automatic resolution, please file
+an issue at https://github.com/sakerbuild/saker.build/issues)</p>
+</div>
+<h5 id="-no-daemon-cache">-no-daemon-cache<a class="doc-heading-anchor" href="#-no-daemon-cache"></a></h5>
+<div class="doc-cmdref-param-aliases">-no-daemon-cache
+</div>
+<div class="doc-cmdref-param-flags">
+</div>
+<div class="doc-cmdref-param-doc">
+<p>Flag for specifying that the build execution should not use any caching
+for keeping the project-related data in memory.</p>
+<p>When this flag is not used and the build is executed via a build daemon, some
+project related data will be cached for some amount of time for faster
+incremental builds.
+Specifying this flag will turn that off and the build will not use
+cached information for its execution.</p>
+</div>
+<h5 id="-stacktrace">-stacktrace<a class="doc-heading-anchor" href="#-stacktrace"></a></h5>
+<div class="doc-cmdref-param-aliases">-stacktrace &lt;enum&gt;
+</div>
+<div class="doc-cmdref-param-flags">
+</div>
+<div class="doc-cmdref-param-doc">
+<p>Specifies the format of the stack trace that is printed in case of build failure.</p>
+<p>Possible values are:</p>
+<ul>
+<li>full
+<ul>
+<li>Every stack trace element and script trace will be printed.</li>
+</ul>
+</li>
+<li>reduced
+<ul>
+<li>Some internal stack traces will be removed, but the number of removed
+frames will be included in the stack trace.</li>
+</ul>
+</li>
+<li>compact
+<ul>
+<li>Interal stack traces are removed, and no indicator of such removal
+is displayed on the printed information.</li>
+</ul>
+</li>
+</ul>
+</div>
+<h5 id="-interactive">-interactive<a class="doc-heading-anchor" href="#-interactive"></a></h5>
+<div class="doc-cmdref-param-aliases">-interactive
+</div>
+<div class="doc-cmdref-param-flags">
+</div>
+<div class="doc-cmdref-param-doc">
+<p>Flag for specifying to run in interactive mode.</p>
+<p>Interactive mode entails that the build tasks may read input
+from the console. It usually means that a developer actively
+monitors the build.</p>
+<p>This can be used for local builds and is not recommended
+for builds running on a Continuous Integration server or where
+the developer has no opportunity to provide manual input.</p>
+</div>
+<h5 id="-deadlock-polling-millis">-deadlock-polling-millis<a class="doc-heading-anchor" href="#-deadlock-polling-millis"></a></h5>
+<div class="doc-cmdref-param-aliases">-deadlock-polling-millis &lt;long&gt;
+</div>
+<div class="doc-cmdref-param-flags">
+</div>
+<div class="doc-cmdref-param-doc">
+<p>Specifies the interval of the polling based deadlock detection mechanism.</p>
+<p>The build system actively detects any deadlocks occurring during task
+executions. The waiting tasks will be woken up in regular intervals based
+on this parameter.</p>
+<p>The value is expected in milliseconds, default is 3000 (3 seconds).</p>
+</div>
+<h5 id="-trace">-trace<a class="doc-heading-anchor" href="#-trace"></a></h5>
+<div class="doc-cmdref-param-aliases">-trace &lt;mount-path&gt;
+</div>
+<div class="doc-cmdref-param-flags">
+</div>
+<div class="doc-cmdref-param-doc">
+<p>Sets the output path of the build trace for the build execution.</p>
+<p>The path is expected to be in the same format as in the -mount
+parameter.</p>
+<p>The build trace can be viewed in a browser, by navigating to:
+https://saker.build/buildtrace
+and opening it on the page.
+(The build trace can be viewed offline, it won't be transferred
+to our servers.)</p>
+</div>
+<h5 id="-trace-artifacts-embed">-trace-artifacts-embed<a class="doc-heading-anchor" href="#-trace-artifacts-embed"></a></h5>
+<div class="doc-cmdref-param-aliases">-trace-artifacts-embed
+</div>
+<div class="doc-cmdref-param-flags">
+</div>
+<div class="doc-cmdref-param-doc">
+<p>Instructs the build trace to embed the output build artifacts
+in the created build trace file.</p>
+<p>If this flag is specified, the build artifacts that the
+build tasks produce will be embedded in the build trace. They
+can be downloaded directly from the build trace view.</p>
+</div>
+<h5 id="target">target<a class="doc-heading-anchor" href="#target"></a></h5>
+<div class="doc-cmdref-param-format">&lt;string&gt;</div>
+<div class="doc-cmdref-param-flags">
+Positional parameter. 
+</div>
+<div class="doc-cmdref-param-doc">
+<p>The build target to execute.</p>
+<p>If not specified then defaults to the following:</p>
+<ul>
+<li>If there is only one target in the build file then that one is invoked.</li>
+<li>The target with the name &quot;build&quot; is invoked if exists.</li>
+<li>An exception is thrown otherwise.</li>
+</ul>
+</div>
+<h5 id="build-script">build-script<a class="doc-heading-anchor" href="#build-script"></a></h5>
+<div class="doc-cmdref-param-format">&lt;path&gt;</div>
+<div class="doc-cmdref-param-flags">
+Positional parameter. 
+</div>
+<div class="doc-cmdref-param-doc">
+<p>The build script file to invoke the target of.</p>
+<p>Defaults to the script with the name &quot;saker.build&quot; in the working directory.
+If that one doesn't exist, then a build script is selected only if there is only
+one build script in the working directory.
+An exception is thrown if a build script file is not found.</p>
+</div>
+<link href="../../../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>
+			<div class="end-section-links">
+				<div class="end-section-prev">
+					<a class="doc-prev-section" href="../../../doc/guide/cmdlineref/index.html" title="Command line reference"><svg class="doc-section-arrow" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" />
+</svg>Command line reference</a>
+				</div>
+				<div class="end-section-next">
+					<a class="doc-next-section" href="../../../doc/guide/cmdlineref/daemon.html" title="daemon">daemon<svg class="doc-section-arrow" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z" />
+</svg></a>
+				</div>
+			</div>
+			<div class="doc-headings-nav">  <ul>    <li><a href="#build" title="build">build</a>      <ul>        <li><a href="#_command-file" title="@command-file">@command-file</a>        </li>        <li><a href="#-working-directory" title="-working-directory">-working-directory</a>        </li>        <li><a href="#-build-directory" title="-build-directory">-build-directory</a>        </li>        <li><a href="#-mirror-directory" title="-mirror-directory">-mirror-directory</a>        </li>        <li><a href="#-mount" title="-mount">-mount</a>        </li>        <li><a href="#-u" title="-U">-U</a>        </li>        <li><a href="#-repository-no-nest" title="-repository-no-nest">-repository-no-nest</a>        </li>        <li><a href="#-repository" title="-repository">-repository</a>        </li>        <li><a href="#-repository-class" title="-repository-class">-repository-class</a>        </li>        <li><a href="#-repository-id" title="-repository-id">-repository-id</a>        </li>        <li><a href="#-script-files" title="-script-files">-script-files</a>        </li>        <li><a href="#-script-classpath" title="-script-classpath">-script-classpath</a>        </li>        <li><a href="#-script-class" title="-script-class">-script-class</a>        </li>        <li><a href="#-so" title="-SO">-SO</a>        </li>        <li><a href="#-dbconfig-fallback" title="-dbconfig-fallback">-dbconfig-fallback</a>        </li>        <li><a href="#-dbconfig-path" title="-dbconfig-path">-dbconfig-path</a>        </li>        <li><a href="#-cluster" title="-cluster">-cluster</a>        </li>        <li><a href="#-connect" title="-connect">-connect</a>        </li>        <li><a href="#-daemon" title="-daemon">-daemon</a>        </li>        <li><a href="#-daemon-address" title="-daemon-address">-daemon-address</a>        </li>        <li><a href="#-daemon-storage-directory" title="-daemon-storage-directory">-daemon-storage-directory</a>        </li>        <li><a href="#-daemon-server" title="-daemon-server">-daemon-server</a>        </li>        <li><a href="#-daemon-port" title="-daemon-port">-daemon-port</a>        </li>        <li><a href="#-daemon-cluster-enable" title="-daemon-cluster-enable">-daemon-cluster-enable</a>        </li>        <li><a href="#-daemon-cluster-mirror-directory" title="-daemon-cluster-mirror-directory">-daemon-cluster-mirror-directory</a>        </li>        <li><a href="#-eu" title="-EU">-EU</a>        </li>        <li><a href="#-thread-factor" title="-thread-factor">-thread-factor</a>        </li>        <li><a href="#-saker-jar" title="-saker-jar">-saker-jar</a>        </li>        <li><a href="#-no-daemon-cache" title="-no-daemon-cache">-no-daemon-cache</a>        </li>        <li><a href="#-stacktrace" title="-stacktrace">-stacktrace</a>        </li>        <li><a href="#-interactive" title="-interactive">-interactive</a>        </li>        <li><a href="#-deadlock-polling-millis" title="-deadlock-polling-millis">-deadlock-polling-millis</a>        </li>        <li><a href="#-trace" title="-trace">-trace</a>        </li>        <li><a href="#-trace-artifacts-embed" title="-trace-artifacts-embed">-trace-artifacts-embed</a>        </li>        <li><a href="#target" title="target">target</a>        </li>        <li><a href="#build-script" title="build-script">build-script</a>        </li>      </ul>    </li>  </ul></div>
+		</div>
+	</div>
+</div>
+<div class="doc-footer">
+	<div class="container">
+		<div class="row">
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">About</p>
+				<div><a href="/index.html" title="Saker.build home page">Home</a></div>
+				<div data-footer-location="doc-docs"><a href="../../../index.html" title="saker.build documentation index">Documentation index</a></div>
+				<div><a href="../../../../saker.build/index.html" title="Information about the saker.build system">saker.build system</a></div>
+				<div><a href="../../../../saker.nest/index.html" title="Information about the saker.nest repository">saker.nest repository</a></div>
+				<div><a href="/contact.html" title="Contact us">Contact</a></div>
+			</div>
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">Resources</p>
+				<div data-footer-location="doc-docs"><a href="../../../doc/index.html" title="saker.build documentation index">Documentation</a></div>
+				<div data-footer-location="doc-javadoc"><a href="../../../javadoc/index.html" title="JavaDoc for saker.build">JavaDoc</a></div>
+				<div data-footer-location="doc-taskdoc"><a href="../../../taskdoc/index.html"  title="Documentation of build tasks in saker.build">TaskDoc</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.nest package page</a></div>
+				<div><a href="https://github.com/sakerbuild/saker.build" title="saker.build on GitHub">GitHub</a></div>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col">
+			&copy; Bence Sipka 2020
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script>
+if(window.hasOwnProperty("hljs")){
+	hljs.configure({
+	  languages: []
+	});
+	hljs.initHighlightingOnLoad();
+}
+</script>
+
+</body>
+</html>

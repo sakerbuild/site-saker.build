@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>EnumArrayRMIObjectWriteHandler</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+	
+	<link rel="stylesheet" type="text/css" href="../../../../../../res/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../../../../../../res/doc-saker.css">
+	
+</head>
+<body data-nav-location="javadoc" data-subdoc-presence="nest-package packagedoc javadoc taskdoc">
+<div class="doc-nav-bar">
+	<div class="container">
+		<a class="home-link" href="../../../../../index.html" title="saker.util"><img style="height: 2.5em;" class="logo" src="../../../../../../res/logo.svg"/><span class="page-name">saker.util</span></a>
+		<a class="nav-location-item" data-nav-location="doc-docs" href="../../../../../doc/index.html" title="Documentation">Documentation</a>
+		<a class="nav-location-item" data-nav-location="doc-taskdoc" href="../../../../../taskdoc/index.html" title="Build task documentation">TaskDoc</a>
+		<a class="nav-location-item" data-nav-location="doc-javadoc" href="../../../../../javadoc/index.html"title="Java API documentation">JavaDoc</a>
+		<div class="nav-bar-controls">
+			<label class="d-xl-none nav-bar-collapse" for="collapse-nav-bar-label">
+				<svg style="height: 1.5em;" viewBox="0 0 24 24">
+				    <path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+				</svg>
+			</label>
+			<input style="display:none;" id="collapse-nav-bar-label" type="checkbox"/>
+			<div class="nav-bar-items">
+				<a href="/" title="saker.build home page">Home</a>
+				<a href="/buildtrace.html" title="Build trace viewer">Build trace</a>
+				<a style="display:none;" href="/sponsor.html" title="Sponsoring development">Sponsor</a>
+				<a href="/blog/" title="saker.build system blog">Blog</a>
+				<a class="no-external-icon" href="https://github.com/sakerbuild/saker.build" title="saker.build GitHub repository">GitHub</a>
+			</div>
+		</div>
+	</div>
+</div>
+<nav class="javadoc-nav" data-nav-location="EnumArrayRMIObjectWriteHandler">
+	<div class="container">
+		<span class="javadoc-nav-title">JavaDoc</span>
+		<a class="nav-location-item" data-nav-location="javadoc-packages" href="../../../../index.html" title="Package index">Packages</a>
+		<a class="nav-location-item" data-nav-location="javadoc-all-classes" href="../../../../all-classes.html" title="All classes">All classes</a>
+		<a class="nav-location-item" data-nav-location="javadoc-constants" href="../../../../constants.html" title="All constants">Constants</a>
+	</div>
+</nav>
+<div class="container page-contents javadoc">
+	<div class="javadoc-content">
+	<div class="javadoc-class-header"><div class="javadoc-class-header-pkg"><span class="javadoc-code-ref"><span class="javadoc-kw">package</span> <a href="index.html" title="saker.util.rmi.writer" data-javadoc-kind="package">saker.util.rmi.writer</a></span></div><div class="javadoc-class-header-class"><span class="javadoc-kw">public class </span><span class="javadoc-class-header-name">EnumArrayRMIObjectWriteHandler</span>&nbsp;<span class="javadoc-kw">extends</span> <span class="javadoc-code-ref"><a href="/saker.rmi/javadoc/saker/rmi/io/writer/ArrayComponentRMIObjectWriteHandler.html" title="class saker.rmi.io.writer.ArrayComponentRMIObjectWriteHandler" data-javadoc-kind="class">ArrayComponentRMIObjectWriteHandler</a></span></div></div><div class="javadoc-class-super-hierarchy"><div class="javadoc-class-super-hierarchy-entry"><span class="javadoc-code-ref"><a href="#" title="class saker.util.rmi.writer.EnumArrayRMIObjectWriteHandler" data-javadoc-kind="class">saker.util.rmi.writer.EnumArrayRMIObjectWriteHandler</a></span><div class="javadoc-class-super-hierarchy-entry"><span class="javadoc-code-ref"><a href="/saker.rmi/javadoc/saker/rmi/io/writer/ArrayComponentRMIObjectWriteHandler.html" title="class saker.rmi.io.writer.ArrayComponentRMIObjectWriteHandler" data-javadoc-kind="class">saker.rmi.io.writer.ArrayComponentRMIObjectWriteHandler</a></span><div class="javadoc-class-super-hierarchy-entry"><span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html" title="class java.lang.Object" data-javadoc-kind="class">java.lang.Object</a></span></div><div class="javadoc-class-super-hierarchy-entry"><span class="javadoc-code-ref"><a href="/saker.rmi/javadoc/saker/rmi/io/writer/RMIObjectWriteHandler.html" title="interface saker.rmi.io.writer.RMIObjectWriteHandler" data-javadoc-kind="interface">saker.rmi.io.writer.RMIObjectWriteHandler</a></span></div></div></div></div><div class="javadoc-class-doc"><div class="javadoc-class-doc-body">RMI write handler implementation for writing arrays that only have enum elements. <p>
+ If an element is not an instance of <span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Enum.html" title="class java.lang.Enum" data-javadoc-kind="class">Enum</a></span>, <span class="javadoc-code-ref"><a href="/saker.rmi/javadoc/saker/rmi/exception/RMIObjectTransferFailureException.html" title="class saker.rmi.exception.RMIObjectTransferFailureException" data-javadoc-kind="class">RMIObjectTransferFailureException</a></span> will be thrown.</div></div><div class="javadoc-class-idx"><div class="javadoc-class-idx-fields javadoc-idx-section"><table><caption>Fields</caption><thead><tr><th class="javadoc-th-field-meta"></th><th class="javadoc-th-field-details"></th></tr></thead><tbody><tr class="javadoc-class-idx-field javadoc-idx-member"><td class="javadoc-class-idx-field-sig javadoc-idx-member-meta"><span class="javadoc-kw">public static final </span><span class="javadoc-code-ref"><a href="#" title="class saker.util.rmi.writer.EnumArrayRMIObjectWriteHandler" data-javadoc-kind="class">EnumArrayRMIObjectWriteHandler</a></span></td><td class="javadoc-class-idx-field-sig javadoc-idx-member-sig"><div class="javadoc-class-idx-field-name javadoc-idx-member-name"><a href="#INSTANCE" title="EnumArrayRMIObjectWriteHandler.INSTANCE" data-javadoc-kind="field">INSTANCE</a></div><div class="javadoc-class-idx-field-short javadoc-member-short">Singleton instance of <span class="javadoc-code-ref"><a href="#" title="class saker.util.rmi.writer.EnumArrayRMIObjectWriteHandler" data-javadoc-kind="class">EnumArrayRMIObjectWriteHandler</a></span>.</div></td></tr></tbody></table></div><div class="javadoc-class-idx-constructors javadoc-idx-section"><table><caption>Constructors</caption><thead><tr><th class="javadoc-th-constructor-meta"></th><th class="javadoc-th-constructor-details"></th></tr></thead><tbody><tr class="javadoc-class-idx-constructor javadoc-idx-member"><td class="javadoc-class-idx-constructor-meta javadoc-idx-member-meta"><span class="javadoc-kw">public </span></td><td class="javadoc-class-idx-constructor-sig javadoc-idx-member-sig"><div class="javadoc-class-idx-constructor-name javadoc-idx-member-name"><a href="#-init---" title="EnumArrayRMIObjectWriteHandler()" data-javadoc-kind="constructor" data-javadoc-enclosing-kind="class" class="javadoc-sig-name">EnumArrayRMIObjectWriteHandler</a><span class="javadoc-code-ref">()</span></div><div class="javadoc-class-idx-constructor-short javadoc-member-short">Constructs a new instance.</div></td></tr></tbody></table></div><div class="javadoc-class-idx-inherited-methods javadoc-idx-section"><table><caption>Inherited methods</caption><tbody><tr class="javadoc-class-idx-inherited-methods-entry"><td><div class="javadoc-class-idx-inherited-methods-title">From: <span class="javadoc-code-ref"><a href="/saker.rmi/javadoc/saker/rmi/io/writer/ArrayComponentRMIObjectWriteHandler.html" title="class saker.rmi.io.writer.ArrayComponentRMIObjectWriteHandler" data-javadoc-kind="class">ArrayComponentRMIObjectWriteHandler</a></span></div><div class="javadoc-class-idx-inherited-methods-list"><span class="javadoc-code-ref"><a href="/saker.rmi/javadoc/saker/rmi/io/writer/ArrayComponentRMIObjectWriteHandler.html#equals-java.lang.Object-" title="ArrayComponentRMIObjectWriteHandler.equals(Object)" data-javadoc-kind="method" data-javadoc-enclosing-kind="class">equals</a>, <a href="/saker.rmi/javadoc/saker/rmi/io/writer/ArrayComponentRMIObjectWriteHandler.html#getComponentWriter--" title="ArrayComponentRMIObjectWriteHandler.getComponentWriter()" data-javadoc-kind="method" data-javadoc-enclosing-kind="class">getComponentWriter</a>, <a href="/saker.rmi/javadoc/saker/rmi/io/writer/ArrayComponentRMIObjectWriteHandler.html#getKind--" title="ArrayComponentRMIObjectWriteHandler.getKind()" data-javadoc-kind="method" data-javadoc-enclosing-kind="class">getKind</a>, <a href="/saker.rmi/javadoc/saker/rmi/io/writer/ArrayComponentRMIObjectWriteHandler.html#hashCode--" title="ArrayComponentRMIObjectWriteHandler.hashCode()" data-javadoc-kind="method" data-javadoc-enclosing-kind="class">hashCode</a>, <a href="/saker.rmi/javadoc/saker/rmi/io/writer/ArrayComponentRMIObjectWriteHandler.html#toString--" title="ArrayComponentRMIObjectWriteHandler.toString()" data-javadoc-kind="method" data-javadoc-enclosing-kind="class">toString</a></span></div></td></tr><tr class="javadoc-class-idx-inherited-methods-entry"><td><div class="javadoc-class-idx-inherited-methods-title">From: <span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html" title="class java.lang.Object" data-javadoc-kind="class">Object</a></span></div><div class="javadoc-class-idx-inherited-methods-list"><span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html#clone--" title="Object.clone()" data-javadoc-kind="method" data-javadoc-enclosing-kind="class">clone</a>, <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html#finalize--" title="Object.finalize()" data-javadoc-kind="method" data-javadoc-enclosing-kind="class">finalize</a>, <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html#getClass--" title="Object.getClass()" data-javadoc-kind="method" data-javadoc-enclosing-kind="class">getClass</a>, <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html#notify--" title="Object.notify()" data-javadoc-kind="method" data-javadoc-enclosing-kind="class">notify</a>, <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html#notifyAll--" title="Object.notifyAll()" data-javadoc-kind="method" data-javadoc-enclosing-kind="class">notifyAll</a>, <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html#wait--" title="Object.wait()" data-javadoc-kind="method" data-javadoc-enclosing-kind="class">wait</a>, <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html#wait-long-" title="Object.wait(long)" data-javadoc-kind="method" data-javadoc-enclosing-kind="class">wait</a>, <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html#wait-long-int-" title="Object.wait(long, int)" data-javadoc-kind="method" data-javadoc-enclosing-kind="class">wait</a></span></div></td></tr></tbody></table></div></div><div class="javadoc-class-details"><div class="javadoc-class-details-fields javadoc-details-section"><div id="INSTANCE" class="javadoc-class-detail-field javadoc-class-detail-member"><div class="javadoc-class-detail-field-sig javadoc-member-sig"><span class="javadoc-kw">public static final </span><span class="javadoc-code-ref"><a href="#" title="class saker.util.rmi.writer.EnumArrayRMIObjectWriteHandler" data-javadoc-kind="class">EnumArrayRMIObjectWriteHandler</a></span> <a href="#INSTANCE" title="EnumArrayRMIObjectWriteHandler.INSTANCE" data-javadoc-kind="field" class="javadoc-sig-name">INSTANCE</a></div><div class="javadoc-class-detail-field-detail javadoc-member-detail"><div class="javadoc-detail-body">Singleton instance of <span class="javadoc-code-ref"><a href="#" title="class saker.util.rmi.writer.EnumArrayRMIObjectWriteHandler" data-javadoc-kind="class">EnumArrayRMIObjectWriteHandler</a></span>.</div></div></div></div><div class="javadoc-class-details-constructors javadoc-details-section"><div id="-init---" class="javadoc-class-detail-constructor javadoc-class-detail-member"><div class="javadoc-class-detail-constructor-sig javadoc-member-sig"><span class="javadoc-kw">public </span> <a href="#-init---" title="EnumArrayRMIObjectWriteHandler()" data-javadoc-kind="constructor" data-javadoc-enclosing-kind="class" class="javadoc-sig-name">EnumArrayRMIObjectWriteHandler</a><span class="javadoc-code-ref">()</span></div><div class="javadoc-class-detail-constructor-detail javadoc-member-detail"><div class="javadoc-detail-body">Constructs a new instance.</div></div></div></div></div>
+	</div>
+</div>
+<div class="doc-footer">
+	<div class="container">
+		<div class="row">
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">About</p>
+				<div><a href="/index.html" title="Saker.build home page">Home</a></div>
+				<div data-footer-location="doc-docs"><a href="../../../../../index.html" title="saker.util documentation index">Documentation index</a></div>
+				<div><a href="../../../../../../saker.build/index.html" title="Information about the saker.build system">saker.build system</a></div>
+				<div><a href="../../../../../../saker.nest/index.html" title="Information about the saker.nest repository">saker.nest repository</a></div>
+				<div><a href="/contact.html" title="Contact us">Contact</a></div>
+			</div>
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">Resources</p>
+				<div data-footer-location="doc-docs"><a href="../../../../../doc/index.html" title="saker.util documentation index">Documentation</a></div>
+				<div data-footer-location="doc-javadoc"><a href="../../../../../javadoc/index.html" title="JavaDoc for saker.util">JavaDoc</a></div>
+				<div data-footer-location="doc-taskdoc"><a href="../../../../../taskdoc/index.html"  title="Documentation of build tasks in saker.util">TaskDoc</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.util" title="saker.util | saker.nest">saker.nest package page</a></div>
+				<div><a href="https://github.com/sakerbuild/saker.util" title="saker.util on GitHub">GitHub</a></div>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col">
+			&copy; Bence Sipka 2020
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

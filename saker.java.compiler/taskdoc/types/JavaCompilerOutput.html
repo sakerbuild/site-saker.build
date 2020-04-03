@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>JavaCompilerOutput&nbsp|&nbsp;saker.java.compiler</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+	
+	<link rel="stylesheet" href="../../../res/bootstrap.min.css" >
+	<link rel="stylesheet" href="../../../res/doc-saker.css" >
+</head>
+<body data-nav-location="taskdoc" data-subdoc-presence="nest-package packagedoc javadoc taskdoc">
+<div class="doc-nav-bar">
+	<div class="container">
+		<a class="home-link" href="../../index.html" title="saker.java.compiler"><img style="height: 2.5em;" class="logo" src="../../../res/logo.svg"/><span class="page-name">saker.java.compiler</span></a>
+		<a class="nav-location-item" data-nav-location="doc-docs" href="../../doc/index.html" title="Documentation">Documentation</a>
+		<a class="nav-location-item" data-nav-location="doc-taskdoc" href="../../taskdoc/index.html" title="Build task documentation">TaskDoc</a>
+		<a class="nav-location-item" data-nav-location="doc-javadoc" href="../../javadoc/index.html"title="Java API documentation">JavaDoc</a>
+		<div class="nav-bar-controls">
+			<label class="d-xl-none nav-bar-collapse" for="collapse-nav-bar-label">
+				<svg style="height: 1.5em;" viewBox="0 0 24 24">
+				    <path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+				</svg>
+			</label>
+			<input style="display:none;" id="collapse-nav-bar-label" type="checkbox"/>
+			<div class="nav-bar-items">
+				<a href="/" title="saker.build home page">Home</a>
+				<a href="/buildtrace.html" title="Build trace viewer">Build trace</a>
+				<a style="display:none;" href="/sponsor.html" title="Sponsoring development">Sponsor</a>
+				<a href="/blog/" title="saker.build system blog">Blog</a>
+				<a class="no-external-icon" href="https://github.com/sakerbuild/saker.build" title="saker.build GitHub repository">GitHub</a>
+			</div>
+		</div>
+	</div>
+</div>
+<nav class="taskdoc-nav" data-nav-location="JavaCompilerOutput">
+	<div class="container">
+		<span class="taskdoc-nav-title">TaskDoc</span>
+		<a class="nav-location-item" data-nav-location="taskdoc-index" href="../index.html" title="Task doc index">Index</a>
+	</div>
+</nav>
+<div class="container page-contents taskdoc">
+	<div class="taskdoc-content">
+	<div class="typedoc-header"><div class="typedoc-typename"><a href="" title="Type JavaCompilerOutput">JavaCompilerOutput</a></div><div class="typedoc-container-bundle">In bundle: <a title="Package saker.java.compiler">saker.java.compiler</a></div></div><div class="typedoc-info" taskdoc-info-format="format.plaintext">Output of Java compilation.
+The fields can be used to access the output paths of the compilation. The compilation output can be directly set to an input class path or module path to subsequent Java compilations.</div><div class="typedoc-idx"><div class="typedoc-idx-title">Summary</div><div class="typedoc-idx-section typedoc-idx-fields"><table><caption>Fields</caption><tbody><tr class="taskdoc-idx-member"><td><a class="typedoc-idx-field-name" href="#f-ClassDirectory" title="Field ClassDirectory">ClassDirectory</a></td><td>The directory path to the output class files of the Java compilation.
+</td></tr><tr class="taskdoc-idx-member"><td><a class="typedoc-idx-field-name" href="#f-HeaderDirectory" title="Field HeaderDirectory">HeaderDirectory</a></td><td>The directory path to the output native header files.
+</td></tr><tr class="taskdoc-idx-member"><td><a class="typedoc-idx-field-name" href="#f-JavaSDK" title="Field JavaSDK">JavaSDK</a></td><td>The Java SDK description that was used to execute that Java compilation.
+</td></tr><tr class="taskdoc-idx-member"><td><a class="typedoc-idx-field-name" href="#f-ModuleName" title="Field ModuleName">ModuleName</a></td><td>The name of the module that was compiled.
+</td></tr><tr class="taskdoc-idx-member"><td><a class="typedoc-idx-field-name" href="#f-ResourceDirectory" title="Field ResourceDirectory">ResourceDirectory</a></td><td>The directory path to the output resource files.
+</td></tr><tr class="taskdoc-idx-member"><td><a class="typedoc-idx-field-name" href="#f-SourceGenDirectory" title="Field SourceGenDirectory">SourceGenDirectory</a></td><td>The directory path to the output source files.
+</td></tr></tbody></table></div></div><div class="typedoc-details-fields"><div class="typedoc-details-title">Fields</div><div id="f-ClassDirectory" class="typedoc-detail-member typedoc-detail-field"><div class="typedoc-detail-param-header-sig"><div class="typedoc-detail-field-name"><a href="#f-ClassDirectory" title="Field ClassDirectory">ClassDirectory</a></div><div class="typedoc-detail-field-type"><a href="../../../saker.build/javadoc/saker/build/file/path/SakerPath.html" title="SakerPath">Directory path</a></div></div><div class="typedoc-detail-field-detail" taskdoc-info-format="format.plaintext">The directory path to the output class files of the Java compilation.
+The directory contains all class files that were compiled from the Java source files and any files which were generated by annotation processors to the class output directory.</div></div><div id="f-HeaderDirectory" class="typedoc-detail-member typedoc-detail-field"><div class="typedoc-detail-param-header-sig"><div class="typedoc-detail-field-name"><a href="#f-HeaderDirectory" title="Field HeaderDirectory">HeaderDirectory</a></div><div class="typedoc-detail-field-type"><a href="../../../saker.build/javadoc/saker/build/file/path/SakerPath.html" title="SakerPath">Directory path</a></div></div><div class="typedoc-detail-field-detail" taskdoc-info-format="format.plaintext">The directory path to the output native header files.
+The directory contains all .h header files that were generated by the compiler task and any files which were generated by annotation processors to the native header output directory.
+Set GenerateNativeHeaders option to true to generate header files.</div></div><div id="f-JavaSDK" class="typedoc-detail-member typedoc-detail-field"><div class="typedoc-detail-param-header-sig"><div class="typedoc-detail-field-name"><a href="#f-JavaSDK" title="Field JavaSDK">JavaSDK</a></div><div class="typedoc-detail-field-type"><a href="SDKDescription.html" title="Type SDKDescription">SDKDescription</a></div></div><div class="typedoc-detail-field-detail" taskdoc-info-format="format.plaintext">The Java SDK description that was used to execute that Java compilation.
+It was either explicitly specified by the developer, or inferred based on the current build environment.</div></div><div id="f-ModuleName" class="typedoc-detail-member typedoc-detail-field"><div class="typedoc-detail-param-header-sig"><div class="typedoc-detail-field-name"><a href="#f-ModuleName" title="Field ModuleName">ModuleName</a></div><div class="typedoc-detail-field-type"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="String">String</a></div></div><div class="typedoc-detail-field-detail" taskdoc-info-format="format.plaintext">The name of the module that was compiled.
+This field is only applicable for Java compilations targetting version 9 or later, and containing a module-info.java input source file.</div></div><div id="f-ResourceDirectory" class="typedoc-detail-member typedoc-detail-field"><div class="typedoc-detail-param-header-sig"><div class="typedoc-detail-field-name"><a href="#f-ResourceDirectory" title="Field ResourceDirectory">ResourceDirectory</a></div><div class="typedoc-detail-field-type"><a href="../../../saker.build/javadoc/saker/build/file/path/SakerPath.html" title="SakerPath">Directory path</a></div></div><div class="typedoc-detail-field-detail" taskdoc-info-format="format.plaintext">The directory path to the output resource files.
+The directory is the base directory under which annotation processors generate their output resource files. The actual resource directory should be resolved against this output directory path.
+E.g. if a processor generates to the output location name PROC_RESOURCES_OUTPUT, then the path &quot;{ saker.java.compile()[ResourceDirectory] }/PROC_RESOURCES_OUTPUT&quot; expression should be used.</div></div><div id="f-SourceGenDirectory" class="typedoc-detail-member typedoc-detail-field"><div class="typedoc-detail-param-header-sig"><div class="typedoc-detail-field-name"><a href="#f-SourceGenDirectory" title="Field SourceGenDirectory">SourceGenDirectory</a></div><div class="typedoc-detail-field-type"><a href="../../../saker.build/javadoc/saker/build/file/path/SakerPath.html" title="SakerPath">Directory path</a></div></div><div class="typedoc-detail-field-detail" taskdoc-info-format="format.plaintext">The directory path to the output source files.
+The directory contains any Java source files that annotation processors generated during their invocation. The files have the .java extension and are under their respective package subdirectory.</div></div></div>
+	</div>
+</div>
+<div class="doc-footer">
+	<div class="container">
+		<div class="row">
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">About</p>
+				<div><a href="/index.html" title="Saker.build home page">Home</a></div>
+				<div data-footer-location="doc-docs"><a href="../../index.html" title="saker.java.compiler documentation index">Documentation index</a></div>
+				<div><a href="../../../saker.build/index.html" title="Information about the saker.build system">saker.build system</a></div>
+				<div><a href="../../../saker.nest/index.html" title="Information about the saker.nest repository">saker.nest repository</a></div>
+				<div><a href="/contact.html" title="Contact us">Contact</a></div>
+			</div>
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">Resources</p>
+				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.java.compiler documentation index">Documentation</a></div>
+				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.java.compiler">JavaDoc</a></div>
+				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.java.compiler">TaskDoc</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.java.compiler" title="saker.java.compiler | saker.nest">saker.nest package page</a></div>
+				<div><a href="https://github.com/sakerbuild/saker.java.compiler" title="saker.java.compiler on GitHub">GitHub</a></div>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col">
+			&copy; Bence Sipka 2020
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

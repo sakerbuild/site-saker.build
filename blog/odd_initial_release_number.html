@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>0.8.0 seems like an odd initial release number&nbsp;|&nbsp;saker.build blog</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+	
+	<link rel="stylesheet" href="../res/bootstrap.min.css" >
+	<link rel="stylesheet" href="../res/doc-saker.css" >
+	
+</head>
+<body data-nav-location="blog">
+<div class="doc-nav-bar">
+	<div class="container">
+		<a class="home-link" href="/index.html" title="saker.build"><img style="height: 2.5em;" class="logo" src="/res/logo.svg"/><span class="page-name">saker.build</span></a>
+		<div class="nav-bar-controls">
+			<a class="nav-bar-special" href="/saker.build/doc/installation.html" title="saker.build installation">Download</a>
+			<label class="d-lg-none nav-bar-collapse" for="collapse-nav-bar-label">
+				<svg style="height: 1.5em;" viewBox="0 0 24 24">
+				    <path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+				</svg>
+			</label>
+			<input style="display:none;" id="collapse-nav-bar-label" type="checkbox"/>
+			<div class="nav-bar-items">
+				<a href="/saker.build/doc/index.html" title="saker.build documentation">Documentation</a>
+				<a href="/buildtrace.html" title="Build trace viewer">Build trace</a>
+				<a style="display:none;" href="/sponsor.html" title="Sponsoring development">Sponsor</a>
+				<a href="/blog/" title="saker.build system blog">Blog</a>
+				<a class="no-external-icon" href="https://github.com/sakerbuild/saker.build" title="saker.build GitHub repository">GitHub</a>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container page-contents packagedoc">
+	<div class="row">
+		<div class="col-12 col-lg-3 col-xl-2 p-lg-0">
+			<div class="doc-navigation-container">
+				<label class="d-lg-none nav-collapse" for="doc-collapse-nav-label">
+					<svg style="height: 1.5em;" viewBox="0 0 24 24">
+					    <path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+					</svg>
+					Navigation
+				</label>
+				<input style="display:none;" id="doc-collapse-nav-label" type="checkbox"/> 
+				<div class="doc-nav">  <div class="doc-section"><ul><li><a class="doc-nav-section-link" href="index.html" title="Welcome">Welcome</a></li><li><a class="doc-nav-section-link" href="archive.html" title="Blog archive">Blog archive</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Releases</p><ul><li><a class="doc-nav-section-link" href="release_0.8.0.html" title="Release 0.8.0 (initial)">Release 0.8.0 (initial)</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Blog posts</p><ul><li><a class="doc-nav-section-link" href="javac_source_target_parameters/index.html" title="Beware of the -source and -target javac parameters">Beware of the -source and -target javac parameters</a></li><li><a class="doc-nav-section-link" href="intro_build_trace/index.html" title="Introducing the build trace for saker.build">Introducing the build trace for saker.build</a></li><li><a class="doc-nav-section-link" href="do_i_need_a_build_system.html" title=""Do I need a build system?"">"Do I need a build system?"</a></li><li><a class="doc-nav-section-link" href="github_packages_maven/index.html" title="Using the GitHub packages Maven repository">Using the GitHub packages Maven repository</a></li><li class="doc-active doc-active-parent"><a class="doc-nav-section-link" href="odd_initial_release_number.html" title="0.8.0 seems like an odd initial release number">0.8.0 seems like an odd initial release number</a></li><li><a class="doc-nav-section-link" href="another_buildsystem.html" title="Do we need another build system?">Do we need another build system?</a></li></ul>  </div></div>
+			</div>
+		</div>
+		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="sb-sponsors" style="display: none;">
+	<span class="sb-sponsors-title">Sponsors</span>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4 col-12">
+				<a class="sb-sponsors-link"></a>
+			</div>
+			<div class="col-md-4 col-12">
+				<a class="sb-sponsors-link"></a>
+			</div>
+			<div class="col-md-4 col-12">
+				<a class="sb-sponsors-link"></a>
+			</div>
+		</div>
+	</div>
+</div>
+			<div class="doc-content"><h1 id="0_8_0-seems-like-an-odd-initial-release-number">0.8.0 seems like an odd initial release number<a class="doc-heading-anchor" href="#0_8_0-seems-like-an-odd-initial-release-number"></a></h1>
+<p><small>2020 January 6</small></p>
+<p>If you're here, you're probably wondering why 0.8.0 was chosen as the initial version number for saker.build. At the first glimpse, it seems like arbitrary, but let's take a deeper dive.</p>
+<p>The saker.build system and related ecosystem sees the first light of day in this release. It became available to the general public and developers can start building their projects using it. We need to keep one thing in mind is that as the initial release, it has not been battle tested by a wide audience. We've been <a href="https://en.wikipedia.org/wiki/Eating_your_own_dog_food" title="Eating your own dog food - Wikipedia">dogfooding</a> it for years, however, other developers may have different experiences with it.</p>
+<p>After the release, other developers may discover missing features or breaking bugs that would be hard to repair in a release that has a stable API and surrounding mechanisms. By releasing with the version number 0.8.0 we wanted to signal that saker.build may still undergo some breaking changes until it is considered fully stable and governed under the <a href="../saker.build/doc/extending/api.html#api-change-policy" title="API change policy">API change policy</a>.</p>
+<p>Our plan with the upcoming saker.build releases are the following:</p>
+<p><strong>0.9.0</strong> should fix any encountered core problems with the build system based on user feedback. This release is going to be considered as a release candidate for 1.0.0, while testing the build system further for extensibility and usability.</p>
+<p><strong>1.0.0</strong> is going to be the first stable release that has a strictly managed API policy.</p>
+<p>There also may be intermediate release between the above versions (like 0.8.x and 0.9.y). We also reserve the right to go further (0.10.0, 0.11.0, etc...) if we encounter any more core issues.</p>
+<p>One can wonder, why haven't we chosen 0.1.0 like <a href="https://semver.org/#how-should-i-deal-with-revisions-in-the-0yz-initial-development-phase" title="Semantic Versioning 2.0.0 | Semantic Versioning">semver.org</a> suggests. By staring at 0.8.0 we wanted to signal that we consider saker.build to be more mature than some early-beta software. For us, the version 0.1.0 implies that the software is in a very early phase of development, however, that is not the case for saker.build.</p>
+<link href="../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>
+			
+		</div>
+	</div>
+</div>
+<div class="doc-footer">
+	<div class="container">
+		<div class="row">
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">About</p>
+				<div><a href="/" title="Saker.build home page">Home</a></div>
+				<div><a href="/saker.build/doc/roadmap.html" title="Saker.build development roadmap">Roadmap</a></div>
+				<div style="display:none;"><a href="/sponsor.html" title="Sponsoring development">Sponsor</a></div>
+				<div><a href="/saker.build/doc/contribute.html" title="Contributing to the saker.build system development">Contribute</a></div>
+				<div><a href="/contact.html" title="Contact us">Contact</a></div>
+			</div>
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">Resources</p>
+				<div><a href="/saker.build/doc/index.html" title="saker.build documentation">Documentation</a></div>
+				<div><a href="/saker.build/javadoc/index.html" title="Saker.build API JavaDoc">JavaDoc</a></div>
+				<div><a href="https://github.com/sakerbuild/saker.build" title="saker.build on GitHub">GitHub</a></div>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col">
+			&copy; Bence Sipka 2020
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script>
+if(window.hasOwnProperty("hljs")){
+	hljs.configure({
+	  languages: []
+	});
+	hljs.initHighlightingOnLoad();
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Parameter parsing&nbsp;|&nbsp;saker.build</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+	
+	<link rel="stylesheet" href="../../../../res/bootstrap.min.css" >
+	<link rel="stylesheet" href="../../../../res/doc-saker.css" >
+</head>
+<body data-nav-location="packagedoc" data-subdoc-presence="nest-package packagedoc javadoc">
+<div class="doc-nav-bar">
+	<div class="container">
+		<a class="home-link" href="../../../index.html" title="saker.build"><img style="height: 2.5em;" class="logo" src="../../../../res/logo.svg"/><span class="page-name">saker.build</span></a>
+		<a class="nav-location-item" data-nav-location="doc-docs" href="../../../doc/index.html" title="Documentation">Documentation</a>
+		<a class="nav-location-item" data-nav-location="doc-taskdoc" href="../../../taskdoc/index.html" title="Build task documentation">TaskDoc</a>
+		<a class="nav-location-item" data-nav-location="doc-javadoc" href="../../../javadoc/index.html"title="Java API documentation">JavaDoc</a>
+		<div class="nav-bar-controls">
+			<label class="d-xl-none nav-bar-collapse" for="collapse-nav-bar-label">
+				<svg style="height: 1.5em;" viewBox="0 0 24 24">
+				    <path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+				</svg>
+			</label>
+			<input style="display:none;" id="collapse-nav-bar-label" type="checkbox"/>
+			<div class="nav-bar-items">
+				<a href="/" title="saker.build home page">Home</a>
+				<a href="/buildtrace.html" title="Build trace viewer">Build trace</a>
+				<a style="display:none;" href="/sponsor.html" title="Sponsoring development">Sponsor</a>
+				<a href="/blog/" title="saker.build system blog">Blog</a>
+				<a class="no-external-icon" href="https://github.com/sakerbuild/saker.build" title="saker.build GitHub repository">GitHub</a>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container page-contents packagedoc">
+	<div class="row">
+		<div class="col-12 col-lg-3 col-xl-2 p-lg-0">
+			<div class="doc-navigation-container">
+				<label class="d-lg-none nav-collapse" for="doc-collapse-nav-label">
+					<svg style="height: 1.5em;" viewBox="0 0 24 24">
+					    <path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+					</svg>
+					Navigation
+				</label>
+				<input style="display:none;" id="doc-collapse-nav-label" type="checkbox"/> 
+				<div class="doc-nav">  <div class="doc-section"><ul><li><a class="doc-nav-section-link" href="../../../index.html" title="Index">Index</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Introduction</p><ul><li><a class="doc-nav-section-link" href="../../index.html" title="Overview">Overview</a></li><li><label class="doc-nav-collapse" for="_doc_collapse_id_0"><a class="doc-nav-section-link" href="../../installation.html" title="Installation">Installation</a></label><input style="display:none;" id="_doc_collapse_id_0" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_0"></label><ul><li><a class="doc-nav-section-link" href="../../eclipseplugin.html" title="Eclipse plugin">Eclipse plugin</a></li><li><a class="doc-nav-section-link" href="../../releasearchive.html" title="Release archive">Release archive</a></li></ul></li><li><a class="doc-nav-section-link" href="../../perfcomparison.html" title="Performance comparisons">Performance comparisons</a></li><li><a class="doc-nav-section-link" href="../../roadmap.html" title="Roadmap">Roadmap</a></li><li><label class="doc-nav-collapse" for="_doc_collapse_id_1"><a class="doc-nav-section-link" href="../../contribute.html" title="Contribute">Contribute</a></label><input style="display:none;" id="_doc_collapse_id_1" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_1"></label><ul><li><a class="doc-nav-section-link" href="../../buildstatus.html" title="Build status">Build status</a></li></ul></li></ul>  </div>  <div class="doc-section">    <p class="section-title">User guide</p><ul><li><label class="doc-nav-collapse" for="_doc_collapse_id_2"><a class="doc-nav-section-link" href="../../guide/index.html" title="Introduction">Introduction</a></label><input style="display:none;" id="_doc_collapse_id_2" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_2"></label><ul><li><a class="doc-nav-section-link" href="../../guide/helloworld.html" title="Hello world">Hello world</a></li><li><a class="doc-nav-section-link" href="../../guide/buildtargets.html" title="Build targets">Build targets</a></li><li><a class="doc-nav-section-link" href="../../guide/datastructures.html" title="Data structures">Data structures</a></li><li><a class="doc-nav-section-link" href="../../guide/foreach.html" title="Foreach loop">Foreach loop</a></li><li><a class="doc-nav-section-link" href="../../guide/controlflow.html" title="Control flow">Control flow</a></li></ul></li><li><a class="doc-nav-section-link" href="../../guide/incremental.html" title="Incremental builds">Incremental builds</a></li><li><a class="doc-nav-section-link" href="../../guide/runtime.html" title="Build system runtime">Build system runtime</a></li><li><a class="doc-nav-section-link" href="../../guide/envconfig.html" title="Environment configuration">Environment configuration</a></li><li><a class="doc-nav-section-link" href="../../guide/execparams.html" title="Execution parameters">Execution parameters</a></li><li><a class="doc-nav-section-link" href="../../guide/pathconfiguration.html" title="Path configuration">Path configuration</a></li><li><a class="doc-nav-section-link" href="../../guide/repositories.html" title="Task repositories">Task repositories</a></li><li><a class="doc-nav-section-link" href="../../guide/scriptlanguages.html" title="Script languages">Script languages</a></li><li><a class="doc-nav-section-link" href="../../guide/daemon.html" title="Build daemon">Build daemon</a></li><li><a class="doc-nav-section-link" href="../../guide/filechangetracking.html" title="File change tracking">File change tracking</a></li><li><a class="doc-nav-section-link" href="../../guide/remotebuild.html" title="Remote build execution">Remote build execution</a></li><li><a class="doc-nav-section-link" href="../../guide/buildclusters.html" title="Build clusters">Build clusters</a></li><li><a class="doc-nav-section-link" href="../../guide/buildcache.html" title="Build cache">Build cache</a></li><li><a class="doc-nav-section-link" href="../../guide/buildtrace.html" title="Build trace">Build trace</a></li><li><a class="doc-nav-section-link" href="../../guide/reproducible.html" title="Reproducible builds">Reproducible builds</a></li><li><a class="doc-nav-section-link" href="../../guide/wildcards.html" title="Wildcard paths">Wildcard paths</a></li><li><label class="doc-nav-collapse" for="_doc_collapse_id_3"><a class="doc-nav-section-link" href="../../guide/cmdlineref/index.html" title="Command line reference">Command line reference</a></label><input style="display:none;" id="_doc_collapse_id_3" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_3"></label><ul><li><a class="doc-nav-section-link" href="../../guide/cmdlineref/build.html" title="build">build</a></li><li><label class="doc-nav-collapse" for="_doc_collapse_id_4"><a class="doc-nav-section-link" href="../../guide/cmdlineref/daemon.html" title="daemon">daemon</a></label><input style="display:none;" id="_doc_collapse_id_4" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_4"></label><ul><li><a class="doc-nav-section-link" href="../../guide/cmdlineref/daemon_start.html" title="start">start</a></li><li><a class="doc-nav-section-link" href="../../guide/cmdlineref/daemon_stop.html" title="stop">stop</a></li><li><a class="doc-nav-section-link" href="../../guide/cmdlineref/daemon_run.html" title="run">run</a></li><li><a class="doc-nav-section-link" href="../../guide/cmdlineref/daemon_io.html" title="io">io</a></li><li><a class="doc-nav-section-link" href="../../guide/cmdlineref/daemon_info.html" title="info">info</a></li></ul></li><li><a class="doc-nav-section-link" href="../../guide/cmdlineref/action.html" title="action">action</a></li><li><a class="doc-nav-section-link" href="../../guide/cmdlineref/licenses.html" title="licenses">licenses</a></li><li><a class="doc-nav-section-link" href="../../guide/cmdlineref/version.html" title="version">version</a></li></ul></li><li><a class="doc-nav-section-link" href="../../guide/scriptstyleguide.html" title="Build script style guide">Build script style guide</a></li><li><a class="doc-nav-section-link" href="../../guide/bestpractices.html" title="Best practices">Best practices</a></li><li><a class="doc-nav-section-link" href="../../examplecollection.html" title="Example collection">Example collection</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Scripting language</p><ul><li><a class="doc-nav-section-link" href="../../scripting/index.html" title="Overview">Overview</a></li><li><a class="doc-nav-section-link" href="../../scripting/executionmodel.html" title="Execution model">Execution model</a></li><li><label class="doc-nav-collapse" for="_doc_collapse_id_5"><a class="doc-nav-section-link" href="../../scripting/langref/index.html" title="Language reference">Language reference</a></label><input style="display:none;" id="_doc_collapse_id_5" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_5"></label><ul><li><a class="doc-nav-section-link" href="../../scripting/langref/sourcefile/index.html" title="Source file">Source file</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/expressions/index.html" title="Expressions">Expressions</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/comments/index.html" title="Comments">Comments</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/literals/index.html" title="Literals">Literals</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/variables/index.html" title="Variables">Variables</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/tasks/index.html" title="Task extensions">Task extensions</a></li><li><label class="doc-nav-collapse" for="_doc_collapse_id_6"><a class="doc-nav-section-link" href="../../scripting/langref/operators/index.html" title="Operators">Operators</a></label><input style="display:none;" id="_doc_collapse_id_6" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_6"></label><ul><li><a class="doc-nav-section-link" href="../../scripting/langref/operators/addition/index.html" title="Addition">Addition</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/operators/assignment/index.html" title="Assignment">Assignment</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/operators/bitnegate/index.html" title="Bitwise negate">Bitwise negate</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/operators/bitoperators/index.html" title="Bitwise operators">Bitwise operators</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/operators/bitshiftoperators/index.html" title="Bitwise shift operators">Bitwise shift operators</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/operators/boolnegate/index.html" title="Boolean negate">Boolean negate</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/operators/booloperators/index.html" title="Boolean operators">Boolean operators</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/operators/dereference/index.html" title="Dereference">Dereference</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/operators/equality/index.html" title="Equality comparison">Equality comparison</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/operators/mathoperators/index.html" title="Mathematic operators">Mathematic operators</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/operators/comparison/index.html" title="Numeric comparison">Numeric comparison</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/operators/parentheses/index.html" title="Parentheses">Parentheses</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/operators/subscript/index.html" title="Subscript">Subscript</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/operators/ternary/index.html" title="Ternary">Ternary</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/operators/unaryminus/index.html" title="Unary minus">Unary minus</a></li></ul></li><li><a class="doc-nav-section-link" href="../../scripting/langref/ifelse/index.html" title="If-else statement">If-else statement</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/foreach/index.html" title="Foreach expression">Foreach expression</a></li></ul></li><li><label class="doc-nav-collapse" for="_doc_collapse_id_7"><a class="doc-nav-section-link" href="../../scripting/builtintasks/index.html" title="Built-in tasks">Built-in tasks</a></label><input style="display:none;" id="_doc_collapse_id_7" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_7"></label><ul><li><a class="doc-nav-section-link" href="../../scripting/builtintasks/abort.html" title="abort()">abort()</a></li><li><a class="doc-nav-section-link" href="../../scripting/builtintasks/global.html" title="global()">global()</a></li><li><a class="doc-nav-section-link" href="../../scripting/builtintasks/include.html" title="include()">include()</a></li><li><a class="doc-nav-section-link" href="../../scripting/builtintasks/path.html" title="path()">path()</a></li><li><a class="doc-nav-section-link" href="../../scripting/builtintasks/print.html" title="print()">print()</a></li><li><a class="doc-nav-section-link" href="../../scripting/builtintasks/sequence.html" title="sequence()">sequence()</a></li><li><a class="doc-nav-section-link" href="../../scripting/builtintasks/static.html" title="static()">static()</a></li><li><a class="doc-nav-section-link" href="../../scripting/builtintasks/var.html" title="var()">var()</a></li></ul></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Extending saker.build</p><ul><li><a class="doc-nav-section-link" href="../index.html" title="Overview">Overview</a></li><li><a class="doc-nav-section-link" href="../api.html" title="Build system API">Build system API</a></li><li class=" doc-active-parent"><label class="doc-nav-collapse" for="_doc_collapse_id_8"><a class="doc-nav-section-link" href="index.html" title="Task development">Task development</a></label><input style="display:none;" id="_doc_collapse_id_8" type="checkbox" checked/><label class="doc-nav-section-arrow" for="_doc_collapse_id_8"></label><ul><li><a class="doc-nav-section-link" href="helloworld.html" title="Hello world">Hello world</a></li><li><a class="doc-nav-section-link" href="taskparameters.html" title="Task parameters">Task parameters</a></li><li><a class="doc-nav-section-link" href="taskresults.html" title="Task results">Task results</a></li><li><label class="doc-nav-collapse" for="_doc_collapse_id_9"><a class="doc-nav-section-link" href="filehandling.html" title="File handling">File handling</a></label><input style="display:none;" id="_doc_collapse_id_9" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_9"></label><ul><li><a class="doc-nav-section-link" href="filedependencies.html" title="File dependencies">File dependencies</a></li><li><a class="doc-nav-section-link" href="fileadditiondependency.html" title="File addition dependency">File addition dependency</a></li><li><a class="doc-nav-section-link" href="customfiles.html" title="Custom files">Custom files</a></li><li><a class="doc-nav-section-link" href="filemirroring.html" title="File mirroring">File mirroring</a></li></ul></li><li><a class="doc-nav-section-link" href="propertydependencies.html" title="Property dependencies">Property dependencies</a></li><li><label class="doc-nav-collapse" for="_doc_collapse_id_10"><a class="doc-nav-section-link" href="taskmanagement.html" title="Task management">Task management</a></label><input style="display:none;" id="_doc_collapse_id_10" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_10"></label><ul><li><a class="doc-nav-section-link" href="startingtasks.html" title="Starting tasks">Starting tasks</a></li><li><a class="doc-nav-section-link" href="retrievingtaskresults.html" title="Retrieving task results">Retrieving task results</a></li></ul></li><li><a class="doc-nav-section-link" href="incrementaldeltas.html" title="Incremental deltas">Incremental deltas</a></li><li><a class="doc-nav-section-link" href="taskcapabilities.html" title="Task capabilities">Task capabilities</a></li><li class="doc-active doc-active-parent"><a class="doc-nav-section-link" href="parameterparsing.html" title="Parameter parsing">Parameter parsing</a></li><li><a class="doc-nav-section-link" href="innertasks.html" title="Inner tasks">Inner tasks</a></li><li><a class="doc-nav-section-link" href="taskworkflow.html" title="Task workflow">Task workflow</a></li><li><a class="doc-nav-section-link" href="taskcaching.html" title="Task caching">Task caching</a></li><li><a class="doc-nav-section-link" href="buildclusters.html" title="Build clusters">Build clusters</a></li><li><a class="doc-nav-section-link" href="standardio.html" title="Standard I/O">Standard I/O</a></li><li><a class="doc-nav-section-link" href="serialization.html" title="Serialization">Serialization</a></li><li><a class="doc-nav-section-link" href="ideconfig.html" title="IDE configuration">IDE configuration</a></li><li><a class="doc-nav-section-link" href="reproducible.html" title="Reproducible builds">Reproducible builds</a></li><li><a class="doc-nav-section-link" href="bestpractices.html" title="Best practices">Best practices</a></li></ul></li><li><label class="doc-nav-collapse" for="_doc_collapse_id_11"><a class="doc-nav-section-link" href="../scriptdev/index.html" title="Script language development">Script language development</a></label><input style="display:none;" id="_doc_collapse_id_11" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_11"></label><ul><li><a class="doc-nav-section-link" href="../scriptdev/structure.html" title="API structure">API structure</a></li><li><a class="doc-nav-section-link" href="../scriptdev/packaging.html" title="Packaging">Packaging</a></li><li><a class="doc-nav-section-link" href="../scriptdev/workflow.html" title="Development workflow">Development workflow</a></li></ul></li><li><label class="doc-nav-collapse" for="_doc_collapse_id_12"><a class="doc-nav-section-link" href="../repositorydev/index.html" title="Repository development">Repository development</a></label><input style="display:none;" id="_doc_collapse_id_12" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_12"></label><ul><li><a class="doc-nav-section-link" href="../repositorydev/structure.html" title="API structure">API structure</a></li><li><a class="doc-nav-section-link" href="../repositorydev/packaging.html" title="Packaging">Packaging</a></li></ul></li><li><a class="doc-nav-section-link" href="../testing/index.html" title="Integration testing">Integration testing</a></li></ul>  </div></div>
+			</div>
+		</div>
+		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="sb-sponsors" style="display: none;">
+	<span class="sb-sponsors-title">Sponsors</span>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4 col-12">
+				<a class="sb-sponsors-link"></a>
+			</div>
+			<div class="col-md-4 col-12">
+				<a class="sb-sponsors-link"></a>
+			</div>
+			<div class="col-md-4 col-12">
+				<a class="sb-sponsors-link"></a>
+			</div>
+		</div>
+	</div>
+</div>
+			<div class="doc-content"><h1 id="parameter-parsing">Parameter parsing<a class="doc-heading-anchor" href="#parameter-parsing"></a></h1>
+<div class="doc-wip">
+<p>Some aspects of this page is still under development. The conversion mechanics in this document may be incomplete or subject to change. See also: <a href="../../../javadoc/saker/build/util/data/DataConverterUtils.html">DataConverterUtils</a>.</p>
+</div>
+<p>When developing tasks, you probably want them to be parameterizable from the build script. In order to achieve this, your <code>Task</code> implementation needs to implement the <code>ParameterizableTask</code> interface, and you can override the <code>initParameters</code> method to handle the user provided parameters.</p>
+<p>The saker.build system provides the default functionality for converting the user provided parameters and assigning them to the appropriate fields of your <code>Task</code> object. In order to use this, you need to annotate your fields with <a href="../../../javadoc/saker/build/task/utils/annot/SakerInput.html"><code>@SakerInput</code></a> and related annotations.</p>
+<p>A simplest example for the above is the following:</p>
+<pre><code class="language-java">@SakerInput
+public String MyValue;
+</code></pre>
+<p>Given that the above field is declared in your <code>ParameterizableTask</code> object, it can be used the following way:</p>
+<pre><code class="language-sakerscript"><span class="e">example.task(</span><span class="i">MyValue</span>: <span class="f">abcd123</span><span class="e">)</span>
+</code></pre>
+<p>This way the <code>MyValue</code> field will have the <code>&quot;abcd123&quot;</code> value when the <code>run(TaskContext)</code> method is called.</p>
+<h2 id="conversion-mechanics">Conversion mechanics<a class="doc-heading-anchor" href="#conversion-mechanics"></a></h2>
+<p>The exact conversion mechanics work on a best effort basis. The type converter will try to convert the value of a parameter to the target type by examining both objects and finding a conversion method for proper interpretation. The class <a href="../../../javadoc/saker/build/util/data/DataConverterUtils.html"><code>DataConverterUtils</code></a> is used to convert the types and you can read more information about it in the Javadoc.</p>
+<p>In general, it is strongly recommended to use only interfaces or primitive types and their compositions on lists and maps for the parameter types. The build system will attempt to convert the values and will throw an exception if it failed. It is strongly recommended to test the possible input values and properly document the types a task parameter accepts.</p>
+<p>If a task needs to specially handle some input parameter, override the <code>initParameters</code> function and act accordingly.</p>
+<h2 id="_datacontext"><code>@DataContext</code><a class="doc-heading-anchor" href="#_datacontext"></a></h2>
+<p>The <a href="../../../javadoc/saker/build/task/utils/annot/DataContext.html"><code>@DataContext</code></a> annotation can be used to encapsulate a set of parameters into a custom class. This can be beneficial if the parameters will be reused in other places. The parsing facility will assign the annotated fields of the data context object accordingly.</p>
+<pre><code class="language-java">public class MyParameters {
+	@SakerInput
+	public String MyValue;
+}
+
+@DataContext
+public MyParameters params;
+</code></pre>
+<p>In the above example the <code>MyValue</code> parameter of the <code>params</code> data context will be assigned the same way as if it was declared directly in the task object.</p>
+<p>The <code>@DataContext</code> annotated fields will be recursively visited by the implementation. If the data context field is <code>null</code>, the implementation will instantiate the data context type using the no-arg constructor.</p>
+<h2 id="examples">Examples<a class="doc-heading-anchor" href="#examples"></a></h2>
+<p>The following will provide some examples and guidelines about how the parameters should be declared for a task.</p>
+<h3 id="primitive-types">Primitive types<a class="doc-heading-anchor" href="#primitive-types"></a></h3>
+<p>If the target type of the task parameter is a primitive of the Java language (also including <code>String</code>), the build system will use the default parsing methods for assigning the parameter. (E.g. <code>Integer.parseInt</code> and others)</p>
+<p>Boxed primitive types work the same way.</p>
+<h3 id="types-with-valueof">Types with <code>valueOf</code><a class="doc-heading-anchor" href="#types-with-valueof"></a></h3>
+<p>If the parameter field has a type that declares at least one <code>static</code> <code>valueOf</code> method with a single parameter, the build system will attempt to use that method to convert the value to the given type. An example for this is <code>SakerPath</code>, where the <code>valueOf(String)</code> is used to convert the value.</p>
+<pre><code class="language-java">@SakerInput
+public SakerPath PathParam;
+</code></pre>
+<pre><code class="language-sakerscript"><span class="e">example.task(</span><span class="i">PathParam</span>: <span class="f">res/images</span><span class="e">)</span>
+</code></pre>
+<p>Will result in the <code>PathParam</code> be assigned to a <code>SakerPath</code> instance representing <code>res/images</code>.</p>
+<p>The <code>valueOf</code> methods are considered for conversion even if the target type is an interface.</p>
+<h3 id="lists-and-maps">Lists and Maps<a class="doc-heading-anchor" href="#lists-and-maps"></a></h3>
+<p>The parameter type can be declared to be Java Collection interfaces. We strongly recommend to only use the <code>List</code> and <code>Map</code>, but using <code>Collection</code> or <code>Iterable</code> can be also acceptable. <code>Set</code> and other collections that provide guarantees about the enclosed elements should <strong>not</strong> be used. It should also be noted that using <code>Map</code> as the parameter type might result in keys that occur multiple times and no guarantees are made about the uniqueness of the keys. Developers should iterate over the entries in the map rather than looking up the values for a given key.</p>
+<p>These interfaces should always be used with type parameters, and their declaration should not be raw. (I.e. use <code>List&lt;MyElementType&gt;</code> rather than plain <code>List</code>)</p>
+<p>When a value is being converted to a collection type, the build system will attempt to convert each element to the target type at an appropriate time. This can happen right away when the task parameters are assigned, or lazily when the elements are actually accessed.</p>
+<p>If the build system encounters a non-collection value for the given target, then it will attempt to enclose it into a singleton collection when appropriate.</p>
+<pre><code class="language-java">@SakerInput
+public List&lt;Integer&gt; IntsParam;
+</code></pre>
+<pre><code class="language-sakerscript"><span class="e">example.task(</span><span class="i">IntsParam</span>: <span class="f">123</span><span class="e">)</span>
+<span class="e">example.task(</span><span class="i">IntsParam</span>: <span class="b">[</span><span class="f">1</span><span class="b">,</span> <span class="f">2</span><span class="b">,</span> <span class="f">3</span><span class="b">]</span><span class="e">)</span>
+</code></pre>
+<p>Both of the above parameterization of the tasks are valid, in the first case the <code>IntsParam</code> will have a value of <code>[123]</code>, while in the second case it will have <code>[1, 2, 3]</code> accordingly.</p>
+<p>Maps can be used similarly, but be noted that the key of the declared type should only be <code>String</code> or plain <code>Object</code>. Any other types may cause the map to work incorrectly.</p>
+<pre><code class="language-java">@SakerInput
+public Map&lt;String, Integer&gt; StringIntsParam;
+</code></pre>
+<pre><code class="language-sakerscript"><span class="e">example.task(</span><span class="i">StringIntsParam</span>: <span class="b">{</span>
+	<span class="h">First</span>: <span class="f">1</span><span class="b">,</span>
+	<span class="h">Second</span>: <span class="f">2</span><span class="b">,</span>
+<span class="b">}</span><span class="e">)</span>
+</code></pre>
+<p>In the above example the value of <code>StringIntsParam</code> will be the same as it was specified in the build script.</p>
+<p>All collection and map instances assigned by the build system are immutable.</p>
+<h3 id="enums">Enums<a class="doc-heading-anchor" href="#enums"></a></h3>
+<p>The parameters of a task can be declared as <code>enum</code> types. The build system will convert them by looking up the enum value with the corresponding name.</p>
+<pre><code class="language-java">public enum MyEnum {
+	VAL1, VAL2;
+}
+@SakerInput
+public MyEnum EnumParam;
+</code></pre>
+<pre><code class="language-sakerscript"><span class="e">example.task(</span><span class="i">EnumParam</span>: <span class="f">VAL2</span><span class="e">)</span>
+</code></pre>
+<p>The parameter field will be correctly assigned with the enum instance of <code>VAL2</code>.</p>
+<h3 id="interfaces">Interfaces<a class="doc-heading-anchor" href="#interfaces"></a></h3>
+<p>The task parameter types may be <code>interface</code> declarations which the build system will automatically implement based on the parameter value. This is usually advantageous when the parameter is expected to be a map, but the user code wants to handle it in a convenient way.</p>
+<pre><code class="language-java">public interface MyParamType {
+	public String getValue();
+	
+	public int getNumber();
+	
+	public default Double getFloating() {
+		return 1.0;
+	}
+}
+@SakerInput
+public MyParamType MyParam;
+</code></pre>
+<pre><code class="language-sakerscript"><span class="e">example.task(</span><span class="i">MyParam</span>: <span class="b">{</span>
+	<span class="h">Value</span>: <span class="f">str</span><span class="b">,</span>
+	<span class="h">Number</span>: <span class="f">123</span><span class="b">,</span>
+<span class="b">}</span><span class="e">)</span>
+</code></pre>
+<p>In the above example the build system will automatically implement the <code>MyParamType</code> interface and create an object that forwards its <code>getX()</code> calls to the underlying map. In this case calling <code>getValue()</code> on the assigned parameter object will return <code>&quot;str&quot;</code>, and calling <code>getNumber()</code> will return <code>123</code>.</p>
+<p>The conversion also supports the <code>default</code> methods, therefore if the underlying map doesn't contain the associated entry, the default implementation of the method is called. In the above case calling <code>getFloating()</code> will return <code>1.0</code> as seen in the default implementation.</p>
+<link href="../../../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>
+			<div class="end-section-links">
+				<div class="end-section-prev">
+					<a class="doc-prev-section" href="../../../doc/extending/taskdev/taskcapabilities.html" title="Task capabilities"><svg class="doc-section-arrow" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" />
+</svg>Task capabilities</a>
+				</div>
+				<div class="end-section-next">
+					<a class="doc-next-section" href="../../../doc/extending/taskdev/innertasks.html" title="Inner tasks">Inner tasks<svg class="doc-section-arrow" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z" />
+</svg></a>
+				</div>
+			</div>
+			<div class="doc-headings-nav">  <ul>    <li><a href="#parameter-parsing" title="Parameter parsing">Parameter parsing</a>      <ul>        <li><a href="#conversion-mechanics" title="Conversion mechanics">Conversion mechanics</a>        </li>        <li><a href="#_datacontext" title="@DataContext">@DataContext</a>        </li>        <li><a href="#examples" title="Examples">Examples</a>          <ul>            <li><a href="#primitive-types" title="Primitive types">Primitive types</a>            </li>            <li><a href="#types-with-valueof" title="Types with valueOf">Types with valueOf</a>            </li>            <li><a href="#lists-and-maps" title="Lists and Maps">Lists and Maps</a>            </li>            <li><a href="#enums" title="Enums">Enums</a>            </li>            <li><a href="#interfaces" title="Interfaces">Interfaces</a>            </li>          </ul>        </li>      </ul>    </li>  </ul></div>
+		</div>
+	</div>
+</div>
+<div class="doc-footer">
+	<div class="container">
+		<div class="row">
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">About</p>
+				<div><a href="/index.html" title="Saker.build home page">Home</a></div>
+				<div data-footer-location="doc-docs"><a href="../../../index.html" title="saker.build documentation index">Documentation index</a></div>
+				<div><a href="../../../../saker.build/index.html" title="Information about the saker.build system">saker.build system</a></div>
+				<div><a href="../../../../saker.nest/index.html" title="Information about the saker.nest repository">saker.nest repository</a></div>
+				<div><a href="/contact.html" title="Contact us">Contact</a></div>
+			</div>
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">Resources</p>
+				<div data-footer-location="doc-docs"><a href="../../../doc/index.html" title="saker.build documentation index">Documentation</a></div>
+				<div data-footer-location="doc-javadoc"><a href="../../../javadoc/index.html" title="JavaDoc for saker.build">JavaDoc</a></div>
+				<div data-footer-location="doc-taskdoc"><a href="../../../taskdoc/index.html"  title="Documentation of build tasks in saker.build">TaskDoc</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.nest package page</a></div>
+				<div><a href="https://github.com/sakerbuild/saker.build" title="saker.build on GitHub">GitHub</a></div>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col">
+			&copy; Bence Sipka 2020
+			</div>
+		</div>
+	</div>
+</div>
+
+<link rel="stylesheet" href="../../../../res/hljs.css"><script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js" integrity="sha256-js+I1fdbke/DJrW2qXQlrw7VUEqmdeFeOW37UC0bEiU=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.13.1/build/languages/java.min.js"></script>
+<script>
+if(window.hasOwnProperty("hljs")){
+	hljs.configure({
+	  languages: []
+	});
+	hljs.initHighlightingOnLoad();
+}
+</script>
+
+</body>
+</html>

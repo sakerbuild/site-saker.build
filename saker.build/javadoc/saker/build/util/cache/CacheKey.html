@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>CacheKey</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+	
+	<link rel="stylesheet" type="text/css" href="../../../../../../res/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../../../../../../res/doc-saker.css">
+	
+</head>
+<body data-nav-location="javadoc" data-subdoc-presence="nest-package packagedoc javadoc">
+<div class="doc-nav-bar">
+	<div class="container">
+		<a class="home-link" href="../../../../../index.html" title="saker.build"><img style="height: 2.5em;" class="logo" src="../../../../../../res/logo.svg"/><span class="page-name">saker.build</span></a>
+		<a class="nav-location-item" data-nav-location="doc-docs" href="../../../../../doc/index.html" title="Documentation">Documentation</a>
+		<a class="nav-location-item" data-nav-location="doc-taskdoc" href="../../../../../taskdoc/index.html" title="Build task documentation">TaskDoc</a>
+		<a class="nav-location-item" data-nav-location="doc-javadoc" href="../../../../../javadoc/index.html"title="Java API documentation">JavaDoc</a>
+		<div class="nav-bar-controls">
+			<label class="d-xl-none nav-bar-collapse" for="collapse-nav-bar-label">
+				<svg style="height: 1.5em;" viewBox="0 0 24 24">
+				    <path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+				</svg>
+			</label>
+			<input style="display:none;" id="collapse-nav-bar-label" type="checkbox"/>
+			<div class="nav-bar-items">
+				<a href="/" title="saker.build home page">Home</a>
+				<a href="/buildtrace.html" title="Build trace viewer">Build trace</a>
+				<a style="display:none;" href="/sponsor.html" title="Sponsoring development">Sponsor</a>
+				<a href="/blog/" title="saker.build system blog">Blog</a>
+				<a class="no-external-icon" href="https://github.com/sakerbuild/saker.build" title="saker.build GitHub repository">GitHub</a>
+			</div>
+		</div>
+	</div>
+</div>
+<nav class="javadoc-nav" data-nav-location="CacheKey">
+	<div class="container">
+		<span class="javadoc-nav-title">JavaDoc</span>
+		<a class="nav-location-item" data-nav-location="javadoc-packages" href="../../../../index.html" title="Package index">Packages</a>
+		<a class="nav-location-item" data-nav-location="javadoc-all-classes" href="../../../../all-classes.html" title="All classes">All classes</a>
+		<a class="nav-location-item" data-nav-location="javadoc-constants" href="../../../../constants.html" title="All constants">Constants</a>
+	</div>
+</nav>
+<div class="container page-contents javadoc">
+	<div class="javadoc-content">
+	<div class="javadoc-class-header"><div class="javadoc-class-header-pkg"><span class="javadoc-code-ref"><span class="javadoc-kw">package</span> <a href="index.html" title="saker.build.util.cache" data-javadoc-kind="package">saker.build.util.cache</a></span></div><div class="javadoc-class-header-class"><span class="javadoc-kw">public interface </span><span class="javadoc-class-header-name">CacheKey</span>&lt;<wbr><span class="javadoc-tp">Data</span>, <span class="javadoc-tp">Resource</span>&gt;</div></div><div class="javadoc-class-doc"><div class="javadoc-class-doc-body">Unique identifier for a cache entry. <p>
+ Implementations of this interface uniquely identify a cached data entry. That means that if two cache keys
+ <a href="#equals-java.lang.Object-" title="CacheKey.equals(Object)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface">equal</a> then they compute the same data.
+ <p>
+ Cache entries are separated into two objects. A Resource, and a Data object. The difference between them that any
+ unmanaged resources (e.g. files, network streams) reside in the Resource, and the Data object is pure data computed
+ based on the Resource. The lifetime of the two objects are managed differently. The Data can be garbage collected at
+ any time, while Resource will be closed when the Data is no longer accessible.
+ <p>
+ The Data and the Resource objects must never identity equal, and an <span class="javadoc-code-ref"><a href="InvalidCacheKeyImplementationException.html" title="class saker.build.util.cache.InvalidCacheKeyImplementationException" data-javadoc-kind="class">InvalidCacheKeyImplementationException</a></span>
+ will be thrown if they do. The Resource must not hold a strong reference to the Data. If it does, the Data will not
+ be garbage collectable.
+ <p>
+ As a general rule of thumb, the Data and Resource objects should be immutable and hold no state as they can be
+ accessed from multiple agents at the same time. With careful design of the objects, this restriction is not
+ necessary, but recommended.
+ <p>
+ Implementations can also validate a cache entry, to ensure that always the most up-to-date data is present and
+ recompute it if it's necessary.
+ <p>
+ When a retrieval is requested from the cache, the cache implementation will check if a cache entry for this key
+ already exists. If it does, <span class="javadoc-code-ref"><a href="#validate-Data-Resource-" title="CacheKey.validate(Data, Resource)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface">validate<span class="javadoc-code-ref">(<wbr><span class="javadoc-tp" title="Data of interface saker.build.util.cache.CacheKey">Data</span>, <span class="javadoc-tp" title="Resource of interface saker.build.util.cache.CacheKey">Resource</span>)</span></a></span> will be called. If it returns <code>false</code>, then
+ the currently allocated resources will be closed, and reallocated using this cache key. If it returns
+ <code>true</code> then the current data will be returned. If the data has been already garbage collected, it will be
+ regenerated using the validated resource.
+ <p>
+ If no cache entry exists for the retrieval, the allocation and generation will proceed without any validation.
+ <p>
+ If the cache key implementation throws an error during allocation or generation, the cache entry will be removed
+ completly from the cache, and any open resources will be closed.
+ <p>
+ The cache implementation uses <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/ref/SoftReference.html" title="class java.lang.ref.SoftReference" data-javadoc-kind="class">soft</a> and {linkplain WeakReference weak} references to keep
+ track of the generated Datas. When it detects that they have been garbage collected, then the allocated Resource will
+ be closed sometime in the future via <span class="javadoc-code-ref"><a href="#close-Data-Resource-" title="CacheKey.close(Data, Resource)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface">close<span class="javadoc-code-ref">(<wbr><span class="javadoc-tp" title="Data of interface saker.build.util.cache.CacheKey">Data</span>, <span class="javadoc-tp" title="Resource of interface saker.build.util.cache.CacheKey">Resource</span>)</span></a></span>, and the cache entry will be completly removed.
+ <p>
+ It is possible that the Data is garbage collected, and Resource still resides in the cache. When a new cache entry
+ retrieval is done, it can reuse the still available Resource if possible.
+ <p>
+ Each cache key can specify an expiry timeout for the generated data. The cache implementation will refer to the
+ generated Data using a <span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/ref/SoftReference.html" title="class java.lang.ref.SoftReference" data-javadoc-kind="class">SoftReference</a></span> until the timeout expires, then it will be changed to a
+ <span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/ref/WeakReference.html" title="class java.lang.ref.WeakReference" data-javadoc-kind="class">WeakReference</a></span>. The granularity of the expiry timeout checking is implementation dependent.
+ <p>
+ When a cache entry retrieval is requested, the reference to the returned Data will be refreshed to
+ <span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/ref/SoftReference.html" title="class java.lang.ref.SoftReference" data-javadoc-kind="class">SoftReference</a></span>, and the expiry timeout is restarted.
+ <p>
+ When the cache implementation is closed, all cache entries are closed appropriately.</div><div class="javadoc-detail-typeparams javadoc-blocktag-section"><div class="javadoc-detail-typeparam"><span class="javadoc-detail-typeparam-name">Data</span><span class="javadoc-detail-typeparam-detail">The type of the computed data.</span></div><div class="javadoc-detail-typeparam"><span class="javadoc-detail-typeparam-name">Resource</span><span class="javadoc-detail-typeparam-detail">The type of the computed resource.</span></div></div><div class="javadoc-detail-see javadoc-blocktag-section"><div class="javadoc-detail-see-entry"><span class="javadoc-code-ref"><a href="../../runtime/environment/SakerEnvironment.html#getCachedData-saker.build.util.cache.CacheKey-" title="SakerEnvironment.getCachedData(CacheKey<DataType, ?>)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface">SakerEnvironment.getCachedData<span class="javadoc-code-ref">(<wbr>CacheKey&lt;<wbr><span class="javadoc-tp" title="DataType of SakerEnvironment.getCachedData(CacheKey<DataType, ?>)">DataType</span>, ?&gt;)</span></a></span></div></div></div><div class="javadoc-class-idx"><div class="javadoc-class-idx-methods javadoc-idx-section"><table><caption>Methods</caption><thead><tr><th class="javadoc-th-method-meta"></th><th class="javadoc-th-method-details"></th></tr></thead><tbody><tr class="javadoc-class-idx-method javadoc-idx-member"><td class="javadoc-class-idx-method-meta javadoc-idx-member-meta"><span class="javadoc-kw">public </span><span class="javadoc-code-ref"><span class="javadoc-tp" title="Resource of interface saker.build.util.cache.CacheKey">Resource</span></span></td><td class="javadoc-class-idx-method-sig javadoc-idx-member-sig"><div class="javadoc-class-idx-method-name javadoc-idx-member-name"><a href="#allocate--" title="CacheKey.allocate()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">allocate</a><span class="javadoc-code-ref">()</span></div><div class="javadoc-class-idx-method-short javadoc-member-short">Allocates the Resource for this cache key.</div></td></tr><tr class="javadoc-class-idx-method javadoc-idx-member"><td class="javadoc-class-idx-method-meta javadoc-idx-member-meta"><span class="javadoc-kw">public </span><span class="javadoc-code-ref"><span class="javadoc-kw">void</span></span></td><td class="javadoc-class-idx-method-sig javadoc-idx-member-sig"><div class="javadoc-class-idx-method-name javadoc-idx-member-name"><a href="#close-Data-Resource-" title="CacheKey.close(Data, Resource)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">close</a><span class="javadoc-code-ref">(<wbr><span class="javadoc-method-param"><span class="javadoc-tp" title="Data of interface saker.build.util.cache.CacheKey">Data</span> data, </span><span class="javadoc-method-param"><span class="javadoc-tp" title="Resource of interface saker.build.util.cache.CacheKey">Resource</span> resource</span>)</span></div><div class="javadoc-class-idx-method-short javadoc-member-short">Closes the objects related to this cache key.</div></td></tr><tr class="javadoc-class-idx-method javadoc-idx-member"><td class="javadoc-class-idx-method-meta javadoc-idx-member-meta"><span class="javadoc-kw">public </span><span class="javadoc-code-ref"><span class="javadoc-kw">boolean</span></span></td><td class="javadoc-class-idx-method-sig javadoc-idx-member-sig"><div class="javadoc-class-idx-method-name javadoc-idx-member-name"><a href="#equals-java.lang.Object-" title="CacheKey.equals(Object)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">equals</a><span class="javadoc-code-ref">(<wbr><span class="javadoc-method-param"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html" title="class java.lang.Object" data-javadoc-kind="class">Object</a> obj</span>)</span></div><div class="javadoc-class-idx-method-short javadoc-member-short">Checks if this cache key identifies the same cache entry and computes the same data as the parameter given the
+ same circumstances.</div></td></tr><tr class="javadoc-class-idx-method javadoc-idx-member"><td class="javadoc-class-idx-method-meta javadoc-idx-member-meta"><span class="javadoc-kw">public </span><span class="javadoc-code-ref"><span class="javadoc-tp" title="Data of interface saker.build.util.cache.CacheKey">Data</span></span></td><td class="javadoc-class-idx-method-sig javadoc-idx-member-sig"><div class="javadoc-class-idx-method-name javadoc-idx-member-name"><a href="#generate-Resource-" title="CacheKey.generate(Resource)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">generate</a><span class="javadoc-code-ref">(<wbr><span class="javadoc-method-param"><span class="javadoc-tp" title="Resource of interface saker.build.util.cache.CacheKey">Resource</span> resource</span>)</span></div><div class="javadoc-class-idx-method-short javadoc-member-short">Generates the Data for this cache key based on a previously allocated Resource.</div></td></tr><tr class="javadoc-class-idx-method javadoc-idx-member"><td class="javadoc-class-idx-method-meta javadoc-idx-member-meta"><span class="javadoc-kw">public </span><span class="javadoc-code-ref"><span class="javadoc-kw">long</span></span></td><td class="javadoc-class-idx-method-sig javadoc-idx-member-sig"><div class="javadoc-class-idx-method-name javadoc-idx-member-name"><a href="#getExpiry--" title="CacheKey.getExpiry()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">getExpiry</a><span class="javadoc-code-ref">()</span></div><div class="javadoc-class-idx-method-short javadoc-member-short">Gets the expiry milliseconds of the generated cache Data.</div></td></tr><tr class="javadoc-class-idx-method javadoc-idx-member"><td class="javadoc-class-idx-method-meta javadoc-idx-member-meta"><span class="javadoc-kw">public </span><span class="javadoc-code-ref"><span class="javadoc-kw">int</span></span></td><td class="javadoc-class-idx-method-sig javadoc-idx-member-sig"><div class="javadoc-class-idx-method-name javadoc-idx-member-name"><a href="#hashCode--" title="CacheKey.hashCode()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">hashCode</a><span class="javadoc-code-ref">()</span></div><div class="javadoc-class-idx-method-short javadoc-member-short">Returns a hash code value for the object.</div></td></tr><tr class="javadoc-class-idx-method javadoc-idx-member"><td class="javadoc-class-idx-method-meta javadoc-idx-member-meta"><span class="javadoc-kw">public </span><span class="javadoc-code-ref"><span class="javadoc-kw">boolean</span></span></td><td class="javadoc-class-idx-method-sig javadoc-idx-member-sig"><div class="javadoc-class-idx-method-name javadoc-idx-member-name"><a href="#validate-Data-Resource-" title="CacheKey.validate(Data, Resource)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">validate</a><span class="javadoc-code-ref">(<wbr><span class="javadoc-method-param"><span class="javadoc-tp" title="Data of interface saker.build.util.cache.CacheKey">Data</span> data, </span><span class="javadoc-method-param"><span class="javadoc-tp" title="Resource of interface saker.build.util.cache.CacheKey">Resource</span> resource</span>)</span></div><div class="javadoc-class-idx-method-short javadoc-member-short">Validates the cached data if it's still useable.</div></td></tr></tbody></table></div></div><div class="javadoc-class-details"><div class="javadoc-class-details-methods javadoc-details-section"><div id="allocate--" class="javadoc-class-detail-method javadoc-class-detail-member"><div class="javadoc-class-detail-method-sig javadoc-member-sig"><span class="javadoc-kw">public abstract </span><span class="javadoc-code-ref"><span class="javadoc-tp" title="Resource of interface saker.build.util.cache.CacheKey">Resource</span></span> <a href="#allocate--" title="CacheKey.allocate()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">allocate</a><span class="javadoc-code-ref">()</span><span class="javadoc-method-throws"><span class="javadoc-kw">&nbsp;throws</span> <span class="javadoc-method-throws-entries"><span class="javadoc-method-exc"><span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Exception.html" title="class java.lang.Exception" data-javadoc-kind="class">Exception</a></span></span></span></span></div><div class="javadoc-class-detail-method-detail javadoc-member-detail"><div class="javadoc-detail-body">Allocates the Resource for this cache key. <p>
+ The result of the allocation must never be <code>null</code>.
+ <p>
+ The allocated Resource can contain unmanaged data which requires explicit closing of the object. (E.g. file
+ handles, network connections, etc...) Implementations will have an opportunity to close these resources in
+ <span class="javadoc-code-ref"><a href="#close-Data-Resource-" title="CacheKey.close(Data, Resource)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface">close<span class="javadoc-code-ref">(<wbr><span class="javadoc-tp" title="Data of interface saker.build.util.cache.CacheKey">Data</span>, <span class="javadoc-tp" title="Resource of interface saker.build.util.cache.CacheKey">Resource</span>)</span></a></span>.
+ <p>
+ If this method throws an exception, the cache entry will be removed for this cache key. Unclosed resources will
+ be closed nonetheless.</div><div class="javadoc-method-detail-return javadoc-blocktag-section"><div class="javadoc-method-detail-return-body">The allocated Resource. Non-<code>null</code>.</div></div><div class="javadoc-method-detail-throwdeclarations javadoc-blocktag-section"><div class="javadoc-method-detail-throw" data-javadoc-exception-checked><span class="javadoc-method-detail-throw-name"><span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Exception.html" title="class java.lang.Exception" data-javadoc-kind="class">Exception</a></span></span><span class="javadoc-method-detail-throw-detail">If allocation of the resource failed. This exception is relayed to the caller.</span></div></div></div></div><div id="close-Data-Resource-" class="javadoc-class-detail-method javadoc-class-detail-member"><div class="javadoc-class-detail-method-sig javadoc-member-sig"><span class="javadoc-kw">public abstract </span><span class="javadoc-code-ref"><span class="javadoc-kw">void</span></span> <a href="#close-Data-Resource-" title="CacheKey.close(Data, Resource)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">close</a><span class="javadoc-code-ref">(<wbr><span class="javadoc-method-param"><span class="javadoc-tp" title="Data of interface saker.build.util.cache.CacheKey">Data</span> data, </span><span class="javadoc-method-param"><span class="javadoc-tp" title="Resource of interface saker.build.util.cache.CacheKey">Resource</span> resource</span>)</span><span class="javadoc-method-throws"><span class="javadoc-kw">&nbsp;throws</span> <span class="javadoc-method-throws-entries"><span class="javadoc-method-exc"><span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Exception.html" title="class java.lang.Exception" data-javadoc-kind="class">Exception</a></span></span></span></span></div><div class="javadoc-class-detail-method-detail javadoc-member-detail"><div class="javadoc-detail-body">Closes the objects related to this cache key. <p>
+ Implementations should close unmanaged objects in the allocated Resource.
+ <p>
+ The Data parameter should not play a role in the closing of the resources, but it is passed to this method
+ nonetheless. If the Data is no longer accessible, <code>null</code> is used.</div><div class="javadoc-method-detail-params javadoc-blocktag-section"><div class="javadoc-method-detail-param"><span class="javadoc-method-detail-param-name">data</span><span class="javadoc-method-detail-param-detail">The generated Data or <code>null</code> if it's no longer available.</span></div><div class="javadoc-method-detail-param"><span class="javadoc-method-detail-param-name">resource</span><span class="javadoc-method-detail-param-detail">The allocated Resource to close. Never <code>null</code>.</span></div></div><div class="javadoc-method-detail-throwdeclarations javadoc-blocktag-section"><div class="javadoc-method-detail-throw" data-javadoc-exception-checked><span class="javadoc-method-detail-throw-name"><span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Exception.html" title="class java.lang.Exception" data-javadoc-kind="class">Exception</a></span></span><span class="javadoc-method-detail-throw-detail">In case of closing errors. Exceptions thrown from this method is usually not relayed to anyone, but
+             printed to an error stream.</span></div></div></div></div><div id="equals-java.lang.Object-" class="javadoc-class-detail-method javadoc-class-detail-member"><div class="javadoc-class-detail-method-sig javadoc-member-sig"><span class="javadoc-kw">public abstract </span><span class="javadoc-code-ref"><span class="javadoc-kw">boolean</span></span> <a href="#equals-java.lang.Object-" title="CacheKey.equals(Object)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">equals</a><span class="javadoc-code-ref">(<wbr><span class="javadoc-method-param"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html" title="class java.lang.Object" data-javadoc-kind="class">Object</a> obj</span>)</span></div><div class="javadoc-class-detail-method-detail javadoc-member-detail"><div class="javadoc-detail-body">Checks if this cache key identifies the same cache entry and computes the same data as the parameter given the
+ same circumstances. <p>
+ Indicates whether some other object is "equal to" this one.<p>
+ The <code>equals</code> method implements an equivalence relation on non-null object references:
+ <ul>
+ <li>It is <i>reflexive</i>: for any non-null reference value <code>x</code>, <code>x.equals(x)</code> should return
+ <code>true</code>.
+ <li>It is <i>symmetric</i>: for any non-null reference values <code>x</code> and <code>y</code>, <code>x.equals(y)</code> should
+ return <code>true</code> if and only if <code>y.equals(x)</code> returns <code>true</code>.
+ <li>It is <i>transitive</i>: for any non-null reference values <code>x</code>, <code>y</code>, and <code>z</code>, if
+ <code>x.equals(y)</code> returns <code>true</code> and <code>y.equals(z)</code> returns <code>true</code>, then <code>x.equals(z)</code>
+ should return <code>true</code>.
+ <li>It is <i>consistent</i>: for any non-null reference values <code>x</code> and <code>y</code>, multiple invocations of
+ <code>x.equals(y)</code> consistently return <code>true</code> or consistently return <code>false</code>, provided no
+ information used in <code>equals</code> comparisons on the objects is modified.
+ <li>For any non-null reference value <code>x</code>, <code>x.equals(null)</code> should return <code>false</code>.
+ </ul>
+ <p>
+ The <code>equals</code> method for class <code>Object</code> implements the most discriminating possible equivalence
+ relation on objects; that is, for any non-null reference values <code>x</code> and <code>y</code>, this method returns
+ <code>true</code> if and only if <code>x</code> and <code>y</code> refer to the same object (<code>x == y</code> has the value
+ <code>true</code>).
+ <p>
+ Note that it is generally necessary to override the <code>hashCode</code> method whenever this method is overridden,
+ so as to maintain the general contract for the <code>hashCode</code> method, which states that equal objects must have
+ equal hash codes.</div><div class="javadoc-method-detail-return javadoc-blocktag-section"><div class="javadoc-method-detail-return-body"><code>true</code> if this object is the same as the obj argument; <code>false</code> otherwise.</div></div></div></div><div id="generate-Resource-" class="javadoc-class-detail-method javadoc-class-detail-member"><div class="javadoc-class-detail-method-sig javadoc-member-sig"><span class="javadoc-kw">public abstract </span><span class="javadoc-code-ref"><span class="javadoc-tp" title="Data of interface saker.build.util.cache.CacheKey">Data</span></span> <a href="#generate-Resource-" title="CacheKey.generate(Resource)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">generate</a><span class="javadoc-code-ref">(<wbr><span class="javadoc-method-param"><span class="javadoc-tp" title="Resource of interface saker.build.util.cache.CacheKey">Resource</span> resource</span>)</span><span class="javadoc-method-throws"><span class="javadoc-kw">&nbsp;throws</span> <span class="javadoc-method-throws-entries"><span class="javadoc-method-exc"><span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Exception.html" title="class java.lang.Exception" data-javadoc-kind="class">Exception</a></span></span></span></span></div><div class="javadoc-class-detail-method-detail javadoc-member-detail"><div class="javadoc-detail-body">Generates the Data for this cache key based on a previously allocated Resource. <p>
+ The result of the generation must never be <code>null</code>. The previously generated Resource must not hold a
+ strong reference to the returned Data.
+ <p>
+ The returned Data should not contain any unmanaged data which requires explicit closing of the object. The
+ returned Data might be garbage collected any time in the future when all references are released to it.
+ <p>
+ If this method throws an exception, the cache entry will be removed for this cache key. Unclosed resources will
+ be closed nonetheless.</div><div class="javadoc-method-detail-params javadoc-blocktag-section"><div class="javadoc-method-detail-param"><span class="javadoc-method-detail-param-name">resource</span><span class="javadoc-method-detail-param-detail">The Resource from a previous <span class="javadoc-code-ref"><a href="#allocate--" title="CacheKey.allocate()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface">allocate<span class="javadoc-code-ref">()</span></a></span> call.</span></div></div><div class="javadoc-method-detail-return javadoc-blocktag-section"><div class="javadoc-method-detail-return-body">The generated Data.</div></div><div class="javadoc-method-detail-throwdeclarations javadoc-blocktag-section"><div class="javadoc-method-detail-throw" data-javadoc-exception-checked><span class="javadoc-method-detail-throw-name"><span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Exception.html" title="class java.lang.Exception" data-javadoc-kind="class">Exception</a></span></span><span class="javadoc-method-detail-throw-detail">If allocation of the resource failed. This exception is relayed to the caller.</span></div></div></div></div><div id="getExpiry--" class="javadoc-class-detail-method javadoc-class-detail-member"><div class="javadoc-class-detail-method-sig javadoc-member-sig"><span class="javadoc-kw">public abstract </span><span class="javadoc-code-ref"><span class="javadoc-kw">long</span></span> <a href="#getExpiry--" title="CacheKey.getExpiry()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">getExpiry</a><span class="javadoc-code-ref">()</span></div><div class="javadoc-class-detail-method-detail javadoc-member-detail"><div class="javadoc-detail-body">Gets the expiry milliseconds of the generated cache Data. <p>
+ After the expiry milliseconds elapse, the cache implementation will convert the <span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/ref/SoftReference.html" title="class java.lang.ref.SoftReference" data-javadoc-kind="class">soft</a></span>
+ reference pointing to the generated Data to <span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/ref/WeakReference.html" title="class java.lang.ref.WeakReference" data-javadoc-kind="class">weak</a></span> reference. It will result in that the Data
+ will be more easily garbage collected.
+ <p>
+ If this method returns negative, it will be normalized to 0 (zero).</div><div class="javadoc-method-detail-return javadoc-blocktag-section"><div class="javadoc-method-detail-return-body">The milliseconds of expiry.</div></div></div></div><div id="hashCode--" class="javadoc-class-detail-method javadoc-class-detail-member"><div class="javadoc-class-detail-method-sig javadoc-member-sig"><span class="javadoc-kw">public abstract </span><span class="javadoc-code-ref"><span class="javadoc-kw">int</span></span> <a href="#hashCode--" title="CacheKey.hashCode()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">hashCode</a><span class="javadoc-code-ref">()</span></div><div class="javadoc-class-detail-method-detail javadoc-member-detail"><div class="javadoc-overridden-inherited">Overridden from: <span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html#hashCode--" title="Object.hashCode()" data-javadoc-kind="method" data-javadoc-enclosing-kind="class" class="javadoc-overridden-inherited-type">Object</a></span></div><div class="javadoc-detail-body">Returns a hash code value for the object. This method is supported for the benefit of hash tables such as those
+ provided by <span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/util/HashMap.html" title="class java.util.HashMap" data-javadoc-kind="class">HashMap</a></span>.
+ <p>
+ The general contract of <code>hashCode</code> is:
+ <ul>
+ <li>Whenever it is invoked on the same object more than once during an execution of a Java application, the
+ <code>hashCode</code> method must consistently return the same integer, provided no information used in <code>equals</code>
+ comparisons on the object is modified. This integer need not remain consistent from one execution of an
+ application to another execution of the same application.
+ <li>If two objects are equal according to the <code>equals(Object)</code> method, then calling the <code>hashCode</code>
+ method on each of the two objects must produce the same integer result.
+ <li>It is <em>not</em> required that if two objects are unequal according to the
+ <span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html" title="class java.lang.Object" data-javadoc-kind="class">Object</a>.<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html#equals-java.lang.Object-" title="Object.equals(Object)" data-javadoc-kind="method" data-javadoc-enclosing-kind="class">equals<span class="javadoc-code-ref">(<wbr>Object)</span></a></span> method, then calling the <code>hashCode</code> method on each of the
+ two objects must produce distinct integer results. However, the programmer should be aware that producing
+ distinct integer results for unequal objects may improve the performance of hash tables.
+ </ul>
+ <p>
+ As much as is reasonably practical, the hashCode method defined by class <code>Object</code> does return distinct
+ integers for distinct objects. (This is typically implemented by converting the internal address of the object
+ into an integer, but this implementation technique is not required by the Java&trade; programming language.)</div><div class="javadoc-method-detail-return javadoc-blocktag-section"><div class="javadoc-method-detail-return-body">a hash code value for this object.</div></div><div class="javadoc-detail-see javadoc-blocktag-section"><div class="javadoc-detail-see-entry"><span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html#equals-java.lang.Object-" title="Object.equals(Object)" data-javadoc-kind="method" data-javadoc-enclosing-kind="class">Object.equals<span class="javadoc-code-ref">(<wbr>Object)</span></a></span></div><div class="javadoc-detail-see-entry"><span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/System.html#identityHashCode-java.lang.Object-" title="System.identityHashCode(Object)" data-javadoc-kind="method" data-javadoc-enclosing-kind="class">System.identityHashCode<span class="javadoc-code-ref">(<wbr>Object)</span></a></span></div></div></div></div><div id="validate-Data-Resource-" class="javadoc-class-detail-method javadoc-class-detail-member"><div class="javadoc-class-detail-method-sig javadoc-member-sig"><span class="javadoc-kw">public abstract </span><span class="javadoc-code-ref"><span class="javadoc-kw">boolean</span></span> <a href="#validate-Data-Resource-" title="CacheKey.validate(Data, Resource)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">validate</a><span class="javadoc-code-ref">(<wbr><span class="javadoc-method-param"><span class="javadoc-tp" title="Data of interface saker.build.util.cache.CacheKey">Data</span> data, </span><span class="javadoc-method-param"><span class="javadoc-tp" title="Resource of interface saker.build.util.cache.CacheKey">Resource</span> resource</span>)</span></div><div class="javadoc-class-detail-method-detail javadoc-member-detail"><div class="javadoc-detail-body">Validates the cached data if it's still useable. <p>
+ The Data parameter might be <code>null</code>, if only the Resource is available for validation. Implementations
+ should handle that gracefully.</div><div class="javadoc-method-detail-params javadoc-blocktag-section"><div class="javadoc-method-detail-param"><span class="javadoc-method-detail-param-name">data</span><span class="javadoc-method-detail-param-detail">The generated Data, or <code>null</code> if it is no longer available.</span></div><div class="javadoc-method-detail-param"><span class="javadoc-method-detail-param-name">resource</span><span class="javadoc-method-detail-param-detail">The allocated Resource. Never <code>null</code>.</span></div></div><div class="javadoc-method-detail-return javadoc-blocktag-section"><div class="javadoc-method-detail-return-body"><code>true</code> if the passed arguments are in a valid state for usage.</div></div></div></div></div></div>
+	</div>
+</div>
+<div class="doc-footer">
+	<div class="container">
+		<div class="row">
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">About</p>
+				<div><a href="/index.html" title="Saker.build home page">Home</a></div>
+				<div data-footer-location="doc-docs"><a href="../../../../../index.html" title="saker.build documentation index">Documentation index</a></div>
+				<div><a href="../../../../../../saker.build/index.html" title="Information about the saker.build system">saker.build system</a></div>
+				<div><a href="../../../../../../saker.nest/index.html" title="Information about the saker.nest repository">saker.nest repository</a></div>
+				<div><a href="/contact.html" title="Contact us">Contact</a></div>
+			</div>
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">Resources</p>
+				<div data-footer-location="doc-docs"><a href="../../../../../doc/index.html" title="saker.build documentation index">Documentation</a></div>
+				<div data-footer-location="doc-javadoc"><a href="../../../../../javadoc/index.html" title="JavaDoc for saker.build">JavaDoc</a></div>
+				<div data-footer-location="doc-taskdoc"><a href="../../../../../taskdoc/index.html"  title="Documentation of build tasks in saker.build">TaskDoc</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.nest package page</a></div>
+				<div><a href="https://github.com/sakerbuild/saker.build" title="saker.build on GitHub">GitHub</a></div>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col">
+			&copy; Bence Sipka 2020
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

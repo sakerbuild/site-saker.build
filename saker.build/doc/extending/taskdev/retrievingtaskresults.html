@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Retrieving task results&nbsp;|&nbsp;saker.build</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+	
+	<link rel="stylesheet" href="../../../../res/bootstrap.min.css" >
+	<link rel="stylesheet" href="../../../../res/doc-saker.css" >
+</head>
+<body data-nav-location="packagedoc" data-subdoc-presence="nest-package packagedoc javadoc">
+<div class="doc-nav-bar">
+	<div class="container">
+		<a class="home-link" href="../../../index.html" title="saker.build"><img style="height: 2.5em;" class="logo" src="../../../../res/logo.svg"/><span class="page-name">saker.build</span></a>
+		<a class="nav-location-item" data-nav-location="doc-docs" href="../../../doc/index.html" title="Documentation">Documentation</a>
+		<a class="nav-location-item" data-nav-location="doc-taskdoc" href="../../../taskdoc/index.html" title="Build task documentation">TaskDoc</a>
+		<a class="nav-location-item" data-nav-location="doc-javadoc" href="../../../javadoc/index.html"title="Java API documentation">JavaDoc</a>
+		<div class="nav-bar-controls">
+			<label class="d-xl-none nav-bar-collapse" for="collapse-nav-bar-label">
+				<svg style="height: 1.5em;" viewBox="0 0 24 24">
+				    <path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+				</svg>
+			</label>
+			<input style="display:none;" id="collapse-nav-bar-label" type="checkbox"/>
+			<div class="nav-bar-items">
+				<a href="/" title="saker.build home page">Home</a>
+				<a href="/buildtrace.html" title="Build trace viewer">Build trace</a>
+				<a style="display:none;" href="/sponsor.html" title="Sponsoring development">Sponsor</a>
+				<a href="/blog/" title="saker.build system blog">Blog</a>
+				<a class="no-external-icon" href="https://github.com/sakerbuild/saker.build" title="saker.build GitHub repository">GitHub</a>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container page-contents packagedoc">
+	<div class="row">
+		<div class="col-12 col-lg-3 col-xl-2 p-lg-0">
+			<div class="doc-navigation-container">
+				<label class="d-lg-none nav-collapse" for="doc-collapse-nav-label">
+					<svg style="height: 1.5em;" viewBox="0 0 24 24">
+					    <path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+					</svg>
+					Navigation
+				</label>
+				<input style="display:none;" id="doc-collapse-nav-label" type="checkbox"/> 
+				<div class="doc-nav">  <div class="doc-section"><ul><li><a class="doc-nav-section-link" href="../../../index.html" title="Index">Index</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Introduction</p><ul><li><a class="doc-nav-section-link" href="../../index.html" title="Overview">Overview</a></li><li><label class="doc-nav-collapse" for="_doc_collapse_id_0"><a class="doc-nav-section-link" href="../../installation.html" title="Installation">Installation</a></label><input style="display:none;" id="_doc_collapse_id_0" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_0"></label><ul><li><a class="doc-nav-section-link" href="../../eclipseplugin.html" title="Eclipse plugin">Eclipse plugin</a></li><li><a class="doc-nav-section-link" href="../../releasearchive.html" title="Release archive">Release archive</a></li></ul></li><li><a class="doc-nav-section-link" href="../../perfcomparison.html" title="Performance comparisons">Performance comparisons</a></li><li><a class="doc-nav-section-link" href="../../roadmap.html" title="Roadmap">Roadmap</a></li><li><label class="doc-nav-collapse" for="_doc_collapse_id_1"><a class="doc-nav-section-link" href="../../contribute.html" title="Contribute">Contribute</a></label><input style="display:none;" id="_doc_collapse_id_1" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_1"></label><ul><li><a class="doc-nav-section-link" href="../../buildstatus.html" title="Build status">Build status</a></li></ul></li></ul>  </div>  <div class="doc-section">    <p class="section-title">User guide</p><ul><li><label class="doc-nav-collapse" for="_doc_collapse_id_2"><a class="doc-nav-section-link" href="../../guide/index.html" title="Introduction">Introduction</a></label><input style="display:none;" id="_doc_collapse_id_2" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_2"></label><ul><li><a class="doc-nav-section-link" href="../../guide/helloworld.html" title="Hello world">Hello world</a></li><li><a class="doc-nav-section-link" href="../../guide/buildtargets.html" title="Build targets">Build targets</a></li><li><a class="doc-nav-section-link" href="../../guide/datastructures.html" title="Data structures">Data structures</a></li><li><a class="doc-nav-section-link" href="../../guide/foreach.html" title="Foreach loop">Foreach loop</a></li><li><a class="doc-nav-section-link" href="../../guide/controlflow.html" title="Control flow">Control flow</a></li></ul></li><li><a class="doc-nav-section-link" href="../../guide/incremental.html" title="Incremental builds">Incremental builds</a></li><li><a class="doc-nav-section-link" href="../../guide/runtime.html" title="Build system runtime">Build system runtime</a></li><li><a class="doc-nav-section-link" href="../../guide/envconfig.html" title="Environment configuration">Environment configuration</a></li><li><a class="doc-nav-section-link" href="../../guide/execparams.html" title="Execution parameters">Execution parameters</a></li><li><a class="doc-nav-section-link" href="../../guide/pathconfiguration.html" title="Path configuration">Path configuration</a></li><li><a class="doc-nav-section-link" href="../../guide/repositories.html" title="Task repositories">Task repositories</a></li><li><a class="doc-nav-section-link" href="../../guide/scriptlanguages.html" title="Script languages">Script languages</a></li><li><a class="doc-nav-section-link" href="../../guide/daemon.html" title="Build daemon">Build daemon</a></li><li><a class="doc-nav-section-link" href="../../guide/filechangetracking.html" title="File change tracking">File change tracking</a></li><li><a class="doc-nav-section-link" href="../../guide/remotebuild.html" title="Remote build execution">Remote build execution</a></li><li><a class="doc-nav-section-link" href="../../guide/buildclusters.html" title="Build clusters">Build clusters</a></li><li><a class="doc-nav-section-link" href="../../guide/buildcache.html" title="Build cache">Build cache</a></li><li><a class="doc-nav-section-link" href="../../guide/buildtrace.html" title="Build trace">Build trace</a></li><li><a class="doc-nav-section-link" href="../../guide/reproducible.html" title="Reproducible builds">Reproducible builds</a></li><li><a class="doc-nav-section-link" href="../../guide/wildcards.html" title="Wildcard paths">Wildcard paths</a></li><li><label class="doc-nav-collapse" for="_doc_collapse_id_3"><a class="doc-nav-section-link" href="../../guide/cmdlineref/index.html" title="Command line reference">Command line reference</a></label><input style="display:none;" id="_doc_collapse_id_3" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_3"></label><ul><li><a class="doc-nav-section-link" href="../../guide/cmdlineref/build.html" title="build">build</a></li><li><label class="doc-nav-collapse" for="_doc_collapse_id_4"><a class="doc-nav-section-link" href="../../guide/cmdlineref/daemon.html" title="daemon">daemon</a></label><input style="display:none;" id="_doc_collapse_id_4" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_4"></label><ul><li><a class="doc-nav-section-link" href="../../guide/cmdlineref/daemon_start.html" title="start">start</a></li><li><a class="doc-nav-section-link" href="../../guide/cmdlineref/daemon_stop.html" title="stop">stop</a></li><li><a class="doc-nav-section-link" href="../../guide/cmdlineref/daemon_run.html" title="run">run</a></li><li><a class="doc-nav-section-link" href="../../guide/cmdlineref/daemon_io.html" title="io">io</a></li><li><a class="doc-nav-section-link" href="../../guide/cmdlineref/daemon_info.html" title="info">info</a></li></ul></li><li><a class="doc-nav-section-link" href="../../guide/cmdlineref/action.html" title="action">action</a></li><li><a class="doc-nav-section-link" href="../../guide/cmdlineref/licenses.html" title="licenses">licenses</a></li><li><a class="doc-nav-section-link" href="../../guide/cmdlineref/version.html" title="version">version</a></li></ul></li><li><a class="doc-nav-section-link" href="../../guide/scriptstyleguide.html" title="Build script style guide">Build script style guide</a></li><li><a class="doc-nav-section-link" href="../../guide/bestpractices.html" title="Best practices">Best practices</a></li><li><a class="doc-nav-section-link" href="../../examplecollection.html" title="Example collection">Example collection</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Scripting language</p><ul><li><a class="doc-nav-section-link" href="../../scripting/index.html" title="Overview">Overview</a></li><li><a class="doc-nav-section-link" href="../../scripting/executionmodel.html" title="Execution model">Execution model</a></li><li><label class="doc-nav-collapse" for="_doc_collapse_id_5"><a class="doc-nav-section-link" href="../../scripting/langref/index.html" title="Language reference">Language reference</a></label><input style="display:none;" id="_doc_collapse_id_5" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_5"></label><ul><li><a class="doc-nav-section-link" href="../../scripting/langref/sourcefile/index.html" title="Source file">Source file</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/expressions/index.html" title="Expressions">Expressions</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/comments/index.html" title="Comments">Comments</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/literals/index.html" title="Literals">Literals</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/variables/index.html" title="Variables">Variables</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/tasks/index.html" title="Task extensions">Task extensions</a></li><li><label class="doc-nav-collapse" for="_doc_collapse_id_6"><a class="doc-nav-section-link" href="../../scripting/langref/operators/index.html" title="Operators">Operators</a></label><input style="display:none;" id="_doc_collapse_id_6" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_6"></label><ul><li><a class="doc-nav-section-link" href="../../scripting/langref/operators/addition/index.html" title="Addition">Addition</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/operators/assignment/index.html" title="Assignment">Assignment</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/operators/bitnegate/index.html" title="Bitwise negate">Bitwise negate</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/operators/bitoperators/index.html" title="Bitwise operators">Bitwise operators</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/operators/bitshiftoperators/index.html" title="Bitwise shift operators">Bitwise shift operators</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/operators/boolnegate/index.html" title="Boolean negate">Boolean negate</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/operators/booloperators/index.html" title="Boolean operators">Boolean operators</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/operators/dereference/index.html" title="Dereference">Dereference</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/operators/equality/index.html" title="Equality comparison">Equality comparison</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/operators/mathoperators/index.html" title="Mathematic operators">Mathematic operators</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/operators/comparison/index.html" title="Numeric comparison">Numeric comparison</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/operators/parentheses/index.html" title="Parentheses">Parentheses</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/operators/subscript/index.html" title="Subscript">Subscript</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/operators/ternary/index.html" title="Ternary">Ternary</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/operators/unaryminus/index.html" title="Unary minus">Unary minus</a></li></ul></li><li><a class="doc-nav-section-link" href="../../scripting/langref/ifelse/index.html" title="If-else statement">If-else statement</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/foreach/index.html" title="Foreach expression">Foreach expression</a></li></ul></li><li><label class="doc-nav-collapse" for="_doc_collapse_id_7"><a class="doc-nav-section-link" href="../../scripting/builtintasks/index.html" title="Built-in tasks">Built-in tasks</a></label><input style="display:none;" id="_doc_collapse_id_7" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_7"></label><ul><li><a class="doc-nav-section-link" href="../../scripting/builtintasks/abort.html" title="abort()">abort()</a></li><li><a class="doc-nav-section-link" href="../../scripting/builtintasks/global.html" title="global()">global()</a></li><li><a class="doc-nav-section-link" href="../../scripting/builtintasks/include.html" title="include()">include()</a></li><li><a class="doc-nav-section-link" href="../../scripting/builtintasks/path.html" title="path()">path()</a></li><li><a class="doc-nav-section-link" href="../../scripting/builtintasks/print.html" title="print()">print()</a></li><li><a class="doc-nav-section-link" href="../../scripting/builtintasks/sequence.html" title="sequence()">sequence()</a></li><li><a class="doc-nav-section-link" href="../../scripting/builtintasks/static.html" title="static()">static()</a></li><li><a class="doc-nav-section-link" href="../../scripting/builtintasks/var.html" title="var()">var()</a></li></ul></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Extending saker.build</p><ul><li><a class="doc-nav-section-link" href="../index.html" title="Overview">Overview</a></li><li><a class="doc-nav-section-link" href="../api.html" title="Build system API">Build system API</a></li><li class=" doc-active-parent"><label class="doc-nav-collapse" for="_doc_collapse_id_8"><a class="doc-nav-section-link" href="index.html" title="Task development">Task development</a></label><input style="display:none;" id="_doc_collapse_id_8" type="checkbox" checked/><label class="doc-nav-section-arrow" for="_doc_collapse_id_8"></label><ul><li><a class="doc-nav-section-link" href="helloworld.html" title="Hello world">Hello world</a></li><li><a class="doc-nav-section-link" href="taskparameters.html" title="Task parameters">Task parameters</a></li><li><a class="doc-nav-section-link" href="taskresults.html" title="Task results">Task results</a></li><li><label class="doc-nav-collapse" for="_doc_collapse_id_9"><a class="doc-nav-section-link" href="filehandling.html" title="File handling">File handling</a></label><input style="display:none;" id="_doc_collapse_id_9" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_9"></label><ul><li><a class="doc-nav-section-link" href="filedependencies.html" title="File dependencies">File dependencies</a></li><li><a class="doc-nav-section-link" href="fileadditiondependency.html" title="File addition dependency">File addition dependency</a></li><li><a class="doc-nav-section-link" href="customfiles.html" title="Custom files">Custom files</a></li><li><a class="doc-nav-section-link" href="filemirroring.html" title="File mirroring">File mirroring</a></li></ul></li><li><a class="doc-nav-section-link" href="propertydependencies.html" title="Property dependencies">Property dependencies</a></li><li class=" doc-active-parent"><label class="doc-nav-collapse" for="_doc_collapse_id_10"><a class="doc-nav-section-link" href="taskmanagement.html" title="Task management">Task management</a></label><input style="display:none;" id="_doc_collapse_id_10" type="checkbox" checked/><label class="doc-nav-section-arrow" for="_doc_collapse_id_10"></label><ul><li><a class="doc-nav-section-link" href="startingtasks.html" title="Starting tasks">Starting tasks</a></li><li class="doc-active doc-active-parent"><a class="doc-nav-section-link" href="retrievingtaskresults.html" title="Retrieving task results">Retrieving task results</a></li></ul></li><li><a class="doc-nav-section-link" href="incrementaldeltas.html" title="Incremental deltas">Incremental deltas</a></li><li><a class="doc-nav-section-link" href="taskcapabilities.html" title="Task capabilities">Task capabilities</a></li><li><a class="doc-nav-section-link" href="parameterparsing.html" title="Parameter parsing">Parameter parsing</a></li><li><a class="doc-nav-section-link" href="innertasks.html" title="Inner tasks">Inner tasks</a></li><li><a class="doc-nav-section-link" href="taskworkflow.html" title="Task workflow">Task workflow</a></li><li><a class="doc-nav-section-link" href="taskcaching.html" title="Task caching">Task caching</a></li><li><a class="doc-nav-section-link" href="buildclusters.html" title="Build clusters">Build clusters</a></li><li><a class="doc-nav-section-link" href="standardio.html" title="Standard I/O">Standard I/O</a></li><li><a class="doc-nav-section-link" href="serialization.html" title="Serialization">Serialization</a></li><li><a class="doc-nav-section-link" href="ideconfig.html" title="IDE configuration">IDE configuration</a></li><li><a class="doc-nav-section-link" href="reproducible.html" title="Reproducible builds">Reproducible builds</a></li><li><a class="doc-nav-section-link" href="bestpractices.html" title="Best practices">Best practices</a></li></ul></li><li><label class="doc-nav-collapse" for="_doc_collapse_id_11"><a class="doc-nav-section-link" href="../scriptdev/index.html" title="Script language development">Script language development</a></label><input style="display:none;" id="_doc_collapse_id_11" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_11"></label><ul><li><a class="doc-nav-section-link" href="../scriptdev/structure.html" title="API structure">API structure</a></li><li><a class="doc-nav-section-link" href="../scriptdev/packaging.html" title="Packaging">Packaging</a></li><li><a class="doc-nav-section-link" href="../scriptdev/workflow.html" title="Development workflow">Development workflow</a></li></ul></li><li><label class="doc-nav-collapse" for="_doc_collapse_id_12"><a class="doc-nav-section-link" href="../repositorydev/index.html" title="Repository development">Repository development</a></label><input style="display:none;" id="_doc_collapse_id_12" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_12"></label><ul><li><a class="doc-nav-section-link" href="../repositorydev/structure.html" title="API structure">API structure</a></li><li><a class="doc-nav-section-link" href="../repositorydev/packaging.html" title="Packaging">Packaging</a></li></ul></li><li><a class="doc-nav-section-link" href="../testing/index.html" title="Integration testing">Integration testing</a></li></ul>  </div></div>
+			</div>
+		</div>
+		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="sb-sponsors" style="display: none;">
+	<span class="sb-sponsors-title">Sponsors</span>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4 col-12">
+				<a class="sb-sponsors-link"></a>
+			</div>
+			<div class="col-md-4 col-12">
+				<a class="sb-sponsors-link"></a>
+			</div>
+			<div class="col-md-4 col-12">
+				<a class="sb-sponsors-link"></a>
+			</div>
+		</div>
+	</div>
+</div>
+			<div class="doc-content"><h1 id="retrieving-task-results">Retrieving task results<a class="doc-heading-anchor" href="#retrieving-task-results"></a></h1>
+<p>The build system allows task developers to retrieve the results of other tasks in various ways. This mechanism allows them to install the dependencies on other tasks, and use their results as part of their computations.</p>
+<p>A task can retrieve results for other tasks given they know the associated task identifier for them. The <a href="../../../javadoc/saker/build/task/TaskContext.html"><code>TaskContext</code></a> provides the functions for getting the task results, and managing the dependencies accordingly.</p>
+<p>Unless otherwise noted, all functions that retrieve the result of a task will wait for the given task execution to finish, and return their results accordingly. If they fail the execution, a <code>TaskExecutionFailedException</code> will be thrown.</p>
+<p>When retrieving task results, make sure to handle the special cases of task results mentioned in <a href="taskresults.html" title="Task results">Task results</a>.</p>
+<h2 id="gettaskresult__"><code>getTaskResult()</code><a class="doc-heading-anchor" href="#gettaskresult__"></a></h2>
+<p>The simplest way of retrieving the result of a task is <code>TaskContext.getTaskResult</code>. The article <a href="taskparameters.html" title="Task parameters">Task parameters</a> provides the example for its usage:</p>
+<p>
+<pre><code class="language-java">public Task&lt;? extends Void&gt; createTask(ExecutionContext executioncontext) {	return new ParameterizableTask&lt;Void&gt;() {		private Object parameter;
+		@Override		public Void run(TaskContext taskcontext) throws Exception {			taskcontext.println(Objects.toString(parameter));			return null;		}
+		@Override		public void initParameters(TaskContext taskcontext,				NavigableMap&lt;String, ? extends TaskIdentifier&gt; parameters)						throws TaskParameterException {			parameter = taskcontext.getTaskResult(parameters.get(&quot;Parameter&quot;));		}	};}</code></pre>
+</p>
+<p>Using it the following way:</p>
+<pre><code class="language-sakerscript"><span class="d">$paramvalue</span> = <span class="f">&quot;Hello world!&quot;</span>
+<span class="e">example.task(</span><span class="i">Parameter</span>: <span class="d">$paramvalue</span><span class="e">)</span>
+</code></pre>
+<p>In the <code>initParameters</code> function we get the <code>Parameter</code> provided by the user, and retrieve the task result for the task that is associated with it. In the above example, the parameter task will get the value of the <code>$paramvalue</code> variable.</p>
+<p>As the task result for the variable has been retrieved by our task, the build system will record a dependency for it. If we run the build without any modification, no tasks will rerun, as expected.</p>
+<p>However, if we modify the value of <code>$paramvalue</code>:</p>
+<pre><code class="language-sakerscript"><span class="d">$paramvalue</span> = <span class="f">&quot;Modified world!&quot;</span>
+<span class="e">example.task(</span><span class="i">Parameter</span>: <span class="d">$paramvalue</span><span class="e">)</span>
+</code></pre>
+<p>The build system will detect this, and discover that one of the input task dependency for <code>example.task</code> has been modified. This will cause it to be rerun, and print the <code>&quot;Modified world!&quot;</code> string accordingly.</p>
+<h2 id="task-futures">Task futures<a class="doc-heading-anchor" href="#task-futures"></a></h2>
+<p>Task futures are basically handles to a task result, and they can be retrieved them without having to specify the task identifier for the subject task. Using them can be more convenient, and they also provide a few extra functionality for fine-graining the recorded dependency.</p>
+<p>The two interfaces <code>TaskFuture</code> and <code>TaskDependencyResult</code> provide this functionality. The two interfaces are seemingly equivalent, however, their usage are subject to different scopes.</p>
+<h3 id="get__"><code>get()</code><a class="doc-heading-anchor" href="#get__"></a></h3>
+<p>In the following example we implement a task that invokes <code>substring</code> on an argument and uses futures to retrieve the results:</p>
+<p>
+<pre><code class="language-java">public TaskIdentifier inputTaskId;@SakerInputpublic int Start;@SakerInputpublic Integer End;
+@Overridepublic String run(TaskContext taskcontext) throws Exception {	TaskFuture&lt;?&gt; inputfuture = taskcontext.getTaskFuture(inputTaskId);	String input = Objects.toString(inputfuture.get());	int end = this.End == null ? input.length() : this.End;	return input.substring(Start, end);}
+@Overridepublic void initParameters(TaskContext taskcontext, 		NavigableMap&lt;String, ? extends TaskIdentifier&gt; parameters) 				throws TaskParameterException {	this.inputTaskId = parameters.get(&quot;&quot;);	ParameterizableTask.super.initParameters(taskcontext, parameters);}</code></pre>
+</p>
+<p>The task uses the built-in parameter assignment mechanism for the range of the substring, and initializes the unnamed input parameter directly to retrieve the task result later.</p>
+<pre><code class="language-sakerscript"><span class="e">example.substring(</span><span class="f">&quot;hello world&quot;</span>, <span class="i">Start: </span><span class="f">3</span>, <span class="i">End: </span><span class="f">8</span><span class="e">)</span>
+</code></pre>
+<p>The above will result in the string <code>&quot;lo wo&quot;</code>. As the first statement of the task, we retrieve a <code>TaskFuture</code> for the input parameter task identifier. Calling <code>get()</code> on it will wait for the task to finish, and retrieve the result for in. In this case this will be <code>&quot;hello world&quot;</code>. We use the other parameters to calculate the string range to return, and call the <code>substring</code> method accordingly.</p>
+<p>We could've used the previously mentioned <code>getTaskResult</code> method to retrieve the result, but we used a future to showcase its usage.</p>
+<h3 id="output-change-detection">Output change detection<a class="doc-heading-anchor" href="#output-change-detection"></a></h3>
+<p>In many cases you might only be interested partially in the result of a task. In these cases if other aspects of a task change than the ones you consume, you probably don't want your task to be rerun, as the produced result will be the same.</p>
+<p>One example for this if we look at the previously implemented <code>example.substring</code> task. If we pass <code>&quot;hello world&quot;</code> or <code>&quot;xyzlo woabc&quot;</code> to it with the same range arguments, it will still produce the same <code>&quot;lo wo&quot;</code> result. Therefore, if the argument string changes only outside of the interested range, we don't want our <code>example.substring</code> task to be reinvoked, as that could cause unnecessary computations during build execution.</p>
+<p>So in order to demonstrate this, we start with the following build script:</p>
+<pre><code class="language-sakerscript"><span class="d">$inputstring</span> = <span class="f">&quot;hello world&quot;</span>
+<span class="e">example.substring(</span><span class="d">$inputstring</span>, <span class="i">Start: </span><span class="f">3</span>, <span class="i">End: </span><span class="f">8</span><span class="e">)</span>
+</code></pre>
+<p>Then we modify it to the following:</p>
+<pre><code class="language-sakerscript"><span class="d">$inputstring</span> = <span class="f">&quot;xyzlo woabc&quot;</span>
+<span class="e">example.substring(</span><span class="d">$inputstring</span>, <span class="i">Start: </span><span class="f">3</span>, <span class="i">End: </span><span class="f">8</span><span class="e">)</span>
+</code></pre>
+<p>In both cases our <code>example.substring</code> task will produce the <code>&quot;lo wo&quot;</code> result, so we expect our task <strong>not</strong> to be reinvoked when the above changes occur in the build script.</p>
+<p>We can achieve this by using the <code>TaskDependencyResult</code> interface in the modified implementation of our task:</p>
+<p>
+<pre><code class="language-java">public String run(TaskContext taskcontext) throws Exception {	TaskDependencyFuture&lt;?&gt; inputfuture = taskcontext			.getTaskDependencyFuture(inputTaskId);	String input = Objects.toString(inputfuture.get());	int end = this.End == null ? input.length() : this.End;	String result = input.substring(this.Start, end);	inputfuture.setTaskOutputChangeDetector(			new StringRangeTaskOutputChangeDetector(result, 					this.Start, end));	return result;}</code></pre>
+</p>
+<p>We use the <code>TaskDependencyResult</code> in the same way as <code>TaskFuture</code> to retrieve the result of the task. However, after determining the substring, we set the <code>TaskOutputChangeDetector</code> for the dependency on the input string task. The <code>TaskOutputChangeDetector</code> interface is used by the build system to determine if the task should be considered to be changed in relation to the caller, by providing an opportunity to compare the current output of the subject task.</p>
+<p>The <a href="example_taskfutures/src/example/StringRangeTaskOutputChangeDetector.java"><code>StringRangeTaskOutputChangeDetector</code></a> class implementation checks if the given range of the task equals to the expected, and determines the change accordingly.</p>
+<h4 id="incremental-scenario">Incremental scenario<a class="doc-heading-anchor" href="#incremental-scenario"></a></h4>
+<p>Let's examine what happens when we apply the build script changes as in the above example:</p>
+<ol>
+<li>We run the build and then modify the script according to the previous section.</li>
+<li>The build system will run the modified script and assign <code>&quot;xyzlo woabc&quot;</code> to <code>$inputstring</code>.</li>
+<li>The build system will determine the chanes for <code>example.substring</code>.
+<ul>
+<li>It sees that the <code>Start</code> and <code>End</code> parameters haven't changed.</li>
+<li>It sees that the value of <code>$inputstring</code> has been modified. Normally this would cause the rerun of <code>example.substring</code>.</li>
+<li>It will invoke the <code>isChanged</code> method of the installed <code>StringRangeTaskOutputChangeDetector</code> for the dependency.
+<ul>
+<li>The change detector will determine that the interested range for the string is still <code>&quot;lo wo&quot;</code></li>
+<li>As the detector reports no changes, the build system will detect that the dependency on the value of <code>$inputstring</code> is <em>unchanged</em>.</li>
+</ul>
+</li>
+<li>The build system determines that <code>example.substring</code> doesn't need to be rerun, as no input tasks are considered as changed in relation to it.</li>
+</ul>
+</li>
+<li>The build finishes without invoking <code>example.substring</code>.</li>
+</ol>
+<p>The above scenario is what we've wanted and using the task output change detector we've successfully achieved that. In a real world scenario, the tasks would be more compilicated than comparing part of a string, but the example showcases a minimal example for it. (One example for which we use this feature is when compiling multiple dependent Java projects. If the signatures of the Java classes doesn't change, then we don't need to recompile other projects that use them.)</p>
+<p>Note that however, if we modify any other parameter of the task (e.g. <code>Start</code> or <code>End</code>), the task will be rerun accordingly.</p>
+<h3 id="future-vs_-dependency-result">Future vs. dependency result<a class="doc-heading-anchor" href="#future-vs_-dependency-result"></a></h3>
+<p>The interfaces <code>TaskFuture</code> and <code>TaskDependencyResult</code> seemingly responsible for the same things. However, their usage scope differs in the sense that a <code>TaskFuture</code> instance can be shared by multiple parts of the code, while a <code>TaskDependencyResult</code> should be constrained to a single use.</p>
+<p>Task futures are stateless objects, and they provide access to the associated subject task for the caller. Task dependency results on the other hand are used to fine-grain a <em>single</em> dependency on the associated subject task, and are not to be shared with different parts of the code.</p>
+<p>The <code>setTaskOutputChangeDetector</code> can be only called once for each dependency result instance.</p>
+<p>In general, if you don't want to fine-grain the recorded dependency for the task, use <code>TaskFuture</code>. If you want to reify your dependency management, use <code>TaskDependencyResult</code>, however, get a instance of it for each semantically separate <code>get()</code> or related calls.</p>
+<p>You can retrieve dependency result handles by calling <code>TaskContext.getTaskDependencyResult</code> or <code>TaskFuture.asDependencyResult</code>.</p>
+<h2 id="retrieving-finished-results">Retrieving finished results<a class="doc-heading-anchor" href="#retrieving-finished-results"></a></h2>
+<p>The <code>getFinished()</code> function of the task future interfaces allow retrieving the results of already finished tasks. Its significance only matters when you're normally not allowed to wait for tasks. These scenarios can happen if you're running short tasks or tasks with computation tokens. (See <a href="taskcapabilities.html#computation-tokens" title="Computation tokens">Computation tokens</a>)</p>
+<p>In order to be allowed to retrieve a finished result for a given task, the task must've been already waited for by the caller or any of the ancestor tasks of the caller. The ancestor tasks are the tasks which have directly or transitively started the caller task.</p>
+<p>This requirement is actively enforced by the build system in order to prevent race conditions between tasks.</p>
+<p>For simple task implementations, retrieving finished results usually play no role in the implementation. However, when designing tasks which are short, or request computation tokens, this functionality may be useful.</p>
+<h2 id="result-waiting-rules">Result waiting rules<a class="doc-heading-anchor" href="#result-waiting-rules"></a></h2>
+<p>In order to ensure deterministic behaviour and side-effect free task execution, the build system places some rules on how tasks can retrieve results of each other. The following must be true for all task which decides to wait for another:</p>
+<blockquote>
+<p>If given task <em>T</em> decides to retrieve the result of task <em>A</em>, then all of the ancestors of <em>A</em> must be finished until the common parent <em>P</em> of <em>T</em> and <em>A</em>.</p>
+</blockquote>
+<p><strong>Why is this rule necessary?</strong></p>
+<p>In the model of the build system, the tasks are to be side-effect free pure functions which produce their results only based on their inputs. This model also implies, that the outputs of a task should be made available to other tasks in a single (atomic) step, and no partial output of theirs should be visible.</p>
+<p>If a partial output of a task is visible to other tasks, then other tasks may decide to change their behaviour based on this information. The trouble begins when tasks decide to cross-reference each others partial outputs, and decide to alter their execution based on the partial information. This can lead to serious race conditions, deadlocks and non-deterministic behaviour. These should strictly not occur in a build system, and therefore we decided to disallow such practices.</p>
+<p>If this rule didn't exist, then tasks which were started by other tasks could be retrieved before their parents finish their executions. This would mean that the partial output of the parent tasks are available to thers via their started tasks. As this violates the above requirements, we placed the rule that specifies that in order to wait for a task result, the parent must've already been finished.</p>
+<p>If two tasks have the same parent, then they can wait for each other, as they are considered to be the outputs of the same task, therefore not violating the above requirement.</p>
+<p><strong>What does this mean in practice?</strong></p>
+<p>For task implementations that doesn't do complicated task management, nothing. The build system is designed to be straight forward with this requirement, and only uncommon edge-cases may trigger a violation.</p>
+<p>When such scenario happens, if you wait for a task that needs its parent waited for, then before returning the result of the waited task to the caller, the ancestor(s) will also be waited for. No task dependency will be recorded for the additionally waited ancestor(s).</p>
+<link href="../../../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>
+			<div class="end-section-links">
+				<div class="end-section-prev">
+					<a class="doc-prev-section" href="../../../doc/extending/taskdev/startingtasks.html" title="Starting tasks"><svg class="doc-section-arrow" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" />
+</svg>Starting tasks</a>
+				</div>
+				<div class="end-section-next">
+					<a class="doc-next-section" href="../../../doc/extending/taskdev/incrementaldeltas.html" title="Incremental deltas">Incremental deltas<svg class="doc-section-arrow" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z" />
+</svg></a>
+				</div>
+			</div>
+			<div class="doc-headings-nav">  <ul>    <li><a href="#retrieving-task-results" title="Retrieving task results">Retrieving task results</a>      <ul>        <li><a href="#gettaskresult__" title="getTaskResult()">getTaskResult()</a>        </li>        <li><a href="#task-futures" title="Task futures">Task futures</a>          <ul>            <li><a href="#get__" title="get()">get()</a>            </li>            <li><a href="#output-change-detection" title="Output change detection">Output change detection</a>              <ul>                <li><a href="#incremental-scenario" title="Incremental scenario">Incremental scenario</a>                </li>              </ul>            </li>            <li><a href="#future-vs_-dependency-result" title="Future vs. dependency result">Future vs. dependency result</a>            </li>          </ul>        </li>        <li><a href="#retrieving-finished-results" title="Retrieving finished results">Retrieving finished results</a>        </li>        <li><a href="#result-waiting-rules" title="Result waiting rules">Result waiting rules</a>        </li>      </ul>    </li>  </ul></div>
+		</div>
+	</div>
+</div>
+<div class="doc-footer">
+	<div class="container">
+		<div class="row">
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">About</p>
+				<div><a href="/index.html" title="Saker.build home page">Home</a></div>
+				<div data-footer-location="doc-docs"><a href="../../../index.html" title="saker.build documentation index">Documentation index</a></div>
+				<div><a href="../../../../saker.build/index.html" title="Information about the saker.build system">saker.build system</a></div>
+				<div><a href="../../../../saker.nest/index.html" title="Information about the saker.nest repository">saker.nest repository</a></div>
+				<div><a href="/contact.html" title="Contact us">Contact</a></div>
+			</div>
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">Resources</p>
+				<div data-footer-location="doc-docs"><a href="../../../doc/index.html" title="saker.build documentation index">Documentation</a></div>
+				<div data-footer-location="doc-javadoc"><a href="../../../javadoc/index.html" title="JavaDoc for saker.build">JavaDoc</a></div>
+				<div data-footer-location="doc-taskdoc"><a href="../../../taskdoc/index.html"  title="Documentation of build tasks in saker.build">TaskDoc</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.nest package page</a></div>
+				<div><a href="https://github.com/sakerbuild/saker.build" title="saker.build on GitHub">GitHub</a></div>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col">
+			&copy; Bence Sipka 2020
+			</div>
+		</div>
+	</div>
+</div>
+
+<link rel="stylesheet" href="../../../../res/hljs.css"><script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js" integrity="sha256-js+I1fdbke/DJrW2qXQlrw7VUEqmdeFeOW37UC0bEiU=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.13.1/build/languages/java.min.js"></script>
+<script>
+if(window.hasOwnProperty("hljs")){
+	hljs.configure({
+	  languages: []
+	});
+	hljs.initHighlightingOnLoad();
+}
+</script>
+
+</body>
+</html>

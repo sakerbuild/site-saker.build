@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Build clusters&nbsp;|&nbsp;saker.build</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+	
+	<link rel="stylesheet" href="../../../../res/bootstrap.min.css" >
+	<link rel="stylesheet" href="../../../../res/doc-saker.css" >
+</head>
+<body data-nav-location="packagedoc" data-subdoc-presence="nest-package packagedoc javadoc">
+<div class="doc-nav-bar">
+	<div class="container">
+		<a class="home-link" href="../../../index.html" title="saker.build"><img style="height: 2.5em;" class="logo" src="../../../../res/logo.svg"/><span class="page-name">saker.build</span></a>
+		<a class="nav-location-item" data-nav-location="doc-docs" href="../../../doc/index.html" title="Documentation">Documentation</a>
+		<a class="nav-location-item" data-nav-location="doc-taskdoc" href="../../../taskdoc/index.html" title="Build task documentation">TaskDoc</a>
+		<a class="nav-location-item" data-nav-location="doc-javadoc" href="../../../javadoc/index.html"title="Java API documentation">JavaDoc</a>
+		<div class="nav-bar-controls">
+			<label class="d-xl-none nav-bar-collapse" for="collapse-nav-bar-label">
+				<svg style="height: 1.5em;" viewBox="0 0 24 24">
+				    <path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+				</svg>
+			</label>
+			<input style="display:none;" id="collapse-nav-bar-label" type="checkbox"/>
+			<div class="nav-bar-items">
+				<a href="/" title="saker.build home page">Home</a>
+				<a href="/buildtrace.html" title="Build trace viewer">Build trace</a>
+				<a style="display:none;" href="/sponsor.html" title="Sponsoring development">Sponsor</a>
+				<a href="/blog/" title="saker.build system blog">Blog</a>
+				<a class="no-external-icon" href="https://github.com/sakerbuild/saker.build" title="saker.build GitHub repository">GitHub</a>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container page-contents packagedoc">
+	<div class="row">
+		<div class="col-12 col-lg-3 col-xl-2 p-lg-0">
+			<div class="doc-navigation-container">
+				<label class="d-lg-none nav-collapse" for="doc-collapse-nav-label">
+					<svg style="height: 1.5em;" viewBox="0 0 24 24">
+					    <path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+					</svg>
+					Navigation
+				</label>
+				<input style="display:none;" id="doc-collapse-nav-label" type="checkbox"/> 
+				<div class="doc-nav">  <div class="doc-section"><ul><li><a class="doc-nav-section-link" href="../../../index.html" title="Index">Index</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Introduction</p><ul><li><a class="doc-nav-section-link" href="../../index.html" title="Overview">Overview</a></li><li><label class="doc-nav-collapse" for="_doc_collapse_id_0"><a class="doc-nav-section-link" href="../../installation.html" title="Installation">Installation</a></label><input style="display:none;" id="_doc_collapse_id_0" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_0"></label><ul><li><a class="doc-nav-section-link" href="../../eclipseplugin.html" title="Eclipse plugin">Eclipse plugin</a></li><li><a class="doc-nav-section-link" href="../../releasearchive.html" title="Release archive">Release archive</a></li></ul></li><li><a class="doc-nav-section-link" href="../../perfcomparison.html" title="Performance comparisons">Performance comparisons</a></li><li><a class="doc-nav-section-link" href="../../roadmap.html" title="Roadmap">Roadmap</a></li><li><label class="doc-nav-collapse" for="_doc_collapse_id_1"><a class="doc-nav-section-link" href="../../contribute.html" title="Contribute">Contribute</a></label><input style="display:none;" id="_doc_collapse_id_1" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_1"></label><ul><li><a class="doc-nav-section-link" href="../../buildstatus.html" title="Build status">Build status</a></li></ul></li></ul>  </div>  <div class="doc-section">    <p class="section-title">User guide</p><ul><li><label class="doc-nav-collapse" for="_doc_collapse_id_2"><a class="doc-nav-section-link" href="../../guide/index.html" title="Introduction">Introduction</a></label><input style="display:none;" id="_doc_collapse_id_2" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_2"></label><ul><li><a class="doc-nav-section-link" href="../../guide/helloworld.html" title="Hello world">Hello world</a></li><li><a class="doc-nav-section-link" href="../../guide/buildtargets.html" title="Build targets">Build targets</a></li><li><a class="doc-nav-section-link" href="../../guide/datastructures.html" title="Data structures">Data structures</a></li><li><a class="doc-nav-section-link" href="../../guide/foreach.html" title="Foreach loop">Foreach loop</a></li><li><a class="doc-nav-section-link" href="../../guide/controlflow.html" title="Control flow">Control flow</a></li></ul></li><li><a class="doc-nav-section-link" href="../../guide/incremental.html" title="Incremental builds">Incremental builds</a></li><li><a class="doc-nav-section-link" href="../../guide/runtime.html" title="Build system runtime">Build system runtime</a></li><li><a class="doc-nav-section-link" href="../../guide/envconfig.html" title="Environment configuration">Environment configuration</a></li><li><a class="doc-nav-section-link" href="../../guide/execparams.html" title="Execution parameters">Execution parameters</a></li><li><a class="doc-nav-section-link" href="../../guide/pathconfiguration.html" title="Path configuration">Path configuration</a></li><li><a class="doc-nav-section-link" href="../../guide/repositories.html" title="Task repositories">Task repositories</a></li><li><a class="doc-nav-section-link" href="../../guide/scriptlanguages.html" title="Script languages">Script languages</a></li><li><a class="doc-nav-section-link" href="../../guide/daemon.html" title="Build daemon">Build daemon</a></li><li><a class="doc-nav-section-link" href="../../guide/filechangetracking.html" title="File change tracking">File change tracking</a></li><li><a class="doc-nav-section-link" href="../../guide/remotebuild.html" title="Remote build execution">Remote build execution</a></li><li><a class="doc-nav-section-link" href="../../guide/buildclusters.html" title="Build clusters">Build clusters</a></li><li><a class="doc-nav-section-link" href="../../guide/buildcache.html" title="Build cache">Build cache</a></li><li><a class="doc-nav-section-link" href="../../guide/buildtrace.html" title="Build trace">Build trace</a></li><li><a class="doc-nav-section-link" href="../../guide/reproducible.html" title="Reproducible builds">Reproducible builds</a></li><li><a class="doc-nav-section-link" href="../../guide/wildcards.html" title="Wildcard paths">Wildcard paths</a></li><li><label class="doc-nav-collapse" for="_doc_collapse_id_3"><a class="doc-nav-section-link" href="../../guide/cmdlineref/index.html" title="Command line reference">Command line reference</a></label><input style="display:none;" id="_doc_collapse_id_3" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_3"></label><ul><li><a class="doc-nav-section-link" href="../../guide/cmdlineref/build.html" title="build">build</a></li><li><label class="doc-nav-collapse" for="_doc_collapse_id_4"><a class="doc-nav-section-link" href="../../guide/cmdlineref/daemon.html" title="daemon">daemon</a></label><input style="display:none;" id="_doc_collapse_id_4" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_4"></label><ul><li><a class="doc-nav-section-link" href="../../guide/cmdlineref/daemon_start.html" title="start">start</a></li><li><a class="doc-nav-section-link" href="../../guide/cmdlineref/daemon_stop.html" title="stop">stop</a></li><li><a class="doc-nav-section-link" href="../../guide/cmdlineref/daemon_run.html" title="run">run</a></li><li><a class="doc-nav-section-link" href="../../guide/cmdlineref/daemon_io.html" title="io">io</a></li><li><a class="doc-nav-section-link" href="../../guide/cmdlineref/daemon_info.html" title="info">info</a></li></ul></li><li><a class="doc-nav-section-link" href="../../guide/cmdlineref/action.html" title="action">action</a></li><li><a class="doc-nav-section-link" href="../../guide/cmdlineref/licenses.html" title="licenses">licenses</a></li><li><a class="doc-nav-section-link" href="../../guide/cmdlineref/version.html" title="version">version</a></li></ul></li><li><a class="doc-nav-section-link" href="../../guide/scriptstyleguide.html" title="Build script style guide">Build script style guide</a></li><li><a class="doc-nav-section-link" href="../../guide/bestpractices.html" title="Best practices">Best practices</a></li><li><a class="doc-nav-section-link" href="../../examplecollection.html" title="Example collection">Example collection</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Scripting language</p><ul><li><a class="doc-nav-section-link" href="../../scripting/index.html" title="Overview">Overview</a></li><li><a class="doc-nav-section-link" href="../../scripting/executionmodel.html" title="Execution model">Execution model</a></li><li><label class="doc-nav-collapse" for="_doc_collapse_id_5"><a class="doc-nav-section-link" href="../../scripting/langref/index.html" title="Language reference">Language reference</a></label><input style="display:none;" id="_doc_collapse_id_5" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_5"></label><ul><li><a class="doc-nav-section-link" href="../../scripting/langref/sourcefile/index.html" title="Source file">Source file</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/expressions/index.html" title="Expressions">Expressions</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/comments/index.html" title="Comments">Comments</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/literals/index.html" title="Literals">Literals</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/variables/index.html" title="Variables">Variables</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/tasks/index.html" title="Task extensions">Task extensions</a></li><li><label class="doc-nav-collapse" for="_doc_collapse_id_6"><a class="doc-nav-section-link" href="../../scripting/langref/operators/index.html" title="Operators">Operators</a></label><input style="display:none;" id="_doc_collapse_id_6" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_6"></label><ul><li><a class="doc-nav-section-link" href="../../scripting/langref/operators/addition/index.html" title="Addition">Addition</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/operators/assignment/index.html" title="Assignment">Assignment</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/operators/bitnegate/index.html" title="Bitwise negate">Bitwise negate</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/operators/bitoperators/index.html" title="Bitwise operators">Bitwise operators</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/operators/bitshiftoperators/index.html" title="Bitwise shift operators">Bitwise shift operators</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/operators/boolnegate/index.html" title="Boolean negate">Boolean negate</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/operators/booloperators/index.html" title="Boolean operators">Boolean operators</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/operators/dereference/index.html" title="Dereference">Dereference</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/operators/equality/index.html" title="Equality comparison">Equality comparison</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/operators/mathoperators/index.html" title="Mathematic operators">Mathematic operators</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/operators/comparison/index.html" title="Numeric comparison">Numeric comparison</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/operators/parentheses/index.html" title="Parentheses">Parentheses</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/operators/subscript/index.html" title="Subscript">Subscript</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/operators/ternary/index.html" title="Ternary">Ternary</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/operators/unaryminus/index.html" title="Unary minus">Unary minus</a></li></ul></li><li><a class="doc-nav-section-link" href="../../scripting/langref/ifelse/index.html" title="If-else statement">If-else statement</a></li><li><a class="doc-nav-section-link" href="../../scripting/langref/foreach/index.html" title="Foreach expression">Foreach expression</a></li></ul></li><li><label class="doc-nav-collapse" for="_doc_collapse_id_7"><a class="doc-nav-section-link" href="../../scripting/builtintasks/index.html" title="Built-in tasks">Built-in tasks</a></label><input style="display:none;" id="_doc_collapse_id_7" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_7"></label><ul><li><a class="doc-nav-section-link" href="../../scripting/builtintasks/abort.html" title="abort()">abort()</a></li><li><a class="doc-nav-section-link" href="../../scripting/builtintasks/global.html" title="global()">global()</a></li><li><a class="doc-nav-section-link" href="../../scripting/builtintasks/include.html" title="include()">include()</a></li><li><a class="doc-nav-section-link" href="../../scripting/builtintasks/path.html" title="path()">path()</a></li><li><a class="doc-nav-section-link" href="../../scripting/builtintasks/print.html" title="print()">print()</a></li><li><a class="doc-nav-section-link" href="../../scripting/builtintasks/sequence.html" title="sequence()">sequence()</a></li><li><a class="doc-nav-section-link" href="../../scripting/builtintasks/static.html" title="static()">static()</a></li><li><a class="doc-nav-section-link" href="../../scripting/builtintasks/var.html" title="var()">var()</a></li></ul></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Extending saker.build</p><ul><li><a class="doc-nav-section-link" href="../index.html" title="Overview">Overview</a></li><li><a class="doc-nav-section-link" href="../api.html" title="Build system API">Build system API</a></li><li class=" doc-active-parent"><label class="doc-nav-collapse" for="_doc_collapse_id_8"><a class="doc-nav-section-link" href="index.html" title="Task development">Task development</a></label><input style="display:none;" id="_doc_collapse_id_8" type="checkbox" checked/><label class="doc-nav-section-arrow" for="_doc_collapse_id_8"></label><ul><li><a class="doc-nav-section-link" href="helloworld.html" title="Hello world">Hello world</a></li><li><a class="doc-nav-section-link" href="taskparameters.html" title="Task parameters">Task parameters</a></li><li><a class="doc-nav-section-link" href="taskresults.html" title="Task results">Task results</a></li><li><label class="doc-nav-collapse" for="_doc_collapse_id_9"><a class="doc-nav-section-link" href="filehandling.html" title="File handling">File handling</a></label><input style="display:none;" id="_doc_collapse_id_9" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_9"></label><ul><li><a class="doc-nav-section-link" href="filedependencies.html" title="File dependencies">File dependencies</a></li><li><a class="doc-nav-section-link" href="fileadditiondependency.html" title="File addition dependency">File addition dependency</a></li><li><a class="doc-nav-section-link" href="customfiles.html" title="Custom files">Custom files</a></li><li><a class="doc-nav-section-link" href="filemirroring.html" title="File mirroring">File mirroring</a></li></ul></li><li><a class="doc-nav-section-link" href="propertydependencies.html" title="Property dependencies">Property dependencies</a></li><li><label class="doc-nav-collapse" for="_doc_collapse_id_10"><a class="doc-nav-section-link" href="taskmanagement.html" title="Task management">Task management</a></label><input style="display:none;" id="_doc_collapse_id_10" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_10"></label><ul><li><a class="doc-nav-section-link" href="startingtasks.html" title="Starting tasks">Starting tasks</a></li><li><a class="doc-nav-section-link" href="retrievingtaskresults.html" title="Retrieving task results">Retrieving task results</a></li></ul></li><li><a class="doc-nav-section-link" href="incrementaldeltas.html" title="Incremental deltas">Incremental deltas</a></li><li><a class="doc-nav-section-link" href="taskcapabilities.html" title="Task capabilities">Task capabilities</a></li><li><a class="doc-nav-section-link" href="parameterparsing.html" title="Parameter parsing">Parameter parsing</a></li><li><a class="doc-nav-section-link" href="innertasks.html" title="Inner tasks">Inner tasks</a></li><li><a class="doc-nav-section-link" href="taskworkflow.html" title="Task workflow">Task workflow</a></li><li><a class="doc-nav-section-link" href="taskcaching.html" title="Task caching">Task caching</a></li><li class="doc-active doc-active-parent"><a class="doc-nav-section-link" href="buildclusters.html" title="Build clusters">Build clusters</a></li><li><a class="doc-nav-section-link" href="standardio.html" title="Standard I/O">Standard I/O</a></li><li><a class="doc-nav-section-link" href="serialization.html" title="Serialization">Serialization</a></li><li><a class="doc-nav-section-link" href="ideconfig.html" title="IDE configuration">IDE configuration</a></li><li><a class="doc-nav-section-link" href="reproducible.html" title="Reproducible builds">Reproducible builds</a></li><li><a class="doc-nav-section-link" href="bestpractices.html" title="Best practices">Best practices</a></li></ul></li><li><label class="doc-nav-collapse" for="_doc_collapse_id_11"><a class="doc-nav-section-link" href="../scriptdev/index.html" title="Script language development">Script language development</a></label><input style="display:none;" id="_doc_collapse_id_11" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_11"></label><ul><li><a class="doc-nav-section-link" href="../scriptdev/structure.html" title="API structure">API structure</a></li><li><a class="doc-nav-section-link" href="../scriptdev/packaging.html" title="Packaging">Packaging</a></li><li><a class="doc-nav-section-link" href="../scriptdev/workflow.html" title="Development workflow">Development workflow</a></li></ul></li><li><label class="doc-nav-collapse" for="_doc_collapse_id_12"><a class="doc-nav-section-link" href="../repositorydev/index.html" title="Repository development">Repository development</a></label><input style="display:none;" id="_doc_collapse_id_12" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_12"></label><ul><li><a class="doc-nav-section-link" href="../repositorydev/structure.html" title="API structure">API structure</a></li><li><a class="doc-nav-section-link" href="../repositorydev/packaging.html" title="Packaging">Packaging</a></li></ul></li><li><a class="doc-nav-section-link" href="../testing/index.html" title="Integration testing">Integration testing</a></li></ul>  </div></div>
+			</div>
+		</div>
+		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="sb-sponsors" style="display: none;">
+	<span class="sb-sponsors-title">Sponsors</span>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4 col-12">
+				<a class="sb-sponsors-link"></a>
+			</div>
+			<div class="col-md-4 col-12">
+				<a class="sb-sponsors-link"></a>
+			</div>
+			<div class="col-md-4 col-12">
+				<a class="sb-sponsors-link"></a>
+			</div>
+		</div>
+	</div>
+</div>
+			<div class="doc-content"><h1 id="build-clusters">Build clusters<a class="doc-heading-anchor" href="#build-clusters"></a></h1>
+<p>Build clusters allow tasks to be dispatched to execute their works on remote worker machines. This can increase build performance as it can utilize significantly more resources than a single build computer.</p>
+<p>Adding build cluster support for a task implementation is not straightforward, error-prone, and takes a lot of care for object management. One needs to keep in mind that the tasks running on a cluster needs to communicate with the build coordinator (the main machine that runs the build) and it can introduce a lot of implicit communication over the network that may result in degrading performance.</p>
+<p>In order to allow your task to be considered for build cluster use, you need to declare the associated capability in your <a href="../../../javadoc/saker/build/task/TaskFactory.html"><code>TaskFactory</code></a> implementation. (See <a href="taskcapabilities.html#capabilities" title="Capabilities">Capabilities</a>.)</p>
+<h2 id="cluster-architecture">Cluster architecture<a class="doc-heading-anchor" href="#cluster-architecture"></a></h2>
+<p>When the build system is configured to use clusters, it will manage one or more remote workers which can be used to dispatch task executions to it. The main machine which executes the build is called the coordinator, and the workers are called clusters.</p>
+<p>The environment (<a href="../../../javadoc/saker/build/runtime/environment/SakerEnvironment.html"><code>SakerEnvironment</code></a> instance) of the coordinator and clusters may be configured differently. This means that it is possible for the coordinator and a cluster to run on different operating systems, have different installed software on it, and may be completely different in other aspects too. The machines that take part in the build executions are not required to have the same properties.</p>
+<p>During a build with clusters, the execution context (<a href="../../../javadoc/saker/build/runtime/execution/ExecutionContext.html"><code>ExecutionContext</code></a> instance) is shared by all tasks that is being executed. Even if your task is dispatched to a remote cluster, the execution context will still be the same and is not affected by the cluster configuration.</p>
+<p>The task context (<a href="../../../javadoc/saker/build/task/TaskContext.html"><code>TaskContext</code></a> instance) is private to the task and is not affected by the location where the task is being executed.</p>
+<h3 id="communication">Communication<a class="doc-heading-anchor" href="#communication"></a></h3>
+<p>The communication between the coordinator and the clusters is done using the <a href="../../../../saker.rmi/index.html" title="Index">saker.rmi</a> (Remote Method Invocation) library. It is able to transparently forward method calls over the network and manage the transferring of the objects. It allows a wide range of configuration options for clients to specify how a given object is transferred over the network.</p>
+<p>Task implementers should be familiar with the saker.rmi library, and carefully inspect the called methods of the build system APIs when build clusters may be invoked. In most cases, calling remote methods will work the same way as running on the coordinator machine, however, there are some cases the developer needs to pay special attention.</p>
+<p>Another important aspect of this, is that calling a lot of remote methods may result in a significant amount if network communication. This is rarely beneficial, as the network communication may take comparable amount of time in relation to the time it takes to actually run the method. Developers should strive to avoid calling possibly remote methods in loops, and otherwise should attempt to do operations using a <a href="buildclusters.html#network-communication" title="Network communication">single call</a> rather than multiple.</p>
+<h3 id="file-handling">File handling<a class="doc-heading-anchor" href="#file-handling"></a></h3>
+<p>The build system implements its own <a href="filehandling.html" title="File handling">file handling</a> via the <a href="../../../javadoc/saker/build/file/SakerFile.html"><code>SakerFile</code></a> and related interfaces. All of the mentioned file hierarchy is stored on the coordinator machine. That is, if you want to add a file to the build system representation, you need to transfer the created file to the coordinator machine via RMI.</p>
+<p>This is required to provide a more robust build execution, as if the files weren't transferred to the coordinator, then in case the cluster connection is lost, the build would fail as the files would be no longer accessible. A second reason is that without transferring the files, there would be an implicit network request every time the files are accessed, and unexpectedly hinder performance. The third reason is that the <a href="../../../javadoc/saker/build/file/SakerFile.html"><code>SakerFile</code></a> hierarchy requires the files to be a specific class, and it is not possible to represent it correctly via RMI.</p>
+<h3 id="content-caching">Content caching<a class="doc-heading-anchor" href="#content-caching"></a></h3>
+<p>It is a common scenario to access some files repeatedly from given clusters. This could have a significant performance cost if every time the file contents are accessed, the coordinator machine would be contacted even though the contents are unchanged. In order to avoid the possible performance drop, the build system employs caching of file contents on the clusters.</p>
+<p>This mechanism means that every time a file (<a href="../../../javadoc/saker/build/file/SakerFile.html"><code>SakerFile</code></a>) is opened with possible implicit synchronization, the file may be opened from a previously persisted location on the cluster instead of over the network. This also implies that task developers should <em>not</em> depend on the implicit synchronization persisting the file contents to the appropriate locations.</p>
+<h1 id="task-implementation">Task implementation<a class="doc-heading-anchor" href="#task-implementation"></a></h1>
+<p>The following sections will describe what you should take into account when implementing tasks that use the build clusters.</p>
+<h2 id="output-files">Output files<a class="doc-heading-anchor" href="#output-files"></a></h2>
+<p>As the output of your task, you probably want to create files that hold the results of it. The <a href="../../../javadoc/saker/build/file/SakerFile.html"><code>SakerFile</code></a> API can be used to manage the files accessible by the build system. As <a href="buildclusters.html#file-handling" title="File handling">previously mentioned</a>, the files reside on the coordinator machine, therefore any created files need to be transferred over the network.</p>
+<p>This behaviour may require your code to be adjusted for it to work properly. The following will work for tasks which execute on clusters, and on tasks that does not as well.<br />
+The files need to be transferred in a non-remote way to the coordinator machine, that is, the actual <a href="../../../javadoc/saker/build/file/SakerFile.html"><code>SakerFile</code></a> instance that is added to the parent <a href="../../../javadoc/saker/build/file/SakerDirectory.html"><code>SakerDirectory</code></a> will not be the same instance. This means that some method calls on the added file instance may not represent the actual state of the file. The following example clarifies this:</p>
+<pre><code class="language-java">SakerDirectory outputdir;
+SakerFile myfile; // = ...
+outputdir.add(myfile);
+
+SakerPath filepath = myfile.getSakerPath();
+// here filepath doesn't contain the actual path of the file
+</code></pre>
+<p>In the above example we add our custom output file to the given output directory. Calling <a href="../../../javadoc/saker/build/file/SakerFile.html#getSakerPath--"><code>getSakerPath()</code></a> on the added file may not be actually return the absolute path of the added file when running on a build cluster. Note that if you don't use clusters, this will work properly nonetheless.</p>
+<p>This is caused by the file being transferred to the coordinator machine, and a different instance is being added to it instead of our instance. As a first solution, we recommend not to use the files after being added to a directory. If you want to do so, you can accomodate this behaviour by changing your code to use the task execution utilities of the task context:</p>
+<pre><code class="language-java">TaskContext taskcontext;
+SakerDirectory outputdir;
+SakerFile myfile;
+// note the reassignment
+myfile = taskcontext.getTaskUtilities().addFile(outputdir, myfile);
+
+SakerPath filepath = myfile.getSakerPath();
+// here the filepath will contain the valid and expected path
+</code></pre>
+<p>The <a href="../../../javadoc/saker/build/task/TaskExecutionUtilities.html#addFile-saker.build.file.SakerDirectory-saker.build.file.SakerFile-"><code>addFile</code></a> method of the task utilities will return the file that is actually being added to the given directory. The <a href="../../../javadoc/saker/build/task/TaskExecutionUtilities.html">task utilities</a> contain other methods to support file handling for remote tasks, we recommend using them accordingly.</p>
+<h2 id="file-transfer">File transfer<a class="doc-heading-anchor" href="#file-transfer"></a></h2>
+<p>The created <a href="../../../javadoc/saker/build/file/SakerFile.html"><code>SakerFile</code></a> instances need to be appropriately transferred to the coordinator machine. This is supported by overriding the <a href="../../../javadoc/saker/build/file/SakerFile.html#getRemoteExecutionRMIWrapper--"><code>SakerFile.getRemoteExecutionRMIWrapper()</code></a> method in your file implementation. When calling build system API methods, the specified wrapper is used to transfer the file appropriately.</p>
+<p>You must not define a custom RMI transfer mechanism for your file class, but instead override this method to specify it. Defining a custom transfer mechanism will result in errors, as the requested files may be two-way transferred when using remote execution. This is erroneous behaviour, as files are stateful objects, and they will lose their state information during transfer.</p>
+<h2 id="network-communication">Network communication<a class="doc-heading-anchor" href="#network-communication"></a></h2>
+<p>Task developers should seriously consider the effect of implicit network calls when some interface methods of the build system API is called. When a task is being remotely executed, all task context, execution context, file management, and other methods may result in an implicit network request.</p>
+<p>Calling these methods are usually fine, but calling them in a loop may incure a performance penalty. We created the <a href="../../../javadoc/saker/build/task/TaskExecutionUtilities.html">task execution utilities</a> in order to solve this problem which contains bulk methods for interacting with the task context. One example of using it is the following:</p>
+<pre><code class="language-java">TaskContext taskcontext;
+for (SakerFile file : files) {
+	taskcontext.reportInputFileDependency(null, 
+		file.getSakerPath(), file.getContentDescriptor());
+}
+</code></pre>
+<p>The above loop can cause many network requests which can make your task execute longer. Instead of doing toe above, use the task execution utilities:</p>
+<pre><code class="language-java">TaskContext taskcontext;
+taskcontext.getTaskUtilities().reportInputFileDependency(null, files);
+</code></pre>
+<p>They are semantically the same, but only needs one network request to report the dependencies. The above codes work the same regardless of the execution location, be it the coordinator or a cluster.</p>
+<p>There are other methods in the utilities interface which you can use to reduce your task context method calls, and we recommend doing so. As the build system evolves, additional methods may be added to the utilities to support closer integration.</p>
+<h2 id="scalability">Scalability<a class="doc-heading-anchor" href="#scalability"></a></h2>
+<p>When developing for cluster use, make sure you examine the possible task executions for small and large inputs as well. We recommend that you handle appropriately if the task is being run with small input sizes, as in that case using clusters may not actually provide a performance benefit.</p>
+<p>We recommend making your task able to be configured explictly for allowing and disallowing cluster execution, and otherwise use heuristics to determine if it is feasible to use clusters. (Like number of input files, algorithmical complexity, etc...)</p>
+<h2 id="environment-selection">Environment selection<a class="doc-heading-anchor" href="#environment-selection"></a></h2>
+<p>The clusters may have completely different configuration on their nodes. They may use different operating systems, have different tooling installed, and they may differ in various other ways. Your task needs to choose a suitable execution cluster to run on.</p>
+<p>The <a href="taskcapabilities.html#execution-environment-selection" title="Execution environment selection">task environment selector</a> can be used to implement this functionality which is responsible for selecting the environment to execute the task on based on various <a href="propertydependencies.html" title="Property dependencies">environment properties</a>.</p>
+<link href="../../../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>
+			<div class="end-section-links">
+				<div class="end-section-prev">
+					<a class="doc-prev-section" href="../../../doc/extending/taskdev/taskcaching.html" title="Task caching"><svg class="doc-section-arrow" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" />
+</svg>Task caching</a>
+				</div>
+				<div class="end-section-next">
+					<a class="doc-next-section" href="../../../doc/extending/taskdev/standardio.html" title="Standard I/O">Standard I/O<svg class="doc-section-arrow" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z" />
+</svg></a>
+				</div>
+			</div>
+			<div class="doc-headings-nav">  <ul>    <li><a href="#build-clusters" title="Build clusters">Build clusters</a>      <ul>        <li><a href="#cluster-architecture" title="Cluster architecture">Cluster architecture</a>          <ul>            <li><a href="#communication" title="Communication">Communication</a>            </li>            <li><a href="#file-handling" title="File handling">File handling</a>            </li>            <li><a href="#content-caching" title="Content caching">Content caching</a>            </li>          </ul>        </li>      </ul>    </li>    <li><a href="#task-implementation" title="Task implementation">Task implementation</a>      <ul>        <li><a href="#output-files" title="Output files">Output files</a>        </li>        <li><a href="#file-transfer" title="File transfer">File transfer</a>        </li>        <li><a href="#network-communication" title="Network communication">Network communication</a>        </li>        <li><a href="#scalability" title="Scalability">Scalability</a>        </li>        <li><a href="#environment-selection" title="Environment selection">Environment selection</a>        </li>      </ul>    </li>  </ul></div>
+		</div>
+	</div>
+</div>
+<div class="doc-footer">
+	<div class="container">
+		<div class="row">
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">About</p>
+				<div><a href="/index.html" title="Saker.build home page">Home</a></div>
+				<div data-footer-location="doc-docs"><a href="../../../index.html" title="saker.build documentation index">Documentation index</a></div>
+				<div><a href="../../../../saker.build/index.html" title="Information about the saker.build system">saker.build system</a></div>
+				<div><a href="../../../../saker.nest/index.html" title="Information about the saker.nest repository">saker.nest repository</a></div>
+				<div><a href="/contact.html" title="Contact us">Contact</a></div>
+			</div>
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">Resources</p>
+				<div data-footer-location="doc-docs"><a href="../../../doc/index.html" title="saker.build documentation index">Documentation</a></div>
+				<div data-footer-location="doc-javadoc"><a href="../../../javadoc/index.html" title="JavaDoc for saker.build">JavaDoc</a></div>
+				<div data-footer-location="doc-taskdoc"><a href="../../../taskdoc/index.html"  title="Documentation of build tasks in saker.build">TaskDoc</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.nest package page</a></div>
+				<div><a href="https://github.com/sakerbuild/saker.build" title="saker.build on GitHub">GitHub</a></div>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col">
+			&copy; Bence Sipka 2020
+			</div>
+		</div>
+	</div>
+</div>
+
+<link rel="stylesheet" href="../../../../res/hljs.css"><script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js" integrity="sha256-js+I1fdbke/DJrW2qXQlrw7VUEqmdeFeOW37UC0bEiU=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.13.1/build/languages/java.min.js"></script>
+<script>
+if(window.hasOwnProperty("hljs")){
+	hljs.configure({
+	  languages: []
+	});
+	hljs.initHighlightingOnLoad();
+}
+</script>
+
+</body>
+</html>

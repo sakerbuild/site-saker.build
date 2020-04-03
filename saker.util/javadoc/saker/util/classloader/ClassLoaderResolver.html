@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>ClassLoaderResolver</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+	
+	<link rel="stylesheet" type="text/css" href="../../../../../res/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../../../../../res/doc-saker.css">
+	
+</head>
+<body data-nav-location="javadoc" data-subdoc-presence="nest-package packagedoc javadoc taskdoc">
+<div class="doc-nav-bar">
+	<div class="container">
+		<a class="home-link" href="../../../../index.html" title="saker.util"><img style="height: 2.5em;" class="logo" src="../../../../../res/logo.svg"/><span class="page-name">saker.util</span></a>
+		<a class="nav-location-item" data-nav-location="doc-docs" href="../../../../doc/index.html" title="Documentation">Documentation</a>
+		<a class="nav-location-item" data-nav-location="doc-taskdoc" href="../../../../taskdoc/index.html" title="Build task documentation">TaskDoc</a>
+		<a class="nav-location-item" data-nav-location="doc-javadoc" href="../../../../javadoc/index.html"title="Java API documentation">JavaDoc</a>
+		<div class="nav-bar-controls">
+			<label class="d-xl-none nav-bar-collapse" for="collapse-nav-bar-label">
+				<svg style="height: 1.5em;" viewBox="0 0 24 24">
+				    <path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+				</svg>
+			</label>
+			<input style="display:none;" id="collapse-nav-bar-label" type="checkbox"/>
+			<div class="nav-bar-items">
+				<a href="/" title="saker.build home page">Home</a>
+				<a href="/buildtrace.html" title="Build trace viewer">Build trace</a>
+				<a style="display:none;" href="/sponsor.html" title="Sponsoring development">Sponsor</a>
+				<a href="/blog/" title="saker.build system blog">Blog</a>
+				<a class="no-external-icon" href="https://github.com/sakerbuild/saker.build" title="saker.build GitHub repository">GitHub</a>
+			</div>
+		</div>
+	</div>
+</div>
+<nav class="javadoc-nav" data-nav-location="ClassLoaderResolver">
+	<div class="container">
+		<span class="javadoc-nav-title">JavaDoc</span>
+		<a class="nav-location-item" data-nav-location="javadoc-packages" href="../../../index.html" title="Package index">Packages</a>
+		<a class="nav-location-item" data-nav-location="javadoc-all-classes" href="../../../all-classes.html" title="All classes">All classes</a>
+		<a class="nav-location-item" data-nav-location="javadoc-constants" href="../../../constants.html" title="All constants">Constants</a>
+	</div>
+</nav>
+<div class="container page-contents javadoc">
+	<div class="javadoc-content">
+	<div class="javadoc-class-header"><div class="javadoc-class-header-pkg"><span class="javadoc-code-ref"><span class="javadoc-kw">package</span> <a href="index.html" title="saker.util.classloader" data-javadoc-kind="package">saker.util.classloader</a></span></div><div class="javadoc-class-header-class"><span class="javadoc-kw">public interface </span><span class="javadoc-class-header-name">ClassLoaderResolver</span></div></div><div class="javadoc-class-subtypes"><div class="javadoc-class-subtypes-list"><span class="javadoc-code-ref"><span class="javadoc-subtype"><a href="ClassLoaderResolverRegistry.html" title="class saker.util.classloader.ClassLoaderResolverRegistry" data-javadoc-kind="class">ClassLoaderResolverRegistry</a></span>, <span class="javadoc-subtype"><a href="SingleClassLoaderResolver.html" title="class saker.util.classloader.SingleClassLoaderResolver" data-javadoc-kind="class">SingleClassLoaderResolver</a></span></span></div></div><div class="javadoc-class-doc"><div class="javadoc-class-doc-body">Interface for providing functionality of identifying a <span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/ClassLoader.html" title="class java.lang.ClassLoader" data-javadoc-kind="class">ClassLoader</a></span> based on a string identifier. <p>
+ Implementations of this class are responsible for generating an unique identifier for a given classloader and later
+ retrieving the associated classloader if available. The generated identifiers should be stable, meaning that even
+ after restarting the JVM they should generated the same identifier given the same circumstances.
+ <p>
+ This class is mainly used when objects are being serialized. During serialization, a classloader identifier is
+ written to the stream, so the serialized class can be correctly located when the stream is being read.
+ <p>
+ Implementations should strive to generate unique identifiers for a specific classloader instance. If the
+ implementations of a class loaded by a given classloader is changed, the generated identifier should change as well.
+ This ensures that only the class with the same implementation is loaded during deserialization.</div><div class="javadoc-detail-see javadoc-blocktag-section"><div class="javadoc-detail-see-entry"><span class="javadoc-code-ref"><a href="SingleClassLoaderResolver.html" title="class saker.util.classloader.SingleClassLoaderResolver" data-javadoc-kind="class">SingleClassLoaderResolver</a></span></div><div class="javadoc-detail-see-entry"><span class="javadoc-code-ref"><a href="ClassLoaderResolverRegistry.html" title="class saker.util.classloader.ClassLoaderResolverRegistry" data-javadoc-kind="class">ClassLoaderResolverRegistry</a></span></div></div></div><div class="javadoc-class-idx"><div class="javadoc-class-idx-methods javadoc-idx-section"><table><caption>Methods</caption><thead><tr><th class="javadoc-th-method-meta"></th><th class="javadoc-th-method-details"></th></tr></thead><tbody><tr class="javadoc-class-idx-method javadoc-idx-member"><td class="javadoc-class-idx-method-meta javadoc-idx-member-meta"><span class="javadoc-kw">public </span><span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/ClassLoader.html" title="class java.lang.ClassLoader" data-javadoc-kind="class">ClassLoader</a></span></td><td class="javadoc-class-idx-method-sig javadoc-idx-member-sig"><div class="javadoc-class-idx-method-name javadoc-idx-member-name"><a href="#getClassLoaderForIdentifier-java.lang.String-" title="ClassLoaderResolver.getClassLoaderForIdentifier(String)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">getClassLoaderForIdentifier</a><span class="javadoc-code-ref">(<wbr><span class="javadoc-method-param"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="class java.lang.String" data-javadoc-kind="class">String</a> identifier</span>)</span></div><div class="javadoc-class-idx-method-short javadoc-member-short">Looks up a classloader for a given classloader identifier.</div></td></tr><tr class="javadoc-class-idx-method javadoc-idx-member"><td class="javadoc-class-idx-method-meta javadoc-idx-member-meta"><span class="javadoc-kw">public </span><span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="class java.lang.String" data-javadoc-kind="class">String</a></span></td><td class="javadoc-class-idx-method-sig javadoc-idx-member-sig"><div class="javadoc-class-idx-method-name javadoc-idx-member-name"><a href="#getClassLoaderIdentifier-java.lang.ClassLoader-" title="ClassLoaderResolver.getClassLoaderIdentifier(ClassLoader)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">getClassLoaderIdentifier</a><span class="javadoc-code-ref">(<wbr><span class="javadoc-method-param"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/ClassLoader.html" title="class java.lang.ClassLoader" data-javadoc-kind="class">ClassLoader</a> classloader</span>)</span></div><div class="javadoc-class-idx-method-short javadoc-member-short">Gets the classloader identifier for the argument classloader.</div></td></tr></tbody></table></div></div><div class="javadoc-class-details"><div class="javadoc-class-details-methods javadoc-details-section"><div id="getClassLoaderForIdentifier-java.lang.String-" class="javadoc-class-detail-method javadoc-class-detail-member"><div class="javadoc-class-detail-method-sig javadoc-member-sig"><span class="javadoc-kw">public abstract </span><span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/ClassLoader.html" title="class java.lang.ClassLoader" data-javadoc-kind="class">ClassLoader</a></span> <a href="#getClassLoaderForIdentifier-java.lang.String-" title="ClassLoaderResolver.getClassLoaderForIdentifier(String)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">getClassLoaderForIdentifier</a><span class="javadoc-code-ref">(<wbr><span class="javadoc-method-param"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="class java.lang.String" data-javadoc-kind="class">String</a> identifier</span>)</span></div><div class="javadoc-class-detail-method-detail javadoc-member-detail"><div class="javadoc-detail-body">Looks up a classloader for a given classloader identifier. <p>
+ Implementations can look up a classloader for a given identifier. They should examine the identifier, and based
+ on its format look for a matching classloader. If the identifier is not recognized by this resolver, return
+ <code>null</code>, so the deserializing stream can ask other resolvers to identify the classloader.
+ <p>
+ It is possible, that the resolver recognizes the format of the identifier, but doesn't find a classloader for it.
+ This might be the case when the underlying implementation for a class has been changed, and therefore the
+ generated classloader identifier for it as well. In this case the resolver should return <code>null</code>, to
+ signal that the classloader is not found for the identifier.
+ <p>
+ Implementations of this method should not throw any exceptions.</div><div class="javadoc-method-detail-params javadoc-blocktag-section"><div class="javadoc-method-detail-param"><span class="javadoc-method-detail-param-name">identifier</span><span class="javadoc-method-detail-param-detail">The classloader identifier.</span></div></div><div class="javadoc-method-detail-return javadoc-blocktag-section"><div class="javadoc-method-detail-return-body">The found classloader or <code>null</code> if this resolver didn't find an associated classloader for
+             it.</div></div></div></div><div id="getClassLoaderIdentifier-java.lang.ClassLoader-" class="javadoc-class-detail-method javadoc-class-detail-member"><div class="javadoc-class-detail-method-sig javadoc-member-sig"><span class="javadoc-kw">public abstract </span><span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="class java.lang.String" data-javadoc-kind="class">String</a></span> <a href="#getClassLoaderIdentifier-java.lang.ClassLoader-" title="ClassLoaderResolver.getClassLoaderIdentifier(ClassLoader)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">getClassLoaderIdentifier</a><span class="javadoc-code-ref">(<wbr><span class="javadoc-method-param"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/ClassLoader.html" title="class java.lang.ClassLoader" data-javadoc-kind="class">ClassLoader</a> classloader</span>)</span></div><div class="javadoc-class-detail-method-detail javadoc-member-detail"><div class="javadoc-detail-body">Gets the classloader identifier for the argument classloader. <p>
+ Implementations may not handle all classloaders, but only the ones they know about. If the implementation doesn't
+ recognize a given classloader, it should return <code>null</code> from this method. Returning <code>null</code>
+ means that the serializing stream can look at other resolvers for an appropriate identifier.
+ <p>
+ Implementations of this method should not throw any exceptions.</div><div class="javadoc-method-detail-params javadoc-blocktag-section"><div class="javadoc-method-detail-param"><span class="javadoc-method-detail-param-name">classloader</span><span class="javadoc-method-detail-param-detail">The classloader to get the identifier for.</span></div></div><div class="javadoc-method-detail-return javadoc-blocktag-section"><div class="javadoc-method-detail-return-body">The classloader identifier, or <code>null</code> if this resolver doesn't recognize the argument
+             classloader.</div></div></div></div></div></div>
+	</div>
+</div>
+<div class="doc-footer">
+	<div class="container">
+		<div class="row">
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">About</p>
+				<div><a href="/index.html" title="Saker.build home page">Home</a></div>
+				<div data-footer-location="doc-docs"><a href="../../../../index.html" title="saker.util documentation index">Documentation index</a></div>
+				<div><a href="../../../../../saker.build/index.html" title="Information about the saker.build system">saker.build system</a></div>
+				<div><a href="../../../../../saker.nest/index.html" title="Information about the saker.nest repository">saker.nest repository</a></div>
+				<div><a href="/contact.html" title="Contact us">Contact</a></div>
+			</div>
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">Resources</p>
+				<div data-footer-location="doc-docs"><a href="../../../../doc/index.html" title="saker.util documentation index">Documentation</a></div>
+				<div data-footer-location="doc-javadoc"><a href="../../../../javadoc/index.html" title="JavaDoc for saker.util">JavaDoc</a></div>
+				<div data-footer-location="doc-taskdoc"><a href="../../../../taskdoc/index.html"  title="Documentation of build tasks in saker.util">TaskDoc</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.util" title="saker.util | saker.nest">saker.nest package page</a></div>
+				<div><a href="https://github.com/sakerbuild/saker.util" title="saker.util on GitHub">GitHub</a></div>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col">
+			&copy; Bence Sipka 2020
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

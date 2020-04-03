@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>saker.jar.create()&nbsp|&nbsp;saker.jar</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+	
+	<link rel="stylesheet" href="../../res/bootstrap.min.css" >
+	<link rel="stylesheet" href="../../res/doc-saker.css" >
+</head>
+<body data-nav-location="taskdoc" data-subdoc-presence="nest-package packagedoc taskdoc">
+<div class="doc-nav-bar">
+	<div class="container">
+		<a class="home-link" href="../index.html" title="saker.jar"><img style="height: 2.5em;" class="logo" src="../../res/logo.svg"/><span class="page-name">saker.jar</span></a>
+		<a class="nav-location-item" data-nav-location="doc-docs" href="../doc/index.html" title="Documentation">Documentation</a>
+		<a class="nav-location-item" data-nav-location="doc-taskdoc" href="../taskdoc/index.html" title="Build task documentation">TaskDoc</a>
+		<a class="nav-location-item" data-nav-location="doc-javadoc" href="../javadoc/index.html"title="Java API documentation">JavaDoc</a>
+		<div class="nav-bar-controls">
+			<label class="d-xl-none nav-bar-collapse" for="collapse-nav-bar-label">
+				<svg style="height: 1.5em;" viewBox="0 0 24 24">
+				    <path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+				</svg>
+			</label>
+			<input style="display:none;" id="collapse-nav-bar-label" type="checkbox"/>
+			<div class="nav-bar-items">
+				<a href="/" title="saker.build home page">Home</a>
+				<a href="/buildtrace.html" title="Build trace viewer">Build trace</a>
+				<a style="display:none;" href="/sponsor.html" title="Sponsoring development">Sponsor</a>
+				<a href="/blog/" title="saker.build system blog">Blog</a>
+				<a class="no-external-icon" href="https://github.com/sakerbuild/saker.build" title="saker.build GitHub repository">GitHub</a>
+			</div>
+		</div>
+	</div>
+</div>
+<nav class="taskdoc-nav" data-nav-location="saker.jar.create">
+	<div class="container">
+		<span class="taskdoc-nav-title">TaskDoc</span>
+		<a class="nav-location-item" data-nav-location="taskdoc-index" href="index.html" title="Task doc index">Index</a>
+	</div>
+</nav>
+<div class="container page-contents taskdoc">
+	<div class="taskdoc-content">
+	<div class="taskdoc-header"><div class="taskdoc-header-sig"><div class="taskdoc-taskname"><a href="" title="Build task saker.jar.create()">saker.jar.create()</a></div><div class="taskdoc-return-type"><a href="types/ZipCreatorTaskOutput.html" title="Type ZipCreatorTaskOutput">ZipCreatorTaskOutput</a></div></div><div class="taskdoc-container-bundle">In bundle: <a title="Bundle saker.jar">saker.jar</a></div></div><div class="taskdoc-info" taskdoc-info-format="format.plaintext">Creates a JAR archive with the specified contents.
+The task is based on the ZIP archive creation saker.zip.create() task with additional features for Java Archive creation.The archive will be written to the specified location in the saker.jar.create subdirectory of the build directory.
+By default, the archive is constructed in a deterministic manner, meaning that it will not include timestamps of the current build time, and the entries are put in the archive in a deterministic order.</div><div class="taskdoc-idx"><div class="taskdoc-idx-title">Summary</div><div class="taskdoc-idx-section taskdoc-idx-parameters"><table><caption>Parameters</caption><tbody><tr class="taskdoc-idx-member"><td class="taskdoc-idx-param-meta"><a class="taskdoc-idx-paramname" href="#Includes" title="Task parameter Includes">Includes</a></td><td class="taskdoc-idx-param-summary">Specifies one or more archive entry inclusions which should be added to the output archive.
+</td></tr><tr class="taskdoc-idx-member"><td class="taskdoc-idx-param-meta"><a class="taskdoc-idx-paramname" href="#Manifest" title="Task parameter Manifest">Manifest</a></td><td class="taskdoc-idx-param-summary">Specifies JAR Manifest attributes to be injected into the created archive.
+</td></tr><tr class="taskdoc-idx-member"><td class="taskdoc-idx-param-meta"><a class="taskdoc-idx-paramname" href="#ModificationTime" title="Task parameter ModificationTime">ModificationTime</a></td><td class="taskdoc-idx-param-summary">Specifies the default modification time of the entries that are placed in the output archive.
+</td></tr><tr class="taskdoc-idx-member"><td class="taskdoc-idx-param-meta"><a class="taskdoc-idx-paramname" href="#ModuleInfoMainClass" title="Task parameter ModuleInfoMainClass">ModuleInfoMainClass</a></td><td class="taskdoc-idx-param-summary">Specifies a Java main class name that should be injected into the module-info.class entry.
+</td></tr><tr class="taskdoc-idx-member"><td class="taskdoc-idx-param-meta"><a class="taskdoc-idx-paramname" href="#ModuleInfoVersion" title="Task parameter ModuleInfoVersion">ModuleInfoVersion</a></td><td class="taskdoc-idx-param-summary">Specifies a version that should be injected into the module-info.class entry.
+</td></tr><tr class="taskdoc-idx-member"><td class="taskdoc-idx-param-meta"><a class="taskdoc-idx-paramname" href="#MultiReleaseContents" title="Task parameter MultiReleaseContents">MultiReleaseContents</a></td><td class="taskdoc-idx-param-summary">Specifies the Multi-Release contents of the created JAR file.
+</td></tr><tr class="taskdoc-idx-member"><td class="taskdoc-idx-param-meta"><a class="taskdoc-idx-paramname" href="#Output" title="Task parameter Output">Output</a></td><td class="taskdoc-idx-param-summary">Specifies the output path of the created archive.
+</td></tr><tr class="taskdoc-idx-member"><td class="taskdoc-idx-param-meta"><a class="taskdoc-idx-paramname" href="#Resources" title="Task parameter Resources">Resources</a></td><td class="taskdoc-idx-param-summary">Specifies one or more resources which should be added to the created archive.
+</td></tr><tr class="taskdoc-idx-member"><td class="taskdoc-idx-param-meta"><a class="taskdoc-idx-paramname" href="#Services" title="Task parameter Services">Services</a></td><td class="taskdoc-idx-param-summary">Specifies Java services that should be declared by the created Java Archive.
+</td></tr><tr class="taskdoc-idx-member"><td class="taskdoc-idx-param-meta"><a class="taskdoc-idx-paramname" href="#Transformers" title="Task parameter Transformers">Transformers</a></td><td class="taskdoc-idx-param-summary">Specifies one or more ZIP resource transformers that should be used when constructing the output.
+</td></tr></tbody></table></div></div><div class="taskdoc-details-parameters"><div class="taskdoc-details-title">Parameters</div><div id="Includes" class="taskdoc-detail-param"><div class="taskdoc-detail-param-header"><div class="taskdoc-detail-param-header-sig"><div class="taskdoc-detail-param-header-name"><a href="#Includes" title="Task parameter Includes">Includes</a></div><div class="taskdoc-detail-param-header-type">Collection of <a href="types/ZipIncludeTaskOption.html" title="Type ZipIncludeTaskOption">ZipIncludeTaskOption</a></div></div><div class="taskdoc-detail-param-header-aliases">Aliases: <div class="taskdoc-detail-param-header-alias">Include</div></div></div><div class="taskdoc-detail-member taskdoc-detail-param-detail" taskdoc-info-format="format.plaintext">Specifies one or more archive entry inclusions which should be added to the output archive.
+The parameter is used to include entries from other ZIP archives into the output.
+The option accepts simple paths, file locations, file collections or complex configuration.</div></div><div id="Manifest" class="taskdoc-detail-param"><div class="taskdoc-detail-param-header"><div class="taskdoc-detail-param-header-sig"><div class="taskdoc-detail-param-header-name"><a href="#Manifest" title="Task parameter Manifest">Manifest</a></div><div class="taskdoc-detail-param-header-type"><a href="types/JarManifestTaskOption.html" title="Type JarManifestTaskOption">JarManifestTaskOption</a></div></div></div><div class="taskdoc-detail-member taskdoc-detail-param-detail" taskdoc-info-format="format.plaintext">Specifies JAR Manifest attributes to be injected into the created archive.
+Any attributes specified in this option will result in them being injected into the META-INF/MANIFEST.MF Manifest entry in the archive.
+If a manifest entry was not specified using resources, a new one will be added to the archive.
+The Manifest-Version: 1.0 required attribute is automatically added if missing.</div></div><div id="ModificationTime" class="taskdoc-detail-param"><div class="taskdoc-detail-param-header"><div class="taskdoc-detail-param-header-sig"><div class="taskdoc-detail-param-header-name"><a href="#ModificationTime" title="Task parameter ModificationTime">ModificationTime</a></div><div class="taskdoc-detail-param-header-type"><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Date.html" title="Date">Date</a></div></div></div><div class="taskdoc-detail-member taskdoc-detail-param-detail" taskdoc-info-format="format.plaintext">Specifies the default modification time of the entries that are placed in the output archive.
+The archive entries which are specified using the Resources parameter will have their modification time set to the date specified using this parameter. This is in order to have deterministic binary outputs of the archives.
+If not specified, the epoch date (1970-01-01T00:00:00Z) is used.
+Note that this parameter doesn&#39;t apply to entries included using the Include parameter. Those entries have the same modification time as in the source Archive.
+The format of this parameter should be any of the following:
+yyyy-MM-dd HH:mm:ss.SSS
+yyyy-MM-dd HH:mm:ss
+yyyy-MM-dd HH:mm
+yyyy-MM-dd
+yyyy.MM.dd
+Where the pattern letters are interpreted the same way as SimpleDateFormat: https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html</div></div><div id="ModuleInfoMainClass" class="taskdoc-detail-param"><div class="taskdoc-detail-param-header"><div class="taskdoc-detail-param-header-sig"><div class="taskdoc-detail-param-header-name"><a href="#ModuleInfoMainClass" title="Task parameter ModuleInfoMainClass">ModuleInfoMainClass</a></div><div class="taskdoc-detail-param-header-type"><a href="types/ModuleInfoMainAttribute.html" title="Type ModuleInfoMainAttribute">ModuleInfoMainAttribute</a></div></div></div><div class="taskdoc-detail-member taskdoc-detail-param-detail" taskdoc-info-format="format.plaintext">Specifies a Java main class name that should be injected into the module-info.class entry.
+The specified class name will be recorded in the module-info of the created JAR. If there&#39;s no module-info.class entry in the output, the attribute is not injected.
+The format of the class name is not validated.</div></div><div id="ModuleInfoVersion" class="taskdoc-detail-param"><div class="taskdoc-detail-param-header"><div class="taskdoc-detail-param-header-sig"><div class="taskdoc-detail-param-header-name"><a href="#ModuleInfoVersion" title="Task parameter ModuleInfoVersion">ModuleInfoVersion</a></div><div class="taskdoc-detail-param-header-type"><a href="types/ModuleInfoVersionAttribute.html" title="Type ModuleInfoVersionAttribute">ModuleInfoVersionAttribute</a></div></div></div><div class="taskdoc-detail-member taskdoc-detail-param-detail" taskdoc-info-format="format.plaintext">Specifies a version that should be injected into the module-info.class entry.
+The specified version will be recorded in the module-info of the created JAR. If there&#39;s no module-info.class entry in the output, the attribute is not injected.
+The format of the version is not validated.</div></div><div id="MultiReleaseContents" class="taskdoc-detail-param"><div class="taskdoc-detail-param-header"><div class="taskdoc-detail-param-header-sig"><div class="taskdoc-detail-param-header-name"><a href="#MultiReleaseContents" title="Task parameter MultiReleaseContents">MultiReleaseContents</a></div><div class="taskdoc-detail-param-header-type">Map of <a href="types/MultiReleaseJavaMajorNumber.html" title="Type MultiReleaseJavaMajorNumber">MultiReleaseJavaMajorNumber</a> : <a href="types/ZipContentsTaskOption.html" title="Type ZipContentsTaskOption">ZipContentsTaskOption</a></div></div></div><div class="taskdoc-detail-member taskdoc-detail-param-detail" taskdoc-info-format="format.plaintext">Specifies the Multi-Release contents of the created JAR file.
+Multi-Release JAR files can be used to include JRE version specific files in a JAR which are only used if the given runtime major version is greater or equals to the specified requirement.
+The option allows specifying contents for the different releases. Each entry in the configuration must have an integer key that specifies the target major version, and the value which contains the resource configurations to include.
+Each resource configuration will be placed under the META-INF/versions/&lt;target-major&gt; directory. Any further target directory configurations will be appended after the specified version root directory.
+Specifying this option will cause the Multi-Release: true attribute value to be injected into the created JAR Manifest file. (Only if not present yet.)
+For more information about Multi-Release JARs: https://openjdk.java.net/jeps/238</div></div><div id="Output" class="taskdoc-detail-param"><div class="taskdoc-detail-param-header"><div class="taskdoc-detail-param-header-sig"><div class="taskdoc-detail-param-header-name"><a href="#Output" title="Task parameter Output">Output</a></div><div class="taskdoc-detail-param-header-type"><a href="../../saker.build/javadoc/saker/build/file/path/SakerPath.html" title="SakerPath">SakerPath</a></div></div></div><div class="taskdoc-detail-member taskdoc-detail-param-detail" taskdoc-info-format="format.plaintext">Specifies the output path of the created archive.
+The path must be forward relative, and the task will write the archive under the saker.jar.create subdirectory of the build directory.
+If not specified, the archive is created with the &quot;output.jar&quot; name.</div></div><div id="Resources" class="taskdoc-detail-param"><div class="taskdoc-detail-param-header"><div class="taskdoc-detail-param-header-sig"><div class="taskdoc-detail-param-header-name"><a href="#Resources" title="Task parameter Resources">Resources</a></div><div class="taskdoc-detail-param-header-type">Collection of <a href="types/ZipResourcesTaskOption.html" title="Type ZipResourcesTaskOption">ZipResourcesTaskOption</a></div></div></div><div class="taskdoc-detail-member taskdoc-detail-param-detail" taskdoc-info-format="format.plaintext">Specifies one or more resources which should be added to the created archive.
+The option accepts simple paths, file locations, file collections or complex configuration.
+The path that a resource is added with to the archive is determined by the type of the configuration.</div></div><div id="Services" class="taskdoc-detail-param"><div class="taskdoc-detail-param-header"><div class="taskdoc-detail-param-header-sig"><div class="taskdoc-detail-param-header-name"><a href="#Services" title="Task parameter Services">Services</a></div><div class="taskdoc-detail-param-header-type">Map of <a href="types/JavaServiceClassName.html" title="Type JavaServiceClassName">JavaServiceClassName</a> : <a href="types/JavaServiceImplementationName.html" title="Type JavaServiceImplementationName">JavaServiceImplementationName</a></div></div></div><div class="taskdoc-detail-member taskdoc-detail-param-detail" taskdoc-info-format="format.plaintext">Specifies Java services that should be declared by the created Java Archive.
+The service declarations are Java implementation class names in the META-INF/services/&lt;service-class-name&gt; entry.
+In this parameter services entries can be specified for which one or more implementations can be set. These implementation declarations will be injected in the resulting archive.
+See ServiceLoader class for more information: https://docs.oracle.com/javase/8/docs/api/java/util/ServiceLoader.html</div></div><div id="Transformers" class="taskdoc-detail-param"><div class="taskdoc-detail-param-header"><div class="taskdoc-detail-param-header-sig"><div class="taskdoc-detail-param-header-name"><a href="#Transformers" title="Task parameter Transformers">Transformers</a></div><div class="taskdoc-detail-param-header-type">Collection of <a href="types/ZipResourceTransformerTaskOption.html" title="Type ZipResourceTransformerTaskOption">ZipResourceTransformerTaskOption</a></div></div><div class="taskdoc-detail-param-header-aliases">Aliases: <div class="taskdoc-detail-param-header-alias">Transformer</div></div></div><div class="taskdoc-detail-member taskdoc-detail-param-detail" taskdoc-info-format="format.plaintext">Specifies one or more ZIP resource transformers that should be used when constructing the output.
+ZIP resource transformers are plugins into the archive creating operation. They can customize the archive output in an implementation dependent manner.
+In order to add transformers to the task, you need to implement your own Transformer with the ZIP creator task API, or use an existing implementations. Consult the use-case documentation of your transformer of interest to find out how to include it in the task.</div></div></div>
+	</div>
+</div>
+<div class="doc-footer">
+	<div class="container">
+		<div class="row">
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">About</p>
+				<div><a href="/index.html" title="Saker.build home page">Home</a></div>
+				<div data-footer-location="doc-docs"><a href="../index.html" title="saker.jar documentation index">Documentation index</a></div>
+				<div><a href="../../saker.build/index.html" title="Information about the saker.build system">saker.build system</a></div>
+				<div><a href="../../saker.nest/index.html" title="Information about the saker.nest repository">saker.nest repository</a></div>
+				<div><a href="/contact.html" title="Contact us">Contact</a></div>
+			</div>
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">Resources</p>
+				<div data-footer-location="doc-docs"><a href="../doc/index.html" title="saker.jar documentation index">Documentation</a></div>
+				<div data-footer-location="doc-javadoc"><a href="../javadoc/index.html" title="JavaDoc for saker.jar">JavaDoc</a></div>
+				<div data-footer-location="doc-taskdoc"><a href="../taskdoc/index.html"  title="Documentation of build tasks in saker.jar">TaskDoc</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.jar" title="saker.jar | saker.nest">saker.nest package page</a></div>
+				<div><a href="https://github.com/sakerbuild/saker.jar" title="saker.jar on GitHub">GitHub</a></div>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col">
+			&copy; Bence Sipka 2020
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>InnerTaskResults</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+	
+	<link rel="stylesheet" type="text/css" href="../../../../../res/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../../../../../res/doc-saker.css">
+	
+</head>
+<body data-nav-location="javadoc" data-subdoc-presence="nest-package packagedoc javadoc">
+<div class="doc-nav-bar">
+	<div class="container">
+		<a class="home-link" href="../../../../index.html" title="saker.build"><img style="height: 2.5em;" class="logo" src="../../../../../res/logo.svg"/><span class="page-name">saker.build</span></a>
+		<a class="nav-location-item" data-nav-location="doc-docs" href="../../../../doc/index.html" title="Documentation">Documentation</a>
+		<a class="nav-location-item" data-nav-location="doc-taskdoc" href="../../../../taskdoc/index.html" title="Build task documentation">TaskDoc</a>
+		<a class="nav-location-item" data-nav-location="doc-javadoc" href="../../../../javadoc/index.html"title="Java API documentation">JavaDoc</a>
+		<div class="nav-bar-controls">
+			<label class="d-xl-none nav-bar-collapse" for="collapse-nav-bar-label">
+				<svg style="height: 1.5em;" viewBox="0 0 24 24">
+				    <path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+				</svg>
+			</label>
+			<input style="display:none;" id="collapse-nav-bar-label" type="checkbox"/>
+			<div class="nav-bar-items">
+				<a href="/" title="saker.build home page">Home</a>
+				<a href="/buildtrace.html" title="Build trace viewer">Build trace</a>
+				<a style="display:none;" href="/sponsor.html" title="Sponsoring development">Sponsor</a>
+				<a href="/blog/" title="saker.build system blog">Blog</a>
+				<a class="no-external-icon" href="https://github.com/sakerbuild/saker.build" title="saker.build GitHub repository">GitHub</a>
+			</div>
+		</div>
+	</div>
+</div>
+<nav class="javadoc-nav" data-nav-location="InnerTaskResults">
+	<div class="container">
+		<span class="javadoc-nav-title">JavaDoc</span>
+		<a class="nav-location-item" data-nav-location="javadoc-packages" href="../../../index.html" title="Package index">Packages</a>
+		<a class="nav-location-item" data-nav-location="javadoc-all-classes" href="../../../all-classes.html" title="All classes">All classes</a>
+		<a class="nav-location-item" data-nav-location="javadoc-constants" href="../../../constants.html" title="All constants">Constants</a>
+	</div>
+</nav>
+<div class="container page-contents javadoc">
+	<div class="javadoc-content">
+	<div class="javadoc-class-header"><div class="javadoc-class-header-pkg"><span class="javadoc-code-ref"><span class="javadoc-kw">package</span> <a href="index.html" title="saker.build.task" data-javadoc-kind="package">saker.build.task</a></span></div><div class="javadoc-class-header-class"><span class="javadoc-kw">public interface </span><span class="javadoc-class-header-name">InnerTaskResults</span>&lt;<wbr><span class="javadoc-tp">R</span>&gt;</div></div><div class="javadoc-class-doc"><div class="javadoc-class-doc-body">Interface for providing access to the results of inner task executions. <p>
+ The interface allows access to the task results by basically working like an iterator. The results can be retrieved
+ by calling <span class="javadoc-code-ref"><a href="#getNext--" title="InnerTaskResults.getNext()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface">getNext<span class="javadoc-code-ref">()</span></a></span>, which will wait if necessary and return non-<code>null</code> if there is an inner
+ task result available. This interface works like an iterator, but doesn't have <code>next()</code> function, as the
+ checking and retrieving the next result needs to be atomic in the context of multiple consumers.
+ <p>
+ The interface can hold any amount of task results. It is possible, that it never returns any inner task results.
+ <p>
+ The interface provides functionality for cancelling the duplication of the inner tasks.</div><div class="javadoc-detail-typeparams javadoc-blocktag-section"><div class="javadoc-detail-typeparam"><span class="javadoc-detail-typeparam-name">R</span><span class="javadoc-detail-typeparam-detail">The type of the task results.</span></div></div><div class="javadoc-detail-see javadoc-blocktag-section"><div class="javadoc-detail-see-entry"><span class="javadoc-code-ref"><a href="TaskContext.html#startInnerTask-saker.build.task.TaskFactory-saker.build.task.InnerTaskExecutionParameters-" title="TaskContext.startInnerTask(TaskFactory<R>, InnerTaskExecutionParameters)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface">TaskContext.startInnerTask<span class="javadoc-code-ref">(<wbr>TaskFactory&lt;<wbr><span class="javadoc-tp" title="R of TaskContext.startInnerTask(TaskFactory<R>, InnerTaskExecutionParameters)">R</span>&gt;, InnerTaskExecutionParameters)</span></a></span></div></div></div><div class="javadoc-class-idx"><div class="javadoc-class-idx-methods javadoc-idx-section"><table><caption>Methods</caption><thead><tr><th class="javadoc-th-method-meta"></th><th class="javadoc-th-method-details"></th></tr></thead><tbody><tr class="javadoc-class-idx-method javadoc-idx-member"><td class="javadoc-class-idx-method-meta javadoc-idx-member-meta"><span class="javadoc-kw">public </span><span class="javadoc-code-ref"><span class="javadoc-kw">void</span></span></td><td class="javadoc-class-idx-method-sig javadoc-idx-member-sig"><div class="javadoc-class-idx-method-name javadoc-idx-member-name"><a href="#cancelDuplicationOptionally--" title="InnerTaskResults.cancelDuplicationOptionally()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">cancelDuplicationOptionally</a><span class="javadoc-code-ref">()</span></div><div class="javadoc-class-idx-method-short javadoc-member-short">Manually cancels the duplication of the associated inner task.</div></td></tr><tr class="javadoc-class-idx-method javadoc-idx-member"><td class="javadoc-class-idx-method-meta javadoc-idx-member-meta"><span class="javadoc-kw">public </span><span class="javadoc-code-ref"><a href="InnerTaskResultHolder.html" title="interface saker.build.task.InnerTaskResultHolder" data-javadoc-kind="interface">InnerTaskResultHolder</a>&lt;<wbr><span class="javadoc-tp" title="R of interface saker.build.task.InnerTaskResults">R</span>&gt;</span></td><td class="javadoc-class-idx-method-sig javadoc-idx-member-sig"><div class="javadoc-class-idx-method-name javadoc-idx-member-name"><a href="#getNext--" title="InnerTaskResults.getNext()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">getNext</a><span class="javadoc-code-ref">()</span></div><div class="javadoc-class-idx-method-short javadoc-member-short">Gets the results of a finished inner task.</div></td></tr></tbody></table></div></div><div class="javadoc-class-details"><div class="javadoc-class-details-methods javadoc-details-section"><div id="cancelDuplicationOptionally--" class="javadoc-class-detail-method javadoc-class-detail-member"><div class="javadoc-class-detail-method-sig javadoc-member-sig"><span class="javadoc-kw">public abstract </span><span class="javadoc-code-ref"><span class="javadoc-kw">void</span></span> <a href="#cancelDuplicationOptionally--" title="InnerTaskResults.cancelDuplicationOptionally()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">cancelDuplicationOptionally</a><span class="javadoc-code-ref">()</span></div><div class="javadoc-class-detail-method-detail javadoc-member-detail"><div class="javadoc-detail-body">Manually cancels the duplication of the associated inner task. <p>
+ This method will attempt to cancel the duplication of the started inner task. If duplication cancellation is not
+ enabled or all the tasks have finished, this method is a no-op.
+ <p>
+ When the duplication is cancelled, all already running inner tasks will run to completion, and no more will be
+ started via duplication.</div><div class="javadoc-detail-see javadoc-blocktag-section"><div class="javadoc-detail-see-entry"><span class="javadoc-code-ref"><a href="InnerTaskExecutionParameters.html#isDuplicationCancellable--" title="InnerTaskExecutionParameters.isDuplicationCancellable()" data-javadoc-kind="method" data-javadoc-enclosing-kind="class">InnerTaskExecutionParameters.isDuplicationCancellable<span class="javadoc-code-ref">()</span></a></span></div></div></div></div><div id="getNext--" class="javadoc-class-detail-method javadoc-class-detail-member"><div class="javadoc-class-detail-method-sig javadoc-member-sig"><div class="javadoc-method-annots javadoc-member-annots"><div class="javadoc-annot"><a href="../thirdparty/saker/rmi/annot/transfer/RMISerialize.html" title="@interface saker.build.thirdparty.saker.rmi.annot.transfer.RMISerialize" data-javadoc-kind="annotation_type">@RMISerialize</a></div></div><span class="javadoc-kw">public abstract </span><span class="javadoc-code-ref"><a href="InnerTaskResultHolder.html" title="interface saker.build.task.InnerTaskResultHolder" data-javadoc-kind="interface">InnerTaskResultHolder</a>&lt;<wbr><span class="javadoc-tp" title="R of interface saker.build.task.InnerTaskResults">R</span>&gt;</span> <a href="#getNext--" title="InnerTaskResults.getNext()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">getNext</a><span class="javadoc-code-ref">()</span><span class="javadoc-method-throws"><span class="javadoc-kw">&nbsp;throws</span> <span class="javadoc-method-throws-entries"><span class="javadoc-method-exc"><span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/InterruptedException.html" title="class java.lang.InterruptedException" data-javadoc-kind="class">InterruptedException</a></span>, </span><span class="javadoc-method-exc"><span class="javadoc-code-ref"><a href="exception/InnerTaskInitializationException.html" title="class saker.build.task.exception.InnerTaskInitializationException" data-javadoc-kind="class">InnerTaskInitializationException</a></span></span></span></span></div><div class="javadoc-class-detail-method-detail javadoc-member-detail"><div class="javadoc-detail-body">Gets the results of a finished inner task. <p>
+ This method will check if there is any unretrieved inner task result available, and if so, returns immediately.
+ If not, then it will wait until one of the inner tasks finish. If there are no more inner tasks running,
+ <code>null</code> is returned.
+ <p>
+ Once this method returns <code>null</code>, all further calls to it will return <code>null</code>.
+ <p>
+ If an inner task throws an exception, this method will not propagate it, but it is available through the returned
+ object.</div><div class="javadoc-method-detail-return javadoc-blocktag-section"><div class="javadoc-method-detail-return-body">The result holder of a completed inner task or <code>null</code> if there are no more results.</div></div><div class="javadoc-method-detail-throwdeclarations javadoc-blocktag-section"><div class="javadoc-method-detail-throw" data-javadoc-exception-checked><span class="javadoc-method-detail-throw-name"><span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/InterruptedException.html" title="class java.lang.InterruptedException" data-javadoc-kind="class">InterruptedException</a></span></span><span class="javadoc-method-detail-throw-detail">If the current thread is interrupted while it is waiting for the result of a task.</span></div><div class="javadoc-method-detail-throw"><span class="javadoc-method-detail-throw-name"><span class="javadoc-code-ref"><a href="exception/InnerTaskInitializationException.html" title="class saker.build.task.exception.InnerTaskInitializationException" data-javadoc-kind="class">InnerTaskInitializationException</a></span></span><span class="javadoc-method-detail-throw-detail">If the inner task failed to start on the execution environments. This exception may be thrown in a
+             delayed manner, and not directly by
+             <span class="javadoc-code-ref"><a href="TaskContext.html" title="interface saker.build.task.TaskContext" data-javadoc-kind="interface">TaskContext</a>.<a href="TaskContext.html#startInnerTask-saker.build.task.TaskFactory-saker.build.task.InnerTaskExecutionParameters-" title="TaskContext.startInnerTask(TaskFactory<R>, InnerTaskExecutionParameters)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface">startInnerTask<span class="javadoc-code-ref">(<wbr>TaskFactory&lt;<wbr><span class="javadoc-tp" title="R of TaskContext.startInnerTask(TaskFactory<R>, InnerTaskExecutionParameters)">R</span>&gt;, InnerTaskExecutionParameters)</span></a></span>.</span></div></div></div></div></div></div>
+	</div>
+</div>
+<div class="doc-footer">
+	<div class="container">
+		<div class="row">
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">About</p>
+				<div><a href="/index.html" title="Saker.build home page">Home</a></div>
+				<div data-footer-location="doc-docs"><a href="../../../../index.html" title="saker.build documentation index">Documentation index</a></div>
+				<div><a href="../../../../../saker.build/index.html" title="Information about the saker.build system">saker.build system</a></div>
+				<div><a href="../../../../../saker.nest/index.html" title="Information about the saker.nest repository">saker.nest repository</a></div>
+				<div><a href="/contact.html" title="Contact us">Contact</a></div>
+			</div>
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">Resources</p>
+				<div data-footer-location="doc-docs"><a href="../../../../doc/index.html" title="saker.build documentation index">Documentation</a></div>
+				<div data-footer-location="doc-javadoc"><a href="../../../../javadoc/index.html" title="JavaDoc for saker.build">JavaDoc</a></div>
+				<div data-footer-location="doc-taskdoc"><a href="../../../../taskdoc/index.html"  title="Documentation of build tasks in saker.build">TaskDoc</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.nest package page</a></div>
+				<div><a href="https://github.com/sakerbuild/saker.build" title="saker.build on GitHub">GitHub</a></div>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col">
+			&copy; Bence Sipka 2020
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

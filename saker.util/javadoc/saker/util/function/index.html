@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>saker.util.function</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+	
+	<link rel="stylesheet" type="text/css" href="../../../../../res/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../../../../../res/doc-saker.css">
+	
+</head>
+<body data-nav-location="javadoc" data-subdoc-presence="nest-package packagedoc javadoc taskdoc">
+<div class="doc-nav-bar">
+	<div class="container">
+		<a class="home-link" href="../../../../index.html" title="saker.util"><img style="height: 2.5em;" class="logo" src="../../../../../res/logo.svg"/><span class="page-name">saker.util</span></a>
+		<a class="nav-location-item" data-nav-location="doc-docs" href="../../../../doc/index.html" title="Documentation">Documentation</a>
+		<a class="nav-location-item" data-nav-location="doc-taskdoc" href="../../../../taskdoc/index.html" title="Build task documentation">TaskDoc</a>
+		<a class="nav-location-item" data-nav-location="doc-javadoc" href="../../../../javadoc/index.html"title="Java API documentation">JavaDoc</a>
+		<div class="nav-bar-controls">
+			<label class="d-xl-none nav-bar-collapse" for="collapse-nav-bar-label">
+				<svg style="height: 1.5em;" viewBox="0 0 24 24">
+				    <path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+				</svg>
+			</label>
+			<input style="display:none;" id="collapse-nav-bar-label" type="checkbox"/>
+			<div class="nav-bar-items">
+				<a href="/" title="saker.build home page">Home</a>
+				<a href="/buildtrace.html" title="Build trace viewer">Build trace</a>
+				<a style="display:none;" href="/sponsor.html" title="Sponsoring development">Sponsor</a>
+				<a href="/blog/" title="saker.build system blog">Blog</a>
+				<a class="no-external-icon" href="https://github.com/sakerbuild/saker.build" title="saker.build GitHub repository">GitHub</a>
+			</div>
+		</div>
+	</div>
+</div>
+<nav class="javadoc-nav" data-nav-location="package-info">
+	<div class="container">
+		<span class="javadoc-nav-title">JavaDoc</span>
+		<a class="nav-location-item" data-nav-location="javadoc-packages" href="../../../index.html" title="Package index">Packages</a>
+		<a class="nav-location-item" data-nav-location="javadoc-all-classes" href="../../../all-classes.html" title="All classes">All classes</a>
+		<a class="nav-location-item" data-nav-location="javadoc-constants" href="../../../constants.html" title="All constants">Constants</a>
+	</div>
+</nav>
+<div class="container page-contents javadoc">
+	<div class="javadoc-content">
+	<div class="javadoc-package-header"><div class="javadoc-package-header-pkg"><span class="javadoc-code-ref"><span class="javadoc-kw">package</span> <span class="javadoc-package-header-name">saker.util.function</span></span></div></div><div class="javadoc-package-doc"><div class="javadoc-package-doc-body">Package containing various functional interfaces and related classes.</div></div><div class="javadoc-package-idx"><div class="javadoc-package-idx-itfs javadoc-idx-section"><table><caption>Interfaces</caption><thead><tr><th class="javadoc-th-type-name"></th><th class="javadoc-th-type-details"></th></tr></thead><tbody><tr class="javadoc-package-idx-itf javadoc-idx-member"><td class="javadoc-package-idx-itf-name javadoc-idx-member-meta"><a href="ThrowingFunction.html" title="interface saker.util.function.ThrowingFunction" data-javadoc-kind="interface">ThrowingFunction</a></td><td class="javadoc-package-idx-itf-sig javadoc-idx-member-sig"><div class="javadoc-package-idx-itf-short javadoc-member-short">Functional interface similar to <span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/util/function/Function.html" title="interface java.util.function.Function" data-javadoc-kind="interface">Function</a></span>, except the <span class="javadoc-code-ref"><a href="ThrowingFunction.html#apply-T-" title="ThrowingFunction.apply(T)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface">apply<span class="javadoc-code-ref">(<wbr><span class="javadoc-tp" title="T of interface saker.util.function.ThrowingFunction">T</span>)</span></a></span> method is allowed to throw an
+ arbitrary exception.</div></td></tr><tr class="javadoc-package-idx-itf javadoc-idx-member"><td class="javadoc-package-idx-itf-name javadoc-idx-member-meta"><a href="ThrowingRunnable.html" title="interface saker.util.function.ThrowingRunnable" data-javadoc-kind="interface">ThrowingRunnable</a></td><td class="javadoc-package-idx-itf-sig javadoc-idx-member-sig"><div class="javadoc-package-idx-itf-short javadoc-member-short">Functional interface similar to <span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Runnable.html" title="interface java.lang.Runnable" data-javadoc-kind="interface">Runnable</a></span>, except the <span class="javadoc-code-ref"><a href="ThrowingRunnable.html#run--" title="ThrowingRunnable.run()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface">run<span class="javadoc-code-ref">()</span></a></span> method is allowed to throw an arbitrary
+ exception.</div></td></tr><tr class="javadoc-package-idx-itf javadoc-idx-member"><td class="javadoc-package-idx-itf-name javadoc-idx-member-meta"><a href="ThrowingSupplier.html" title="interface saker.util.function.ThrowingSupplier" data-javadoc-kind="interface">ThrowingSupplier</a></td><td class="javadoc-package-idx-itf-sig javadoc-idx-member-sig"><div class="javadoc-package-idx-itf-short javadoc-member-short">Functional interface similar to <span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/util/function/Supplier.html" title="interface java.util.function.Supplier" data-javadoc-kind="interface">Supplier</a></span>, except the <span class="javadoc-code-ref"><a href="ThrowingSupplier.html#get--" title="ThrowingSupplier.get()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface">get<span class="javadoc-code-ref">()</span></a></span> method is allowed to throw an arbitrary
+ exception.</div></td></tr><tr class="javadoc-package-idx-itf javadoc-idx-member"><td class="javadoc-package-idx-itf-name javadoc-idx-member-meta"><a href="TriConsumer.html" title="interface saker.util.function.TriConsumer" data-javadoc-kind="interface">TriConsumer</a></td><td class="javadoc-package-idx-itf-sig javadoc-idx-member-sig"><div class="javadoc-package-idx-itf-short javadoc-member-short">Functional interface similar to <span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html" title="interface java.util.function.Consumer" data-javadoc-kind="interface">Consumer</a></span>, but takes 3 arguments intead of 1.</div></td></tr><tr class="javadoc-package-idx-itf javadoc-idx-member"><td class="javadoc-package-idx-itf-name javadoc-idx-member-meta"><a href="TriFunction.html" title="interface saker.util.function.TriFunction" data-javadoc-kind="interface">TriFunction</a></td><td class="javadoc-package-idx-itf-sig javadoc-idx-member-sig"><div class="javadoc-package-idx-itf-short javadoc-member-short">Functional interface similar to <span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/util/function/Function.html" title="interface java.util.function.Function" data-javadoc-kind="interface">Function</a></span>, but takes 3 arguments instead of 1.</div></td></tr><tr class="javadoc-package-idx-itf javadoc-idx-member"><td class="javadoc-package-idx-itf-name javadoc-idx-member-meta"><a href="TriPredicate.html" title="interface saker.util.function.TriPredicate" data-javadoc-kind="interface">TriPredicate</a></td><td class="javadoc-package-idx-itf-sig javadoc-idx-member-sig"><div class="javadoc-package-idx-itf-short javadoc-member-short">Functional interface similar to <span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/util/function/Predicate.html" title="interface java.util.function.Predicate" data-javadoc-kind="interface">Predicate</a></span>, but takes 3 arguments instead of 1.</div></td></tr></tbody></table></div><div class="javadoc-package-idx-classes javadoc-idx-section"><table><caption>Classes</caption><thead><tr><th class="javadoc-th-type-name"></th><th class="javadoc-th-type-details"></th></tr></thead><tbody><tr class="javadoc-package-idx-class javadoc-idx-member"><td class="javadoc-package-idx-class-name javadoc-idx-member-meta"><a href="Functionals.html" title="class saker.util.function.Functionals" data-javadoc-kind="class">Functionals</a></td><td class="javadoc-package-idx-class-sig javadoc-idx-member-sig"><div class="javadoc-package-idx-class-short javadoc-member-short">Utility class containing various helper functions for dealing with functional interfaces.</div></td></tr><tr class="javadoc-package-idx-class javadoc-idx-member"><td class="javadoc-package-idx-class-name javadoc-idx-member-meta"><a href="LazySupplier.html" title="class saker.util.function.LazySupplier" data-javadoc-kind="class">LazySupplier</a></td><td class="javadoc-package-idx-class-sig javadoc-idx-member-sig"><div class="javadoc-package-idx-class-short javadoc-member-short"><span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/util/function/Supplier.html" title="interface java.util.function.Supplier" data-javadoc-kind="interface">Supplier</a></span> implementation that will lazily compute its result value once and return that in the following
+ calls.</div></td></tr></tbody></table></div></div>
+	</div>
+</div>
+<div class="doc-footer">
+	<div class="container">
+		<div class="row">
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">About</p>
+				<div><a href="/index.html" title="Saker.build home page">Home</a></div>
+				<div data-footer-location="doc-docs"><a href="../../../../index.html" title="saker.util documentation index">Documentation index</a></div>
+				<div><a href="../../../../../saker.build/index.html" title="Information about the saker.build system">saker.build system</a></div>
+				<div><a href="../../../../../saker.nest/index.html" title="Information about the saker.nest repository">saker.nest repository</a></div>
+				<div><a href="/contact.html" title="Contact us">Contact</a></div>
+			</div>
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">Resources</p>
+				<div data-footer-location="doc-docs"><a href="../../../../doc/index.html" title="saker.util documentation index">Documentation</a></div>
+				<div data-footer-location="doc-javadoc"><a href="../../../../javadoc/index.html" title="JavaDoc for saker.util">JavaDoc</a></div>
+				<div data-footer-location="doc-taskdoc"><a href="../../../../taskdoc/index.html"  title="Documentation of build tasks in saker.util">TaskDoc</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.util" title="saker.util | saker.nest">saker.nest package page</a></div>
+				<div><a href="https://github.com/sakerbuild/saker.util" title="saker.util on GitHub">GitHub</a></div>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col">
+			&copy; Bence Sipka 2020
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

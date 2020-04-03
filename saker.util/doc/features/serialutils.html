@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Serialization utilities&nbsp;|&nbsp;saker.util</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+	
+	<link rel="stylesheet" href="../../../res/bootstrap.min.css" >
+	<link rel="stylesheet" href="../../../res/doc-saker.css" >
+</head>
+<body data-nav-location="packagedoc" data-subdoc-presence="nest-package packagedoc javadoc">
+<div class="doc-nav-bar">
+	<div class="container">
+		<a class="home-link" href="../../index.html" title="saker.util"><img style="height: 2.5em;" class="logo" src="../../../res/logo.svg"/><span class="page-name">saker.util</span></a>
+		<a class="nav-location-item" data-nav-location="doc-docs" href="../../doc/index.html" title="Documentation">Documentation</a>
+		<a class="nav-location-item" data-nav-location="doc-taskdoc" href="../../taskdoc/index.html" title="Build task documentation">TaskDoc</a>
+		<a class="nav-location-item" data-nav-location="doc-javadoc" href="../../javadoc/index.html"title="Java API documentation">JavaDoc</a>
+		<div class="nav-bar-controls">
+			<label class="d-xl-none nav-bar-collapse" for="collapse-nav-bar-label">
+				<svg style="height: 1.5em;" viewBox="0 0 24 24">
+				    <path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+				</svg>
+			</label>
+			<input style="display:none;" id="collapse-nav-bar-label" type="checkbox"/>
+			<div class="nav-bar-items">
+				<a href="/" title="saker.build home page">Home</a>
+				<a href="/buildtrace.html" title="Build trace viewer">Build trace</a>
+				<a style="display:none;" href="/sponsor.html" title="Sponsoring development">Sponsor</a>
+				<a href="/blog/" title="saker.build system blog">Blog</a>
+				<a class="no-external-icon" href="https://github.com/sakerbuild/saker.build" title="saker.build GitHub repository">GitHub</a>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container page-contents packagedoc">
+	<div class="row">
+		<div class="col-12 col-lg-3 col-xl-2 p-lg-0">
+			<div class="doc-navigation-container">
+				<label class="d-lg-none nav-collapse" for="doc-collapse-nav-label">
+					<svg style="height: 1.5em;" viewBox="0 0 24 24">
+					    <path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+					</svg>
+					Navigation
+				</label>
+				<input style="display:none;" id="doc-collapse-nav-label" type="checkbox"/> 
+				<div class="doc-nav">  <div class="doc-section"><ul><li><a class="doc-nav-section-link" href="../../index.html" title="Index">Index</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Package details</p><ul><li><a class="doc-nav-section-link" href="../index.html" title="Overview">Overview</a></li><li><label class="doc-nav-collapse" for="_doc_collapse_id_0"><a class="doc-nav-section-link" href="../gettingstarted.html" title="Getting started">Getting started</a></label><input style="display:none;" id="_doc_collapse_id_0" type="checkbox"/><label class="doc-nav-section-arrow" for="_doc_collapse_id_0"></label><ul><li><a class="doc-nav-section-link" href="../addclasspath.html" title="Classpath">Classpath</a></li><li><a class="doc-nav-section-link" href="../downloadlib.html" title="Download the library">Download the library</a></li><li><a class="doc-nav-section-link" href="../asbundledependency.html" title="As bundle dependency">As bundle dependency</a></li></ul></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Features</p><ul><li><a class="doc-nav-section-link" href="index.html" title="Feature overview">Feature overview</a></li><li><a class="doc-nav-section-link" href="immutableutils.html" title="Immutable collections">Immutable collections</a></li><li><a class="doc-nav-section-link" href="streamutils.html" title="Stream utilities">Stream utilities</a></li><li class="doc-active doc-active-parent"><a class="doc-nav-section-link" href="serialutils.html" title="Serialization utilities">Serialization utilities</a></li><li><a class="doc-nav-section-link" href="resclosing.html" title="Resource closing">Resource closing</a></li><li><a class="doc-nav-section-link" href="sortediteration.html" title="Sorted iteration">Sorted iteration</a></li><li><a class="doc-nav-section-link" href="unsyncstreams.html" title="Non-synchronized streams">Non-synchronized streams</a></li><li><a class="doc-nav-section-link" href="classloaderutils.html" title="ClassLoader utilities">ClassLoader utilities</a></li><li><a class="doc-nav-section-link" href="threadutils.html" title="Thread utilities">Thread utilities</a></li></ul>  </div></div>
+			</div>
+		</div>
+		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="sb-sponsors" style="display: none;">
+	<span class="sb-sponsors-title">Sponsors</span>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4 col-12">
+				<a class="sb-sponsors-link"></a>
+			</div>
+			<div class="col-md-4 col-12">
+				<a class="sb-sponsors-link"></a>
+			</div>
+			<div class="col-md-4 col-12">
+				<a class="sb-sponsors-link"></a>
+			</div>
+		</div>
+	</div>
+</div>
+			<div class="doc-content"><h1 id="serialization-utilities">Serialization utilities<a class="doc-heading-anchor" href="#serialization-utilities"></a></h1>
+<p>The <a href="../../javadoc/saker/util/io/SerialUtils.html"><code>SerialUtils</code></a> utility class provides functions for serializing various kinds of objects. It is mainly useful when a class implements <a href="https://docs.oracle.com/javase/8/docs/api/java/io/Externalizable.html" title="Externalizable (Java Platform SE 8 )"><code>Externalizable</code></a> and has to implement its own serialization.</p>
+<p>The method serialize object in various formats, which are defined in the documentation of those functions. Each serialization function has a corresponding reading function that can be used to deserialize them.</p>
+<p>The class also provides functions for reading collections from the input and creating immutable collections from them. This can be especially important when the serialized object is mutable, but you don't really care about the mutability when it is read back from the stream. Reading back immutable collections can significantly reduce the memory usage similarly to <a href="immutableutils.html" title="Immutable collections">immutable utils</a>.</p>
+<p>The reading functions can also read back sorted input from the stream. These functions expect the underlying stream to have the read elements already in sorted order. Reading the elements this way can significantly reduce the deserialization times, as the elements doesn't need to be resorted in order to be deserialized. Reading a sorted set or map from an unsorted stream may take much longer, as the elements need to be inserted one by one instead of just taking their sorted order.</p>
+<p>This is similar to creating a <a href="https://docs.oracle.com/javase/8/docs/api/java/util/TreeMap.html" title="TreeMap (Java Platform SE 8 )"><code>TreeMap</code></a> using the <a href="https://docs.oracle.com/javase/8/docs/api/java/util/SortedMap.html" title="SortedMap (Java Platform SE 8 )"><code>SortedMap</code></a> or the <a href="https://docs.oracle.com/javase/8/docs/api/java/util/Map.html" title="Map (Java Platform SE 8 )"><code>Map</code></a> constructor. The sorted creation is much faster, as the elements are already ordered.</p>
+<p>The sorted reading of course also has the risk that it doesn't work if the input is not sorted. Note that you need to ensure this yourself, and the sorted reading functions doesn't verify sortedness of the input. Reading non-sorted input using the sorted reading functions may result in unexpected errors down the line.</p>
+<link href="../../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>
+			<div class="end-section-links">
+				<div class="end-section-prev">
+					<a class="doc-prev-section" href="../../doc/features/streamutils.html" title="Stream utilities"><svg class="doc-section-arrow" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" />
+</svg>Stream utilities</a>
+				</div>
+				<div class="end-section-next">
+					<a class="doc-next-section" href="../../doc/features/resclosing.html" title="Resource closing">Resource closing<svg class="doc-section-arrow" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z" />
+</svg></a>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+</div>
+<div class="doc-footer">
+	<div class="container">
+		<div class="row">
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">About</p>
+				<div><a href="/index.html" title="Saker.build home page">Home</a></div>
+				<div data-footer-location="doc-docs"><a href="../../index.html" title="saker.util documentation index">Documentation index</a></div>
+				<div><a href="../../../saker.build/index.html" title="Information about the saker.build system">saker.build system</a></div>
+				<div><a href="../../../saker.nest/index.html" title="Information about the saker.nest repository">saker.nest repository</a></div>
+				<div><a href="/contact.html" title="Contact us">Contact</a></div>
+			</div>
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">Resources</p>
+				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.util documentation index">Documentation</a></div>
+				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.util">JavaDoc</a></div>
+				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.util">TaskDoc</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.util" title="saker.util | saker.nest">saker.nest package page</a></div>
+				<div><a href="https://github.com/sakerbuild/saker.util" title="saker.util on GitHub">GitHub</a></div>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col">
+			&copy; Bence Sipka 2020
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script>
+if(window.hasOwnProperty("hljs")){
+	hljs.configure({
+	  languages: []
+	});
+	hljs.initHighlightingOnLoad();
+}
+</script>
+
+</body>
+</html>
