@@ -120,7 +120,7 @@ steps:
     set -e
     mkdir build-staging
     cd build-staging
-    git clone --single-branch --branch gh-pages https://$PAGE_PUSH_USERNAME:$PAGE_PUSH_TOKEN@github.com/Sipkab/saker.build-site-ci-publish-test.git .
+    git clone --single-branch --branch gh-pages https://$GIT_USERNAME:$GIT_TOKEN@github.com/Sipkab/saker.build-site-ci-publish-test.git .
     git config user.email "support@saker.build"
     git config user.name "sakerbuild-bot"
     git rm -r *
@@ -130,4 +130,7 @@ steps:
     git add *
     git commit -a -m "Automated site update"
     git push
+  env:
+    GIT_USERNAME: $(PAGE_PUSH_USERNAME)
+    GIT_TOKEN: $(PAGE_PUSH_TOKEN)
   displayName: 'Push site'
