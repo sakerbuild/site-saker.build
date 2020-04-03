@@ -141,6 +141,7 @@ public class SakerDoclet implements Doclet {
 	{
 		packageExternalDocSites.put(WildcardPath.valueOf("java/**"), "https://docs.oracle.com/javase/8/docs/api/");
 		packageExternalDocSites.put(WildcardPath.valueOf("javax/**"), "https://docs.oracle.com/javase/8/docs/api/");
+		packageExternalDocSites.put(WildcardPath.valueOf("jdk/**"), "https://docs.oracle.com/javase/9/docs/api/");
 	}
 	private NavigableSet<WildcardPath> excludeClassWildcards = new TreeSet<>();
 
