@@ -1,0 +1,15 @@
+package saker.docgen;
+
+enum PlaceholderType {
+	BODY,
+	NAVIGATION,
+	TITLE,
+	HEADINGS_NAVIGATION,
+	JS_LANGUAGES_ARRAY,
+	PREV_SECTION,
+	NEXT_SECTION,
+	LANGUAGE_SCRIPTS,
+	PATH_TO_ROOT_DIR,
+
+	;
+}

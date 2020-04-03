@@ -1,0 +1,4 @@
+saker.site.doc.gen=saker.docgen.DocumentationGeneratorTaskFactory
+saker.taskdoc.gen=saker.nest.taskdoc.TaskDocumentationTaskFactory
+saker.cmd.reference=saker.cmdref.CommandLineReferenceMarkdownTaskFactory
+saker.preprocess=saker.preprocess.PreprocessorTaskFactory

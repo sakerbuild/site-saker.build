@@ -1,0 +1,30 @@
+static(DOCLET_DEPENDENCIES) = nest.dependency.resolve(saker.build-api) 
+
+compile(
+	out javac,
+){
+	$javac = saker.java.compile(
+		SourceDirectories: src/,
+		ClassPath: [
+			saker.java.classpath.bundle(static(DOCLET_DEPENDENCIES))
+		],
+		SDKs: {
+			Java: saker.java.sdk([9, 10, 11, 12, 13, 14])
+		},
+	)
+}
+export(
+	in compile = include(compile),
+	out jar,
+	out compile,
+){
+	$jar = saker.jar.create(
+		Output: saker.doclet.jar,
+		Resources: [
+			{
+				Directory: $compile[javac][ClassDirectory],
+				Resources: **
+			}
+		]
+	)
+}

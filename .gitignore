@@ -1,1 +1,5 @@
 /.project
+/build/
+/.classpath
+/.saker.build.ideconfigs
+/.saker.project.lock

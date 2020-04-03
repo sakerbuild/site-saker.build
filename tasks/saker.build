@@ -1,0 +1,63 @@
+static(MAVEN_DEPENDENCIES) = saker.maven.resolve(Artifacts: [
+	"com.atlassian.commonmark:commonmark:0.12.1",
+	"com.atlassian.commonmark:commonmark-ext-gfm-tables:0.12.1",
+])
+
+compile(
+	out javac,
+) {
+	$javac = saker.java.compile(
+		SourceDirectories: src,
+		ClassPath: [
+			saker.maven.classpath(static(MAVEN_DEPENDENCIES)),
+			saker.java.classpath.bundle(nest.dependency.resolve(
+				Bundles: [
+					saker.standard,
+					saker.nest-api,
+					saker.build-api,
+				],
+				Filters: nest.dependency.filter.compile(CompileTransitive: false)
+			))
+		],
+		Identifier: tasks,
+	)
+	
+}
+export(
+	out compile,
+	out jar,
+){
+	$compile = include(compile)
+	$jar = saker.jar.create(
+		Output: saker.docgen-v0.1.jar,
+		Resources: [
+			{
+				Directory: resources,
+				Resources: **,
+			},
+			{
+				Directory: $compile[javac][ClassDirectory],
+				Resources: **/*.class,
+			},
+		],
+		Includes: [
+			{
+				Archive: saker.maven.download(static(MAVEN_DEPENDENCIES))[ArtifactPaths],
+				Resources: [
+					org/**/*.properties,
+					**/*.class,
+				],
+			},
+		],
+		Manifest: {
+			MainAttributes: {
+				Nest-Bundle-Format-Version: 1,
+				Nest-Bundle-Identifier: "saker.site.doc-v0.1",
+			},
+		},
+	)
+}
+install(){
+	$export = include(export)
+	nest.local.install(Bundle: $export[jar][Path])
+}
