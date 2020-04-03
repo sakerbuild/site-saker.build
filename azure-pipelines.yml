@@ -111,7 +111,7 @@ steps:
     cd build-javadoc
     $(JAVA_HOME_9_X64)/bin/javadoc -locale en_US -sourcepath "../doclet/pseudo:saker.util/src/common:saker.util/src/jdk8:saker.rmi/api/src" -docletpath "../saker.build.jar:../build/saker.jar.create/saker.doclet.jar" -doclet saker.doclet.SakerDoclet -subpackages saker.util -classpath saker.apiextract-api.jar -d javadoc/saker.util/javadoc -template ../templates/javadoc_template.html -index-title "Saker.util API JavaDoc" -embed-macro DOC_FOOTER_TEMPLATE ../templates/footer/packagefootertemplate.html -embed-macro DOC_NAV_TEMPLATE ../templates/nav/navtemplate.html -macro "<!-- DOC-PATH-TO-ROOT-DIR -->" "JAVADOC_ROOT../" -macro PACKAGE_NAME saker.util -macro DOC_DATA_PRESENCE "nest-package packagedoc javadoc taskdoc"  -external-doc saker.rmi.** /saker.rmi/javadoc/ -macro FOOTER_COPYRIGHT "Bence Sipka 2020"
   displayName: 'Javadoc: saker.util'
-- script: cp -r javadoc/* ../site/
+- script: cp -r build-javadoc/javadoc/* site/
   displayName: 'Copy Javadoc results to working tree'
 - script: java -jar saker.build.jar -bd build "-EUsaker.java.jre.install.locations=$(JAVA_HOME_9_X64)" build
   displayName: 'Generate site'
@@ -128,4 +128,4 @@ steps:
     git add *
     git commit -a -m "Automated site update"
     git push
-    
+  displayName: 'Push site'
