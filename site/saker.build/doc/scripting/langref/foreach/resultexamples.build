@@ -1,0 +1,19 @@
+# results in [3, 6, 9]
+foreach $item in [1, 2, 3] : [ $item * 3 ]
+# same with local variable
+foreach $item in [1, 2, 3] with $local = $item * 3 : [ $local ]
+
+# results in { K1: 3, K2: 6 }
+foreach $k, $v in { K1: 1, K2: 2 } : { $k: $v * 3 }
+# results in { K1: 1, K2: 2, K3: 3 }
+foreach $item in [1, 2, 3] : { "K{ $item }": $item }
+
+# results in "3,6,9,"
+foreach $item in [1, 2, 3] : "{ $item * 3 },"
+
+# results in "xxx"
+# the result expression is not required to include loop variables
+foreach $item in [1, 2, 3] : "x"
+
+# results can be used like any other expression
+$variable = foreach $item in [1, 2, 3] : "x"

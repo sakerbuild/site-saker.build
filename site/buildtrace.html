@@ -1,0 +1,4632 @@
+<!DOCTYPE html>
+<html>
+LANDING_HEADER
+
+<body class="style-landing" data-nav-location="landing">
+LANDING_NAV
+
+<style>
+:root {
+	--color-failure: #d00;
+	--color-success: #0b0;
+	--color-warning: #fc0;
+	--color-warning-text: #ffc107;
+	
+	--table-selection-border: solid #eee 1px;
+	--timeline-scrollbar-height: 10px;
+	
+	--timeline-block-highlight-color: #00c6ff;
+	
+	--vis-toggled-margin-left: calc(10px + 0.8em);
+	
+	--task-row-entry-hover-color: #f4f4f4;
+	
+	--console-hightlight-border-color: #66cee8;
+	--console-hightlight-border: solid var(--console-hightlight-border-color) 2px;
+}
+.trace-timeline {
+	position: relative;
+	overflow: hidden;
+}
+.timeline-container {
+	display: flex;
+	flex-direction: row;
+}
+.trace-timeline-left-env {
+	position: relative;
+}
+.trace-timeline-left-env:empty {
+	display: none;
+}
+.trace-timeline-left-machine {
+	padding-left: 5px;
+	padding-right: 10px;
+	box-sizing: border-box;
+	position: sticky;
+	top: 0;
+	overflow: hidden;
+}
+.trace-timeline-left-machine-info {
+	font-size: 0.8em;
+	opacity: 0.8;
+}
+.timeline-machine-divisor {
+	position: absolute;
+	left: 0;
+	right: 0;
+	border-bottom: var(--table-selection-border);
+	z-index: 100;
+}
+.timeline-body {
+	flex-grow: 1;
+	position: relative;
+}
+.timeline-main {
+	margin: 10px 25px;
+}
+.timeline-inner {
+	padding: 10px 0;
+}
+.tasks-table-main-container {
+	padding: 0 25px;
+}
+.trace-timeline-left-env {
+	border-right: var(--table-selection-border);
+}
+.trace-timeline-left-machine-container+.trace-timeline-left-machine-container {
+	border-top: var(--table-selection-border);
+}
+.trace-timeline-holder {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+.trace-timeline-scrollbar {
+	position: sticky;
+	height: var(--timeline-scrollbar-height);
+	bottom: 0;
+	background-color: #f5f5f5;
+	border-bottom-right-radius: 5px;
+}
+.trace-timeline-knob {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #ccc;
+	border-radius: calc(var(--timeline-scrollbar-height) / 2);
+}
+.knob-handle {
+	position: absolute;
+	top: 0;
+	height: 100%;
+	bottom: 0;
+	width: var(--timeline-scrollbar-height);
+	background-color: #777;
+	border: #999 solid calc(var(--timeline-scrollbar-height) / 3);
+	border-radius: calc(var(--timeline-scrollbar-height) / 2);
+}
+.trace-timeline-knob-left {
+	left: 0;
+}
+.trace-timeline-knob-right {
+	right: 0;
+}
+.timeline-block {
+	position: absolute;
+	height: 20px;
+	background-color: #1aa6ce;
+	color: white;
+	font-size: 0.9em;
+	font-weight: 600;
+	min-width: 1px;
+	
+	border: 0.5px solid #ffffffaa;
+    box-sizing: content-box;
+	
+	cursor: pointer;
+	
+	/*clipping, as overflow:hidden causes sticky to not work*/
+	webkit-clip-path: inset(0); /* safari*/
+	clip-path: inset(0);
+	clip: rect(0px, auto, auto, 0px); /* IE11/Edge (not that IE11 supports sticky anyway!) */
+}
+.timeline-block-state-circle {
+	position: absolute;
+	height: 10px;
+	width: 10px;
+	transform: translateX(-50%) translateY(50%);
+	pointer-events: none;
+	z-index: 10;
+}
+.svg-red-circle {
+	background-color: var(--color-failure);
+	color: white;
+	border-radius: 50%;
+}
+.svg-warning-circle {
+	background-color: var(--color-warning);
+	color: white;
+	border-radius: 50%;
+}
+
+.timeline-block-label {
+	position: sticky;
+	left: 0;
+	padding: 0 3px;
+	white-space: nowrap;
+}
+#trace-body {
+	display: flex;
+	flex-direction: row;
+	position: relative;
+	min-height: 70vh;
+}
+#trace-body:not([data-open-dropping]) #open-dropzone {
+	display: none;
+}
+#trace-body[data-open-dropping=file] #dropzone-label:before {
+	content: 'Drag & drop build trace file to open.';
+}
+#trace-body[data-open-dropping=uri] #dropzone-label:before {
+	content: 'Drag & drop build trace link to open.';
+}
+#open-dropzone {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	padding: 20px;
+	background-color: rgba(255, 255, 255, 0.9);
+	z-index: 1000;
+}
+#dropzone-content {
+	border: 5px dashed;
+	border-color: var(--console-hightlight-border-color);
+    border-radius: 20px;
+    height: 100%;
+}
+#dropzone-label {
+	margin: auto;
+	padding-top: 20vh;
+	max-width: 70%;
+	text-align: center;
+	font-size: 2em;
+	color: var(--console-hightlight-border-color);
+	position: sticky;
+	top: 0;
+}
+#trace-menu {
+	position: relative;
+	padding: 0.6em 0;
+	white-space: nowrap;
+	background-color: var(--color-doc-nav-background);
+}
+#trace-menu-container {
+	position: sticky;
+	top: 0;
+}
+
+#trace-contents {
+	flex-grow: 1;
+	/*padding: 0.6em 0 0.6em 0.6em;*/
+}
+#trace-contents .trace-page {
+	display: none;
+}
+#page-summary td:first-child{
+	padding-right: 20px;
+}
+
+#trace-body[data-selected-page=page-summary] #page-summary.trace-page, 
+#trace-body[data-selected-page=page-timeline] #page-timeline.trace-page,
+#trace-body[data-selected-page=page-scripts] #page-scripts.trace-page,
+#trace-body[data-selected-page=page-console] #page-console.trace-page,
+#trace-body[data-selected-page=page-exceptions] #page-exceptions.trace-page,
+#trace-body[data-selected-page=page-artifacts] #page-artifacts.trace-page {
+	display: block;
+}
+#trace-body[data-selected-page=page-summary] .trace-menu-element[data-selects=page-summary],
+#trace-body[data-selected-page=page-timeline] .trace-menu-element[data-selects=page-timeline],
+#trace-body[data-selected-page=page-scripts] .trace-menu-element[data-selects=page-scripts],
+#trace-body[data-selected-page=page-console] .trace-menu-element[data-selects=page-console],
+#trace-body[data-selected-page=page-exceptions] .trace-menu-element[data-selects=page-exceptions],
+#trace-body[data-selected-page=page-artifacts] .trace-menu-element[data-selects=page-artifacts] {
+	font-weight: 600;
+}
+#trace-body:not([data-has-exceptions=true]) .trace-menu-element[data-selects=page-exceptions] {
+	display: none;
+}
+#trace-body:not([data-has-artifacts=true]) .trace-menu-element[data-selects=page-artifacts] {
+	display: none;
+}
+#trace-menu .trace-menu-element {
+	padding: 0.2em 1.5em;
+	display: block;
+	cursor: pointer;
+	font-size: 1.05em;
+}
+.trace-menu-element .menu-icon {
+	height: 1.2em;
+	display: inline-block;
+	margin: 0 6px;
+	vertical-align: sub;
+}
+.trace-menu-element:hover {
+	color: var(--color-link-hover);
+}
+.trace-menu-element {
+	color: var(--color-link);
+}
+.trace-menu-secondary {
+	margin-top: 50px;
+}
+
+.task-row-entry {
+	cursor: pointer;
+}
+.task-row-entry:not(.data-entry-open)+.task-details-row {
+	display: none;
+}
+.task-row-entry.task-state-failed {
+	color: var(--color-failure);
+}
+
+tr.task-row-entry:not(.data-entry-open)>td:first-child {
+	border-left: solid transparent 1px;
+}
+tr.task-row-entry:not(.data-entry-open)>td {
+	border-top: solid transparent 1px;
+}
+tr.task-row-entry:not(.data-entry-open)>td:last-child {
+	border-right: solid transparent 1px;
+}
+tr.task-row-entry.data-entry-open>td {
+	border-top: var(--table-selection-border);
+}
+tr.task-row-entry.data-entry-open>td:first-child {
+	border-left: var(--table-selection-border);
+	border-top-left-radius: 5px;
+}
+tr.task-row-entry.data-entry-open>td:last-child {
+	border-right: var(--table-selection-border);
+	border-top-right-radius: 5px;
+}
+tr.task-details-row>td {
+	border-bottom: var(--table-selection-border);
+}
+tr.task-details-row>td:first-child {
+	border-left: var(--table-selection-border);
+	border-bottom-left-radius: 5px;
+}
+tr.task-details-row>td:last-child {
+	border-right: var(--table-selection-border);
+	border-bottom-right-radius: 5px;
+}
+
+.timeline-control {
+	border: var(--table-selection-border);
+	border-radius: 5px;
+}
+.timeline-control[data-all-tasks-up-to-date] .timeline-container {
+	display: none;
+}
+.timeline-control[data-all-tasks-up-to-date]:after {
+	content: 'All tasks are up to date.';
+	opacity: 0.8;
+	padding: 10px;
+}
+.timeline-control[data-timeline-title]:before {
+	content: attr(data-timeline-title);
+	border-bottom: var(--table-selection-border);
+	display: block;
+    padding: 5px 10px;
+}
+
+.task-title-emphasis {
+	font-weight: 600;
+}
+
+.task-details-contents {
+	padding-bottom: 5px;
+}
+.task-details-contents>.trace-see-links {
+	padding-left: 1.4em;
+}
+label.vis-toggle:before {
+	transition: border-top var(--common-transitions-time) linear, 
+		border-bottom var(--common-transitions-time) linear, 
+		border-left var(--common-transitions-time) linear, 
+		border-right var(--common-transitions-time) linear,
+		margin-left var(--common-transitions-time) linear,
+		transform var(--common-transitions-time);
+}
+label.vis-toggle:not(.vis-toggle-no-arrow):before {
+	content: ' ';
+	margin: auto 5px auto 5px;
+	display: inline-block;
+	vertical-align: middle;
+
+}
+label.vis-toggle:not(.vis-toggle-no-arrow):not(.vis-toggle-side-arrow):before {
+	border-left: 0.4em solid transparent;
+	border-right: 0.4em solid transparent;
+	border-bottom: 0em solid transparent;
+	border-top: 0.4em solid var(--color-doc-section-arrow);
+}
+input.vis-toggle:checked + label.vis-toggle:not(.vis-toggle-side-arrow):before {
+	border-top: 0em solid transparent;
+	border-bottom: 0.4em solid var(--color-doc-section-arrow);
+}
+label.vis-toggle.vis-toggle-side-arrow:not(.vis-toggle-no-arrow):before {
+	transition: unset;
+	margin-left: calc(5px + 0.2em);
+	border-right: 0.2em solid transparent;
+	border-top: 0.4em solid transparent;
+	border-bottom: 0.4em solid transparent;
+	border-left: 0.4em solid var(--color-doc-section-arrow);
+}
+input.vis-toggle:checked + label.vis-toggle.vis-toggle-side-arrow:not(.vis-toggle-no-arrow):before {
+	margin-left: 5px;
+	border-right: 0.4em solid transparent;
+	border-left: 0.4em solid transparent;
+	border-top: 0em solid transparent;
+	border-bottom: 0.4em solid var(--color-doc-section-arrow);
+}
+label.vis-toggle {
+	cursor: pointer;
+	display: block;
+}
+input.vis-toggle {
+	display: none;
+}
+input.vis-toggle:not(:checked) + label.vis-toggle + div {
+	display: none;
+}
+input.vis-toggle + label.vis-toggle + div {
+    margin-left: var(--vis-toggled-margin-left);
+}
+.task-details-properties-table {
+	width: 100%;
+}
+.task-details-properties-table:not(:last-child) {
+	margin-bottom: 5px;
+}
+.task-details-properties-table td:first-child{
+	white-space: nowrap;
+}
+.task-details-properties-table>tbody>tr>td:first-child {
+	padding-left: 1.4em;
+	padding-right: 1em;
+	min-width: 200px;
+}
+.task-details-properties-table>tbody>tr>td:not(:first-child) {
+	word-break: break-all;
+}
+.task-details-output-file-path, .task-details-input-file-path {
+	word-break: break-all;
+}
+#page-timeline {
+	margin-top: 5px;
+	margin-bottom: 30px;
+}
+#page-timeline .tasks-table, #page-exceptions .exceptions-table {
+	width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+#page-timeline .tasks-table>tbody>tr>td:not(.task-details-contents), #page-timeline .tasks-table>thead>tr>th {
+	white-space: nowrap;
+}
+.col-placeholder {
+	padding: 0;
+}
+#page-timeline .tasks-table>tbody>tr>td:not(:first-child), #page-timeline .tasks-table>thead>tr>th:not(:first-child) {
+	text-align: right;
+}
+#page-timeline .tasks-table td:last-child{
+	width: 100%;
+}
+
+#page-console, #page-exceptions, #page-scripts, #page-artifacts {
+	padding: 10px 25px;
+}
+
+#page-exceptions .exceptions-table {
+	width: 100%;
+}
+
+.task-row-entry:hover {
+	background-color: var(--task-row-entry-hover-color);
+}
+.custom-value-show-toggle {
+	width: 100%;
+}
+.script-details-show-toggle:hover, .custom-value-show-toggle:hover {
+	background-color: var(--task-row-entry-hover-color);
+}
+.task-details-deltas-show-toggle:hover, .task-details-input-files-show-toggle:hover, .task-details-output-files-show-toggle:hover, .task-details-inner-tasks-show-toggle:hover {
+	background-color: var(--task-row-entry-hover-color);
+}
+input:checked+.script-details-show-toggle {
+	background-color: var(--task-row-entry-hover-color);
+	position: sticky;
+	top: 0;
+}
+#page-timeline .tasks-table tr.task-row-entry>td:first-child {
+	min-width: 300px;
+}
+#page-exceptions .exceptions-table tr.task-row-entry>td:first-child {
+	min-width: 300px;
+}
+#page-exceptions .exceptions-table tr.task-row-entry>td:last-child {
+	width: 100%;
+}
+
+.trace-console-content:not(:empty) {
+	white-space: pre-wrap;
+	font-family: var(--font-family-code);
+	line-height: 1.3;
+	word-break: break-all;
+	font-size: 0.9em;
+}
+.trace-console-content:empty:before {
+	content: 'No console output were recorded in this build.';
+}
+.trace-console-content>[data-trace-id] {
+	position: relative;
+}
+.trace-console-content>[data-trace-id]:hover {
+	background-color: var(--task-row-entry-hover-color);
+}
+[data-trace-log-severity="error"], [data-trace-log-severity="fatal error"] {
+	background-color: rgb(254,231,224);
+}
+[data-trace-log-severity="info"] {
+	background-color: rgb(244,247,254);
+}
+[data-trace-log-severity="warning"] {
+	background-color: rgb(254,243,218);
+}
+[data-trace-log-severity="success"] {
+	background-color: rgb(217,242,221);
+}
+[data-trace-id]:hover [data-trace-log-severity="error"], [data-trace-id]:hover [data-trace-log-severity="fatal error"] {
+	background-color: rgba(254,231,224, 0.6);
+}
+[data-trace-id]:hover [data-trace-log-severity="info"] {
+	background-color: rgba(244,247,254, 0.6);
+}
+[data-trace-id]:hover [data-trace-log-severity="warning"] {
+	background-color: rgba(254,243,218, 0.6);
+}
+[data-trace-id]:hover [data-trace-log-severity="success"] {
+	background-color: rgba(217,242,221, 0.6);
+}
+.trace-exception-stacktrace {
+	white-space: pre-wrap;
+	font-family: var(--font-family-code);
+	line-height: 1.4;
+	word-break: break-all;
+}
+.stacktrace-reduced-toggle {
+	cursor: pointer;
+}
+input.stacktrace-reduced-toggle:checked ~ .exceptions-table .stacktrace-full {
+	display: none;
+}
+input.stacktrace-reduced-toggle:not(:checked) ~ .exceptions-table .stacktrace-reduced {
+	display: none;
+}
+
+input.stacktrace-reduced-toggle:checked + div label.stacktrace-reduced-toggle:before {
+	content: 'Show full stacktrace';
+}
+input.stacktrace-reduced-toggle:not(:checked) + div label.stacktrace-reduced-toggle:before {
+	content: 'Show reduced stacktrace';
+}
+
+td.task-exception-summary {
+	font-family: var(--font-family-code);
+	white-space: pre-wrap;
+    word-break: break-all;
+}
+.trace-script-contents {
+	counter-reset: line;
+	font-family: var(--font-family-code);
+	white-space: pre-wrap;
+	line-height: 1.3;
+	font-size: 0.9em;
+	margin-bottom: 10px;
+}
+.trace-script-contents .line:hover {
+	background-color: var(--task-row-entry-hover-color);
+}
+.trace-script-contents>.line:before {
+	counter-increment: line;
+	content: counter(line);
+	display: inline-block;
+	margin-right: 0.25ch;
+    text-align: right;
+    padding-right: 0.25ch;
+    padding-left: 0.25ch;
+    background-color: var(--task-row-entry-hover-color);
+}
+.trace-script-contents.mw1ch>.line:before {
+	width: calc(1ch + 0.5ch);
+}
+.trace-script-contents.mw2ch>.line:before {
+	width: calc(2ch + 0.5ch);
+}
+.trace-script-contents.mw3ch>.line:before {
+	width: calc(3ch + 0.5ch);
+}
+.trace-script-contents.mw4ch>.line:before {
+	width: calc(4ch + 0.5ch);
+}
+.trace-script-contents.mw5ch>.line:before {
+	width: calc(5ch + 0.5ch);
+}
+
+.code-font {
+	font-family: var(--font-family-code);
+}
+
+.trace-summary-section {
+	margin: 1em 0 1.5em 1em;
+}
+.trace-summary-section-title {
+	font-weight: 600;
+	font-size: 1.2em;
+}
+.trace-summary-head-state {
+	font-size: 1.5em;
+	font-weight: 600;
+}
+.trace-summary-head-fail {
+	color: var(--color-failure);
+}
+.trace-summary-head-success {
+	color: var(--color-success);
+}
+.trace-summary-head-info {
+	margin-left: 2em;
+	font-weight: 600;
+}
+.trace-summary-head-info-artifacts {
+	color: #555;
+}
+.trace-summary-env-name {
+	font-weight: 600;
+	font-size: 1.05em;
+	padding-left: 5px;
+}
+.trace-summary-env-details {
+	margin-bottom: 10px;
+}
+.trace-summary-section table.summary-top-table>tbody>tr>td:first-child {
+	padding-left: 5px;
+}
+.trace-summary-section table.summary-top-table.trace-summary-build-env>tbody>tr>td:first-child {
+	padding-left: 10px;
+}
+.trace-summary-section td {
+	word-break: break-word;
+}
+.trace-summary-section table.summary-top-table {
+	width: 100%;
+}
+.trace-summary-section table.summary-top-table>tbody>tr>td:first-child{
+	white-space: nowrap;
+	min-width: 300px;
+}
+.trace-summary-section table.summary-top-table>tbody>tr>td:last-child{
+	width: 100%;
+}
+
+.trace-summary-section table td {
+	padding: 0;
+}
+
+.info-svg {
+	height: 1.2em;
+	margin: 0 0.1em;
+	opacity: 0.75;
+}
+.info-svg:hover, .info-svg:focus {
+	opacity: 1;
+}
+.inline-svg {
+	height: 1.2em;
+	display: inline-block;
+	vertical-align: text-bottom;
+	margin-right: 0.2em;
+}
+.color-failure {
+	color: var(--color-failure);
+}
+.color-success {
+	color: var(--color-success);
+}
+.color-warning {
+	color: var(--color-warning);
+}
+.color-warning-text {
+	color: var(--color-warning-text);
+}
+
+[data-tooltip]:not(.no-help-cursor) {
+	cursor: help;
+}
+a[data-tooltip][href] {
+	cursor: pointer;
+}
+[data-tooltip] {
+	position: relative;
+}
+[data-tooltip]:hover:after, [data-tooltip]:focus:after {
+	padding: 5px;
+	position: absolute;
+	content: attr(data-tooltip);
+	top: 0;
+	left: 0;
+    transform: translateY(-100%);
+    word-break: break-word;
+	
+	z-index: 100;
+	background-color: white;
+	border: solid #eee 1px;
+	border-radius: 3px;
+	width: 300px;
+	font-size: 0.9rem;
+	font-weight: initial;
+	color: var(--text-color);
+	pointer-events: none;
+	white-space: initial;
+	font-family: var(--font-family);
+}
+
+tr.trace-summary-embed-table-p2>td:first-child {
+	padding-left: 20px !important;
+}
+.trace-path-mounted {
+	padding-left: 10px;
+}
+
+#trace-body thead th {
+	font-weight: 600;
+}
+.trace-see-links {
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+}
+.trace-see-links>* {
+	padding: 10px;
+	font-size: 0.9em;
+	font-weight: 600;
+	cursor: pointer;
+	color: var(--color-link) !important;
+}
+.trace-see-links>*:hover {
+	color: var(--color-link-hover) !important;
+}
+
+#trace-body:not([data-trace-open=true]) #trace-contents,
+#trace-body:not([data-trace-open=true]) #trace-menu {
+	display: none;
+}
+#trace-body[data-trace-open=true] #trace-open-page {
+	display: none;
+}
+
+#trace-open-page #file-input {
+	display: none;
+}
+#trace-open-page label[for=file-input] {
+	cursor: pointer;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	transition: var(--common-transitions-ease);
+	box-shadow: 1px 1px 5px -2px #ddd;
+	background-color: var(--color-landing-main-button-background);
+	padding: 5px 15px;
+	color: var(--color-link);
+}
+#trace-open-page label[for=file-input]:hover {
+	border-color: #aaa;
+	box-shadow: 2px 2px 10px -3px #999;
+	color: var(--color-link-hover);
+}
+#trace-open-page #trace-url-open-form #url-input {
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	padding: 5px 5px;
+	min-width: 250px;
+}
+#trace-open-page #trace-url-open-form input[type=submit] {
+	cursor: pointer;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	transition: var(--common-transitions-ease);
+	box-shadow: 1px 1px 5px -2px #ddd;
+	background-color: var(--color-landing-main-button-background);
+	padding: 5px 15px;
+	color: var(--color-link);
+}
+#trace-open-page #trace-url-open-form input[type=submit]:hover {
+	border-color: #aaa;
+	box-shadow: 2px 2px 10px -3px #999;
+	color: var(--color-link-hover);
+}
+.open-page-form-table td:first-child {
+	min-width: 100px;
+}
+
+.trace-file-node {
+}
+.trace-file-leaf {
+	margin-left: var(--vis-toggled-margin-left);
+}
+.trace-file-children {
+	border-left: 3px solid var(--task-row-entry-hover-color);
+	margin-left: calc(var(--vis-toggled-margin-left) + 7px) !important;
+}
+
+.trace-file-toggle:hover {
+	background-color: var(--task-row-entry-hover-color);
+}
+.tree-file-contents-toggle {
+	color: var(--color-link);
+	font-weight: 600;
+}
+.tree-file-contents-toggle:before {
+	content: ' ';
+	margin: auto calc(5px + 0.2em) auto calc(5px + 0.2em);
+	display: inline-block;
+	vertical-align: middle;
+	
+	border-left: 0.2em solid var(--color-doc-section-arrow);
+	border-right: 0.2em solid var(--color-doc-section-arrow);
+	border-bottom: 0.2em solid var(--color-doc-section-arrow);
+	border-top: 0.2em solid var(--color-doc-section-arrow);
+	transform: rotate(45deg);
+}
+.tree-file-contents-toggle:hover {
+	color: var(--color-link-hover);
+}
+.tree-file-contents {
+	margin-left: 0px !important;
+	padding-left: var(--vis-toggled-margin-left);
+}
+.trace-file-tree:not([data-trace-tree-item-count="1"]) .tree-file-contents {
+	border-bottom: 3px solid var(--task-row-entry-hover-color);
+}
+
+input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:before {
+	transform: rotate(0deg);
+}
+.page-artifacts-head-summary, .page-exceptions-head-summary {
+	padding: 10px;
+	font-weight: 600;
+}
+.file-tree-entry-chooser {
+	color: var(--color-link);
+	font-weight: 600;
+}
+.file-tree-entry-chooser:hover {
+	cursor: pointer;
+	color: var(--color-link-hover);
+	background-color: var(--task-row-entry-hover-color);
+}
+
+.trace-custom-values {
+	margin-top: 10px;
+}
+.trace-custom-value-map {
+	width: 100%;
+}
+.trace-custom-value-map>tbody>tr>td:last-child {
+	width: 100%;
+	white-space: normal;
+}
+#page-summary .trace-custom-value-map>tbody>tr>td:first-child {
+	min-width: 290px;
+	padding-right: 10px !important;
+}
+.trace-custom-value-map>tbody>tr>td:first-child {
+	white-space: nowrap;
+	word-break: break-all;
+}
+.task-details-properties-table .trace-custom-value-map>tbody>tr>td:first-child {
+	min-width: calc(200px - 1.4em);
+	padding-left: 0px;
+}
+
+</style>
+
+<div id="trace-body" data-has-artifacts="false" data-has-exceptions="false" data-selected-page="page-summary">
+
+	<div id="trace-menu">
+		<div id="trace-menu-container">
+			<a href="#" class="trace-menu-element" data-selects="page-summary"><svg class="menu-icon" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M2 14H8V20H2M16 8H10V10H16M2 10H8V4H2M10 4V6H22V4M10 20H16V18H10M10 16H22V14H10" />
+</svg>Summary</a>
+			<a href="#" class="trace-menu-element" data-selects="page-timeline"><svg class="menu-icon" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M2,5H10V2H12V22H10V18H6V15H10V13H4V10H10V8H2V5M14,5H17V8H14V5M14,10H19V13H14V10M14,15H22V18H14V15Z" />
+</svg>Timeline</a>
+			<a href="#" class="trace-menu-element" data-selects="page-console"><svg class="menu-icon" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M4,5H20V7H4V5M4,9H20V11H4V9M4,13H20V15H4V13M4,17H14V19H4V17Z" />
+</svg>Console output</a>
+			<a href="#" class="trace-menu-element" data-selects="page-exceptions"><svg class="menu-icon" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M13,13H11V7H13M12,17.3A1.3,1.3 0 0,1 10.7,16A1.3,1.3 0 0,1 12,14.7A1.3,1.3 0 0,1 13.3,16A1.3,1.3 0 0,1 12,17.3M15.73,3H8.27L3,8.27V15.73L8.27,21H15.73L21,15.73V8.27L15.73,3Z" />
+</svg>Exceptions</a>
+			<a href="#" class="trace-menu-element" data-selects="page-scripts"><svg class="menu-icon" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M13,9H18.5L13,3.5V9M6,2H14L20,8V20A2,2 0 0,1 18,22H6C4.89,22 4,21.1 4,20V4C4,2.89 4.89,2 6,2M6.12,15.5L9.86,19.24L11.28,17.83L8.95,15.5L11.28,13.17L9.86,11.76L6.12,15.5M17.28,15.5L13.54,11.76L12.12,13.17L14.45,15.5L12.12,17.83L13.54,19.24L17.28,15.5Z" />
+</svg>Build scripts</a>
+			<a href="#" class="trace-menu-element" data-selects="page-artifacts"><svg class="menu-icon" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M3,3H21V7H3V3M4,8H20V21H4V8M9.5,11A0.5,0.5 0 0,0 9,11.5V13H15V11.5A0.5,0.5 0 0,0 14.5,11H9.5Z" />
+</svg>Artifacts</a>
+
+			<div class="trace-menu-secondary">
+				<a id="btn-reload" title="Reload build trace" href="#" class="trace-menu-element"><svg class="menu-icon" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M17.65,6.35C16.2,4.9 14.21,4 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20C15.73,20 18.84,17.45 19.73,14H17.65C16.83,16.33 14.61,18 12,18A6,6 0 0,1 6,12A6,6 0 0,1 12,6C13.66,6 15.14,6.69 16.22,7.78L13,11H20V4L17.65,6.35Z" />
+</svg>Reload</a>
+			</div>
+		</div>
+	</div>
+	<div id="trace-contents">
+		<div id="page-summary" class="trace-page">
+		</div>
+		<div id="page-timeline" class="trace-page">
+			<div id="timeline-tasks">
+			</div>
+		</div>
+		<div id="page-console" class="trace-page">
+		</div>
+		<div id="page-exceptions" class="trace-page">
+		</div>
+		<div id="page-scripts" class="trace-page">
+		</div>
+		<div id="page-artifacts" class="trace-page">
+		</div>
+	</div>
+	<div id="trace-open-page" class="container">
+		<div class="row">
+			<div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1">
+				<h1>Build trace viewer</h1>
+				<noscript><p><b>Note: The build trace viewer requires JavaScript to render. Please enable it to view build traces.</b></p></noscript>
+				<p>Build traces provide insights into the build process and its performance. This page allows you to visualise a generated build trace file. See the <a href="/saker.build/doc/guide/buildtrace.html">documentation</a> for more information.</p>
+				<p>Build traces that you open on this page are not transferred over the network.</p>
+				<p>Drag & drop a file or link, or use the inputs below to open a build trace.</p>
+				<p>You can also open build traces from ZIP files, or published artifacts from Azure Pipelines for public projects.</p>
+				<table class="open-page-form-table">
+					<tr>
+						<td>Open file:</td>
+						<td>
+							<label for="file-input" title="Open build trace or ZIP">Browse...</label>
+							<input type="file" id="file-input" />
+						</td>
+					</tr>
+					<tr>
+						<td>Open link:</td>
+						<td>
+							<form id="trace-url-open-form">
+								<input name="url" type="url" id="url-input" placeholder="Build trace URL" required/>
+								<input type="submit" title="Open build trace link" value="Open"/>
+							</form>
+						</td>
+					</tr>
+				</table>
+				<h4>Examples</h4>
+				<p>If you don't have a recorded build trace at hand, you can view some examples below:</p>
+				<ul>
+				<li><a href="/buildtrace.html?url=%2Fres%2Ftrace_example_saker.build.trace">Building saker.build with tests</a></li>
+				<li><a href="/buildtrace.html?url=%2Fres%2Ftrace_example_msvc_clusters.trace">C++ compilation + build cluster</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	
+	<div id="open-dropzone">
+		<div id="dropzone-content">
+			<div id="dropzone-label"></div>
+		</div>
+	</div>
+	
+	<div id="modal-error-dialog" class="modal" tabindex="-1" role="dialog">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title">Modal title</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div id="modal-message-body" class="modal-body">
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+</div>
+
+<script
+	src="https://code.jquery.com/jquery-3.4.1.min.js"
+	integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+	crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+<script>
+(function() {
+	const DOC_SVG = `
+<svg class="info-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+	<path fill="currentColor" d="m 2.2526,5.7943 l 0,12.9957 c 3.249,-2.03 6.498,-2.03 9.7474,0 c 3.249,-2.03 6.498,-2.03 9.747,0 l 0,-12.9957 C 18.498,3.7637 15.249,3.7637 12,5.7943 c -3.2793,-1.9405 -6.8503,-1.7762 -9.7474,0 z m 8.1224,1.726 l 0,8.0207 C 8.3081,14.851 6.4129,14.674 4.537,15.389 l 0,-8.2239 c 2.287,-1.0085 4.48,-0.5243 5.838,0.3552 z m 9.088,-0.3552 l 0,8.2239 c -2.297,-0.718 -4.023,-0.457 -5.839,0.152 l 0,-8.0207 c 1.866,-1.0392 3.67,-1.3169 5.839,-0.3552 z"/>
+</svg>
+	`;
+	const TICK_SVG = `
+<svg viewBox="0 0 24 24">
+    <path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z" />
+</svg>
+	`;
+	const EXCLAMATION_SVG = `
+<svg viewBox="0 0 24 24">
+    <path fill="currentColor" d="M10 3H14V14H10V3M10 21V17H14V21H10Z" />
+</svg>
+	`;
+	const X_SVG = `
+<svg viewBox="0 0 24 24">
+    <path fill="currentColor" d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" />
+</svg>
+	`;
+	const WARN_SVG = `
+<svg viewBox="0 0 24 24">
+    <path fill="currentColor" d="M13,14H11V10H13M13,18H11V16H13M1,21H23L12,2L1,21Z" />
+</svg>
+	`;
+	const EXC_SVG = `
+<svg viewBox="0 0 24 24">
+    <path fill="currentColor" d="M13,13H11V7H13M12,17.3A1.3,1.3 0 0,1 10.7,16A1.3,1.3 0 0,1 12,14.7A1.3,1.3 0 0,1 13.3,16A1.3,1.3 0 0,1 12,17.3M15.73,3H8.27L3,8.27V15.73L8.27,21H15.73L21,15.73V8.27L15.73,3Z" />
+</svg>
+	`;
+	const ARTIFACTS_SVG = `
+<svg viewBox="0 0 24 24">
+    <path fill="currentColor" d="M20 21H4V10H6V19H18V10H20V21M3 3H21V9H3V3M9.5 11H14.5C14.78 11 15 11.22 15 11.5V13H9V11.5C9 11.22 9.22 11 9.5 11M5 5V7H19V5H5Z" />
+</svg>
+	`;
+	
+	function getDocumentationToolipLinkSvg(href, title) {
+		let result = $(`<a>${ DOC_SVG }</a>`);
+		if (href != null) {
+			result.attr('href', href);
+			result.attr('target', '_blank');
+			result.addClass('no-external-icon');
+		}
+		if (title != null) {
+			result.attr('title', title);
+		}else{
+			result.attr('title', 'View documentation');
+		}
+		return result;
+	}
+	
+	let nextTimelineControlCssId = 0;
+	
+	let currentBuildTrace = null;
+	function createTimelineControl() {
+		let zoomstate = {
+			zoom: 1,
+			lknobpct: 0,
+			rknobpct: 0,
+			knobprevpos: {
+				l: 0,
+				r: 0
+			},
+			elemprevpos: 0
+		};
+		
+		let cssid = nextTimelineControlCssId++;
+		
+		let timelinecontrol = document.createElement('div');
+		timelinecontrol.classList.add('timeline-control');
+		timelinecontrol.setAttribute('timeline-css-id', cssid);
+		let timelinecontainer = document.createElement('div');
+		timelinecontainer.classList.add('timeline-container');
+		let timelinebody = document.createElement('div');
+		timelinebody.classList.add('timeline-body');
+		let timeline = document.createElement('div');
+		timeline.classList.add("trace-timeline");
+		let timelineholder = document.createElement('div');
+		timelineholder.classList.add("trace-timeline-holder");
+		let timelineleftenv = document.createElement('div');
+		timelineleftenv.classList.add("trace-timeline-left-env");
+		
+		let scrollbar = document.createElement('div');
+		scrollbar.classList.add("trace-timeline-scrollbar");
+		let knob = document.createElement('div');
+		knob.classList.add("trace-timeline-knob");
+		let lefthandle = document.createElement('div');
+		lefthandle.classList.add("trace-timeline-knob-left", "knob-handle");
+		let righthandle = document.createElement('div');
+		righthandle.classList.add("trace-timeline-knob-right", "knob-handle");
+		
+		timelinecontrol.appendChild(timelinecontainer);
+		timelinecontainer.appendChild(timelineleftenv);
+		timelinecontainer.appendChild(timelinebody);
+		timelinebody.appendChild(timeline);
+		timeline.appendChild(timelineholder);
+		timelinebody.appendChild(scrollbar);
+		scrollbar.appendChild(knob);
+		knob.appendChild(lefthandle);
+		knob.appendChild(righthandle);
+		
+		dragElement(knob, zoomstate);
+		dragKnob(lefthandle, true, 'l', zoomstate);
+		dragKnob(righthandle, false, 'r', zoomstate);
+		
+		function updateScrollbar(zoomstate){
+			let start = zoomstate.lknobpct;
+			let end = zoomstate.rknobpct;
+			let sesum = start + end;
+			if (sesum == 0){
+				timelineholder.style.left = "0%";
+				timelineholder.style.right = "0%";
+				return;
+			}
+			let w = 1 - end - start;
+			let magnifypercent = (-(1 / w) * 100 + 100);
+			timelineholder.style.left = magnifypercent * (start / sesum) + "%";
+			timelineholder.style.right = magnifypercent * (end / sesum) + "%";
+		}
+		
+		window.addEventListener('resize', function(e) {
+			knob.style.left = (zoomstate.lknobpct * scrollbar.offsetWidth) + "px";
+			knob.style.right = (zoomstate.rknobpct * scrollbar.offsetWidth) + "px";
+		});
+		
+		function dragKnob(handle, isleft, id, zoomstate) {
+			zoomstate.knobprevpos[id] = 0;
+			handle.onmousedown = function (e) {
+				e = e || window.event;
+				e.preventDefault();
+				e.stopPropagation();
+				zoomstate.knobprevpos[id] = e.clientX;
+				document.onmouseup = knobCloseDragElement;
+				document.onmousemove = knobElementDrag;
+			};
+			
+			function knobElementDrag(e) {
+				e = e || window.event;
+				e.preventDefault();
+				e.stopPropagation();
+				let dx = zoomstate.knobprevpos[id] - e.clientX;
+				zoomstate.knobprevpos[id] = e.clientX;
+				let knobl = parseFloat(window.getComputedStyle(knob).getPropertyValue('left'));
+				let knobr = parseFloat(window.getComputedStyle(knob).getPropertyValue('right'));
+				let nval;
+				if (isleft) {
+					nval = Math.max(
+							Math.min(
+								(knobl - dx),
+								scrollbar.offsetWidth - knobr - lefthandle.offsetWidth - righthandle.offsetWidth - scrollbar.offsetWidth * 0.05
+							), 
+							0
+						);
+					knob.style.left = nval + "px";
+					zoomstate.lknobpct = nval / scrollbar.offsetWidth;
+				} else {
+					nval = Math.max(
+							Math.min(
+								(knobr + dx),
+								scrollbar.offsetWidth - knobl - lefthandle.offsetWidth - righthandle.offsetWidth - scrollbar.offsetWidth * 0.05
+							), 
+							0
+						);
+					knob.style.right = nval + "px";
+					zoomstate.rknobpct = nval / scrollbar.offsetWidth;
+				}
+				zoomstate.zoom = knob.offsetWidth / scrollbar.offsetWidth;
+				updateScrollbar(zoomstate);
+			}
+		
+			function knobCloseDragElement() {
+				document.onmouseup = null;
+				document.onmousemove = null;
+			}
+		}
+		
+		function dragElement(elmnt, zoomstate) {
+			zoomstate.elemprevpos = 0;
+			elmnt.onmousedown = function (e) {
+				e = e || window.event;
+				e.preventDefault();
+				e.stopPropagation();
+				zoomstate.elemprevpos = e.clientX;
+				document.onmouseup = closeDragElement;
+				document.onmousemove = elementDrag;
+			};
+			
+			function elementDrag(e) {
+				e = e || window.event;
+				e.preventDefault();
+				e.stopPropagation();
+				let dx = zoomstate.elemprevpos - e.clientX;
+				zoomstate.elemprevpos = e.clientX;
+				let knobl = parseFloat(window.getComputedStyle(knob).getPropertyValue('left'));
+				let knobr = parseFloat(window.getComputedStyle(knob).getPropertyValue('right'));
+				let nval = Math.min(Math.max((knobl - dx), 0), scrollbar.offsetWidth - elmnt.offsetWidth);
+				let diffval = knobl - nval;
+				let nleft = Math.max((knobl - diffval), 0);
+				let nright = Math.max((knobr + diffval), 0);
+				elmnt.style.left = nleft + "px";
+				elmnt.style.right= nright + "px";
+				
+				zoomstate.lknobpct = nleft / scrollbar.offsetWidth;
+				zoomstate.rknobpct = nright / scrollbar.offsetWidth;
+				
+				updateScrollbar(zoomstate);
+			}
+		
+			function closeDragElement() {
+				document.onmouseup = null;
+				document.onmousemove = null;
+			}
+		}
+		return timelinecontrol;
+	}
+	
+	function getCurrentZipEntryName() {
+		return $('.trace-page').attr('data-trace-zip-entry');
+	}
+	
+	function readUrlContentsImpl(url, zipentryname) {
+		let old_element = document.getElementById("btn-reload");
+		let new_element = old_element.cloneNode(true);
+		old_element.parentNode.replaceChild(new_element, old_element);
+		new_element.addEventListener("click", function(e){
+			e.preventDefault();
+			readUrlImpl(url, getCurrentZipEntryName());
+		});
+		let oReq = new XMLHttpRequest();
+		oReq.open("GET", url, true);
+		oReq.responseType = "arraybuffer";
+		oReq.onreadystatechange = function(){
+			if(oReq.readyState == 4) {
+				if(oReq.response == null || oReq.status == null || oReq.status < 200 || oReq.status > 299) {
+					$('#modal-error-dialog .modal-title').text('Request error');
+					if(oReq.status == 0) {
+						$('#modal-error-dialog #modal-message-body')
+							.empty()
+							.append('<p>Failed to load build trace file, unknown error code. (0)<br>Note: some links may be blocked due to Cross-Origin Resource Sharing.</p>');
+					} else {
+						$('#modal-error-dialog #modal-message-body')
+							.empty()
+							.append('<p>Failed to load build trace file, error code: ' + oReq.status + '</p>');
+					}
+					$('#modal-error-dialog').modal('show');
+					return;
+				}
+				let byteArray = new Uint8Array(oReq.response);
+				
+				displayContents({
+					buffer: byteArray,
+					idx: 0
+				}, oReq.getResponseHeader('content-type'), zipentryname, true);
+				showPageWithId('page-summary');
+				let docurl = new URL(document.location);
+				docurl.searchParams.delete('url');
+				docurl.searchParams.append('url', url);
+				window.history.replaceState(null, "", docurl.toString());
+			}
+		};
+		oReq.timeout = 5000;
+		oReq.ontimeout = function(){
+			oReq.onreadystatechange = null;
+			$('#modal-error-dialog .modal-title').text('Request timeout');
+			$('#modal-error-dialog #modal-message-body')
+				.empty()
+				.append('<p>Build trace download timed out.</p>');
+			$('#modal-error-dialog').modal('show');
+		};
+		oReq.withCredentials = false;
+		oReq.send();
+	}
+	
+	function readAzureUrlWithBuildId(org, project, buildid, zipentryname) {
+		//get the artifact list
+		// https://docs.microsoft.com/en-us/rest/api/azure/devops/build/artifacts/list?view=azure-devops-rest-5.1
+		$.ajax(`https://dev.azure.com/${ org }/${ project }/_apis/build/builds/${ buildid }/artifacts?api-version=5.1`)
+			.then(function(data){
+				console.log(data);
+				if (data.count > 0) {
+					if (data.count == 1) {
+						readUrlContentsImpl(data.value[0].resource.downloadUrl, zipentryname);
+					} else {
+						let dialogjq = $('#modal-error-dialog');
+
+						dialogjq.find('.modal-title').text('Choose Azure artifact');
+						let dialogbody = dialogjq.find('#modal-message-body')
+							.empty()
+							.append(
+								$(document.createElement('p'))
+								.text(`Multiple published Azure pipelines build artifacts found. (${org}/${project}/buildId=${buildid})`)
+							);
+						let ft = createFileTree(
+							data.value, 
+							function(a) { return a.name; },
+							null,
+							function(nodejq, a) {
+								nodejq.attr('data-azure-download-url', a.resource.downloadUrl);
+							}
+						);
+						ft.find('[data-file-tree-path]')
+							.addClass('file-tree-entry-chooser')
+							.click(function() {
+								let chosendownloadurl = $(this).attr('data-azure-download-url');
+								dialogjq.modal('hide');
+								readUrlContentsImpl(chosendownloadurl, zipentryname);
+							});
+						dialogbody.append(
+							$(document.createElement('p'))
+							.text('Select the build trace you want to load:')
+						);
+						dialogbody.append(ft);
+						
+						dialogjq.modal('show');
+						return;
+					}
+				} else {
+					let dialogjq = $('#modal-error-dialog');
+					dialogjq.find('.modal-title').text('Azure Pipelines load error');
+					dialogjq.find('#modal-message-body')
+						.empty()
+						.append(
+							$(document.createElement('p'))
+							.text(`No published artifacts found for Azupre Pipelines build. (${org}/${project}/buildId=${buildid})`)
+						);
+					dialogjq.modal('show');
+					return;
+				}
+			})
+			.fail(function(){
+				let dialogjq = $('#modal-error-dialog');
+				dialogjq.find('.modal-title').text('Azure Pipelines load error');
+				dialogjq.find('#modal-message-body')
+					.empty()
+					.append(
+						$(document.createElement('p'))
+						.text(`Failed to retrieve published artifacts for Azure pipelines build. (${org}/${project}/buildId=${buildid})`)
+					);
+				dialogjq.modal('show');
+				return;
+			});
+	}
+	function readAzureUrl(org, project, buildid, zipentryname) {
+		if (buildid != null) {
+			readAzureUrlWithBuildId(org, project, buildid, zipentryname);
+		} else {
+			//no buildid 
+			//get the latest
+			//https://dev.azure.com/sakerbuild/saker.build/_apis/build/builds?api-version=5.1
+			$.ajax(`https://dev.azure.com/${ org }/${ project }/_apis/build/builds?api-version=5.1`)
+				.done(function(data){
+					console.log(data);
+					let completedbuilds = [];
+					data.value.forEach(function(b){
+						if(b.status == 'completed') {
+							completedbuilds.push(b);
+						}
+					});
+					if(completedbuilds.length == 0) {
+						let dialogjq = $('#modal-error-dialog');
+						dialogjq.find('.modal-title').text('Azure Pipelines load error');
+						dialogjq.find('#modal-message-body')
+							.empty()
+							.append(
+								$(document.createElement('p'))
+								.text(`No completed Azure pipelines build found for project. (${org}/${project})`)
+							);
+						dialogjq.modal('show');
+						return;
+					}
+					completedbuilds.sort(function(l, r){
+						//descending
+						return new Date(r.startTime) - new Date(l.startTime);
+					});
+					let b = completedbuilds[0];
+					readAzureUrlWithBuildId(org, project, b.id, zipentryname);
+				})
+				.fail(function(){
+					let dialogjq = $('#modal-error-dialog');
+					dialogjq.find('.modal-title').text('Azure Pipelines load error');
+					dialogjq.find('#modal-message-body')
+						.empty()
+						.append(
+							$(document.createElement('p'))
+							.text(`Failed to retrieve latest builds for Azure pipelines project. (${org}/${project})`)
+						);
+					dialogjq.modal('show');
+					return;
+				});
+		}
+	}
+	
+	function readUrlImpl(url, zipentryname){
+		try {
+			let loadurl = new URL(url);
+			if (loadurl.hostname == 'dev.azure.com') {
+				//support loading trace result of artifacts from azure devops
+				let split = loadurl.pathname.split(/\//g);
+				if(split.length >= 3) {
+					//[0] is ""
+					let org = split[1];
+					let project = split[2];
+					if (split.length == 3) {
+						//no further path names. no build id.
+						readAzureUrl(org, project, null, zipentryname);
+					} else if(split[3] == "_apis") {
+						//if the user entered an _apis URL, open that directly
+						//continue the method
+					} else {
+						//else get the buildid search parameter and open
+						let buildid = loadurl.searchParams.get('buildId');
+						readAzureUrl(org, project, buildid, zipentryname);
+						return;
+					}
+				}
+			}
+		} catch(e) {
+			//ignore
+			console.log(e);
+		}
+	
+		readUrlContentsImpl(url, zipentryname);	
+	}
+	
+	function readSingleFileImpl(file, zipentryname) {
+		let old_element = document.getElementById("btn-reload");
+		let new_element = old_element.cloneNode(true);
+		old_element.parentNode.replaceChild(new_element, old_element);
+		new_element.addEventListener("click", function(e){
+			e.preventDefault();
+			readSingleFileImpl(file, getCurrentZipEntryName());
+		});
+		let reader = new FileReader();
+		//reader.onprogress = function(e){
+			//console.log("File progress: " + e.loaded / e.total);
+			//TODO display load progress somewhere
+		//};
+		reader.onload = function(e) {
+			let docurl = new URL(document.location);
+			docurl.searchParams.delete('url');
+			window.history.replaceState(null, "", docurl.toString());
+			
+			let mimetype = null;
+			if (file.name.toLowerCase().endsWith('.zip')) {
+				mimetype = "application/zip";
+			}
+			displayContents({
+				buffer: new Uint8Array(e.target.result),
+				idx: 0
+			}, mimetype, zipentryname, false);
+			showPageWithId('page-summary');
+		};
+		reader.onerror = function(e){
+			console.log(e);
+		};
+		reader.readAsArrayBuffer(file);
+	}
+	
+	function readSingleFile(e) {
+		let file = e.target.files[0];
+		if (!file) {
+			return;
+		}
+		readSingleFileImpl(file);
+	}
+	
+	function getTaskListTotalDuration(tasklist) {
+		if (tasklist.length == 0) {
+			return 0;
+		}
+		let start = undefined;
+		let end = 0;
+		tasklist.forEach(function(elem){
+			if (start === undefined) {
+				start = elem.start;
+				end = elem.end;
+				return;
+			}
+			if (elem.start < start) {
+				start = elem.start;
+			}
+			if (elem.end > end) {
+				end = elem.end;
+			}
+		});
+		return {
+			start: start,
+			end: end,
+			duration: end - start
+		};
+	}
+	
+	function getExecutionEnvironmentConnectionInfo(bt, envuuid) {
+		if (envuuid == null){
+			return undefined;
+		}
+		if (envuuid == bt.execution_environment_uuid) {
+			return null;
+		}
+		let result = undefined;
+		if(bt.connections != null) {
+			$.each(bt.connections, function(key, value){
+				if (value.env_uuid == envuuid) {
+					result = value;
+					return false;
+				}
+			});
+		}
+		return result;
+	}
+	
+	function getExecutionEnvironmentName(bt, envuuid){
+		if (envuuid == null){
+			return undefined;
+		}
+		if (envuuid == bt.execution_environment_uuid) {
+			return null;
+		}
+		let result = undefined;
+		if(bt.connections != null) {
+			$.each(bt.connections, function(key, value){
+				if (value.env_uuid == envuuid) {
+					result = key;
+					return false;
+				}
+			});
+		}
+		return result;
+	}
+	
+	function getExecutionEnvironmentInfo(bt, envuuid) {
+		if (bt.environments == null || envuuid == null){
+			return undefined;
+		}
+		let result = undefined;
+		$.each(bt.environments, function(idx, envinfo){
+			if (envinfo.env_uuid == envuuid) {
+				result = envinfo;
+				return false;
+			}
+		});
+		return result;
+	}
+	
+	function getMachineName(bt, machineuuid) {
+		if (machineuuid == null){
+			return undefined;
+		}
+		let result = undefined;
+		if(bt.connections != null) {
+			$.each(bt.connections, function(key, value){
+				if (value.machine_uuid == machineuuid) {
+					result = key;
+					return false;
+				}
+			});
+		}
+		$.each(bt.environments, function(index, env){
+			if (env.machine_uuid == machineuuid) {
+				if (env.env_uuid == bt.execution_environment_uuid) {
+					result = null;
+					return false;
+				}
+			}
+		});
+		return result;
+	}
+	function getMachineNameDefaulted(bt, machineuuid) {
+		let mn = getMachineName(bt, machineuuid);
+		if (mn === null) {
+			return "My computer";
+		}
+		return mn;
+	}
+	
+	function getLongestTaskIndexInTaskList(tasklist) {
+		let result = undefined;
+		let resdur = -1;
+		for(let i = 0; i < tasklist.length; ++i) {
+			let task = tasklist[i];
+			let dur = task.end - task.start;
+			if(dur > resdur) {
+				result = i;
+				resdur = dur;
+			}
+		}
+		return result;
+	}
+	
+	function findClosestTaskIndexToTimestampInTaskListImpl(tasklist, executionenv, tsdifffunction){
+		let result = undefined;
+		let reslen = -1;
+		let resdiff = undefined;
+		for (let i = 0; i < tasklist.length; ++i) {
+			let task = tasklist[i];
+			if (task.execution_env != executionenv) {
+				continue;
+			}
+			let diff = tsdifffunction(task);
+			if (diff < 0) {
+				continue;
+			}
+			let tlen = task.end - task.start;
+			if (diff == 0) {
+				if (resdiff == 0) {
+					if(tlen < reslen) {
+						continue;
+					}
+				}
+				result = i;
+				reslen = tlen;
+				resdiff = 0;
+				continue;
+			}
+			if (resdiff === undefined || diff < resdiff) {
+				result = i;
+				reslen = tlen;
+				resdiff = diff;
+				continue;
+			}
+		}
+		return result;
+	}
+	
+	function findClosestToEndTaskIndexInTaskList(tasklist, end, executionenv) {
+		return findClosestTaskIndexToTimestampInTaskListImpl(
+			tasklist, 
+			executionenv, 
+			function(task){ return task.start - end; }
+		);
+	}
+	function findClosestToStartTaskIndexInTaskList(tasklist, start, executionenv) {
+		return findClosestTaskIndexToTimestampInTaskListImpl(
+			tasklist, 
+			executionenv, 
+			function(task){ return start - task.end; }
+		);
+	}
+	
+	function createTaskListTimeline(bt, tasklist) {
+		let durationobj = getTaskListTotalDuration(tasklist);
+		let totalduration = durationobj.duration;
+		let lines = [];
+		let listcopy = tasklist.slice();
+		while (listcopy.length > 0) {
+			let longesttaskidx = getLongestTaskIndexInTaskList(listcopy);
+			let longesttask = listcopy[longesttaskidx];
+			let line = {
+				ranges: [
+					{
+						task: longesttask,
+						startpct: (longesttask.start - durationobj.start) / totalduration,
+						endpct: (longesttask.end - durationobj.start) / totalduration
+					}
+				],
+				execution_env: longesttask.execution_env,
+				connection_name: getExecutionEnvironmentName(bt, longesttask.execution_env)
+			};
+			listcopy.splice(longesttaskidx, 1);
+			
+			let start = longesttask.start;
+			while(true) {
+				let closeststart = findClosestToStartTaskIndexInTaskList(listcopy, start, line.execution_env);
+				if (closeststart == null) {
+					break;
+				}
+				let ctask = listcopy[closeststart];
+				line.ranges.unshift({
+					task: ctask,
+					startpct: (ctask.start - durationobj.start) / totalduration,
+					endpct: (ctask.end - durationobj.start) / totalduration
+				});
+				listcopy.splice(closeststart, 1);
+				start = ctask.start;
+			}
+			let end = longesttask.end;
+			while(true) {
+				let closestend = findClosestToEndTaskIndexInTaskList(listcopy, end, line.execution_env);
+				if (closestend == null) {
+					break;
+				}
+				let ctask = listcopy[closestend];
+				line.ranges.push({
+					task: ctask,
+					startpct: (ctask.start - durationobj.start) / totalduration,
+					endpct: (ctask.end - durationobj.start) / totalduration
+				});
+				listcopy.splice(closestend, 1);
+				end = ctask.end;
+			}
+			
+			lines.push(line);
+		}
+		return {
+			lines: lines
+		};
+	}
+	
+	function getAllTasksFromTimeline(timeline){
+		let alltasks = [];
+		
+		timeline.lines.forEach(function(foundline, index){
+			foundline.ranges.forEach(function(range){
+				alltasks.push(range.task);
+			});
+		});
+		alltasks.sort(function(l, r){ return l.start - r.start; });
+		return alltasks;
+	}
+	
+	function isAnyFailureException(task) {
+		return task.exception != null || 
+				(task.abort_exceptions != null && task.abort_exceptions.length > 0);
+	}
+	
+	function isAnyTaskException(task) {
+		return task.exception != null || 
+				(task.abort_exceptions != null && task.abort_exceptions.length > 0) || 
+				(task.ignored_exceptions != null && task.ignored_exceptions.length > 0) ||
+				(task.inner_tasks != null && isAnyTaskListException(task.inner_tasks));
+	}
+	function isAnyTaskWarning(task) {
+		return task._warning_count > 0;
+	}
+	function isAnyTaskListException(tasks) {
+		let result = false;
+		$.each(tasks, function(idx, task){
+			if (isAnyTaskException(task)) {
+				result = true;
+				return false;
+			}
+		});
+		return result;
+	}
+	function isAnyBuildTraceException(bt) {
+		return isAnyTaskListException(bt.tasks);
+	}
+	
+	function getShortenedTaskFactoryClassName(cn) {
+		cn = cn.substring(Math.max(cn.lastIndexOf('.'), cn.lastIndexOf('$')) + 1);
+		if (cn.endsWith('TaskFactory')) {
+			return cn.substring(0, cn.length - 7);
+		}
+		return cn;
+	}
+	
+	function getTaskTimelineLabel(task) {
+		if (task.label_timeline != null && task.label_timeline != "") {
+			return task.label_timeline;
+		}
+		if (task.title != null && task.title != "") {
+			return task.title;
+		}
+		if (task.display != null && task.display != "") {
+			return task.display;
+		}
+		if (task.task_class != null && task.task_class != "") {
+			return getShortenedTaskFactoryClassName(task.task_class);
+		}
+		return null;
+	}
+	function getTaskTitle(task) {
+		if (task.title != null && task.title != "") {
+			return task.title;
+		}
+		if (task.label_timeline != null && task.label_timeline != "") {
+			return task.label_timeline;
+		}
+		if (task.display != null && task.display != "") {
+			return task.display;
+		}
+		if (task.task_class != null && task.task_class != "") {
+			return getShortenedTaskFactoryClassName(task.task_class);
+		}
+		return null;
+	}
+	
+	function toTimeDisplay(time) {
+		let result = [];
+		if (time > 60000) {
+			//more than 1 min
+			result.push(Math.floor((time) / 60000) + "m");
+		}
+		result.push(((time % 60000) / 1000).toFixed(3) + "s");
+		return result.join(' ');
+	}
+	
+	const TIMELINE_ROW_HEIGHT = 20;
+	const TIMELINE_ROW_MARGIN = 0.5;
+	
+	
+	function fillTimelineControl(bt, timeline, timelinecontroljq) {
+		let timelinecss = '';
+		let cssid = timelinecontroljq.attr('timeline-css-id');
+		
+		let timelineholder = timelinecontroljq.find('.trace-timeline-holder').empty();
+		let lines = timeline.lines.slice();
+		let machines = [];
+		lines.forEach(function(foundline, index){
+			foundline.ranges.forEach(function(range){
+				if (range.task.execution_env == null) {
+					return;
+				}
+				if (machines.indexOf(range.task.execution_env) < 0) {
+					machines.push(range.task.execution_env);
+				}
+			});
+		});
+		lines.sort(function(l, r){
+			if (l.connection_name == null) {
+				if (r.connection_name == null) {
+					return 0;
+				}
+				return -1;
+			}
+			if (r.connection_name == null) {
+				return 1;
+			}
+			return l.connection_name.localeCompare(r.connection_name);
+		});
+		//use map for insertion order
+		let machineblocks = new Map();
+		let blockcount = 0;
+		lines.forEach(function(foundline, index){
+			let nonuptodatetaskcount = 0;
+			foundline.ranges.forEach(function(range){
+				let isuptodate = range.task.up_to_date === true;
+				if (isuptodate){
+					return;
+				}
+				++nonuptodatetaskcount;
+				let machineidx = machines.indexOf(range.task.execution_env);
+				if (machineidx < 0) {
+					machineidx = 0;
+				} else {
+					++machineidx;
+				}
+				let isanyfailure = isAnyFailureException(range.task);
+				let isanywarning = isAnyTaskWarning(range.task);
+				
+				let blockleft = (range.startpct * 100);
+				let blockwidth = ((range.endpct - range.startpct) * 100);
+				let timelinelabel = getTaskTimelineLabel(range.task);
+				let blocktoppx = (TIMELINE_ROW_MARGIN + (TIMELINE_ROW_HEIGHT + TIMELINE_ROW_MARGIN * 2) * index + machineidx * 1);
+				let block = $(document.createElement('div'))
+					.addClass('timeline-block')
+					.addClass('timeline-view')
+					.css('top', blocktoppx + "px")
+					.css('left', blockleft + "%")
+					.css('width', blockwidth + "%")
+					.attr('data-trace-id', range.task.trace_id)
+					.attr('title', timelinelabel)
+					.append(
+						$(document.createElement('span'))
+						.text(timelinelabel)
+						.addClass('timeline-block-label')
+					);
+				function blockomouseover() {
+					$('#trace-contents').attr('data-task-hover', range.task.trace_id);
+				};
+				function blockmouseout(){
+					$('#trace-contents').removeAttr('data-task-hover');
+				};
+				block.mouseover(blockomouseover);
+				block.mouseout(blockmouseout);
+					
+				timelineholder.append(block);
+				if (isanyfailure){
+					block.addClass('timeline-block-failed');
+					timelineholder.append(
+						$(document.createElement('div'))
+						.addClass('timeline-block-state-circle')
+						.addClass('svg-red-circle')
+						.addClass('timeline-view')
+						.attr('data-trace-id', range.task.trace_id)
+						.attr('title', timelinelabel)
+						.css('top', (blocktoppx) + "px")
+						.css('left', (blockleft + blockwidth) + "%")
+						.append($(X_SVG).css('display', 'block'))
+					);
+				} else if(isanywarning) {
+					block.addClass('timeline-block-warning');
+					timelineholder.append(
+						$(document.createElement('div'))
+						.addClass('timeline-block-state-circle')
+						.addClass('svg-warning-circle')
+						.addClass('timeline-view')
+						.attr('data-trace-id', range.task.trace_id)
+						.attr('title', timelinelabel)
+						.css('top', (blocktoppx) + "px")
+						.css('left', (blockleft + blockwidth) + "%")
+						.append($(EXCLAMATION_SVG).css('display', 'block'))
+					);
+				}
+				
+				timelinecss += `
+					#trace-contents[data-task-hover="${ range.task.trace_id }"] .task-row-entry[data-trace-id="${ range.task.trace_id }"] {
+						background-color: var(--task-row-entry-hover-color);
+					}
+					#trace-contents[data-task-hover="${ range.task.trace_id }"] .timeline-control[timeline-css-id="${ cssid }"] .timeline-block[data-trace-id="${ range.task.trace_id }"] {
+						background-color: var(--timeline-block-highlight-color);
+					}
+				`;
+				block.click(function(e){
+					e.preventDefault();
+					//https://stackoverflow.com/questions/5353934/check-if-element-is-visible-on-screen
+					function checkVisible(elm) {
+						var rect = elm.getBoundingClientRect();
+						var viewHeight = Math.max(document.documentElement.clientHeight, window.innerHeight);
+						return !(rect.bottom < 0 || rect.top - viewHeight >= 0);
+					}
+					$(`#page-timeline .tasks-table-main-container .task-row-entry[timeline-css-id="${ cssid }"]`).removeClass('data-entry-open');
+					let row = $(`#page-timeline .tasks-table-main-container .task-row-entry[data-trace-id="${ range.task.trace_id }"]`);
+					if (!row.hasClass('data-entry-open')){
+						row.trigger('click');
+					}
+					if (!checkVisible(row[0])) {
+						row[0].scrollIntoView();
+					}
+				});
+			});
+			if (nonuptodatetaskcount == 0) {
+				return;
+			}
+			blockcount += nonuptodatetaskcount;
+			let cname = foundline.connection_name;
+			if (cname == null) {
+				cname = "My computer";
+			}
+			let mblock = machineblocks.get(cname);
+			if (mblock == null) {
+				mblock = {
+					connection_name: foundline.connection_name,
+					height: 0,
+					execution_env: foundline.execution_env,
+					machine_first_block_top: (TIMELINE_ROW_HEIGHT + TIMELINE_ROW_MARGIN * 2) * index + (machineblocks.size - 1) * 1
+				};
+				machineblocks.set(cname, mblock);
+			}
+			mblock.height++;
+		});
+		if (blockcount == 0) {
+			timelinecontroljq.attr('data-all-tasks-up-to-date', 'true');
+		}
+		let leftenvdiv = timelinecontroljq.find('.trace-timeline-left-env');
+		machineblocks.forEach(function(v, k){
+			let envinfo = getExecutionEnvironmentInfo(bt, v.execution_env == null ? bt.execution_environment_uuid : v.execution_env);
+			
+			let machinediv = $(document.createElement('div'))
+				.addClass('trace-timeline-left-machine')
+				.append(
+					$(document.createElement('div'))
+					.addClass('trace-timeline-left-machine-label')
+					.text(k)
+				);
+			if (envinfo != null) {
+				let inf = [];
+				if (envinfo.processors != null){
+					inf.push(
+						$(document.createElement('span'))
+						//.attr('data-tooltip', 'The number of logical processors available for the build environment.')
+						.text('CPU ' + envinfo.processors + 'x')
+					);
+				}
+				if (envinfo.thread_factor != null){
+					inf.push(
+						$(document.createElement('span'))
+						//.attr('data-tooltip', 'The parallelability thread factory of the build environment.')
+						.text('TF ' + envinfo.thread_factor + 'x')
+					);
+				}
+				if (inf.length > 0) {
+					let infdiv = $(document.createElement('div'))
+						.addClass('trace-timeline-left-machine-info');
+					for (let i = 0; i < inf.length; ++i) {
+						infdiv.append(inf[i]);
+						if (i + 1 < inf.length) {
+							infdiv.append(document.createTextNode(', '));
+						}
+					}
+					machinediv.append(infdiv);
+				}
+			}
+			let containerh = ((TIMELINE_ROW_HEIGHT + TIMELINE_ROW_MARGIN * 2) * v.height);
+			leftenvdiv.append(
+				$(document.createElement('div'))
+				.addClass('trace-timeline-left-machine-container')
+				.css('height', containerh + "px")
+				.append(machinediv)
+			);
+			machinediv.css('max-height', containerh + "px")
+			if (v.connection_name != null) {
+				let divisor = $(document.createElement('div'))
+					.addClass('timeline-machine-divisor')
+					divisor.css('top', v.machine_first_block_top + "px");
+				timelineholder.append(divisor);
+			}
+		});
+		let holderh = ((TIMELINE_ROW_HEIGHT + TIMELINE_ROW_MARGIN * 2) * lines.length + machines.length * 1);
+		timelineholder.css('height', holderh + "px");
+		timelinecontroljq.find('.trace-timeline').css('height', holderh + "px");
+		
+		let styleelem = document.createElement('style');
+		timelinecontroljq.append(styleelem);
+		styleelem.innerHTML = timelinecss;
+	}
+	
+	function clearTrace() {
+		$('.trace-page').empty();
+		$('.trace-page').removeAttr('data-trace-zip-entry');
+		$('#trace-contents').removeAttr('data-console-highlight');
+		$('#trace-body').attr('data-trace-open', false);
+		
+		$('#trace-body').attr('data-has-exceptions', false);
+		$('#trace-body').attr('data-has-artifacts', false);
+		
+		currentBuildTrace = null;
+	}
+	
+	function displayContents(buffer, mimetype, zipentryname, addzipurlparam) {
+		function displayImpl(bt) {
+			//clear all pages
+			
+			clearTrace();
+			
+			$('.trace-page').empty();
+			if (zipentryname != null) {
+				$('.trace-page').attr('data-trace-zip-entry', zipentryname);
+			}
+			$('#trace-body').attr('data-trace-open', true);
+			
+			currentBuildTrace = bt;
+			console.log(bt);
+			
+			$('#trace-body').attr('data-has-exceptions', isAnyBuildTraceException(bt));
+			$('#trace-body').attr('data-has-artifacts', bt._artifact_count > 0);
+			
+			fillPageWithId($('#trace-body').attr('data-selected-page'));
+		}
+		
+		
+		let worker1 = new Worker('res/buildtrace_worker.js');
+		worker1.addEventListener('message', function(e) {
+			if (e.data.type == 'progress') {
+				//TODO handle progress
+				//console.log('Progress: ' + e.data.percent);
+			} else if (e.data.type == 'done') {
+				let docurl = new URL(document.location);
+				docurl.searchParams.delete('zip_entry');
+				if (e.data.zip_entry_name != null && addzipurlparam) {
+					docurl.searchParams.append('zip_entry', e.data.zip_entry_name);
+				}
+				window.history.replaceState(null, "", docurl.toString());
+				
+				let bt = e.data.result;
+				displayImpl(bt);
+				worker1.terminate();
+			} else if (e.data.type == 'exception') {
+				let dialogjq = $('#modal-error-dialog');
+				
+				dialogjq.find('.modal-title').text('Load error');
+				let dialogbody = dialogjq.find('#modal-message-body')
+					.empty()
+					.append(
+						$(document.createElement('p'))
+						.text('Failed to load build trace file: ' + e.data.exception)
+					);
+				if (e.data.zip_entry_names != null && e.data.zip_entry_names.length > 0) {
+					let ft = createFileTree(e.data.zip_entry_names, function(p) { return p; });
+					ft.find('[data-file-tree-path]').addClass('file-tree-entry-chooser').click(function() {
+						let chosenfilepath = $(this).attr('data-file-tree-path');
+						dialogjq.modal('hide');
+						displayContents(buffer, mimetype, chosenfilepath, addzipurlparam);
+					});
+					dialogbody.append(
+						$(document.createElement('p'))
+						.text('Select a ZIP entry to load the build trace:')
+					);
+					dialogbody.append(ft);
+				}
+				
+				dialogjq.modal('show');
+				worker1.terminate();
+			}
+		}, false);
+		
+		worker1.postMessage({
+			buffer: buffer,
+			mime_type: mimetype,
+			zip_entry_name: zipentryname
+		}); 
+	}
+	
+	function getTransitivelyCreatedByExternalTask(task, checkedtasktraceids) {
+		if (checkedtasktraceids == null) {
+			checkedtasktraceids = new Set();
+		} else {
+			let s = checkedtasktraceids.size;
+			checkedtasktraceids.add(task.trace_id);
+			if (checkedtasktraceids.size == s) {
+				//already seen
+				return null;
+			}
+		}
+		let result = null;
+		$.each(task._created_by, function(idx, creatortask) {
+			if(creatortask.classification != null) {
+				if (creatortask.classification == "external") {
+					result = creatortask;
+					return false;
+				}
+				//the creator task was classified in some way
+				//don't test the creator task for external classification
+				return;
+			}
+			let ccreator = getTransitivelyCreatedByExternalTask(creatortask, checkedtasktraceids);
+			if(ccreator != null) {
+				result = ccreator;
+				return false;
+			}
+		});
+		return result;
+	}
+	
+	function fillTimelinePage(bt) {
+		let alwaystimelinefilter = function(task) {
+			if (isAnyTaskException(task)) {
+				//show the tasks that have any exception
+				return true;
+			}
+			if (task.cpu_tokens != null && task.cpu_tokens > 0) {
+				//the task is computational. always display on timeline, even if it's short
+				return true;
+			}
+			return false;
+		};
+		let filter = function(task) {
+			if ((task.stdout != null && task.stdout.length > 0) || (task.stderr != null && task.stderr.length > 0)) {
+				//if the task wrote to stdout or stderr, show it
+				return true;
+			}
+			if (task.inner_tasks != null && task.inner_tasks.length > 0) {
+				//the task has inner tasks, display it
+				return true;
+			}
+			if (task.classification == "worker") {
+				return true;
+			}
+			if (task.classification != null) {
+				switch(task.classification) {
+					case "worker": {
+						//all worker tasks should be displayed, irregardless of other properties
+						return true;
+					}
+					case "external": {
+						if (task.created_tasks != null) {
+							if (task.created_tasks.length == 0) {
+								//display external tasks that didn't create any other tasks
+								return true;
+							}
+							//the task created at least one other
+							if (task.structured_output == true) {
+								//if the task created other tasks, and has a structured output
+								// hide it by default
+								return false;
+							}
+						}
+						break;
+					}
+					case "meta": {
+						//don't display meta tasks by default
+						return false;
+					}
+					case "frontend": {
+						//don't display frontend tasks by default
+						return false;
+					}
+					case "configuration": {
+						//don't display configuration tasks by default
+						return false;
+					}
+					case "transformation": {
+						//don't display transformation tasks by default
+						return false;
+					}
+				}
+			}
+			if (task.inner_task_computational == true) {
+				//display tasks that declare themselves with computational inner tasks
+				return true;
+			}
+			if (task.remote_dispatchable == true) {
+				//display tasks that are remote dispatchable as they are generally worker tasks
+				return true;
+			}
+			if (task.display != null || task.title != null || task.label_timeline != null) {
+				//some display property was set.
+				return true;
+			}
+			if (task.short_task == true) {
+				//don't display short tasks as default, as they probably don't contribute to build results
+				return false;
+			}
+			let transitivecreator = getTransitivelyCreatedByExternalTask(task);
+			if (transitivecreator != null) {
+				return true;
+			}
+			return false;
+		};
+		let totalduration = bt.duration;
+		let timelinetasks = [];
+		let tabletasks = [];
+		bt.tasks.forEach(function(task){
+			let isuptodate = task.up_to_date === true;
+			if (alwaystimelinefilter(task)) {
+				tabletasks.push(task);
+				if(!isuptodate) {
+					timelinetasks.push(task);
+				}
+				return;
+			}
+			if (!filter(task)) {
+				return;
+			}
+			tabletasks.push(task);
+			if(isuptodate) {
+				return;
+			}
+			let duration = task.end - task.start;
+			let durpct = duration / totalduration;
+			if(durpct >= 0.005) {
+				//do not put the too short tasks in the timeline, as it could overcrowd it
+				timelinetasks.push(task);
+			}
+		});
+		if(timelinetasks.length == 0) {
+			//all tasks were too short to display display them all, whatever.
+			timelinetasks = tabletasks;
+		}
+		
+		let timeline = createTaskListTimeline(bt, timelinetasks);
+		
+		let timelinecontroljq = $(createTimelineControl());
+		timelinecontroljq.attr('data-timeline-title', 'Build tasks timeline');
+		
+		fillTimelineControl(bt, timeline, timelinecontroljq);
+		
+		let timelinecssid = timelinecontroljq.attr('timeline-css-id');
+		
+		let tasksdiv = $(document.createElement('div'))
+			.addClass('tasks-table-main-container')
+			.attr('timeline-css-id', timelinecssid);
+		
+		let alltasks = getAllTasksFromTimeline(timeline);
+		
+		let tasksbody = $(document.createElement('tbody'))
+		tasksdiv.append(
+			$(document.createElement('table'))
+			.addClass('tasks-table')
+			.addClass('tasks-table-main')
+			.append(
+				$(document.createElement('thead'))
+				.append(
+					$(document.createElement('tr'))
+					.append($(document.createElement('th')).text('Task'))
+					.append($(document.createElement('th')).text('Start time'))
+					.append($(document.createElement('th')).text('Duration'))
+					.append($(document.createElement('th')).addClass('col-placeholder'))
+				)
+			).append(tasksbody)
+		);
+		
+		$('#page-timeline.trace-page').empty()
+		.append(
+			$(document.createElement('div'))
+			.addClass('timeline-main')
+			.append(timelinecontroljq)
+		)
+		.append(
+			tasksdiv
+		);
+		
+		function fillTasksTable(intasks, taskstablebody, timelinecssid) {
+			let tasks = intasks.slice();
+			tasks.sort(function (l, r){ return l.start - r.start; });
+			tasks.forEach(function(task){
+				let tasktitle = getTaskTitle(task);
+				let isuptodate = task.up_to_date === true; 
+				let isanyfailure = isAnyFailureException(task);
+				let isanywarning = isAnyTaskWarning(task);
+				let tasktitleelem;
+				let tasktitledotidx = tasktitle.indexOf(':');
+				let tasktitletd = $(document.createElement('td'))
+					.append(
+						(
+							isanyfailure ? 
+							$(X_SVG).addClass('color-failure') : 
+							(
+								isanywarning ? 
+								$(EXCLAMATION_SVG).addClass('color-warning') :
+								$(TICK_SVG).addClass('color-success')
+							)
+						).addClass('inline-svg')
+					);
+				if(tasktitledotidx < 0) {
+					tasktitletd.append(document.createTextNode(tasktitle));
+				} else {
+					tasktitletd
+						.append(
+							$(document.createElement('span'))
+							.addClass('task-title-emphasis')
+							.text(tasktitle.substring(0, tasktitledotidx))
+						)
+						.append(
+							document.createTextNode(tasktitle.substring(tasktitledotidx))
+						)
+				}
+				let taskrow = $(document.createElement('tr'))
+					.attr('data-trace-id', task.trace_id)
+					.addClass('task-row-entry')
+					.attr('timeline-css-id', timelinecssid)
+					.append(
+						tasktitletd
+					)
+					.append(
+						$(document.createElement('td'))
+						.text(toTimeDisplay(task.start))
+					)
+					.append(
+						$(document.createElement('td'))
+						.text(isuptodate ? 'Up to date' : toTimeDisplay(task.end - task.start))
+					)
+					.append(
+						$(document.createElement('td'))
+						.addClass('col-placeholder')
+					);
+				if (isanyfailure) {
+					taskrow.addClass('task-state-failed')
+				}
+				if(isanywarning) {
+					taskrow.addClass('task-state-warning')
+				}
+				let detailstd = $(document.createElement('td'))
+						.addClass('task-details-contents')
+						.attr('colspan', 4);
+				let detailsrow = $(document.createElement('tr'))
+					.attr('data-trace-id', task.trace_id)
+					.addClass('task-details-row')
+					.append(detailstd);
+					
+				function addtaskhover(){
+					$('#trace-contents').attr('data-task-hover', task.trace_id);
+				}
+				function removetaskhover(){
+					$('#trace-contents').removeAttr('data-task-hover');
+				}
+				taskrow.mouseover(addtaskhover);
+				taskrow.mouseout(removetaskhover);
+				//detailsrow.mouseover(addtaskhover);
+				//detailsrow.mouseout(removetaskhover);
+				
+				taskstablebody.append(taskrow);
+				taskstablebody.append(detailsrow);
+				taskrow.click(function(e) {
+					e.preventDefault();
+					if (detailstd.children().length == 0){
+						let detailtable = $(document.createElement('table'))
+							.addClass('task-details-properties-table');
+						let detailtbody = $(document.createElement('tbody'));
+						detailtable.append(detailtbody);
+						detailtbody.append(
+								$(document.createElement('tr'))
+								.append(
+									$(document.createElement('td'))
+									.text('Start time')
+									.attr('data-tooltip', 'The elapsed time between build start and the beginning of the task execution.')
+								)
+								.append($(document.createElement('td')).text(toTimeDisplay(task.start)))
+							);
+						if (isuptodate) {
+							detailtbody.append(
+									$(document.createElement('tr'))
+									.append($(document.createElement('td')).text('Status'))
+									.append(
+										$(document.createElement('td'))
+										.text('Up to date')
+										.attr('data-tooltip', 'The task wasn\'t run, no inputs or outputs were modified.')
+									)
+								);
+						}
+						if (task.task_class != null) {
+							detailtbody.append(
+								$(document.createElement('tr'))
+								.append(
+									$(document.createElement('td'))
+									.text('Class name')
+									.attr('data-tooltip', 'The Java class name of the executed task.')
+								)
+								.append($(document.createElement('td')).addClass('code-font').text(task.task_class))
+							);
+						}
+						if (task.cpu_tokens != null && task.cpu_tokens > 0) {
+							detailtbody.append(
+								$(document.createElement('tr'))
+								.append(
+									$(document.createElement('td'))
+									.text('Computation tokens')
+									.attr('data-tooltip', 'The number of computational units this task consumes.')
+								)
+								.append($(document.createElement('td')).text(task.cpu_tokens))
+							);
+						}
+						if (task.cacheable == true) {
+							detailtbody.append(
+								$(document.createElement('tr'))
+								.append(
+									$(document.createElement('td'))
+									.text('Cacheable')
+									.attr('data-tooltip', 'Flag whether or not the task declares itself as cacheable.')
+								)
+								.append($(document.createElement('td')).text(task.cacheable))
+							);
+						}
+						if (task.inner_task_computational == true) {
+							detailtbody.append(
+								$(document.createElement('tr'))
+								.append(
+									$(document.createElement('td'))
+									.text('Computational inner tasks')
+									.attr('data-tooltip', 'Flag whether or not the inner tasks of this task are allowed to be computational.')
+								)
+								.append($(document.createElement('td')).text(task.inner_task_computational))
+							);
+						}
+						if (task.remote_dispatchable == true) {
+							detailtbody.append(
+								$(document.createElement('tr'))
+								.append(
+									$(document.createElement('td'))
+									.text('Remote dispatchable')
+									.attr('data-tooltip', 'Flag that specifies if the task may be dispatched to build clusters.')
+								)
+								.append($(document.createElement('td')).text(task.remote_dispatchable))
+							);
+						}
+						if (task.short_task == true) {
+							detailtbody.append(
+								$(document.createElement('tr'))
+								.append(
+									$(document.createElement('td'))
+									.text('Short task')
+									.attr('data-tooltip', 'Flag that specifies if the task is considered to be short.')
+								)
+								.append($(document.createElement('td')).text(task.short_task))
+							);
+						}
+						if (task.execution_env != null) {
+							let execenvname = getExecutionEnvironmentName(bt, task.execution_env)
+							detailtbody.append(
+								$(document.createElement('tr'))
+								.append(
+									$(document.createElement('td'))
+									.text('Execution machine')
+									.attr('data-tooltip', 'The name of the build environment that executed this task.')
+								)
+								.append($(document.createElement('td')).text(execenvname))
+							);
+						}
+						if (task.working_dir != null) {
+							detailtbody.append(
+								$(document.createElement('tr'))
+								.append(
+									$(document.createElement('td'))
+									.text('Working directory')
+									.attr('data-tooltip', 'The working directory that is configured for this task.')
+								)
+								.append($(document.createElement('td')).text(task.working_dir))
+							);
+						}
+						if (task.build_dir != null) {
+							detailtbody.append(
+								$(document.createElement('tr'))
+								.append(
+									$(document.createElement('td'))
+									.text('Build directory')
+									.attr('data-tooltip', 'The build directory that is configured for this task.')
+								)
+								.append($(document.createElement('td')).addClass('code-font').text(task.build_dir))
+							);
+						}
+						
+						if (task.values != null) {
+							detailtbody.append(
+								$(document.createElement('tr'))
+								.append(
+									$(document.createElement('td'))
+									.attr('colspan', 2)
+									.append(createCustomValuesView(task.values))
+								)
+							);
+						}
+						
+						detailstd.append(detailtable);
+						if (task.deltas != null && task.deltas.length > 0) {
+							let deltasdiv = $(document.createElement('div'))
+								.addClass('task-details-deltas')
+								.append(
+									$(document.createElement('input'))
+									.attr('type', 'checkbox')
+									.addClass('vis-toggle')
+									.attr('id', 'toggle-deltas-' + task.trace_id)
+								)
+								.append(
+									$(document.createElement('label'))
+									.addClass('task-details-deltas-show-toggle')
+									.addClass('vis-toggle')
+									.attr('for', 'toggle-deltas-' + task.trace_id)
+									.append(
+										$(document.createElement('span'))
+										.addClass('no-help-cursor')
+										.text('Deltas ' + (task.deltas.length > 1 ? '(' + task.deltas.length + ')' : ''))
+										.attr('data-tooltip', 'The deltas that triggered the (re-)run of this task.')
+									)
+								);
+								
+							let deltaentriesdiv = $(document.createElement('div'));
+							deltasdiv.append(deltaentriesdiv);
+							
+							function appendDeltaEntry(delta){
+								let ndeltadiv = $(document.createElement('div'))
+									.addClass('task-details-delta-entry');
+								if (typeof delta === 'string') {
+									switch(delta) {
+										case 'NEW_TASK': {
+											ndeltadiv.append(
+												$(document.createElement('span'))
+												.text('New task')
+												.attr('data-tooltip', 'The task was run for the first time.')
+											);
+											break;
+										}
+										case 'OUTPUT_LOAD_FAILED': {
+											ndeltadiv.append(
+												$(document.createElement('span'))
+												.text('Output load failed')
+												.attr('data-tooltip', 'The build system runtime failed to load the previous output of the task.')
+											);
+											break;
+										}
+										case 'TASK_CHANGE': {
+											ndeltadiv.append(
+												$(document.createElement('span'))
+												.text('Task changed')
+												.attr('data-tooltip', 'The task configuration or at least one of the task dependencies have changed.')
+											);
+											break;
+										}
+										case 'ENVIRONMENT_PROPERTY_CHANGED': {
+											ndeltadiv.append(
+												$(document.createElement('span'))
+												.text('Environment property changed')
+												.attr('data-tooltip', 'An environment property dependency has changed.')
+											);
+											break;
+										}
+										case 'EXECUTION_PROPERTY_CHANGED': {
+											ndeltadiv.append(
+												$(document.createElement('span'))
+												.text('Execution property changed')
+												.attr('data-tooltip', 'An execution property dependency has changed.')
+											);
+											break;
+										}
+										default: {
+											ndeltadiv.text(delta);
+											break;
+										}
+									}
+								} else if (delta.kind == 'INPUT_FILE_CHANGE') {
+									ndeltadiv.append(
+										$(document.createElement('span'))
+										.append(document.createTextNode('Input file change: '))
+										.append(
+											$(document.createElement('span'))
+											.addClass('code-font')
+											.text(delta.file)
+										)
+										.attr('data-tooltip', 'An input file has changed.')
+									);
+								} else if (delta.kind == 'INPUT_FILE_ADDITION') {
+									ndeltadiv.append(
+										$(document.createElement('span'))
+										.append(document.createTextNode('Input file addition: '))
+										.append(
+											$(document.createElement('span'))
+											.addClass('code-font')
+											.text(delta.file)
+										)
+										.attr('data-tooltip', 'An input file has been added.')
+									);
+								} else if (delta.kind == 'OUTPUT_FILE_CHANGE') {
+									ndeltadiv.append(
+										$(document.createElement('span'))
+										.append(document.createTextNode('Output file change: '))
+										.append(
+											$(document.createElement('span'))
+											.addClass('code-font')
+											.text(delta.file)
+										)
+										.attr('data-tooltip', 'An output file has changed.')
+									);
+								} else {
+									ndeltadiv.append(
+										$(document.createElement('span'))
+										.text(JSON.stringify(delta))
+										.attr('data-tooltip', 'Unrecognized delta.')
+									);
+								}
+								deltaentriesdiv.append(ndeltadiv);
+							}
+							
+							task.deltas.forEach(appendDeltaEntry);
+							detailstd.append(deltasdiv);
+						}
+						if (task.input_files != null && task.input_files.length > 0){
+							let filesdiv = $(document.createElement('div'))
+								.addClass('task-details-input-files')
+								.append(
+									$(document.createElement('input'))
+									.attr('type', 'checkbox')
+									.addClass('vis-toggle')
+									.attr('id', 'toggle-input-' + task.trace_id)
+								)
+								.append(
+									$(document.createElement('label'))
+									.addClass('task-details-input-files-show-toggle')
+									.addClass('vis-toggle')
+									.attr('for', 'toggle-input-' + task.trace_id)
+									.append(
+										$(document.createElement('span'))
+										.addClass('no-help-cursor')
+										.text('Input files (' + task.input_files.length + ')')
+										.attr('data-tooltip', 'The list of input files this task depends on.')
+									)
+								);
+							let filelistdiv = $(document.createElement('div'))
+								.addClass('task-details-input-files');
+								
+							filelistdiv.append(createFileTree(task.input_files, function(fp) { return fp; }));
+								
+							filesdiv.append(filelistdiv);
+							detailstd.append(filesdiv);
+						}
+						let anyartifactout = false;
+						if (task.output_files != null && task.output_files.length > 0){
+							let filesdiv = $(document.createElement('div'))
+								.addClass('task-details-output-files')
+								.append(
+									$(document.createElement('input'))
+									.attr('type', 'checkbox')
+									.addClass('vis-toggle')
+									.attr('id', 'toggle-output-' + task.trace_id)
+								)
+								.append(
+									$(document.createElement('label'))
+									.addClass('task-details-output-files-show-toggle')
+									.addClass('vis-toggle')
+									.attr('for', 'toggle-output-' + task.trace_id)
+									.append(
+										$(document.createElement('span'))
+										.addClass('no-help-cursor')
+										.text('Output files (' + task.output_files.length + ')')
+										.attr('data-tooltip', 'The list of output files this task produced.')
+									)
+								);
+							let filelistdiv = $(document.createElement('div'))
+								.addClass('task-details-output-files');
+								
+							filelistdiv.append(createFileTree(task.output_files, function(fp) { return fp; }));
+								
+							filesdiv.append(filelistdiv);
+							task.output_files.forEach(function(filepath){
+								if(!anyartifactout && bt.artifacts != null && bt.artifacts[filepath] != null) {
+									anyartifactout = true;
+								}
+							});
+							detailstd.append(filesdiv);
+						}
+						if (task.inner_tasks != null && task.inner_tasks.length > 0){
+							let innertasksdiv = $(document.createElement('div'))
+								.addClass('task-details-inner-tasks')
+								.append(
+									$(document.createElement('input'))
+									.attr('type', 'checkbox')
+									.addClass('vis-toggle')
+									.attr('id', 'toggle-inner-tasks-' + task.trace_id)
+								)
+								.append(
+									$(document.createElement('label'))
+									.addClass('task-details-inner-tasks-show-toggle')
+									.addClass('vis-toggle')
+									.attr('for', 'toggle-inner-tasks-' + task.trace_id)
+									.append(
+										$(document.createElement('span'))
+										.addClass('no-help-cursor')
+										.text('Inner tasks (' + task.inner_tasks.length + ')')
+										.attr('data-tooltip', 'The inner tasks that this build task ran during its execution.')
+									)
+								);
+							let innertasktimelinecontrol = $(createTimelineControl());
+							innertasktimelinecontrol.attr('data-timeline-title', 'Inner tasks timeline');
+							let innertimeline = createTaskListTimeline(bt, task.inner_tasks);
+							fillTimelineControl(bt, innertimeline, innertasktimelinecontrol);
+							
+							let innertasksbody = $(document.createElement('tbody'))
+							let innertasktable = $(document.createElement('table'))
+								.addClass('tasks-table')
+								.append(
+									$(document.createElement('thead'))
+									.append(
+										$(document.createElement('tr'))
+										.append($(document.createElement('th')).text('Task'))
+										.append($(document.createElement('th')).text('Start time'))
+										.append($(document.createElement('th')).text('Duration'))
+									)
+								).append(innertasksbody);
+							let innertimelinecssid = innertasktimelinecontrol.attr('timeline-css-id');
+							let sortedinnertasks = task.inner_tasks.slice();
+							sortedinnertasks.sort(function (l, r){ return l.start - r.start; });
+							fillTasksTable(sortedinnertasks, innertasksbody, innertimelinecssid);
+							
+							let taskscontainerdiv = $(document.createElement('div'))
+								.addClass('tasks-table-inner-container')
+								.append(innertasktable)
+								.attr('timeline-css-id', innertimelinecssid);
+							innertasksdiv.append(
+								$(document.createElement('div'))
+								.append(
+									$(document.createElement('div'))
+									.addClass('timeline-inner')
+									.append(innertasktimelinecontrol)
+								)
+								.append(taskscontainerdiv)
+							);
+							
+							detailstd.append(innertasksdiv);
+						}
+						
+						let seelinks = $(document.createElement('div'))
+							.addClass('trace-see-links');
+						detailstd.append(seelinks);
+						if(anyartifactout) {
+							seelinks.append(
+								$(document.createElement('a'))
+								.text('View artifacts')
+								.attr('href', '#')
+								.click(function(e){
+									e.preventDefault();
+									showPageWithId('page-artifacts');
+									//TODO highlight artifact
+								})
+							);
+						}
+						if (task.stdout != null && task.stdout.length > 0) {
+							seelinks.append(
+								$(document.createElement('a'))
+								.text('View console output')
+								.attr('href', '#')
+								.click(function(e){
+									e.preventDefault();
+									showPageWithId('page-console');
+									$('#trace-contents').attr('data-console-highlight', task.trace_id);
+									$(`#page-console .trace-console-content [data-trace-id="${ task.trace_id }"]`)[0].scrollIntoView();
+								})
+							);
+						}
+						if (isAnyTaskException(task)) {
+							seelinks.append(
+								$(document.createElement('a'))
+								.text('View exceptions')
+								.attr('href', '#')
+								.click(function(e){
+									e.preventDefault();
+									showPageWithId('page-exceptions');
+									$(`#page-exceptions .exceptions-table .task-row-entry:not([data-trace-id="${ task.trace_id }"])`).removeClass('data-entry-open');
+									$(`#page-exceptions .exceptions-table .task-row-entry[data-trace-id="${ task.trace_id }"]`).addClass('data-entry-open')[0].scrollIntoView();
+								})
+							);
+						}
+					}
+					taskrow.toggleClass('data-entry-open');
+				});
+			});
+		}
+		
+		fillTasksTable(tabletasks, tasksbody, timelinecssid);
+	}
+	
+	function fillConsolePage(bt) {
+		const CONSOLE_MARKER_STR_PATTERN = /[ \t]*(\\[(?:.*?)\\])?[ \t]*(((.*?)(:(-?[0-9]+)(:([0-9]*)(-([0-9]+))?)?)?):)?[ ]*([wW]arning|[eE]rror|[iI]nfo|[sS]uccess|[fF]atal [eE]rror):[ ]*(.*)/;
+		const CONSOLE_MARKER_GROUP_DISPLAY_ID = 1;
+		const CONSOLE_MARKER_GROUP_PATHANDLOCATION = 3;
+		const CONSOLE_MARKER_GROUP_FILEPATH = 4;
+		const CONSOLE_MARKER_GROUP_LINE = 6;
+		const CONSOLE_MARKER_GROUP_LINESTART = 8;
+		const CONSOLE_MARKER_GROUP_LINEEND = 10;
+		const CONSOLE_MARKER_GROUP_SEVERITY = 11;
+		const CONSOLE_MARKER_GROUP_MESSAGE = 12;
+	
+		let stdoutdiv = $(document.createElement('div'))
+			.addClass('trace-console-content');
+			
+		let consolepagecss = '';
+			
+		let pagediv = $('#page-console.trace-page').empty();
+		
+		let alllines = [];
+		
+		let sortedtasks = bt.tasks.slice();
+		sortedtasks.sort(function (l, r){ return l.start - r.start; });
+		sortedtasks.forEach(function(task){
+			if (task.stdout == null) {
+				return;
+			}
+			let arrayOfLines = task.stdout.match(/[^\r\n]+/g);
+			let matchedlines = [];
+			arrayOfLines.forEach(function(line){
+				alllines.push(line);
+				line = line.replace(/\t/g, "    ");
+				let match = CONSOLE_MARKER_STR_PATTERN.exec(line);
+				if (match != null) {
+					let mline = {
+						match: match,
+						line: line
+					};
+					matchedlines.push(mline);
+				}else {
+					matchedlines.push(line);
+				}
+			});
+			let taskoutdiv = $(document.createElement('div'))
+				.attr('data-trace-id', task.trace_id)
+				.click(function(e){
+					e.preventDefault();
+					let tc = $('#trace-contents');
+					if (tc.attr('data-console-highlight') == task.trace_id) {
+						tc.removeAttr('data-console-highlight');
+					}else{
+						tc.attr('data-console-highlight', task.trace_id);
+					}
+				});
+			let lastseverity = null;
+			let lastlines = [];
+			function finishPendingLines() {
+				if (lastlines.length > 0) {
+					let sevdiv = $(document.createElement('div'));
+					if (lastseverity != null) {
+						sevdiv.attr('data-trace-log-severity', lastseverity);
+					}
+					lastlines.forEach(function (llnode){ sevdiv.append(llnode); });
+					taskoutdiv.append(sevdiv);
+					lastlines.length = 0;
+				}
+			}
+			for (let i = 0; i < matchedlines.length; ++i) {
+				let ml = matchedlines[i];
+				let lnode;
+				let severity;
+				if (typeof ml === 'string') {
+					severity = null;
+					lnode = $(document.createTextNode(ml + "\n"));
+				} else {
+					severity = ml.match[CONSOLE_MARKER_GROUP_SEVERITY];
+					if (severity == null) {
+						severity = 'none';
+					} else {
+						severity = severity.toLowerCase();
+					}
+					lnode = $(document.createTextNode(ml.line + "\n"));
+				}
+				if (lastseverity === severity) {
+					lastlines.push(lnode);
+				} else {
+					finishPendingLines();
+					lastseverity = severity;
+					lastlines.push(lnode);
+				}
+			}
+			finishPendingLines();
+			
+			stdoutdiv.append(taskoutdiv);
+			
+			consolepagecss += `
+			#trace-contents[data-console-highlight="${ task.trace_id }"] #page-console .trace-console-content>[data-trace-id="${ task.trace_id }"]:before {
+				content: ' ';
+				width: 1ch;
+				position: absolute;
+				top: -2px;
+			    left: -2px;
+			    bottom: -2px;
+				border: var(--console-hightlight-border);
+				border-right: none;
+				border-bottom-left-radius: 2px;
+				border-top-left-radius: 2px;
+				z-index: 100;
+				pointer-events: none;
+			}
+			#trace-contents[data-console-highlight="${ task.trace_id }"] #page-console .trace-console-content>[data-trace-id="${ task.trace_id }"]:after {
+				content: ' ';
+				width: 1ch;
+				position: absolute;
+				top: -2px;
+			    right: -2px;
+			    bottom: -2px;
+				border: var(--console-hightlight-border);
+				border-left: none;
+				border-bottom-right-radius: 2px;
+				border-top-right-radius: 2px;
+				z-index: 100;
+				pointer-events: none;
+			}
+			`;
+		});
+		
+		//add empty string so we have an EOL at the end
+		alllines.push('');
+		let enc = new TextEncoder();
+		let consolebytes = enc.encode(alllines.join('\n'));
+		
+		let dlelem = document.createElement('a');
+		dlelem.setAttribute('href', '#');
+		//TODO revoke url
+		dlelem.href = window.URL.createObjectURL(new Blob([consolebytes], {type: "text/plain"}));
+		dlelem.download = "console.txt";
+		dlelem.innerHTML = 'Download';
+		pagediv.append(
+			$(document.createElement('div'))
+			.addClass('trace-see-links')
+			.append(dlelem)
+		);
+		
+		pagediv.append(stdoutdiv);
+		
+		let styleelem = document.createElement('style');
+		pagediv.append(styleelem);
+		styleelem.innerHTML = consolepagecss;
+	}
+	
+	function fillExceptionsPage(bt) {
+		let exceptiontasks = [];
+		bt.tasks.forEach(function(task) {
+			if (isAnyTaskException(task)) {
+				exceptiontasks.push(task);
+			}
+		});
+		exceptiontasks.sort(function(l, r){ return l.start - r.start; });
+		let pagediv = $('#page-exceptions.trace-page').empty();
+		
+		pagediv.append(
+			$(document.createElement('div'))
+			.addClass('page-exceptions-head-summary')
+			.text(bt._exception_count + ' exception' + (bt._artifact_count == 1 ? '' : 's') + ' was recorded during the build.')
+		);
+		
+		let tasksbody = $(document.createElement('tbody'))
+		
+		pagediv
+			.append(
+				$(document.createElement('input'))
+				.attr('type', 'checkbox')
+				.addClass('stacktrace-reduced-toggle')
+				.attr('id', 'stacktrace-reduced-input')
+				.prop('checked', true)
+				.css('display', 'none')
+			)
+			.append(
+				$(document.createElement('div'))
+				.addClass('trace-see-links')
+				.append(
+					$(document.createElement('label'))
+					.addClass('stacktrace-reduced-toggle')
+					.attr('for', 'stacktrace-reduced-input')
+				)
+			);
+		
+		pagediv.append(
+			$(document.createElement('table'))
+			.addClass('exceptions-table')
+			.append(
+				$(document.createElement('thead'))
+				.append(
+					$(document.createElement('tr'))
+					.append($(document.createElement('th')).text('Task'))
+					.append($(document.createElement('th')).text('Exception'))
+				)
+			).append(tasksbody)
+		);
+		
+		exceptiontasks.forEach(function(task){
+			let tasktitle = getTaskTitle(task);
+			
+			function appendExceptionStackTrace(elem, exception) {
+				const ST_LINE_REGEX = /([ \t]+)at ([^(]+)\.([^(]+)\(([^)]+)\)/;
+				
+				let lines = exception.split(/\r?\n/);
+				lines.forEach(function (l){
+					let match = ST_LINE_REGEX.exec(l);
+					if (match != null) {
+						let ws = match[1];
+						let cname = match[2];
+						let method = match[3];
+						let pos = match[4];
+						let reducedcname = cname.substring(cname.lastIndexOf('.') + 1);
+						let toplevelname = reducedcname;
+						let didx = toplevelname.indexOf('$');
+						if (didx > 0) {
+							toplevelname = toplevelname.substring(0, didx);
+						}
+						if (pos.startsWith(toplevelname + '.java')) {
+							pos = pos.substring(toplevelname.length + 5);
+						}
+						elem.append(
+							$(document.createElement('div'))
+							.addClass('stacktrace-reduced')
+							.append(`${ ws }at ${ reducedcname }.${ method }(${ pos })`)
+						);
+						elem.append(
+							$(document.createElement('div'))
+							.addClass('stacktrace-full')
+							.append(l)
+						);
+					} else {
+						elem.append(
+							$(document.createElement('div'))
+							.append(l)
+						);
+					}
+				});
+				return elem;
+			}
+			
+			function appendExceptionRows(exc, iconelemjq, traceid) {
+				if (exc == null) {
+					return;
+				}
+				let detailstd = $(document.createElement('td'))
+					.addClass('task-details-contents')
+					.attr('colspan', 2);
+				let exctd = $(document.createElement('td'))
+					.addClass('task-exception-summary');
+				let tasktitletd = $(document.createElement('td'))
+					.append(document.createTextNode(tasktitle));
+				if(iconelemjq != null) {
+					tasktitletd.prepend(iconelemjq);
+				}
+					
+				let taskrow = $(document.createElement('tr'))
+					.attr('data-trace-id', traceid)
+					.addClass('task-row-entry')
+					.append(tasktitletd)
+					.append(exctd);
+				let detailsrow = $(document.createElement('tr'))
+					.attr('data-trace-id', traceid)
+					.addClass('task-details-row')
+					.append(detailstd);
+					
+				let taskexcdiv = $(document.createElement('div'))
+					.addClass('trace-task-exceptions');
+				
+				let excdiv = $(document.createElement('div'));
+				
+				const FIRST_LINE_REGEX = /((?:[a-zA-Z0-9]+\.)*)([a-zA-Z0-9]+)\:(.*)/;
+				
+				excdiv.append(
+					appendExceptionStackTrace(
+						$(document.createElement('div'))
+						.addClass('trace-exception-stacktrace'), 
+						exc
+					)
+				);
+				let excfirstline = exc.split(/\r?\n/)[0];
+				let match = FIRST_LINE_REGEX.exec(excfirstline);
+				if (match != null) {
+					exctd.append(
+						$(document.createElement('div'))
+						.addClass('stacktrace-full')
+						.append(excfirstline)
+					);
+					exctd.append(
+						$(document.createElement('div'))
+						.addClass('stacktrace-reduced')
+						.append(`${ match[2] }:${ match[3] }`)
+					);
+				} else {
+					exctd.text(excfirstline);
+				}
+				
+				taskrow.click(function(e) {
+					e.preventDefault();
+					taskrow.toggleClass('data-entry-open');
+				});
+				taskexcdiv.append(excdiv);
+				detailstd.append(taskexcdiv);
+				tasksbody.append(taskrow).append(detailsrow);
+			}
+			
+			if (task.exception != null) {
+				let icon = $(document.createElement('span'))
+					.append(
+						$(EXC_SVG)
+						.addClass('color-failure')
+						.addClass('inline-svg')
+					)
+					.attr('data-tooltip', 'The task terminated abruptly by throwing an exception.')
+				;
+				appendExceptionRows(task.exception, icon, task.trace_id);
+			}
+			
+			if (task.abort_exceptions != null) {
+				task.abort_exceptions.forEach(function(exc){
+					let icon = $(document.createElement('span'))
+						.append(
+							$(X_SVG)
+							.addClass('svg-red-circle')
+							.addClass('inline-svg')
+							.css('height', '0.95em')
+							.css('margin-bottom', '2px')
+							.css('margin-left', '2px')
+							.css('margin-right', '0.35em')
+						)
+						.attr('data-tooltip', 'The task failed gracefully by aborting with an exception.')
+					;
+					appendExceptionRows(exc, icon, task.trace_id);
+				});
+			}
+			if (task.ignored_exceptions != null) {
+				task.ignored_exceptions.forEach(function(exc){
+					let icon = $(document.createElement('span'))
+						.append(
+							$(WARN_SVG)
+							.addClass('color-warning')
+							.addClass('inline-svg')
+						)
+						.attr('data-tooltip', 'An exception was ignored/not handled by the task.')
+					;
+					appendExceptionRows(exc, icon, task.trace_id);
+				});
+			}
+			if (task.inner_tasks != null) {
+				task.inner_tasks.forEach(function(innertask){
+					let icon = $(EXC_SVG)
+						.addClass('color-failure')
+						.addClass('inline-svg');
+					//TODO signal that it is an inner task
+					appendExceptionRows(innertask.exception, icon, innertask.trace_id);
+				});
+			}
+		});
+		if (tasksbody.find('.task-row-entry').length == 1) {
+			//auto-open if only a single task contains exceptions
+			tasksbody.find('.task-row-entry').addClass('data-entry-open');
+		}
+	}
+	function getWorkingDirectoryRelativizedPath(bt, path) {
+		if (path == null) {
+			return path;
+		}
+		if (path.startsWith(bt.working_dir)) {
+			let ss = path.substring(bt.working_dir.length);
+			if (ss.startsWith('/')) {
+				return ss.substring(1);
+			}
+			return ss;
+		}
+		return path;
+	}
+	function fillScriptsPage(bt) {
+		let pagediv = $('#page-scripts.trace-page').empty();
+		
+		pagediv.append(
+			$(document.createElement('div'))
+			.addClass('trace-see-links')
+			.append(
+				$(document.createElement('a'))
+				.text('View script configuration')
+				.attr('href', '#')
+				.click(function(e){
+					e.preventDefault();
+					showPageWithId('page-summary');
+					$('#page-summary #summary-script-configuration')[0].scrollIntoView();
+				})
+			)
+		);
+		
+		if (bt.scripts == null || Object.keys(bt.scripts).length == 0) {
+			pagediv.text("No script usage was recorded in this build.");
+			return;
+		}
+		$.each(bt.scripts, function(path, contents){
+			let scriptdiv = $(document.createElement('div'))
+				.addClass('script-information-contents')
+				.append(
+					$(document.createElement('input'))
+					.attr('type', 'checkbox')
+					.addClass('vis-toggle')
+					.attr('id', 'toggle-script-' + btoa(path))
+				)
+				.append(
+					$(document.createElement('label'))
+					.addClass('script-details-show-toggle')
+					.addClass('vis-toggle')
+					.addClass('code-font')
+					.attr('for', 'toggle-script-' + btoa(path))
+					.text(getWorkingDirectoryRelativizedPath(bt, path))
+				);
+			let lines = contents.split(/\r?\n/);
+			let minwidthclass;
+			if (lines.length < 10) {
+				minwidthclass = 'mw1ch';
+			}else if (lines.length < 100) {
+				minwidthclass = 'mw2ch';
+			}else if (lines.length < 1000) {
+				minwidthclass = 'mw3ch';
+			}else if (lines.length < 10000) {
+				minwidthclass = 'mw4ch';
+			}else /*if (lines.length < 100000)*/ {
+				minwidthclass = 'mw5ch';
+			}
+			
+			let contentsdiv = $(document.createElement('div'))
+				.addClass('trace-script-contents')
+				.addClass(minwidthclass);
+				
+			lines.forEach(function(line){
+				contentsdiv.append(
+					$(document.createElement('div'))
+					.addClass('line')
+					.text(line.replace(/\t/g, "    "))
+				);
+			});
+			
+			scriptdiv.append(contentsdiv);
+			pagediv.append(scriptdiv);
+		});
+		if (Object.keys(bt.scripts).length == 1) {
+			pagediv.find('input.vis-toggle').prop('checked', true);
+		}
+	}
+	
+	function getDateString(millis){
+		function pad(num, size) {
+		    let s = num+"";
+		    while (s.length < size) s = "0" + s;
+		    return s;
+		}
+		let date = new Date(millis);
+		let monthNames = [
+			"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"
+		];
+		return `${ date.getFullYear() }. ${ monthNames[date.getMonth()] } ${ date.getDate() }. ${ date.getHours() }:${ pad(date.getMinutes(), 2) }:${ pad(date.getSeconds(), 2) }`;
+	}
+	
+	let customValueIdCounter = 0;
+	
+	function appendSingleCustomValueView(value, container) {
+		if (Array.isArray(value)) {
+			let listdiv = $(document.createElement('div'))
+				.addClass('trace-custom-list-list');
+			value.forEach(function(v){
+				let entrydiv = $(document.createElement('div'))
+					.addClass('trace-custom-list-entry');
+				appendSingleCustomValueView(v, entrydiv);
+				listdiv.append(entrydiv);
+			});
+			container.append(listdiv);
+		} else if(typeof value === 'string') {
+			container.append(
+				$(document.createElement('span'))
+				.addClass('trace-custom-value-string')
+				.text(value)
+			);
+		} else if(typeof value === 'number') {
+			container.append(
+				$(document.createElement('span'))
+				.addClass('trace-custom-value-number')
+				.text(value)
+			);
+		} else if(typeof value === 'boolean') {
+			container.append(
+				$(document.createElement('span'))
+				.addClass('trace-custom-value-boolean')
+				.text(value)
+			);
+		} else if(typeof value === 'object') {
+			let table = $(document.createElement('table'))
+				.addClass('trace-custom-value-map');
+			let tbody = $(document.createElement('tbody'));
+			$.each(value, function(k, v) {
+				let tr = $(document.createElement('tr'));
+				if (Array.isArray(v) || typeof v === 'object') {
+					let td = $(document.createElement('td'))
+						.attr('colspan', 2);
+					//TODO style more, and visibility toggle
+					
+					let cvalid = customValueIdCounter++;
+					
+					td.append(
+						$(document.createElement('input'))
+						.attr('type', 'checkbox')
+						.addClass('vis-toggle')
+						.attr('id', 'toggle-custom-value-' + cvalid)
+					)
+					.append(
+						$(document.createElement('label'))
+						.addClass('custom-value-show-toggle')
+						.addClass('vis-toggle')
+						.attr('for', 'toggle-custom-value-' + cvalid)
+						.text(k)
+					);
+					
+					let cvaldiv = $(document.createElement('div'));
+					
+					appendSingleCustomValueView(v, cvaldiv);
+					
+					td.append(cvaldiv);
+					tr.append(td);
+				} else {
+					let td2 = $(document.createElement('td'));
+					appendSingleCustomValueView(v, td2);
+					tr.append(
+						$(document.createElement('td')).text(k)
+					);
+					tr.append(td2);
+				}
+				tbody.append(tr);
+			});
+			table.append(tbody);
+			container.append(table);
+		} else {
+			console.log(value);
+			container.append(
+				$(document.createElement('div'))
+				.addClass('trace-custom-value-render-failure')
+				.text('Failed to render custom value. (unknown type)')
+			);
+		}
+	}
+	function createCustomValuesView(values) {
+		let result = $(document.createElement('div'))
+			.addClass('trace-custom-values');
+		appendSingleCustomValueView(values, result);
+		return result;
+	}
+	
+	function fillSummaryPage(bt) {
+		let pagediv = $('#page-summary.trace-page').empty();
+		
+		let datestr = getDateString(bt.date);
+		
+		let duration = bt.duration;
+		
+		let headdiv = $(document.createElement('div'))
+			.addClass('trace-summary-section');
+		
+		let buildtimesdiv = $(document.createElement('div'))
+			.addClass('trace-summary-section')
+			.append(
+				$(document.createElement('div'))
+				.addClass('trace-summary-section-title')
+				.attr('id', 'summary-build-times')
+				.text('Build times')
+			);
+		let executionparamsdiv = $(document.createElement('div'))
+			.addClass('trace-summary-section')
+			.append(
+				$(document.createElement('div'))
+				.addClass('trace-summary-section-title')
+				.attr('id', 'summary-execution-parameters')
+				.append(
+					$(document.createElement('span'))
+					.text('Execution parameters')
+					.attr('data-tooltip', 'User provided key-value pairs for the build execution.')
+				)
+				.append(getDocumentationToolipLinkSvg('/saker.build/doc/guide/execparams.html'))
+			);
+		let envsdiv = $(document.createElement('div'))
+			.addClass('trace-summary-section')
+			.append(
+				$(document.createElement('div'))
+				.addClass('trace-summary-section-title')
+				.attr('id', 'summary-build-environments')
+				.append(
+					$(document.createElement('span'))
+					.text('Build environments')
+					.attr('data-tooltip', 'The used build environments and their configurations.')
+				)
+			);
+		let pathconfigdiv = $(document.createElement('div'))
+			.addClass('trace-summary-section')
+			.append(
+				$(document.createElement('div'))
+				.addClass('trace-summary-section-title')
+				.attr('id', 'summary-path-configuration')
+				.append(
+					$(document.createElement('span'))
+					.text('Path configuration')
+					.attr('data-tooltip', 'The available roots and well known paths for the build.')
+				)
+				.append(getDocumentationToolipLinkSvg('/saker.build/doc/guide/pathconfiguration.html'))
+			);
+		let repositoriesdiv = $(document.createElement('div'))
+			.addClass('trace-summary-section')
+			.append(
+				$(document.createElement('div'))
+				.addClass('trace-summary-section-title')
+				.attr('id', 'summary-repository-configuration')
+				.append(
+					$(document.createElement('span'))
+					.text('Repository configuration')
+					.attr('data-tooltip', 'The used repositories and their configurations for the build.')
+				)
+				.append(getDocumentationToolipLinkSvg('/saker.build/doc/guide/repositories.html'))
+			);
+		let scriptconfigdiv = $(document.createElement('div'))
+			.addClass('trace-summary-section')
+			.append(
+				$(document.createElement('div'))
+				.addClass('trace-summary-section-title')
+				.attr('id', 'summary-script-configuration')
+				.append(
+					$(document.createElement('span'))
+					.text('Script configuration')
+					.attr('data-tooltip', 'The configuration of the scripting languages and the recognized script files.')
+				)
+				.append(getDocumentationToolipLinkSvg('/saker.build/doc/guide/scriptlanguages.html'))
+			);
+		let dbconfigdiv = $(document.createElement('div'))
+			.addClass('trace-summary-section')
+			.append(
+				$(document.createElement('div'))
+				.addClass('trace-summary-section-title')
+				.attr('id', 'summary-database-configuration')
+				.append(
+					$(document.createElement('span'))
+					.text('Database configuration')
+					.attr('data-tooltip', 'The method of determining the file contents and tracking the changes of theirs.')
+				)
+				.append(getDocumentationToolipLinkSvg('/saker.build/doc/guide/filechangetracking.html'))
+			);
+		let miscdiv = $(document.createElement('div'))
+			.addClass('trace-summary-section')
+			.append(
+				$(document.createElement('div'))
+				.addClass('trace-summary-section-title')
+				.attr('id', 'summary-misc-options')
+				.append(
+					$(document.createElement('span'))
+					.text('Miscellaneous options')
+					.attr('data-tooltip', 'Miscellaneous options that don\'t fall into any other category.')
+				)
+			);
+		
+		let headlinks = $(document.createElement('div'))
+				.addClass('trace-see-links')
+				.append(
+					$(document.createElement('a'))
+					.text('View timeline')
+					.attr('href', '#')
+					.click(function(e){
+						e.preventDefault();
+						showPageWithId('page-timeline')
+					})
+				)
+				.append(
+					$(document.createElement('a'))
+					.text('View console')
+					.attr('href', '#')
+					.click(function(e){
+						e.preventDefault();
+						showPageWithId('page-console')
+					})
+				);
+		if (bt.successful) {
+			headdiv.append(
+				$(document.createElement('div'))
+				.addClass('trace-summary-head-state')
+				.addClass('trace-summary-head-success')
+				.append($(TICK_SVG).addClass('inline-svg').addClass('color-success'))
+				.append(document.createTextNode('Build successful'))
+			);
+		} else {
+			headdiv.append(
+				$(document.createElement('div'))
+				.addClass('trace-summary-head-state')
+				.addClass('trace-summary-head-fail')
+				.append($(X_SVG).addClass('inline-svg').addClass('color-failure'))
+				.append(document.createTextNode('Build failed'))
+			);
+		}
+		if (bt._exception_count > 0) {
+			let excseverityelem;
+			switch(bt._exception_severity) {
+				case 'fatal': {
+					excseverityelem = $(EXC_SVG).addClass('color-failure').addClass('inline-svg');
+					break;
+				}
+				case 'abort': {
+					excseverityelem = $(X_SVG).addClass('color-failure').addClass('inline-svg');
+					break;
+				}
+				case 'ignored': {
+					excseverityelem = $(EXCLAMATION_SVG).addClass('color-failure').addClass('inline-svg');
+					break;
+				}
+			}
+			headdiv.append(
+				$(document.createElement('div'))
+				.addClass('color-failure')
+				.addClass('trace-summary-head-info')
+				.addClass('trace-summary-head-info-exceptions')
+				.append(excseverityelem)
+				.append(
+					$(document.createElement('span'))
+					.text(bt._exception_count + ' exception' + (bt._exception_count == 1 ? '' : 's'))
+					.css('cursor', 'pointer')
+					.click(function(e){
+						e.preventDefault();
+						showPageWithId('page-exceptions')
+					})
+				)
+			);
+			
+			headlinks.append(
+				$(document.createElement('a'))
+				.text('View exceptions')
+				.attr('href', '#')
+				.click(function(e){
+					e.preventDefault();
+					showPageWithId('page-exceptions')
+				})
+			);
+		}
+		if (bt._warning_count > 0) {
+			headdiv.append(
+				$(document.createElement('div'))
+				.addClass('color-warning-text')
+				.addClass('trace-summary-head-info')
+				.addClass('trace-summary-head-info-warnings')
+				.append($(EXCLAMATION_SVG).addClass('color-warning').addClass('inline-svg'))
+				.append(
+					$(document.createElement('span'))
+					.text(bt._warning_count + ' warning' + (bt._warning_count == 1 ? '' : 's'))
+					.css('cursor', 'pointer')
+					.click(function(e){
+						e.preventDefault();
+						showPageWithId('page-console')
+					})
+				)
+			);
+		}
+		if(bt._artifact_count > 0) {
+			headdiv.append(
+				$(document.createElement('div'))
+				.addClass('trace-summary-head-info')
+				.addClass('trace-summary-head-info-artifacts')
+				.append($(ARTIFACTS_SVG).addClass('inline-svg'))
+				.append(
+					$(document.createElement('span'))
+					.text(bt._artifact_count + ' output artifact' + (bt._artifact_count == 1 ? '' : 's'))
+					.css('cursor', 'pointer')
+					.click(function(e){
+						e.preventDefault();
+						showPageWithId('page-artifacts')
+					})
+				)
+			);
+			headlinks.append(
+				$(document.createElement('a'))
+				.text('View artifacts')
+				.attr('href', '#')
+				.click(function(e){
+					e.preventDefault();
+					showPageWithId('page-artifacts')
+				})
+			);
+		}
+		headdiv.append(headlinks);
+		pagediv.append(headdiv);
+		
+		buildtimesdiv
+			.append(
+				$(document.createElement('table'))
+				.addClass('summary-top-table')
+				.append(
+					$(document.createElement('tbody'))
+					.append(
+						$(document.createElement('tr'))
+						.append(
+							$(document.createElement('td'))
+							.text('Build date: ')
+						)
+						.append($(document.createElement('td')).text(datestr))
+					)
+					.append(
+						$(document.createElement('tr'))
+						.append(
+							$(document.createElement('td'))
+							.text('Duration: ')
+							.attr('data-tooltip', 'The total duration of the build.')
+						)
+						.append($(document.createElement('td')).text(toTimeDisplay(duration)))
+					)
+					.append(
+						$(document.createElement('tr'))
+						.addClass('trace-summary-embed-table-p2')
+						.append(
+							$(document.createElement('td'))
+							.text('Setup: ')
+							.attr('data-tooltip', 'The time it took to setup the build.')
+						)
+						.append($(document.createElement('td')).text(toTimeDisplay(bt.phase_setup)))
+					)
+					.append(
+						$(document.createElement('tr'))
+						.addClass('trace-summary-embed-table-p2')
+						.append(
+							$(document.createElement('td'))
+							.text('Initialize: ')
+							.attr('data-tooltip', 'The initialization time of the build.')
+						)
+						.append($(document.createElement('td')).text(toTimeDisplay(bt.phase_init)))
+					)
+					.append(
+						$(document.createElement('tr'))
+						.addClass('trace-summary-embed-table-p2')
+						.append(
+							$(document.createElement('td'))
+							.text('Execute: ')
+							.attr('data-tooltip', 'The time it took to execute the build tasks.')
+						)
+						.append($(document.createElement('td')).text(toTimeDisplay(bt.phase_execute)))
+					)
+					.append(
+						$(document.createElement('tr'))
+						.addClass('trace-summary-embed-table-p2')
+						.append(
+							$(document.createElement('td'))
+							.text('Finalize: ')
+							.attr('data-tooltip', 'Duration of the build finalization operations.')
+						)
+						.append($(document.createElement('td')).text(toTimeDisplay(bt.phase_finalize)))
+					)
+				)
+			);
+		pagediv.append(buildtimesdiv);
+		
+		if (bt.exec_user_params != null && Object.keys(bt.exec_user_params).length > 0){
+			let tbody = $(document.createElement('tbody'))
+				.addClass('code-font');
+			executionparamsdiv
+				.append(
+					$(document.createElement('table'))
+					.addClass('summary-top-table')
+					.append(tbody)
+				);
+			$.each(bt.exec_user_params, function(k, v){
+				tbody.append(
+					$(document.createElement('tr'))
+					.append($(document.createElement('td')).text(k))
+					.append($(document.createElement('td')).text(v))
+				);
+			});
+			pagediv.append(executionparamsdiv);
+		}
+		
+		if (bt.path_config != null) {
+			let pathtbody = $(document.createElement('tbody'));
+			
+			$.each(bt.path_config, function(rootname, mount){
+				let name = getMachineNameDefaulted(bt, mount.file_provider);
+				pathtbody.append(
+					$(document.createElement('tr'))
+					.append(
+						$(document.createElement('td'))
+						.addClass('code-font')
+						.text(rootname)
+						.attr('data-tooltip', 'A path root of the build execution.')
+					)
+					.append(
+						$(document.createElement('td'))
+						.append(
+							$(document.createElement('div'))
+							.append(document.createTextNode(name))
+							.attr('data-tooltip', 'The build environment name from which the path is mounted.')
+						)
+						.append(
+							$(document.createElement('div'))
+							.addClass('code-font')
+							.addClass('trace-path-mounted')
+							.append(document.createTextNode(mount.path))
+							.attr('data-tooltip', 'The local filesystem path on the given build environment that is mounted.')
+						)
+					)
+				);
+			});
+			pathtbody.append(
+				$(document.createElement('tr'))
+				.append(
+					$(document.createElement('td'))
+					.text('Working directory: ')
+					.attr('data-tooltip', 'The working directory of the build.')
+				)
+				.append($(document.createElement('td')).addClass('code-font').text(bt.working_dir))
+			);
+			let bdvaltd = $(document.createElement('td'));
+			if (bt.build_dir == null) {
+				bdvaltd.text('none')
+					.attr('data-tooltip', 'No build directory is used.');
+			}else{
+				bdvaltd.addClass('code-font').text(bt.build_dir);
+			}
+			pathtbody.append(
+				$(document.createElement('tr'))
+				.append(
+					$(document.createElement('td'))
+					.text('Build directory: ')
+					.attr('data-tooltip', 'The directory where the build tasks should place their outputs.')
+				)
+				.append(bdvaltd)
+			);
+			let mdvaltd = $(document.createElement('td'));
+			if (bt.mirror_dir == null) {
+				mdvaltd.text('none')
+					.attr('data-tooltip', 'No ,orrpr directory is used.');
+			}else{
+				mdvaltd.addClass('code-font').text(bt.mirror_dir);
+			}
+			pathtbody.append(
+				$(document.createElement('tr'))
+				.append(
+					$(document.createElement('td'))
+					.text('Mirror directory: ')
+					.attr('data-tooltip', 'The local filesystem directory where build tasks can temporarily place files to be used with external processes.')
+				)
+				.append(mdvaltd)
+			);
+			
+			pathconfigdiv.append(
+				$(document.createElement('table'))
+				.addClass('summary-top-table')
+				.append(pathtbody)
+			);
+			pagediv.append(pathconfigdiv);
+		}
+		function applyClasspathDescription(td, cp) {
+			switch(cp.kind) {
+				case 'http_jar': {
+					td.text(cp.url)
+						.attr('data-tooltip', 'A JAR file is downloaded from the specified URL, and loaded.');
+					break;
+				}
+				case 'jar': {
+					let name = getMachineNameDefaulted(bt, cp.file_provider);
+					td
+						.append(
+							$(document.createElement('div'))
+							.append(document.createTextNode('JAR loaded from: ' + name))
+							.attr('data-tooltip', 'The build environment name from which the JAR is loaded.')
+						)
+						.append(
+							$(document.createElement('div'))
+							.addClass('code-font')
+							.addClass('trace-path-mounted')
+							.append(document.createTextNode(cp.path))
+							.attr('data-tooltip', 'The local filesystem path on the given build environment for the JAR.')
+						);
+					break;
+				}
+				case 'nest': {
+					td.text('saker.nest v' + cp.version)
+						.attr('data-tooltip', 'The ' + cp.version + ' version of the saker.nest repository is loaded.');
+					break;
+				}
+				case 'unrecognized': {
+					td.text(cp.type)
+						.attr('data-tooltip', 'The class with the given name loads the classpath in an implementation dependent ammern.');
+					break;
+				}
+				case 'builtin-script': {
+					td.text('SakerScript (built-in script language)')
+						.attr('data-tooltip', 'The classpath is the built-in language of saker.build.');
+					break;
+				}
+			}
+			return td;
+		}
+		function applyServiceDescription(td, serv) {
+			switch(serv.kind) {
+				case 'builtin-script': {
+					td.text('SakerScript (built-in script language)')
+						.attr('data-tooltip', 'The built-in language of saker.build is loaded.');
+					break;
+				}
+				case 'named': {
+					td.text('Class name: ' + serv.class_name)
+						.attr('data-tooltip', 'The class with the specified name is loaded.');
+					break;
+				}
+				case 'nest': {
+					td.text('saker.nest repository')
+						.attr('data-tooltip', 'The saker.nest repository is loaded.');
+					break;
+				}
+				case 'service_loader': {
+					td
+						.append(
+							$(document.createTextNode('Service: '))
+						)
+						.append(
+							$(document.createElement('span'))
+							.addClass('code-font')
+							.text(serv.class)
+						)
+						.attr('data-tooltip', 'A service is loaded for the given class name.');
+					break;
+				}
+				case 'unrecognized': {
+					td.text(cp.type)
+						.attr('data-tooltip', 'The class with the given name loads the service in an implementation dependent manner.');
+					break;
+				}
+			}
+			return td;
+		}
+		
+		if (bt.repo_config != null && bt.repo_config.length > 0) {
+			bt.repo_config.forEach(function(repo){
+				let repodiv = $(document.createElement('div'));
+				let repotbody = $(document.createElement('tbody'));
+				if (repo.identifier != null) {
+					repotbody.append(
+						$(document.createElement('tr'))
+						.append(
+							$(document.createElement('td'))
+							.text('Identifier: ')
+							.attr('data-tooltip', 'The unique identifier of the repository.')
+						)
+						.append($(document.createElement('td')).addClass('code-font').text(repo.identifier))
+					);
+				}
+				if (repo.classpath != null) {
+					repotbody.append(
+						$(document.createElement('tr'))
+						.addClass('trace-summary-embed-table-p2')
+						.append(
+							$(document.createElement('td'))
+							.text('Classpath: ')
+							.attr('data-tooltip', 'The classpath form where the repository is loaded.')
+						)
+						.append(applyClasspathDescription($(document.createElement('td')), repo.classpath))
+					);
+				}
+				if (repo.service != null) {
+					repotbody.append(
+						$(document.createElement('tr'))
+						.addClass('trace-summary-embed-table-p2')
+						.append(
+							$(document.createElement('td'))
+							.text('Service: ')
+							.attr('data-tooltip', 'The service configuration specifying how the repository should be loaded.')
+						)
+						.append(applyServiceDescription($(document.createElement('td')), repo.service))
+					);
+				}
+				repodiv.append(
+					$(document.createElement('table'))
+					.addClass('summary-top-table')
+					.append(repotbody)
+				);
+				repositoriesdiv.append(repodiv);
+			});
+			pagediv.append(repositoriesdiv);
+		}
+		if (bt.script_config != null && Object.keys(bt.script_config).length > 0) {
+			$.each(bt.script_config, function(wildcard, config){
+				let scriptdiv = $(document.createElement('div'));
+				let scripttbody = $(document.createElement('tbody'));
+				
+				scripttbody.append(
+					$(document.createElement('tr'))
+					.append(
+						$(document.createElement('td'))
+						.attr('colspan', 2)
+						.addClass('code-font')
+						.text(wildcard)
+						.attr('data-tooltip', 'The wildcard the following script configuration applies to.')
+					)
+				);
+				if (config.classpath != null) {
+					scripttbody.append(
+						$(document.createElement('tr'))
+						.addClass('trace-summary-embed-table-p2')
+						.append(
+							$(document.createElement('td'))
+							.text('Classpath: ')
+							.attr('data-tooltip', 'The classpath from where the scripting language is loaded.')
+						)
+						.append(applyClasspathDescription($(document.createElement('td')), config.classpath))
+					);
+				}
+				if (config.service != null) {
+					scripttbody.append(
+						$(document.createElement('tr'))
+						.addClass('trace-summary-embed-table-p2')
+						.append(
+							$(document.createElement('td'))
+							.text('Service: ')
+							.attr('data-tooltip', 'The service configuration specifying how the scripting language should be loaded.')
+						)
+						.append(applyServiceDescription($(document.createElement('td')), config.service))
+					);
+				}
+				if (config.options != null && Object.keys(config.options).length > 0) {
+					scripttbody.append(
+						$(document.createElement('tr'))
+						.append(
+							$(document.createElement('td'))
+							.text('Options')
+							.attr('data-tooltip', 'User provided key-value pairs to configure the script language parser.')
+						)
+					);
+					$.each(config.options, function(k, v){
+						scripttbody.append(
+							$(document.createElement('tr'))
+							.append($(document.createElement('td')).text(k))
+							.append($(document.createElement('td')).text(v))
+						);
+					});
+				}
+				
+				scriptdiv.append(
+					$(document.createElement('table'))
+					.addClass('summary-top-table')
+					.append(scripttbody)
+				);
+				scriptconfigdiv.append(scriptdiv);
+			});
+			pagediv.append(scriptconfigdiv);
+		}
+		if (bt.database_config != null) {
+			let dbtbody = $(document.createElement('tbody'));
+			
+			function applyContentDescriptorSupplierDescription(td, cds) {
+				if (typeof cds === 'string') {
+					switch(cds){
+						case 'FILE_ATTRIBUTES': {
+							td.text('File attributes')
+								.attr('data-tooltip', 'The last modification time and size of the file are used.');
+							break;
+						}
+						case 'HASH_MD5': {
+							td.text('MD5 hash')
+								.attr('data-tooltip', 'The file contents are hashed using MD5.');
+							break;
+						}
+						default: {
+							td.text(cds)
+								.attr('data-tooltip', 'The class name of the used algorithm.');
+							break;						
+						}
+					}
+				} else {
+					td.text(cds.type);
+				}
+				return td;
+			}
+			
+			if (bt.database_config.configuration != null) {
+				$.each(bt.database_config.configuration, function(machineuuid, config){
+					let name = getMachineNameDefaulted(bt, machineuuid);
+					dbtbody.append(
+						$(document.createElement('tr'))
+						.append(
+							$(document.createElement('td'))
+							.attr('colspan', 2)
+							.text(name)
+							.attr('data-tooltip', 'The name of the build environment the rules are specified for.')
+						)
+					);
+					$.each(config, function(wildcard, cds){
+						dbtbody.append(
+							$(document.createElement('tr'))
+							.addClass('trace-summary-embed-table-p2')
+							.append(
+								$(document.createElement('td'))
+								.text(wildcard)
+								.attr('data-tooltip', 'The wildcard of the files this rule applies to.')
+							)
+							.append(applyContentDescriptorSupplierDescription($(document.createElement('td')), cds))
+						);
+					});
+				});
+			}
+			
+			if (bt.database_config.fallback != null) {
+				dbtbody.append(
+					$(document.createElement('tr'))
+					.append(
+						$(document.createElement('td'))
+						.text('Fallback: ')
+						.attr('data-tooltip', 'The used content detection algorithm if no rules are matched.')
+					)
+					.append(applyContentDescriptorSupplierDescription($(document.createElement('td')), bt.database_config.fallback))
+				);
+			}
+			
+			dbconfigdiv.append(
+				$(document.createElement('table'))
+				.addClass('summary-top-table')
+				.append(dbtbody)
+			);
+			pagediv.append(dbconfigdiv);
+		}
+		
+		let misctbody = $(document.createElement('tbody'));
+		misctbody.append(
+			$(document.createElement('tr'))
+			.append(
+				$(document.createElement('td'))
+				.text('Generate IDE configurations: ')
+				.attr('data-tooltip', 'Flag to specify if the build tasks should emit IDE configurations.')
+			)
+			.append($(document.createElement('td')).text(bt.ide_config_required == true))
+		);
+		miscdiv.append(
+			$(document.createElement('table'))
+			.addClass('summary-top-table')
+			.append(misctbody)
+		);
+		pagediv.append(miscdiv);
+		
+		if (bt.environments != null && bt.environments.length > 0){
+			let execenvuuid = bt.execution_environment_uuid;
+			
+			function addEnvironmentInfo(env){
+				let envconninfo = getExecutionEnvironmentConnectionInfo(bt, env.env_uuid);
+				let name = getExecutionEnvironmentName(bt, env.env_uuid);
+				if (name === null) {
+					name = "My computer";
+				}
+				let envdiv = $(document.createElement('div'))
+					.attr('id', env.env_uuid)
+					.addClass('trace-summary-env-details');
+				envdiv.append(
+					$(document.createElement('div'))
+					.addClass('trace-summary-env-name')
+					.text(name)
+				);
+				
+				let envtbody = $(document.createElement('tbody'));
+				if (env.os_name != null && env.os_name != "") {
+					let osstr = env.os_name + (env.os_version == null ? "" : " (" + env.os_version + ")");
+					envtbody.append(
+						$(document.createElement('tr'))
+						.append(
+							$(document.createElement('td'))
+							.text('Operating system: ')
+							.attr('data-tooltip', 'The value of the os.name and os.version system properties.')
+						)
+						.append($(document.createElement('td')).text(osstr))
+					);
+				}
+				if (env.os_arch != null && env.os_arch != "") {
+					envtbody.append(
+						$(document.createElement('tr'))
+						.append(
+							$(document.createElement('td'))
+							.text('Architecture: ')
+							.attr('data-tooltip', 'The value of the os.arch system property.')
+						)
+						.append($(document.createElement('td')).text(env.os_arch))
+					);
+				}
+				if (env.java_vm_vendor != null && env.java_vm_vendor != "") {
+					envtbody.append(
+						$(document.createElement('tr'))
+						.append(
+							$(document.createElement('td'))
+							.text('Java VM vendor: ')
+							.attr('data-tooltip', 'The value of the java.vm.vendor system property.')
+						)
+						.append($(document.createElement('td')).text(env.java_vm_vendor))
+					);
+				}
+				if (env.java_vm_name != null && env.java_vm_name != "") {
+					envtbody.append(
+						$(document.createElement('tr'))
+						.append(
+							$(document.createElement('td'))
+							.text('Java VM name: ')
+							.attr('data-tooltip', 'The value of the java.vm.name system property.')
+						)
+						.append($(document.createElement('td')).text(env.java_vm_name))
+					);
+				}
+				if (env.java_version != null && env.java_version != "") {
+					envtbody.append(
+						$(document.createElement('tr'))
+						.append(
+							$(document.createElement('td'))
+							.text('Java version: ')
+							.attr('data-tooltip', 'The value of the java.version system property.')
+						)
+						.append($(document.createElement('td')).text(env.java_version))
+					);
+				}
+				if (env.java_home != null && env.java_home != "") {
+					envtbody.append(
+						$(document.createElement('tr'))
+						.append(
+							$(document.createElement('td'))
+							.text('Java home: ')
+							.attr('data-tooltip', 'The value of the java.home system property.')
+						)
+						.append($(document.createElement('td')).addClass('code-font').text(env.java_home))
+					);
+				}
+				if (env.saker_build_version != null && env.saker_build_version != "") {
+					envtbody.append(
+						$(document.createElement('tr'))
+						.append(
+							$(document.createElement('td'))
+							.text('Saker.build version: ')
+							.attr('data-tooltip', 'The version of the saker.build runtime.')
+						)
+						.append($(document.createElement('td')).text(env.saker_build_version))
+					);
+				}
+				if (env.processors != null) {
+					envtbody.append(
+						$(document.createElement('tr'))
+						.append(
+							$(document.createElement('td'))
+							.text('Processor count: ')
+							.attr('data-tooltip', 'The number of logical processors the build environment can use.')
+						)
+						.append($(document.createElement('td')).text(env.processors))
+					);
+				}
+				if (env.thread_factor != null) {
+					envtbody.append(
+						$(document.createElement('tr'))
+						.append(
+							$(document.createElement('td'))
+							.text('Thread factor: ')
+							.attr('data-tooltip', 'The build environment thread factor that is a hint for maximal parallelability.')
+						)
+						.append($(document.createElement('td')).text(env.thread_factor))
+					);
+				}
+				if (env.computer_name != null) {
+					envtbody.append(
+						$(document.createElement('tr'))
+						.append(
+							$(document.createElement('td'))
+							.text('Computer name: ')
+							.attr('data-tooltip', 'The value of the COMPUTERNAME environment variable.')
+						)
+						.append($(document.createElement('td')).text(env.computer_name))
+					);
+				}
+				if (envconninfo != null && envconninfo.address != null) {
+					envtbody.append(
+						$(document.createElement('tr'))
+						.append(
+							$(document.createElement('td'))
+							.text('Connection address: ')
+							.attr('data-tooltip', 'The network address of this environment that was used to connect to it.')
+						)
+						.append($(document.createElement('td')).text(envconninfo.address))
+					);
+				}
+				if (env.cluster_mirror_dir != null) {
+					envtbody.append(
+						$(document.createElement('tr'))
+						.append(
+							$(document.createElement('td'))
+							.text('Cluster mirror directory: ')
+							.attr('data-tooltip', 'The mirror directory used when build tasks are remotely dispatched to this environment.')
+						)
+						.append($(document.createElement('td')).addClass('code-font').text(env.cluster_mirror_dir))
+					);
+				}
+				if (env.user_params != null && Object.keys(env.user_params).length > 0) {
+					envtbody.append(
+						$(document.createElement('tr'))
+						.append(
+							$(document.createElement('td'))
+							.attr('colspan', 2)
+							.text('Environment parameters')
+							.attr('data-tooltip', 'User provided key-value pairs for the build environment.')
+						)
+					);
+					$.each(env.user_params, function(k, v){
+						envtbody.append(
+							$(document.createElement('tr'))
+							.addClass('code-font')
+							.addClass('trace-summary-embed-table-p2')
+							.append($(document.createElement('td')).text(k))
+							.append($(document.createElement('td')).text(v))
+						);
+					});
+				}
+				if (env.machine_uuid != null) {
+					envtbody.append(
+						$(document.createElement('tr'))
+						.append(
+							$(document.createElement('td'))
+							.text('Machine UUID')
+							.attr('data-tooltip', 'The unique identifier of the computer this environment is running on.')
+						)
+						.append($(document.createElement('td')).text(env.machine_uuid))
+					);
+				}
+				if (env.values != null) {
+					envtbody.append(
+						$(document.createElement('tr'))
+						.append(
+							$(document.createElement('td'))
+							.attr('colspan', 2)
+							.append(createCustomValuesView(env.values))
+						)
+					);
+				}
+				envdiv.append(
+					$(document.createElement('table'))
+					.addClass('summary-top-table')
+					.addClass('trace-summary-build-env')
+					.append(envtbody)
+				);
+				
+				envsdiv.append(envdiv);
+			}
+			
+			bt.environments.forEach(function (env){
+				if (env.env_uuid == execenvuuid) {
+					addEnvironmentInfo(env);
+				}
+			});
+			bt.environments.forEach(function (env){
+				if (env.env_uuid != execenvuuid) {
+					addEnvironmentInfo(env);
+				}
+			});
+			pagediv.append(envsdiv);
+		}
+	}
+	
+	let fileTreeIds = 0;
+	
+	function createFileTree(items, itempathgetter, itemcontentsgetter, nodecustomizer) {
+		if (itemcontentsgetter == null) {
+			itemcontentsgetter = function() { return null; };
+		}
+		if (nodecustomizer == null) {
+			nodecustomizer = function() { return null; };
+		}
+		let result = $(document.createElement('div'))
+			.addClass('trace-file-tree')
+			.attr('data-trace-tree-item-count', items.length);
+		let sorted = [];
+		items.forEach(function(item) {
+			let path = itempathgetter(item);
+			let pathelems = path.split(/[\/\\]+/g);
+			if (pathelems.length == 0) {
+				//no path. don't display
+				return;
+			}
+			if (pathelems[0] == "") {
+				pathelems[0] = "/";
+			}
+			sorted.push({
+				path: path,
+				split: pathelems,
+				item: item
+			});
+		});
+		let tree = {
+			_keys: {
+			
+			}
+		};
+		sorted.forEach(function(elem) {
+			let currenttree = tree;
+			for(let i = 0; i < elem.split.length; ++i) {
+				let t = currenttree._keys[elem.split[i]];
+				if(t == null) {
+					let ntree = {
+						_keys: {
+						},
+						_name: elem.split[i]
+					};
+					currenttree._keys[elem.split[i]] = ntree;
+					currenttree = ntree;
+				} else {
+					currenttree = t;
+				}
+			}
+			currenttree._elem = elem;
+		});
+		
+		function collapse(node) {
+			let nodeid = fileTreeIds++;
+			node._node_id = nodeid;
+			node._children = [];
+			$.each(node._keys, function(k, vnode){
+				if(vnode._elem == null) {
+					node._children.push(vnode);
+				}
+			});
+			$.each(node._keys, function(k, vnode){
+				if(vnode._elem != null) {
+					node._children.push(vnode);
+				}
+			});
+			delete node._keys;
+			
+			node._children.sort(function(l, r) {
+				if(l._elem == null) {
+					if(r._elem == null) {
+						return l._name.localeCompare(r._name);
+					}
+					return -1;
+				}
+				if(r._elem == null) {
+					return 1;
+				}
+				return l._name.localeCompare(r._name);
+			});
+			
+			if(node._children.length == 1) {
+				let child = node._children[0];
+				node._keys = child._keys;
+				if(node._name == null) {
+					//for the root
+					node._name = child._name;
+				} else if(node._name == "/") {
+					//handle slash root
+					node._name += child._name;
+				}else{
+					node._name = node._name + '/' + child._name;
+				}
+				if(child._elem != null) {
+					node._elem = child._elem;
+				}
+				delete node._children;
+				//go again
+				collapse(node);
+				return;
+			}
+			
+			if (node._children.length == 0) {
+				delete node._children;
+			} else {
+				node._children.forEach(function(child){
+					collapse(child);	
+				});
+			}
+		}
+		collapse(tree);
+		
+		function createNodeTree(node) {
+			let nodeid = node._node_id;
+			let nodediv = $(document.createElement('div'))
+				.addClass('trace-file-node');
+				
+			let contents = null;
+			if (node._elem != null) {
+				contents = itemcontentsgetter(node._elem.item);
+				nodediv.attr('data-file-tree-path', node._elem.path);
+			}
+			
+			if (node._children != null || contents != null) {
+				let label = $(document.createElement('label'))
+					.text(node._name)
+					.addClass('vis-toggle')
+					.addClass('vis-toggle-side-arrow')
+					.addClass('code-font')
+					.addClass('trace-file-toggle')
+					.attr('for', 'toggle-filetree-' + nodeid);
+				nodediv
+					.append(
+						$(document.createElement('input'))
+						.attr('type', 'checkbox')
+						.addClass('vis-toggle')
+						.addClass('vis-toggle-side-arrow')
+						.attr('id', 'toggle-filetree-' + nodeid)
+					)
+					.append(
+						label
+					);
+				if (contents != null) {
+					label.addClass('vis-toggle-no-arrow')
+						.addClass('tree-file-contents-toggle');
+				}
+			}
+			if (node._children != null) {
+				let nodechildrendiv = $(document.createElement('div'))
+					.addClass('trace-file-children');
+				node._children.forEach(function(child) {
+					nodechildrendiv.append(createNodeTree(child));
+				});
+				nodediv.append(nodechildrendiv);
+			} else if(contents != null) {
+				nodediv.append(
+					$(document.createElement('div'))
+						.addClass('tree-file-contents')
+						.append(contents)
+				);
+			} else {
+				nodediv.append(
+					$(document.createElement('span'))
+					.addClass('trace-file-leaf')
+					.addClass('code-font')
+					.text(node._name)
+				);
+			}
+			if(node._elem != null) {
+				nodecustomizer(nodediv, node._elem.item);
+			}
+			return nodediv;
+		}
+		let nodetree = createNodeTree(tree);
+		
+		if (tree._name != null) {
+			result.append(nodetree);
+			nodetree.find('#toggle-filetree-' + tree._node_id).prop('checked', true);
+		} else {
+			//promote first child level
+			let fchildren = nodetree.children('.trace-file-children').children('.trace-file-node');
+			result.append(fchildren);
+		}
+		
+		return result;
+	}
+	
+	function fillArtifactsPage(bt) {
+		let pagediv = $('#page-artifacts.trace-page').empty();
+		
+		pagediv.append(
+			$(document.createElement('div'))
+			.addClass('page-artifacts-head-summary')
+			.text(bt._artifact_count + ' output artifact' + (bt._artifact_count == 1 ? ' was' : 's were') + ' produced during the build.')
+		);
+		
+		let artarray = [];
+		$.each(bt.artifacts, function(path, artobj){
+			artarray.push({
+				path: path,
+				artifact: artobj
+			});
+		});
+		artarray.sort(function(l, r){ return l.path.localeCompare(r.path); });
+		
+		let ft = createFileTree(
+			artarray, 
+			function(a) { return a.path; },
+			function(a){
+				let adiv = $(document.createElement('div'));
+				if(a.artifact.type != null) {
+					switch(a.artifact.type) {
+						case "bytes": {
+							adiv.append(
+								$(document.createElement('span'))
+									.attr('data-trace-artifact-type', a.artifact.type)
+									.text('Artifact contents are available for download.')
+							);
+							let seelinks = $(document.createElement('div'))
+								.addClass('trace-see-links');
+							seelinks.append(
+								$(document.createElement('a'))
+								.text('Download artifact')
+								.attr('href', '#')
+								.click(function(e){
+									e.preventDefault();
+									
+									let dlelem = document.createElement('a');
+									dlelem.setAttribute('href', '#');
+									//TODO revoke url
+									let ourl = window.URL.createObjectURL(new Blob([a.artifact.bytes]));
+									dlelem.href = ourl;
+									dlelem.download = a.path.substring(a.path.lastIndexOf('/') + 1);
+									dlelem.click();
+								})
+							);
+							adiv.append(seelinks);
+							break;
+						}
+						case "read-error": {
+							adiv.append(
+								$(document.createElement('span'))
+									.attr('data-trace-artifact-type', a.artifact.type)
+									.text('Artifact content retrieval failed during build trace recording.')
+							);
+							break;
+						}
+						case "require-confidental": {
+							adiv.append(
+								$(document.createElement('span'))
+									.attr('data-trace-artifact-type', a.artifact.type)
+									.text('Artifact contents require build trace password.')
+							);
+							break;
+						}
+						case "not-embedded": 
+						default: {
+							adiv.append(
+								$(document.createElement('span'))
+									.attr('data-trace-artifact-type', a.artifact.type)
+									.html('Artifact contents are not present in the build trace. Use the <a class="code-font" href="/saker.build/doc/guide/cmdlineref/build.html#-trace-artifacts-embed" target="_blank">-trace-artifacts-embed</a> command line argument to include them in the build trace.')
+							);
+							break;
+						}
+					}
+				} else {
+					adiv.append(
+						$(document.createElement('span'))
+						.attr('data-trace-artifact-type', 'not-embedded')
+						.addClass('trace-artifact-not-embedded')
+						.text('Artifact contents are not present in the build trace.')
+					);
+				}
+				return adiv;
+			});
+		pagediv.append(ft);
+	}
+	
+	function fillPageWithId(pageid) {
+		if (currentBuildTrace == null) {
+			return;
+		}
+		switch(pageid) {
+			case 'page-timeline': {
+				fillTimelinePage(currentBuildTrace);
+				break;
+			}
+			case 'page-summary': {
+				fillSummaryPage(currentBuildTrace);
+				break;
+			}
+			case 'page-console': {
+				fillConsolePage(currentBuildTrace);
+				break;
+			}
+			case 'page-exceptions': {
+				fillExceptionsPage(currentBuildTrace);
+				break;
+			}
+			case 'page-scripts': {
+				fillScriptsPage(currentBuildTrace);
+				break;
+			}
+			case 'page-artifacts': {
+				fillArtifactsPage(currentBuildTrace);
+				break;
+			}
+		}
+	}
+	
+	function showPageWithId(pageid) {
+		if ($('#trace-body #' + pageid).children().length == 0){
+			//the page is empty. fill it
+			fillPageWithId(pageid);
+		}
+		$('#trace-body').attr('data-selected-page', pageid);
+	}
+	
+	document.getElementById('file-input')
+		.addEventListener('change', function(f) { return readSingleFile(f); }, false);
+	$('.trace-menu-element').click(function(e){
+		e.preventDefault();
+		let pageid = $(this).attr('data-selects');
+		showPageWithId(pageid);
+	});
+	
+	//https://stackoverflow.com/questions/6848043/how-do-i-detect-a-file-is-being-dragged-rather-than-a-draggable-element-on-my-pa
+	var dragTimer;
+	$('#trace-body')
+	.on('dragstart', function(e){
+		e.preventDefault();  
+   		e.stopPropagation();
+	})
+	.on('dragover', function(e){
+		e.preventDefault();  
+   		e.stopPropagation();
+   		let ev = e.originalEvent;
+		let dt = ev.dataTransfer;
+		if (dt.types) {
+			if (dt.types.indexOf ? dt.types.indexOf('Files') != -1 : dt.types.contains('Files')) {
+				$('#trace-body').attr('data-open-dropping', 'file');
+				window.clearTimeout(dragTimer);
+			} else if ((dt.types.indexOf ? dt.types.indexOf('text/uri-list') != -1 : dt.types.contains('text/uri-list')) ||
+					(dt.types.indexOf ? dt.types.indexOf('text/x-moz-url') != -1 : dt.types.contains('text/x-moz-url'))) {
+				$('#trace-body').attr('data-open-dropping', 'uri');
+				window.clearTimeout(dragTimer);
+			}
+		}
+	})
+	.on('dragleave', function(e){
+		dragTimer = window.setTimeout(function() {
+			$('#trace-body').removeAttr('data-open-dropping');
+		}, 100);
+	})
+	.on('drop', function(e){
+		e.preventDefault();  
+   		e.stopPropagation();
+		$('#trace-body').removeAttr('data-open-dropping');
+		window.clearTimeout(dragTimer);
+		let ev = e.originalEvent;
+		let url = ev.dataTransfer.getData('URL');
+		if(url != null && url != "") {
+			readUrlImpl(url);
+		} else {
+			let mozurl = ev.dataTransfer.getData('text/x-moz-url');
+			if(mozurl != null && mozurl.length > 0) {
+				let themozurl = mozurl.split('\n')[0];
+				readUrlImpl(themozurl);
+			}else if (ev.dataTransfer.items) {
+				if (ev.dataTransfer.items.length < 1) {
+					//no files, silently ignore
+				} else if(ev.dataTransfer.items.length > 1) {
+					$('#modal-error-dialog .modal-title').text('Error');
+					$('#modal-error-dialog #modal-message-body')
+						.empty()
+						.append('<p>Too many files were drag & dropped.</p>');
+					$('#modal-error-dialog').modal('show');
+				} else {
+					if (ev.dataTransfer.items[0].kind === 'file') {
+						let file = ev.dataTransfer.items[0].getAsFile();
+	        			readSingleFileImpl(file);
+					} else {
+						//not a file, silently ignore
+					}
+				}
+			}
+		}
+	});
+	
+	$('#trace-url-open-form').on('submit', function(e){
+		let url = $('#trace-url-open-form #url-input').val();
+		readUrlImpl(url);
+		return false;
+	});
+	let docurl = new URL(document.location);
+	let starturl = docurl.searchParams.get('url');
+	if (starturl != null && starturl.length > 0) {
+		$('#trace-url-open-form #url-input').val(starturl);
+		readUrlImpl(starturl, docurl.searchParams.get('zip_entry'));
+	}
+})();
+</script>
+
+LANDING_FOOTER
+</body>
+</html>

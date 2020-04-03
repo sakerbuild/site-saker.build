@@ -1,0 +1,31 @@
+# a variable with the name $item in the build target scope
+$item = # ...
+foreach $item in [1, 2, 3]
+	with $local {
+	# accesses the loop variable
+	$item 
+	# accesses the $item variable in the build target scope
+	$"item"
+	
+	# accesses and assigns the local variable
+	$local = # ...
+	# accesses the variable $local in the build target scope
+	$"loc{ al }"
+	
+	foreach $inneritem in [4, 5] 
+		with $inlocal {
+		# accesses the outer loop variable
+		$item
+		# accesses the inner loop variable
+		$inneritem
+		# accesses the $item variable in the build target scope
+		$"item"
+		
+		# accesses and assigns the local variable for the inner loop
+		$inlocal = # ...
+		# accesses the local variable of the outer loop
+		$local
+		# accesses the variable $local in the build target scope
+		$"local"
+	}
+}

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title><!-- DOC-TITLE -->&nbsp;|&nbsp;saker.build blog</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+	
+	<link rel="stylesheet" href="<!-- DOC-PATH-TO-ROOT-DIR -->../res/bootstrap.min.css" >
+	<link rel="stylesheet" href="<!-- DOC-PATH-TO-ROOT-DIR -->../res/doc-saker.css" >
+	
+</head>
+<body data-nav-location="blog">
+LANDING_NAV
+<div class="container page-contents packagedoc">
+	<div class="row">
+		<div class="col-12 col-lg-3 col-xl-2 p-lg-0">
+			<div class="doc-navigation-container">
+				<label class="d-lg-none nav-collapse" for="doc-collapse-nav-label">
+					<svg style="height: 1.5em;" viewBox="0 0 24 24">
+					    <path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+					</svg>
+					Navigation
+				</label>
+				<input style="display:none;" id="doc-collapse-nav-label" type="checkbox"/> 
+				<!-- DOC-NAV -->
+			</div>
+		</div>
+		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			DOC_SPONSOR_TEMPLATE
+			<!-- DOC-BODY -->
+			<!-- DOC-HEADINGS-NAV -->
+		</div>
+	</div>
+</div>
+LANDING_FOOTER
+
+<!-- DOC-LANGUAGE-SCRIPTS -->
+<script>
+if(window.hasOwnProperty("hljs")){
+	hljs.configure({
+	  languages: []
+	});
+	hljs.initHighlightingOnLoad();
+}
+</script>
+
+</body>
+</html>

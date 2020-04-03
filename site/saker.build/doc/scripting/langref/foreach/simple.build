@@ -1,0 +1,10 @@
+#loop-start
+foreach $item in [1, 2, 3] {
+	example.task($item)
+}
+#loop-end
+#unroll-start
+example.task(1)
+example.task(2)
+example.task(3)
+#unroll-end

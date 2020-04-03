@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+LANDING_HEADER
+<body class="style-landing" data-nav-location="landing">
+LANDING_NAV
+
+<div class="container mb-5 mt-1">
+<h1>404 - Not found</h1>
+<p>The page you're looking for doesn't exist.<p/> 
+<p>If you ended up here by following a valid link, please <a id="file_issue_link" href="https://github.com/sakerbuild/saker.build/issues/new?assignees=&labels=documentation%2C+bug&template=missing_documentation.md&title=Documentation%20404">file an issue on GitHub</a>.</p>
+</div>
+
+<script>
+document.querySelector('#file_issue_link').href = 'https://github.com/sakerbuild/saker.build/issues/new?assignees=&labels=documentation%2C+bug&template=missing_documentation.md&title=Documentation%20404&body=' + encodeURIComponent('The following documentation page was not found: ' + window.location.href)
+</script>
+
+LANDING_FOOTER
+</body>
+</html>

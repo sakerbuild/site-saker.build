@@ -1,0 +1,7 @@
+# Usage benefits
+
+One of the benefits of using SDKs is that the tasks that accept them can optimize their workload based on them. When supported, it also allows them to select an appropriate build machine to run on. This is important when the developers use build clusters for build execution.
+
+One example for this is the [saker.msvc](root:/saker.msvc/index.html) package that automatically distributes the compiled source files on the build clusters based on the SDKs specifications of the compilation task. It also enables that a given SDK doesn't need to be installed on the local build machine, but only on one of the many build clusters. E.g. if you use macOS to run your build, you can still use the MSVC toolchain if a Windows machine is added as a build cluster to your build. Note that this is not the direct benefits of the SDK usage, but the SDKs make this automatic distribution easier.
+
+Another benefit is that the consumer of an SDK doesn't need to know *anything* about the SDK that is being used. One example for this is when we compile against the Java Native Interface. [An example from saker.java.compiler](root:/saker.java.compiler/doc/examples/jnicompile.html) showcases this, and you can see that while the include directories are added to the C compiler, nobody actually needs to keep track of the directory layout of the JDK, or even where the include directories reside in it.

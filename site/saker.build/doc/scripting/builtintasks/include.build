@@ -1,0 +1,31 @@
+#saker-build-start
+build {
+	# includes the compile target in saker.build
+	#   with the "src" value as Directory parameter
+	include(compile, Directory: src)
+	# ... some other build steps
+}
+compile(
+	in Directory,
+) {
+	# compiles some sources in the parameter directory
+	#   with the library from library.build on path
+	example.compile.sources(
+		$Directory,
+		# include the build target in library.build
+		#   and access the Library output parameter
+		LibraryPath: include(Path: library.build)[Library]
+	)
+}
+#saker-build-end
+
+#library-build-start
+build(
+	# input parameter with default value
+	in Sources = libsrc,
+	# output parameter of the compiled library
+	out Library,
+) {
+	$Library = example.compile.library($Sources)
+}
+#library-build-end

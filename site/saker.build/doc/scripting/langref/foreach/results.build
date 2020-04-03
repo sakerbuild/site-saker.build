@@ -1,0 +1,12 @@
+#loop-start
+foreach $item in [1, 2, 3] {
+	# ...
+} : [ $item * 3 ]
+#loop-end
+#unroll-start
+[1 * 3, 2 * 3, 3 * 3]
+#unroll-end
+
+#emptybody-start
+foreach $item in [1, 2, 3] : [ $item * 3 ]
+#emptybody-end

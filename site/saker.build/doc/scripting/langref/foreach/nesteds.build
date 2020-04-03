@@ -1,0 +1,16 @@
+#loop-start
+foreach $item in [1, 2] 
+	with $local = $item * 3 {
+	foreach $inneritem in [4, 5] 
+		with $innerlocal = $local + $inneritem {
+		example.task($innerlocal)
+	}
+}
+#loop-end
+#unroll-start
+example.task(1 * 3 + 4)
+example.task(1 * 3 + 5)
+
+example.task(2 * 3 + 4)
+example.task(2 * 3 + 5)
+#unroll-end

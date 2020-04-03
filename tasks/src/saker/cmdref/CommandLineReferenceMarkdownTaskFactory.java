@@ -12,6 +12,7 @@ import java.util.List;
 import saker.build.file.ByteArraySakerFile;
 import saker.build.file.SakerDirectory;
 import saker.build.file.SakerFile;
+import saker.build.file.provider.SakerPathFiles;
 import saker.build.runtime.execution.ExecutionContext;
 import saker.build.task.ParameterizableTask;
 import saker.build.task.TaskContext;
@@ -68,7 +69,7 @@ public class CommandLineReferenceMarkdownTaskFactory extends FrontendTaskFactory
 			});
 
 			String name = ObjectUtils.nullDefault(nameOption, "default");
-			SakerDirectory outdir = taskcontext.getTaskBuildDirectory().getDirectoryCreate(TASK_NAME)
+			SakerDirectory outdir = SakerPathFiles.requireBuildDirectory(taskcontext).getDirectoryCreate(TASK_NAME)
 					.getDirectoryCreate(name);
 
 			outdir.clear();
@@ -217,7 +218,7 @@ public class CommandLineReferenceMarkdownTaskFactory extends FrontendTaskFactory
 
 			}
 			outdir.synchronize();
-			return null;
+			return outdir.getSakerPath();
 		}
 
 	}

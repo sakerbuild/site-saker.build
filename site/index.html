@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+LANDING_HEADER
+<body class="style-landing landing-index" data-nav-location="landing">
+LANDING_NAV
+	<div class="landing-main landing-section">
+		<div class="main-content">
+			<img class="main-logo" src="res/logo.svg"/>
+			<div class="main-head">
+				Saker.build is a modern build system.
+			</div>
+			<div class="main-sub">
+				Fast, incremental builds for all project sizes.
+			</div>
+			<a class="main-dl" href="/saker.build/doc/installation.html" title="saker.build installation">Get started</a>
+		</div>
+	</div>
+	<div class="landing-features landing-section">
+		<div class="landing-section-title">Features</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-xl-4 col-md-6 feature-section">
+					<div class="feature-title">General purpose</div>
+					<p>Saker.build can be used to build project of any languages. From Java through C++, it can be used to create applications of any type. The different types can be even mixed in a single project.</p>
+					<p>The <a href="/saker.build/javadoc/index.html" title="Saker.build JavaDoc">rich Java API</a> of the build system allows implementing support for <b>any</b> use-case.</p>
+				</div>
+				<div class="col-xl-4 col-md-6 feature-section">
+					<div class="feature-title">Performance 2.0</div>
+					<p>Every build tool claims that it's fast. Saker.build won't be the odd one out. It focuses on fast clean and incremental builds, reducing the build feedback cycle significantly.</p>
+					<p>We also made some <a href="/saker.build/doc/perfcomparison.html" title="Performance comparison">performance measurements</a> you can check out with pretty graphs showing the advantage.</p>
+				</div>
+				<div class="col-xl-4 col-md-6 feature-section">
+					<div class="feature-title">Next level Java compilation</div>
+					<p>As a plugin to saker.build, we've implemented improved Java compilation capabilities. With deep code and dependency analysis, the incremental and clean Java builds complete in fraction of the time compared to other build tools.</p>
+					<p>See the <a href="/saker.java.compiler/doc/featurecomparison.html" title="saker.java.compiler feature comparison">feature comparison</a> and the <a href="/saker.java.compiler/doc/performancecomparison.html" title="saker.java.compiler performance comparison">performance measurements</a> for more information.</p>
+				</div>
+				<div class="col-xl-4 col-md-6 feature-section">
+					<div class="feature-title">Distributed builds</div>
+					<p>Saker.build supports automatic dispatching of your build tasks to other machines in your network. Throwing more hardware at the build process can easily reduce your build times.</p>
+					<p>See the <a href="/saker.msvc/doc/performancecomparison.html" title="saker.msvc performance comparison">performance comparison</a> for build clusters using the MSVC C/C++ toolchain.</p>
+				</div>
+				<div class="col-xl-4 col-md-6 feature-section">
+					<div class="feature-title">Build trace</div>
+					<p>Visualize and analyze your builds to remove performance bottlenecks and discover the cause of errors. Build trace is a recording of your build execution that you can examine to improve your build process.</p>
+					<p>See the <a href="/buildtrace.html" title="Build trace viewer">Build trace viewer</a> to open one or view an <a href="/buildtrace.html?url=%2Fres%2Ftrace_example_saker.build.trace" title="saker.build build trace">example build</a> of saker.build itself.</p>
+				</div>
+				<div class="col-xl-4 col-md-6 feature-section">
+					<div class="feature-title">Extensible by all</div>
+					<p>Extensibility is the core of saker.build. You can develop your own build tasks and even build languages for the build system.</p>
+					<p>The <a href="https://nest.saker.build" title="Saker.nest repository">saker.nest repository</a> helps the distribution of community packages as the default build system repository.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="landing-idesupport landing-section">
+		<div class="landing-section-title">IDE support</div>
+		<div class="container">
+			<div class="row">
+				<div class="ide-logo-container col-xl-2 offset-xl-2 col-lg-2 offset-lg-1 col-md-3">
+					<img class="ide-logo" src="res/eclipse_logo.svg"/>
+				</div>
+				<div class="col-xl-6 col-lg-8 col-md-9 ide-desc">
+					<p><a href="https://www.eclipse.org/eclipseide/" title="Eclipse IDE">Eclipse</a> is the first IDE to receive plugin support for saker.build. Build language content assist, outline, and extension API support help integration.</p>
+					<p>Java project configurations can be automatically applied based on the build tasks.</p>
+					<p>See the <a href="/saker.build/doc/eclipseplugin.html" title="Eclipse plugin guide">Eclipse plugin guide</a> for more information.</p>
+				</div>
+				<div class="col-12 text-center">Support for other IDEs are on the <a href="/saker.build/doc/roadmap.html#ide-plugin-support" title="Roadmap: IDE plugin support">roadmap</a>.</div>
+			</div>
+		</div>
+	</div>
+	<div class="landing-news landing-section">
+		<div class="landing-section-title">News & Blog</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-4 offset-lg-0 col-md-8 offset-md-2 col-sm-10 offset-sm-1">
+					<div class="news-title"><a href="/blog/javac_source_target_parameters/index.html" title="Beware of the -source and -target javac parameters">Beware of the <code>-source</code> and <code>-target</code> javac parameters</a></div>
+					<div class="news-date">2020 February 27</div>
+					<p class="news-summary">Using these options for cross-compilation may cause runtime errors.</p>
+				</div>
+				<div class="col-lg-4 offset-lg-0 col-md-8 offset-md-2 col-sm-10 offset-sm-1">
+					<div class="news-title"><a href="/blog/intro_build_trace/index.html" title="Introducing the build trace">Introducing the build trace</a></div>
+					<div class="news-date">2020 February 20</div>
+					<p class="news-summary">Build traces can be used to debug builds and find performance bottlenecks.</p>
+				</div>
+				<div class="col-lg-4 offset-lg-0 col-md-8 offset-md-2 col-sm-10 offset-sm-1">
+					<div class="news-title"><a href="/blog/do_i_need_a_build_system.html" title="\"Do I need a build system?\"">"Do I need a build system?"</a></div>
+					<div class="news-date">2020 January 27</div>
+					<p class="news-summary">A question for which the answer is always...</p>
+				</div>
+			</div>
+			<p class="text-center mt-3 mb-3">See the <a href="/blog/archive.html" title="News archive">archive</a> for older posts.</p>
+		</div>
+	</div>
+	<div class="landing-sponsors landing-section" style="display: none;">
+		<div class="landing-section-title">Sponsors</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-4">
+				</div>
+				<div class="col-lg-4">
+				</div>
+				<div class="col-lg-4">
+				</div>
+			</div>
+		</div>
+	</div>
+LANDING_FOOTER
+</body>
+</html>

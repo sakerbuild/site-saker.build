@@ -1,0 +1,625 @@
+static(COPYRIGHT) = "Bence Sipka 2020"
+build {
+	$docembedmacros =  {
+		DOC_NAV_TEMPLATE: templates/nav/navtemplate.html,
+		DOC_FOOTER_TEMPLATE: templates/footer/packagefootertemplate.html,
+		DOC_SPONSOR_TEMPLATE: templates/sponsor/sponsortemplate.html,
+	}
+	$docmacros = {
+		FOOTER_COPYRIGHT: static(COPYRIGHT),
+		VERSION_SAKER_BUILD: 0.8.10,
+		VERSION_SAKER_NEST: 0.8.3,
+		VERSION_ECLIPSE_PLUGINS: 0.8.9,
+	}
+	
+	$landingembedmacros = {
+		LANDING_NAV: templates/landing/nav.html,
+		LANDING_FOOTER: templates/landing/footer.html,
+		LANDING_HEADER: templates/landing/header.html,
+		DOC_SPONSOR_TEMPLATE: templates/sponsor/sponsortemplate.html,
+	}
+	$landingmacros = {
+		PACKAGE_NAME: "",
+		DOC_DATA_PRESENCE: "",
+		"<!-- DOC-PATH-TO-ROOT-DIR -->": "",
+		FOOTER_COPYRIGHT: static(COPYRIGHT),
+	}
+	
+	$genres = saker.site.doc.gen(
+		OutputDirectory: site,
+		ResourceRoots: {
+			"buildres:": buildres/
+		},
+		Sites: [
+			{
+				Directory: site/blog/,
+				RootMarkdown: root.md,
+				TemplateFiles: { **: templates/blogtemplate.html },
+				Macros: $docmacros + {
+					PACKAGE_NAME: saker.build,
+				},
+				EmbedMacros: $landingembedmacros,
+				SiteOutputDirectory: blog,
+				TaskLinkPaths: $tasklinkpaths,
+			},
+			{
+				Directory: site/saker.build,
+				RootMarkdown: doc/root.md,
+				TemplateFiles: { **: templates/doctemplate.html },
+				Macros: $docmacros + {
+					PACKAGE_NAME: saker.build,
+					DOC_DATA_PRESENCE: "nest-package packagedoc javadoc",
+				},
+				EmbedMacros: $docembedmacros,
+				Include: [
+					{
+						Directory: site/saker.build/javadoc/,
+						TargetDirectory: javadoc
+					},
+					{
+						Directory: site/saker.build/res/,
+						TargetDirectory: res
+					},
+					{
+						Directory: site/saker.build/,
+						Resources: index.html
+					},
+				],
+				SiteOutputDirectory: saker.build,
+				TaskLinkPaths: $tasklinkpaths,
+			},
+			{
+				Directory: site/saker.nest/,
+				RootMarkdown: doc/root.md,
+				TemplateFiles: { **: templates/doctemplate.html },
+				Macros: $docmacros + {
+					PACKAGE_NAME: saker.nest,
+					DOC_DATA_PRESENCE: "nest-package packagedoc javadoc",
+				},
+				EmbedMacros: $docembedmacros,
+				Include: [
+					{
+						Directory: site/saker.nest/javadoc/,
+						TargetDirectory: javadoc
+					},
+					{
+						Directory: site/saker.nest/,
+						Resources: index.html
+					},
+				],
+				SiteOutputDirectory: saker.nest,
+				TaskLinkPaths: $tasklinkpaths,
+			},
+			{
+				Directory: site/saker.java.compiler/,
+				RootMarkdown: doc/root.md,
+				TemplateFiles: { **: templates/doctemplate.html },
+				Macros: $docmacros + {
+					PACKAGE_NAME: saker.java.compiler,
+					DOC_DATA_PRESENCE: "nest-package packagedoc javadoc taskdoc",
+				},
+				EmbedMacros: $docembedmacros,
+				Include: [
+					{
+						Directory: site/saker.java.compiler/javadoc/,
+						TargetDirectory: javadoc
+					},
+					{
+						Directory: site/saker.java.compiler/,
+						Resources: index.html
+					},
+					{
+						Directory: include(
+							taskdoc, 
+							bundle: saker.java.compiler,
+							output: saker.java.compiler,
+							docdatapresence: "nest-package packagedoc javadoc taskdoc",
+						)[taskdoc][OutputPath],
+						TargetDirectory: taskdoc
+					}
+				],
+				SiteOutputDirectory: saker.java.compiler,
+				TaskLinkPaths: $tasklinkpaths,
+			},
+			{
+				Directory: site/saker.zip/,
+				RootMarkdown: doc/root.md,
+				TemplateFiles: { **: templates/doctemplate.html },
+				Macros: $docmacros + {
+					PACKAGE_NAME: saker.zip,
+					DOC_DATA_PRESENCE: "nest-package packagedoc javadoc taskdoc",
+				},
+				EmbedMacros: $docembedmacros,
+				Include: [
+					{
+						Directory: site/saker.zip/javadoc/,
+						TargetDirectory: javadoc
+					},
+					{
+						Directory: site/saker.zip/,
+						Resources: index.html
+					},
+					{
+						Directory: include(
+							taskdoc, 
+							bundle: saker.zip,
+							output: saker.zip,
+							docdatapresence: "nest-package packagedoc javadoc taskdoc",
+						)[taskdoc][OutputPath],
+						TargetDirectory: taskdoc
+					}
+				],
+				SiteOutputDirectory: saker.zip,
+				TaskLinkPaths: $tasklinkpaths,
+			},
+			{
+				Directory: site/saker.jar/,
+				RootMarkdown: doc/root.md,
+				TemplateFiles: { **: templates/doctemplate.html },
+				Macros: $docmacros + {
+					PACKAGE_NAME: saker.jar,
+					DOC_DATA_PRESENCE: "nest-package packagedoc taskdoc",
+				},
+				EmbedMacros: $docembedmacros,
+				Include: [
+					{
+						Directory: site/saker.jar/javadoc/,
+						TargetDirectory: javadoc
+					},
+					{
+						Directory: site/saker.jar/,
+						Resources: index.html
+					},
+					{
+						Directory: include(
+							taskdoc, 
+							bundle: saker.jar,
+							output: saker.jar,
+							docdatapresence: "nest-package packagedoc taskdoc",
+						)[taskdoc][OutputPath],
+						TargetDirectory: taskdoc
+					}
+				],
+				SiteOutputDirectory: saker.jar,
+				TaskLinkPaths: $tasklinkpaths,
+			},
+			{
+				Directory: site/saker.sdk.support/,
+				RootMarkdown: doc/root.md,
+				TemplateFiles: { **: templates/doctemplate.html },
+				Macros: $docmacros + {
+					PACKAGE_NAME: saker.sdk.support,
+					DOC_DATA_PRESENCE: "nest-package packagedoc javadoc taskdoc",
+				},
+				EmbedMacros: $docembedmacros,
+				Include: [
+					{
+						Directory: site/saker.sdk.support/javadoc/,
+						TargetDirectory: javadoc
+					},
+					{
+						Directory: site/saker.sdk.support/,
+						Resources: index.html
+					},
+					{
+						Directory: include(
+							taskdoc, 
+							bundle: saker.sdk.support,
+							output: saker.sdk.support,
+							docdatapresence: "nest-package packagedoc javadoc taskdoc",
+						)[taskdoc][OutputPath],
+						TargetDirectory: taskdoc
+					}
+				],
+				SiteOutputDirectory: saker.sdk.support,
+				TaskLinkPaths: $tasklinkpaths,
+			},
+			{
+				Directory: site/saker.maven.support/,
+				RootMarkdown: doc/root.md,
+				TemplateFiles: { **: templates/doctemplate.html },
+				Macros: $docmacros + {
+					PACKAGE_NAME: saker.maven.support,
+					DOC_DATA_PRESENCE: "nest-package packagedoc javadoc taskdoc",
+				},
+				EmbedMacros: $docembedmacros,
+				Include: [
+					{
+						Directory: site/saker.maven.support/javadoc/,
+						TargetDirectory: javadoc
+					},
+					{
+						Directory: site/saker.maven.support/,
+						Resources: index.html
+					},
+					{
+						Directory: include(
+							taskdoc, 
+							bundle: saker.maven.support,
+							output: saker.maven.support,
+							docdatapresence: "nest-package packagedoc javadoc taskdoc",
+						)[taskdoc][OutputPath],
+						TargetDirectory: taskdoc
+					}
+				],
+				SiteOutputDirectory: saker.maven.support,
+				TaskLinkPaths: $tasklinkpaths,
+			},
+			{
+				Directory: site/saker.maven.classpath/,
+				RootMarkdown: doc/root.md,
+				TemplateFiles: { **: templates/doctemplate.html },
+				Macros: $docmacros + {
+					PACKAGE_NAME: saker.maven.classpath,
+					DOC_DATA_PRESENCE: "nest-package packagedoc taskdoc",
+				},
+				EmbedMacros: $docembedmacros,
+				Include: [
+					{
+						Directory: site/saker.maven.classpath/javadoc/,
+						TargetDirectory: javadoc
+					},
+					{
+						Directory: site/saker.maven.classpath/,
+						Resources: index.html
+					},
+					{
+						Directory: include(
+							taskdoc, 
+							bundle: saker.maven.classpath,
+							output: saker.maven.classpath,
+							docdatapresence: "nest-package packagedoc taskdoc",
+						)[taskdoc][OutputPath],
+						TargetDirectory: taskdoc
+					}
+				],
+				SiteOutputDirectory: saker.maven.classpath,
+				TaskLinkPaths: $tasklinkpaths,
+			},
+			{
+				Directory: site/saker.msvc/,
+				RootMarkdown: doc/root.md,
+				TemplateFiles: { **: templates/doctemplate.html },
+				Macros: $docmacros + {
+					PACKAGE_NAME: saker.msvc,
+					DOC_DATA_PRESENCE: "nest-package packagedoc javadoc taskdoc",
+				},
+				EmbedMacros: $docembedmacros,
+				Include: [
+					{
+						Directory: site/saker.msvc/javadoc/,
+						TargetDirectory: javadoc
+					},
+					{
+						Directory: site/saker.msvc/,
+						Resources: index.html
+					},
+					{
+						Directory: include(
+							taskdoc, 
+							bundle: saker.msvc,
+							output: saker.msvc,
+							docdatapresence: "nest-package packagedoc javadoc taskdoc",
+						)[taskdoc][OutputPath],
+						TargetDirectory: taskdoc
+					}
+				],
+				SiteOutputDirectory: saker.msvc,
+				TaskLinkPaths: $tasklinkpaths,
+			},
+			{
+				Directory: site/saker.java.testing/,
+				RootMarkdown: doc/root.md,
+				TemplateFiles: { **: templates/doctemplate.html },
+				Macros: $docmacros + {
+					PACKAGE_NAME: saker.java.testing,
+					DOC_DATA_PRESENCE: "nest-package packagedoc javadoc taskdoc",
+				},
+				EmbedMacros: $docembedmacros,
+				Include: [
+					{
+						Directory: site/saker.java.testing/javadoc/,
+						TargetDirectory: javadoc
+					},
+					{
+						Directory: site/saker.java.testing/,
+						Resources: index.html
+					},
+					{
+						Directory: include(
+							taskdoc, 
+							bundle: saker.java.testing,
+							output: saker.java.testing,
+							docdatapresence: "nest-package packagedoc javadoc taskdoc",
+						)[taskdoc][OutputPath],
+						TargetDirectory: taskdoc
+					}
+				],
+				SiteOutputDirectory: saker.java.testing,
+				TaskLinkPaths: $tasklinkpaths,
+			},
+			{
+				Directory: site/saker.standard/,
+				RootMarkdown: doc/root.md,
+				TemplateFiles: { **: templates/doctemplate.html },
+				Macros: $docmacros + {
+					PACKAGE_NAME: saker.standard,
+					DOC_DATA_PRESENCE: "nest-package packagedoc javadoc taskdoc",
+				},
+				EmbedMacros: $docembedmacros,
+				Include: [
+					{
+						Directory: site/saker.standard/javadoc/,
+						TargetDirectory: javadoc
+					},
+					{
+						Directory: site/saker.standard/,
+						Resources: index.html
+					},
+					{
+						Directory: include(
+							taskdoc, 
+							bundle: saker.standard,
+							output: saker.standard,
+							docdatapresence: "nest-package packagedoc javadoc taskdoc",
+						)[taskdoc][OutputPath],
+						TargetDirectory: taskdoc
+					}
+				],
+				SiteOutputDirectory: saker.standard,
+				TaskLinkPaths: $tasklinkpaths,
+			},
+			{
+				Directory: site/nest.repository.support/,
+				RootMarkdown: doc/root.md,
+				TemplateFiles: { **: templates/doctemplate.html },
+				Macros: $docmacros + {
+					PACKAGE_NAME: nest.repository.support,
+					DOC_DATA_PRESENCE: "nest-package packagedoc javadoc taskdoc",
+				},
+				EmbedMacros: $docembedmacros,
+				Include: [
+					{
+						Directory: site/nest.repository.support/javadoc/,
+						TargetDirectory: javadoc
+					},
+					{
+						Directory: site/nest.repository.support/,
+						Resources: index.html
+					},
+					{
+						Directory: include(
+							taskdoc, 
+							bundle: nest.repository.support,
+							output: nest.repository.support,
+							docdatapresence: "nest-package packagedoc javadoc taskdoc",
+						)[taskdoc][OutputPath],
+						TargetDirectory: taskdoc
+					}
+				],
+				SiteOutputDirectory: nest.repository.support,
+				TaskLinkPaths: $tasklinkpaths,
+			},
+			{
+				Directory: site/saker.rmi/,
+				RootMarkdown: doc/root.md,
+				TemplateFiles: { **: templates/doctemplate.html },
+				Macros: $docmacros + {
+					PACKAGE_NAME: saker.rmi,
+					DOC_DATA_PRESENCE: "nest-package packagedoc javadoc",
+				},
+				EmbedMacros: $docembedmacros,
+				Include: [
+					{
+						Directory: site/saker.rmi/javadoc/,
+						TargetDirectory: javadoc
+					},
+					{
+						Directory: site/saker.rmi/,
+						Resources: index.html
+					},
+				],
+				SiteOutputDirectory: saker.rmi,
+				TaskLinkPaths: $tasklinkpaths,
+			},
+			{
+				Directory: site/saker.util/,
+				RootMarkdown: doc/root.md,
+				TemplateFiles: { **: templates/doctemplate.html },
+				Macros: $docmacros + {
+					PACKAGE_NAME: saker.util,
+					DOC_DATA_PRESENCE: "nest-package packagedoc javadoc",
+				},
+				EmbedMacros: $docembedmacros,
+				Include: [
+					{
+						Directory: site/saker.util/javadoc/,
+						TargetDirectory: javadoc
+					},
+					{
+						Directory: site/saker.util/,
+						Resources: index.html
+					},
+				],
+				SiteOutputDirectory: saker.util,
+				TaskLinkPaths: $tasklinkpaths,
+			},
+			{
+				Directory: site/saker.compiler.utils/,
+				RootMarkdown: doc/root.md,
+				TemplateFiles: { **: templates/doctemplate.html },
+				Macros: $docmacros + {
+					PACKAGE_NAME: saker.compiler.utils,
+					DOC_DATA_PRESENCE: "nest-package packagedoc javadoc",
+				},
+				EmbedMacros: $docembedmacros,
+				Include: [
+					{
+						Directory: site/saker.compiler.utils/javadoc/,
+						TargetDirectory: javadoc
+					},
+					{
+						Directory: site/saker.compiler.utils/,
+						Resources: index.html
+					},
+					{
+						Directory: include(
+							taskdoc, 
+							bundle: saker.compiler.utils,
+							output: saker.compiler.utils,
+							docdatapresence: "nest-package packagedoc javadoc",
+						)[taskdoc][OutputPath],
+						TargetDirectory: taskdoc
+					},
+				],
+				SiteOutputDirectory: saker.compiler.utils,
+				TaskLinkPaths: $tasklinkpaths,
+			},
+		],
+	)
+	$pages = [
+		{
+			FileName: index.html,
+			Title: "Saker.build - A modern build system",
+		},
+		{
+			FileName: 404.html,
+			Title: "404 | Saker.build system",
+		},
+		{
+			FileName: sponsor.html,
+			Title: "Sponsor | saker.build",
+		},
+		{
+			FileName: contact.html,
+			Title: "Contact | saker.build",
+		},
+		{
+			FileName: buildtrace.html,
+			Title: "Build trace | saker.build",
+		},
+	]
+	foreach $pageref in $pages 
+		with 
+			$idxpreprocessedcontents,
+			$preprocessedindexpath,
+			$page = $pageref[FileName] {
+		$idxpreprocessedcontents = saker.preprocess(
+			"site/{ $page }",
+			Macros: $landingmacros + {
+				PAGE_NAME: $pageref[Title],
+			},
+			EmbedMacros: $landingembedmacros,
+		)
+		$preprocessedindexpath = std.file.put(Target: "{ std.file.place(preproc-idx) }/{ $page }", Content: $idxpreprocessedcontents)
+		std.file.copy(Source: $preprocessedindexpath, Target: "{ $genres[OutputDirectory] }/{ $page }")
+	}
+	std.file.copy(Source: site/favicon.ico, Target: "{$genres[OutputDirectory]}/favicon.ico")
+	std.file.copy(Source: site/res/, Target: "{$genres[OutputDirectory]}/res", Wildcard: **)
+	std.file.copy(Source: site/saker.build.ide.eclipse/, Target: "{$genres[OutputDirectory]}/saker.build.ide.eclipse", Wildcard: **)
+	
+	$tasklinkpaths = {
+		saker.msvc.ccompile: ../saker.msvc/taskdoc,
+		saker.msvc.clink: ../saker.msvc/taskdoc,
+		saker.msvc.sdk: ../saker.msvc/taskdoc,
+		saker.msvc.sdk.windowskits: ../saker.msvc/taskdoc,
+		saker.msvc.coptions.preset: ../saker.msvc/taskdoc,
+		
+		saker.maven.resolve: ../saker.maven.support/taskdoc,
+		saker.maven.download: ../saker.maven.support/taskdoc,
+		saker.maven.localize: ../saker.maven.support/taskdoc,
+		saker.maven.install: ../saker.maven.support/taskdoc,
+		saker.maven.deploy: ../saker.maven.support/taskdoc,
+		saker.maven.auth.account: ../saker.maven.support/taskdoc,
+		saker.maven.auth.privatekey: ../saker.maven.support/taskdoc,
+		
+		saker.maven.classpath: ../saker.maven.classpath/taskdoc,
+		
+		saker.java.compile: ../saker.java.compiler/taskdoc,
+		saker.java.processor: ../saker.java.compiler/taskdoc,
+		saker.java.sdk: ../saker.java.compiler/taskdoc,
+		saker.java.classpath.bundle: ../saker.java.compiler/taskdoc,
+		
+		sdk.path: ../saker.sdk.support/taskdoc,
+		sdk.property: ../saker.sdk.support/taskdoc,
+		sdk.user: ../saker.sdk.support/taskdoc,
+		
+		saker.zip.create: ../saker.zip/taskdoc,
+		
+		saker.jar.create: ../saker.jar/taskdoc,
+		
+		nest.local.install: ../nest.repository.support/taskdoc,
+		nest.server.upload: ../nest.repository.support/taskdoc,
+		nest.bundle.download: ../nest.repository.support/taskdoc,
+		nest.bundle.localize: ../nest.repository.support/taskdoc,
+		nest.dependency.resolve: ../nest.repository.support/taskdoc,
+		nest.dependency.filter.kind: ../nest.repository.support/taskdoc,
+		nest.dependency.filter.compile: ../nest.repository.support/taskdoc,
+		nest.test.instrument: ../nest.repository.support/taskdoc,
+		
+		std.file.mirror: ../saker.standard/taskdoc,
+		std.file.mirror.path: ../saker.standard/taskdoc,
+		std.file.copy: ../saker.standard/taskdoc,
+		std.file.local: ../saker.standard/taskdoc,
+		std.file.place: ../saker.standard/taskdoc,
+		std.file.put: ../saker.standard/taskdoc,
+		std.file.wildcard: ../saker.standard/taskdoc,
+		std.file.wildcard.local: ../saker.standard/taskdoc,
+		
+		std.param.env: ../saker.standard/taskdoc,
+		std.param.exec: ../saker.standard/taskdoc,
+		
+		std.env.qualifier.params: ../saker.standard/taskdoc,
+		std.env.qualifier.any: ../saker.standard/taskdoc,
+		
+		abort: ../saker.build/doc/scripting/builtintasks,
+		global: ../saker.build/doc/scripting/builtintasks,
+		include: ../saker.build/doc/scripting/builtintasks,
+		path: ../saker.build/doc/scripting/builtintasks,
+		print: ../saker.build/doc/scripting/builtintasks,
+		sequence: ../saker.build/doc/scripting/builtintasks,
+		static: ../saker.build/doc/scripting/builtintasks,
+		var: ../saker.build/doc/scripting/builtintasks,
+	}
+}
+gencommandlineref(){
+	saker.cmd.reference(cmdlineref/saker.build.launching.Launcher, Name: saker.build)
+	saker.cmd.reference(cmdlineref/saker.nest.action.main.ExecuteAction, Name: saker.nest)
+}
+taskdoc(
+	out taskdoc,
+	in bundle,
+	in tasktemplate = templates/tasktemplate.html,
+	in output = taskdoc,
+	in embedmacros = {
+		DOC_NAV_TEMPLATE: templates/nav/navtemplate.html,
+		DOC_FOOTER_TEMPLATE: templates/footer/packagefootertemplate.html,
+		DOC_SPONSOR_TEMPLATE: templates/sponsor/sponsortemplate.html,
+	},
+	in docdatapresence,
+){
+	$taskdoc = saker.taskdoc.gen(
+		Bundle: nest.dependency.resolve(
+			Bundles: $bundle,
+			Filters: nest.dependency.filter.kind([])
+		)[Bundles],
+		Template: $tasktemplate,
+		Output: $output,
+		EmbedMacros: $embedmacros,
+		Macros: {
+			PACKAGE_NAME: $bundle,
+			"<!-- DOC-PATH-TO-ROOT-DIR -->": "TASK_DOCROOT../",
+			DOC_DATA_PRESENCE: $docdatapresence,
+			FOOTER_COPYRIGHT: static(COPYRIGHT),
+		}
+	)
+}
+testexamples {
+	foreach $file in std.file.wildcard(site/saker.build/doc/extending/taskdev/example_*/src) {
+		saker.java.compile(
+			SourceDirectories: $file[Path],
+			ClassPath: saker.java.classpath.bundle(nest.dependency.resolve(saker.build-api)),
+			Identifier: $file[Path][Parent][FileName],
+		)
+	}
+}

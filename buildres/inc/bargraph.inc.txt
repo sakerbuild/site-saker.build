@@ -1,0 +1,87 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.3/c3.min.css" integrity="sha256-RSMIOX07BNUXyf71hwmYRrUZ8RmiBxMTpqI0GOAy0GM=" crossorigin="anonymous" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.9.7/d3.min.js" integrity="sha256-D+2/goqcjnuoryb9A0rifuH0rBYS9hKOzNqG91JhAVc=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.3/c3.min.js" integrity="sha256-SyrzeJ/tU+9ZJk4n351h9iJftMf9VdsEx2QQMx8+Pik=" crossorigin="anonymous"></script>
+<script>
+(function(){
+	let colors = {
+		'saker': '#1da9d8',
+		'saker.build ide': '#208bc3',
+		'saker.build + cluster': '#208bc3',
+		'gradle': '#175643',
+		'ninja': '#444444',
+		'incredibuild': '#8c114e'
+	};
+	function groupedNumber(x) {
+	  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+	}
+	function createChart(targetid, title, data, metric, color, ylabel) {
+		c3.generate({
+			bindto: targetid,
+			data: {
+				rows: data,
+				type: 'bar',
+				x: data[0][0],
+				labels: {
+					format: function(v, id, i, j) { return groupedNumber(v) + " " + metric; }
+				},
+				order: null
+			},
+			axis: {
+				x: {
+					type: 'category'
+				},
+				y: {
+					label: `${ylabel} (${metric})`,
+					tick: {
+						format: function(v, id, i, j) { return groupedNumber(v); }
+					}
+				}
+			},
+			legend: {
+				position: 'bottom'
+			},
+			padding: {
+	            bottom: 10
+	        },
+			title: {
+				text: title
+			},
+			color: {
+				pattern: color
+			},
+			tooltip: {
+				format: {
+					value: function (value, ratio, id, index) { return groupedNumber(value) + " " + metric; }
+				}
+			}
+		});
+	}
+
+	let graphdivs = document.querySelectorAll('div.doc-bar-graph');
+	graphdivs.forEach(function(gdiv) {
+		let tableinfo = Array.prototype.map.call(gdiv.querySelectorAll('tr'), function(tr){
+			return Array.prototype.map.call(tr.querySelectorAll('td,th'), function(td){
+		    	return td.innerHTML;
+			});
+		});
+		let colorspattern = [];
+		for(let i = 1; i < tableinfo[0].length; i++) {
+			let c = colors[tableinfo[0][i].toLowerCase()];
+			if(c != null) {
+				colorspattern.push(c);
+			} else {
+				let id = tableinfo[0][i].match(/[A-Za-z]+/)[0].toLowerCase();
+				colorspattern.push(colors[id]);
+			}
+		}
+		createChart(
+			'#' + gdiv.id, 
+			gdiv.querySelector('.doc-bar-graph-title').textContent, 
+			tableinfo, 
+			window.getComputedStyle(gdiv).getPropertyValue('--doc-metric').slice(1, -1), 
+			colorspattern, 
+			gdiv.getAttribute('doc-label-y')
+		);
+	});
+}());
+</script>

@@ -1,0 +1,24 @@
+#config-build-start
+# this file is not uploaded to source control
+# contains secret data for the project
+global(company.ENCRYPTION_KEY) = abcd1234
+global(company.PUBLISH_API_KEY) = Y29tcGFueV9zZWNyZXQ=
+#config-build-end
+
+#saker-build-start
+# this file is the main entry point for builds
+# include the configuration build file
+include(Path: config.build)
+publish {
+	# encrypt some data with a secret key
+	$data = example.encrypt.data(
+		Data: exampledata,
+		Key: global(company.ENCRYPTION_KEY)
+	)
+	# publish that data to somewhere
+	example.company.publish(
+		$data, 
+		ApiKey: global(company.PUBLISH_API_KEY)
+	)
+}
+#saker-build-end
