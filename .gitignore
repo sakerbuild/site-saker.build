@@ -1,5 +1,6 @@
 /.project
 /build/
+/build-javadoc/
 /.classpath
 /.saker.build.ideconfigs
 /.saker.project.lock

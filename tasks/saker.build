@@ -29,7 +29,7 @@ export(
 ){
 	$compile = include(compile)
 	$jar = saker.jar.create(
-		Output: saker.docgen-v0.1.jar,
+		Output: saker.docgen.jar,
 		Resources: [
 			{
 				Directory: resources,

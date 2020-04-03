@@ -57,6 +57,7 @@ build {
 						TargetDirectory: javadoc
 					},
 					{
+						# TOOD is this obsolete?
 						Directory: site/saker.build/res/,
 						TargetDirectory: res
 					},
