@@ -7,8 +7,8 @@ pool:
 steps:
 - script: |
     set -e
-    SAKER_BUILD_VERSION = $(curl -s https://mirror.nest.saker.build/badges/saker.build/latest.txt)
-    curl https://api.nest.saker.build/bundle/download/saker.build-v$(SAKER_BUILD_VERSION) -o saker.build.jar
+    SAKER_BUILD_VERSION=$(curl -s https://mirror.nest.saker.build/badges/saker.build/latest.txt)
+    curl https://api.nest.saker.build/bundle/download/saker.build-v$SAKER_BUILD_VERSION -o saker.build.jar
     echo "##vso[task.setvariable variable=SAKER_BUILD_VERSION]$SAKER_BUILD_VERSION"
   displayName: 'Download saker.build'
 - script: java -jar saker.build.jar -bd build install tasks/saker.build
