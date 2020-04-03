@@ -22,7 +22,9 @@ steps:
 - script: java -jar saker.build.jar -bd build "-EUsaker.java.jre.install.locations=$(JAVA_HOME_9_X64)" export doclet/saker.build
   displayName: 'Build doclet'
 - script: |
+    set -e
     mkdir build-javadoc
+    cd build-javadoc
     git clone https://github.com/sakerbuild/saker.build.git
     git clone https://github.com/sakerbuild/saker.util.git
     git clone https://github.com/sakerbuild/saker.compiler.utils.git
@@ -31,11 +33,11 @@ steps:
     git clone https://github.com/sakerbuild/saker.java.testing.git
     git clone https://github.com/sakerbuild/saker.maven.classpath.git
     git clone https://github.com/sakerbuild/saker.maven.support.git
-    git clone https://github.com/sakerbuild/saker.saker.msvc.git
-    git clone https://github.com/sakerbuild/saker.saker.nest.git
-    git clone https://github.com/sakerbuild/saker.saker.rmi.git
-    git clone https://github.com/sakerbuild/saker.saker.sdk.support.git
-    git clone https://github.com/sakerbuild/saker.saker.standard.git
+    git clone https://github.com/sakerbuild/saker.msvc.git
+    git clone https://github.com/sakerbuild/saker.nest.git
+    git clone https://github.com/sakerbuild/saker.rmi.git
+    git clone https://github.com/sakerbuild/saker.sdk.support.git
+    git clone https://github.com/sakerbuild/saker.standard.git
     git clone https://github.com/sakerbuild/saker.util.git
     git clone https://github.com/sakerbuild/saker.zip.git
   displayName: 'Clone repositories into build-javadoc'
