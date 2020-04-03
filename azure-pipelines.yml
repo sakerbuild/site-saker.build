@@ -14,7 +14,12 @@ steps:
   displayName: 'Download saker.build'
 - script: java -jar saker.build.jar -bd build install tasks/saker.build
   displayName: 'Build documentation tasks'
-- script: java -jar saker.build.jar -bd build export doclet/saker.build
+- script: |
+    set -e
+    curl -s https://gist.githubusercontent.com/Sipkab/1505a8659af20003ae09295e99d3cba3/raw/azure_ubuntu_jdksetup_variables.sh -o /tmp/azure_ubuntu_jdksetup_variables.sh
+    bash /tmp/azure_ubuntu_jdksetup_variables.sh 9
+  displayName: 'Setup JDK 9 for Javadoc'
+- script: java -jar saker.build.jar -bd build "-EUsaker.java.jre.install.locations=$(JAVA_HOME_9_X64)" export doclet/saker.build
   displayName: 'Build doclet'
 - script: |
     mkdir build-javadoc
@@ -34,8 +39,3 @@ steps:
     git clone https://github.com/sakerbuild/saker.util.git
     git clone https://github.com/sakerbuild/saker.zip.git
   displayName: 'Clone repositories into build-javadoc'
-- script: |
-    set -e
-    curl -s https://gist.githubusercontent.com/Sipkab/1505a8659af20003ae09295e99d3cba3/raw/azure_ubuntu_jdksetup_variables.sh -o /tmp/azure_ubuntu_jdksetup_variables.sh
-    bash /tmp/azure_ubuntu_jdksetup_variables.sh 9
-  displayName: 'Setup JDK 9 for Javadoc'
