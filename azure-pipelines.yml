@@ -1,8 +1,3 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
 trigger:
 - master
 
@@ -10,7 +5,11 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- script: curl https://api.nest.saker.build/bundle/download/saker.build-v$(curl -s https://mirror.nest.saker.build/badges/saker.build/latest.txt) -o saker.build.jar
+- script: |
+    set -e
+    SAKER_BUILD_VERSION = $(curl -s https://mirror.nest.saker.build/badges/saker.build/latest.txt)
+    curl https://api.nest.saker.build/bundle/download/saker.build-v$(SAKER_BUILD_VERSION) -o saker.build.jar
+    echo "##vso[task.setvariable variable=SAKER_BUILD_VERSION]$SAKER_BUILD_VERSION"
   displayName: 'Download saker.build'
 - script: java -jar saker.build.jar -bd build install tasks/saker.build
   displayName: 'Build documentation tasks'
@@ -24,9 +23,9 @@ steps:
 - script: |
     set -e
     mkdir build-javadoc
+    mkdir javadoc
     cd build-javadoc
     git clone https://github.com/sakerbuild/saker.build.git
-    git clone https://github.com/sakerbuild/saker.util.git
     git clone https://github.com/sakerbuild/saker.compiler.utils.git
     git clone https://github.com/sakerbuild/saker.jar.git
     git clone https://github.com/sakerbuild/saker.java.compiler.git
@@ -40,4 +39,10 @@ steps:
     git clone https://github.com/sakerbuild/saker.standard.git
     git clone https://github.com/sakerbuild/saker.util.git
     git clone https://github.com/sakerbuild/saker.zip.git
+    git clone https://github.com/sakerbuild/nest.repository.support.git
   displayName: 'Clone repositories into build-javadoc'
+- script: |
+    curl https://api.nest.saker.build/bundle/download/saker.apiextract-api-v$(curl -s https://mirror.nest.saker.build/badges/saker.apiextract/latest.txt) -o saker.apiextract.jar
+    curl https://api.nest.saker.build/bundle/download/saker.build-api-v$(SAKER_BUILD_VERSION) -o saker.build-api.jar
+    $(JAVA_HOME_9_X64)/bin/javadoc -locale en_US -sourcepath ../doclet/pseudo;saker.build/core/common;saker.build/thirdparty/rmi/api/src;saker.build/thirdparty/rmi/impl/src;saker.build/thirdparty/utils/common;saker.build/thirdparty/utils/jdk8;saker.build/core/test/api/common;saker.build/core/test/api/enabled;saker.build/thirdparty/asm/src;saker.build/core/jdk8 -docletpath ../saker.build.jar;../build/saker.jar.create/saker.doclet.jar -doclet saker.doclet.SakerDoclet -subpackages saker -classpath saker.apiextract-api.jar -apijar saker.build-api.jar -d javadoc/saker.build/javadoc -template ../templates/javadoc_template.html -index-title "Saker.build API JavaDoc" -embed-macro DOC_FOOTER_TEMPLATE ../templates/footer/packagefootertemplate.html -embed-macro DOC_NAV_TEMPLATE ../templates/nav/navtemplate.html -macro "<!-- DOC-PATH-TO-ROOT-DIR -->" "JAVADOC_ROOT../" -macro PACKAGE_NAME saker.build -macro DOC_DATA_PRESENCE "nest-package packagedoc javadoc" -macro FOOTER_COPYRIGHT "Bence Sipka 2020"
+  displayName: 'Javadoc: saker.build'
