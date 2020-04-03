@@ -1,0 +1,41 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- script: curl https://api.nest.saker.build/bundle/download/saker.build-v$(curl -s https://mirror.nest.saker.build/badges/saker.build/latest.txt) -o saker.build.jar
+  displayName: 'Download saker.build'
+- script: java -jar saker.build.jar -bd build install tasks/saker.build
+  displayName: 'Build documentation tasks'
+- script: java -jar saker.build.jar -bd build export doclet/saker.build
+  displayName: 'Build doclet'
+- script: |
+    mkdir build-javadoc
+    git clone https://github.com/sakerbuild/saker.build.git
+    git clone https://github.com/sakerbuild/saker.util.git
+    git clone https://github.com/sakerbuild/saker.compiler.utils.git
+    git clone https://github.com/sakerbuild/saker.jar.git
+    git clone https://github.com/sakerbuild/saker.java.compiler.git
+    git clone https://github.com/sakerbuild/saker.java.testing.git
+    git clone https://github.com/sakerbuild/saker.maven.classpath.git
+    git clone https://github.com/sakerbuild/saker.maven.support.git
+    git clone https://github.com/sakerbuild/saker.saker.msvc.git
+    git clone https://github.com/sakerbuild/saker.saker.nest.git
+    git clone https://github.com/sakerbuild/saker.saker.rmi.git
+    git clone https://github.com/sakerbuild/saker.saker.sdk.support.git
+    git clone https://github.com/sakerbuild/saker.saker.standard.git
+    git clone https://github.com/sakerbuild/saker.util.git
+    git clone https://github.com/sakerbuild/saker.zip.git
+  displayName: 'Clone repositories into build-javadoc'
+- script: |
+    set -e
+    curl -s https://gist.githubusercontent.com/Sipkab/1505a8659af20003ae09295e99d3cba3/raw/azure_ubuntu_jdksetup_variables.sh -o /tmp/azure_ubuntu_jdksetup_variables.sh
+    bash /tmp/azure_ubuntu_jdksetup_variables.sh 9
+  displayName: 'Setup JDK 9 for Javadoc'
