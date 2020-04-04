@@ -134,3 +134,4 @@ steps:
     GIT_USERNAME: $(PAGE_PUSH_USERNAME)
     GIT_TOKEN: $(PAGE_PUSH_TOKEN)
   displayName: 'Push site'
+  condition: and(succeeded(), ne(variables['GITHUB_PUBLISH_REPOSITORY'], ''))

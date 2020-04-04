@@ -17,8 +17,6 @@ import java.util.Collections;
 import java.util.EnumMap;
 import java.util.EnumSet;
 import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
@@ -129,7 +127,7 @@ public class SakerDoclet implements Doclet {
 	 * The type documentation infos mapped by their qualified names.
 	 */
 	private NavigableMap<String, TypeDocumentationInfo> docTypes = new TreeMap<>();
-	private Set<VariableElement> constants = new HashSet<>();
+	private Set<VariableElement> constants = new LinkedHashSet<>();
 	private TypeElement javaLangObjectElement;
 	private DeclaredType javaLangObjectType;
 	private TypeMirror javaLangThrowableType;
@@ -564,7 +562,7 @@ public class SakerDoclet implements Doclet {
 	}
 
 	private Iterable<TypeElement> collectAllTypeElementsInPackage(PackageElement pack) {
-		Set<TypeElement> result = new HashSet<>();
+		Set<TypeElement> result = new LinkedHashSet<>();
 		collectAllTypeElementsInElement(pack, result);
 		return result;
 	}
@@ -1355,7 +1353,7 @@ public class SakerDoclet implements Doclet {
 	}
 
 	private NavigableMap<String, DeclaredType> collectAllSuperTypesAndElement(TypeElement elem) {
-		Map<TypeParameterElement, TypeMirror> parammirrors = new HashMap<>();
+		Map<TypeParameterElement, TypeMirror> parammirrors = new LinkedHashMap<>();
 		DeclaredType elemdt = (DeclaredType) elem.asType();
 		Iterator<? extends TypeMirror> targit = elemdt.getTypeArguments().iterator();
 		for (TypeParameterElement tpe : elem.getTypeParameters()) {
@@ -2019,7 +2017,7 @@ public class SakerDoclet implements Doclet {
 			}
 
 			if (!hierarchyinheritedmethods.isEmpty()) {
-				Map<TypeElement, Map<String, ExecutableElement>> typedinheritedmethods = new HashMap<>();
+				Map<TypeElement, Map<String, ExecutableElement>> typedinheritedmethods = new LinkedHashMap<>();
 				for (Entry<String, ExecutableElement> entry : hierarchyinheritedmethods.entrySet()) {
 					ExecutableElement inheritedelem = entry.getValue();
 					typedinheritedmethods.computeIfAbsent((TypeElement) inheritedelem.getEnclosingElement(),
