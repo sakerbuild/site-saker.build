@@ -12,8 +12,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.EnumMap;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
@@ -341,7 +339,7 @@ public class DocumentationGeneratorTaskFactory implements TaskFactory<Object>, E
 		private Heading titleHeading;
 		private String titleHeadingText;
 
-		private Map<Node, String> nodeAnchors = new HashMap<>();
+		private Map<Node, String> nodeAnchors = new LinkedHashMap<>();
 		private Map<String, String> anchorTitles = new TreeMap<>();
 
 		private List<NavigationSection> subSections = new ArrayList<>();
@@ -1030,7 +1028,7 @@ public class DocumentationGeneratorTaskFactory implements TaskFactory<Object>, E
 
 		@Override
 		public Set<Class<? extends Node>> getNodeTypes() {
-			Set<Class<? extends Node>> result = new HashSet<>(super.getNodeTypes());
+			Set<Class<? extends Node>> result = new LinkedHashSet<>(super.getNodeTypes());
 			result.add(EmbedCustomBlock.class);
 			result.add(IncludeCustomBlock.class);
 			result.add(TableOfContentsCustomBlock.class);

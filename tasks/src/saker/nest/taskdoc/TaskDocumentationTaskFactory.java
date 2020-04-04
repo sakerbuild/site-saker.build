@@ -10,9 +10,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -704,8 +704,8 @@ public class TaskDocumentationTaskFactory extends FrontendTaskFactory<Object> {
 				out.append(">");
 				String escapedparamname = escapeHtml(getParameterInfoUseName(pinfo));
 
-				out.append("<td class=\"taskdoc-idx-param-meta\"><a class=\"taskdoc-idx-paramname\" href=\"#" + escapedparamname
-						+ "\" title=\"Task parameter " + escapedparamname + "\">");
+				out.append("<td class=\"taskdoc-idx-param-meta\"><a class=\"taskdoc-idx-paramname\" href=\"#"
+						+ escapedparamname + "\" title=\"Task parameter " + escapedparamname + "\">");
 				out.append(escapedparamname);
 				out.append("</a></td>");
 
@@ -1101,7 +1101,7 @@ public class TaskDocumentationTaskFactory extends FrontendTaskFactory<Object> {
 	}
 
 	private static class TypeReferencesTracker {
-		private Map<Class<?>, String> typeTypeIds = new HashMap<>();
+		private Map<Class<?>, String> typeTypeIds = new LinkedHashMap<>();
 		private Map<String, Class<?>> typeIdTypes = new TreeMap<>();
 
 		public Set<? extends Class<?>> getTypes() {

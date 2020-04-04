@@ -14,7 +14,7 @@ import java.nio.file.attribute.FileTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -71,7 +71,7 @@ public class ScriptStyleCSSBuilder implements AutoCloseable {
 	private static final Set<TokenStyle> SINGLE_UNSTYLED_TOKEN = Collections.singleton(TOKEN_STYLE_UNSTYLED);
 
 	private NavigableMap<String, Set<? extends TokenStyle>> classStyles = new TreeMap<>();
-	private Map<Set<? extends TokenStyle>, String> styleClasses = new HashMap<>();
+	private Map<Set<? extends TokenStyle>, String> styleClasses = new LinkedHashMap<>();
 
 	private String lastCssName = "";
 
