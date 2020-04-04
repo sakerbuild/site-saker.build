@@ -120,7 +120,7 @@ steps:
     set -e
     mkdir build-staging
     cd build-staging
-    git clone --single-branch --branch gh-pages https://$GIT_USERNAME:$GIT_TOKEN@github.com/Sipkab/saker.build-site-ci-publish-test.git .
+    git clone --single-branch --branch gh-pages https://$GIT_USERNAME:$GIT_TOKEN@github.com/$GITHUB_PUBLISH_REPOSITORY .
     git config user.email "support@saker.build"
     git config user.name "sakerbuild-bot"
     git rm -r *
