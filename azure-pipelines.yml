@@ -9,6 +9,10 @@ resources:
       trigger:
         branches:
         - releases/*
+  repositories:
+  - repository: repo_saker_build
+    type: github
+    name: 'sakerbuild/saker.build'
 
 pool:
   vmImage: 'ubuntu-latest'
@@ -44,12 +48,13 @@ steps:
   displayName: 'Setup JDK 9 for Javadoc'
 - script: java -jar saker.build.jar -bd build "-EUsaker.java.jre.install.locations=$(JAVA_HOME_9_X64)" export doclet/saker.build
   displayName: 'Build doclet'
+- checkout: repo_saker_build
+  path: build-javadoc
 - script: |
     set -e
     mkdir build-javadoc
     mkdir javadoc
     cd build-javadoc
-    git clone https://github.com/sakerbuild/saker.build.git
     git clone https://github.com/sakerbuild/saker.compiler.utils.git
     git clone https://github.com/sakerbuild/saker.jar.git
     git clone https://github.com/sakerbuild/saker.java.compiler.git
