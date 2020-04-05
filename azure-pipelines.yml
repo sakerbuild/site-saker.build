@@ -19,6 +19,7 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
+- checkout: self
 - script: |
     set -e
     mkdir build-update-sites
