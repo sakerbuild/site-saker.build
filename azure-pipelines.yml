@@ -55,6 +55,8 @@ steps:
 - script: java -jar ../saker.build.jar -bd build "-EUsaker.java.jre.install.locations=$(JAVA_HOME_9_X64)" export doclet/saker.build
   displayName: 'Build doclet'
   workingDirectory: saker.build-site
+- script: mkdir build-javadoc && cd build-javadoc && mkdir saker.build
+  displayName: 'Create checkout dirs'
 - checkout: repo_saker_build
   path: build-javadoc/saker.build
 - script: |
@@ -79,11 +81,11 @@ steps:
   displayName: 'Clone repositories into build-javadoc'
 - script: |
     set -e	
+    cp saker.build-site/build/saker.jar.create/saker.doclet.jar saker.doclet.jar
     cd build-javadoc
     curl https://api.nest.saker.build/bundle/download/saker.apiextract-api-v$(curl -s https://mirror.nest.saker.build/badges/saker.apiextract/latest.txt) -o saker.apiextract-api.jar
     curl https://api.nest.saker.build/bundle/download/saker.build-api-v$(SAKER_BUILD_VERSION) -o saker.build-api.jar
     curl https://api.nest.saker.build/bundle/download/saker.nest-api-v$(curl -s https://mirror.nest.saker.build/badges/saker.nest/latest.txt) -o saker.nest-api.jar
-    cp saker.build-site/build/saker.jar.create/saker.doclet.jar saker.doclet.jar
   displayName: 'Setup javadoc libs'
 - script: $(JAVA_HOME_9_X64)/bin/javadoc -locale en_US -sourcepath "../saker.build-site/doclet/pseudo:saker.build/core/common:saker.build/thirdparty/rmi/api/src:saker.build/thirdparty/rmi/impl/src:saker.build/thirdparty/utils/common:saker.build/thirdparty/utils/jdk8:saker.build/core/test/api/common:saker.build/core/test/api/enabled:saker.build/thirdparty/asm/src:saker.build/core/jdk8" -docletpath "../saker.build.jar:../saker.doclet.jar" -doclet saker.doclet.SakerDoclet -subpackages saker -classpath saker.apiextract-api.jar -apijar saker.build-api.jar -d javadoc/saker.build/javadoc -template ../saker.build-site/templates/javadoc_template.html -index-title "Saker.build API JavaDoc" -embed-macro DOC_FOOTER_TEMPLATE ../saker.build-site/templates/footer/packagefootertemplate.html -embed-macro DOC_NAV_TEMPLATE ../saker.build-site/templates/nav/navtemplate.html -macro "<!-- DOC-PATH-TO-ROOT-DIR -->" "JAVADOC_ROOT../" -macro PACKAGE_NAME saker.build -macro DOC_DATA_PRESENCE "nest-package packagedoc javadoc" -macro FOOTER_COPYRIGHT "Bence Sipka 2020"
   displayName: 'Javadoc: saker.build'
