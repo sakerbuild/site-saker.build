@@ -23,6 +23,9 @@ steps:
   path: s
 - script: |
     set -e
+    ll
+    echo $(pwd)
+    ll s
     mkdir build-update-sites
     cd build-update-sites
     pip install PyGithub
