@@ -7,6 +7,19 @@ pool:
 steps:
 - script: |
     set -e
+    mkdir build-update-sites
+    cd build-update-sites
+    pip install PyGithub
+    python ../download_update_sites.py $DOWNLOAD_TOKEN
+    for f in *.zip; do
+      VER=$(echo "$f" | sed -r 's/site-v(.*)\.zip/\1/')
+      unzip "$f" -d "../site/saker.build.ide.eclipse/v$VER"
+    done
+  displayName: 'Download update sites'
+  env:
+    DOWNLOAD_TOKEN: $(SITE_DOWNLOAD_TOKEN)
+- script: |
+    set -e
     SAKER_BUILD_VERSION=$(curl -s https://mirror.nest.saker.build/badges/saker.build/latest.txt)
     curl https://api.nest.saker.build/bundle/download/saker.build-v$SAKER_BUILD_VERSION -o saker.build.jar
     echo "##vso[task.setvariable variable=SAKER_BUILD_VERSION]$SAKER_BUILD_VERSION"
