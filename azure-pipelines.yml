@@ -56,7 +56,7 @@ steps:
   displayName: 'Build doclet'
   workingDirectory: saker.build-site
 - checkout: repo_saker_build
-  path: build-javadoc/saker.build
+  path: '$(Build.SourcesDirectory)/build-javadoc/saker.build'
 - script: |
     set -e
     mkdir build-javadoc
