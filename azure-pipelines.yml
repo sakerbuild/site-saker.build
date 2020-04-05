@@ -6,6 +6,9 @@ resources:
     - pipeline: saker_build_ide_eclipse_update_site
       project: 'saker.build.ide.eclipse'
       source: 'saker.build.ide.eclipse-update-site'
+      trigger:
+        branches:
+        - releases/*
 
 pool:
   vmImage: 'ubuntu-latest'
