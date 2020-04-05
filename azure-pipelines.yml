@@ -6,6 +6,7 @@ pool:
 
 steps:
 - script: |
+    set -e
     mkdir build-update-sites
     cd build-update-sites
     pip install PyGithub
