@@ -59,7 +59,6 @@ steps:
   path: s/build-javadoc/saker.build
 - script: |
     set -e
-    mkdir build-javadoc
     mkdir javadoc
     cd build-javadoc
     git clone https://github.com/sakerbuild/saker.compiler.utils.git
