@@ -43,6 +43,8 @@ The build trace recording should be non-intrusive to the build execution.
 
 #### Clang & GCC support
 
+**Update**: Clang support is under development in the [saker.clang](https://github.com/sakerbuild/saker.clang) repository.
+
 The [saker.msvc](root:/saker.msvc/index.html) package implements features for the MSVC C++ toolchain. Build task implementations for the `clang` and `gcc` compilers should be implemented as well.
 
 Based on the saker.msvc build task implementations, modifying them to support the above compilers shouldn't be a hard task, but is not straightforward. The implementations should be published as a new package.
@@ -50,6 +52,8 @@ Based on the saker.msvc build task implementations, modifying them to support th
 Common parts for C/C++ support may be exported to newly introduced packages if appropriate.
 
 #### Android support
+
+**Update**: Android support is under development in the [saker.android](https://github.com/sakerbuild/saker.android) repository.
 
 Support for using saker.build to develop for Android should be added. The implementation may be gradual, meaning that at start the build tasks should support creating basic Android applcations, and later it can be extended for more complex use-cases.
 
@@ -62,6 +66,8 @@ Support for using saker.build to develop for iOS & macOS should be added. The im
 It shall be examined how developing for .NET, C# and related technologies can be integrated with the saker.build system. This goal is to be split up once the goal progresses.
 
 #### IDE plugin support
+
+**Update**: The IntelliJ plugin is under development. See the [saker.build.ide.intellij](https://github.com/sakerbuild/saker.build.ide.intellij) repository.
 
 Plugin support for other Integrated Development Environments should be added (other than [Eclipse](eclipseplugin.md)). It should be examined how popular IDEs can be integrated with, its feasibility, and possibility of the implementation.
 
