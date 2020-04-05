@@ -23,6 +23,19 @@ steps:
 - script: java -jar saker.build.jar -bd build "-EUsaker.java.jre.install.locations=$(JAVA_HOME_9_X64)" export doclet/saker.build
   displayName: 'Build doclet'
 - script: |
+    mkdir build-update-sites
+    cd build-update-sites
+    pip install PyGithub
+    python ../download_update_sites.py $DOWNLOAD_TOKEN
+    for f in ./*.zip; do
+      VER = $(echo "$f" | sed -r 's/site-v(.*)\.zip/\1/')
+      print "Unzip $f with version $VER"
+      unzip "$f" "../site/saker.build.ide.eclipse/v$VER"
+    done
+  displayName: 'Download update sites'
+  env:
+    DOWNLOAD_TOKEN: $(SITE_DOWNLOAD_TOKEN)
+- script: |
     set -e
     mkdir build-javadoc
     mkdir javadoc
