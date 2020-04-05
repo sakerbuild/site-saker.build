@@ -55,8 +55,6 @@ steps:
 - script: java -jar ../saker.build.jar -bd build "-EUsaker.java.jre.install.locations=$(JAVA_HOME_9_X64)" export doclet/saker.build
   displayName: 'Build doclet'
   workingDirectory: saker.build-site
-- script: mkdir build-javadoc && cd build-javadoc && mkdir saker.build
-  displayName: 'Create checkout dirs'
 - checkout: repo_saker_build
   path: build-javadoc/saker.build
 - script: |
