@@ -1105,7 +1105,7 @@ public class TaskDocumentationTaskFactory extends FrontendTaskFactory<Object> {
 		private Map<String, Class<?>> typeIdTypes = new TreeMap<>();
 
 		public Set<? extends Class<?>> getTypes() {
-			return ImmutableUtils.makeImmutableHashSet(typeTypeIds.keySet());
+			return ImmutableUtils.makeImmutableLinkedHashSet(typeTypeIds.keySet());
 		}
 
 		public String getTypeId(Class<?> c) {
