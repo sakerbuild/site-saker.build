@@ -14,7 +14,7 @@ resources:
     type: github
     name: 'sakerbuild/saker.build'
     endpoint: sakerbuild
-    trigger: true
+    trigger:
       branches:
         include:
         - master
@@ -22,7 +22,7 @@ resources:
     type: github
     name: 'sakerbuild/saker.compiler.utils'
     endpoint: sakerbuild
-    trigger: true
+    trigger:
       branches:
         include:
         - master
@@ -30,7 +30,7 @@ resources:
     type: github
     name: 'sakerbuild/saker.jar'
     endpoint: sakerbuild
-    trigger: true
+    trigger:
       branches:
         include:
         - master
@@ -38,7 +38,7 @@ resources:
     type: github
     name: 'sakerbuild/saker.java.compiler'
     endpoint: sakerbuild
-    trigger: true
+    trigger:
       branches:
         include:
         - master
@@ -46,7 +46,7 @@ resources:
     type: github
     name: 'sakerbuild/saker.java.testing'
     endpoint: sakerbuild
-    trigger: true
+    trigger:
       branches:
         include:
         - master
@@ -54,7 +54,7 @@ resources:
     type: github
     name: 'sakerbuild/saker.maven.classpath'
     endpoint: sakerbuild
-    trigger: true
+    trigger:
       branches:
         include:
         - master
@@ -62,7 +62,7 @@ resources:
     type: github
     name: 'sakerbuild/saker.maven.support'
     endpoint: sakerbuild
-    trigger: true
+    trigger:
       branches:
         include:
         - master
@@ -70,7 +70,7 @@ resources:
     type: github
     name: 'sakerbuild/saker.msvc'
     endpoint: sakerbuild
-    trigger: true
+    trigger:
       branches:
         include:
         - master
@@ -78,7 +78,7 @@ resources:
     type: github
     name: 'sakerbuild/saker.nest'
     endpoint: sakerbuild
-    trigger: true
+    trigger:
       branches:
         include:
         - master
@@ -86,7 +86,7 @@ resources:
     type: github
     name: 'sakerbuild/saker.rmi'
     endpoint: sakerbuild
-    trigger: true
+    trigger:
       branches:
         include:
         - master
@@ -94,7 +94,7 @@ resources:
     type: github
     name: 'sakerbuild/saker.sdk.support'
     endpoint: sakerbuild
-    trigger: true
+    trigger:
       branches:
         include:
         - master
@@ -102,7 +102,7 @@ resources:
     type: github
     name: 'sakerbuild/saker.standard'
     endpoint: sakerbuild
-    trigger: true
+    trigger:
       branches:
         include:
         - master
@@ -110,7 +110,7 @@ resources:
     type: github
     name: 'sakerbuild/saker.util'
     endpoint: sakerbuild
-    trigger: true
+    trigger:
       branches:
         include:
         - master
@@ -118,7 +118,7 @@ resources:
     type: github
     name: 'sakerbuild/saker.zip'
     endpoint: sakerbuild
-    trigger: true
+    trigger:
       branches:
         include:
         - master
@@ -126,7 +126,7 @@ resources:
     type: github
     name: 'sakerbuild/nest.repository.support'
     endpoint: sakerbuild
-    trigger: true
+    trigger:
       branches:
         include:
         - master
