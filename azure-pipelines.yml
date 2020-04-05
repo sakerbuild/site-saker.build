@@ -12,7 +12,6 @@ steps:
     python ../download_update_sites.py $DOWNLOAD_TOKEN
     for f in *.zip; do
       VER=$(echo "$f" | sed -r 's/site-v(.*)\.zip/\1/')
-      print "Unzip $f with version $VER"
       unzip "$f" -d "../site/saker.build.ide.eclipse/v$VER"
     done
   displayName: 'Download update sites'
