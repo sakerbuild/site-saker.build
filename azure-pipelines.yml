@@ -14,62 +14,107 @@ resources:
     type: github
     name: 'sakerbuild/saker.build'
     endpoint: sakerbuild
+    trigger:
+      branches:
+      - master
   - repository: repo_saker_compiler_utils
     type: github
     name: 'sakerbuild/saker.compiler.utils'
     endpoint: sakerbuild
+    trigger:
+      branches:
+      - master
   - repository: repo_saker_jar
     type: github
     name: 'sakerbuild/saker.jar'
     endpoint: sakerbuild
+    trigger:
+      branches:
+      - master
   - repository: repo_saker_java_compiler
     type: github
     name: 'sakerbuild/saker.java.compiler'
     endpoint: sakerbuild
+    trigger:
+      branches:
+      - master
   - repository: repo_saker_java_testing
     type: github
     name: 'sakerbuild/saker.java.testing'
     endpoint: sakerbuild
+    trigger:
+      branches:
+      - master
   - repository: repo_saker_maven_classpath
     type: github
     name: 'sakerbuild/saker.maven.classpath'
     endpoint: sakerbuild
+    trigger:
+      branches:
+      - master
   - repository: repo_saker_maven_support
     type: github
     name: 'sakerbuild/saker.maven.support'
     endpoint: sakerbuild
+    trigger:
+      branches:
+      - master
   - repository: repo_saker_msvc
     type: github
     name: 'sakerbuild/saker.msvc'
     endpoint: sakerbuild
+    trigger:
+      branches:
+      - master
   - repository: repo_saker_nest
     type: github
     name: 'sakerbuild/saker.nest'
     endpoint: sakerbuild
+    trigger:
+      branches:
+      - master
   - repository: repo_saker_rmi
     type: github
     name: 'sakerbuild/saker.rmi'
     endpoint: sakerbuild
+    trigger:
+      branches:
+      - master
   - repository: repo_saker_sdk_support
     type: github
     name: 'sakerbuild/saker.sdk.support'
     endpoint: sakerbuild
+    trigger:
+      branches:
+      - master
   - repository: repo_saker_standard
     type: github
     name: 'sakerbuild/saker.standard'
     endpoint: sakerbuild
+    trigger:
+      branches:
+      - master
   - repository: repo_saker_util
     type: github
     name: 'sakerbuild/saker.util'
     endpoint: sakerbuild
+    trigger:
+      branches:
+      - master
   - repository: repo_saker_zip
     type: github
     name: 'sakerbuild/saker.zip'
     endpoint: sakerbuild
+    trigger:
+      branches:
+      - master
   - repository: repo_nest_repository_support
     type: github
     name: 'sakerbuild/nest.repository.support'
     endpoint: sakerbuild
+    trigger:
+      branches:
+      - master
 
 pool:
   vmImage: 'ubuntu-latest'
