@@ -1,6 +1,12 @@
 trigger:
 - master
 
+resources:
+  pipelines:
+    - pipeline: saker_build_ide_eclipse_update_site
+      project: 'saker.build.ide.eclipse'
+      source: 'saker.build.ide.eclipse-update-site'
+
 pool:
   vmImage: 'ubuntu-latest'
 
