@@ -8,14 +8,19 @@ import java.io.ObjectOutput;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Locale;
+import java.util.Map;
+import java.util.TreeMap;
 
+import saker.build.file.SakerFile;
 import saker.build.file.path.SakerPath;
 import saker.build.runtime.execution.ExecutionContext;
+import saker.build.runtime.execution.FileDataComputer;
 import saker.build.runtime.execution.SakerLog;
 import saker.build.task.Task;
 import saker.build.task.TaskContext;
 import saker.build.task.TaskFactory;
 import saker.build.task.identifier.TaskIdentifier;
+import saker.build.thirdparty.saker.util.ObjectUtils;
 import saker.build.thirdparty.saker.util.io.StreamUtils;
 
 public class UrlTitleTaskFactory implements TaskFactory<String>, Task<String>, Externalizable, TaskIdentifier {
@@ -38,6 +43,16 @@ public class UrlTitleTaskFactory implements TaskFactory<String>, Task<String>, E
 		String prevout = taskcontext.getPreviousTaskOutput(String.class);
 		if (prevout != null) {
 			return prevout;
+		}
+
+		SakerFile titlestile = taskcontext.getTaskUtilities().resolveFileAtPath(SakerPath.valueOf("url_titles.txt"));
+		if (titlestile != null) {
+			taskcontext.getTaskUtilities().reportInputFileDependency(null, titlestile);
+			Map<String, String> urltitles = taskcontext.computeFileContentData(titlestile, new TitleFileDataComputer());
+			String foundtitle = urltitles.get(url);
+			if (foundtitle != null) {
+				return foundtitle;
+			}
 		}
 
 		long nanos = System.nanoTime();
@@ -147,8 +162,10 @@ public class UrlTitleTaskFactory implements TaskFactory<String>, Task<String>, E
 		} catch (IOException e) {
 			throw new RuntimeException("Failed to query URL title: " + url, e);
 		}
-		System.out.println("UrlTitleTaskFactory.run() Retrieving " + url + " took "
-				+ (System.nanoTime() - nanos) / 1_000_000 + " ms");
+		long time = (System.nanoTime() - nanos) / 1_000_000;
+		if (time > 100) {
+			System.out.println("UrlTitleTaskFactory.run() Retrieving " + url + " took " + time + " ms");
+		}
 		String lcstr = str.toLowerCase(Locale.ENGLISH);
 		int titleidx = lcstr.indexOf("<title>");
 		if (titleidx < 0) {
@@ -208,4 +225,34 @@ public class UrlTitleTaskFactory implements TaskFactory<String>, Task<String>, E
 		return "UrlTitleTaskFactory[" + (url != null ? "url=" + url : "") + "]";
 	}
 
+	private static final class TitleFileDataComputer implements FileDataComputer<Map<String, String>> {
+		@Override
+		public Map<String, String> compute(SakerFile file) throws IOException {
+			Map<String, String> urlvals = new TreeMap<>();
+			String content = file.getContent();
+			String[] lines = content.split("[\n\r]+");
+			for (int i = 0; i < lines.length; i++) {
+				String s = lines[i];
+				if (s.trim().isEmpty()) {
+					continue;
+				}
+				s = s.trim();
+				if (i + 1 >= lines.length) {
+					break;
+				}
+				urlvals.put(s, lines[++i].trim());
+			}
+			return urlvals;
+		}
+
+		@Override
+		public int hashCode() {
+			return getClass().getName().hashCode();
+		}
+
+		@Override
+		public boolean equals(Object obj) {
+			return ObjectUtils.isSameClass(this, obj);
+		}
+	}
 }
