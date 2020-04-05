@@ -22,13 +22,15 @@ steps:
 - checkout: self
 - script: |
     set -e
+    ls -la
+    echo $(pwd)
     mkdir build-update-sites
     cd build-update-sites
     pip install PyGithub
     python ../s/download_update_sites.py $DOWNLOAD_TOKEN
     for f in *.zip; do
       VER=$(echo "$f" | sed -r 's/site-v(.*)\.zip/\1/')
-      unzip "$f" -d "../s/site/saker.build.ide.eclipse/update-site/v$VER"
+      unzip "$f" -d "../saker.build-site/site/saker.build.ide.eclipse/update-site/v$VER"
     done
   displayName: 'Download update sites'
   env:
