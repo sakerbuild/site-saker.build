@@ -20,12 +20,8 @@ pool:
 
 steps:
 - checkout: self
-  path: s
 - script: |
     set -e
-    ls -la
-    echo $(pwd)
-    ls -la s
     mkdir build-update-sites
     cd build-update-sites
     pip install PyGithub
