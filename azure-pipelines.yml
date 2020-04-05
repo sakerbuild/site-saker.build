@@ -20,7 +20,7 @@ pool:
 
 steps:
 - checkout: self
-  path: $(Build.SourcesDirectory)
+  path: ./
 - script: |
     set -e
     mkdir build-update-sites
