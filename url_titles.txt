@@ -1,2 +1,4 @@
 https://issuetracker.google.com/issues/150189789
 	APKsigner requires Java 9 in Build tools 30 rc1 [150189789] - Issue Tracker
+https://devblogs.microsoft.com/visualstudio/improving-your-build-times-with-incredibuild-and-visual-studio-2015/
+	Improving your build times with IncrediBuild and Visual Studio 2015 | Visual Studio Blog
