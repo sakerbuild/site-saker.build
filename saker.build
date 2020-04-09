@@ -10,6 +10,7 @@ build {
 		VERSION_SAKER_BUILD: 0.8.10,
 		VERSION_SAKER_NEST: 0.8.3,
 		VERSION_ECLIPSE_PLUGINS: 0.8.9,
+		VERSION_INTELLIJ_PLUGINS: "N/A"
 	}
 	
 	$landingembedmacros = {
