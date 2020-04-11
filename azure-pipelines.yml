@@ -267,8 +267,11 @@ steps:
     cp -r ../saker.build-site/build/saker.site.doc.gen/site/* ./
     find . -not -path '*/\.*' | grep '\.html$' | sed -e 's/^./https:\/\/saker.build/' | sort > sitemap.txt
     git add *
-    git commit -a -m "Automated site update" -m "Via commit sakerbuild/saker.build-site@$COMMIT_ID"
-    git push
+    if [[ -n $(git status -s) ]]
+    then
+      git commit -a -m "Automated site update" -m "Via commit sakerbuild/saker.build-site@$COMMIT_ID"
+      git push
+    fi
   env:
     GIT_USERNAME: $(PAGE_PUSH_USERNAME)
     GIT_TOKEN: $(PAGE_PUSH_TOKEN)
