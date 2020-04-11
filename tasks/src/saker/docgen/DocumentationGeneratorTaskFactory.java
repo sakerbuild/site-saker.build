@@ -1052,7 +1052,8 @@ public class DocumentationGeneratorTaskFactory implements TaskFactory<Object>, E
 			}
 
 			html.line();
-			html.tag("pre");
+			Map<String, String> preattrs = Collections.singletonMap("class", "doc-code-block");
+			html.tag("pre", preattrs);
 			html.tag("code", codeattrs);
 			ProcessedScript sakerscript = null;
 			String codeliteral = fencedCodeBlock.getLiteral();
@@ -1613,6 +1614,8 @@ public class DocumentationGeneratorTaskFactory implements TaskFactory<Object>, E
 
 		private NavigableMap<String, SakerPath> resourceRoots;
 
+		private Set<WildcardPath> allowedMissingResources = new TreeSet<>();
+
 		/**
 		 * For {@link Externalizable}.
 		 */
@@ -1960,6 +1963,9 @@ public class DocumentationGeneratorTaskFactory implements TaskFactory<Object>, E
 						SakerFile resfile = taskcontext.getTaskUtilities().resolveFileAtRelativePath(docmdirectory,
 								linkedrespath);
 						if (resfile == null) {
+							if (isAllowedMissingResource(linkedrespath)) {
+								continue;
+							}
 							throw new NoSuchFileException(linkedrespath.toString(), null,
 									"Linked resource file not found in site: " + state.markdownDirectoryPath);
 						}
@@ -1974,6 +1980,9 @@ public class DocumentationGeneratorTaskFactory implements TaskFactory<Object>, E
 					for (SakerPath linkedrespath : linkeddocrootresources) {
 						SakerPath abspath = mainoutputdirpath.resolve(linkedrespath);
 						if (includeabsoluteoutpaths.contains(abspath)) {
+							continue;
+						}
+						if (isAllowedMissingResource(linkedrespath)) {
 							continue;
 						}
 						throw new NoSuchFileException(linkedrespath.toString(), null,
@@ -1991,6 +2000,17 @@ public class DocumentationGeneratorTaskFactory implements TaskFactory<Object>, E
 			}
 			mainoutputdir.synchronize();
 			return new SimpleDocGeneratorTaskOutput(mainoutputdir.getSakerPath());
+		}
+
+		private boolean isAllowedMissingResource(SakerPath path) {
+			if (allowedMissingResources != null) {
+				for (WildcardPath wc : allowedMissingResources) {
+					if (wc.includes(path)) {
+						return true;
+					}
+				}
+			}
+			return false;
 		}
 
 		private static boolean hasMoreThanOneContentHeading(List<ContentHeading> contentheadings) {
@@ -2239,6 +2259,7 @@ public class DocumentationGeneratorTaskFactory implements TaskFactory<Object>, E
 			out.writeObject(cssDirectory);
 			SerialUtils.writeExternalCollection(out, siteInfos);
 			SerialUtils.writeExternalMap(out, resourceRoots);
+			SerialUtils.writeExternalCollection(out, allowedMissingResources);
 		}
 
 		@Override
@@ -2247,12 +2268,14 @@ public class DocumentationGeneratorTaskFactory implements TaskFactory<Object>, E
 			cssDirectory = (SakerPath) in.readObject();
 			siteInfos = SerialUtils.readExternalImmutableList(in);
 			resourceRoots = SerialUtils.readExternalImmutableNavigableMap(in);
+			allowedMissingResources = SerialUtils.readExternalImmutableNavigableSet(in);
 		}
 
 		@Override
 		public int hashCode() {
 			final int prime = 31;
 			int result = 1;
+			result = prime * result + ((allowedMissingResources == null) ? 0 : allowedMissingResources.hashCode());
 			result = prime * result + ((cssDirectory == null) ? 0 : cssDirectory.hashCode());
 			result = prime * result + ((outputDirectory == null) ? 0 : outputDirectory.hashCode());
 			result = prime * result + ((resourceRoots == null) ? 0 : resourceRoots.hashCode());
@@ -2269,6 +2292,11 @@ public class DocumentationGeneratorTaskFactory implements TaskFactory<Object>, E
 			if (getClass() != obj.getClass())
 				return false;
 			WorkerTaskFactory other = (WorkerTaskFactory) obj;
+			if (allowedMissingResources == null) {
+				if (other.allowedMissingResources != null)
+					return false;
+			} else if (!allowedMissingResources.equals(other.allowedMissingResources))
+				return false;
 			if (cssDirectory == null) {
 				if (other.cssDirectory != null)
 					return false;
@@ -2454,6 +2482,9 @@ public class DocumentationGeneratorTaskFactory implements TaskFactory<Object>, E
 		@SakerInput(value = { "Site", "Sites" }, required = true)
 		public Collection<SiteTaskOption> sitesOption;
 
+		@SakerInput(value = "AllowMissingResources")
+		public Collection<WildcardPath> allowedMissingResourcesOption = Collections.emptyNavigableSet();
+
 		@Override
 		public Object run(TaskContext taskcontext) throws Exception {
 			if (outputDirectoryOption == null) {
@@ -2512,6 +2543,15 @@ public class DocumentationGeneratorTaskFactory implements TaskFactory<Object>, E
 
 			WorkerTaskFactory workertaskfactory = new WorkerTaskFactory(outputDirectoryOption, cssDirectoryOption,
 					resroots, sites);
+			workertaskfactory.allowedMissingResources = new TreeSet<>();
+			if (allowedMissingResourcesOption != null) {
+				for (WildcardPath wp : allowedMissingResourcesOption) {
+					if (wp == null) {
+						continue;
+					}
+					workertaskfactory.allowedMissingResources.add(wp);
+				}
+			}
 
 			taskcontext.getTaskUtilities().startTask(workertaskid, workertaskfactory);
 			SimpleStructuredObjectTaskResult result = new SimpleStructuredObjectTaskResult(workertaskid);

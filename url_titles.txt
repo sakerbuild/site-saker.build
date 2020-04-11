@@ -2,3 +2,15 @@ https://issuetracker.google.com/issues/150189789
 	APKsigner requires Java 9 in Build tools 30 rc1 [150189789] - Issue Tracker
 https://devblogs.microsoft.com/visualstudio/improving-your-build-times-with-incredibuild-and-visual-studio-2015/
 	Improving your build times with IncrediBuild and Visual Studio 2015 | Visual Studio Blog
+https://github.com/sakerbuild/saker.rmi
+	sakerbuild/saker.rmi: Java Remote Method Invocation library
+https://github.com/sakerbuild/saker.process
+	sakerbuild/saker.process: External process invocation support package for the saker.build system
+https://github.com/sakerbuild/saker.nest
+	sakerbuild/saker.nest: The default task and package repository for the saker.build system
+https://github.com/microsoft/language-server-protocol/
+	microsoft/language-server-protocol: Defines a common protocol for language servers.
+https://github.com/markdown-it/markdown-it
+	markdown-it/markdown-it: Markdown parser, done right. 100% CommonMark support, extensions, syntax plugins & high speed
+https://github.com/
+	GitHub

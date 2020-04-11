@@ -7,10 +7,10 @@ build {
 	}
 	$docmacros = {
 		FOOTER_COPYRIGHT: static(COPYRIGHT),
-		VERSION_SAKER_BUILD: 0.8.10,
-		VERSION_SAKER_NEST: 0.8.3,
-		VERSION_ECLIPSE_PLUGINS: 0.8.9,
-		VERSION_INTELLIJ_PLUGINS: "N/A"
+		VERSION_SAKER_BUILD: std.param.exec(Name: site.version.saker.build, Default: 0.8.10),
+		VERSION_SAKER_NEST: std.param.exec(Name: site.version.saker.nest, Default: 0.8.3),
+		VERSION_ECLIPSE_PLUGINS: std.param.exec(Name: site.version.saker.build.ide.eclipse, Default: 0.8.9),
+		VERSION_INTELLIJ_PLUGINS: std.param.exec(Name: site.version.saker.build.ide.intellij, Default: "N/A"),
 	}
 	
 	$landingembedmacros = {
@@ -31,6 +31,9 @@ build {
 		ResourceRoots: {
 			"buildres:": buildres/
 		},
+		AllowMissingResources: [
+			std.param.exec(Name: site.allowed.missing.resources, Default: null)
+		],
 		Sites: [
 			{
 				Directory: site/blog/,
