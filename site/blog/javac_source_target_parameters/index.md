@@ -6,7 +6,7 @@ If you've been cross-compiling Java code for older releases, and were using the 
 
 In the following, we'll compile a simple class to Java 8, using javac from JDK 9. The source is as follows:
 
-```java code-block-pad
+```java
 import java.nio.ByteBuffer;
 
 public class Compile8Test {
@@ -24,19 +24,19 @@ It's quite simple and should properly work on Java 8, 9, or later.
 
 Let's compile it for Java 8, using the `--release` option.
 
-```plaintext code-block-pad
+```plaintext
 path/to/jdk9/bin/javac Compile8Test.java -release 8
 ```
 
 As a test, we should run it on **Java 8**:
 
-```plaintext code-block-pad
+```plaintext
 path/to/java8/bin/java Compile8Test
 ```
 
 The output is nothing out of the ordinary:
 
-```plaintext code-block-pad
+```plaintext
 Success
 ```
 
@@ -48,32 +48,32 @@ The `--release` option was introduced in JDK 9. If you're like us, you may've ju
 
 Let's see how it can affect our compilation output:
 
-```plaintext code-block-pad
+```plaintext
 path/to/jdk9/bin/javac Compile8Test.java -source 8 -target 8
 ```
 
 It compiles fine, we do receive a warning though:
 
-```plaintext code-block-pad
+```plaintext
 warning: [options] bootstrap class path not set in conjunction with -source 1.8
 ```
 
 Whatever... Warnings are just warnings. Let's run it!
 
-```plaintext code-block-pad
+```plaintext
 path/to/java8/bin/java Compile8Test
 ```
 
 The output it not what we'd expect:
 
-```plaintext code-block-pad
+```plaintext
 Exception in thread "main" java.lang.NoSuchMethodError: java.nio.ByteBuffer.flip()Ljava/nio/ByteBuffer;
         at Compile8Test.main(Compile8Test.java:6)
 ```
 
 Okay, so what's up? Well the fact is that although we specified the source and target levels to conform to Java 8, the compilation is still done against the classes in JDK 9! Issues don't surface often because of this, as Java is generally developed in a backward compatible way. However, a new method was introduced in `ByteBuffer` in JDK 9:
 
-```java code-block-pad
+```java
 @Override
 public ByteBuffer flip() {
     super.flip();
@@ -85,7 +85,7 @@ It's basically just for convenience to return a more suitable type of the buffer
 
 We can see this more in detail if we run `javap`:
 
-```plaintext code-block-pad
+```plaintext
 > path/to/java8/bin/javap -v -c Compile8Test.class
 public class Compile8Test
   minor version: 0
@@ -111,7 +111,7 @@ public class Compile8Test
 
 See the line with `7: // Method java/nio/ByteBuffer.flip:()Ljava/nio/ByteBuffer;`? That method doesn't exist on Java 8! To put that in contrast with the `javap` output of the correctly cross-compiled version:
 
-```plaintext code-block-pad
+```plaintext
   public static void main(java.lang.String[]);
     descriptor: ([Ljava/lang/String;)V
     flags: (0x0009) ACC_PUBLIC, ACC_STATIC

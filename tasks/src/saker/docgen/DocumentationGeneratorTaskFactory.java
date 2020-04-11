@@ -1198,7 +1198,8 @@ public class DocumentationGeneratorTaskFactory implements TaskFactory<Object>, E
 			}
 
 			html.line();
-			html.tag("pre");
+			Map<String, String> preattrs = Collections.singletonMap("class", "doc-code-block");
+			html.tag("pre", preattrs);
 			html.tag("code", codeattrs);
 
 			Integer rangestart = embed.getRangeStart();

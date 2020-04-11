@@ -94,6 +94,17 @@ h1, h2, h3, h4, h5, h6 {
 	white-space: pre-wrap;
 }
 
+.doc-code-block {
+    margin: 8px;
+    background-color: var(--color-doc-nav-background);
+    border-radius: 4px;
+    box-shadow: 1px 1px 4px var(--color-ui-element-shadow);
+}
+.doc-code-block>code {
+    padding: 8px 12px;
+    display: block;
+}
+
 .doc-content img {
 	margin: 10px auto;
 	display: block;
@@ -209,10 +220,6 @@ ul>li {
 		white-space: nowrap;
 		max-width: calc((100vw - 1200px) / 2);
 	}
-}
-
-.code-block-pad {
-	margin-left: 2em;
 }
 
 .doc-headings-nav ul {
