@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Usage > <a href="compilationid.html" title="Compilation identifier">Compilation identifier</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -71,7 +74,7 @@
 <p>A compilation identifier consists of dash (<code>'-'</code>) separated name compontents. Its purpose is to uniquely identify a given compilation pass or operation in the current build execution. The compilation identifiers are human-readable.</p>
 <p>When a compilation task is run, it is run with an assigned compilation identifier. This identifier will uniquely identify the output location of the compilation, and is associated with a build task in the build system. This ensures that only a single compilation task will produce its outputs for the given location, and the tasks won't overwrite each others outputs.</p>
 <p>Let's look at an example, with Java compilation:</p>
-<pre><code class="language-sakerscript"><span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
 	<span class="i">SourceDirectories</span>: <span class="f">src/main</span>,
 	<span class="i">Identifier: </span><span class="f">main</span>
 <span class="e">)</span>
@@ -82,7 +85,7 @@
 </code></pre>
 <p>In the above, we assigned different compilation identifiers for the different compilation tasks. They will run concurrently, and produce their outputs for the associated location. (See <a href="../../../saker.java.compiler/doc/javacompile/basics.html#compilation-output" title="Compilation output">Compilation output</a>.)</p>
 <p>The compilation identifiers also ensure that no differently configured compilation tasks will run with the same identifier:</p>
-<pre><code class="language-sakerscript"><span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
 	<span class="i">SourceDirectories</span>: <span class="f">src/main</span>,
 	<span class="i">Identifier: </span><span class="f">main</span>
 <span class="e">)</span>
@@ -96,7 +99,7 @@
 <h2 id="format">Format<a class="doc-heading-anchor" href="#format"></a></h2>
 <p>Compilation identifiers consist of name parts separated by dashes. The names may consist of characters <code>a-z</code>, <code>A-Z</code>, <code>0-9</code>, <code>_</code>, <code>.</code>, <code>()</code>, <code>[]</code>, <code>@</code>. When a compilation identifier is constructed, it is normalized to lowercase letters. The name parts are deduplicated, and not ordered. Empty name components, preceeding and trailing dashes are omitted.</p>
 <p>Some compilation identifier examples:</p>
-<pre><code class="language-plaintext">main
+<pre class="doc-code-block"><code class="language-plaintext">main
 test
 lib-debug
 lib-release
@@ -104,7 +107,7 @@ lib-debug-x64
 lib-debug-x86
 </code></pre>
 <p>Note that all of the following compilation identifiers are considered to be the same:</p>
-<pre><code class="language-plaintext">lib-debug-x64
+<pre class="doc-code-block"><code class="language-plaintext">lib-debug-x64
 x64-lib-debug
 -x64---lib--debug--
 LIB-X64-dEbUG
@@ -117,7 +120,7 @@ LIB-X64-dEbUG
 <h4 id="subset">Subset<a class="doc-heading-anchor" href="#subset"></a></h4>
 <p>Checks whether all of the name components of an identifier are present in another. This operation is often performed then <a href="optionmerging.html" title="Compiler option merging">compiler option merging</a> is being done.</p>
 <p>Some examples:</p>
-<ul>
+<ul class="doc-md-list">
 <li><code>main</code> is a subset of <code>main</code></li>
 <li><code>main</code> is a subset of <code>main-debug</code></li>
 <li><code>lib-x64</code> is a subset of <code>lib-x64-debug</code> (and other variants like <code>lib-debug-x64</code>, order doesn't matter)</li>
@@ -156,7 +159,7 @@ LIB-X64-dEbUG
 				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.compiler.utils documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.compiler.utils">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.compiler.utils">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.compiler.utils" title="saker.compiler.utils | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.compiler.utils" title="saker.compiler.utils | saker.nest">saker.compiler.utils on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.compiler.utils" title="saker.compiler.utils on GitHub">GitHub</a></div>
 			</div>
 		</div>	

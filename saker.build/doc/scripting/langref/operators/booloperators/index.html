@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Scripting language > <a href="../../index.html" title="Language reference">Language reference</a> > <a href="../index.html" title="Operators">Operators</a> > <a href="index.html" title="Boolean operators">Boolean operators</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -99,7 +102,7 @@
 <tr><td align="right"><code>true</code></td><td align="center"><code>&amp;&amp;</code></td><td align="left"><code>true</code></td><td align="center"><code>=</code></td><td><code>true</code></td></tr>
 </tbody>
 </table>
-<pre><code class="language-sakerscript"><span class="c"># simple usage</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="c"># simple usage</span>
 <span class="d">$left</span> || <span class="d">$right</span>
 <span class="d">$left</span> &amp;&amp; <span class="d">$right</span>
 
@@ -115,7 +118,7 @@
 (<span class="d">$first</span> || <span class="d">$second</span>) &amp;&amp; (<span class="d">$third</span> &amp;&amp; (<span class="d">$fourth</span> || !<span class="d">$fifth</span>))
 </code></pre>
 <p>The AND (<code>&amp;&amp;</code>) operator takes precedence before the OR (<code>||</code>) operator. However, we recommend developers to use parentheses in order to improve readability of the code.</p>
-<pre><code class="language-sakerscript"><span class="c"># the following are the same given the precedence of the operators</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="c"># the following are the same given the precedence of the operators</span>
  <span class="d">$first</span> &amp;&amp; <span class="f">second</span>  || <span class="d">$third</span> ||  <span class="d">$fourth</span> &amp;&amp; <span class="d">$fifth</span>
 (<span class="d">$first</span> &amp;&amp; <span class="f">second</span>) || <span class="d">$third</span> || (<span class="d">$fourth</span> &amp;&amp; <span class="d">$fifth</span>)
 
@@ -157,7 +160,7 @@
 				<div data-footer-location="doc-docs"><a href="../../../../../doc/index.html" title="saker.build documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../../../../javadoc/index.html" title="JavaDoc for saker.build">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../../../../taskdoc/index.html"  title="Documentation of build tasks in saker.build">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.build on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.build" title="saker.build on GitHub">GitHub</a></div>
 			</div>
 		</div>	

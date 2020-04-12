@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				User guide > <a href="index.html" title="Introduction">Introduction</a> > <a href="controlflow.html" title="Control flow">Control flow</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -70,12 +73,12 @@
 <p>The execution of the declared expressions are ordered differently than you'd expect based on other languages. They are not executed in the order of their declaration, but based on their input dependencies.</p>
 <p>The build system operates with a high level of concurrency. Basically, it runs everything that it can in a parallel manner. In order to accomodate that, the build language needs to be able to evaluate as many expressions as possible at once. The build system also specifies that the tasks should be pure functions, meaning that they shouldn't have any visible side effects to other tasks.</p>
 <p>This results in an execution model that eagerly runs the declared expressions and schedules them accordingly if they access their input data. The following example provides an example for this:</p>
-<pre><code class="language-sakerscript"><span class="d">$compiledSources</span> = <span class="e">example.compile.sources()</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d">$compiledSources</span> = <span class="e">example.compile.sources()</span>
 <span class="e">example.export.project(</span><span class="d">$compiledSources</span><span class="e">)</span>
 </code></pre>
 <p>The above example compiles some sources of the project, and assigns the compilation result to the <code>$compiledSources</code> variable. The <code>example.export.project()</code> task takes the compilation results and packages them in the requested way. The build system will execute these in proper order, as the two tasks are connected by the variable that conveys the information.</p>
 <p>If we combine the above with the <code>foreach</code> loop, we can have a clearer example for the advantage of parallelization:</p>
-<pre><code class="language-sakerscript"><span class="j">foreach </span><span class="d">$arch</span><span class="j"> in </span><span class="b">[</span><span class="f">x64</span><span class="b">,</span> <span class="f">x86</span><span class="b">,</span> <span class="f">arm</span><span class="b">]</span><span class="j"> 
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="j">foreach </span><span class="d">$arch</span><span class="j"> in </span><span class="b">[</span><span class="f">x64</span><span class="b">,</span> <span class="f">x86</span><span class="b">,</span> <span class="f">arm</span><span class="b">]</span><span class="j"> 
 	with </span><span class="d">$compiledSources</span> {
 	<span class="d">$compiledSources</span> = <span class="e">example.compile.sources(</span><span class="i">Architecture</span>: <span class="d">$arch</span><span class="e">)</span>
 	<span class="e">example.package.project(</span><span class="d">$compiledSources</span><span class="e">)</span>
@@ -117,7 +120,7 @@
 				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.build documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.build">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.build">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.build on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.build" title="saker.build on GitHub">GitHub</a></div>
 			</div>
 		</div>	

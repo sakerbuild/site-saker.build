@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Examples > <a href="addexports.html" title="Add module exports">Add module exports</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -69,22 +72,22 @@
 			<div class="doc-content"><h1 id="add-module-exports">Add module exports<a class="doc-heading-anchor" href="#add-module-exports"></a></h1>
 <p>Starting from Java 9, when developing for the module system, you may not be able to access some internal classes in the JDK. If you're getting compilation errors due to encapsulation, you can use the <code>AddExports</code> parameter to force exporting of packages.</p>
 <p>The <code>AddExports</code> parameter corresponds to the --add-exports command line parameter for <code>javac</code>.</p>
-<pre><code class="language-sakerscript"><span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
 	<span class="i">SourceDirectories</span>: <span class="f">src</span>,
 	<span class="i">AddExports: </span><span class="b">{</span>
 		<span class="h">Module</span>: <span class="f">jdk.compiler</span><span class="b">,</span>
 		<span class="h">Package</span>:<span class="b">[</span>
 			<span class="f">com.sun.tools.javac.jvm</span><span class="b">,</span>
-			<span class="f">com.sun.tools.javac.main</span><span class="b">
-		],</span>
-		<span class="h">Target</span>: <span class="f">example.module</span><span class="b">
-	}</span>,
+			<span class="f">com.sun.tools.javac.main</span>
+		<span class="b">],</span>
+		<span class="h">Target</span>: <span class="f">example.module</span>
+	<span class="b">}</span>,
 <span class="e">)</span>
 </code></pre>
 <p>In the above example we've added the exports from the <code>jdk.compiler</code> module of the <code>com.sun.tools.javac.jvm</code> and <code>com.sun.tools.javac.main</code> packages to the <code>example.Module</code> module.</p>
 <p>The <code>Target</code> property can also accept multiple module names. If the <code>Target</code> property is omitted, the packages will be exported for all unnamed modules.</p>
 <p>The parameter also accepts simple string based input in the format of <code>module/package=other-module(,other-module)*</code>. If <code>=other-module...</code> is not provided, the package is exported to all unnamed modules:</p>
-<pre><code class="language-sakerscript"><span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
 	<span class="i">SourceDirectories</span>: <span class="f">src</span>,
 	<span class="i">AddExports: </span><span class="b">[</span>
 		<span class="f">jdk.compiler/com.sun.tools.javac.jvm=example.module</span><span class="b">,</span>
@@ -126,7 +129,7 @@
 				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.java.compiler documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.java.compiler">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.java.compiler">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.java.compiler" title="saker.java.compiler | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.java.compiler" title="saker.java.compiler | saker.nest">saker.java.compiler on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.java.compiler" title="saker.java.compiler on GitHub">GitHub</a></div>
 			</div>
 		</div>	

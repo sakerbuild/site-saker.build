@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Examples > <a href="crosscompile.html" title="Cross-compilation">Cross-compilation</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -71,7 +74,7 @@
 <p>If you're attempting to compile for a more recent Jave version than the one the build is currently execution on, then you must use a different JDK, as the current one won't recognize the target version.</p>
 <h3 id="older-target-version">Older target version<a class="doc-heading-anchor" href="#older-target-version"></a></h3>
 <p>The following example showcases cross-compiling for an older Java version:</p>
-<pre><code class="language-sakerscript"><span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
 	<span class="i">SourceDirectories</span>: <span class="f">src</span>,
 	<span class="i">SourceVersion: </span><span class="f">7</span>,
 	<span class="i">TargetVersion: </span><span class="f">7</span>,
@@ -84,11 +87,11 @@
 <h3 id="forked-compilation">Forked compilation<a class="doc-heading-anchor" href="#forked-compilation"></a></h3>
 <p>If you want to compiler for more recent Java versions than the one the current build is running on, you'll need a JDK installation for that version, and use forked compilation.</p>
 <p>This can be done by specifying a different JDK for the compilation task to use:</p>
-<pre><code class="language-sakerscript"><span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
 	<span class="i">SourceDirectories</span>: <span class="f">src</span>,
 	<span class="i">SDKs: </span><span class="b">{</span>
-		<span class="h">Java</span>: <span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.sdk.html" title="Task: saker.java.sdk()">saker.java.sdk</a>(</span><span class="f">13</span><span class="e">)</span><span class="b">
-	}</span>
+		<span class="h">Java</span>: <span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.sdk.html" title="Task: saker.java.sdk()">saker.java.sdk</a>(</span><span class="f">13</span><span class="e">)</span>
+	<span class="b">}</span>
 <span class="e">)</span>
 </code></pre>
 <p>The above example will find a JDK installation with the major version of 13 and use that to compile the Java sources in the <code>src</code> directory.</p>
@@ -129,7 +132,7 @@
 				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.java.compiler documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.java.compiler">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.java.compiler">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.java.compiler" title="saker.java.compiler | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.java.compiler" title="saker.java.compiler | saker.nest">saker.java.compiler on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.java.compiler" title="saker.java.compiler on GitHub">GitHub</a></div>
 			</div>
 		</div>	

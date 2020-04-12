@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Examples > <a href="classes.html" title="Java classes">Java classes</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -68,12 +71,12 @@
 </div>
 			<div class="doc-content"><h1 id="java-classes">Java classes<a class="doc-heading-anchor" href="#java-classes"></a></h1>
 <p>In the following example we use the <a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html"><code>saker.java.compile()</code></a> task to compile Java sources and include it in the Java archive:</p>
-<pre><code class="language-sakerscript"><span class="d">$javac</span> = <span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span><span class="f">src</span><span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d">$javac</span> = <span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span><span class="f">src</span><span class="e">)</span>
 <span class="e"><a href="../../../saker.jar/taskdoc/saker.jar.create.html" title="Task: saker.jar.create()">saker.jar.create</a>(</span>
 	<span class="i">Resources</span>: <span class="b">{</span>
 		<span class="h">Directory</span>: <span class="d">$javac</span><span class="g">[</span><span class="h">ClassDirectory</span><span class="g">]</span><span class="b">,</span>
-		<span class="h">Resources</span>: <span class="f">**</span><span class="b">
-	}</span>
+		<span class="h">Resources</span>: <span class="f">**</span>
+	<span class="b">}</span>
 <span class="e">)</span>
 </code></pre>
 <p>In the above, we compile the Java sources in the <code>src</code> directory. We then retrieve the output class directory that contains the compilation result, and pass it as an input to the Java archive.</p>
@@ -111,7 +114,7 @@
 				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.jar documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.jar">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.jar">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.jar" title="saker.jar | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.jar" title="saker.jar | saker.nest">saker.jar on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.jar" title="saker.jar on GitHub">GitHub</a></div>
 			</div>
 		</div>	

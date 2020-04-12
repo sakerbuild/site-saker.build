@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Package details > <a href="performancecomparison.html" title="Performance comparison">Performance comparison</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -76,7 +79,7 @@
 <h2 id="large-monolithic-project">Large monolithic project<a class="doc-heading-anchor" href="#large-monolithic-project"></a></h2>
 <p>We measure the testing performance on the <a href="https://github.com/gradle/performance-comparisons/tree/13739fa299e485c079335b0cd5b30da1cff92234/single-large-project" title="performance-comparisons/single-large-project at 13739fa299e485c079335b0cd5b30da1cff92234 · gradle/performance-comparisons · GitHub">single-large-project</a> that is published by Gradle specifically for performance comparisons. It contains 50000 source files and 50000 associated test cases.</p>
 <p>We've modified the project a little bit, in order to make the comparison fairer. We disabled report generation for Gradle, and increased the number of JVM forks for testing to match the settings we use for saker.build. The following was set for the <code>build.gradle</code> file:</p>
-<pre><code class="language-groovy">test {
+<pre class="doc-code-block"><code class="language-groovy">test {
     reports {
         junitXml.enabled = false
 		html.enabled = false
@@ -223,7 +226,7 @@
 				<div data-footer-location="doc-docs"><a href="../doc/index.html" title="saker.java.testing documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../javadoc/index.html" title="JavaDoc for saker.java.testing">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../taskdoc/index.html"  title="Documentation of build tasks in saker.java.testing">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.java.testing" title="saker.java.testing | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.java.testing" title="saker.java.testing | saker.nest">saker.java.testing on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.java.testing" title="saker.java.testing on GitHub">GitHub</a></div>
 			</div>
 		</div>	

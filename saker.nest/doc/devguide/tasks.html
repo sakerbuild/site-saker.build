@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Development guide > <a href="tasks.html" title="Build tasks">Build tasks</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -71,7 +74,7 @@
 <p>First of all, we recommend reading the <a href="../../../saker.build/doc/extending/taskdev/index.html" title="Task development">task development guide</a> for saker.build.</p>
 <p>In order for the repository runtime to find your build task classes, you need to declare them in the task file of the bundle. More information about it <a href="bundleformat.html#task-file" title="Task file">here</a>.</p>
 <p>When creating a build task class, you must ensure that it can be instantiated by the repository runtime. The runtime will attempt to create a task instance using the following methods:</p>
-<ol>
+<ol class="doc-md-list">
 <li>Calling a public static no-arg method with the name <code>provider</code> in the declared class. This is similar to the Java 9 <a href="https://docs.oracle.com/javase/9/docs/api/java/util/ServiceLoader.html" title="ServiceLoader (Java SE 9 &amp; JDK 9 )"><code>ServiceLoader</code></a> provider method. The declared return type of the method must be assignable to <a href="../../../saker.build/javadoc/saker/build/task/TaskFactory.html"><code>TaskFactory</code></a>, however, the enclosing class is not required to be assignable to it.</li>
 <li>The runtime will use the public no-arg constructor to create a task instance. In this case the class must implement the <a href="../../../saker.build/javadoc/saker/build/task/TaskFactory.html"><code>TaskFactory</code></a> interface.</li>
 </ol>
@@ -111,7 +114,7 @@
 				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.nest documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.nest">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.nest">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.nest" title="saker.nest | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.nest" title="saker.nest | saker.nest">saker.nest on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.nest" title="saker.nest on GitHub">GitHub</a></div>
 			</div>
 		</div>	

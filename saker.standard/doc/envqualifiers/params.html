@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Environment qualifiers > <a href="params.html" title="Parameter qualifier">Parameter qualifier</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -69,11 +72,11 @@
 			<div class="doc-content"><h1 id="parameter-qualifier">Parameter qualifier<a class="doc-heading-anchor" href="#parameter-qualifier"></a></h1>
 <p>The <a href="../../taskdoc/std.env.qualifier.params.html"><code>std.env.qualifier.params()</code></a> task can be used to get an environment qualifier that is based on the <a href="../../../saker.build/doc/guide/envconfig.html" title="Environment configuration">environment user parameters</a> of the build environment.</p>
 <p>The created qualifier will expect the specified parameters to have the expected values for them. If they match, the environment is considered to be suitable, otherwise not.</p>
-<pre><code class="language-sakerscript"><span class="e"><a href="../../../saker.standard/taskdoc/std.env.qualifier.params.html" title="Task: std.env.qualifier.params()">std.env.qualifier.params</a>(</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.standard/taskdoc/std.env.qualifier.params.html" title="Task: std.env.qualifier.params()">std.env.qualifier.params</a>(</span>
 	<span class="i">Parameters</span>: <span class="b">{</span>
 		<span class="h">example.parameter</span>: <span class="f">123</span><span class="b">,</span>
-		<span class="h">second.param</span>: <span class="f">abc</span><span class="b">
-	}</span>
+		<span class="h">second.param</span>: <span class="f">abc</span>
+	<span class="b">}</span>
 <span class="e">)</span>
 </code></pre>
 <p>The above qualifier will only find an environment suitable if it has the <code>example.parameter</code> defined with the value of <code>123</code> and <code>second.param</code> with <code>abc</code>.</p>
@@ -110,7 +113,7 @@
 				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.standard documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.standard">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.standard">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.standard" title="saker.standard | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.standard" title="saker.standard | saker.nest">saker.standard on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.standard" title="saker.standard on GitHub">GitHub</a></div>
 			</div>
 		</div>	

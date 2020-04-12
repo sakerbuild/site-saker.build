@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Scripting language > <a href="index.html" title="Built-in tasks">Built-in tasks</a> > <a href="global.html" title="global()">global()</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -86,14 +89,14 @@
 <h2 id="example">Example<a class="doc-heading-anchor" href="#example"></a></h2>
 <p>The following example contains two files (<code>config.build</code>, and <code>saker.build</code>):</p>
 <p><code>config.build</code>:
-<pre><code class="language-sakerscript"><span class="c"># this file is not uploaded to source control</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="c"># this file is not uploaded to source control</span>
 <span class="c"># contains secret data for the project</span>
 <span class="e"><a href="../../../../saker.build/doc/scripting/builtintasks/global.html" title="Task: global()">global</a>(</span><span class="d">company.ENCRYPTION_KEY</span><span class="e">)</span> = <span class="f">abcd1234</span>
 <span class="e"><a href="../../../../saker.build/doc/scripting/builtintasks/global.html" title="Task: global()">global</a>(</span><span class="d">company.PUBLISH_API_KEY</span><span class="e">)</span> = <span class="f">Y29tcGFueV9zZWNyZXQ=</span>
 </code></pre>
 </p>
 <p><code>saker.build</code>:
-<pre><code class="language-sakerscript"><span class="c"># this file is the main entry point for builds</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="c"># this file is the main entry point for builds</span>
 <span class="c"># include the configuration build file</span>
 <span class="e"><a href="../../../../saker.build/doc/scripting/builtintasks/include.html" title="Task: include()">include</a>(</span><span class="i">Path</span>: <span class="f">config.build</span><span class="e">)</span>
 <span class="a">publish</span> <span class="b">{</span>
@@ -145,7 +148,7 @@
 				<div data-footer-location="doc-docs"><a href="../../../doc/index.html" title="saker.build documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../../javadoc/index.html" title="JavaDoc for saker.build">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../../taskdoc/index.html"  title="Documentation of build tasks in saker.build">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.build on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.build" title="saker.build on GitHub">GitHub</a></div>
 			</div>
 		</div>	

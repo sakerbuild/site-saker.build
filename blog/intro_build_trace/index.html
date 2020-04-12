@@ -73,7 +73,7 @@
 <h4 id="create-and-view-a-build-trace">Create and view a build trace<a class="doc-heading-anchor" href="#create-and-view-a-build-trace"></a></h4>
 <p><small>If you're not already using saker.build see the <a href="../../saker.build/doc/installation.html" title="Installation">Installation</a> guide.</small></p>
 <p>Generating a build trace is as easy as adding a command line argument to your build:</p>
-<pre><code class="language-plaintext code-wrap">java -jar saker.build.jar -trace pwd://build/build.trace [...]
+<pre class="doc-code-block"><code class="language-plaintext code-wrap">java -jar saker.build.jar -trace pwd://build/build.trace [...]
 </code></pre>
 <p>The <a href="../../saker.build/doc/guide/cmdlineref/build.html#-trace" title="-trace"><code>-trace</code></a> option specifies that a build trace should be generated at the specified path.</p>
 <p><small>In the above example we generate it in the <code>[working-directory]/build/build.trace</code> file. You can also create a build trace by changing your IDE project configuration.</small></p>
@@ -121,21 +121,21 @@
 <h2 id="bonus-azure-pipelines-support">Bonus Azure Pipelines support<a class="doc-heading-anchor" href="#bonus-azure-pipelines-support"></a></h2>
 <p>For building saker.build and related projects, we use Azure Pipelines as the CI server. In case of build failures, we want to examine the causes of it, and the build trace is one of the best practices for this rather than dealing with the logs directly on the Azure Pipelines website.</p>
 <p>So in order to do this, we need to configure the CI builds as follows:</p>
-<ol>
+<ol class="doc-md-list">
 <li>Create a build trace during builds.
-<ul>
+<ul class="doc-md-list">
 <li>Quite simple by using the <a href="../../saker.build/doc/guide/cmdlineref/build.html#-trace" title="-trace"><code>-trace</code></a> command line option.</li>
 </ul>
 </li>
 <li>Retrieve the build trace artifacts and open them in the build trace viewer.
-<ul>
+<ul class="doc-md-list">
 <li>This is a bit trickier.</li>
 </ul>
 </li>
 </ol>
 <p>First, we need to configure the CI builds to publish the build trace artifacts. We can do that by using the <a href="https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/utility/publish-build-artifacts?view=azure-devops" title="Publish Build Artifacts task - Azure Pipelines | Microsoft Docs"><code>PublishBuildArtifacts@1</code></a> Azure Pipelines task.</p>
 <p>The setup in YAML:</p>
-<pre><code class="language-plaintext">- script: java -jar saker.build.jar -bd build -trace pwd://build/build.trace -trace-artifacts-embed export
+<pre class="doc-code-block"><code class="language-plaintext">- script: java -jar saker.build.jar -bd build -trace pwd://build/build.trace -trace-artifacts-embed export
   displayName: 'Export'
 - task: PublishBuildArtifacts@1
   condition: always()

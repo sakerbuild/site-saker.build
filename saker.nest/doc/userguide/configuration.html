@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				User guide > <a href="configuration.html" title="Runtime configuration">Runtime configuration</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -74,7 +77,7 @@
 <p>When used, the repository runtime can be configured using string key-value parameters. If used with saker.build, the build execution user parameters (<code>-U</code>) command line option can be used to configure the repository.</p>
 <p>The runtime will interpret these parameters and configure itself and its storages based on them.</p>
 <p>The format of the parameter names are the following:</p>
-<pre><code class="language-plaintext">&lt;repo-id&gt;.&lt;storage-name&gt;.&lt;parameter&gt;
+<pre class="doc-code-block"><code class="language-plaintext">&lt;repo-id&gt;.&lt;storage-name&gt;.&lt;parameter&gt;
 </code></pre>
 <p>Where <code>repo-id</code> is the repository identifier assigned for the loaded repository, <code>storage-name</code> is the name of the <a href="configuration.html#repository-storages" title="Repository storages">storage</a> being configured, and <code>parameter</code> is the name of the parameter associated with the given storage.</p>
 <p>One can note that this naming scheme allows multiple saker.nest repositories to be loaded in a single build execution. If they have different repository identifiers, they can be configured independently using the user parameters.</p>
@@ -89,50 +92,50 @@
 <p>The value of this parameter contains the configured storage names and their types. They can be specified in a <code>&lt;name&gt;:&lt;type&gt;</code> format where the name must only contains alphabetic (<code>a-z</code>, <code>A-Z</code>), numberic (<code>0-9</code>), or underscore (<code>_</code>) characters. The type must be one of <code>server</code>, <code>local</code>, or <code>params</code>.</p>
 <p>Multiple storage declarations can be specified in a list that is enclosed in brackets (<code>[</code>, <code>]</code>) and separated by commas (<code>,</code>). The list declarations can be nested. These subsequent storage declarations define the lookup behaviour assigned to each configuration.</p>
 <p>The declared storages can be configured with parameters that begin with the repository identifier part that is the same as this parameter, and continues with the name of the storage and ends with the parameter name in a dot separated format. Parameters for bundle storages must have the following format:</p>
-<pre><code class="language-plaintext">&lt;repo-id&gt;.&lt;storage-name&gt;.&lt;param&gt;
+<pre class="doc-code-block"><code class="language-plaintext">&lt;repo-id&gt;.&lt;storage-name&gt;.&lt;param&gt;
 </code></pre>
 <p>Examples:</p>
-<pre><code class="language-plaintext">&quot;server: server&quot;
+<pre class="doc-code-block"><code class="language-plaintext">&quot;server: server&quot;
 </code></pre>
 <p>The only storage configuration that is used is a <a href="serverstorage.html" title="Server storage">server storage</a>. The configuration will only use bundles that is available from that server.</p>
 <p>If the storage name is the same as the storage type, the storage name can be omitted. Specifying simply <code>&quot;:server&quot;</code> is the same as the above declaration.</p>
 <hr />
-<pre><code class="language-plaintext">&quot;[:params, :local, :server]&quot;
+<pre class="doc-code-block"><code class="language-plaintext">&quot;[:params, :local, :server]&quot;
 </code></pre>
 <p>The above is the <strong>default storage</strong> configuration if the parameter is not specified. It contains 3 storages:</p>
-<ul>
+<ul class="doc-md-list">
 <li><code>params</code>: A <a href="paramsstorage.html" title="Parameter storage">parameter storage</a>. Bundles from <code>local</code> and <code>server</code> is visible from it.</li>
 <li><code>local</code>: A <a href="localstorage.html" title="Local storage">local storage</a>. Bundles from <code>server</code> is visible to it, but bundles from <code>params</code> are not.</li>
 <li><code>server</code>: A <a href="serverstorage.html" title="Server storage">server storage</a>. It can only use bundles that it contains.</li>
 </ul>
 <p>The definiton place of storages affect what bundles they can use. This specifically important when dependencies are resolved in the repository. If a bundle from <code>params</code> depend on a bundle from <code>local</code>, the dependency can be successfully resolved. However, if a bundle in <code>local</code> tries to depend on a bundle from <code>params</code>, the dependency resolution will fail.</p>
 <hr />
-<pre><code class="language-plaintext">&quot;[p1:params, p2:params]&quot;
+<pre class="doc-code-block"><code class="language-plaintext">&quot;[p1:params, p2:params]&quot;
 </code></pre>
 <p>Multiple storages with the same type can be declared. In this case there are 2 <a href="paramsstorage.html" title="Parameter storage">parameter storages</a> in the specified order. The parameters <code>&lt;repo-id&gt;.p1.bundles</code> and <code>&lt;repo-id&gt;.p2.bundles</code> can be used to differently configure the two storages.</p>
 <hr />
-<pre><code class="language-plaintext">&quot;[[p3:params, :local], p4:params]&quot;
+<pre class="doc-code-block"><code class="language-plaintext">&quot;[[p3:params, :local], p4:params]&quot;
 </code></pre>
 <p>In the above example we use nested scopes to specify different lookup properties. In this case the bundles from <code>local</code> will be visible to <code>p3</code>. The bundles from <code>p4</code> will not be visible to either <code>p3</code> or <code>local</code>, as they've been declared in a different scope.</p>
 <p>If we would want to make the bundles in <code>p4</code> visible to <code>p3</code>, but still keep them from <code>local</code>, we can use the following configuration:</p>
-<pre><code class="language-plaintext">&quot;[p3:params, [:local], p4:params]&quot;
+<pre class="doc-code-block"><code class="language-plaintext">&quot;[p3:params, [:local], p4:params]&quot;
 </code></pre>
 <p>In this case the bundles from <code>local</code> couldn't depend on <code>p4</code>, but the bundles in <code>p3</code> could use the bundles from <code>p4</code>.</p>
 <hr />
 <p>The bundle storages can be repeated in order to make them accessible through multiple lookup scopes. However, when doing so, all declarations must have the same tail resolution. (That is, all repeating configurations must have the same lookup scope after them.) See the following:</p>
-<pre><code class="language-plaintext">&quot;[[p5:params, :local], [p6:params, :local]]&quot;
+<pre class="doc-code-block"><code class="language-plaintext">&quot;[[p5:params, :local], [p6:params, :local]]&quot;
 </code></pre>
 <p>In this case both <code>p5</code> and <code>p6</code> have access to the bundles from <code>local</code>, while neither <code>p5</code> can depend on bundles from <code>p6</code>, and the <code>local</code> storage doesn't see bundles in <code>p6</code> as well.</p>
 <p>Note that modifying the above configuration the following way will cause an initialization error:</p>
-<pre><code class="language-plaintext">&quot;[[p5:params, :local], [p6:params, :local, :server]]&quot;
+<pre class="doc-code-block"><code class="language-plaintext">&quot;[[p5:params, :local], [p6:params, :local, :server]]&quot;
 </code></pre>
 <p>This is due to the <code>local</code> storage has different tail resolution defined in the locations it appears. To have the <code>server</code> storage visible for <code>local</code> (and the parameter storages as well), modify it like the following:</p>
-<pre><code class="language-plaintext">&quot;[[p5:params, :local, :server], [p6:params, :local, :server]]&quot;
+<pre class="doc-code-block"><code class="language-plaintext">&quot;[[p5:params, :local, :server], [p6:params, :local, :server]]&quot;
 </code></pre>
 <p>Putting the <code>server</code> storage in the outer scope (as in <code>&quot;[[p5:params, :local], [p6:params, :local], :server]&quot;</code>) will not work as that will be in a different scope, and visibility from outer scopes don't work.</p>
 <hr />
 <p>The configuration value format allows the type for repeating declarations to be omitted. The following configurations are the same:</p>
-<pre><code class="language-plaintext">&quot;[[p5:params, l:local], [p6:params, l:local]]&quot;
+<pre class="doc-code-block"><code class="language-plaintext">&quot;[[p5:params, l:local], [p6:params, l:local]]&quot;
 &quot;[[p5:params, l:local], [p6:params, l:]]&quot;
 &quot;[[p5:params, l:], [p6:params, l:local]]&quot;
 </code></pre>
@@ -161,11 +164,11 @@ pinned version numbers. When a task lookup request is served by the repository, 
 that has the same version number as the pinned one. Note, that this only happens if the task lookup request has
 no version number specified already.</p>
 <p>Value example:</p>
-<pre><code class="language-plaintext">my.task:1.0;my.task-q1:1.1;other.task:2.0
+<pre class="doc-code-block"><code class="language-plaintext">my.task:1.0;my.task-q1:1.1;other.task:2.0
 </code></pre>
 <p>Extraneous semicolons and whitespace is omitted. The given pin configuration will cause the following build
 script to work in the following way:</p>
-<pre><code class="language-sakerscript"><span class="e">my.task()</span>      <span class="c"># will use my.task-v1.0</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e">my.task()</span>      <span class="c"># will use my.task-v1.0</span>
 <span class="e">my.task-v3.0()</span> <span class="c"># will use my.task-v3.0, no override</span>
 <span class="e">my.task-q1()</span>   <span class="c"># will use my.task-q1-v1.1</span>
 </code></pre>
@@ -174,7 +177,7 @@ will be searched for.</p>
 <h2 id="repository-storages">Repository storages<a class="doc-heading-anchor" href="#repository-storages"></a></h2>
 <p>See the following documents for different kinds of repository storages and their properties:</p>
 <div class="doc-table-of-contents">
-<ul>
+<ul class="doc-md-list">
 <li><a href="serverstorage.html" title="Server storage">Server storage</a></li>
 <li><a href="localstorage.html" title="Local storage">Local storage</a></li>
 <li><a href="paramsstorage.html" title="Parameter storage">Parameter storage</a></li>
@@ -213,7 +216,7 @@ will be searched for.</p>
 				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.nest documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.nest">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.nest">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.nest" title="saker.nest | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.nest" title="saker.nest | saker.nest">saker.nest on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.nest" title="saker.nest on GitHub">GitHub</a></div>
 			</div>
 		</div>	

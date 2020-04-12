@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				User guide > <a href="index.html" title="Repository structure">Repository structure</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -74,18 +77,18 @@ The bundles in a package are published with an associated version number. After 
 <p>The names the saker.nest repository uses are interpreted as the following declares:</p>
 <p>All package and bundle names are handled in a <strong>case-insensitive</strong> way.</p>
 <p>The package names must be in the following format:</p>
-<pre><code class="language-plaintext">[identifier][.identifier]+
+<pre class="doc-code-block"><code class="language-plaintext">[identifier][.identifier]+
 </code></pre>
 <p>A package name must contain at least two identifier components separated by dot (<code>'.'</code>). Allowed characters in an identifier components are: <code>a-ZA-Z_0-9</code>. Uppercase characters are normalized to lowercase.</p>
 <p>Bundle names (or bundle identifiers) are based on the package names, but have additional qualifier components to them. These qualifiers are used to distinguish different bundles in an enclosing package. The bundle names have the following format:</p>
-<pre><code class="language-plaintext">[identifier][.identifier]+[-qualifier]*[-metaqualifier]*
+<pre class="doc-code-block"><code class="language-plaintext">[identifier][.identifier]+[-qualifier]*[-metaqualifier]*
 </code></pre>
 <p>Where the both the identifier and qualifier parts can accept the <code>a-ZA-Z_0-9</code> characters. The qualifiers can be arbitrary user defined strings, while the meta-qualifiers have a specific format. Currently the following meta-qualifiers are recognized:</p>
-<ul>
+<ul class="doc-md-list">
 <li><code>v&lt;version-num&gt;</code>: Specifies the package version release that the bundle belongs to. E.g. if a bundle is released as part of the <code>1.0.1</code> release, then it will have the <code>v1.0.1</code> qualifier appended to it.</li>
 </ul>
 <p>Examples:</p>
-<pre><code class="language-plaintext">example.package
+<pre class="doc-code-block"><code class="language-plaintext">example.package
 	
 	example.package-v1.0
 	example.package-api-v1.0
@@ -130,7 +133,7 @@ The bundles in a package are published with an associated version number. After 
 				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.nest documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.nest">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.nest">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.nest" title="saker.nest | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.nest" title="saker.nest | saker.nest">saker.nest on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.nest" title="saker.nest on GitHub">GitHub</a></div>
 			</div>
 		</div>	

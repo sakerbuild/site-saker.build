@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				User guide > <a href="scriptlanguages.html" title="Script languages">Script languages</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -79,11 +82,11 @@
 <p>For defining other languages see the <a href="cmdlineref/build.html" title="build">command line reference</a>.</p>
 <h3 id="examples">Examples<a class="doc-heading-anchor" href="#examples"></a></h3>
 <p>In order to override the default <code>.build</code> extension for the SakerScript language, use the following command line arguments:</p>
-<pre><code>-script-files **/*.myextension
+<pre class="doc-code-block"><code>-script-files **/*.myextension
 </code></pre>
 <hr />
 <p>To load a custom language from a JAR distribution:</p>
-<pre><code>-script-files **/*.lang 
+<pre class="doc-code-block"><code>-script-files **/*.lang 
 -script-classpath pwd://language.jar 
 -script-class example.lang.LanguageAccessProvider
 </code></pre>
@@ -91,7 +94,7 @@
 <p>Note that in this case the built-in language will <strong>not</strong> be used, and <code>.build</code> files will not be parsed using SakerScript. In order to use that append the <code>-script-files **/*.build</code> options as well.</p>
 <hr />
 <p>To define multiple languages for the build execution and some parser options in addition:</p>
-<pre><code>-script-files **/*.lang 
+<pre class="doc-code-block"><code>-script-files **/*.lang 
 -script-classpath pwd://language.jar 
 -script-class example.lang.LanguageAccessProvider
 -script-files **/*.secondlang 
@@ -135,7 +138,7 @@
 				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.build documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.build">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.build">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.build on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.build" title="saker.build on GitHub">GitHub</a></div>
 			</div>
 		</div>	

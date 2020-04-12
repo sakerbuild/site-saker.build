@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Extending saker.build > <a href="index.html" title="Task development">Task development</a> > <a href="taskworkflow.html" title="Task workflow">Task workflow</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -71,31 +74,31 @@
 <p>The build system defines the execution model of the tasks to be side-effect free pure functions that produces their outputs based solely on their inputs. As tasks run in the build system concurrently and share common resources with each other, they will need to follow a specific, but straightforward workflow that ensures that the information flow between the tasks are ordered properly.</p>
 <h2 id="the-workflow">The workflow<a class="doc-heading-anchor" href="#the-workflow"></a></h2>
 <p>Task implementations should adhere to the following workflow:</p>
-<ol>
+<ol class="doc-md-list">
 <li>Wait for the input task dependencies of the task if any.
-<ul>
+<ul class="doc-md-list">
 <li>This means that any operations that wait for other task executions to complete need to happen before the following point.</li>
 <li>This relates to the functions described in <a href="retrievingtaskresults.html" title="Retrieving task results">Retrieving task results</a>.</li>
 <li><strong>Important</strong>: Tasks shouldn't access any files in the build system or any file-related deltas before waiting for the input tasks.</li>
 </ul>
 </li>
 <li>Access any files necessary for the task to complete, and execute its operations.
-<ul>
+<ul class="doc-md-list">
 <li>After waiting for the input tasks, the task implementation can access the input files for it.</li>
 <li>Any other operations the task needs to to can be done in this phase.</li>
 </ul>
 </li>
 </ol>
 <p>The above requirements are justified by seeing the following aspects:</p>
-<ul>
+<ul class="doc-md-list">
 <li>The filesystem is a shared resource, and the build system is a highly concurrent one. If you depend on a task, then you also probably need to acces the files it has produced.
-<ul>
+<ul class="doc-md-list">
 <li>In order to do that, you need to wait for the input task to finish, because if you don't, then the input task might not have created the files that you need as your input, therefore you won't find the files you're looking for. However, if you wait for the task, then you'll find the files, and can complete your operations accordingly.</li>
 <li>It is considered to be an invalid task implementation that tries to access an output file of a task before waiting for the associated task to finish.</li>
 </ul>
 </li>
 <li>The build system cannot make assumptions on how the task implementation will operate. It could decide to do completely different things based on different task results, or file contents.
-<ul>
+<ul class="doc-md-list">
 <li>In order to properly calculate the incremental deltas for the task, the build system needs to ensure that the filesystem is in the state that the task would perceive. In order to reach this state, it needs to wait the input task dependencies, and then it can check if any of the files have been changed.</li>
 </ul>
 </li>
@@ -104,9 +107,9 @@
 <p>Typically, when you implement a task, you don't need to worry about this too much, as the general workflow of the task are already adhere to this. Usually you initialize the parameters of your task, determine the configuration based on the parameters, and then do your work based on that. During determining the configurations, you won't access any files, which is in line with the above workflow. If you do, make sure to do it after accessing any parameters of your task.</p>
 <h2 id="violating-the-workflow">Violating the workflow<a class="doc-heading-anchor" href="#violating-the-workflow"></a></h2>
 <p>Don't do it. It will most likely result in incorrect builds, and you probably don't have any incentive to break the workflow. However, even for the best intentions, it is possible to accidentally violate the above workflow. In order to avoid this, we recommend the following:</p>
-<ol>
+<ol class="doc-md-list">
 <li>If your task is parameterized, retrieve the parameters of your task as your first step of execution.
-<ul>
+<ul class="doc-md-list">
 <li>When retrieving the results of the parameters, don't just get the first direct objects of a task result, but get all important aspect of it.</li>
 </ul>
 </li>
@@ -149,7 +152,7 @@
 				<div data-footer-location="doc-docs"><a href="../../../doc/index.html" title="saker.build documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../../javadoc/index.html" title="JavaDoc for saker.build">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../../taskdoc/index.html"  title="Documentation of build tasks in saker.build">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.build on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.build" title="saker.build on GitHub">GitHub</a></div>
 			</div>
 		</div>	

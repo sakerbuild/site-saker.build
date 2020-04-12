@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Scripting language > <a href="index.html" title="Overview">Overview</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -75,11 +78,11 @@
 <p>What's the most readable description of a build process? Simple statements in the order of their execution.<sup>*</sup></p>
 <p>What's the most performant description of a build process? Declarative definition of build tasks and their dependencies.<sup>*</sup></p>
 <p>SakerScript combines both. The statements in the build script can be declared in any order while maintaining the same execution flow of the build. The expressions are evaluated eagerly and in parallel based on the operands of theirs. A language like this is readable, as you can exactly trace back the source of a value while being performant, as the interpreter can evaluate as many expressions as possible at once.</p>
-<pre><code class="language-sakerscript"><span class="d">$archive</span> = <span class="e">example.download.archive(</span><span class="f">&quot;http://example.com/myarchive.jar&quot;</span><span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d">$archive</span> = <span class="e">example.download.archive(</span><span class="f">&quot;http://example.com/myarchive.jar&quot;</span><span class="e">)</span>
 <span class="e">example.extract.archive(</span><span class="d">$archive</span>, <span class="i">Directory: </span><span class="f">output</span><span class="e">)</span>
 </code></pre>
 <p>In the above example, we download some archive, and the extract its contents to the specified <code>output</code> directory. It is straightforward, however, if you change the order:</p>
-<pre><code class="language-sakerscript"><span class="e">example.extract.archive(</span><span class="d">$archive</span>, <span class="i">Directory: </span><span class="f">output</span><span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e">example.extract.archive(</span><span class="d">$archive</span>, <span class="i">Directory: </span><span class="f">output</span><span class="e">)</span>
 <span class="d">$archive</span> = <span class="e">example.download.archive(</span><span class="f">&quot;http://example.com/myarchive.jar&quot;</span><span class="e">)</span>
 </code></pre>
 <p>Exactly the same things will happen. The order of statement declarations are irrelevant. The extraction of the downloaded archive will only happen once the download has finished. This way the build system can appropriately parallelize the build tasks as the inputs of the tasks define the order of execution not their declaration order.</p>
@@ -132,7 +135,7 @@
 				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.build documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.build">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.build">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.build on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.build" title="saker.build on GitHub">GitHub</a></div>
 			</div>
 		</div>	

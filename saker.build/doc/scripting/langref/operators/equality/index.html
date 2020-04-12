@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Scripting language > <a href="../../index.html" title="Language reference">Language reference</a> > <a href="../index.html" title="Operators">Operators</a> > <a href="index.html" title="Equality comparison">Equality comparison</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -71,14 +74,14 @@
 <p><code>==</code>: Equal to <br />
 <code>!=</code>: Not equal to</p>
 <p>The operator evaluates its two operands and check their equality. The equality checking is as follows:</p>
-<ul>
+<ul class="doc-md-list">
 <li>If any of the operand is a number, the equality will be <code>true</code> if the other operand is a number too, and when promoted to the greater precision of the operands, their numeric value equal.</li>
 <li>If any of the operand is a list, the equality will be <code>true</code> if the other operand can be interpreted as a list, and their elements at the respective indexes equal to each other.</li>
 <li>If any of the operand is a map, the equality will be <code>true</code> if the other operand can be interpreted as a map, and they contain the same key-value entries, given that the values compare to be equal.</li>
 <li>If any of the operand is from an external source, the equality is determined in an implementation dependent way.</li>
 <li>If any of the argument is <code>null</code>, the equality is <code>true</code> if the other operand is <code>null</code> as well.</li>
 </ul>
-<pre><code class="language-sakerscript"><span class="f">1</span> == <span class="f">0x1</span> <span class="c"># true</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="f">1</span> == <span class="f">0x1</span> <span class="c"># true</span>
 <span class="f">1</span> != <span class="f">0x1</span> <span class="c"># false</span>
 <span class="f">literal</span> == <span class="f">literal</span> <span class="c"># true</span>
 <span class="f">literal6</span> == <span class="f">&quot;literal</span>{ <span class="f">2</span> * <span class="f">3</span>}<span class="f">&quot;</span> <span class="c"># true</span>
@@ -136,7 +139,7 @@
 				<div data-footer-location="doc-docs"><a href="../../../../../doc/index.html" title="saker.build documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../../../../javadoc/index.html" title="JavaDoc for saker.build">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../../../../taskdoc/index.html"  title="Documentation of build tasks in saker.build">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.build on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.build" title="saker.build on GitHub">GitHub</a></div>
 			</div>
 		</div>	

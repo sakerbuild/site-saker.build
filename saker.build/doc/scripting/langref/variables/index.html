@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Scripting language > <a href="../index.html" title="Language reference">Language reference</a> > <a href="index.html" title="Variables">Variables</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -68,12 +71,12 @@
 </div>
 			<div class="doc-content"><h1 id="variables">Variables<a class="doc-heading-anchor" href="#variables"></a></h1>
 <p>The language allows declaring variables which are named storages of an expression value. Variables are uniquely identified by their name, and share the same build target scope.</p>
-<pre><code class="language-sakerscript"><span class="c"># assignments</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="c"># assignments</span>
 <span class="d">$var</span> = <span class="f">123</span>
 <span class="d">$multiplied</span> = <span class="d">$var</span> * <span class="f">3</span>
 </code></pre>
 <p>Variables are dereferenced by using the <code>'$'</code> character before the subject expression. The dereferenced expression is usually a string literal, but other expressions are also allowed to support more refined usage of variables:</p>
-<pre><code class="language-sakerscript"><span class="c"># assigning non-literal variable names</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="c"># assigning non-literal variable names</span>
 <span class="d">$</span><span class="e">get.variable.name()</span> = <span class="f">some_value</span>
 <span class="d">$</span>(<span class="f">&quot;var</span>{ <span class="d">$varnum</span> }<span class="f">&quot;</span>) = <span class="f">123</span>
 </code></pre>
@@ -82,7 +85,7 @@
 <p>Variables can also be accessed by using the <a href="../../builtintasks/var.html" title="var()"><code>var()</code></a> built-in task.</p>
 <h2 id="scope-of-variables">Scope of variables<a class="doc-heading-anchor" href="#scope-of-variables"></a></h2>
 <p>Variables share the scope of the build target they're declared in. There are no local variables, and assigning, using, or modifying a variable in a seemingly enclosed scope will be not limited to that scope, but to the whole build target scope.</p>
-<pre><code class="language-sakerscript"><span class="c"># variable among the global expressions</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="c"># variable among the global expressions</span>
 <span class="d">$outervar</span> = <span class="c"># ...</span>
 <span class="a">build</span><span class="b">{</span>
 	<span class="c"># variable in the build target, </span>
@@ -128,14 +131,14 @@
 <p>When a variable is dereferenced, the receiver expression (that is the one retrieving the value of the variable) will be put on hold. It will wait, until the variable is assigned. If the variable is already assigned when its value is being retrieved, the receiver expression will continue to run. If the variable has not yet been assigned, the execution of the receiver expression will be paused until it is assigned.</p>
 <p>Based on this logic, it is possible to deadlock the execution of a script. When the variables depend on each other in a circular way, the execution of the script is erroneous, and will result in an exception during the execution of it.
 One example for this:</p>
-<pre><code class="language-sakerscript"><span class="c"># circular variable dependency</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="c"># circular variable dependency</span>
 <span class="d">$var</span> = <span class="d">$secondvar</span> * <span class="f">3</span>
 <span class="d">$secondvar</span> = <span class="e">some.task(</span><span class="f">Input</span><span class="i"> = </span><span class="d">$var</span><span class="e">)</span>
 </code></pre>
 <p>We can see that the assignment of <code>$var</code> will require the value of <code>$secondvar</code>. However, the assignment of <code>$secondvar</code> requires the output of <code>some.task(Input = $var)</code>, which needs the value of <code>$var</code> to run. In this case the execution of the script will deadlock.</p>
 <h2 id="build-target-parameters">Build target parameters<a class="doc-heading-anchor" href="#build-target-parameters"></a></h2>
 <p>The declared parameters of the build target affect the behaviour of variables. Any input variables of a build target cannot be assigned in the body of the target. All output parameters which doesn't have an assigned value in the parameter list must be assigned during the execution of the build target. See <a href="../sourcefile/index.html" title="Source file">Source file</a> for more information.</p>
-<pre><code class="language-sakerscript"><span class="a">build(</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="a">build(</span>
 	<span class="j">in</span> <span class="d">InputParam</span>,
 	<span class="j">out</span> <span class="d">OutputResult</span>,
 <span class="a">)</span><span class="b">{</span>
@@ -178,7 +181,7 @@ One example for this:</p>
 				<div data-footer-location="doc-docs"><a href="../../../../doc/index.html" title="saker.build documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../../../javadoc/index.html" title="JavaDoc for saker.build">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../../../taskdoc/index.html"  title="Documentation of build tasks in saker.build">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.build on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.build" title="saker.build on GitHub">GitHub</a></div>
 			</div>
 		</div>	

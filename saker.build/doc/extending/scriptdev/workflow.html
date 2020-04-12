@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Extending saker.build > <a href="index.html" title="Script language development">Script language development</a> > <a href="workflow.html" title="Development workflow">Development workflow</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -72,15 +75,15 @@
 <p>First of all, when using the build daemon, the build system caches the class path of the language implementations and keeps the loaded script providers in memory to avoid always loading the class path. In order to overcome this issue, if you expect the language implementation to be changed, don't use daemons, or clear the cached data of a daemon. (This includes IDE usage as well. See Window &gt; Saker.build &gt; Reload plugin environment option in Eclipse)</p>
 <p>Secondly, even if you don't use daemon, you need to represent the changes made in the language tasks that they've been changed. This is not straightforward, as when the build system loads the classes, it will likely load the new implementation classes with the data from the old implementation. In this case the build system will not notice the changes, as it will not have the reference to the old classes to compare with the new.<br />
 In order to solve this, you can do the following (any of them is sufficient):</p>
-<ol>
+<ol class="doc-md-list">
 <li>Modify the <a href="structure.html#accessor-key" title="Accessor key">script accessor key</a> for each exported implementation.
-<ul>
+<ul class="doc-md-list">
 <li>This will cause the build system to fail to load the old implementation of the classes, and therefore recognize that the implementation have been changed.</li>
 <li>A solution for this is to configure the build to include the build time or otherwise transient data in the script accessor key.</li>
 </ul>
 </li>
 <li>Clean the project that uses your language.
-<ul>
+<ul class="doc-md-list">
 <li>This results in the build system cleanly building your project and using the most up-to-date imeplementations of everything.</li>
 </ul>
 </li>
@@ -119,7 +122,7 @@ In order to solve this, you can do the following (any of them is sufficient):</p
 				<div data-footer-location="doc-docs"><a href="../../../doc/index.html" title="saker.build documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../../javadoc/index.html" title="JavaDoc for saker.build">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../../taskdoc/index.html"  title="Documentation of build tasks in saker.build">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.build on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.build" title="saker.build on GitHub">GitHub</a></div>
 			</div>
 		</div>	

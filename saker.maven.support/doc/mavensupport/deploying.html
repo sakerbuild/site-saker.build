@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Maven support > <a href="deploying.html" title="Artifact deploying">Artifact deploying</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -74,7 +77,7 @@
 <p>The artifact deploying usually requires <a href="authentication.html" title="Authentication">authentication</a> from the client.</p>
 <p>The deploying can be performed using the <a href="../../taskdoc/saker.maven.deploy.html"><code>saker.maven.deploy()</code></a> task. The task deploys multiple artifacts under the specified coordinates in a batch. Each artifact can be given using a specifier and an artifact path.</p>
 <p>The specifiers tell the task the classifier and extension parts of a given artifact. The following example demonstrates it:</p>
-<pre><code class="language-sakerscript"><span class="e"><a href="../../../saker.maven.support/taskdoc/saker.maven.deploy.html" title="Task: saker.maven.deploy()">saker.maven.deploy</a>(</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.maven.support/taskdoc/saker.maven.deploy.html" title="Task: saker.maven.deploy()">saker.maven.deploy</a>(</span>
 	<span class="i">Artifacts</span>: <span class="b">{</span>
 		<span class="h">&quot;pom&quot;</span>: <span class="f">pom.xml</span><span class="b">,</span>
 		<span class="h">&quot;jar&quot;</span>: <span class="f">artifact.jar</span><span class="b">,</span>
@@ -87,13 +90,13 @@
 		<span class="h">Authentication</span>: <span class="e"><a href="../../../saker.maven.support/taskdoc/saker.maven.auth.account.html" title="Task: saker.maven.auth.account()">saker.maven.auth.account</a>(</span>
 			<span class="i">UserName</span>: <span class="f">exampleuser</span>,
 			<span class="i">Password: </span><span class="f">123456789abcdef123456789abcdef123456789a</span>,
-		<span class="e">)</span><span class="b">
-	}</span>,
+		<span class="e">)</span>
+	<span class="b">}</span>,
 <span class="e">)</span>
 </code></pre>
 <p>The <code>Artifacts</code> are specified in a map where the keys are the classifier and extension specifiers, while the values are the paths to the deployed artifacts.</p>
 <p>The actual artifact coordinates under which the artifacts are deployed are constructed by merging the <code>Coordinates</code> parameter and the specifier. The above will result in the following artifacts being deployed:</p>
-<pre><code class="language-plaintext">example.groupid:example.artifactid:pom:0.1            (pom.xml)
+<pre class="doc-code-block"><code class="language-plaintext">example.groupid:example.artifactid:pom:0.1            (pom.xml)
 example.groupid:example.artifactid:jar:0.1            (artifact.jar)
 example.groupid:example.artifactid:sources:jar:0.1    (artifact-sources.jar)
 </code></pre>
@@ -130,7 +133,7 @@ example.groupid:example.artifactid:sources:jar:0.1    (artifact-sources.jar)
 				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.maven.support documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.maven.support">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.maven.support">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.maven.support" title="saker.maven.support | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.maven.support" title="saker.maven.support | saker.nest">saker.maven.support on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.maven.support" title="saker.maven.support on GitHub">GitHub</a></div>
 			</div>
 		</div>	

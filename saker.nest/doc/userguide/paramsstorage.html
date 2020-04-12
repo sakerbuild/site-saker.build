@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				User guide > <a href="configuration.html" title="Runtime configuration">Runtime configuration</a> > <a href="paramsstorage.html" title="Parameter storage">Parameter storage</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -76,10 +79,10 @@
 <p>If a path is prefixed by double forward slashes (<code>//</code>), then the remaining part of the path will be interpreted against the local file system. Local file system paths must be absolute.</p>
 <p>Extra semicolons in the parameter value are ignored.</p>
 <p>E.g.</p>
-<pre><code class="language-plaintext">lib/*.jar;///usr/lib/my-jar.jar;wd:/lib/build-lib.jar
+<pre class="doc-code-block"><code class="language-plaintext">lib/*.jar;///usr/lib/my-jar.jar;wd:/lib/build-lib.jar
 </code></pre>
 <p>The above configuration will result in using the following bundles:</p>
-<ul>
+<ul class="doc-md-list">
 <li><code>lib/*.jar</code>: All the bundles in the <code>lib</code> subdirectory of the working directory that has
 the <code>.jar</code> extension.</li>
 <li><code>///usr/lib/my-jar.jar</code>: Will use the <code>/usr/lib/my-jar.jar</code> from the local file
@@ -123,7 +126,7 @@ environment that sets up the repository.</p>
 				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.nest documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.nest">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.nest">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.nest" title="saker.nest | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.nest" title="saker.nest | saker.nest">saker.nest on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.nest" title="saker.nest on GitHub">GitHub</a></div>
 			</div>
 		</div>	

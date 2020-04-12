@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Package details > <a href="implementationinsights.html" title="Implementation insights">Implementation insights</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -69,33 +72,33 @@
 			<div class="doc-content"><h1 id="implementation-insights">Implementation insights<a class="doc-heading-anchor" href="#implementation-insights"></a></h1>
 <p>In this document we provide some insights to the internal workings of the <a href="../taskdoc/saker.java.compile.html"><code>saker.java.compile()</code></a> task. This is mostly for the curious who are interested in the inner mechanisms of the incremental compilation handling.</p>
 <p>In a nutshell, the task works the following way for clean builds:</p>
-<ol>
+<ol class="doc-md-list">
 <li>Determine the input source and class path files.</li>
 <li>Parse the source files using the <a href="https://docs.oracle.com/javase/8/docs/jdk/api/javac/tree/" title="Compiler Tree API">Java Compiler API</a>.</li>
 <li>If there are any annotation processors, instantiate them, and run the annotation processing manually.
-<ul>
+<ul class="doc-md-list">
 <li>The processing is run completely without <code>javac</code>.</li>
 </ul>
 </li>
 <li>Ask <code>javac</code> to generate the bytecode class files based on the parsed source files.</li>
 </ol>
 <p>If incremental compilation is being done, additional operations are included in the above workflow:</p>
-<ol>
+<ol class="doc-md-list">
 <li>Determine the input source and class path files.</li>
 <li>Check file changes, additions, and removals.
-<ul>
+<ul class="doc-md-list">
 <li>If any class path file changed (e.g. JAR file modified), then we (maybe) fall back to full recompilation.</li>
 </ul>
 </li>
 <li>Parse the <em>changed</em> source files using the <a href="https://docs.oracle.com/javase/8/docs/jdk/api/javac/tree/" title="Compiler Tree API">Java Compiler API</a>.</li>
 <li>Determine if there are any structural changes in the modified source files.
-<ul>
+<ul class="doc-md-list">
 <li>If yes, then determine how each change affects the other source files.</li>
 <li>Add the affected files to the changed source file set, and go to 3.</li>
 </ul>
 </li>
 <li>If there are any annotation processors, run annotation processing.
-<ul>
+<ul class="doc-md-list">
 <li>Any generated source files by the processors are parsed, and the changes are detected accordingly as previously.</li>
 </ul>
 </li>
@@ -110,25 +113,25 @@
 <p>Incremental annotation processing was an unsolved problem until early 2018. It is not straight forward to implement this feature as processors are basically aribtrary plugins into the compilation process where they can do anything they like. Based on this, it is extremely hard to correctly determine the dependencies for an annotation processor, as there's very little opportunity for them to report the dependencies to the compiler.</p>
 <p>However, (thankfully) the <a href="https://docs.oracle.com/javase/8/docs/api/javax/annotation/processing/Filer.html" title="Filer (Java Platform SE 8 )"><code>Filer</code></a> API for the annotation processors was constructed in a way that allows reporting dependencies for generated resources. As far as we know annotation processor implementations haven't really bother to pass the originating elements for generated resources, as nobody really used them. This made implementing incremental processing even more harder, as the annotation processors didn't even use the APIs correctly.</p>
 <p>Our main goal for incremental annotation processing was the following:</p>
-<ul>
+<ul class="doc-md-list">
 <li>Support <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/annotation/RetentionPolicy.html#SOURCE" title="RetentionPolicy (Java Platform SE 8 )">source retention</a> annotations.
-<ul>
+<ul class="doc-md-list">
 <li>As we've previously mentioned in <a href="featurecomparison.html" title="Feature comparison">Feature comparison</a>, we believe that the tooling shouldn't impose restrictions on the codebase. If we didn't support annotations with source retention policy, then that would mean that annotations would needed to be part of the resulting class files even though it is not necessary for them to be present there.</li>
 </ul>
 </li>
 <li>Support partial and minimal annotation processing.
-<ul>
+<ul class="doc-md-list">
 <li>If a processor doesn't generate resources based on some Java elements, then the changing of those elements shouldn't cause the processor to be reinvoked.</li>
 <li>The processors shouldn't need information about the whole compilation set in order to produce their results, but only the ones they are interested about.</li>
 </ul>
 </li>
 <li>Support arbitrary processor locations.
-<ul>
+<ul class="doc-md-list">
 <li>As a processor author, you may be fimilar with the <a href="https://docs.oracle.com/javase/8/docs/api/javax/tools/StandardLocation.html" title="StandardLocation (Java Platform SE 8 )"><code>StandardLocation</code></a> enumeration. In addition to those, we wanted to support arbitrary processor locations for input and output.</li>
 </ul>
 </li>
 <li>Parallel annotation processing
-<ul>
+<ul class="doc-md-list">
 <li>The work of annotation processors can be cleanly separated. They should be run in a multi-threaded way so they can complete faster.</li>
 </ul>
 </li>
@@ -170,7 +173,7 @@
 				<div data-footer-location="doc-docs"><a href="../doc/index.html" title="saker.java.compiler documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../javadoc/index.html" title="JavaDoc for saker.java.compiler">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../taskdoc/index.html"  title="Documentation of build tasks in saker.java.compiler">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.java.compiler" title="saker.java.compiler | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.java.compiler" title="saker.java.compiler | saker.nest">saker.java.compiler on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.java.compiler" title="saker.java.compiler on GitHub">GitHub</a></div>
 			</div>
 		</div>	

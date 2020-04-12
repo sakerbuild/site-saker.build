@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				User guide > <a href="repositories.html" title="Task repositories">Task repositories</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -72,7 +75,7 @@
 <p>For saker.build, we've developed our own public repository that is able to host and look up tasks and their related implementation. See the <a href="../../../saker.nest/index.html" title="Index">saker.nest repository</a> for more information. <br />
 The saker.nest repository is automatically included in the build configuration if not specified otherwise. (It will have the <code>nest</code> identifier by default.)</p>
 <p>When a repository is configured for the build, it will have an user-specified or generated identifier. This identifier can be used to reference the loaded repository when necessary. One example for this is when developers want to explicitly specify the location from where a given task should be loaded:</p>
-<pre><code class="language-sakerscript"><span class="c"># the following task will be loaded from </span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="c"># the following task will be loaded from </span>
 <span class="c">#   the repository with 'nest' identifier </span>
 <span class="e">example.compile.sources@nest()</span>
 <span class="c"># the following task is loaded from the first</span>
@@ -86,12 +89,12 @@ The saker.nest repository is automatically included in the build configuration i
 <h2 id="configuration">Configuration<a class="doc-heading-anchor" href="#configuration"></a></h2>
 <p>The repositories can be configured by specifying a class path for them. The repository identifier can also be specified, but if they are omitted, one will be automatically generated for them.</p>
 <p>An example for specifying a custom repository using the command line arguments:</p>
-<pre><code>-repository pwd://myrepo.jar
+<pre class="doc-code-block"><code>-repository pwd://myrepo.jar
 </code></pre>
 <p>The task repository from the <code>myrepo.jar</code> in the current process working directory (pwd) will be loaded for the build execution. The actual repository class is determined using the Java <a href="https://docs.oracle.com/javase/8/docs/api/java/util/ServiceLoader.html" title="ServiceLoader (Java Platform SE 8 )"><code>ServiceLoader</code></a> mechanism. An implementation dependent identifier is generated for it.</p>
 <p>The configuration also implicitly includes the Nest repository.</p>
 <hr />
-<pre><code>-repository pwd://myrepo.jar
+<pre class="doc-code-block"><code>-repository pwd://myrepo.jar
 -repository pwd://secondrepo.jar
 -repository-id secondrepo
 -repository-class secondrepo.SecondRepository
@@ -133,7 +136,7 @@ The saker.nest repository is automatically included in the build configuration i
 				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.build documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.build">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.build">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.build on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.build" title="saker.build on GitHub">GitHub</a></div>
 			</div>
 		</div>	

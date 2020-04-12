@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Extending saker.build > <a href="index.html" title="Task development">Task development</a> > <a href="ideconfig.html" title="IDE configuration">IDE configuration</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -74,7 +77,7 @@ They have a string type which is an arbitrary unique string that defines the sch
 <p>The configurations can be reported in the form of an <code>IDEConfiguration</code>, and we recommend using the <code>SimpleIDEConfiguration</code> implementation of it.</p>
 <p>One possible example for an IDE configuration for Java compilation is the following:<br />
 <small>The following format is arbitrary and for example purposes.</small></p>
-<pre><code>type: java.compile.ideconfig,
+<pre class="doc-code-block"><code>type: java.compile.ideconfig,
 identifier: main,
 {
 	source_directories: [
@@ -87,7 +90,7 @@ identifier: main,
 </code></pre>
 <p>The above configuration can be created and reported using the following code:</p>
 <p>
-<pre><code class="language-java">NavigableMap&lt;String, Object&gt; fields = new TreeMap&lt;&gt;();fields.put(&quot;source_directories&quot;, Arrays.asList(&quot;src/main&quot;, &quot;api/main&quot;));fields.put(&quot;classpath&quot;, &quot;wd:/my_lib.jar&quot;);fields.put(&quot;source_version&quot;, 8);taskcontext.reportIDEConfiguration(		new SimpleIDEConfiguration(&quot;java.compile.ideconfig&quot;, &quot;main&quot;, fields));</code></pre>
+<pre class="doc-code-block"><code class="language-java">NavigableMap&lt;String, Object&gt; fields = new TreeMap&lt;&gt;();fields.put(&quot;source_directories&quot;, Arrays.asList(&quot;src/main&quot;, &quot;api/main&quot;));fields.put(&quot;classpath&quot;, &quot;wd:/my_lib.jar&quot;);fields.put(&quot;source_version&quot;, 8);taskcontext.reportIDEConfiguration(		new SimpleIDEConfiguration(&quot;java.compile.ideconfig&quot;, &quot;main&quot;, fields));</code></pre>
 </p>
 <link href="../../../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>
 			<div class="end-section-links">
@@ -122,7 +125,7 @@ identifier: main,
 				<div data-footer-location="doc-docs"><a href="../../../doc/index.html" title="saker.build documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../../javadoc/index.html" title="JavaDoc for saker.build">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../../taskdoc/index.html"  title="Documentation of build tasks in saker.build">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.build on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.build" title="saker.build on GitHub">GitHub</a></div>
 			</div>
 		</div>	

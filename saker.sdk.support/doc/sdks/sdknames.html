@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				SDKs > <a href="sdknames.html" title="SDK names and identifiers">SDK names and identifiers</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -69,17 +72,17 @@
 			<div class="doc-content"><h1 id="sdk-names-and-identifiers">SDK names and identifiers<a class="doc-heading-anchor" href="#sdk-names-and-identifiers"></a></h1>
 <p>When working with SDKs, you will need to give a name for them. The SDK names may be arbitrarily specified, however, when referencing paths and properties using <a href="../../taskdoc/sdk.path.html"><code>sdk.path()</code></a> and <a href="../../taskdoc/sdk.property.html"><code>sdk.property()</code></a>, then the same names must be used for the associations to work.</p>
 <p><strong>Important</strong> is that the SDK names are interpreted in a case-insensitive way. The following tasks achieve the same and all return a path reference for the SDK named <code>java</code>:</p>
-<pre><code class="language-sakerscript"><span class="e"><a href="../../../saker.sdk.support/taskdoc/sdk.path.html" title="Task: sdk.path()">sdk.path</a>(</span><span class="f">Java</span>, <span class="i">Identifier: </span><span class="f">exe.java</span><span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.sdk.support/taskdoc/sdk.path.html" title="Task: sdk.path()">sdk.path</a>(</span><span class="f">Java</span>, <span class="i">Identifier: </span><span class="f">exe.java</span><span class="e">)</span>
 <span class="e"><a href="../../../saker.sdk.support/taskdoc/sdk.path.html" title="Task: sdk.path()">sdk.path</a>(</span><span class="f">java</span>, <span class="i">Identifier: </span><span class="f">exe.java</span><span class="e">)</span>
 <span class="e"><a href="../../../saker.sdk.support/taskdoc/sdk.path.html" title="Task: sdk.path()">sdk.path</a>(</span><span class="f">JAVA</span>, <span class="i">Identifier: </span><span class="f">exe.java</span><span class="e">)</span>
 </code></pre>
 <p><strong>Note</strong> that the path and property identifiers may or may not be handled in a case-insensitive way. It depends on the SDK that they're associated with. In general, you should treat identifiers that they are case-sensitive.</p>
 <p>Some SDK names may be handled specially by the task that interprets them. For example the <code>saker.java.compile()</code> task will decide the compilation JDK based on the specified <code>Java</code> SDK:</p>
-<pre><code class="language-sakerscript"><span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
 	<span class="i">SourceDirectories</span>: <span class="f">src</span>,
 	<span class="i">SDKs: </span><span class="b">{</span>
-		<span class="h">Java</span>: <span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.sdk.html" title="Task: saker.java.sdk()">saker.java.sdk</a>(</span><span class="f">13</span><span class="e">)</span><span class="b">
-	}</span>
+		<span class="h">Java</span>: <span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.sdk.html" title="Task: saker.java.sdk()">saker.java.sdk</a>(</span><span class="f">13</span><span class="e">)</span>
+	<span class="b">}</span>
 <span class="e">)</span>
 </code></pre>
 <p>The above example will use a JDK with a major version of 13 to compile the sources in the <code>src</code> directory.</p>
@@ -116,7 +119,7 @@
 				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.sdk.support documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.sdk.support">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.sdk.support">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.sdk.support" title="saker.sdk.support | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.sdk.support" title="saker.sdk.support | saker.nest">saker.sdk.support on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.sdk.support" title="saker.sdk.support on GitHub">GitHub</a></div>
 			</div>
 		</div>	

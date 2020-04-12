@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Scripting language > <a href="../../index.html" title="Language reference">Language reference</a> > <a href="../index.html" title="Operators">Operators</a> > <a href="index.html" title="Bitwise negate">Bitwise negate</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -70,7 +73,7 @@
 <p>The bitwise negate unary operator works on integers and flips every bit in the numeric representation. The operator expects the subject operand to be a number value. If not, a runtime exception is thrown.</p>
 <p>The bits of the number will be negated, meaning that all bits in the current binary integral representation of the number will be flipped. If the subject number has arbitrary precision, then all bits up to the bit length of the representation will be flipped alongside with the sign of the number. If the number has a fixed precision (e.g. 64 bit), then all bits are flipped including the unused ones.</p>
 <p>As bitwise operations are not applicable to floating point numbers, therefore implementations may convert the number to an integral representation in an implementation dependent manner or may thrown a runtime exception.</p>
-<pre><code class="language-sakerscript"><span class="c"># negate a literal: -2</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="c"># negate a literal: -2</span>
 ~<span class="f">1</span>
 <span class="c"># negate hexadecimal: 0xFFFFFFFFFFFF8290 (64bit)</span>
 ~<span class="f">0x7d6f</span>
@@ -110,7 +113,7 @@
 				<div data-footer-location="doc-docs"><a href="../../../../../doc/index.html" title="saker.build documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../../../../javadoc/index.html" title="JavaDoc for saker.build">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../../../../taskdoc/index.html"  title="Documentation of build tasks in saker.build">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.build on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.build" title="saker.build on GitHub">GitHub</a></div>
 			</div>
 		</div>	

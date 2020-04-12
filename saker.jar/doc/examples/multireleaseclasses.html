@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Examples > <a href="multireleaseclasses.html" title="Multi-release Java classes">Multi-release Java classes</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -69,7 +72,7 @@
 			<div class="doc-content"><h1 id="multi-release-java-classes">Multi-release Java classes<a class="doc-heading-anchor" href="#multi-release-java-classes"></a></h1>
 <p>See also: <a href="../jarcreation/multirelease.html" title="Multi-release contents">Multi-release contents</a>, <a href="classes.html" title="Java classes">Java classes</a></p>
 <p>In the following example we use the <a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html"><code>saker.java.compile()</code></a> task to compile Java sources and include it in the Java archive. We'll compile the codebase for multiple target JDK versions and include them in the created JAR file. The following example uses the <a href="../../../saker.java.compiler/doc/javacompile/compileroptions.html" title="Compiler options">compiler options</a> to set an appropriate JDK for each task.</p>
-<pre><code class="language-sakerscript"><span class="d">$options</span> = <span class="c"># ... the compilation options ...</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d">$options</span> = <span class="c"># ... the compilation options ...</span>
 <span class="d">$multireleasecontents</span> = <span class="j">foreach </span><span class="d">$jdk</span><span class="j"> in </span><span class="b">[</span><span class="f">8</span><span class="b">,</span> <span class="f">9</span><span class="b">,</span> <span class="f">10</span><span class="b">]</span><span class="j"> 
 		with </span><span class="d">$javac</span> {
 	<span class="d">$javac</span> = <span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
@@ -81,10 +84,10 @@
 	<span class="d">$jdk</span>: <span class="b">{</span>
 		<span class="h">Resources</span>: <span class="b">{</span>
 			<span class="h">Directory</span>: <span class="d">$javac</span><span class="g">[</span><span class="h">ClassDirectory</span><span class="g">]</span><span class="b">,</span>
-			<span class="h">Resources</span>: <span class="f">**</span><span class="b">
-		}
-	}
-}</span>
+			<span class="h">Resources</span>: <span class="f">**</span>
+		<span class="b">}</span>
+	<span class="b">}</span>
+<span class="b">}</span>
 <span class="e"><a href="../../../saker.jar/taskdoc/saker.jar.create.html" title="Task: saker.jar.create()">saker.jar.create</a>(</span>
 	<span class="i">MultiReleaseContents</span>: <span class="d">$multireleasecontents</span>
 <span class="e">)</span>
@@ -92,7 +95,7 @@
 <p>The JAR archive creation part of the above example simply passes the <code>MultiReleaseContents</code> parameter as its input. However, the compilation for different JDKs are more complex:</p>
 <p>We use a <code>foreach</code> loop to compile the Java sources in the <code>src</code> directory for Java major versions 8, 9, and 10. The result expression of the <code>foreach</code> constructs a map that has the major versions of the target Java versions as its key, and the ZIP content specification for the value.</p>
 <p>The created Java archive will have the following content structure:</p>
-<pre><code class="language-plaintext">&lt;classes for JDK8&gt;
+<pre class="doc-code-block"><code class="language-plaintext">&lt;classes for JDK8&gt;
 META-INF/versions/9/&lt;classes for JDK9&gt;
 META-INF/versions/10/&lt;classes for JDK10&gt;
 </code></pre>
@@ -127,7 +130,7 @@ META-INF/versions/10/&lt;classes for JDK10&gt;
 				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.jar documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.jar">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.jar">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.jar" title="saker.jar | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.jar" title="saker.jar | saker.nest">saker.jar on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.jar" title="saker.jar on GitHub">GitHub</a></div>
 			</div>
 		</div>	

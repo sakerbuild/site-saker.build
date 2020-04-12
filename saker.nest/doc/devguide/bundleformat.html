@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Development guide > <a href="bundleformat.html" title="Bundle format">Bundle format</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -70,18 +73,18 @@
 <p>The bundle contents are packed into a ZIP archive with additional meta-data added to them. (Also known as JAR files.) All bundles must contain a manifest file, and optionally dependency and build task declaration meta-data files.</p>
 <h2 id="manifest-file">Manifest file<a class="doc-heading-anchor" href="#manifest-file"></a></h2>
 <p>The manifest file for the bundle is expected to havethe path <code>META-INF/MANIFEST.MF</code>. It must be a well-formatted Java Manifest file, with additional <strong>required</strong> main attributes:</p>
-<ul>
+<ul class="doc-md-list">
 <li><code>Nest-Bundle-Format-Version</code>: An integer value that specifies the format version of the bundle. Currently the only accepted value is <code>1</code>. If the saker.nest repository introduces additional features, other version numbers may be supported later.</li>
 <li><code>Nest-Bundle-Identifier</code>: Specifies the bundle identifier of the bundle. This is the full name of the bundle, including the package name, qualifiers, and a version qualifier. See <a href="../userguide/index.html#names" title="Names">Names</a> for information about the identifier format.</li>
 </ul>
 <p>A bundle that contains the above required manifest attributes is the absolute minimal requirements for a valid bundle.</p>
 <p>In addition, the following <em>optional</em> meta-data attributes can be specified:</p>
-<ul>
+<ul class="doc-md-list">
 <li><code>Nest-Bundle-Source</code>: Specifies the bundle identifier of the bundle that contains the sources for this bundle.</li>
 <li><code>Nest-Bundle-Documentation</code>: Specifies the bundle identifier of the bundle that contains documentational information for this bundle. The documentation resources are not expected to be in any format, they can be interpreted in an use-case dependent manner.</li>
 </ul>
 <p>In addition, the following <em>optional</em> behavioural attributes can be specified:</p>
-<ul>
+<ul class="doc-md-list">
 <li><code>Nest-ClassPath-Special</code>: Specifies special dependencies for the bundle that should be added to the bundle classpath when loaded. The currently accepted only value is <code>jdktools</code> which will cause the repository runtime to have the Java tooling classpath available for the bundle classes. (E.g. Java compiler)</li>
 <li><code>Nest-ClassPath-Supported-JRE-Versions</code>: Specifies a <a href="../userguide/versioning.html#version-ranges" title="Version ranges">version range</a> that defines the suitable JRE environments that the bundle classes can be loaded on.</li>
 <li><code>Nest-ClassPath-Supported-Repository-Versions</code>: Specifies a <a href="../userguide/versioning.html#version-ranges" title="Version ranges">version range</a> that defines the suitable repository versions that the bundle classes can be loaded on.</li>
@@ -92,7 +95,7 @@
 <p>The standard manifest attribute <code>Main-Class</code> can also be declared in the manifest. The repository runtime will read this value and validate that the referenced class is actually contained in the bundle.</p>
 <h2 id="task-file">Task file<a class="doc-heading-anchor" href="#task-file"></a></h2>
 <p>The tasks in the bundle can be declared in the <code>META-INF/nest/tasks</code> meta-data file. The contents of the file is a simple enumeration of the task names paired with the corresponding Java class names in the following format:</p>
-<pre><code class="language-plaintext">[task.name]=[class-name]
+<pre class="doc-code-block"><code class="language-plaintext">[task.name]=[class-name]
 </code></pre>
 <p>Each entry should be on its separate line. Extra whitespace around the names and <code>=</code> sign are trimmed. Comments are not allowed. The bundle will be validated that it actually contains a class file for the given class name.</p>
 <p>When a bundle is uploaded to the saker.nest repository, it will validate that the uploader has claimed all the task names that the bundle declares.</p>
@@ -100,7 +103,7 @@
 <p>The dependencies of a bundle can be declared in the <code>META-INF/nest/dependencies</code> meta-data file. The format of the dependency file is the following:</p>
 <p>The dependencies are declared in 3 levels of white-space indented lines.</p>
 <p>The first level contains the name of the bundle identifier that the dependency is declared on:</p>
-<pre><code class="language-plaintext">my.bundle
+<pre class="doc-code-block"><code class="language-plaintext">my.bundle
     ...
 second.dependency.bundle-q1-q2
     ....
@@ -111,7 +114,7 @@ All dependency information for a bundle is written in the block following the bu
 <p>In each indented block, the indentation characters must be the same. You can use one or more tabs or spaces, but
 make sure to use the same indentation throughout an indented block.</p>
 <p>A dependency on a bundle consists of one or multiple dependency kinds, a version range, and optional meta-data:</p>
-<pre><code class="language-plaintext">my.bundle
+<pre class="doc-code-block"><code class="language-plaintext">my.bundle
     classpath: 1.0
     kind2, kind3,, kind4: [0)
 </code></pre>
@@ -123,7 +126,7 @@ make sure to use the same indentation throughout an indented block.</p>
 <p>In the above, both dependency declarations are indented with 4 spaces. As mentioned above, this must stay
 consistend in a given block.</p>
 <p>Dependency meta-datas can be declared for a given declaration:</p>
-<pre><code class="language-plaintext">my.bundle
+<pre class="doc-code-block"><code class="language-plaintext">my.bundle
     classpath: 1.0
         optional: true
         meta2: custom-value
@@ -146,7 +149,7 @@ at the end of a line. Intermediate quotes don't need to be escaped. If the value
 of a line and still continue, the backslash (<code>\</code>) character needs to be appended to continue parsing
 the value.</p>
 <p>See the following for multi-line escaping examples:</p>
-<pre><code class="language-plaintext">meta1: &quot;1st
+<pre class="doc-code-block"><code class="language-plaintext">meta1: &quot;1st
 2nd&quot;
 
 meta2: &quot;some&quot;intermediate
@@ -158,7 +161,7 @@ line\\
 end&quot;
 </code></pre>
 <p>In the above, the meta-data entries will be the following, with new lines as <strong><code>\n</code></strong>:</p>
-<ul>
+<ul class="doc-md-list">
 <li><code>meta1</code>: <code>1st</code><strong><code>\n</code></strong><code>2nd</code></li>
 <li><code>meta2</code>: <code>some&quot;intermediate</code><strong><code>\n</code></strong><code>&quot;quoted</code></li>
 <li><code>meta3</code>: <code>quotes</code><strong><code>\n</code></strong><code>at&quot;</code><strong><code>\n</code></strong><code>line\</code><strong><code>\n</code></strong><code>end</code></li>
@@ -169,16 +172,16 @@ omitted by the parser. Line endings are normalized to <code>\n</code>.</p>
 then it will be substituted by the version number of the declaring bundle identifier for
 dependencies that have the same name as the declaring bundle.</p>
 <p>E.g. if the declaring bundle is <code>my.bundle-v1.0</code> then the following:</p>
-<pre><code class="language-plaintext">my.bundle-q1
+<pre class="doc-code-block"><code class="language-plaintext">my.bundle-q1
     classpath: [this]
 </code></pre>
 <p>Will be parsed as if it was the following:</p>
-<pre><code class="language-plaintext">my.bundle-q1
+<pre class="doc-code-block"><code class="language-plaintext">my.bundle-q1
     classpath: [1.0]
 </code></pre>
 <p>Note that the <code>this</code> identifier will not be substituted if it is declared on a dependency that doesn't
 have the same name as the declaring bundle. The following will result in a parsing error:</p>
-<pre><code class="language-plaintext">other.bundle
+<pre class="doc-code-block"><code class="language-plaintext">other.bundle
     classpath: [this]
 </code></pre>
 <p>The error occurs as <code>other.bundle</code> has a different name than <code>my.bundle</code>.</p>
@@ -215,7 +218,7 @@ have the same name as the declaring bundle. The following will result in a parsi
 				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.nest documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.nest">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.nest">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.nest" title="saker.nest | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.nest" title="saker.nest | saker.nest">saker.nest on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.nest" title="saker.nest on GitHub">GitHub</a></div>
 			</div>
 		</div>	

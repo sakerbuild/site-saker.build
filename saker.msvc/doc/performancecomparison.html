@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Package details > <a href="performancecomparison.html" title="Performance comparison">Performance comparison</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -69,19 +72,19 @@
 			<div class="doc-content"><h1 id="performance-comparison">Performance comparison<a class="doc-heading-anchor" href="#performance-comparison"></a></h1>
 <p>In this article we'll be comparing the performance of the saker.msvc package to other tools that are the most appropriate canditate for a given use-case.<noscript> (Enabling JavaScript will convert the below measurement tables to bar graphs.)</noscript></p>
 <p>The goal of these comparisons is <strong>not</strong> to measure the compilation speed of <a href="https://docs.microsoft.com/en-us/cpp/build/reference/compiling-a-c-cpp-program?view=vs-2019" title="MSVC C/C++ compiler reference - Visual Studio | Microsoft Docs"><code>cl.exe</code></a> and other MSVC tools. The goal of the comparisons is to measure the scheduling performance of the saker.msvc build tasks and compare them to common tools used in the same ecosystem. We are interested in the performance results of the following use-cases:</p>
-<ul>
+<ul class="doc-md-list">
 <li>Compiler process creation and management
-<ul>
+<ul class="doc-md-list">
 <li>We want to ensure that the saker.msvc build tasks can spawn and manage the compilation processes that are invoked as part of the build in an optimal manner.</li>
 </ul>
 </li>
 <li>Build task distribution to clusters
-<ul>
+<ul class="doc-md-list">
 <li>We are interested in the amount of overhead build clusters add to the build execution.</li>
 </ul>
 </li>
 <li>Incremental performance
-<ul>
+<ul class="doc-md-list">
 <li>We want to measure how fast can the build systems determine what needs to build and what is up-to-date.</li>
 </ul>
 </li>
@@ -108,9 +111,9 @@
 </div>
 <p>In the above tests we've performed clean builds, no-op incremental builds when we modify no source files, incremental builds when only a single file was modified, and incremental builds when every 3rd source file was modified.</p>
 <p>From the results we can see that saker.build is 8% slower for clean builds, and 18% slower when performing incremental builds than Ninja when it comes to invoking the compilation processes. If it is acceptable to you, that's for you to decide. However, we feel that when compared to a specialized native tool, the above results are great. Let's see why we say this:</p>
-<ul>
+<ul class="doc-md-list">
 <li>The saker.build runs in the JVM. It is actually expected to be somewhat slower than a native tool.
-<ul>
+<ul class="doc-md-list">
 <li>It actually would've been much more slower, as the <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html" title="ProcessBuilder (Java Platform SE 8 )"><code>ProcessBuilder</code></a> class that can be used to create external processes adds a significant overhead for creating processes. We've implemented our own native process creation mechanism which reduces the time it takes to start a process. Without it, the clean builds would've taken around 15-16 seconds for this test case.</li>
 </ul>
 </li>
@@ -136,7 +139,7 @@
 </table>
 </div>
 <p>Well, the results are not what we expected <em>at all</em>. Although IncrediBuild says on their site they reduce build times by 90%, it seems they increased them by 90%. We think this may be due to the following:</p>
-<ul>
+<ul class="doc-md-list">
 <li>At the start of every build, IncrediBuild spends 4-6 seconds <em>Preparing build tasks</em>. For incremental builds, this is more than the entire compilation of the changed sources take.</li>
 <li>The operations surrounding the source files far outweight the time it takes to compile a file. Any checks that need to be performed when compiling a file may take longer than the time it takes to compile it. These times may add up.</li>
 <li>Maybe we didn't set up the PCs properly. We just downloaded IncrediBuild, installed on the coordinator and agent, and run the builds. We haven't configured anything.</li>
@@ -290,7 +293,7 @@
 				<div data-footer-location="doc-docs"><a href="../doc/index.html" title="saker.msvc documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../javadoc/index.html" title="JavaDoc for saker.msvc">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../taskdoc/index.html"  title="Documentation of build tasks in saker.msvc">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.msvc" title="saker.msvc | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.msvc" title="saker.msvc | saker.nest">saker.msvc on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.msvc" title="saker.msvc on GitHub">GitHub</a></div>
 			</div>
 		</div>	

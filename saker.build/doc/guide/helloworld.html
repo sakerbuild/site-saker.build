@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				User guide > <a href="index.html" title="Introduction">Introduction</a> > <a href="helloworld.html" title="Hello world">Hello world</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -68,19 +71,19 @@
 </div>
 			<div class="doc-content"><h1 id="hello-world">Hello world<a class="doc-heading-anchor" href="#hello-world"></a></h1>
 <p>Let's get started with the simplest build possible. Writing out a message.</p>
-<pre><code class="language-sakerscript"><span class="e"><a href="../../../saker.build/doc/scripting/builtintasks/print.html" title="Task: print()">print</a>(</span><span class="f">&quot;Hello world!&quot;</span><span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.build/doc/scripting/builtintasks/print.html" title="Task: print()">print</a>(</span><span class="f">&quot;Hello world!&quot;</span><span class="e">)</span>
 </code></pre>
 <p>The above will call the <a href="../scripting/builtintasks/print.html" title="print()"><code>print()</code></a> task that simply prints out the message. The build will successfully finish.</p>
 <p>In order to run a build, write the above in a build file called <code>saker.build</code>, and run the build by invoking the command: <br />
 (Given that the saker.jar containing the build system runtime is in your working directory. See <a href="../installation.html" title="Installation">Installation</a>.)</p>
-<pre><code>java -jar saker.jar
+<pre class="doc-code-block"><code>java -jar saker.jar
 </code></pre>
 <p>See the <a href="cmdlineref/index.html" title="Command line reference">command line reference</a> for other use-cases of the command line interface.</p>
 <p>Running the build again will print out the message again. If you modify the contents of the message, the new message will be printed, and the old will be not.</p>
 <p>(Any following command line argument examples will not have the above <code>java -jar saker.jar</code> part included.)</p>
 <h2 id="variables">Variables<a class="doc-heading-anchor" href="#variables"></a></h2>
 <p>The build language allows you to declare variables. Variables are a named storage of data that can be assigned once. Each variable lives in the scope of its enclosing build target.</p>
-<pre><code class="language-sakerscript"><span class="d">$sum</span> = <span class="f">123</span> + <span class="f">456</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d">$sum</span> = <span class="f">123</span> + <span class="f">456</span>
 <span class="e"><a href="../../../saker.build/doc/scripting/builtintasks/print.html" title="Task: print()">print</a>(</span><span class="d">$sum</span><span class="e">)</span>
 </code></pre>
 <p>Executing the above will print out the value of the <code>$sum</code> variable that is <code>579</code>.</p>
@@ -124,7 +127,7 @@
 				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.build documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.build">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.build">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.build on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.build" title="saker.build on GitHub">GitHub</a></div>
 			</div>
 		</div>	

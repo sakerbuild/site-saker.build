@@ -83,73 +83,73 @@
 <h3 id="examples">Examples<a class="doc-heading-anchor" href="#examples"></a></h3>
 <p>Without any claim to completeness, here are a few examples when you would benefit or not from using a build system:</p>
 <h5 id="cons-of-using-a-build-system">Cons of using a build system<a class="doc-heading-anchor" href="#cons-of-using-a-build-system"></a></h5>
-<ul>
+<ul class="doc-md-list">
 <li>A hobby project that can be compiled in an IDE.
-<ul>
+<ul class="doc-md-list">
 <li>E.g. a simple Java project in Eclipse, or project in Visual Studio.</li>
 </ul>
 </li>
 <li>No other contributors.
-<ul>
+<ul class="doc-md-list">
 <li>If you develop alone, you may be fine without a build system as an uniform build process is not a requirement.</li>
 </ul>
 </li>
 <li>No dependencies.
-<ul>
+<ul class="doc-md-list">
 <li>If you don't consume third party components.</li>
 </ul>
 </li>
 <li>Static dependencies.
-<ul>
+<ul class="doc-md-list">
 <li>If you don't need to auto-upgrade dependencies, you can just simply download and use them without the need of actively managing them.</li>
 </ul>
 </li>
 <li>Simple build process.
-<ul>
+<ul class="doc-md-list">
 <li>If you just simply want to create an executable, but don't write any tests or perform static verifications.</li>
 </ul>
 </li>
 </ul>
 <p>You may think that the above points only apply to a very small number of projects, and you're right. Build systems are awesome, and provide many benefits for managing a software development process. Most production grade projects are usually set up in a more complex way. However, if you can get by without using one, it can spare you some trouble.</p>
 <h5 id="benefits-of-a-build-system">Benefits of a build system<a class="doc-heading-anchor" href="#benefits-of-a-build-system"></a></h5>
-<ul>
+<ul class="doc-md-list">
 <li>Uniform build process.
-<ul>
+<ul class="doc-md-list">
 <li>The build should run the same way on any machine of the contributors. A build system can be used to properly set up the development environment for the programmers.</li>
 </ul>
 </li>
 <li>Testing, static verification.
-<ul>
+<ul class="doc-md-list">
 <li>A build system can manage the testing and verification of your software before you release a new version.</li>
 </ul>
 </li>
 <li>Managing dependencies.
-<ul>
+<ul class="doc-md-list">
 <li>Build systems can automatically download, upgrade, package, and otherwise manage the dependencies you include in your project.</li>
 </ul>
 </li>
 <li>Incremental builds.
-<ul>
+<ul class="doc-md-list">
 <li>For large projects it's important to keep the build times as short as possible. Incrementally building a project based on the previous results can result in much quicker modify-build-run cycle.</li>
 </ul>
 </li>
 <li>Distributed builds.
-<ul>
+<ul class="doc-md-list">
 <li>As your project gets larger, build times increase as well. Using multiple computers can reduce the build times significantly.</li>
 </ul>
 </li>
 <li>Build-time resource generation.
-<ul>
+<ul class="doc-md-list">
 <li>Generating source files or other resources during the build process can make many tasks easier. (E.g. accessing resources, communication between components, logging, etc...)</li>
 </ul>
 </li>
 <li>Caching.
-<ul>
+<ul class="doc-md-list">
 <li>A build cache can store the outputs of your build so you don't have to perform a clean build when you check out the codebase.</li>
 </ul>
 </li>
 <li>Education.
-<ul>
+<ul class="doc-md-list">
 <li>Learning new tools can be great to extend your toolbox.</li>
 </ul>
 </li>

@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Repository website > <a href="naming.html" title="Naming">Naming</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -73,18 +76,18 @@
 <h2 id="name-formats">Name formats<a class="doc-heading-anchor" href="#name-formats"></a></h2>
 <p>Both package names and task names have the same dot separated identifier format. Saker.nest requires the package and task names to contain <strong>at least two</strong> identifier components. This is in order to avoid confusion about the source of the content, and to require differentation of similar content. (Single component task names may also be reserved by the build system script implementations.)</p>
 <p>We recommend for package names to use the following semantics:</p>
-<pre><code class="language-plaintext">[company.name].[package.purpose]
+<pre class="doc-code-block"><code class="language-plaintext">[company.name].[package.purpose]
 org.cool.company.file.utils
 org.super.company.lang.compiler
 </code></pre>
 <p>The package name that contains the company name and the purpose of the package can be easily used to uniquely identify it and its contents. Another advantage is that if others decide to publish a package with similar purpose, the preceeding company name will distinguish different implementations.</p>
 <p>For task names we recommend to convey information about what the task does, and also prefixing the task name with a short company identifier:</p>
-<pre><code class="language-sakerscript"><span class="e">cool.file.copy()</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e">cool.file.copy()</span>
 <span class="e">super.lang.compile()</span>
 </code></pre>
 <p>The tasks shouldn't have any <code>org</code>, <code>com</code> or similar common domain prefixes part of their names, as they don't convey important information in relation to the tasks themselves.</p>
 <p>Similar to the Saker task names provided by us:</p>
-<pre><code class="language-sakerscript"><span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>()</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>()</span>
 <span class="e"><a href="../../../saker.jar/taskdoc/saker.jar.create.html" title="Task: saker.jar.create()">saker.jar.create</a>()</span>
 </code></pre>
 <p>Claiming a task name can happen any time after you create a package, however, if you've published at least one bundle that contains a task for the given name, that task name cannot be unclaimed.</p>
@@ -128,7 +131,7 @@ org.super.company.lang.compiler
 				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.nest documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.nest">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.nest">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.nest" title="saker.nest | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.nest" title="saker.nest | saker.nest">saker.nest on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.nest" title="saker.nest on GitHub">GitHub</a></div>
 			</div>
 		</div>	

@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Examples > <a href="includedirectories.html" title="Include directories">Include directories</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -68,22 +71,22 @@
 </div>
 			<div class="doc-content"><h1 id="include-directories">Include directories<a class="doc-heading-anchor" href="#include-directories"></a></h1>
 <p>The <code>IncludeDirectories</code> property for the <a href="../../taskdoc/saker.msvc.ccompile.html"><code>saker.msvc.ccompile()</code></a> task can be used to specify include paths where the compiler will search for <code>#include</code>d files:</p>
-<pre><code class="language-sakerscript"><span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span>
 	<span class="b">{</span>
 		<span class="h">Files</span>: <span class="f">src/**/*.cpp</span><span class="b">,</span>
-		<span class="h">IncludeDirectories</span>: <span class="f">include</span><span class="b">
-	}</span>
+		<span class="h">IncludeDirectories</span>: <span class="f">include</span>
+	<span class="b">}</span>
 <span class="e">)</span>
 </code></pre>
 <p>The above simply adds the <code>include</code> subdirectory of the current working directory to the current include search path. The specified directories are passed to the compiler using the <a href="https://docs.microsoft.com/en-us/cpp/build/reference/i-additional-include-directories?view=vs-2019" title="/I (Additional include directories) | Microsoft Docs"><code>/I</code></a> parameter.</p>
 <p>You can also add SDK paths as include directories. You may need to add the include directory of the MSVC toolchain if you don't use any <a href="../ccompile/optionpresets.html" title="Option presets">option presets</a>:</p>
-<pre><code class="language-sakerscript"><span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span>
 	<span class="b">{</span>
 		<span class="h">Files</span>: <span class="f">src/**/*.cpp</span><span class="b">,</span>
 		<span class="h">IncludeDirectories</span>: <span class="b">[</span>
-			<span class="e"><a href="../../../saker.sdk.support/taskdoc/sdk.path.html" title="Task: sdk.path()">sdk.path</a>(</span><span class="f">MSVC</span>, <span class="i">Identifier: </span><span class="f">include</span><span class="e">)</span><span class="b">
-		]
-	}</span>
+			<span class="e"><a href="../../../saker.sdk.support/taskdoc/sdk.path.html" title="Task: sdk.path()">sdk.path</a>(</span><span class="f">MSVC</span>, <span class="i">Identifier: </span><span class="f">include</span><span class="e">)</span>
+		<span class="b">]</span>
+	<span class="b">}</span>
 <span class="e">)</span>
 </code></pre>
 <p>The associated SDK with the name <code>MSVC</code> is implicitly added by the task implementation.</p>
@@ -120,7 +123,7 @@
 				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.msvc documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.msvc">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.msvc">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.msvc" title="saker.msvc | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.msvc" title="saker.msvc | saker.nest">saker.msvc on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.msvc" title="saker.msvc on GitHub">GitHub</a></div>
 			</div>
 		</div>	

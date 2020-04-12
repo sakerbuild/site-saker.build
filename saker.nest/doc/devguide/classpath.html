@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Development guide > <a href="classpath.html" title="Bundle classpath">Bundle classpath</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -77,7 +80,7 @@
 <p>A bundle should be used as a container of resources, not some service provider.</p>
 <h2 id="multiple-classloaders">Multiple ClassLoaders<a class="doc-heading-anchor" href="#multiple-classloaders"></a></h2>
 <p>Important to note that a single bundle can be loaded <strong>multiple times</strong> by the repository runtime. This is due to having different bundle dependency resolutions in some cases. Let's look at the following example:</p>
-<pre><code class="language-plaintext">first.bundle-v1         second.bundle-v1
+<pre class="doc-code-block"><code class="language-plaintext">first.bundle-v1         second.bundle-v1
 |            |           |            |
 | 1.0        | 1.0       | 1.0        |
 |            |           |            |
@@ -90,12 +93,12 @@ V            V           V            V
 common.bundle-v1.0      common.bundle-v2.0
 </code></pre>
 <p>The bundles define the dependencies for the given bundles with the specified <a href="../userguide/versioning.html#version-ranges" title="Version ranges">version ranges</a>. If we resolve the dependencies for <code>siple.bundle-v1</code>, we will have the following result:</p>
-<pre><code class="language-plaintext">first.bundle-v1
+<pre class="doc-code-block"><code class="language-plaintext">first.bundle-v1
 dependent.bundle-v1.0
 common.bundle-v1.0
 </code></pre>
 <p>However, if we resolve the dependencies for <code>second.bundle-v1</code>, we will have the following:</p>
-<pre><code class="language-plaintext">second.bundle-v1
+<pre class="doc-code-block"><code class="language-plaintext">second.bundle-v1
 dependent.bundle-v1.0
 common.bundle-v2.0
 </code></pre>
@@ -106,7 +109,7 @@ common.bundle-v2.0
 <h2 id="native-libraries">Native libraries<a class="doc-heading-anchor" href="#native-libraries"></a></h2>
 <p>The repository runtime supports loading native libraries contained in the bundle. When you call <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/System.html#loadLibrary-java.lang.String-" title="System (Java Platform SE 8 )"><code>System.loadLibrary()</code></a>, the class loader for the bundle will automatically extract the contained native library if present in the bundle.</p>
 <p>The library extraction mechanism is as follows:</p>
-<ol>
+<ol class="doc-md-list">
 <li>The dot (<code>'.'</code>) separators are converted to forward slashes (<code>'/'</code>).</li>
 <li>The current <a href="../userguide/constraints.html#native-architecture" title="Native architecture">native architecture</a> environment value is appended to the library name separated using a dot (<code>'.'</code>).</li>
 <li>The file name is mapped to an OS specific name using <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/System.html#mapLibraryName-java.lang.String-" title="System (Java Platform SE 8 )"><code>System.mapLibraryName()</code></a>.</li>
@@ -115,7 +118,7 @@ common.bundle-v2.0
 <li>If the bundle entry still not found, the extraction fails.</li>
 </ol>
 <p>For example, the <code>path.to.MyLibrary</code> on Linux systems, on <code>amd64</code> architecture will be extracted the following way:</p>
-<ol>
+<ol class="doc-md-list">
 <li>If <code>path/to/libMyLibrary.amd64.so</code> is present, it is extracted.</li>
 <li>Else if <code>path/to/libMyLibrary.so</code> is present, it is extracted.</li>
 <li>In other cases the extraction fails.</li>
@@ -155,7 +158,7 @@ common.bundle-v2.0
 				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.nest documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.nest">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.nest">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.nest" title="saker.nest | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.nest" title="saker.nest | saker.nest">saker.nest on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.nest" title="saker.nest on GitHub">GitHub</a></div>
 			</div>
 		</div>	

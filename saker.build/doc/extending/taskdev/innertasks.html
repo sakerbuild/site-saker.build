@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Extending saker.build > <a href="index.html" title="Task development">Task development</a> > <a href="innertasks.html" title="Inner tasks">Inner tasks</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -78,7 +81,7 @@
 <h2 id="inner-task-results">Inner task results<a class="doc-heading-anchor" href="#inner-task-results"></a></h2>
 <p>As inner tasks can be duplicated, their results are not straightforward to retrieve. There can be one or more results of the task and they are not immediately available after the <code>startInnerTask</code> call returns.</p>
 <p>In order to accomodate this, the inner task results are available through an instance of the <code>InnerTaskResults</code> interface which is responsible for providing access to the results. The interface is basically a result set that retrieves the result of an inner task or waits for one to be available. It acts as an iterator over the results.</p>
-<pre><code class="language-java">InnerTaskResults&lt;?&gt; innerresults = taskcontext.startInnerTask(/* ... */);
+<pre class="doc-code-block"><code class="language-java">InnerTaskResults&lt;?&gt; innerresults = taskcontext.startInnerTask(/* ... */);
 for (InnerTaskResultHolder&lt;?&gt; res; (res = innerresults.getNext()) != null;) {
 	Object res = res.getResult();
 	// handle inner task result
@@ -122,7 +125,7 @@ for (InnerTaskResultHolder&lt;?&gt; res; (res = innerresults.getNext()) != null;
 				<div data-footer-location="doc-docs"><a href="../../../doc/index.html" title="saker.build documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../../javadoc/index.html" title="JavaDoc for saker.build">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../../taskdoc/index.html"  title="Documentation of build tasks in saker.build">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.build on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.build" title="saker.build on GitHub">GitHub</a></div>
 			</div>
 		</div>	

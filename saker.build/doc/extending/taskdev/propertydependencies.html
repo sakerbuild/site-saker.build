@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Extending saker.build > <a href="index.html" title="Task development">Task development</a> > <a href="propertydependencies.html" title="Property dependencies">Property dependencies</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -69,7 +72,7 @@
 			<div class="doc-content"><h1 id="property-dependencies">Property dependencies<a class="doc-heading-anchor" href="#property-dependencies"></a></h1>
 <p>The build system allows reporting dependencies for environment and execution level properties. Properties are used to determine various aspects of the associated environment.</p>
 <p>Such properties can be:</p>
-<ul>
+<ul class="doc-md-list">
 <li>Current Java Runtime version.</li>
 <li>Underlying operating system type.</li>
 <li>Value of an execution user parameter.</li>
@@ -79,7 +82,7 @@
 <p>Both the environment property (<code>EnvironmentProperty</code>) and execution property (<code>ExecutionProperty</code>) interfaces define a function (<code>getCurrentValue</code>) that is responsible for calculating their value based on the appropriate context. The calculated values should adhere to the equality functions of <code>Object</code>.</p>
 <p>The property interface implementations should adhere to the <code>hashCode</code> and <code>equals</code> contract of <code>Object</code> as well. Clients can implement their own versions of these properties at will.</p>
 <p>
-<pre><code class="language-java">public String run(TaskContext taskcontext) throws Exception {	String exuserparam = taskcontext.getTaskUtilities()			.getReportExecutionDependency(					new UserParameterExecutionProperty(&quot;execution.user.parameter&quot;));	String envuserparam = taskcontext.getTaskUtilities()			.getReportEnvironmentDependency(					new UserParameterEnvironmentProperty(&quot;environment.user.parameter&quot;));	//do something more meaningful with the values	return exuserparam + envuserparam;}</code></pre>
+<pre class="doc-code-block"><code class="language-java">public String run(TaskContext taskcontext) throws Exception {	String exuserparam = taskcontext.getTaskUtilities()			.getReportExecutionDependency(					new UserParameterExecutionProperty(&quot;execution.user.parameter&quot;));	String envuserparam = taskcontext.getTaskUtilities()			.getReportEnvironmentDependency(					new UserParameterEnvironmentProperty(&quot;environment.user.parameter&quot;));	//do something more meaningful with the values	return exuserparam + envuserparam;}</code></pre>
 </p>
 <p>In the above example we retrieve the values of the specified user parameter based properties, and right away report them as dependencies using the function given in the task utilities. The <code>TaskContext.reportEnvironmentDependency</code> or <code>TaskContext.reportExecutionDependency</code> functions could've been used as well to do that.</p>
 <p>In order to retrieve a property value without reporting it, you can use the <code>ExecutionContext.getExecutionPropertyCurrentValue</code> and <code>SakerEnvironment.getEnvironmentPropertyCurrentValue</code> functions.</p>
@@ -117,7 +120,7 @@
 				<div data-footer-location="doc-docs"><a href="../../../doc/index.html" title="saker.build documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../../javadoc/index.html" title="JavaDoc for saker.build">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../../taskdoc/index.html"  title="Documentation of build tasks in saker.build">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.build on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.build" title="saker.build on GitHub">GitHub</a></div>
 			</div>
 		</div>	

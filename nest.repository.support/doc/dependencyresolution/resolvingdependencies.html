@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Dependency resolution > <a href="resolvingdependencies.html" title="Resolving dependencies">Resolving dependencies</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -73,23 +76,23 @@
 <p>Note that in the following examples all of the dependencies for the associated bundles are resolved. In order to resolve dependencies for a specific kind, see <a href="filters.html" title="Dependency filters">Dependency filters</a>.</p>
 <h2 id="resolve-bundles">Resolve bundles<a class="doc-heading-anchor" href="#resolve-bundles"></a></h2>
 <p>Simple bundle dependencies can be resolved in the following way:</p>
-<pre><code class="language-sakerscript"><span class="e"><a href="../../../nest.repository.support/taskdoc/nest.dependency.resolve.html" title="Task: nest.dependency.resolve()">nest.dependency.resolve</a>(</span><span class="b">[</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../nest.repository.support/taskdoc/nest.dependency.resolve.html" title="Task: nest.dependency.resolve()">nest.dependency.resolve</a>(</span><span class="b">[</span>
 	<span class="f">first.bundle</span><span class="b">,</span>
 	<span class="f">second.bundle-api</span><span class="b">,</span>
-	<span class="f">third.bundle-v1.0</span><span class="b">
-]</span><span class="e">)</span>
+	<span class="f">third.bundle-v1.0</span>
+<span class="b">]</span><span class="e">)</span>
 </code></pre>
 <p>In the above, we resolve the dependencies for the specified bundles. The given bundle identifiers may contain qualifiers, and version numbers as well. If the bundle has no version number defined for them, then it will be determined by the dependency resolution algorithm (usually the latest release).</p>
 <h2 id="dependency-file">Dependency file<a class="doc-heading-anchor" href="#dependency-file"></a></h2>
 <p>The task can accept a <a href="../../../saker.nest/doc/devguide/bundleformat.html#dependency-file" title="Dependency file">dependency file</a> that declares the dependencies to be resolved:</p>
-<pre><code class="language-sakerscript"><span class="e"><a href="../../../nest.repository.support/taskdoc/nest.dependency.resolve.html" title="Task: nest.dependency.resolve()">nest.dependency.resolve</a>(</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../nest.repository.support/taskdoc/nest.dependency.resolve.html" title="Task: nest.dependency.resolve()">nest.dependency.resolve</a>(</span>
 	<span class="i">DependencyFile</span>: <span class="f">res/META-INF/nest/dependencies</span>
 <span class="e">)</span>
 </code></pre>
 <p>In the above, the specified file will be parsed by the task, and the declared dependencies in it will be resolved.</p>
 <h3 id="this"><code>this</code><a class="doc-heading-anchor" href="#this"></a></h3>
 <p>The dependency file allows the <code>this</code> identifier to be specified in which case the version of the enclosing bundle will be substituted in place of it. The <code>SelfBundle</code> parameter allows specifying the bundle that should be considered to be enclosing the given <code>DependencyFile</code>:</p>
-<pre><code class="language-sakerscript"><span class="e"><a href="../../../nest.repository.support/taskdoc/nest.dependency.resolve.html" title="Task: nest.dependency.resolve()">nest.dependency.resolve</a>(</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../nest.repository.support/taskdoc/nest.dependency.resolve.html" title="Task: nest.dependency.resolve()">nest.dependency.resolve</a>(</span>
 	<span class="i">DependencyFile</span>: <span class="f">res/META-INF/nest/dependencies</span>,
 	<span class="i">SelfBundle: </span><span class="f">example.bundle-v1.0</span>
 <span class="e">)</span>
@@ -98,12 +101,12 @@
 <p><strong>Note</strong> that if the dependency file contains a <code>this</code> token, and a self bundle is not specified, an exception will be thrown, as the dependency file couldn't be parsed.</p>
 <h2 id="version-pinning">Version pinning<a class="doc-heading-anchor" href="#version-pinning"></a></h2>
 <p>When using dependency files, or dealing with transitive dependencies, you may need to pin specific bundle versions. You can do that by specifying bundles with versions alongside the dependency file:</p>
-<pre><code class="language-sakerscript"><span class="e"><a href="../../../nest.repository.support/taskdoc/nest.dependency.resolve.html" title="Task: nest.dependency.resolve()">nest.dependency.resolve</a>(</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../nest.repository.support/taskdoc/nest.dependency.resolve.html" title="Task: nest.dependency.resolve()">nest.dependency.resolve</a>(</span>
 	<span class="i">DependencyFile</span>: <span class="f">res/META-INF/nest/dependencies</span>,
 	<span class="i">Bundles: </span><span class="b">[</span>
 		<span class="f">first.bundle-v1.0</span><span class="b">,</span>
-		<span class="f">second.bundle-v2.0</span><span class="b">
-	]</span>
+		<span class="f">second.bundle-v2.0</span>
+	<span class="b">]</span>
 <span class="e">)</span>
 </code></pre>
 <p>The above adds the <code>first.bundle-v1.0</code> and <code>second.bundle-v2.0</code> dependencies to be resolved alongside the dependency file. Specifying the bundles with a given version will result in them being used rather than choosing an other one with possibly different version.</p>
@@ -112,10 +115,10 @@
 <p>Please see <a href="filters.html" title="Dependency filters">Dependency filters</a>.</p>
 <h2 id="dependency-constraints">Dependency constraints<a class="doc-heading-anchor" href="#dependency-constraints"></a></h2>
 <p>The <a href="../../taskdoc/nest.dependency.resolve.html"><code>nest.dependency.resolve()</code></a> task allows resolving the dependencies with a different set of <a href="../../../saker.nest/doc/userguide/constraints.html" title="Constraint properties">dependency constraints</a>. You can use the <code>DependencyConstraints</code> parameter so specify different constraints for the dependencies:</p>
-<pre><code class="language-sakerscript"><span class="e"><a href="../../../nest.repository.support/taskdoc/nest.dependency.resolve.html" title="Task: nest.dependency.resolve()">nest.dependency.resolve</a>(</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../nest.repository.support/taskdoc/nest.dependency.resolve.html" title="Task: nest.dependency.resolve()">nest.dependency.resolve</a>(</span>
 	<span class="i">DependencyConstraints</span>: <span class="b">{</span>
-		<span class="h">JREMajorVersion</span>: <span class="f">9</span><span class="b">
-	}</span>
+		<span class="h">JREMajorVersion</span>: <span class="f">9</span>
+	<span class="b">}</span>
 <span class="e">)</span>
 </code></pre>
 <p>In the above, the dependencies will be resolved as if they were constrained for a Java runtime with major version of 9.</p>
@@ -153,7 +156,7 @@
 				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="nest.repository.support documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for nest.repository.support">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in nest.repository.support">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/nest.repository.support" title="nest.repository.support | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/nest.repository.support" title="nest.repository.support | saker.nest">nest.repository.support on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/nest.repository.support" title="nest.repository.support on GitHub">GitHub</a></div>
 			</div>
 		</div>	

@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Testing > <a href="testinvocation.html" title="Test invocation">Test invocation</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -69,22 +72,22 @@
 			<div class="doc-content"><h1 id="test-invocation">Test invocation<a class="doc-heading-anchor" href="#test-invocation"></a></h1>
 <p>See also: <a href="classpath.html" title="Test classpath">Test classpath</a></p>
 <p>The <a href="../../taskdoc/saker.java.test.html"><code>saker.java.test()</code></a> build task needs to set up the testing environment and will invoke the test cases one by one. The environment that needs to set up includes the following:</p>
-<ul>
+<ul class="doc-md-list">
 <li>Starting a new JVM for the tests.</li>
 <li>Apply instrumentation for the spawned JVM.
-<ul>
+<ul class="doc-md-list">
 <li>The instrumentation will slightly modify the classes that are being tested in order to record the dependencies that they access.</li>
 <li>The applied instrumentation can record which methods, fields, classes, and others are being accessed by a test case. It also records file accesses.</li>
 </ul>
 </li>
 </ul>
 <p>After the environment has been set up, the build task will ask the test runner to execute the test cases one by one. This process consists of the following:</p>
-<ol>
+<ol class="doc-md-list">
 <li>Replace <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/System.html" title="System (Java Platform SE 8 )"><code>System</code></a> properties such as the standard I/O streams and <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/System.html#getProperties--" title="System (Java Platform SE 8 )">properties</a> for the test case.</li>
 <li>Clear the instrumentation state of the JVM.</li>
 <li>Pass the test class name and parameters to the test runner.</li>
 <li>The test runner loads the test case class and executes it.
-<ul>
+<ul class="doc-md-list">
 <li>During the execution the class and file dependencies are recorded by the build task.</li>
 </ul>
 </li>
@@ -126,7 +129,7 @@
 				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.java.testing documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.java.testing">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.java.testing">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.java.testing" title="saker.java.testing | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.java.testing" title="saker.java.testing | saker.nest">saker.java.testing on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.java.testing" title="saker.java.testing on GitHub">GitHub</a></div>
 			</div>
 		</div>	

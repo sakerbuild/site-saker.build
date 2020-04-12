@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Extending saker.build > <a href="index.html" title="Task development">Task development</a> > <a href="standardio.html" title="Standard I/O">Standard I/O</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -83,28 +86,28 @@
 <p>When the lock is released, any partially written out lines to the standard output will be appended with a new line.</p>
 <h2 id="standard-output">Standard output<a class="doc-heading-anchor" href="#standard-output"></a></h2>
 <p>The characters written to the standard output is buffered, and written out automatically to the actual output at the discretion of the build system. Writing to the standard output is possible using the following ways:</p>
-<ul>
+<ul class="doc-md-list">
 <li>Using <a href="../../../javadoc/saker/build/task/TaskContext.html#getStandardOut--"><code>TaskContext.getStandardOut()</code></a>.
-<ul>
+<ul class="doc-md-list">
 <li>Character bytes can be written to the returned stream.</li>
 <li>The bytes written to this is <strong>not replayed</strong> by the build system in case of no incremental changes.</li>
 </ul>
 </li>
 <li>Using <a href="../../../javadoc/saker/build/task/TaskContext.html#println-java.lang.String-"><code>TaskContext.println()</code></a>.
-<ul>
+<ul class="doc-md-list">
 <li>Printing a line of character data to the output.</li>
 <li>These lines will be <strong>printed again</strong> the the output stream if the task doesn't run in a build execution due to no incremental changes.</li>
 </ul>
 </li>
 <li>Using <code>System.out</code>.
-<ul>
+<ul class="doc-md-list">
 <li>The default Java standard output is redirected by the build system to handle writing to the task related output stream. Tasks can use this to write out characters.</li>
 <li>This is basically the same as using the <code>TaskContext.getStandardOut()</code> stream.</li>
 <li>Tasks shouldn't rely on this stream, as this might be hijacked by other agents.</li>
 </ul>
 </li>
 <li>Using <a href="../../../javadoc/saker/build/runtime/execution/SakerLog.html"><code>SakerLog</code></a> class.
-<ul>
+<ul class="doc-md-list">
 <li>The logging class provided by the build system can be used to print out information in a formatted way.</li>
 </ul>
 </li>
@@ -116,26 +119,26 @@
 <p>The task context provides the facility of prepending the lines written to the standard output via a custom display identifier. An arbitrary identifier may be specified to prepend all lines written to the output.</p>
 <p>The <a href="../../../javadoc/saker/build/task/TaskContext.html#setStandardOutDisplayIdentifier-java.lang.String-"><code>TaskContext.setStandardOutDisplayIdentifier(String)</code></a> can be used to set this identifier, and after doing so, the lines will be prepended with then in the <code>[identifier]</code> format.</p>
 <p>The output of the following:</p>
-<pre><code class="language-java">taskcontext.println(&quot;hello&quot;);
+<pre class="doc-code-block"><code class="language-java">taskcontext.println(&quot;hello&quot;);
 taskcontext.setStandardOutDisplayIdentifier(&quot;my-taskid&quot;);
 taskcontext.println(&quot;world&quot;);
 </code></pre>
 <p>Will be:</p>
-<pre><code>hello
+<pre class="doc-code-block"><code>hello
 [my-taskid]world
 </code></pre>
 <p>This functionality helps the reader separate the outputs of different tasks.</p>
 <h2 id="standard-error">Standard error<a class="doc-heading-anchor" href="#standard-error"></a></h2>
 <p>The characters written to the standard error is buffered, and they are written out in whole after the task finishes its execution.
 Writing to the standard output is possible using the following ways:</p>
-<ul>
+<ul class="doc-md-list">
 <li>Using <a href="../../../javadoc/saker/build/task/TaskContext.html#getStandardErr--"><code>TaskContext.getStandardErr()</code></a>.
-<ul>
+<ul class="doc-md-list">
 <li>Character bytes can be written to the returned stream.</li>
 </ul>
 </li>
 <li>Using <code>System.err</code>.
-<ul>
+<ul class="doc-md-list">
 <li>The default Java standard error is redirected by the build system to handle writing to the task related output stream. Tasks can use this to write out characters.</li>
 <li>This is basically the same as using the <a href="../../../javadoc/saker/build/task/TaskContext.html#getStandardErr--"><code>TaskContext.getStandardErr()</code></a> stream.</li>
 <li>Tasks shouldn't rely on this stream, as this might be hijacked by other agents.</li>
@@ -146,14 +149,14 @@ Writing to the standard output is possible using the following ways:</p>
 <h2 id="standard-input">Standard input<a class="doc-heading-anchor" href="#standard-input"></a></h2>
 <p>The standard input can be used to read various input data from the user interactively. This is not always available, and tasks generally shouldn't rely on the standard input.</p>
 <p>The standard input can be used via the following:</p>
-<ul>
+<ul class="doc-md-list">
 <li>Using <code>TaskContext.getStandardIn()</code>.
-<ul>
+<ul class="doc-md-list">
 <li>Can be used to read bytes from the returned stream.</li>
 </ul>
 </li>
 <li>Using <code>System.in</code>.
-<ul>
+<ul class="doc-md-list">
 <li>The default Java standard input is redirected by the build system to handle input reading of tasks.</li>
 <li>This is basically the same as using the <code>TaskContext.getStandardIn()</code> stream.</li>
 <li>Tasks shouldn't rely on this stream, as this might be hijacked by other agents.</li>
@@ -201,7 +204,7 @@ Writing to the standard output is possible using the following ways:</p>
 				<div data-footer-location="doc-docs"><a href="../../../doc/index.html" title="saker.build documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../../javadoc/index.html" title="JavaDoc for saker.build">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../../taskdoc/index.html"  title="Documentation of build tasks in saker.build">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.build on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.build" title="saker.build on GitHub">GitHub</a></div>
 			</div>
 		</div>	

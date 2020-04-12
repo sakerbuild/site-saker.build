@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Extending saker.build > <a href="index.html" title="Task development">Task development</a> > <a href="incrementaldeltas.html" title="Incremental deltas">Incremental deltas</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -81,7 +84,7 @@
 <p>The file deltas can also be accessed using the <a href="filedependencies.html#dependency-tags" title="Dependency tags">tag</a> that was used to report the actual dependency. This can help the semantic separation of different file purposes.</p>
 <h2 id="incremental-workflow">Incremental workflow<a class="doc-heading-anchor" href="#incremental-workflow"></a></h2>
 <p>A very important aspect of the build system is the way the deltas are handled and their way off accessing. The deltas are determined in two phases by the build system.</p>
-<ol>
+<ol class="doc-md-list">
 <li>In the first phase, the build system checks if there are any task related changes. It will determine if any task execution related changes have been occurred since the last execution. This includes determining any configuration related changes, property dependencies, task dependency changes, and others. If so, then the build system will run the task without examining any further changes.</li>
 <li>If there are no task execution related changes, then the build system will proceed to check the changes in the reported file dependencies. If there are file changes, it will run the task, but if there are none, the build system consider the task up to date, and skip running it.</li>
 </ol>
@@ -122,7 +125,7 @@
 				<div data-footer-location="doc-docs"><a href="../../../doc/index.html" title="saker.build documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../../javadoc/index.html" title="JavaDoc for saker.build">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../../taskdoc/index.html"  title="Documentation of build tasks in saker.build">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.build on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.build" title="saker.build on GitHub">GitHub</a></div>
 			</div>
 		</div>	

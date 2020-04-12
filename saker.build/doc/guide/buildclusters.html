@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				User guide > <a href="buildclusters.html" title="Build clusters">Build clusters</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -75,7 +78,7 @@
 <h2 id="configuration">Configuration<a class="doc-heading-anchor" href="#configuration"></a></h2>
 <p>In order to configure a daemon to be able to act as a build cluster, specify the <a href="cmdlineref/daemon_start.html#-cluster-enable" title="-cluster-enable"><code>-cluster-enable</code></a> command line flag in addition when starting it. (You may need to set <a href="cmdlineref/daemon_start.html#-server" title="-server"><code>-server</code></a> as well.) To use a build cluster you need to <a href="cmdlineref/build.html#-connect" title="-connect"><code>-connect</code></a> to it and use the <a href="cmdlineref/build.html#-cluster" title="-cluster"><code>-cluster</code></a> argument to specify that it should be used as one.</p>
 <p>Adding a build cluster to your build is simple as the following:</p>
-<pre><code>-connect &lt;address&gt; mycluster
+<pre class="doc-code-block"><code>-connect &lt;address&gt; mycluster
 -cluster mycluster
 </code></pre>
 <p>For further configuration options see <a href="cmdlineref/index.html" title="Command line reference">Command line reference</a>.</p>
@@ -119,7 +122,7 @@
 				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.build documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.build">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.build">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.build on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.build" title="saker.build on GitHub">GitHub</a></div>
 			</div>
 		</div>	

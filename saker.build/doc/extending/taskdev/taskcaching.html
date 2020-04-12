@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Extending saker.build > <a href="index.html" title="Task development">Task development</a> > <a href="taskcaching.html" title="Task caching">Task caching</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -74,7 +77,7 @@
 <p>See also: <a href="../../guide/buildcache.html" title="Build cache">Build cache</a>.</p>
 <p>In order for a task to be cacheable, they need to declare the capability that allows the build system to handle the task in a cacheable way. This capability can be reported by overriding the appropriate function of <a href="../../../javadoc/saker/build/task/TaskFactory.html"><code>TaskFactory</code></a>. See <a href="taskcapabilities.html" title="Task capabilities">Task capabilities</a>.</p>
 <p>Tasks which want to be cacheable are recommended to adhere to the following restrictions:</p>
-<ul>
+<ul class="doc-md-list">
 <li>The task identifier for the task should have a stable <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html#hashCode--" title="Object (Java Platform SE 8 )"><code>hashCode</code></a>. This means that the task identifier should return the same hash code for the same objects between different executions of the Java process. This usually requires that the task identifier doesn't derive its hash code from the identity hash code, class hash code, or in any way runtime dependent values. With that in mind, enums cannot be used as task identifiers, because their hash code is not stable.</li>
 <li>The task cannot wait on the result of another task, but it can only retrieve its finished results. This means that the task may only use the finished result retrieval methods of other tasks. This requirement is aligned with the <a href="taskcapabilities.html#computation-tokens" title="Computation tokens">computation token</a> usage.</li>
 </ul>
@@ -114,7 +117,7 @@
 				<div data-footer-location="doc-docs"><a href="../../../doc/index.html" title="saker.build documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../../javadoc/index.html" title="JavaDoc for saker.build">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../../taskdoc/index.html"  title="Documentation of build tasks in saker.build">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.build on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.build" title="saker.build on GitHub">GitHub</a></div>
 			</div>
 		</div>	

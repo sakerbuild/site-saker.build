@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Examples > <a href="processing.html" title="Annotation processing">Annotation processing</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -69,7 +72,7 @@
 			<div class="doc-content"><h1 id="annotation-processing">Annotation processing<a class="doc-heading-anchor" href="#annotation-processing"></a></h1>
 <p>We recommend reading <a href="../javacompile/processorconfig.html" title="Configuration">Annotation processor configuration</a> before this article. (Some of the examples are similar to the ones in that article.)</p>
 <p>To simply load an annotation processor from a classpath and use it in a compilation:</p>
-<pre><code class="language-sakerscript"><span class="d">$processor</span> = <span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.processor.html" title="Task: saker.java.processor()">saker.java.processor</a>(</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d">$processor</span> = <span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.processor.html" title="Task: saker.java.processor()">saker.java.processor</a>(</span>
 	<span class="i">ClassPath</span>: <span class="f">lib/my_processor.jar</span>,
 	<span class="i">Class: </span><span class="f">example.MyProcessor</span>
 <span class="e">)</span>
@@ -81,27 +84,27 @@
 <p>The above will result in the <code>example.MyProcessor</code> being used when compiling the sources in <code>src</code>.</p>
 <h2 id="options">Options<a class="doc-heading-anchor" href="#options"></a></h2>
 <p>To pass options for the used annotation processors:</p>
-<pre><code class="language-sakerscript"><span class="d">$processor</span> = <span class="c"># ...</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d">$processor</span> = <span class="c"># ...</span>
 <span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
 	<span class="i">SourceDirectories</span>: <span class="f">src</span>,
 	<span class="i">AnnotationProcessors: </span><span class="d">$processor</span>,
 	<span class="i">AnnotationProcessorOptions: </span><span class="b">{</span>
-		<span class="h">example.MyProcessor.option</span>: <span class="f">abc</span><span class="b">
-	}</span>
+		<span class="h">example.MyProcessor.option</span>: <span class="f">abc</span>
+	<span class="b">}</span>
 <span class="e">)</span>
 </code></pre>
 <p>This will pass the <code>example.MyProcessor.option</code> option with the <code>abc</code> value to the invoked processor(s). Processors can also be configured with processor-private options, see the example <a href="../javacompile/processorconfig.html#options" title="Options">here for more information</a>.</p>
 <h2 id="input-locations">Input locations<a class="doc-heading-anchor" href="#input-locations"></a></h2>
 <p>Input locations may be specified for annotation processors to use. They will be able to read files from the specified locations:</p>
-<pre><code class="language-sakerscript"><span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
 	<span class="i">SourceDirectories</span>: <span class="f">src</span>,
 	<span class="i">AnnotationProcessors: </span><span class="b">{</span>
 		<span class="h">Processor</span>: <span class="k">### ... ###</span> 
 	<span class="b">}</span>,
 	<span class="i">ProcessorInputLocations: </span><span class="b">{</span>
 		<span class="h">WORKING_DIRECTORY</span>: <span class="f">&quot;&quot;</span><span class="b">,</span>
-		<span class="h">PROC_RES</span>: <span class="f">processor_resources</span><span class="b">
-	}</span>,
+		<span class="h">PROC_RES</span>: <span class="f">processor_resources</span>
+	<span class="b">}</span>,
 <span class="e">)</span>
 </code></pre>
 <p>In the above scenario, processor implementations will have access to the files in the current working directory by using the <code>WORKING_DIRECTORY</code> location, and to the resources in the <code>processor_resources</code> subdirectory using the <code>PROC_RES</code> location.</p>
@@ -139,7 +142,7 @@
 				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.java.compiler documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.java.compiler">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.java.compiler">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.java.compiler" title="saker.java.compiler | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.java.compiler" title="saker.java.compiler | saker.nest">saker.java.compiler on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.java.compiler" title="saker.java.compiler on GitHub">GitHub</a></div>
 			</div>
 		</div>	

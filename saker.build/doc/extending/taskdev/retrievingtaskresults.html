@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Extending saker.build > <a href="index.html" title="Task development">Task development</a> > <a href="taskmanagement.html" title="Task management">Task management</a> > <a href="retrievingtaskresults.html" title="Retrieving task results">Retrieving task results</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -74,18 +77,18 @@
 <h2 id="gettaskresult__"><code>getTaskResult()</code><a class="doc-heading-anchor" href="#gettaskresult__"></a></h2>
 <p>The simplest way of retrieving the result of a task is <code>TaskContext.getTaskResult</code>. The article <a href="taskparameters.html" title="Task parameters">Task parameters</a> provides the example for its usage:</p>
 <p>
-<pre><code class="language-java">public Task&lt;? extends Void&gt; createTask(ExecutionContext executioncontext) {	return new ParameterizableTask&lt;Void&gt;() {		private Object parameter;
+<pre class="doc-code-block"><code class="language-java">public Task&lt;? extends Void&gt; createTask(ExecutionContext executioncontext) {	return new ParameterizableTask&lt;Void&gt;() {		private Object parameter;
 		@Override		public Void run(TaskContext taskcontext) throws Exception {			taskcontext.println(Objects.toString(parameter));			return null;		}
 		@Override		public void initParameters(TaskContext taskcontext,				NavigableMap&lt;String, ? extends TaskIdentifier&gt; parameters)						throws TaskParameterException {			parameter = taskcontext.getTaskResult(parameters.get(&quot;Parameter&quot;));		}	};}</code></pre>
 </p>
 <p>Using it the following way:</p>
-<pre><code class="language-sakerscript"><span class="d">$paramvalue</span> = <span class="f">&quot;Hello world!&quot;</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d">$paramvalue</span> = <span class="f">&quot;Hello world!&quot;</span>
 <span class="e">example.task(</span><span class="i">Parameter</span>: <span class="d">$paramvalue</span><span class="e">)</span>
 </code></pre>
 <p>In the <code>initParameters</code> function we get the <code>Parameter</code> provided by the user, and retrieve the task result for the task that is associated with it. In the above example, the parameter task will get the value of the <code>$paramvalue</code> variable.</p>
 <p>As the task result for the variable has been retrieved by our task, the build system will record a dependency for it. If we run the build without any modification, no tasks will rerun, as expected.</p>
 <p>However, if we modify the value of <code>$paramvalue</code>:</p>
-<pre><code class="language-sakerscript"><span class="d">$paramvalue</span> = <span class="f">&quot;Modified world!&quot;</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d">$paramvalue</span> = <span class="f">&quot;Modified world!&quot;</span>
 <span class="e">example.task(</span><span class="i">Parameter</span>: <span class="d">$paramvalue</span><span class="e">)</span>
 </code></pre>
 <p>The build system will detect this, and discover that one of the input task dependency for <code>example.task</code> has been modified. This will cause it to be rerun, and print the <code>&quot;Modified world!&quot;</code> string accordingly.</p>
@@ -95,12 +98,12 @@
 <h3 id="get__"><code>get()</code><a class="doc-heading-anchor" href="#get__"></a></h3>
 <p>In the following example we implement a task that invokes <code>substring</code> on an argument and uses futures to retrieve the results:</p>
 <p>
-<pre><code class="language-java">public TaskIdentifier inputTaskId;@SakerInputpublic int Start;@SakerInputpublic Integer End;
+<pre class="doc-code-block"><code class="language-java">public TaskIdentifier inputTaskId;@SakerInputpublic int Start;@SakerInputpublic Integer End;
 @Overridepublic String run(TaskContext taskcontext) throws Exception {	TaskFuture&lt;?&gt; inputfuture = taskcontext.getTaskFuture(inputTaskId);	String input = Objects.toString(inputfuture.get());	int end = this.End == null ? input.length() : this.End;	return input.substring(Start, end);}
 @Overridepublic void initParameters(TaskContext taskcontext, 		NavigableMap&lt;String, ? extends TaskIdentifier&gt; parameters) 				throws TaskParameterException {	this.inputTaskId = parameters.get(&quot;&quot;);	ParameterizableTask.super.initParameters(taskcontext, parameters);}</code></pre>
 </p>
 <p>The task uses the built-in parameter assignment mechanism for the range of the substring, and initializes the unnamed input parameter directly to retrieve the task result later.</p>
-<pre><code class="language-sakerscript"><span class="e">example.substring(</span><span class="f">&quot;hello world&quot;</span>, <span class="i">Start: </span><span class="f">3</span>, <span class="i">End: </span><span class="f">8</span><span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e">example.substring(</span><span class="f">&quot;hello world&quot;</span>, <span class="i">Start: </span><span class="f">3</span>, <span class="i">End: </span><span class="f">8</span><span class="e">)</span>
 </code></pre>
 <p>The above will result in the string <code>&quot;lo wo&quot;</code>. As the first statement of the task, we retrieve a <code>TaskFuture</code> for the input parameter task identifier. Calling <code>get()</code> on it will wait for the task to finish, and retrieve the result for in. In this case this will be <code>&quot;hello world&quot;</code>. We use the other parameters to calculate the string range to return, and call the <code>substring</code> method accordingly.</p>
 <p>We could've used the previously mentioned <code>getTaskResult</code> method to retrieve the result, but we used a future to showcase its usage.</p>
@@ -108,31 +111,31 @@
 <p>In many cases you might only be interested partially in the result of a task. In these cases if other aspects of a task change than the ones you consume, you probably don't want your task to be rerun, as the produced result will be the same.</p>
 <p>One example for this if we look at the previously implemented <code>example.substring</code> task. If we pass <code>&quot;hello world&quot;</code> or <code>&quot;xyzlo woabc&quot;</code> to it with the same range arguments, it will still produce the same <code>&quot;lo wo&quot;</code> result. Therefore, if the argument string changes only outside of the interested range, we don't want our <code>example.substring</code> task to be reinvoked, as that could cause unnecessary computations during build execution.</p>
 <p>So in order to demonstrate this, we start with the following build script:</p>
-<pre><code class="language-sakerscript"><span class="d">$inputstring</span> = <span class="f">&quot;hello world&quot;</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d">$inputstring</span> = <span class="f">&quot;hello world&quot;</span>
 <span class="e">example.substring(</span><span class="d">$inputstring</span>, <span class="i">Start: </span><span class="f">3</span>, <span class="i">End: </span><span class="f">8</span><span class="e">)</span>
 </code></pre>
 <p>Then we modify it to the following:</p>
-<pre><code class="language-sakerscript"><span class="d">$inputstring</span> = <span class="f">&quot;xyzlo woabc&quot;</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d">$inputstring</span> = <span class="f">&quot;xyzlo woabc&quot;</span>
 <span class="e">example.substring(</span><span class="d">$inputstring</span>, <span class="i">Start: </span><span class="f">3</span>, <span class="i">End: </span><span class="f">8</span><span class="e">)</span>
 </code></pre>
 <p>In both cases our <code>example.substring</code> task will produce the <code>&quot;lo wo&quot;</code> result, so we expect our task <strong>not</strong> to be reinvoked when the above changes occur in the build script.</p>
 <p>We can achieve this by using the <code>TaskDependencyResult</code> interface in the modified implementation of our task:</p>
 <p>
-<pre><code class="language-java">public String run(TaskContext taskcontext) throws Exception {	TaskDependencyFuture&lt;?&gt; inputfuture = taskcontext			.getTaskDependencyFuture(inputTaskId);	String input = Objects.toString(inputfuture.get());	int end = this.End == null ? input.length() : this.End;	String result = input.substring(this.Start, end);	inputfuture.setTaskOutputChangeDetector(			new StringRangeTaskOutputChangeDetector(result, 					this.Start, end));	return result;}</code></pre>
+<pre class="doc-code-block"><code class="language-java">public String run(TaskContext taskcontext) throws Exception {	TaskDependencyFuture&lt;?&gt; inputfuture = taskcontext			.getTaskDependencyFuture(inputTaskId);	String input = Objects.toString(inputfuture.get());	int end = this.End == null ? input.length() : this.End;	String result = input.substring(this.Start, end);	inputfuture.setTaskOutputChangeDetector(			new StringRangeTaskOutputChangeDetector(result, 					this.Start, end));	return result;}</code></pre>
 </p>
 <p>We use the <code>TaskDependencyResult</code> in the same way as <code>TaskFuture</code> to retrieve the result of the task. However, after determining the substring, we set the <code>TaskOutputChangeDetector</code> for the dependency on the input string task. The <code>TaskOutputChangeDetector</code> interface is used by the build system to determine if the task should be considered to be changed in relation to the caller, by providing an opportunity to compare the current output of the subject task.</p>
 <p>The <a href="example_taskfutures/src/example/StringRangeTaskOutputChangeDetector.java"><code>StringRangeTaskOutputChangeDetector</code></a> class implementation checks if the given range of the task equals to the expected, and determines the change accordingly.</p>
 <h4 id="incremental-scenario">Incremental scenario<a class="doc-heading-anchor" href="#incremental-scenario"></a></h4>
 <p>Let's examine what happens when we apply the build script changes as in the above example:</p>
-<ol>
+<ol class="doc-md-list">
 <li>We run the build and then modify the script according to the previous section.</li>
 <li>The build system will run the modified script and assign <code>&quot;xyzlo woabc&quot;</code> to <code>$inputstring</code>.</li>
 <li>The build system will determine the chanes for <code>example.substring</code>.
-<ul>
+<ul class="doc-md-list">
 <li>It sees that the <code>Start</code> and <code>End</code> parameters haven't changed.</li>
 <li>It sees that the value of <code>$inputstring</code> has been modified. Normally this would cause the rerun of <code>example.substring</code>.</li>
 <li>It will invoke the <code>isChanged</code> method of the installed <code>StringRangeTaskOutputChangeDetector</code> for the dependency.
-<ul>
+<ul class="doc-md-list">
 <li>The change detector will determine that the interested range for the string is still <code>&quot;lo wo&quot;</code></li>
 <li>As the detector reports no changes, the build system will detect that the dependency on the value of <code>$inputstring</code> is <em>unchanged</em>.</li>
 </ul>
@@ -201,7 +204,7 @@
 				<div data-footer-location="doc-docs"><a href="../../../doc/index.html" title="saker.build documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../../javadoc/index.html" title="JavaDoc for saker.build">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../../taskdoc/index.html"  title="Documentation of build tasks in saker.build">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.build on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.build" title="saker.build on GitHub">GitHub</a></div>
 			</div>
 		</div>	

@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				User guide > <a href="reproducible.html" title="Reproducible builds">Reproducible builds</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -82,7 +85,7 @@
 <p>As the first recommendation, you should define your build tasks according to the execution model of the SakerScript language. When a build task of yours use the result of another task, then the input should be explicitly present as a parameter of the build task that uses it. The tasks shouldn't communicate through shared environment resources without their relation being present in the build script.</p>
 <p>Secondly, your tasks should have separate output locations. Don't configure tasks in a way that results in a file being written twice during build execution. It may not cause trouble, but can result in ordering issues and race conditions when other tasks access the overwritten file.</p>
 <p>As part of the previous point, we recommend that all the outputs of your tasks should reside under the specified build directory. The ordering of the tasks should be explicitly present similar to the following way:</p>
-<pre><code class="language-sakerscript"><span class="d">$compileresult</span> = <span class="e">example.compile.sources()</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d">$compileresult</span> = <span class="e">example.compile.sources()</span>
 <span class="e">example.create.package(</span><span class="d">$compileresult</span><span class="e">)</span>
 </code></pre>
 <p>This ensures that the <code>example.create.package()</code> task will use the results of the compilation after it has been completed, and no race conditions occur between writing the outputs and reading it.</p>
@@ -121,7 +124,7 @@
 				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.build documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.build">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.build">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.build on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.build" title="saker.build on GitHub">GitHub</a></div>
 			</div>
 		</div>	

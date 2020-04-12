@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				User guide > <a href="filechangetracking.html" title="File change tracking">File change tracking</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -69,14 +72,14 @@
 			<div class="doc-content"><h1 id="file-change-tracking">File change tracking<a class="doc-heading-anchor" href="#file-change-tracking"></a></h1>
 <p>When multiple builds are run in succession, the changes in the contents of files needs to be determined by the build system. Generally this can be done in various ways and saker.build allows you to configure it accordingly.</p>
 <p>The build system currently supports the following change detection mechanisms:</p>
-<ul>
+<ul class="doc-md-list">
 <li>Using file attributes (default)
-<ul>
+<ul class="doc-md-list">
 <li>The last modification time and size of a file is recorded when it is accessed during build execution. They are stored in the build database and when a new build is started, they are compared to the current attributes of the file. If there is any change for the last modification time or file size, the file is considered to be changed.</li>
 </ul>
 </li>
 <li>MD5 Hash of the file contents
-<ul>
+<ul class="doc-md-list">
 <li>The build system will read the files fully and construct a hash from the contents using the MD5 algorithm. When a new build is started, the hashes of the files are compared, and the change is only detected if they're different.</li>
 </ul>
 </li>
@@ -88,12 +91,12 @@
 <p>You can configure two aspects of the file change tracking. One is by specifying a change detection mechanism for files matched by a given wildcard path, and by setting a fallback mechanism that is used when no other configurations can be matched.</p>
 <p>The default mechanism uses file attributes to detect changes.</p>
 <p>To specify using hashes, use the following command line argument:</p>
-<pre><code>-dbconfig-fallback md5
+<pre class="doc-code-block"><code>-dbconfig-fallback md5
 </code></pre>
 <p>This will result in the build system using hashes to detect the content related changes in all accessed files.</p>
 <hr />
 <p>To specify different mechanisms for different files, use the following:</p>
-<pre><code>-dbconfig-path local **/*.cpp md5
+<pre class="doc-code-block"><code>-dbconfig-path local **/*.cpp md5
 -dbconfig-path local **/*.java md5
 </code></pre>
 <p>The above will result in the build system using hashes for <code>cpp</code> and <code>java</code> source files while using attributes (the default fallback mechanism) for all other files. The <code>local</code> keyword specifies that the configuration should be applied to the files residing on the local machine.</p>
@@ -131,7 +134,7 @@
 				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.build documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.build">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.build">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.build on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.build" title="saker.build on GitHub">GitHub</a></div>
 			</div>
 		</div>	

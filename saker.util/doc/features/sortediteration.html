@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Features > <a href="sortediteration.html" title="Sorted iteration">Sorted iteration</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -69,7 +72,7 @@
 			<div class="doc-content"><h1 id="sorted-iteration">Sorted iteration<a class="doc-heading-anchor" href="#sorted-iteration"></a></h1>
 <p>Among others, the <a href="../../javadoc/saker/util/ObjectUtils.html"><code>ObjectUtils</code></a> provides functions for iterating over sorted collections. There are many use-cases when two collections need to be iterated over, presuming that they are ordered the same way. You can not do this in a simple way, as that requires multiple for loops and temporary collections.</p>
 <p>The <code>iterateOrdered</code> and <code>iterateSorted</code> functions can help iterating over two collections/maps:</p>
-<pre><code class="language-java">SortedMap&lt;String, Integer&gt; first;
+<pre class="doc-code-block"><code class="language-java">SortedMap&lt;String, Integer&gt; first;
 SortedMap&lt;String, Integer&gt; second;
 ObjectUtils.iterateSortedMapEntries(first, second, (key, left, right) -&gt; {
 	if (left == null) {
@@ -116,7 +119,7 @@ ObjectUtils.iterateSortedMapEntries(first, second, (key, left, right) -&gt; {
 				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.util documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.util">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.util">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.util" title="saker.util | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.util" title="saker.util | saker.nest">saker.util on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.util" title="saker.util on GitHub">GitHub</a></div>
 			</div>
 		</div>	

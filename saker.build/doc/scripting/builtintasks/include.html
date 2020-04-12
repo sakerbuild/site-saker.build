@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Scripting language > <a href="index.html" title="Built-in tasks">Built-in tasks</a> > <a href="include.html" title="include()">include()</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -84,7 +87,7 @@
 <p>Both the <code>Target</code> and <code>Path</code> parameters are optional, but at least one of them must be specified. <br />
 If the <code>Path</code> parameter is missing, the target build file is considered to be the same as the one calling the <code>include()</code> task. <br />
 If the <code>Target</code> parameter is missing, a default build target will be chosen based on the structure of the target build file:</p>
-<ul>
+<ul class="doc-md-list">
 <li>If there is only a single build target in the file, that one is chosen.</li>
 <li>If the target file contains a build target named <code>build</code>, that one is used.</li>
 <li>If there are no build targets in the target file or failed to determine based on the above rules, an exception is thrown.</li>
@@ -96,7 +99,7 @@ If the <code>Target</code> parameter is missing, a default build target will be 
 <h2 id="example">Example<a class="doc-heading-anchor" href="#example"></a></h2>
 <p>The following example contains two files (<code>saker.build</code>, and <code>library.build</code>):</p>
 <p><code>saker.build</code>:
-<pre><code class="language-sakerscript"><span class="a">build</span> <span class="b">{</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="a">build</span> <span class="b">{</span>
 	<span class="c"># includes the compile target in saker.build</span>
 	<span class="c">#   with the &quot;src&quot; value as Directory parameter</span>
 	<span class="e"><a href="../../../../saker.build/doc/scripting/builtintasks/include.html" title="Task: include()">include</a>(</span><span class="f">compile</span>, <span class="i">Directory: </span><span class="f">src</span><span class="e">)</span>
@@ -117,7 +120,7 @@ If the <code>Target</code> parameter is missing, a default build target will be 
 </code></pre>
 </p>
 <p><code>library.build</code>:
-<pre><code class="language-sakerscript"><span class="a">build(</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="a">build(</span>
 	<span class="c"># input parameter with default value</span>
 	<span class="j">in</span> <span class="d">Sources</span> = <span class="f">libsrc</span>,
 	<span class="c"># output parameter of the compiled library</span>
@@ -161,7 +164,7 @@ If the <code>Target</code> parameter is missing, a default build target will be 
 				<div data-footer-location="doc-docs"><a href="../../../doc/index.html" title="saker.build documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../../javadoc/index.html" title="JavaDoc for saker.build">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../../taskdoc/index.html"  title="Documentation of build tasks in saker.build">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.build on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.build" title="saker.build on GitHub">GitHub</a></div>
 			</div>
 		</div>	

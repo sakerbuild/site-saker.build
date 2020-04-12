@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Testing > <a href="classpath.html" title="Test classpath">Test classpath</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -69,19 +72,19 @@
 			<div class="doc-content"><h1 id="test-classpath">Test classpath<a class="doc-heading-anchor" href="#test-classpath"></a></h1>
 <p>During the testing, multiple classpaths are loaded in order to properly set up the testing environment. The task needs to load the test runner, the classes that are being tested, and the test cases. All of them are part of different <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/ClassLoader.html" title="ClassLoader (Java Platform SE 8 )"><code>ClassLoaders</code></a>, and they have different visibilities in order to properly ensure runtime class loading.</p>
 <p>We define the following class loaders:</p>
-<ul>
+<ul class="doc-md-list">
 <li><a href="../../taskdoc/saker.java.test.html#ClassPath"><code>ClassPath</code></a> (also known as user classpath).
-<ul>
+<ul class="doc-md-list">
 <li>Contains the classes that are the subject of the testing.</li>
 </ul>
 </li>
 <li><a href="../../taskdoc/saker.java.test.html#TestRunnerClassPath"><code>TestRunnerClassPath</code></a>.
-<ul>
+<ul class="doc-md-list">
 <li>Contains the classes for the test runner. The test runner is used to invoke the test cases. (E.g. jUnit, or other testing frameworks)</li>
 </ul>
 </li>
 <li><a href="../../taskdoc/saker.java.test.html#TestClassPath"><code>TestClassPath</code></a>.
-<ul>
+<ul class="doc-md-list">
 <li>Contains the classes of the test cases that are being executed.</li>
 </ul>
 </li>
@@ -127,7 +130,7 @@
 				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.java.testing documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.java.testing">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.java.testing">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.java.testing" title="saker.java.testing | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.java.testing" title="saker.java.testing | saker.nest">saker.java.testing on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.java.testing" title="saker.java.testing on GitHub">GitHub</a></div>
 			</div>
 		</div>	

@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Extending saker.build > <a href="index.html" title="Task development">Task development</a> > <a href="filehandling.html" title="File handling">File handling</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -96,18 +99,18 @@ The result may be relative, in which case it only consists of a single path name
 <p>Each file has an associated <code>ContentDescriptor</code> that is responsible for identifying the contents of a file. It is used by the build system to avoid unnecessary I/O when synchronizing files, and to detect file changes between executions.</p>
 <h4 id="retrieving-contents">Retrieving contents<a class="doc-heading-anchor" href="#retrieving-contents"></a></h4>
 <p>The contents of a <a href="../../../javadoc/saker/build/file/SakerFile.html"><code>SakerFile</code></a> can be accessed in two ways.</p>
-<ol>
+<ol class="doc-md-list">
 <li>The methods <code>writeTo</code>, <code>openInputStream</code>, <code>openByteSource</code>, <code>getBytes</code>, and <code>getContent</code> can all be used to get a programatic access to the contents of the file in the appropriate representation.
-<ul>
+<ul class="doc-md-list">
 <li>Calling these methods will get the contents of the file using the most efficient way. They will include an implicit synchronization, unless the opening method is considered to be efficient. If the file is already synchronized with the disk, the contents from the disk will be read and provided to the caller.
-<ul>
+<ul class="doc-md-list">
 <li>Efficient opening methods are the ones that the given file implementations specify. An opening method is considered to be efficient if retrieving the contents consume less resources (time and space) than using the hardware disk. (E.g. a file that has its contents in a memory byte array would have all of its openings methods efficient.)</li>
 </ul>
 </li>
 </ul>
 </li>
 <li>Calling the above methods with <code>Impl</code> appended to them. (Like <code>openInputStreamImpl</code> and others.)
-<ul>
+<ul class="doc-md-list">
 <li>Unlike the previous point, calling these methods will not implicitly synchronize the file, and will not contact the associated hardware disk. The efficient opening methods play no role in the execution of these methods.</li>
 <li>These methods are the direct implementation of the content retrieveval functions in the underlying <a href="../../../javadoc/saker/build/file/SakerFile.html"><code>SakerFile</code></a>s.</li>
 <li>Unless strong reasons require, developers should use the previous opening methds than these.</li>
@@ -124,36 +127,36 @@ The result may be relative, in which case it only consists of a single path name
 <p>When synchronization is called multiple times on a file, it is a no-op, if no others have modified the underlying disk location. This means that the build system will not execute additional I/O operations to overwrite files which have the same contents as expected.</p>
 <h2 id="task-directories">Task directories<a class="doc-heading-anchor" href="#task-directories"></a></h2>
 <p>The following directories are available for tasks to use:</p>
-<ul>
+<ul class="doc-md-list">
 <li>The root directories.
-<ul>
+<ul class="doc-md-list">
 <li>These are the directories that were configured as the root directories of the execution.</li>
 <li>Available via <code>TaskContext.getExecutionContext().getRootDirectories()</code>.</li>
 </ul>
 </li>
 <li>The execution working directory.
-<ul>
+<ul class="doc-md-list">
 <li>The working directory that was configured for the build execution.</li>
 <li>Available via <code>TaskContext.getExecutionContext().getExecutionWorkingDirectory()</code>.</li>
 <li>Tasks should use the task working directory instead.</li>
 </ul>
 </li>
 <li>The execution build directory.
-<ul>
+<ul class="doc-md-list">
 <li>The base build directory that was configured for the build exection. May be <code>null</code>, meaning that no build directory was configured.</li>
 <li>Available via <code>TaskContext.getExecutionContext().getExecutionBuildDirectory()</code>.</li>
 <li>Tasks should use the task build directory instead.</li>
 </ul>
 </li>
 <li>The task working directory.
-<ul>
+<ul class="doc-md-list">
 <li>This is the working directory that the tasks should use to resolve relative paths against. If a task was given a relative path as parameter, the task working directory should be considered as the base for it.</li>
 <li>This directory can be configured for each started task independently.</li>
 <li>Available via <code>TaskContext.getTaskWorkingDirectory()</code>.</li>
 </ul>
 </li>
 <li>The task build directory.
-<ul>
+<ul class="doc-md-list">
 <li>This is the base directory that the task should use to put the output files in. They are also recommended to create a unique subdirectory in it to avoid race conditions with other tasks.</li>
 <li>The directory may be <code>null</code>, if no build directory was configured for the build execution.</li>
 <li>Available via <code>TaskContext.getTaskBuildDirectory()</code>.</li>
@@ -193,7 +196,7 @@ The result may be relative, in which case it only consists of a single path name
 				<div data-footer-location="doc-docs"><a href="../../../doc/index.html" title="saker.build documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../../javadoc/index.html" title="JavaDoc for saker.build">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../../taskdoc/index.html"  title="Documentation of build tasks in saker.build">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.build on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.build" title="saker.build on GitHub">GitHub</a></div>
 			</div>
 		</div>	

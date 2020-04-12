@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Examples > <a href="jnicompile.html" title="JNI compilation">JNI compilation</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -69,7 +72,7 @@
 			<div class="doc-content"><h1 id="jni-compilation">JNI compilation<a class="doc-heading-anchor" href="#jni-compilation"></a></h1>
 <p>The following example showcases how you can compile a native library alongside your Java sources. We'll be using the <a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html"><code>saker.msvc.ccompile()</code></a> task to compile the C sources, and use <a href="../../../saker.msvc/taskdoc/saker.msvc.clink.html"><code>saker.msvc.clink()</code></a> to link the object files (from the <a href="../../../saker.msvc/index.html" title="Index">saker.msvc</a> package). These tasks use the Microsoft Visual C++ compiler.</p>
 <p>The example also uses the <a href="../../../saker.sdk.support/index.html" title="Index">saker.sdk.support</a> package.</p>
-<pre><code class="language-sakerscript"><span class="d">$javac</span> = <span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d">$javac</span> = <span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
 	<span class="i">SourceDirectories</span>: <span class="f">src</span>,
 	<span class="i">GenerateNativeHeaders: </span><span class="j">true</span>
 <span class="e">)</span>
@@ -79,21 +82,21 @@
 		<span class="h">IncludeDirectories</span>: <span class="b">[</span>
 			<span class="e"><a href="../../../saker.sdk.support/taskdoc/sdk.path.html" title="Task: sdk.path()">sdk.path</a>(</span><span class="f">java</span>, <span class="i">Identifier: </span><span class="f">include</span><span class="e">)</span><span class="b">,</span>
 			<span class="e"><a href="../../../saker.sdk.support/taskdoc/sdk.path.html" title="Task: sdk.path()">sdk.path</a>(</span><span class="f">java</span>, <span class="i">Identifier: </span><span class="f">include.platform</span><span class="e">)</span><span class="b">,</span>
-			<span class="d">$javac</span><span class="g">[</span><span class="h">HeaderDirectory</span><span class="g">]</span><span class="b">
-		]
-	}</span>,
+			<span class="d">$javac</span><span class="g">[</span><span class="h">HeaderDirectory</span><span class="g">]</span>
+		<span class="b">]</span>
+	<span class="b">}</span>,
 	<span class="i">SDKs: </span><span class="b">{</span>
-		<span class="h">Java</span>: <span class="d">$javac</span><span class="g">[</span><span class="h">JavaSDK</span><span class="g">]</span><span class="b">
-	}</span>,
+		<span class="h">Java</span>: <span class="d">$javac</span><span class="g">[</span><span class="h">JavaSDK</span><span class="g">]</span>
+	<span class="b">}</span>,
 	<span class="i">CompilerOptions: </span><span class="b">[</span>
-		<span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.coptions.preset.html" title="Task: saker.msvc.coptions.preset()">saker.msvc.coptions.preset</a>(</span><span class="f">dll</span><span class="e">)</span><span class="b">
-	]</span>
+		<span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.coptions.preset.html" title="Task: saker.msvc.coptions.preset()">saker.msvc.coptions.preset</a>(</span><span class="f">dll</span><span class="e">)</span>
+	<span class="b">]</span>
 <span class="e">)</span>
 <span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.clink.html" title="Task: saker.msvc.clink()">saker.msvc.clink</a>(</span>
 	<span class="d">$ccompile</span>,
 	<span class="i">LinkerOptions: </span><span class="b">[</span>
-		<span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.coptions.preset.html" title="Task: saker.msvc.coptions.preset()">saker.msvc.coptions.preset</a>(</span><span class="f">dll</span><span class="e">)</span><span class="b">
-	]</span>
+		<span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.coptions.preset.html" title="Task: saker.msvc.coptions.preset()">saker.msvc.coptions.preset</a>(</span><span class="f">dll</span><span class="e">)</span>
+	<span class="b">]</span>
 <span class="e">)</span>
 </code></pre>
 <p>The above example assumes that the Java sources are in the <code>src</code> directory, while the native sources that the library consists of is under the <code>csrc</code> directory.</p>
@@ -136,7 +139,7 @@ The <code>include</code> path identifier corresponds to the JDK <code>include</c
 				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.java.compiler documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.java.compiler">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.java.compiler">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.java.compiler" title="saker.java.compiler | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.java.compiler" title="saker.java.compiler | saker.nest">saker.java.compiler on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.java.compiler" title="saker.java.compiler on GitHub">GitHub</a></div>
 			</div>
 		</div>	

@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Usage > <a href="optionmerging.html" title="Compiler option merging">Compiler option merging</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -69,11 +72,11 @@
 			<div class="doc-content"><h1 id="compiler-option-merging">Compiler option merging<a class="doc-heading-anchor" href="#compiler-option-merging"></a></h1>
 <p>Some tasks may support the operation of <em>compiler option merging</em>. It is a feature that dynamically merges other compiler options into the specified configuration.</p>
 <p>Option merging usually consists of the following:</p>
-<ul>
+<ul class="doc-md-list">
 <li>A compilation task <a href="compilationid.html" title="Compilation identifier">compilation identifier</a>.</li>
 <li>Explicit configuration on the compilation task.</li>
 <li>A specified collection of compiler options.
-<ul>
+<ul class="doc-md-list">
 <li>Compiler options may or may not have individual compiler identifiers assigned to them.</li>
 </ul>
 </li>
@@ -81,15 +84,15 @@
 </ul>
 <p>Option merging is usually used to specify the compiler options in a different and maintainable way than directly on the task that is being invoked. A simple and great example for this is by specifying different linker options based on the identifier:</p>
 <p>(Take from the <a href="../../../saker.msvc/doc/ccompile/linkeroptions.html" title="Linker options">saker.msvc</a> package.)</p>
-<pre><code class="language-sakerscript"><span class="d">$options</span> = <span class="b">[</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d">$options</span> = <span class="b">[</span>
 	<span class="b">{</span>
 		<span class="h">Identifier</span>: <span class="f">debug</span><span class="b">,</span>
-		<span class="h">SimpleLinkerParameters</span>: <span class="b">[</span> <span class="f">/DEBUG</span><span class="b"> ]
-	},</span>
+		<span class="h">SimpleLinkerParameters</span>: <span class="b">[</span> <span class="f">/DEBUG</span><span class="b"> ]</span>
+	<span class="b">},</span>
 	<span class="b">{</span>
 		<span class="h">Identifier</span>: <span class="f">release</span><span class="b">,</span>
-		<span class="h">SimpleLinkerParameters</span>: <span class="b">[</span> <span class="f">/LTCG</span><span class="b"> ]
-	},</span>
+		<span class="h">SimpleLinkerParameters</span>: <span class="b">[</span> <span class="f">/LTCG</span><span class="b"> ]</span>
+	<span class="b">},</span>
 <span class="b">]</span>
 <span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.clink.html" title="Task: saker.msvc.clink()">saker.msvc.clink</a>(</span>
 	<span class="i">Input</span>: <span class="k">### ... ###</span>,
@@ -138,7 +141,7 @@
 				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.compiler.utils documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.compiler.utils">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.compiler.utils">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.compiler.utils" title="saker.compiler.utils | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.compiler.utils" title="saker.compiler.utils | saker.nest">saker.compiler.utils on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.compiler.utils" title="saker.compiler.utils on GitHub">GitHub</a></div>
 			</div>
 		</div>	

@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				User guide > <a href="bestpractices.html" title="Best practices">Best practices</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -77,7 +80,7 @@
 <p>You should <strong>not</strong> configure the build tasks in a ways that their outputs are produced to a location that is a possible input of theirs. If you configure a task that it writes the outputs to a location that is also the input of the same task, that may cause incorrect incremental builds.</p>
 <h2 id="don_t-hardcode-task-output-locations">Don't hardcode task output locations<a class="doc-heading-anchor" href="#don_t-hardcode-task-output-locations"></a></h2>
 <p>You should <strong>not</strong> use direct paths to outputs of build tasks if you expect them to be part of the input of one. An example:</p>
-<pre><code class="language-sakerscript"><span class="c"># !!! THIS IS BAD, don't do this !!!</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="c"># !!! THIS IS BAD, don't do this !!!</span>
 <span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
 	<span class="i">SourceDirectories</span>: <span class="f">src</span>,
 	<span class="i">Identifier: </span><span class="f">main</span>,
@@ -92,7 +95,7 @@
 </code></pre>
 <p>You can see that we compile the Java sources in the <code>src</code> directory, and want to package the <code>class</code> files into a <code>jar</code> Java archive. The above code <strong>will not work</strong> as the <code>saker.jar.create()</code> task may run before the compilation task therefore not seeing the produced <code>class</code> files.</p>
 <p>The correct way of doing the above is:</p>
-<pre><code class="language-sakerscript"><span class="d">$javac</span> = <span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d">$javac</span> = <span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
 	<span class="i">SourceDirectories</span>: <span class="f">src</span>,
 	<span class="i">Identifier: </span><span class="f">main</span>,
 <span class="e">)</span>
@@ -137,7 +140,7 @@
 				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.build documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.build">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.build">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.build on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.build" title="saker.build on GitHub">GitHub</a></div>
 			</div>
 		</div>	

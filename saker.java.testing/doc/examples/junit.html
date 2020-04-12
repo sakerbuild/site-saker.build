@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Examples > <a href="junit.html" title="Using JUnit">Using JUnit</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -68,13 +71,13 @@
 </div>
 			<div class="doc-content"><h1 id="using-junit">Using JUnit<a class="doc-heading-anchor" href="#using-junit"></a></h1>
 <p>In this example we'll show the test configuration that can be used to run Java test with JUnit. In this example we'll do the following:</p>
-<ul>
+<ul class="doc-md-list">
 <li>Compile our app sources.</li>
 <li>Compile our test sources.</li>
 <li>Locate the JUnit framework and add it to the classpath using Maven.</li>
 <li>Invoke the tests.</li>
 </ul>
-<pre><code class="language-sakerscript"><span class="d">$junitcp</span> = <span class="e"><a href="../../../saker.maven.classpath/taskdoc/saker.maven.classpath.html" title="Task: saker.maven.classpath()">saker.maven.classpath</a>(<a href="../../../saker.maven.support/taskdoc/saker.maven.resolve.html" title="Task: saker.maven.resolve()">saker.maven.resolve</a>(</span><span class="f">&quot;junit:junit:4.12&quot;</span><span class="e">))</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d">$junitcp</span> = <span class="e"><a href="../../../saker.maven.classpath/taskdoc/saker.maven.classpath.html" title="Task: saker.maven.classpath()">saker.maven.classpath</a>(<a href="../../../saker.maven.support/taskdoc/saker.maven.resolve.html" title="Task: saker.maven.resolve()">saker.maven.resolve</a>(</span><span class="f">&quot;junit:junit:4.12&quot;</span><span class="e">))</span>
 <span class="d">$src</span> = <span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span><span class="f">src</span><span class="e">)</span>
 <span class="d">$tests</span> = <span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
 	<span class="i">SourceDirectories</span>: <span class="f">test</span>,
@@ -89,8 +92,8 @@
 	<span class="i">ClassPath: </span><span class="d">$src</span>,
 	<span class="i">TestClassPath: </span><span class="d">$tests</span><span class="g">[</span><span class="h">ClassDirectory</span><span class="g">]</span>,
 	<span class="i">TestInvokerParameters: </span><span class="b">{</span>
-		<span class="h">TestRunnerClass</span>: <span class="f">org.junit.runner.JUnitCore</span><span class="b">
-	}</span>,
+		<span class="h">TestRunnerClass</span>: <span class="f">org.junit.runner.JUnitCore</span>
+	<span class="b">}</span>,
 	<span class="i">TestClasses: </span><span class="f">**.*Test</span>,
 <span class="e">)</span>
 </code></pre>
@@ -133,7 +136,7 @@
 				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.java.testing documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.java.testing">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.java.testing">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.java.testing" title="saker.java.testing | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.java.testing" title="saker.java.testing | saker.nest">saker.java.testing on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.java.testing" title="saker.java.testing on GitHub">GitHub</a></div>
 			</div>
 		</div>	

@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Package details > <a href="index.html" title="Overview">Overview</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -69,7 +72,7 @@
 			<div class="doc-content"><h1 id="overview">Overview<a class="doc-heading-anchor" href="#overview"></a></h1>
 <p>Saker.rmi is a Java library that provides RMI (Remote Method Invocation) functionality. It is implemented newly from the ground up, and has no common parts with the <a href="https://docs.oracle.com/javase/8/docs/api/java/rmi/package-summary.html" title="java.rmi (Java Platform SE 8 )">RMI implementation of the Java standard library</a>.</p>
 <p>The goal of Saker.rmi was to develop an RMI library that supports the following features:</p>
-<ul>
+<ul class="doc-md-list">
 <li><strong>Cooperation.</strong> The main design point was that the connection endpoints should call each others functions. The method calls are also back-dispatched to the originating threads, therefore <code>synchronized</code> blocks don't deadlock in case of issueing new requests when serving one.</li>
 <li><strong>Transparency.</strong> The code that calls RMI proxy methods don't have to know that its calling an RMI proxy method. The proxies work the same way as if the objects were in the same JVM.</li>
 <li><strong>Automatic proxy creation.</strong> The RMI proxies used in an RMI connection are automatically created, no additional declarations necessary on the possible proxy interfaces.</li>
@@ -114,7 +117,7 @@
 				<div data-footer-location="doc-docs"><a href="../doc/index.html" title="saker.rmi documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../javadoc/index.html" title="JavaDoc for saker.rmi">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../taskdoc/index.html"  title="Documentation of build tasks in saker.rmi">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.rmi" title="saker.rmi | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.rmi" title="saker.rmi | saker.nest">saker.rmi on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.rmi" title="saker.rmi on GitHub">GitHub</a></div>
 			</div>
 		</div>	

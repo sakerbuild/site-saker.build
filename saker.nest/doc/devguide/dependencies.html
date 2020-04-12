@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Development guide > <a href="dependencies.html" title="Dependencies">Dependencies</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -73,7 +76,7 @@
 <h2 id="dependency-kinds">Dependency kinds<a class="doc-heading-anchor" href="#dependency-kinds"></a></h2>
 <p>Dependency kinds specify the scenario in which the dependency should be used. The most common is <code>classpath</code> in which case a dependency is used when the classpath for a bundle is being loaded.</p>
 <p>Dependency kinds allows separation of different types of dependencies when a bundle serves multiple purposes. For example if a bundle contains Java classpath files to be used during compilation, and native libraries to be linked alongside with the bundle, then declaring dependencies with different kinds can be used to resolve different bundle set for the given operation:</p>
-<pre><code class="language-plaintext">library.bundle
+<pre class="doc-code-block"><code class="language-plaintext">library.bundle
 	compile-classpath: 1.0
 native.library.bundle
 	link-library: 1.1
@@ -85,15 +88,15 @@ We can see that dependency kinds helps the separation of use-cases for multi-con
 <h2 id="dependency-meta-data">Dependency meta-data<a class="doc-heading-anchor" href="#dependency-meta-data"></a></h2>
 <p>The dependency declarations allow arbitrary information to be added alongside them. Meta-data can be used to control the interpretation of the dependency for a given kind. This interpretation is the responsibility of the consumer of the dependency.</p>
 <p>The following meta-data names are recognized by the repository runtime and used when generally resolving dependencies:</p>
-<ul>
+<ul class="doc-md-list">
 <li><code>optional</code>: The value of the meta-data is interpreted as a boolean, signaling whether a given dependency is required or not. This dependency meta-data can be used on <strong>all</strong> dependencies, regardless of kind. <br />
 If a dependency is declared to be optional, the dependency resolution algorithm will not fail if the dependency cannot be satisfied. The optional dependencies will be only part of the dependency resolution result set if it can be satisfied without conflicts alongside the required dependencies.</li>
 </ul>
 <p>The following meta-data names are applied when <a href="../userguide/constraints.html" title="Constraint properties">dependency constraints</a> are used:</p>
-<ul>
+<ul class="doc-md-list">
 <li><code>jre-version</code>: Specifies a Java major <a href="../userguide/versioning.html#version-ranges" title="Version ranges">version range</a> that this dependency applies to. If the current JRE major version is not in the range of the specified value, then the dependency will be omitted. <br />
 E.g. This meta-data name can be used to depend on different bundles on different Java versions:
-<pre><code class="language-plaintext">	bundle.for.jdk8
+<pre class="doc-code-block"><code class="language-plaintext">	bundle.for.jdk8
 	    classpath: 1.0
 	        jre-version: 8
 	bundle.for.jdk9
@@ -105,7 +108,7 @@ E.g. This meta-data name can be used to depend on different bundles on different
 <li><code>buildsystem-version</code>: Specifies a saker.build system <a href="../userguide/versioning.html#version-ranges" title="Version ranges">version range</a> that this dependency applies to. If the current build system version is not in the range of the specified value, the the dependency will be omitted.</li>
 <li><code>native-architecture</code>: Specifies a comma separated aarchitecture list that contains the native architectures the dependency applies to. If the current architecture constraint is not included in the specified list, the associated dependency will be omitted. <br />
 E.g. This meta-data can be used to depend on different bundles for different architectures:
-<pre><code class="language-plaintext">	bundle.for.x86
+<pre class="doc-code-block"><code class="language-plaintext">	bundle.for.x86
 	    classpath: 1.0
 	        native-architecture: x86
 	bundle.for.x64
@@ -148,7 +151,7 @@ E.g. This meta-data can be used to depend on different bundles for different arc
 				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.nest documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.nest">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.nest">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.nest" title="saker.nest | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.nest" title="saker.nest | saker.nest">saker.nest on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.nest" title="saker.nest on GitHub">GitHub</a></div>
 			</div>
 		</div>	

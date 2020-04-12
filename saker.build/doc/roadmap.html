@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Introduction > <a href="roadmap.html" title="Roadmap">Roadmap</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -80,14 +83,14 @@
 <p><strong>Update</strong>: Basic implementation of the build trace is complete. Additional improvements are still to be developed. See <a href="guide/buildtrace.html" title="Build trace">Build trace</a>.</p>
 <p>Build tracing feature should be added to saker.build. A build trace is a recording of the build process. It allows the developer to visualize and examine the build process.</p>
 <p>The build trace should provide access to the following related to build tasks:</p>
-<ul>
+<ul class="doc-md-list">
 <li>Tasks visualized on a timeline chart.</li>
 <li>Task dependencies on other tasks.</li>
 <li>Task environment and execution property dependencies.</li>
 <li>Task inner task executions.</li>
 <li>Task delta and incrementality information.</li>
 <li>Task remote dispatching information.
-<ul>
+<ul class="doc-md-list">
 <li>Where the tasks were dispatched. Why they were dispatched there, and why not if not.</li>
 </ul>
 </li>
@@ -98,18 +101,21 @@
 <p>The build trace should consist of two parts. First, a generated data that is produced by the build execution. Second, HTML pages that can be used to visualize the mentioned data. The build trace should be viewable offline.</p>
 <p>The build trace recording should be non-intrusive to the build execution.</p>
 <h4 id="clang-_-gcc-support">Clang &amp; GCC support<a class="doc-heading-anchor" href="#clang-_-gcc-support"></a></h4>
+<p><strong>Update</strong>: Clang support is under development in the <a href="https://github.com/sakerbuild/saker.clang" title="GitHub - sakerbuild/saker.clang: Clang support for the saker.build system">saker.clang</a> repository.</p>
 <p>The <a href="../../saker.msvc/index.html" title="Index">saker.msvc</a> package implements features for the MSVC C++ toolchain. Build task implementations for the <code>clang</code> and <code>gcc</code> compilers should be implemented as well.</p>
 <p>Based on the saker.msvc build task implementations, modifying them to support the above compilers shouldn't be a hard task, but is not straightforward. The implementations should be published as a new package.</p>
 <p>Common parts for C/C++ support may be exported to newly introduced packages if appropriate.</p>
 <h4 id="android-support">Android support<a class="doc-heading-anchor" href="#android-support"></a></h4>
+<p><strong>Update</strong>: Android support is under development in the <a href="https://github.com/sakerbuild/saker.android" title="GitHub - sakerbuild/saker.android: Android support for the saker.build system">saker.android</a> repository.</p>
 <p>Support for using saker.build to develop for Android should be added. The implementation may be gradual, meaning that at start the build tasks should support creating basic Android applcations, and later it can be extended for more complex use-cases.</p>
 <h4 id="ios-_-macos-support">iOS &amp; macOS support<a class="doc-heading-anchor" href="#ios-_-macos-support"></a></h4>
 <p>Support for using saker.build to develop for iOS &amp; macOS should be added. The implementation may be gradual, meaning that at start the build tasks should support creating basic iOS &amp; macOS applcations, and later it can be extended for more complex use-cases.</p>
 <h4 id="_net_-c__-and-related-technologies">.NET, C#, and related technologies<a class="doc-heading-anchor" href="#_net_-c__-and-related-technologies"></a></h4>
 <p>It shall be examined how developing for .NET, C# and related technologies can be integrated with the saker.build system. This goal is to be split up once the goal progresses.</p>
 <h4 id="ide-plugin-support">IDE plugin support<a class="doc-heading-anchor" href="#ide-plugin-support"></a></h4>
+<p><strong>Update</strong>: The IntelliJ plugin is under development. See the <a href="https://github.com/sakerbuild/saker.build.ide.intellij" title="GitHub - sakerbuild/saker.build.ide.intellij: IntelliJ plugin for the saker.build system">saker.build.ide.intellij</a> repository.</p>
 <p>Plugin support for other Integrated Development Environments should be added (other than <a href="eclipseplugin.html" title="Eclipse plugin">Eclipse</a>). It should be examined how popular IDEs can be integrated with, its feasibility, and possibility of the implementation.</p>
-<p>Also related: <a href="https://github.com/microsoft/language-server-protocol/" title="GitHub - microsoft/language-server-protocol: Defines a common protocol for language servers.">language-server-protocol</a> support for scripting languages. <a href="https://github.com/Microsoft/language-server-protocol/issues/18" title="Support semantic highlighting · Issue #18 · microsoft/language-server-protocol · GitHub">Semantic highlight</a> would be necessary for proper support. (Also: <a href="https://github.com/microsoft/language-server-protocol/issues/33" title="Syntax highlight · Issue #33 · microsoft/language-server-protocol · GitHub">#33</a>)</p>
+<p>Also related: <a href="https://github.com/microsoft/language-server-protocol/" title="microsoft/language-server-protocol: Defines a common protocol for language servers.">language-server-protocol</a> support for scripting languages. <a href="https://github.com/Microsoft/language-server-protocol/issues/18" title="Support semantic highlighting · Issue #18 · microsoft/language-server-protocol · GitHub">Semantic highlight</a> would be necessary for proper support. (Also: <a href="https://github.com/microsoft/language-server-protocol/issues/33" title="Syntax highlight · Issue #33 · microsoft/language-server-protocol · GitHub">#33</a>)</p>
 <link href="../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>
 			<div class="end-section-links">
 				<div class="end-section-prev">
@@ -143,7 +149,7 @@
 				<div data-footer-location="doc-docs"><a href="../doc/index.html" title="saker.build documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../javadoc/index.html" title="JavaDoc for saker.build">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../taskdoc/index.html"  title="Documentation of build tasks in saker.build">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.build on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.build" title="saker.build on GitHub">GitHub</a></div>
 			</div>
 		</div>	

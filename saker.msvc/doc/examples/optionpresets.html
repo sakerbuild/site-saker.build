@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Examples > <a href="optionpresets.html" title="Option presets">Option presets</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -69,7 +72,7 @@
 			<div class="doc-content"><h1 id="option-presets">Option presets<a class="doc-heading-anchor" href="#option-presets"></a></h1>
 <p>See also: <a href="../ccompile/optionpresets.html" title="Option presets">Option presets</a></p>
 <p>The option presets allow you to use predefined configuration for the MSVC toolchain in order to develop specific applications. The <code>saker.msvc.coptions.preset()</code> task returns an options object that when passed to the compiler and linker tasks as an option, it will configure it appropriately for the given use-case:</p>
-<pre><code class="language-sakerscript"><span class="d">$ccompile</span> = <span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d">$ccompile</span> = <span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span>
 	<span class="f">src/**/*.cpp</span>,
 	<span class="i">CompilerOptions: </span><span class="b">[</span>
 		<span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.coptions.preset.html" title="Task: saker.msvc.coptions.preset()">saker.msvc.coptions.preset</a>(</span><span class="f">console</span><span class="e">)</span><span class="b">,</span>
@@ -105,7 +108,7 @@
 <p>The preset adds the <a href="https://docs.microsoft.com/en-us/cpp/build/reference/ltcg-link-time-code-generation?view=vs-2019" title="/LTCG (Link-time Code Generation) | Microsoft Docs"><code>/LTCG</code></a>, <a href="https://docs.microsoft.com/en-us/cpp/build/reference/opt-optimizations?view=vs-2019" title="/OPT (Optimizations) | Microsoft Docs"><code>/OPT:REF</code></a>, <a href="https://docs.microsoft.com/en-us/cpp/build/reference/opt-optimizations?view=vs-2019" title="/OPT (Optimizations) | Microsoft Docs"><code>/OPT:ICF</code></a> simple linker parameters.</p>
 <h2 id="preset-identifier">Preset identifier<a class="doc-heading-anchor" href="#preset-identifier"></a></h2>
 <p>The presets can be created with a given <code>Identifier</code> specified for them:</p>
-<pre><code class="language-sakerscript"><span class="d">$options</span> = <span class="b">[</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d">$options</span> = <span class="b">[</span>
 	<span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.coptions.preset.html" title="Task: saker.msvc.coptions.preset()">saker.msvc.coptions.preset</a>(</span><span class="f">console</span>, <span class="i">Identifier: </span><span class="f">con</span><span class="e">)</span><span class="b">,</span>
 	<span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.coptions.preset.html" title="Task: saker.msvc.coptions.preset()">saker.msvc.coptions.preset</a>(</span><span class="f">dll</span>, <span class="i">Identifier: </span><span class="f">lib</span><span class="e">)</span><span class="b">,</span>
 <span class="b">]</span>
@@ -167,7 +170,7 @@
 				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.msvc documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.msvc">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.msvc">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.msvc" title="saker.msvc | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.msvc" title="saker.msvc | saker.nest">saker.msvc on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.msvc" title="saker.msvc on GitHub">GitHub</a></div>
 			</div>
 		</div>	

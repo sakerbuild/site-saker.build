@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				C/C++ compilation > <a href="sdkmanagement.html" title="SDK management">SDK management</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -70,11 +73,11 @@
 <p>The tasks in the saker.msvc package use the <a href="../../../saker.sdk.support/index.html" title="Index">saker.sdk.support</a> package for managing the SDKs that they work with. SDKs can be used to specify which MSVC installation to be used when compiling the sources, or to specify inputs based on them.</p>
 <p>Both the compiler and linker task work with the SDK named <code>MSVC</code>. They will locate the <a href="https://docs.microsoft.com/en-us/cpp/build/reference/compiling-a-c-cpp-program?view=vs-2019" title="MSVC C/C++ compiler reference - Visual Studio | Microsoft Docs"><code>cl.exe</code></a> and <a href="https://docs.microsoft.com/en-us/cpp/build/reference/linking?view=vs-2019" title="MSVC linker reference | Microsoft Docs"><code>link.exe</code></a> which are used to perform their operations based on the specified SDK. If no SDKs are specified with the name <code>MSVC</code>, the tasks will attempt to locate a default one based on the environment they're running on.</p>
 <p>To specify an SDK to be used with a given version, you can use the <a href="../../taskdoc/saker.msvc.sdk.html"><code>saker.msvc.sdk()</code></a> task:</p>
-<pre><code class="language-sakerscript"><span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span>
 	<span class="i">Input</span>: <span class="k">### ... ###</span>,
 	<span class="i">SDKs: </span><span class="b">{</span>
-		<span class="h">MSVC</span>: <span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.sdk.html" title="Task: saker.msvc.sdk()">saker.msvc.sdk</a>(</span><span class="f">14.22.27905</span><span class="e">)</span><span class="b">
-	}</span>
+		<span class="h">MSVC</span>: <span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.sdk.html" title="Task: saker.msvc.sdk()">saker.msvc.sdk</a>(</span><span class="f">14.22.27905</span><span class="e">)</span>
+	<span class="b">}</span>
 <span class="e">)</span>
 </code></pre>
 <p>The above will cause the task to attempt to locate a Microsoft Visual C++ toolchain installation with the version <code>14.22.27905</code>. If the task fails, it will thrown an appropriate error.</p>
@@ -82,37 +85,37 @@
 <p>There may be cases when the package can't find automatically the installed MSVC toolchain installations. In these cases you will need to add an appropriate user parameter for the build environment.</p>
 <p>You can specify the <code>saker.msvc.sdk.install.location.&lt;version&gt;</code> environment parameter with the path to the install location of the toolchain for the given version.</p>
 <p>For example:</p>
-<pre><code class="language-plaintext">saker.msvc.sdk.install.location.14.22.27905=c:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.22.27905
+<pre class="doc-code-block"><code class="language-plaintext">saker.msvc.sdk.install.location.14.22.27905=c:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.22.27905
 </code></pre>
 <h3 id="legacy-toolchain-layout">Legacy toolchain layout<a class="doc-heading-anchor" href="#legacy-toolchain-layout"></a></h3>
 <p>The tasks support the legacy layout of the MSVC installations. The installation locations that are used with Visual Studio 15 or older versions are considered to be <em>legacy</em>. More information about layout differences: <a href="https://devblogs.microsoft.com/cppblog/compiler-tools-layout-in-visual-studio-15/" title="Compiler Tools Layout in Visual Studio 2017 | C++ Team Blog">Compiler Tools Layout in Visual Studio 2017 | C++ Team Blog</a>.</p>
 <p>In order to specify a legacy layout, use the <code>saker.msvc.legacy.sdk.install.location.&lt;version&gt;</code> environment parameter:</p>
-<pre><code class="language-plaintext">saker.msvc.legacy.sdk.install.location.14.0=c:\Program Files (x86)\Microsoft Visual Studio 14.0\VC
+<pre class="doc-code-block"><code class="language-plaintext">saker.msvc.legacy.sdk.install.location.14.0=c:\Program Files (x86)\Microsoft Visual Studio 14.0\VC
 </code></pre>
 <p>You can reference legacy layout SDKs using the <code>LegacyVersion</code> parameter:</p>
-<pre><code class="language-sakerscript"><span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span>
 	<span class="i">Input</span>: <span class="k">### ... ###</span>,
 	<span class="i">SDKs: </span><span class="b">{</span>
-		<span class="h">MSVC</span>: <span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.sdk.html" title="Task: saker.msvc.sdk()">saker.msvc.sdk</a>(</span><span class="i">LegacyVersion</span>: <span class="f">14.0</span><span class="e">)</span><span class="b">
-	}</span>
+		<span class="h">MSVC</span>: <span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.sdk.html" title="Task: saker.msvc.sdk()">saker.msvc.sdk</a>(</span><span class="i">LegacyVersion</span>: <span class="f">14.0</span><span class="e">)</span>
+	<span class="b">}</span>
 <span class="e">)</span>
 </code></pre>
 <p>In these cases the version is considered to be the one as in the <code>Microsoft Visual Studio &lt;version&gt;</code> parent directory.</p>
 <h2 id="windows-kits">Windows kits<a class="doc-heading-anchor" href="#windows-kits"></a></h2>
 <p>When developing with the MSVC toolchain, you are most likely to use the Windows SDK. The Windows SDK contains the necessary headers, libraries and other resources to develop for the Windows operating system. (E.g. <code>Windows.h</code>)</p>
 <p>The <a href="../../taskdoc/saker.msvc.sdk.windowskits.html"><code>saker.msvc.sdk.windowskits()</code></a> task allows locating the Windows SDK. Without any arguments, it will look for it under the <code>Program Files (x86)</code> and <code>Program Files</code> directory. However, you can also set the requested version number:</p>
-<pre><code class="language-sakerscript"><span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span>
 	<span class="i">Input</span>: <span class="b">{</span>
 		<span class="h">Files</span>: <span class="f">src/**/*.cpp</span><span class="b">,</span>
 		<span class="h">IncludeDirectories</span>: <span class="b">[</span>
 			<span class="e"><a href="../../../saker.sdk.support/taskdoc/sdk.path.html" title="Task: sdk.path()">sdk.path</a>(</span><span class="f">WindowsKits</span>, <span class="i">Identifier: </span><span class="f">include.shared</span><span class="e">)</span><span class="b">,</span>
 			<span class="e"><a href="../../../saker.sdk.support/taskdoc/sdk.path.html" title="Task: sdk.path()">sdk.path</a>(</span><span class="f">WindowsKits</span>, <span class="i">Identifier: </span><span class="f">include.ucrt</span><span class="e">)</span><span class="b">,</span>
-			<span class="e"><a href="../../../saker.sdk.support/taskdoc/sdk.path.html" title="Task: sdk.path()">sdk.path</a>(</span><span class="f">WindowsKits</span>, <span class="i">Identifier: </span><span class="f">include.um</span><span class="e">)</span><span class="b">
-		]
-	}</span>,
+			<span class="e"><a href="../../../saker.sdk.support/taskdoc/sdk.path.html" title="Task: sdk.path()">sdk.path</a>(</span><span class="f">WindowsKits</span>, <span class="i">Identifier: </span><span class="f">include.um</span><span class="e">)</span>
+		<span class="b">]</span>
+	<span class="b">}</span>,
 	<span class="i">SDKs: </span><span class="b">{</span>
-		<span class="h">WindowsKits</span>: <span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.sdk.windowskits.html" title="Task: saker.msvc.sdk.windowskits()">saker.msvc.sdk.windowskits</a>(</span><span class="f">10.0.18362.0</span><span class="e">)</span><span class="b">
-	}</span>
+		<span class="h">WindowsKits</span>: <span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.sdk.windowskits.html" title="Task: saker.msvc.sdk.windowskits()">saker.msvc.sdk.windowskits</a>(</span><span class="f">10.0.18362.0</span><span class="e">)</span>
+	<span class="b">}</span>
 <span class="e">)</span>
 </code></pre>
 <p>The above example uses the Windows Kits SDK with the version of <code>10.0.18362.0</code>, and adds some include directories from it for the compilation.</p>
@@ -121,7 +124,7 @@
 <h3 id="windows-kits-environment-parameter">Windows kits environment parameter<a class="doc-heading-anchor" href="#windows-kits-environment-parameter"></a></h3>
 <p>The <code>saker.msvc.windowskits.sdk.install.location.&lt;version&gt;</code> build environment user parameter can be used to specify the location of a Windows Kits installation.</p>
 <p>For example:</p>
-<pre><code class="language-plaintext">saker.msvc.windowskits.sdk.install.location.10.0.18362.0=c:\Program Files (x86)\Windows Kits\10
+<pre class="doc-code-block"><code class="language-plaintext">saker.msvc.windowskits.sdk.install.location.10.0.18362.0=c:\Program Files (x86)\Windows Kits\10
 </code></pre>
 <p>Note that you must specify the installation directory path that contains the <code>Include</code>, <code>Lib</code> and other directories instead of any of the subdirectories.</p>
 <link href="../../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>
@@ -157,7 +160,7 @@
 				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.msvc documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.msvc">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.msvc">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.msvc" title="saker.msvc | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.msvc" title="saker.msvc | saker.nest">saker.msvc on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.msvc" title="saker.msvc on GitHub">GitHub</a></div>
 			</div>
 		</div>	

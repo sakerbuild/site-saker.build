@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Examples > <a href="dependencyfileresolve.html" title="Resolve dependency file">Resolve dependency file</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -68,19 +71,19 @@
 </div>
 			<div class="doc-content"><h1 id="resolve-dependency-file">Resolve dependency file<a class="doc-heading-anchor" href="#resolve-dependency-file"></a></h1>
 <p>The <a href="../../taskdoc/nest.dependency.resolve.html"><code>nest.dependency.resolve()</code></a> task can be used to resolve the dependencies specified in a <a href="../../../saker.nest/doc/devguide/bundleformat.html#dependency-file" title="Dependency file">dependency file</a>:</p>
-<pre><code class="language-sakerscript"><span class="e"><a href="../../../nest.repository.support/taskdoc/nest.dependency.resolve.html" title="Task: nest.dependency.resolve()">nest.dependency.resolve</a>(</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../nest.repository.support/taskdoc/nest.dependency.resolve.html" title="Task: nest.dependency.resolve()">nest.dependency.resolve</a>(</span>
 	<span class="i">DependencyFile</span>: <span class="f">res/META-INF/nest/dependencies</span>
 <span class="e">)</span>
 </code></pre>
 <p>In the above, the dependencies specified in the <code>res/META-INF/nest/dependencies</code> file will be resolved. The resolution works transitively. (I.e. the dependencies of the dependencies are also resolved, and so on.)</p>
 <p>For example, if the file contains the following:</p>
-<pre><code class="language-plaintext">first.bundle
+<pre class="doc-code-block"><code class="language-plaintext">first.bundle
 	classpath: 1.0
 second.bundle
 	native-lib: 2.0
 </code></pre>
 <p>The the dependencies for both <code>first.bundle</code> and <code>second.bundle</code> will be resolved. In order to filter out the unnecessary dependencies for your use-case, specify a dependency <code>Filter</code>:</p>
-<pre><code class="language-sakerscript"><span class="e"><a href="../../../nest.repository.support/taskdoc/nest.dependency.resolve.html" title="Task: nest.dependency.resolve()">nest.dependency.resolve</a>(</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../nest.repository.support/taskdoc/nest.dependency.resolve.html" title="Task: nest.dependency.resolve()">nest.dependency.resolve</a>(</span>
 	<span class="i">DependencyFile</span>: <span class="f">res/META-INF/nest/dependencies</span>,
 	<span class="i">Filter: </span><span class="e"><a href="../../../nest.repository.support/taskdoc/nest.dependency.filter.kind.html" title="Task: nest.dependency.filter.kind()">nest.dependency.filter.kind</a>(</span><span class="f">classpath</span><span class="e">)</span>
 <span class="e">)</span>
@@ -120,7 +123,7 @@ second.bundle
 				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="nest.repository.support documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for nest.repository.support">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in nest.repository.support">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/nest.repository.support" title="nest.repository.support | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/nest.repository.support" title="nest.repository.support | saker.nest">nest.repository.support on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/nest.repository.support" title="nest.repository.support on GitHub">GitHub</a></div>
 			</div>
 		</div>	

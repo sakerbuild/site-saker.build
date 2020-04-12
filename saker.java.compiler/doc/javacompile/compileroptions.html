@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Java compilation > <a href="compileroptions.html" title="Compiler options">Compiler options</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -69,19 +72,19 @@
 			<div class="doc-content"><h1 id="compiler-options">Compiler options<a class="doc-heading-anchor" href="#compiler-options"></a></h1>
 <p>The <a href="../../taskdoc/saker.java.compile.html"><code>saker.java.compile()</code></a> task allows dynamic option merging based on the identifier of the compilation pass. It can be used to define the compilation parameters in one place, and then later can be applied to the compilation tasks selectively.</p>
 <p>Let's look at an example where <a href="crosscompile.html" title="Cross-compilation">cross-compile</a> different versions of the same codebase:</p>
-<pre><code class="language-sakerscript"><span class="d">$options</span> = <span class="b">[</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d">$options</span> = <span class="b">[</span>
 	<span class="b">{</span>
 		<span class="h">Identifier</span>: <span class="f">jdk8</span><span class="b">,</span>
 		<span class="h">SDKs</span>: <span class="b">{</span>
-			<span class="h">Java</span>: <span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.sdk.html" title="Task: saker.java.sdk()">saker.java.sdk</a>(</span><span class="f">8</span><span class="e">)</span><span class="b">
-		}
-	},</span>
+			<span class="h">Java</span>: <span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.sdk.html" title="Task: saker.java.sdk()">saker.java.sdk</a>(</span><span class="f">8</span><span class="e">)</span>
+		<span class="b">}</span>
+	<span class="b">},</span>
 	<span class="b">{</span>
 		<span class="h">Identifier</span>: <span class="f">jdk9</span><span class="b">,</span>
 		<span class="h">SDKs</span>: <span class="b">{</span>
-			<span class="h">Java</span>: <span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.sdk.html" title="Task: saker.java.sdk()">saker.java.sdk</a>(</span><span class="f">9</span><span class="e">)</span><span class="b">
-		}
-	},</span>
+			<span class="h">Java</span>: <span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.sdk.html" title="Task: saker.java.sdk()">saker.java.sdk</a>(</span><span class="f">9</span><span class="e">)</span>
+		<span class="b">}</span>
+	<span class="b">},</span>
 <span class="b">]</span>
 <span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
 	<span class="i">SourceDirectories</span>: <span class="f">src</span>,
@@ -97,25 +100,25 @@
 <p>In the above build script we can see that there are two Java compilations being done. One with the <code>main-jdk8</code> identifier, and one with the <code>main-jdk9</code> identifier. We also specify some options in the <code>$options</code> variable that we pass to both compilation tasks using the <code>CompilerOptions</code> parameter. The options specify the JDK that should be used for compilation for <code>jdk8</code>, and <code>jdk9</code>.</p>
 <p>When the <a href="../../taskdoc/saker.java.compile.html"><code>saker.java.compile()</code></a> task receives the <code>CompilerOptions</code> input, it will analyze its contents, and merge the configurations specified in the options when applicable. The merging is done by checking if the <code>Identifier</code> parts in the option declaration is contained in the <code>Identifier</code> parameter of the compilation task. The inclusions is determined based on the dash (<code>'-'</code>) separated components of the identifiers.</p>
 <p>The above example is works <strong>exactly</strong> the same way as the following:</p>
-<pre><code class="language-sakerscript"><span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
 	<span class="i">SourceDirectories</span>: <span class="f">src</span>,
 	<span class="i">Identifier: </span><span class="f">main-jdk8</span>,
 	<span class="i">SDKs: </span><span class="b">{</span>
-		<span class="h">Java</span>: <span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.sdk.html" title="Task: saker.java.sdk()">saker.java.sdk</a>(</span><span class="f">8</span><span class="e">)</span><span class="b">
-	}</span>
+		<span class="h">Java</span>: <span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.sdk.html" title="Task: saker.java.sdk()">saker.java.sdk</a>(</span><span class="f">8</span><span class="e">)</span>
+	<span class="b">}</span>
 <span class="e">)</span>
 <span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
 	<span class="i">SourceDirectories</span>: <span class="f">src</span>,
 	<span class="i">Identifier: </span><span class="f">main-jdk9</span>,
 	<span class="i">SDKs: </span><span class="b">{</span>
-		<span class="h">Java</span>: <span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.sdk.html" title="Task: saker.java.sdk()">saker.java.sdk</a>(</span><span class="f">9</span><span class="e">)</span><span class="b">
-	}</span>
+		<span class="h">Java</span>: <span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.sdk.html" title="Task: saker.java.sdk()">saker.java.sdk</a>(</span><span class="f">9</span><span class="e">)</span>
+	<span class="b">}</span>
 <span class="e">)</span>
 </code></pre>
 <p>The outputs of the compilations will be in separate output directories.</p>
 <p>This compiler options merging facility can be used with other input parameters for the compilation tasks as well.</p>
 <p>Note that the initial example could be simplified more using the <code>foreach</code> structure:</p>
-<pre><code class="language-sakerscript"><span class="d">$options</span> = <span class="c"># ... same as above ...</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d">$options</span> = <span class="c"># ... same as above ...</span>
 <span class="j">foreach </span><span class="d">$jdk</span><span class="j"> in </span><span class="b">[</span><span class="f">jdk8</span><span class="b">,</span> <span class="f">jdk9</span><span class="b">]</span> {
 	<span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
 		<span class="i">SourceDirectories</span>: <span class="f">src</span>,
@@ -158,7 +161,7 @@
 				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.java.compiler documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.java.compiler">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.java.compiler">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.java.compiler" title="saker.java.compiler | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.java.compiler" title="saker.java.compiler | saker.nest">saker.java.compiler on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.java.compiler" title="saker.java.compiler on GitHub">GitHub</a></div>
 			</div>
 		</div>	

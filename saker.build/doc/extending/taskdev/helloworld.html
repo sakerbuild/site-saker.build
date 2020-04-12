@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Extending saker.build > <a href="index.html" title="Task development">Task development</a> > <a href="helloworld.html" title="Hello world">Hello world</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -69,7 +72,7 @@
 			<div class="doc-content"><h1 id="hello-world">Hello world<a class="doc-heading-anchor" href="#hello-world"></a></h1>
 <p>Let's start with the simplest task possible that only writes a simple string to the output:</p>
 <p>
-<pre><code class="language-java">public class HelloWorldTaskFactory 
+<pre class="doc-code-block"><code class="language-java">public class HelloWorldTaskFactory 
 		implements TaskFactory&lt;Void&gt;, Externalizable {
 	public HelloWorldTaskFactory() {
 	}
@@ -114,7 +117,7 @@
 <p>In this <code>createTask()</code> method we will return a new anonymous class for our task, only for simplification reasons. In normal scenarios it's strongly recommened to export the task to a <code>static</code> inner class, or a new top level class.</p>
 <h2 id="run_taskcontext_"><code>run(TaskContext)</code><a class="doc-heading-anchor" href="#run_taskcontext_"></a></h2>
 <p>This method is defined by the <code>Task</code> interface, and it is called when the build system invokes the task to execute its operations. This is the method where the computations are being done.</p>
-<pre><code class="language-java">taskcontext.println(&quot;Hello world!&quot;);
+<pre class="doc-code-block"><code class="language-java">taskcontext.println(&quot;Hello world!&quot;);
 </code></pre>
 <p>In the above implementation we just print out a simple message which will be displayed in the standard output of the build. When we execute the build the next time for our task, it won't be run, as it has not changed, but the build system will display the printed message again.</p>
 <p>The <code>run</code> method declares itself to be able to throw any kind of <code>Exception</code> if the operations of it fails.</p>
@@ -122,10 +125,10 @@
 <p>We defined the <code>HelloWorldTaskFactory</code> to implement <code>Externalizable</code>. This is in order to have a more fine grained control over the serialization of the task factory. Using <code>Externalizable</code> instead of <code>Serializable</code> is likely to be more performant as well. Another note is that the saker.build system implements its own <a href="serialization.html" title="Serialization">serialization</a> methods for persisting the build database, in which <code>Externalizable</code> is strongly preferred.</p>
 <h2 id="equality">Equality<a class="doc-heading-anchor" href="#equality"></a></h2>
 <p>In the above example, the task factory has no fields. It will always do the same thing, therefore any other task factories which have the same class as <code>HelloWorldTaskFactory</code> is considered to be equal. In order to implement this, we only check the class identity of the argument in <code>equals</code>, using the <code>ObjectUtils</code> utility class.</p>
-<pre><code class="language-java">ObjectUtils.isSameClass(this, obj);
+<pre class="doc-code-block"><code class="language-java">ObjectUtils.isSameClass(this, obj);
 </code></pre>
 <p>The <code>hashCode</code> computes its result based on the current class' name instead of calling <code>hashCode()</code> directly on the class. This is in order to have a stable hash code between executions. This is not required, but can be beneficial in some cases. (See <a href="taskcaching.html" title="Task caching">Task caching</a>.)</p>
-<pre><code class="language-java">getClass().getName().hashCode();
+<pre class="doc-code-block"><code class="language-java">getClass().getName().hashCode();
 </code></pre>
 <h2 id="constructor">Constructor<a class="doc-heading-anchor" href="#constructor"></a></h2>
 <p>The class needs a public no-arg constructor for two reasons. First is for it to be instantiatable via reflection when it is loaded. Second is because the <code>Externalizable</code> interface requires it in order to properly deserialize an instance.</p>
@@ -165,7 +168,7 @@
 				<div data-footer-location="doc-docs"><a href="../../../doc/index.html" title="saker.build documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../../javadoc/index.html" title="JavaDoc for saker.build">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../../taskdoc/index.html"  title="Documentation of build tasks in saker.build">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.build on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.build" title="saker.build on GitHub">GitHub</a></div>
 			</div>
 		</div>	

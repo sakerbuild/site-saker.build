@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Introduction > <a href="index.html" title="Overview">Overview</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -69,7 +72,7 @@
 			<div class="doc-content"><h1 id="overview">Overview<a class="doc-heading-anchor" href="#overview"></a></h1>
 <p>Saker.nest is the default package repository for the <a href="../../saker.build/index.html" title="Index">saker.build system</a> providing access to build tasks, libraries, and other resources. The repository contains resource bundles enclosed in versioned package releases. Uploading and consuming packages from the repository is available to the general public through the saker.build system and via the <a href="https://nest.saker.build" title="Saker.nest plugin repository">repository website</a>.</p>
 <h2 id="features">Features<a class="doc-heading-anchor" href="#features"></a></h2>
-<ul>
+<ul class="doc-md-list">
 <li><strong>Bundle storage.</strong> The saker.nest repository generally serves as a resource bundle storage. The bundles have minimal format requirements, however, they may contain any kind of resources that make sense from the corresponding use-case perspective.</li>
 <li><strong>Immutability.</strong> Any bundle that has been uploaded and published in the repository may not be modified later on. This ensures that bundle consumers won't have to deal with nondeterministic scenarios when working with a specific version of a bundle. <br />
 Published bundles may not be removed from the repository by their uploaders, in order to prevent breaking dependent infrastructure. (However, bundles may be removed by administrators in case of violations.)</li>
@@ -77,14 +80,14 @@ Published bundles may not be removed from the repository by their uploaders, in 
 </ul>
 <h3 id="build-features">Build features<a class="doc-heading-anchor" href="#build-features"></a></h3>
 <p>The following features helps the integration with the saker.build system.</p>
-<ul>
+<ul class="doc-md-list">
 <li><strong>Build tasks.</strong> Uploaded bundles may contain build tasks that can be used with the saker.build system. The repository maintains a task index that can be used to look up tasks based on their names. This allows the consumers to not query the repository API server for every task lookup, but perform it quickly on the local machine. (This also ensures consumer privacy in relation to the used tasks.)</li>
 <li><strong>Extensive storage configuration.</strong> The repository used during build execution can be configured in various ways to properly manage the build task availability. The repository can be used in a completely offline way with local packages.</li>
 <li><strong>Script editor assistance.</strong> Documentation can be attached alonside build tasks which are displayed in the build script editor if used within an IDE. (E.g. Eclipse) This helps writing build scripts without the need to frequently looking up information about the tasks in the browser.</li>
 </ul>
 <h3 id="java-features">Java features<a class="doc-heading-anchor" href="#java-features"></a></h3>
 <p>The following features help developing and consuming Java bundles from the repository.</p>
-<ul>
+<ul class="doc-md-list">
 <li><strong>Classpath dependencies.</strong> When a bundle's classpath is loaded, any dependencies declared with the <code>classpath</code> kind will be loaded for it automatically. This allows easy reuse of Java bundles in the saker.nest repository.</li>
 <li><strong>Action support.</strong> Bundles may be invoked using <a href="../../saker.build/doc/guide/repositories.html#actions" title="Actions">repository actions</a> in order to execute tasks outside of build executions. Actions can be used to develop programs that is easily distributed by the repository, and take advantage of its features.</li>
 <li><strong>Native library support.</strong> Native libraries included in Java bundles are automatically loaded by the runtime. It also takes the underlying architecture and operating system type into account.</li>
@@ -124,7 +127,7 @@ Published bundles may not be removed from the repository by their uploaders, in 
 				<div data-footer-location="doc-docs"><a href="../doc/index.html" title="saker.nest documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../javadoc/index.html" title="JavaDoc for saker.nest">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../taskdoc/index.html"  title="Documentation of build tasks in saker.nest">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.nest" title="saker.nest | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.nest" title="saker.nest | saker.nest">saker.nest on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.nest" title="saker.nest on GitHub">GitHub</a></div>
 			</div>
 		</div>	

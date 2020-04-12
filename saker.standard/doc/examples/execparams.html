@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Examples > <a href="execparams.html" title="Get execution parameter">Get execution parameter</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -70,10 +73,10 @@
 <p>See also: <a href="../buildparameters/retrieveparameters.html" title="Retrieve parameter values">Retrieve parameter values</a></p>
 <p>You can use the <a href="../../taskdoc/std.param.exec.html"><code>std.param.exec()</code></a> task to retrieve the value of an <a href="../../../saker.build/doc/guide/execparams.html" title="Execution parameters">execution user parameter</a> during build execution.</p>
 <p>If you use the following command line to build your project:</p>
-<pre><code class="language-plaintext">-Uexample.exec.parameter=abc
+<pre class="doc-code-block"><code class="language-plaintext">-Uexample.exec.parameter=abc
 </code></pre>
 <p>Then for the following build script:</p>
-<pre><code class="language-sakerscript"><span class="d">$execparam</span> = <span class="e"><a href="../../../saker.standard/taskdoc/std.param.exec.html" title="Task: std.param.exec()">std.param.exec</a>(</span><span class="f">example.exec.parameter</span><span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d">$execparam</span> = <span class="e"><a href="../../../saker.standard/taskdoc/std.param.exec.html" title="Task: std.param.exec()">std.param.exec</a>(</span><span class="f">example.exec.parameter</span><span class="e">)</span>
 </code></pre>
 <p>The variable <code>$execparam</code> will have the value <code>&quot;abc&quot;</code>.</p>
 <link href="../../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>
@@ -109,7 +112,7 @@
 				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.standard documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.standard">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.standard">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.standard" title="saker.standard | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.standard" title="saker.standard | saker.nest">saker.standard on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.standard" title="saker.standard on GitHub">GitHub</a></div>
 			</div>
 		</div>	

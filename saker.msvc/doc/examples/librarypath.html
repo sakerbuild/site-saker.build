@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Examples > <a href="librarypath.html" title="Library path">Library path</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -68,18 +71,18 @@
 </div>
 			<div class="doc-content"><h1 id="library-path">Library path<a class="doc-heading-anchor" href="#library-path"></a></h1>
 <p>The <code>LibraryPath</code> property for the <a href="../../taskdoc/saker.msvc.clink.html"><code>saker.msvc.clink()</code></a> task can be used to specify library paths where the linker will search for library files:</p>
-<pre><code class="language-sakerscript"><span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.clink.html" title="Task: saker.msvc.clink()">saker.msvc.clink</a>(</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.clink.html" title="Task: saker.msvc.clink()">saker.msvc.clink</a>(</span>
 	<span class="i">Input</span>: <span class="k">### ... ###</span>,
 	<span class="i">LibraryPath: </span><span class="f">lib</span>
 <span class="e">)</span>
 </code></pre>
 <p>The above simply adds the <code>lib</code> subdirectory of the current working directory to the current library search path. The specified directories are passed to the linker using the <a href="https://docs.microsoft.com/en-us/cpp/build/reference/libpath-additional-libpath?view=vs-2019" title="/LIBPATH (Additional Libpath) | Microsoft Docs"><code>/LIBPATH</code></a> parameter.</p>
 <p>You can also add SDK paths as library paths. You may need to add the library path of the MSVC toolchain if you don't use any <a href="../ccompile/optionpresets.html" title="Option presets">option presets</a>:</p>
-<pre><code class="language-sakerscript"><span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.clink.html" title="Task: saker.msvc.clink()">saker.msvc.clink</a>(</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.clink.html" title="Task: saker.msvc.clink()">saker.msvc.clink</a>(</span>
 	<span class="i">Input</span>: <span class="k">### ... ###</span>,
 	<span class="i">LibraryPath: </span><span class="b">[</span>
-		<span class="e"><a href="../../../saker.sdk.support/taskdoc/sdk.path.html" title="Task: sdk.path()">sdk.path</a>(</span><span class="f">MSVC</span>, <span class="i">Identifier: </span><span class="f">lib.x64</span><span class="e">)</span><span class="b">
-	]</span>
+		<span class="e"><a href="../../../saker.sdk.support/taskdoc/sdk.path.html" title="Task: sdk.path()">sdk.path</a>(</span><span class="f">MSVC</span>, <span class="i">Identifier: </span><span class="f">lib.x64</span><span class="e">)</span>
+	<span class="b">]</span>
 <span class="e">)</span>
 </code></pre>
 <p>The above assumes that you're linking for the <code>x64</code> architecture.</p>
@@ -117,7 +120,7 @@
 				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.msvc documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.msvc">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.msvc">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.msvc" title="saker.msvc | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.msvc" title="saker.msvc | saker.nest">saker.msvc on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.msvc" title="saker.msvc on GitHub">GitHub</a></div>
 			</div>
 		</div>	

@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				C/C++ compilation > <a href="precompiledheaders.html" title="Precompiled headers">Precompiled headers</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -69,13 +72,13 @@
 			<div class="doc-content"><h1 id="precompiled-headers">Precompiled headers<a class="doc-heading-anchor" href="#precompiled-headers"></a></h1>
 <p>The <a href="../../taskdoc/saker.msvc.ccompile.html"><code>saker.msvc.ccompile()</code></a> task supports using precompiled headers during compilation. Precompiled headers can improve build times by precompiling infrequently changing header files and reusing them later. See more information on the <a href="https://docs.microsoft.com/en-us/cpp/build/creating-precompiled-header-files?view=vs-2019" title="Precompiled Header Files | Microsoft Docs">Precompiled Header Files | Microsoft Docs</a> site for an in-depth explanation.</p>
 <p>In order to use precompiled headers, you need to specify the <code>PrecompiledHeader</code> parameter for the source files in your build task invocation:</p>
-<pre><code class="language-sakerscript"><span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span><span class="b">{</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span><span class="b">{</span>
 	<span class="h">Files</span>: <span class="f">src/*.cpp</span><span class="b">,</span>
 	<span class="h">PrecompiledHeader</span>: <span class="f">pch/pch.h</span><span class="b">,</span>
 <span class="b">}</span><span class="e">)</span>
 </code></pre>
 <p>The above will result in the <code>pch/pch.h</code> header being precompiled before any of the <code>cpp</code> files, and it can be used in the source files themselves. The precompiled header can be included in your source files with the <code>#include &quot;pch.h&quot;</code> line as the first line of the source code. The expected for the <code>#include</code> statement is the same as the file name of the precompiled header:</p>
-<pre><code class="language-cpp">#include &quot;pch.h&quot;
+<pre class="doc-code-block"><code class="language-cpp">#include &quot;pch.h&quot;
 
 int main() {
 	return 0;
@@ -126,7 +129,7 @@ int main() {
 				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.msvc documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.msvc">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.msvc">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.msvc" title="saker.msvc | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.msvc" title="saker.msvc | saker.nest">saker.msvc on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.msvc" title="saker.msvc on GitHub">GitHub</a></div>
 			</div>
 		</div>	

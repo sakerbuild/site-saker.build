@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Scripting language > <a href="../index.html" title="Language reference">Language reference</a> > <a href="index.html" title="Literals">Literals</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -73,7 +76,7 @@
 <p>The language defines intergral and floating point number literals.</p>
 <h3 id="integers">Integers<a class="doc-heading-anchor" href="#integers"></a></h3>
 <p>The integral literals can be provided in either base-10 numeric format or hexadecimal format.</p>
-<pre><code class="language-sakerscript"><span class="c"># simple integer</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="c"># simple integer</span>
 <span class="d">$int</span> = <span class="f">123456789</span>
 <span class="c"># invalid integer</span>
 <span class="d">$invalid</span> = <span class="f">0452</span>
@@ -84,7 +87,7 @@
 <p>The language doesn't support integers in the base-ten numeric format that start with <code>0</code>. This is in order to avoid confusion that comes with the Java language octal number syntax. (See <a href="https://docs.oracle.com/javase/specs/jls/se7/html/jls-3.html#jls-3.10.1" title="Chapter&nbsp;3.&nbsp;Lexical Structure">JLS 3.10.1</a>) This restriction doesn't apply to the hexadecimal format.</p>
 <h3 id="floating-point-numbers">Floating point numbers<a class="doc-heading-anchor" href="#floating-point-numbers"></a></h3>
 <p>The floating point literals can be declared in the same format as specified by the Java language. (See <a href="https://docs.oracle.com/javase/specs/jls/se7/html/jls-3.html#jls-3.10.2" title="Chapter&nbsp;3.&nbsp;Lexical Structure">JLS 3.10.2</a>) This can make easier to represent number between language boundaries, and provides a more straightforward implementation of the language.</p>
-<pre><code class="language-sakerscript"><span class="c"># simple double</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="c"># simple double</span>
 <span class="d">$double</span> = <span class="f">1.23</span>
 <span class="c"># exponential format</span>
 <span class="d">$exponential</span> = <span class="f">1234.5E-6</span>
@@ -101,7 +104,7 @@
 <p>String literals have two types in the language. Simple literals that are not handled specially and parsed as-is, and compound literals which provide additional features such as escaping, interpolation, and multi-line declaration.</p>
 <h3 id="simple-string-literals">Simple string literals<a class="doc-heading-anchor" href="#simple-string-literals"></a></h3>
 <p>Simple string literals are just continuous characters in the source code. They are only bounded by whitespace and special characters. Their format is that they match the following regular expression: <code>[^,\(\)\[\]\{\}:;\s]+</code>.</p>
-<pre><code class="language-sakerscript"><span class="c"># simple string</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="c"># simple string</span>
 <span class="d">$simple</span> = <span class="f">some_string_value</span>
 <span class="c"># string for a file path</span>
 <span class="d">$filepath</span> = <span class="f">relative/path/to/a/file</span>
@@ -114,7 +117,7 @@
 <p>Note that initially number literals are also parsed as simple string literals, but they are later converted to their appropriate numeric representation if possible.</p>
 <h3 id="compound-string-literals">Compound string literals<a class="doc-heading-anchor" href="#compound-string-literals"></a></h3>
 <p>Compount string literals allow reified representation of data. They are in a format of quoted characters that support escaping, whitespace, multi-line declaration, and interpolation.</p>
-<pre><code class="language-sakerscript"><span class="c"># simple compound string: </span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="c"># simple compound string: </span>
 <span class="c">#quoted string</span>
 <span class="d">$simple</span> = <span class="f">&quot;quoted string&quot;</span>
 
@@ -151,7 +154,7 @@ second
 <p>Some literals are handled specially by the language. Booleans and <code>null</code> are such and they are described in the following sections.</p>
 <h3 id="booleans">Booleans<a class="doc-heading-anchor" href="#booleans"></a></h3>
 <p>Booleans are logical values representing the state of <code>true</code> or <code>false</code>. They are specially handled by the language, and simple literals that match these states in a case-insensitive manner will be converted to them.</p>
-<pre><code class="language-sakerscript"><span class="c"># true boolean</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="c"># true boolean</span>
 <span class="d">$t</span> = <span class="j">true</span>
 <span class="c"># also true</span>
 <span class="d">$at</span> = <span class="j">TrUe</span>
@@ -170,7 +173,7 @@ second
 <p>The <code>null</code> value in the language represents the absence of some data. Their main reason for its existence is the compatibility with the extension mechanism, as data types from external sources can be present in the language.</p>
 <p>Generally, you should not be using <code>null</code>s in your build script, but handle exceptional cases specified the task extensions of the language.</p>
 <p>Similar to booleans, <code>null</code>s are also interpreted in a case-insensitive manner.</p>
-<pre><code class="language-sakerscript"><span class="c"># set null to a variable</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="c"># set null to a variable</span>
 <span class="d">$var</span> = <span class="j">null</span>
 <span class="c"># also null, as it is interpreted in a case-insensitive manner</span>
 <span class="d">$var2</span> = <span class="j">NuLL</span>
@@ -182,7 +185,7 @@ second
 <p>There are many use-cases when structured data needs to be represented in a language. SakerScript supports lists and maps as the base of these representations.</p>
 <h3 id="lists">Lists<a class="doc-heading-anchor" href="#lists"></a></h3>
 <p>Lists contain a sequence of elements in the order specified during construction. They can be declared by using square brackets (<code>[ ]</code>).</p>
-<pre><code class="language-sakerscript"><span class="c"># simple list</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="c"># simple list</span>
 <span class="d">$list</span> = <span class="b">[</span><span class="f">1</span><span class="b">,</span> <span class="f">2</span><span class="b">,</span> <span class="f">3</span><span class="b">]</span>
 <span class="c"># nested list</span>
 <span class="d">$nested</span> = <span class="b">[[</span><span class="f">1</span><span class="b">,</span> <span class="f">2</span><span class="b">],</span> <span class="b">[</span><span class="f">3</span><span class="b">,</span> <span class="f">4</span><span class="b">]]</span>
@@ -202,7 +205,7 @@ second
 <p>Lists can be used in <a href="../foreach/index.html" title="Foreach expression"><code>foreach</code> expressions</a>, and can be used as the subject of the <a href="../operators/subscript/index.html" title="Subscript">subscript operator</a>.</p>
 <h3 id="maps">Maps<a class="doc-heading-anchor" href="#maps"></a></h3>
 <p>Maps (also known as dictionaries in other languages) are a storage of key-value pairs. The keys in a map are unique strings, and declaring a map that has multiple values for the same key is considered an error. Maps can be declared by using the curly braces (<code>{ }</code>).</p>
-<pre><code class="language-sakerscript"><span class="c"># example map</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="c"># example map</span>
 <span class="d">$example</span> = <span class="b">{</span>
 	<span class="h">Number</span>: <span class="f">123</span><span class="b">,</span>
 	<span class="h">List</span>: <span class="b">[</span>
@@ -260,7 +263,7 @@ second
 				<div data-footer-location="doc-docs"><a href="../../../../doc/index.html" title="saker.build documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../../../javadoc/index.html" title="JavaDoc for saker.build">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../../../taskdoc/index.html"  title="Documentation of build tasks in saker.build">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.build on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.build" title="saker.build on GitHub">GitHub</a></div>
 			</div>
 		</div>	

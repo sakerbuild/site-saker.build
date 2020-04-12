@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Extending saker.build > <a href="index.html" title="Task development">Task development</a> > <a href="bestpractices.html" title="Best practices">Best practices</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -71,7 +74,7 @@
 <h2 id="storing-execution-state">Storing execution state<a class="doc-heading-anchor" href="#storing-execution-state"></a></h2>
 <p>When handling incremental builds, tasks will likely need to store some state related data between executions. The build system supports this by making tasks able to store arbitrary key-value data pairs which are only visible to them.</p>
 <p>The <code>TaskContext.setTaskOutput</code> function allows tasks to store implementation related data which can be queried using the <code>TaskContext.getPreviousTaskOutput(Object, Class&lt;T&gt;)</code> function. If the function returns non-null, then the tasks can work based on the state from the previous execution and the deltas which cause the task to be invoked.</p>
-<pre><code class="language-java">public class MyTaskState { /* ... */ }
+<pre class="doc-code-block"><code class="language-java">public class MyTaskState { /* ... */ }
 
 MyTaskState state = taskcontext.getPreviousTaskOutput(&quot;state&quot;, MyTaskState.class);
 MyTaskState newstate;
@@ -88,7 +91,7 @@ taskcontext.setTaskOutput(&quot;state&quot;, newstate);
 <h2 id="clean-execution">Clean execution<a class="doc-heading-anchor" href="#clean-execution"></a></h2>
 <p>When your task is executed for the first time, or in case of some configuration changes, it might need to do a clean execution. This entails that there is no previous state or data available for it to make the execution incremental, and therefore build cleanly.</p>
 <p>In these cases it is important to remove possible stale resources from output directories. Like in the <a href="bestpractices.html#storing-execution-state" title="Storing execution state">above case</a> where no previous state is available, it is necessary to clean the output directories.</p>
-<pre><code class="language-java">SakerDirectory outputdir = /* ... */;
+<pre class="doc-code-block"><code class="language-java">SakerDirectory outputdir = /* ... */;
 boolean shouldcleanlybuild = /* is there any reuseable state? */;
 if (shouldcleanlybuild) {
 	outputdir.clear();
@@ -100,27 +103,27 @@ outputdir.synchronize();
 <p>See also: <a href="reproducible.html#delete-stale-outputs" title="Delete stale outputs">Delete stale outputs</a>.</p>
 <h2 id="task-workflow">Task workflow<a class="doc-heading-anchor" href="#task-workflow"></a></h2>
 <p>It is important to keep the <a href="incrementaldeltas.html#incremental-workflow" title="Incremental workflow">recommended workflow</a> of task execution when implementing one. We recommend doing the following to adhere this requirement:</p>
-<ol>
+<ol class="doc-md-list">
 <li>Parse any parameters of the task (if any).
-<ul>
+<ul class="doc-md-list">
 <li>This entails that the user provided parameters should be parsed and converted into an internal representation.</li>
 <li>This also means that all the tasks which may be an input for our task is waited for.</li>
 <li>This phase can be important, as in some cases if parameter contents are accessed after the file deltas have been calculated, an implicit dependency may be added for the associated task. Using the <code>@SakerInput</code> annotations may cause unexpected behaviour if the parameters are accessed later.</li>
 </ul>
 </li>
 <li>Examine the state of the task and determine any incremental work to be done.
-<ul>
+<ul class="doc-md-list">
 <li>If the task is not being run for the first time, it may reuse the state of a previous execution. If it determines to do so, the task should determine what work it should actually do to make the output up to date.</li>
 </ul>
 </li>
 <li>Execute the work that needs to be done.
-<ul>
+<ul class="doc-md-list">
 <li>Based on the previously parsed configuration and incremental state, execute the work of the task.</li>
 </ul>
 </li>
 </ol>
 <p>A simplified example for the above is the following:</p>
-<pre><code class="language-java">@SakerInput
+<pre class="doc-code-block"><code class="language-java">@SakerInput
 public Map&lt;String, String&gt; Inputs;
 
 // convert the input map to our internal representation
@@ -138,10 +141,10 @@ if (prevstate != null) {
 </code></pre>
 <h2 id="worker-tasks">Worker tasks<a class="doc-heading-anchor" href="#worker-tasks"></a></h2>
 <p>When the build script is modified, or in some other cases your task may get reinvoked even though no real configuration change has happened. The following provides an example:</p>
-<pre><code class="language-sakerscript"><span class="e">example.task(</span><span class="i">Input</span>: <span class="f">123</span><span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e">example.task(</span><span class="i">Input</span>: <span class="f">123</span><span class="e">)</span>
 </code></pre>
 <p>When modified to:</p>
-<pre><code class="language-sakerscript"><span class="d">$var</span> = <span class="f">123</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d">$var</span> = <span class="f">123</span>
 <span class="e">example.task(</span><span class="i">Input</span>: <span class="d">$var</span><span class="e">)</span>
 </code></pre>
 <p>The <code>example.task</code> will be reinvoked even though the value of <code>Input</code> parameter haven't semantically changed. This is because the SakerScript implementation will assign different task identifiers to the invoked tasks therefore the two will be different.</p>
@@ -149,14 +152,14 @@ if (prevstate != null) {
 <p>In order to avoid this, task implementations are recommended to use worker tasks, which contain the exact configuration in their task factory. A minimal example is the following:</p>
 <p>The front-end task (that gets invoked by the script) is as follows:</p>
 <p>
-<pre><code class="language-java">@SakerInputpublic int Input;
+<pre class="doc-code-block"><code class="language-java">@SakerInputpublic int Input;
 @Overridepublic Object run(TaskContext taskcontext) throws Exception {	TaskIdentifier taskid = TaskIdentifier			.builder(WorkerTaskFactory.class.getName())			.field(&quot;input&quot;, this.Input).build();	taskcontext.startTask(taskid, 			new WorkerTaskFactory(this.Input), null);	return new SimpleStructuredObjectTaskResult(taskid);}</code></pre>
 </p>
 <p>We create a task identifier for our worker task and start it accordingly through the task context. The <a href="taskresults.html#structured-results" title="Structured results">structured task result</a> is used to return the result of the worker task to anyone who wishes to use it.</p>
 <p>Note that in a real world scenario, the task identifier should be implemented directly by the developer instead of using the simplified identifier, and it should represent a given worker in a non-configuration dependent way.</p>
 <p>The worker task factory is implemented as follows:</p>
 <p>
-<pre><code class="language-java">return new Task&lt;Object&gt;() {	@Override	public Object run(TaskContext taskcontext) throws Exception {		// execute the work of the task based on the configuration ...		//   return some result value of the task		return WorkerTaskFactory.this.input;	}};</code></pre>
+<pre class="doc-code-block"><code class="language-java">return new Task&lt;Object&gt;() {	@Override	public Object run(TaskContext taskcontext) throws Exception {		// execute the work of the task based on the configuration ...		//   return some result value of the task		return WorkerTaskFactory.this.input;	}};</code></pre>
 </p>
 <p>For simplicity, we only return the input integer as the result of the task. In a real scenario, the worker task executes its designated work and returns a task result accordingly.</p>
 <p>Additional benefits of the worker task approach is that is can integrate well with <a href="taskcapabilities.html#computation-tokens" title="Computation tokens">computation tokens</a>, <a href="taskcaching.html" title="Task caching">cacheability</a> and <a href="buildclusters.html" title="Build clusters">build clusters</a>.</p>
@@ -168,7 +171,7 @@ if (prevstate != null) {
 <p>As a convention, we recommend that the tasks put their results in the <code>builddir/task.name/identifier</code> directory. Where <code>task.name</code> is the preferably globally unique name of the task and the <code>identifier</code> is some user specified or configuration derived name for the task.</p>
 <p>In the following example we create a file with the contents <code>outdata</code> and add it to the output directory that has the location of <code>builddir/example.task/default/output.txt</code>:</p>
 <p>
-<pre><code class="language-java">SakerFile outputfile = new ByteArraySakerFile(&quot;output.txt&quot;, 		&quot;outdata&quot;.getBytes());// determine the output directorySakerDirectory outputdir = taskcontext.getTaskUtilities()		.resolveDirectoryAtPathCreate(taskcontext.getTaskBuildDirectory(), 				SakerPath.valueOf(&quot;example.task/default&quot;));outputdir.add(outputfile);// synchronize the output fileoutputfile.synchronize();// report the files as a dependencytaskcontext.getTaskUtilities().reportOutputFileDependency(null, outputfile);</code></pre>
+<pre class="doc-code-block"><code class="language-java">SakerFile outputfile = new ByteArraySakerFile(&quot;output.txt&quot;, 		&quot;outdata&quot;.getBytes());// determine the output directorySakerDirectory outputdir = taskcontext.getTaskUtilities()		.resolveDirectoryAtPathCreate(taskcontext.getTaskBuildDirectory(), 				SakerPath.valueOf(&quot;example.task/default&quot;));outputdir.add(outputfile);// synchronize the output fileoutputfile.synchronize();// report the files as a dependencytaskcontext.getTaskUtilities().reportOutputFileDependency(null, outputfile);</code></pre>
 </p>
 <p>An other identifier than <code>default</code> may be chosen based on user parameters or other configuration related information. It's recommended that task developers make sure that only a single task places their files in a given directory.</p>
 <small>
@@ -207,7 +210,7 @@ if (prevstate != null) {
 				<div data-footer-location="doc-docs"><a href="../../../doc/index.html" title="saker.build documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../../javadoc/index.html" title="JavaDoc for saker.build">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../../taskdoc/index.html"  title="Documentation of build tasks in saker.build">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.build on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.build" title="saker.build on GitHub">GitHub</a></div>
 			</div>
 		</div>	

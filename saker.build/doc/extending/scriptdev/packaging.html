@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Extending saker.build > <a href="index.html" title="Script language development">Script language development</a> > <a href="packaging.html" title="Packaging">Packaging</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -71,7 +74,7 @@
 <p>Your package should contain a class file which is an implementation of <code>ScriptAccessProvider</code>. This class will be loaded first when the script language implementation is used.</p>
 <p>Your archive may be <a href="https://openjdk.java.net/jeps/238" title="JEP 238: Multi-Release JAR Files">multi-release</a>, the build system will load the classes accordingly. However, module related information on JDK 9+ may not be taken into account.</p>
 <p>The above is the bare minimum that you need to package in your archive, the language will be useable with the build system in this way. However, in order to do that, the user will need to specify the exact name of the class, as in the following command line argument example:</p>
-<pre><code>-script-files **/*.lang 
+<pre class="doc-code-block"><code>-script-files **/*.lang 
 -script-classpath pwd://language.jar 
 -script-class example.lang.LanguageAccessProvider
 </code></pre>
@@ -114,7 +117,7 @@ This way, the <code>-script-class</code> option may be omitted.</p>
 				<div data-footer-location="doc-docs"><a href="../../../doc/index.html" title="saker.build documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../../javadoc/index.html" title="JavaDoc for saker.build">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../../taskdoc/index.html"  title="Documentation of build tasks in saker.build">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.build on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.build" title="saker.build on GitHub">GitHub</a></div>
 			</div>
 		</div>	

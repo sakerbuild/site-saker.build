@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				C/C++ compilation > <a href="forceinclude.html" title="Force inclusion">Force inclusion</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -69,7 +72,7 @@
 			<div class="doc-content"><h1 id="force-inclusion">Force inclusion<a class="doc-heading-anchor" href="#force-inclusion"></a></h1>
 <p>Force inclusion of a file instructs the compiler to prepend the compilation unit with the contents of a given file. It is basically saying that an <code>#include &quot;foo.h&quot;</code> should be added at the top of the source file. This can be advantageous if you want to include some code in all the compiled source files without modifying them individually.</p>
 <p>Let's see an example:</p>
-<pre><code class="language-cpp">// foo.h
+<pre class="doc-code-block"><code class="language-cpp">// foo.h
 #define FOO_CONSTANT 123
 
 // main.cpp
@@ -80,7 +83,7 @@ int main() {
 }
 </code></pre>
 <p>The above doesn't use force inclusion, and compiles fine as is. However, if we modify <code>main.cpp</code> by removing the inclusion:</p>
-<pre><code class="language-cpp">// foo.h
+<pre class="doc-code-block"><code class="language-cpp">// foo.h
 #define FOO_CONSTANT 123
 
 // main.cpp
@@ -89,7 +92,7 @@ int main() {
 }
 </code></pre>
 <p>And use the <a href="../../taskdoc/types/CompilationInputPassTaskOption.html#f-ForceInclude"><code>ForceInclude</code></a> parameter to add the <code>foo.h</code> to the compilation unit:</p>
-<pre><code class="language-sakerscript"><span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span><span class="b">{</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span><span class="b">{</span>
 	<span class="h">Files</span>: <span class="f">*.cpp</span><span class="b">,</span>
 	<span class="h">ForceInclude</span>: <span class="f">foo.h</span><span class="b">,</span>
 <span class="b">}</span><span class="e">)</span>
@@ -130,7 +133,7 @@ int main() {
 				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.msvc documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.msvc">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.msvc">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.msvc" title="saker.msvc | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.msvc" title="saker.msvc | saker.nest">saker.msvc on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.msvc" title="saker.msvc on GitHub">GitHub</a></div>
 			</div>
 		</div>	

@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Maven support > <a href="authentication.html" title="Authentication">Authentication</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -75,10 +78,10 @@
 <h2 id="account-authentication">Account authentication<a class="doc-heading-anchor" href="#account-authentication"></a></h2>
 <p>Account authentication is an username-password pair that you send to the repository to authenticate yourself. The <a href="../../taskdoc/saker.maven.auth.account.html"><code>saker.maven.auth.account()</code></a> task lets you use that.</p>
 <p>An example for the above with a GitHub Maven repository:</p>
-<pre><code class="language-sakerscript"><span class="e"><a href="../../../saker.maven.support/taskdoc/saker.maven.download.html" title="Task: saker.maven.download()">saker.maven.download</a>(</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.maven.support/taskdoc/saker.maven.download.html" title="Task: saker.maven.download()">saker.maven.download</a>(</span>
 	<span class="b">[</span>
-		<span class="f">&quot;example.groupid:example.artifactid:0.1&quot;</span><span class="b">
-	]</span>,
+		<span class="f">&quot;example.groupid:example.artifactid:0.1&quot;</span>
+	<span class="b">]</span>,
 	<span class="i">Configuration: </span><span class="b">{</span>
 		<span class="h">Repositories</span>: <span class="b">[</span>
 			<span class="b">{</span>
@@ -88,10 +91,10 @@
 					<span class="i">UserName</span>: <span class="f">exampleuser</span>,
 					<span class="c"># Example personal access token</span>
 					<span class="i">Password: </span><span class="f">123456789abcdef123456789abcdef123456789a</span>,
-				<span class="e">)</span><span class="b">
-			}
-		]
-	}</span>
+				<span class="e">)</span>
+			<span class="b">}</span>
+		<span class="b">]</span>
+	<span class="b">}</span>
 <span class="e">)</span>
 </code></pre>
 <p>The above corresponds to the <code>&lt;username&gt;</code> and <code>&lt;password&gt;</code> elements of the <code>settings.xml</code> schema of Maven.</p>
@@ -99,10 +102,10 @@
 <p>You can use private key to authenticate yourself for the remote repository. This requires a keystore that contains a private key that will be used to sign your requests when made for the repository. The pass phrase is also required to be able to open the given keystore.</p>
 <p>This corresponds to the <code>&lt;privateKey&gt;</code> and <code>&lt;passphrase&gt;</code> elements of the <code>settings.xml</code> schema of Maven.</p>
 <p>An example for the above:</p>
-<pre><code class="language-sakerscript"><span class="e"><a href="../../../saker.maven.support/taskdoc/saker.maven.download.html" title="Task: saker.maven.download()">saker.maven.download</a>(</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.maven.support/taskdoc/saker.maven.download.html" title="Task: saker.maven.download()">saker.maven.download</a>(</span>
 	<span class="b">[</span>
-		<span class="f">&quot;example.groupid:example.artifactid:0.1&quot;</span><span class="b">
-	]</span>,
+		<span class="f">&quot;example.groupid:example.artifactid:0.1&quot;</span>
+	<span class="b">]</span>,
 	<span class="i">Configuration: </span><span class="b">{</span>
 		<span class="h">Repositories</span>: <span class="b">[</span>
 			<span class="b">{</span>
@@ -111,10 +114,10 @@
 				<span class="h">Authentication</span>: <span class="e"><a href="../../../saker.maven.support/taskdoc/saker.maven.auth.privatekey.html" title="Task: saker.maven.auth.privatekey()">saker.maven.auth.privatekey</a>(</span>
 					<span class="i">KeyLocalPath</span>: <span class="f">/absolute/local/path/to/private/keystore</span>,
 					<span class="i">Passphrase: </span><span class="f">foo_pass_bar_phrase</span>,
-				<span class="e">)</span><span class="b">
-			}
-		]
-	}</span>
+				<span class="e">)</span>
+			<span class="b">}</span>
+		<span class="b">]</span>
+	<span class="b">}</span>
 <span class="e">)</span>
 </code></pre>
 <p>The exact semantics of how the requests are made to the repository using the keystore and the password are defined by Maven.</p>
@@ -151,7 +154,7 @@
 				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.maven.support documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.maven.support">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.maven.support">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.maven.support" title="saker.maven.support | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.maven.support" title="saker.maven.support | saker.nest">saker.maven.support on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.maven.support" title="saker.maven.support on GitHub">GitHub</a></div>
 			</div>
 		</div>	

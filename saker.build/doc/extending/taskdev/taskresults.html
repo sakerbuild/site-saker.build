@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Extending saker.build > <a href="index.html" title="Task development">Task development</a> > <a href="taskresults.html" title="Task results">Task results</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -69,10 +72,10 @@
 			<div class="doc-content"><h1 id="task-results">Task results<a class="doc-heading-anchor" href="#task-results"></a></h1>
 <p>Each task invocation can return one result that will be considered as <em>the</em> result of the task. It will be accessible to other tasks and from build scripts. The below example will take two parameters, <code>Left</code> and <code>Right</code>, and returns the sum of theirs:</p>
 <p>
-<pre><code class="language-java">@SakerInputpublic int Left;@SakerInputpublic int Right;@Overridepublic Integer run(TaskContext taskcontext) throws Exception {	return this.Left + this.Right;}</code></pre>
+<pre class="doc-code-block"><code class="language-java">@SakerInputpublic int Left;@SakerInputpublic int Right;@Overridepublic Integer run(TaskContext taskcontext) throws Exception {	return this.Left + this.Right;}</code></pre>
 </p>
 <p>Using them in the following way:</p>
-<pre><code class="language-sakerscript"><span class="d">$firstsum</span> = <span class="e">example.sum(</span><span class="i">Left</span>: <span class="f">4</span>, <span class="i">Right: </span><span class="f">6</span><span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d">$firstsum</span> = <span class="e">example.sum(</span><span class="i">Left</span>: <span class="f">4</span>, <span class="i">Right: </span><span class="f">6</span><span class="e">)</span>
 <span class="e"><a href="../../../../saker.build/doc/scripting/builtintasks/print.html" title="Task: print()">print</a>(</span><span class="d">$firstsum</span><span class="e">)</span>
 
 <span class="d">$secondsum</span> = <span class="e">example.sum(</span>
@@ -83,7 +86,7 @@
 </code></pre>
 <p>Will print out <code>10</code> for the first sum of <code>4 + 6</code>, and <code>50</code> for the <code>$secondsum</code>, as it will add <code>10</code> to <code>10 + 30</code>.</p>
 <p>When you run the build without any modifications, it will print out <code>10</code> and <code>50</code> again. However, if you decide to modify the first invocation of <code>example.sum</code>, like the following (<code>Right: 6</code> modified to <code>Right: 16</code>):</p>
-<pre><code class="language-sakerscript"><span class="d">$firstsum</span> = <span class="e">example.sum(</span><span class="i">Left</span>: <span class="f">4</span>, <span class="i">Right: </span><span class="f">16</span><span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d">$firstsum</span> = <span class="e">example.sum(</span><span class="i">Left</span>: <span class="f">4</span>, <span class="i">Right: </span><span class="f">16</span><span class="e">)</span>
 <span class="e"><a href="../../../../saker.build/doc/scripting/builtintasks/print.html" title="Task: print()">print</a>(</span><span class="d">$firstsum</span><span class="e">)</span>
 
 <span class="d">$secondsum</span> = <span class="e">example.sum(</span>
@@ -96,14 +99,14 @@
 <p>This happens because when you retrieve a result of a task, the build system will automatically record a dependency on the associated task. Whenever that task is considered to be changed, any dependent task will re-run.</p>
 <h2 id="failing-the-task">Failing the task<a class="doc-heading-anchor" href="#failing-the-task"></a></h2>
 <p>Failing the task will mean that the build execution will abort and report an error. In order to do that, you are provided with the following ways:</p>
-<ul>
+<ul class="doc-md-list">
 <li>Throw an exception from <code>Task.run(TaskContext)</code> method.
-<ul>
+<ul class="doc-md-list">
 <li>Throwing an exception that is propagated to the caller build system will result in task failure.</li>
 </ul>
 </li>
 <li>Call <code>TaskContext.abortExecution(Throwable)</code>.
-<ul>
+<ul class="doc-md-list">
 <li>The <code>abortExecution</code> method can be used to set the result of the task to be an exception.</li>
 <li>Calling this method will still consider the task to be successfully finished, and the build system will consider the exception to be its result. It's important to note that if no dependencies of the task change, it won't be rerun in subsequent build executions, but will fail the build without invoking the task.</li>
 <li>When you use this function, your task <em>must</em> return <code>null</code> from the <code>Task.run(TaskContext)</code> method.</li>
@@ -114,7 +117,7 @@
 <h2 id="structured-results">Structured results<a class="doc-heading-anchor" href="#structured-results"></a></h2>
 <p>The build system defines a special type that can be used as the return value of a task execution. They are an instance of the <code>StructuredTaskResult</code> interface which signals that the actual data behind the object are available via the results of other tasks.</p>
 <p>The interface was defined in order to increase the performance of the build by improving the concurrency of the executed task. We can see it by looking at the following example:</p>
-<pre><code class="language-sakerscript"><span class="d">$list</span> = <span class="b">[</span><span class="f">1</span><span class="b">,</span> <span class="e">long.running.task()</span><span class="b">,</span> <span class="f">3</span><span class="b">,</span> <span class="f">4</span><span class="b">]</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d">$list</span> = <span class="b">[</span><span class="f">1</span><span class="b">,</span> <span class="e">long.running.task()</span><span class="b">,</span> <span class="f">3</span><span class="b">,</span> <span class="f">4</span><span class="b">]</span>
 <span class="j">foreach </span><span class="d">$item</span><span class="j"> in </span><span class="d">$list</span> {
 	<span class="c"># do something with the items</span>
 }
@@ -126,7 +129,7 @@
 <p>As a task developer, you can gradually implement support for <code>StructuredTaskResult</code>s and its different interface specializations. If you want to access the actual value instead of using the structured representation, you can call <code>StructuredTaskResult.toResult</code> method with the task context as the argument, or use the <code>StructuredTaskResult.getActualTaskResult</code> static methods to retrieve the task results.</p>
 <h3 id="example-use">Example use<a class="doc-heading-anchor" href="#example-use"></a></h3>
 <p>The following example shows how you can handle the structured nature of a task result:</p>
-<pre><code class="language-java">TaskIdentifier taskid; // the dependent task id
+<pre class="doc-code-block"><code class="language-java">TaskIdentifier taskid; // the dependent task id
 Object result = taskcontext.getTaskResult(taskid);
 if (result instanceof StructuredTaskResult) {
 	if (result instanceof StructuredListTaskResult) {
@@ -144,7 +147,7 @@ if (result instanceof StructuredTaskResult) {
 </code></pre>
 <p>Using the <code>instanceof</code> operator you can determine the kind of structure the given task result has. If you don't recognize the actual structure, calling <code>toResult</code> will get the actual representation of the object.</p>
 <p>If you don't want to deal with structured results at all, you may do the following instead:</p>
-<pre><code class="language-java">TaskIdentifier taskid; // the dependent task id
+<pre class="doc-code-block"><code class="language-java">TaskIdentifier taskid; // the dependent task id
 Object result = StructuredTaskResult.getActualResult(taskid, taskcontext);
 // handle the actual result value of the task without any 
 //    structured nature
@@ -189,7 +192,7 @@ The value returned from <code>Task.run(TaskContext)</code> is also available usi
 				<div data-footer-location="doc-docs"><a href="../../../doc/index.html" title="saker.build documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../../javadoc/index.html" title="JavaDoc for saker.build">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../../taskdoc/index.html"  title="Documentation of build tasks in saker.build">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.build on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.build" title="saker.build on GitHub">GitHub</a></div>
 			</div>
 		</div>	

@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Examples > <a href="mainclass.html" title="Specifying main class">Specifying main class</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -69,12 +72,12 @@
 			<div class="doc-content"><h1 id="specifying-main-class">Specifying main class<a class="doc-heading-anchor" href="#specifying-main-class"></a></h1>
 <p>See also: <a href="../jarcreation/manifest.html" title="Manifest">Manifest</a></p>
 <p>You can specify the main class of your JAR file in two ways. Via the <code>Main-Class</code> manifest attribute, and using the module-info of the archive:</p>
-<pre><code class="language-sakerscript"><span class="e"><a href="../../../saker.jar/taskdoc/saker.jar.create.html" title="Task: saker.jar.create()">saker.jar.create</a>(</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.jar/taskdoc/saker.jar.create.html" title="Task: saker.jar.create()">saker.jar.create</a>(</span>
 	<span class="i">Manifest</span>: <span class="b">{</span>
 		<span class="h">MainAttributes</span>: <span class="b">{</span>
-			<span class="h">Main-Class</span>: <span class="f">example.Main</span><span class="b">
-		}
-	}</span>,
+			<span class="h">Main-Class</span>: <span class="f">example.Main</span>
+		<span class="b">}</span>
+	<span class="b">}</span>,
 	<span class="i">ModuleInfoMainClass: </span><span class="f">example.Main</span>
 <span class="e">)</span>
 </code></pre>
@@ -112,7 +115,7 @@
 				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.jar documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.jar">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.jar">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.jar" title="saker.jar | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.jar" title="saker.jar | saker.nest">saker.jar on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.jar" title="saker.jar on GitHub">GitHub</a></div>
 			</div>
 		</div>	

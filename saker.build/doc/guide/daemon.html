@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				User guide > <a href="daemon.html" title="Build daemon">Build daemon</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -78,27 +81,27 @@
 <p>The following are examples of running the daemon or executing builds that use the build daemon. As a baseline we recommend the reading the related part from the <a href="cmdlineref/daemon.html" title="daemon">command line reference</a>.</p>
 <h3 id="starting-the-daemon">Starting the daemon<a class="doc-heading-anchor" href="#starting-the-daemon"></a></h3>
 <p>Starting the build daemon can be done explicitly, or implicitly. Explicitly when using the following command line:</p>
-<pre><code>daemon start
+<pre class="doc-code-block"><code>daemon start
 </code></pre>
 <p>This will start the daemon in a new Java process and ensure that it has properly bootstrapped. Without any additional parameters, the daemon will use the default parameters. If the daemon is already running, an appropriate message will be displayed to the user. If it is running with the same parameters, the process will exit with 0, if the parameters are different, an exception is thrown (i.e. non-zero status code).</p>
 <p>See the <a href="cmdlineref/daemon_start.html" title="start">command line reference</a> for parameter information.</p>
 <p>The daemon can be also started implicitly, when you start a build execution with the <a href="cmdlineref/build.html#-daemon" title="-daemon"><code>-daemon</code></a> flag.</p>
-<pre><code>build -daemon [...]
+<pre class="doc-code-block"><code>build -daemon [...]
 </code></pre>
 <p>This way, a daemon will be used when building your project. If the daemon is already running, it will be used, otherwise it will be started with the appropriate parameters. See <a href="cmdlineref/build.html" title="build">build command line reference</a> for more information.</p>
 <p>You can also start the daemon without spawning another process with the <a href="cmdlineref/daemon_run.html" title="run"><code>daemon run</code></a> command:</p>
-<pre><code>daemon run
+<pre class="doc-code-block"><code>daemon run
 </code></pre>
 <p>This way the daemon will run directly in the process. Any standard output and error will be displayed in your console. It can be beneficial to run the daemon this way if you wish to debug the Java build process (useful when developing extensions). See the <a href="cmdlineref/daemon_run.html" title="run">command line reference</a> for more information.</p>
 <h3 id="daemon-status">Daemon status<a class="doc-heading-anchor" href="#daemon-status"></a></h3>
 <p>You can check the status of a running daemon by using the <a href="cmdlineref/daemon_info.html" title="info"><code>daemon info</code></a> command:</p>
-<pre><code>daemon info -address [...]
+<pre class="doc-code-block"><code>daemon info -address [...]
 </code></pre>
 <p>The <a href="cmdlineref/daemon_info.html#-address" title="-address"><code>-address</code></a> specifies the target IP address or host name of the daemon. If it is omitted, the <code>localhost</code> is used. The command will print out basic information about the running daemon, or throw an exception if failed to connect.</p>
 <p>For other debugging purposes, the <a href="cmdlineref/daemon_io.html" title="io"><code>daemon io</code></a> command can be also used.</p>
 <h3 id="stopping-the-daemon">Stopping the daemon<a class="doc-heading-anchor" href="#stopping-the-daemon"></a></h3>
 <p>The daemon can be stopped with the <a href="cmdlineref/daemon_stop.html" title="stop"><code>daemon stop</code></a> command. It works similarly to the <a href="daemon.html#daemon-status" title="Daemon status">status</a> checking, but stops the daemon instead.</p>
-<pre><code>daemon stop -address [...]
+<pre class="doc-code-block"><code>daemon stop -address [...]
 </code></pre>
 <link href="../../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>
 			<div class="end-section-links">
@@ -133,7 +136,7 @@
 				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.build documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.build">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.build">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.build on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.build" title="saker.build on GitHub">GitHub</a></div>
 			</div>
 		</div>	

@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Extending saker.build > <a href="index.html" title="Script language development">Script language development</a> > <a href="structure.html" title="API structure">API structure</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -81,29 +84,29 @@ The <a href="../../../javadoc/saker/build/scripting/ScriptInformationProvider.ht
 <p>The modelling engine (<a href="../../../javadoc/saker/build/scripting/model/ScriptModellingEngine.html"><code>ScriptModellingEngine</code></a>) is the access point for Integrated Development Environments (IDE) to use when the user attempts to view/edit a file associated with the given scripting language. When supported, IDE plugins use this engine to create models of a given script file and provide support features for the user to view and edit the given file.</p>
 <p>Modelling engines are attached to a given modelling environment which provides access to the other script models and the configuration of the environment.</p>
 <p>The modelling engine implementations are responsible for creating model objects that provide assistant features for the user. These features include:</p>
-<ul>
+<ul class="doc-md-list">
 <li>Semantic code highlight
-<ul>
+<ul class="doc-md-list">
 <li>Also called <em>syntax highlight</em>.</li>
 <li>Determines the styles of different parts of the script. It can be used to visually differentiate various elements in the source code based on their semantic interpretation.</li>
 <li>E.g. constants, variables, build targets can be all styled differently so the user will have a visual indication about the part of the code and what it stands for.</li>
 </ul>
 </li>
 <li>Content assist
-<ul>
+<ul class="doc-md-list">
 <li>Also called <em>code completion</em>, <em>auto-complete</em>, <em>IntelliSense</em>.</li>
 <li>When the user invokes the content assistant, the script models will be queried about possible completions that could be inserted into the code. It is a list of modifications in the source code with possible additional information about their purpose.</li>
 <li>E.g. when the user invokes content assist on <code>$va</code>, the script model can suggest to complete the phrase to an existing name of <code>$variable</code>.</li>
 </ul>
 </li>
 <li>Documentation access
-<ul>
+<ul class="doc-md-list">
 <li>When the user explicitly requests information about a given source code element, the script models can look up and provide documentational or other various information about it.</li>
 <li>E.g. displaying the documentation of a task when the user hovers their cursor over a task declaration.</li>
 </ul>
 </li>
 <li>Structural outline
-<ul>
+<ul class="doc-md-list">
 <li>The models may provide structural outline features which are usually represented in a tree-like view in the IDE. It can enhance navigational information about the source code and may enable the user to find various elements in the code faster.</li>
 <li>E.g. the feature may list the build targets in a script, and the task invocations in it.</li>
 </ul>
@@ -147,7 +150,7 @@ The <a href="../../../javadoc/saker/build/scripting/ScriptInformationProvider.ht
 				<div data-footer-location="doc-docs"><a href="../../../doc/index.html" title="saker.build documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../../javadoc/index.html" title="JavaDoc for saker.build">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../../taskdoc/index.html"  title="Documentation of build tasks in saker.build">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.build on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.build" title="saker.build on GitHub">GitHub</a></div>
 			</div>
 		</div>	

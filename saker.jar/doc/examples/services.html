@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Examples > <a href="services.html" title="Adding services">Adding services</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -69,22 +72,22 @@
 			<div class="doc-content"><h1 id="adding-services">Adding services<a class="doc-heading-anchor" href="#adding-services"></a></h1>
 <p>See also: <a href="../jarcreation/services.html" title="Services">Services</a></p>
 <p>You can add service declarations to your archive using the <code>Services</code> parameter:</p>
-<pre><code class="language-sakerscript"><span class="e"><a href="../../../saker.jar/taskdoc/saker.jar.create.html" title="Task: saker.jar.create()">saker.jar.create</a>(</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.jar/taskdoc/saker.jar.create.html" title="Task: saker.jar.create()">saker.jar.create</a>(</span>
 	<span class="i">Services</span>: <span class="b">{</span>
-		<span class="h">javax.annotation.processing.Processor</span>: <span class="f">example.MyAnnotationProcessor</span><span class="b">
-	}</span>
+		<span class="h">javax.annotation.processing.Processor</span>: <span class="f">example.MyAnnotationProcessor</span>
+	<span class="b">}</span>
 <span class="e">)</span>
 </code></pre>
 <p>The above will cause the archive to contain a service declaration file with the path <code>META-INF/services/javax.annotation.processing.Processor</code> that declares the <code>example.MyAnnotationProcessor</code> implementation class.</p>
 <p>You can specify multiple services and multiple implementation names as well:</p>
-<pre><code class="language-sakerscript"><span class="e"><a href="../../../saker.jar/taskdoc/saker.jar.create.html" title="Task: saker.jar.create()">saker.jar.create</a>(</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.jar/taskdoc/saker.jar.create.html" title="Task: saker.jar.create()">saker.jar.create</a>(</span>
 	<span class="i">Services</span>: <span class="b">{</span>
 		<span class="h">example.one.Service</span>: <span class="b">[</span>
 			<span class="f">example.one.FirstServiceImplementation</span><span class="b">,</span>
-			<span class="f">example.one.SecondServiceImplementation</span><span class="b">
-		],</span>
-		<span class="h">example.two.Service</span>: <span class="f">example.two.ServiceImplementation</span><span class="b">
-	}</span>
+			<span class="f">example.one.SecondServiceImplementation</span>
+		<span class="b">],</span>
+		<span class="h">example.two.Service</span>: <span class="f">example.two.ServiceImplementation</span>
+	<span class="b">}</span>
 <span class="e">)</span>
 </code></pre>
 <link href="../../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>
@@ -120,7 +123,7 @@
 				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.jar documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.jar">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.jar">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.jar" title="saker.jar | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.jar" title="saker.jar | saker.nest">saker.jar on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.jar" title="saker.jar on GitHub">GitHub</a></div>
 			</div>
 		</div>	

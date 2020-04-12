@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Extending saker.build > <a href="index.html" title="Task development">Task development</a> > <a href="buildclusters.html" title="Build clusters">Build clusters</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -91,7 +94,7 @@
 <p>As the output of your task, you probably want to create files that hold the results of it. The <a href="../../../javadoc/saker/build/file/SakerFile.html"><code>SakerFile</code></a> API can be used to manage the files accessible by the build system. As <a href="buildclusters.html#file-handling" title="File handling">previously mentioned</a>, the files reside on the coordinator machine, therefore any created files need to be transferred over the network.</p>
 <p>This behaviour may require your code to be adjusted for it to work properly. The following will work for tasks which execute on clusters, and on tasks that does not as well.<br />
 The files need to be transferred in a non-remote way to the coordinator machine, that is, the actual <a href="../../../javadoc/saker/build/file/SakerFile.html"><code>SakerFile</code></a> instance that is added to the parent <a href="../../../javadoc/saker/build/file/SakerDirectory.html"><code>SakerDirectory</code></a> will not be the same instance. This means that some method calls on the added file instance may not represent the actual state of the file. The following example clarifies this:</p>
-<pre><code class="language-java">SakerDirectory outputdir;
+<pre class="doc-code-block"><code class="language-java">SakerDirectory outputdir;
 SakerFile myfile; // = ...
 outputdir.add(myfile);
 
@@ -100,7 +103,7 @@ SakerPath filepath = myfile.getSakerPath();
 </code></pre>
 <p>In the above example we add our custom output file to the given output directory. Calling <a href="../../../javadoc/saker/build/file/SakerFile.html#getSakerPath--"><code>getSakerPath()</code></a> on the added file may not be actually return the absolute path of the added file when running on a build cluster. Note that if you don't use clusters, this will work properly nonetheless.</p>
 <p>This is caused by the file being transferred to the coordinator machine, and a different instance is being added to it instead of our instance. As a first solution, we recommend not to use the files after being added to a directory. If you want to do so, you can accomodate this behaviour by changing your code to use the task execution utilities of the task context:</p>
-<pre><code class="language-java">TaskContext taskcontext;
+<pre class="doc-code-block"><code class="language-java">TaskContext taskcontext;
 SakerDirectory outputdir;
 SakerFile myfile;
 // note the reassignment
@@ -116,14 +119,14 @@ SakerPath filepath = myfile.getSakerPath();
 <h2 id="network-communication">Network communication<a class="doc-heading-anchor" href="#network-communication"></a></h2>
 <p>Task developers should seriously consider the effect of implicit network calls when some interface methods of the build system API is called. When a task is being remotely executed, all task context, execution context, file management, and other methods may result in an implicit network request.</p>
 <p>Calling these methods are usually fine, but calling them in a loop may incure a performance penalty. We created the <a href="../../../javadoc/saker/build/task/TaskExecutionUtilities.html">task execution utilities</a> in order to solve this problem which contains bulk methods for interacting with the task context. One example of using it is the following:</p>
-<pre><code class="language-java">TaskContext taskcontext;
+<pre class="doc-code-block"><code class="language-java">TaskContext taskcontext;
 for (SakerFile file : files) {
 	taskcontext.reportInputFileDependency(null, 
 		file.getSakerPath(), file.getContentDescriptor());
 }
 </code></pre>
 <p>The above loop can cause many network requests which can make your task execute longer. Instead of doing toe above, use the task execution utilities:</p>
-<pre><code class="language-java">TaskContext taskcontext;
+<pre class="doc-code-block"><code class="language-java">TaskContext taskcontext;
 taskcontext.getTaskUtilities().reportInputFileDependency(null, files);
 </code></pre>
 <p>They are semantically the same, but only needs one network request to report the dependencies. The above codes work the same regardless of the execution location, be it the coordinator or a cluster.</p>
@@ -167,7 +170,7 @@ taskcontext.getTaskUtilities().reportInputFileDependency(null, files);
 				<div data-footer-location="doc-docs"><a href="../../../doc/index.html" title="saker.build documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../../javadoc/index.html" title="JavaDoc for saker.build">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../../taskdoc/index.html"  title="Documentation of build tasks in saker.build">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.build on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.build" title="saker.build on GitHub">GitHub</a></div>
 			</div>
 		</div>	

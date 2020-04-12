@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				User guide > <a href="buildcache.html" title="Build cache">Build cache</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -72,12 +75,12 @@
 </div> 
 <p>Build caching allows developers to retrieve the results of the build tasks from a common source instead of running them again. Using it is most advantageous with large project and multiple people working on it. Usually, build caches have limited use for small-medium sized projects with few developers.</p>
 <p>Using a build cache the developer workflow is usually the following:</p>
-<ol>
+<ol class="doc-md-list">
 <li>Edit the code and push it to source control.</li>
 <li>As the shared source repository is updated, a continuous integration server will build the project.</li>
 <li>The continuous integration server uploads the cacheable build tasks to a shared build cache.</li>
 <li>A developer cleanly checks out the code from source control and builds it on their local machine.
-<ol>
+<ol class="doc-md-list">
 <li>The build uses the build cache shared by the organization</li>
 <li>The build execution will retrieve the results of cacheable tasks from the build cache, and skips the actual compilation on the local machine.</li>
 <li>As a result, the first build on the local machine will take much less time than a build without caching.</li>
@@ -87,11 +90,11 @@
 <p>Using and maintaining a build cache however, requires a few configuration changes to your builds. First of all, the build execution should be configured in a way that uses the build cache.</p>
 <p>The cacheable tasks need to be published to the build cache so their results can be reused. It is strongly recommended to only publish the results of the tasks from continuous integration or other similar services. The Edit, Build, Debug cycle of developers could unnecessarily pollute the cache with intermediate results which are probably never going to be used.</p>
 <p>One of the most important aspects is that the execution should be configured to use the hash based <a href="filechangetracking.html" title="File change tracking">file change tracking</a> mechanism. If it is not configured accordingly, the cached results of a task might not be properly found in the cache. File attribute based content tracking is not unique to the contents, therefore it might be missed. Hashes provide a solution for this. The following example should shine some light on why attribute based tracking is not suitable:</p>
-<ol>
+<ol class="doc-md-list">
 <li>A developer edits <code>Main.java</code> source file, and pushes it to source control.</li>
 <li>The continuous integration server compiles, and publishes the results of the compilation. Let's assume that the last modification time of <code>Main.java</code> is <em>Monday</em>.</li>
 <li>The next day, the developer checks out the project from source control, and builds it. After the checkout, the last modification time of <code>Main.java</code> will be <em>Tuesday</em>.
-<ol>
+<ol class="doc-md-list">
 <li>The task to compile <code>Main.java</code> will be searched for in the build cache.</li>
 <li>The build cache contains an entry for <code>Main.java</code> with the last modification time of <em>Monday</em>. Currently, the modification time of <code>Main.java</code> is <em>Tuesday</em>, therefore the cache entry will <strong>not</strong> be found, although the contents of the files are the same.</li>
 <li>The compilation will occurr again on the local machine of the developer, although there could be an usable cache entry.</li>
@@ -133,7 +136,7 @@
 				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.build documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.build">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.build">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.build on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.build" title="saker.build on GitHub">GitHub</a></div>
 			</div>
 		</div>	

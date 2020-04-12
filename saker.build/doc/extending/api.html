@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Extending saker.build > <a href="api.html" title="Build system API">Build system API</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -88,7 +91,7 @@
 <h4 id="dynamic-versioning">Dynamic versioning<a class="doc-heading-anchor" href="#dynamic-versioning"></a></h4>
 <p>Dynamic versioning means that you determine the current version of the build system during runtime, and execute different code paths based on it.</p>
 <p>The <a href="../../javadoc/saker/build/meta/Versions.html"><code>Versions</code></a> class in the build system contains the version information of the current distribution. You can query the fields of this class during runtime, and execute different code based on it:</p>
-<pre><code class="language-java">TaskContext taskcontext;
+<pre class="doc-code-block"><code class="language-java">TaskContext taskcontext;
 if (Versions.VERSION_MAJOR &gt;= 2) {
 	taskcontext.methodIntroducedInV2();
 } else {
@@ -131,7 +134,7 @@ if (Versions.VERSION_MAJOR &gt;= 2) {
 				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.build documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.build">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.build">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.build on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.build" title="saker.build on GitHub">GitHub</a></div>
 			</div>
 		</div>	

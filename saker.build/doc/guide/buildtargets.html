@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				User guide > <a href="index.html" title="Introduction">Introduction</a> > <a href="buildtargets.html" title="Build targets">Build targets</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -69,15 +72,15 @@
 			<div class="doc-content"><h1 id="build-targets">Build targets<a class="doc-heading-anchor" href="#build-targets"></a></h1>
 <p>Each build file consist of zero or more build targets. This allows developers to describe different actions for different required build artifacts.</p>
 <p>In <a href="../scripting/index.html" title="Overview">SakerScript</a> (the built-in language), you can just start writing your build actions without declaring a build target. It will be implicitly declared with the name &quot;build&quot; if omitted:</p>
-<pre><code class="language-sakerscript"><span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span><span class="f">src</span><span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span><span class="f">src</span><span class="e">)</span>
 </code></pre>
 <p>When the above build file is executed, it will call the <a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html"><code>saker.java.compile()</code></a> build task. It can also be declared in build targets as follows:</p>
-<pre><code class="language-sakerscript"><span class="a">compile</span> <span class="b">{</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="a">compile</span> <span class="b">{</span>
 	<span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span><span class="f">src</span><span class="e">)</span>
 <span class="b">}</span>
 </code></pre>
 <p>In this case the <code>compile</code> target needs to be invoked to compile the sources. Note that multiple build targets can be declared in a file:</p>
-<pre><code class="language-sakerscript"><span class="a">compile</span> <span class="b">{</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="a">compile</span> <span class="b">{</span>
 	<span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span><span class="f">src</span><span class="e">)</span>
 <span class="b">}</span>
 <span class="a">test</span> <span class="b">{</span>
@@ -85,7 +88,7 @@
 <span class="b">}</span>
 </code></pre>
 <p>In this case developers can invoke different targets based on what they're set out to do. Build targets can also be invoked from the build file itself, using the <a href="../scripting/builtintasks/include.html" title="include()"><code>include()</code></a> task.</p>
-<pre><code class="language-sakerscript"><span class="a">export</span> <span class="b">{</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="a">export</span> <span class="b">{</span>
 	<span class="e">example.export.project()</span>
 <span class="b">}</span>
 <span class="a">test</span> <span class="b">{</span>
@@ -94,7 +97,7 @@
 <span class="b">}</span>
 </code></pre>
 <p>When <code>test</code> is invoked in the above example, it will include the <code>export</code> build target, and call <code>example.test.project()</code> fictional task as well. Build targets can also have input and output parameters which help the composition of different tasks and results:</p>
-<pre><code class="language-sakerscript"><span class="a">compile(</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="a">compile(</span>
 	<span class="j">out</span> <span class="d">CompilationResult</span>,
 <span class="a">)</span> <span class="b">{</span>
 	<span class="d">$CompilationResult</span> = <span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span><span class="f">src</span><span class="e">)</span>
@@ -106,7 +109,7 @@
 </code></pre>
 <p>When <code>export</code> is called in the above example, it will include the <code>compile</code> target. That will compile the appropriate sources, and return the result of the compilation via assigning the output parameter variable <code>CompilationResult</code>. The <code>export</code> target then use the result of the <code>compile</code> target and export the project using the value of the <code>CompilationResult</code> output parameter.</p>
 <p>If you know that the <a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html"><code>saker.java.compile()</code></a> task is always called when any of the build targets are invoked in a file, you can also export the compilation task call to the global expression scope:</p>
-<pre><code class="language-sakerscript"><span class="e"><a href="../../../saker.build/doc/scripting/builtintasks/static.html" title="Task: static()">static</a>(</span><span class="d">CompilationResult</span><span class="e">)</span> = <span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span><span class="f">src</span><span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.build/doc/scripting/builtintasks/static.html" title="Task: static()">static</a>(</span><span class="d">CompilationResult</span><span class="e">)</span> = <span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span><span class="f">src</span><span class="e">)</span>
 <span class="a">compile</span> <span class="b">{</span>
 	<span class="c"># compilation is invoked automatically by the above global expression</span>
 <span class="b">}</span>
@@ -116,7 +119,7 @@
 </code></pre>
 <p>The expressions in the global scope will always be invoked if a build target is called in the script file, and this can result in a more concise code. The results of the compilation is conveyed to the <code>export</code> target using a file-level <a href="../scripting/builtintasks/static.html" title="static()">static</a> variable. See <a href="../scripting/langref/sourcefile/index.html#global-expressions" title="Global expressions">Global expressions</a> for more information.</p>
 <p>Build targets also support input parameters which are declared the same way as output parameters, but with the <code>in</code> keyword:</p>
-<pre><code class="language-sakerscript"><span class="a">compile(</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="a">compile(</span>
 	<span class="j">in</span> <span class="d">Directory</span>,
 	<span class="j">out</span> <span class="d">CompilationResult</span>,
 <span class="a">)</span> <span class="b">{</span>
@@ -162,7 +165,7 @@
 				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.build documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.build">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.build">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.build on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.build" title="saker.build on GitHub">GitHub</a></div>
 			</div>
 		</div>	

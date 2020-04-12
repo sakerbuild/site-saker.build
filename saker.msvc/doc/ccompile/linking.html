@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				C/C++ compilation > <a href="linking.html" title="Linking">Linking</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -70,12 +73,12 @@
 <p>The <a href="../../taskdoc/saker.msvc.clink.html"><code>saker.msvc.clink()</code></a> task allows linking compiled object files and other supported inputs. The task can be used to link for the local machine, or for any other supported architectures.</p>
 <p>The task serves as a frontend for the <a href="https://docs.microsoft.com/en-us/cpp/build/reference/linking?view=vs-2019" title="MSVC linker reference | Microsoft Docs"><code>link.exe</code></a> present in the MSVC toolchain.</p>
 <p>The simplest example for linking is the following:</p>
-<pre><code class="language-sakerscript"><span class="d">$ccompile</span> = <span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span><span class="k">### ... ###</span><span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d">$ccompile</span> = <span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span><span class="k">### ... ###</span><span class="e">)</span>
 <span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.clink.html" title="Task: saker.msvc.clink()">saker.msvc.clink</a>(</span><span class="d">$ccompile</span><span class="e">)</span>
 </code></pre>
 <p>The above takes the result of a compilation and performs the linking for the output object files. The target architecture, and identifier will be inferred from the compilation task output.</p>
 <p>The task allows specifying various options on how the linking should be done:</p>
-<pre><code class="language-sakerscript"><span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.clink.html" title="Task: saker.msvc.clink()">saker.msvc.clink</a>(</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.clink.html" title="Task: saker.msvc.clink()">saker.msvc.clink</a>(</span>
 	<span class="i">Input</span>: <span class="k">### ... ###</span>,
 	<span class="i">SimpleParameters: </span><span class="b">[</span> <span class="f">/DLL</span><span class="b">,</span> <span class="f">/LTCG</span><span class="b"> ]</span>
 <span class="e">)</span>
@@ -85,7 +88,7 @@
 <p>The output of the linking is placed in the build directory. It will be under the <code>{build-dir}/saker.msvc.clink/{compilation-id}/{architecture}</code> directory where <code>{compilation-id}</code> is the <a href="linking.html#compilation-identifier" title="Compilation identifier">compilation identifier</a> of the compilation pass and <code>{architecture}</code> is the target <a href="linking.html#architecture" title="Architecture">architecture</a> of the compilation.</p>
 <h2 id="compilation-identifier">Compilation identifier<a class="doc-heading-anchor" href="#compilation-identifier"></a></h2>
 <p>The compilation identifier (and the target architecture) uniquely identifies a given linker pass during the build system execution. It is used to distinguish the different linking operations, their outputs, and to prevent accidental overwriting of each others outputs. The <code>Identifier</code> parameter can be used to set a custom one:</p>
-<pre><code class="language-sakerscript"><span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.clink.html" title="Task: saker.msvc.clink()">saker.msvc.clink</a>(</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.clink.html" title="Task: saker.msvc.clink()">saker.msvc.clink</a>(</span>
 	<span class="i">Input</span>: <span class="k">#### ... ###</span>,
 	<span class="i">Identifier: </span><span class="f">main</span>
 <span class="e">)</span>
@@ -93,7 +96,7 @@
 <p>The compilation identifier is also used to determine if any <a href="linkeroptions.html" title="Linker options">linker options</a> need to be merged for the linker pass.</p>
 <h2 id="architecture">Architecture<a class="doc-heading-anchor" href="#architecture"></a></h2>
 <p>The linking of the inputs can be done for a given target architecture. The <a href="../../taskdoc/saker.msvc.clink.html"><code>saker.msvc.clink()</code></a> task can be instructed to link for a given architecture by specifying the <code>Architecture</code> parameter:</p>
-<pre><code class="language-sakerscript"><span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.clink.html" title="Task: saker.msvc.clink()">saker.msvc.clink</a>(</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.clink.html" title="Task: saker.msvc.clink()">saker.msvc.clink</a>(</span>
 	<span class="i">Input</span>: <span class="k">#### ... ###</span>,
 	<span class="i">Architecture: </span><span class="f">x64</span>
 <span class="e">)</span>
@@ -132,7 +135,7 @@
 				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.msvc documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.msvc">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.msvc">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.msvc" title="saker.msvc | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.msvc" title="saker.msvc | saker.nest">saker.msvc on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.msvc" title="saker.msvc on GitHub">GitHub</a></div>
 			</div>
 		</div>	

@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Repository website > <a href="repository_api.html" title="Repository web API">Repository web API</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -83,19 +86,19 @@
 <p>These requests need to be signed by the client using the API keys previously provided by the server. Authenticated requests need to be formatted in a way that can be interpreted by the server.</p>
 <p>The API keys are a pair of byte sequences that are used to authenticate the client. It consists of an API key and API secret. You shouldn't share these keys with anyone. Most commonly, you'll be using the API keys for uploading bundles for your packages.</p>
 <p>Example:</p>
-<pre><code>Key: YWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXoxMjM0NTY
+<pre class="doc-code-block"><code>Key: YWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXoxMjM0NTY
 Secret: NjU0MzIxenl4d3Z1dHNycXBvbm1sa2ppaGdmZWRjYmE
 </code></pre>
 <p>As an example, the above keys can be retrieved from the Bundles tab at <a href="https://nest.saker.build/user/packages" title="Manage packages | saker.nest">https://nest.saker.build/user/packages</a>. The above keys are invalid, and serve only as an example.</p>
 <h4 id="request-format">Request format<a class="doc-heading-anchor" href="#request-format"></a></h4>
 <p>An authenticated request consists of the following:</p>
-<ul>
+<ul class="doc-md-list">
 <li>The API key. (<strong>Not</strong> the <em>Secret</em>.)</li>
 <li>The request contents.</li>
 <li>The request signature.</li>
 </ul>
 <p>In order to construct a request, you need to sign the contents of the request. The signed contents consist of the UTF-8 encoded bytes of the following (in this order):</p>
-<ul>
+<ul class="doc-md-list">
 <li>Request HTTP method (POST, GET, ...)</li>
 <li>Full request URL</li>
 <li>The API Key (URL-safe Base64 (RFC 4648 Section 5) encoded string <em>without padding</em>)</li>
@@ -103,13 +106,13 @@ Secret: NjU0MzIxenl4d3Z1dHNycXBvbm1sa2ppaGdmZWRjYmE
 </ul>
 <p>The signing algorithm is: <code>HmacSHA256</code>. The API Secret is the key for the signing.</p>
 <p>The actual API key and signature is passed in the request as the following headers:</p>
-<ul>
+<ul class="doc-md-list">
 <li><code>NestAPIKey</code>: The URL-safe Base64 (RFC 4648 Section 5) encoded string of the API Key. (<strong>Not</strong> the secret, only the key.)</li>
 <li><code>NestRequestMAC</code>: The URL-safe Base64 encoded string of the signature produced as above.</li>
 </ul>
 <p>See also: <a href="https://docs.oracle.com/javase/8/docs/api/java/util/Base64.html#getUrlEncoder--" title="Base64 (Java Platform SE 8 )"><code>Base64.getUrlEncoder()</code></a>.</p>
 <p>The following Java snippet can be used to initialize a request:</p>
-<pre><code class="language-java">// (exception handling omitted)
+<pre class="doc-code-block"><code class="language-java">// (exception handling omitted)
 byte[] apikey; // decoded to raw bytes
 byte[] apisecret; // decoded to raw bytes
 // URL-safe Base64 encoder without padding
@@ -140,7 +143,7 @@ try (OutputStream os = urlconn.getOutputStream()) {
 </code></pre>
 <h2 id="bundle-downloading">Bundle downloading<a class="doc-heading-anchor" href="#bundle-downloading"></a></h2>
 <p><em>Unauthenticated.</em></p>
-<pre><code>GET https://api.nest.saker.build/bundle/download/&lt;bundle-id&gt;
+<pre class="doc-code-block"><code>GET https://api.nest.saker.build/bundle/download/&lt;bundle-id&gt;
 </code></pre>
 <p>Allowed methods: <code>GET</code>, <code>POST</code>, <code>HEAD</code></p>
 <p>The <code>bundle-id</code> parameter contains the full bundle identifier for the downloaded bundle including the version qualifier.</p>
@@ -152,7 +155,7 @@ try (OutputStream os = urlconn.getOutputStream()) {
 <h2 id="bundle-upload-allocation">Bundle upload allocation<a class="doc-heading-anchor" href="#bundle-upload-allocation"></a></h2>
 <p><strong>Authenticated.</strong></p>
 <p>Asks the server to allocate the resources for an upcoming bundle upload.</p>
-<pre><code>POST https://api.nest.saker.build/bundle/upload/allocate?bundleid=&lt;bundle-id&gt;&amp;overwrite=&lt;bool&gt;
+<pre class="doc-code-block"><code>POST https://api.nest.saker.build/bundle/upload/allocate?bundleid=&lt;bundle-id&gt;&amp;overwrite=&lt;bool&gt;
 </code></pre>
 <p>Allowed methods: <code>POST</code></p>
 <p>The <code>bundle-id</code> parameter contains the full bundle identifier for the uploaded bundle including the version qualifier.</p>
@@ -162,13 +165,13 @@ try (OutputStream os = urlconn.getOutputStream()) {
 <p><strong>Response</strong></p>
 <p>HTTP 200 with JSON response that contains the URL to where the bundle uploading can proceed.</p>
 <p>Example:</p>
-<pre><code class="language-json">{
+<pre class="doc-code-block"><code class="language-json">{
 	&quot;error&quot;: &quot;success&quot;,
 	&quot;uploadurl&quot;: &quot;https://api.nest.saker.build/url/where/you/can/upload/the/bundle&quot;
 }
 </code></pre>
 <p>The server can respond with errors in cases as follows:</p>
-<ul>
+<ul class="doc-md-list">
 <li>You don't have the permission to upload a bundle for that package.</li>
 <li>The version to which the upload would be performed was already published.</li>
 <li>For other reasons.</li>
@@ -178,7 +181,7 @@ try (OutputStream os = urlconn.getOutputStream()) {
 <h2 id="bundle-uploading">Bundle uploading<a class="doc-heading-anchor" href="#bundle-uploading"></a></h2>
 <p><em>Unauthenticated.</em></p>
 <p>Uploads the bundle to the URl retrieved from <a href="repository_api.html#bundle-upload-allocation" title="Bundle upload allocation">Bundle upload allocation</a>.</p>
-<pre><code>POST https://api.nest.saker.build/url/that/you/received/after/allocation
+<pre class="doc-code-block"><code>POST https://api.nest.saker.build/url/that/you/received/after/allocation
 </code></pre>
 <p>Allowed methods: <code>POST</code></p>
 <p><strong>Contents</strong></p>
@@ -226,7 +229,7 @@ try (OutputStream os = urlconn.getOutputStream()) {
 				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.nest documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.nest">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.nest">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.nest" title="saker.nest | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.nest" title="saker.nest | saker.nest">saker.nest on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.nest" title="saker.nest on GitHub">GitHub</a></div>
 			</div>
 		</div>	

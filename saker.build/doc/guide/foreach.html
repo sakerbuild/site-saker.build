@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				User guide > <a href="index.html" title="Introduction">Introduction</a> > <a href="foreach.html" title="Foreach loop">Foreach loop</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -68,14 +71,14 @@
 </div>
 			<div class="doc-content"><h1 id="foreach-loop">Foreach loop<a class="doc-heading-anchor" href="#foreach-loop"></a></h1>
 <p>The <code>foreach</code> loop in the build language can be used to iterate over elements of a list or map. Its main purpose is to allow executing the same operations for multiple configurations.</p>
-<pre><code class="language-sakerscript"><span class="j">foreach </span><span class="d">$arch</span><span class="j"> in </span><span class="b">[</span><span class="f">x64</span><span class="b">,</span> <span class="f">x86</span><span class="b">]</span> : <span class="b">[</span> 
-	<span class="e">example.compile.sources(</span><span class="i">SourceDirectory</span>: <span class="f">src</span>, <span class="i">Architecture: </span><span class="d">$arch</span><span class="e">)</span><span class="b"> 
-]</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="j">foreach </span><span class="d">$arch</span><span class="j"> in </span><span class="b">[</span><span class="f">x64</span><span class="b">,</span> <span class="f">x86</span><span class="b">]</span> : <span class="b">[</span> 
+	<span class="e">example.compile.sources(</span><span class="i">SourceDirectory</span>: <span class="f">src</span>, <span class="i">Architecture: </span><span class="d">$arch</span><span class="e">)</span> 
+<span class="b">]</span>
 </code></pre>
 <p>In the above example, we iterate over a list of architecture identifiers and invoke the compilation for each given architecture. It can also be used to build a project with different flavors:</p>
-<pre><code class="language-sakerscript"><span class="j">foreach </span><span class="d">$lang</span><span class="j"> in </span><span class="b">[</span><span class="f">en</span><span class="b">,</span> <span class="f">fr</span><span class="b">,</span> <span class="f">de</span><span class="b">]</span> : <span class="b">[</span> 
-	<span class="e">example.compile.sources(</span><span class="i">Sources</span>: <span class="b">[</span><span class="f">src</span><span class="b">,</span> <span class="f">&quot;lang-</span>{ <span class="d">$lang</span> }<span class="f">&quot;</span><span class="b">]</span><span class="e">)</span><span class="b"> 
-]</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="j">foreach </span><span class="d">$lang</span><span class="j"> in </span><span class="b">[</span><span class="f">en</span><span class="b">,</span> <span class="f">fr</span><span class="b">,</span> <span class="f">de</span><span class="b">]</span> : <span class="b">[</span> 
+	<span class="e">example.compile.sources(</span><span class="i">Sources</span>: <span class="b">[</span><span class="f">src</span><span class="b">,</span> <span class="f">&quot;lang-</span>{ <span class="d">$lang</span> }<span class="f">&quot;</span><span class="b">]</span><span class="e">)</span> 
+<span class="b">]</span>
 </code></pre>
 <p>The above example takes a list of languages, and compiles the project with the sources from the <code>src</code> directory, and the sources from the <code>lang-&lt;language&gt;</code> directory. This results in the project compiled for each specified language.</p>
 <p>The above examples are simplified, and serve as a basic introduction. We recommend reading <a href="../scripting/langref/foreach/index.html" title="Foreach expression">Foreach expression</a> for more information.</p>
@@ -112,7 +115,7 @@
 				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.build documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.build">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.build">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.build on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.build" title="saker.build on GitHub">GitHub</a></div>
 			</div>
 		</div>	

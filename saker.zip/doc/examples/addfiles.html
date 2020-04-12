@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Examples > <a href="addfiles.html" title="Add files">Add files</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -68,37 +71,37 @@
 </div>
 			<div class="doc-content"><h1 id="add-files">Add files<a class="doc-heading-anchor" href="#add-files"></a></h1>
 <p>For adding files to the create archive, use the <code>Resources</code> parameter of the <a href="../../taskdoc/saker.zip.create.html"><code>saker.zip.create()</code></a> task:</p>
-<pre><code class="language-sakerscript"><span class="e"><a href="../../../saker.zip/taskdoc/saker.zip.create.html" title="Task: saker.zip.create()">saker.zip.create</a>(</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.zip/taskdoc/saker.zip.create.html" title="Task: saker.zip.create()">saker.zip.create</a>(</span>
 	<span class="i">Resources</span>: <span class="b">[</span>
 		<span class="f">readme.txt</span><span class="b">,</span>
 		<span class="f">res/file.txt</span><span class="b">,</span>
-		<span class="f">img/icon.png</span><span class="b">
-	]</span>
+		<span class="f">img/icon.png</span>
+	<span class="b">]</span>
 <span class="e">)</span>
 </code></pre>
 <p>The created ZIP archive will have the following contents:</p>
-<pre><code class="language-plaintext">readme.txt
+<pre class="doc-code-block"><code class="language-plaintext">readme.txt
 file.txt
 icon.png
 </code></pre>
 <p><strong>Note</strong> that any files that you specify this way will be added to the root of the archive. If the files to be included reside in a directory, that is not taken into account.</p>
 <p>If you want to put the files to a specific directory, use the following:</p>
-<pre><code class="language-sakerscript"><span class="e"><a href="../../../saker.zip/taskdoc/saker.zip.create.html" title="Task: saker.zip.create()">saker.zip.create</a>(</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.zip/taskdoc/saker.zip.create.html" title="Task: saker.zip.create()">saker.zip.create</a>(</span>
 	<span class="i">Resources</span>: <span class="b">[</span>
 		<span class="f">readme.txt</span><span class="b">,</span>
 		<span class="b">{</span>
 			<span class="h">Files</span>: <span class="f">res/file.txt</span><span class="b">,</span>
-			<span class="h">TargetDirectory</span>: <span class="f">resources</span><span class="b">
-		},</span>
+			<span class="h">TargetDirectory</span>: <span class="f">resources</span>
+		<span class="b">},</span>
 		<span class="b">{</span>
 			<span class="h">Files</span>: <span class="f">img/icon.png</span><span class="b">,</span>
-			<span class="h">TargetDirectory</span>: <span class="f">img</span><span class="b">
-		}
-	]</span>
+			<span class="h">TargetDirectory</span>: <span class="f">img</span>
+		<span class="b">}</span>
+	<span class="b">]</span>
 <span class="e">)</span>
 </code></pre>
 <p>The above will create a ZIP archive that contains the files as follows:</p>
-<pre><code class="language-plaintext">readme.txt
+<pre class="doc-code-block"><code class="language-plaintext">readme.txt
 resources/file.txt
 img/icon.png
 </code></pre>
@@ -136,7 +139,7 @@ img/icon.png
 				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.zip documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.zip">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.zip">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.zip" title="saker.zip | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.zip" title="saker.zip | saker.nest">saker.zip on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.zip" title="saker.zip on GitHub">GitHub</a></div>
 			</div>
 		</div>	

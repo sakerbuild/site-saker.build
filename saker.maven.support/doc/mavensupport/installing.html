@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Maven support > <a href="installing.html" title="Artifact installing">Artifact installing</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -73,7 +76,7 @@
 <p>Artifact installing is the process of putting an artifact into the local Maven repository. After the installation, agents in the current system can retrieve that artifact to use it.</p>
 <p>Installing artifacts doesn't require any authentication, as that is performed on the local machine that you have authority over.</p>
 <p>Installing an artifact can be done by simply providing the coordinates and artifact file:</p>
-<pre><code class="language-sakerscript"><span class="e"><a href="../../../saker.maven.support/taskdoc/saker.maven.install.html" title="Task: saker.maven.install()">saker.maven.install</a>(</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.maven.support/taskdoc/saker.maven.install.html" title="Task: saker.maven.install()">saker.maven.install</a>(</span>
 	<span class="i">ArtifactPath</span>: <span class="f">path/to/artifact.jar</span>,
 	<span class="i">Coordinates: </span><span class="f">&quot;example.groupid:example.artifactid:0.1&quot;</span>,
 	<span class="i">Configuration: </span><span class="c"># ...</span>
@@ -81,7 +84,7 @@
 </code></pre>
 <p>The artifact can have any format, you are not required to put <code>pom.xml</code> or other meta-data in it. It may not even be necessary that it is a JAR file. However, it is recommended that you adhere to the conventions of the environment. If you install to a repository that is shared with others, make sure to include any necessary meta-data.</p>
 <p>You may also want to install the <code>pom.xml</code> that declares the artifact dependencies and other data. In order to do so, you can set the <code>pom</code> extension in the artifact coordinates:</p>
-<pre><code class="language-sakerscript"><span class="e"><a href="../../../saker.maven.support/taskdoc/saker.maven.install.html" title="Task: saker.maven.install()">saker.maven.install</a>(</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.maven.support/taskdoc/saker.maven.install.html" title="Task: saker.maven.install()">saker.maven.install</a>(</span>
 	<span class="i">ArtifactPath</span>: <span class="f">path/to/pom.xml</span>,
 	<span class="i">Coordinates: </span><span class="f">&quot;example.groupid:example.artifactid:pom:0.1&quot;</span>
 <span class="e">)</span>
@@ -89,7 +92,7 @@
 <p>If not specified, the extension part of the coordinates will default to <code>jar</code>.</p>
 <h2 id="installing-a-jar">Installing a JAR<a class="doc-heading-anchor" href="#installing-a-jar"></a></h2>
 <p>While the above example simply installs an a artifact with a specified path, you can create and install JAR artifacts as follows:</p>
-<pre><code class="language-sakerscript"><span class="d">$jar</span> = <span class="e"><a href="../../../saker.jar/taskdoc/saker.jar.create.html" title="Task: saker.jar.create()">saker.jar.create</a>(</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d">$jar</span> = <span class="e"><a href="../../../saker.jar/taskdoc/saker.jar.create.html" title="Task: saker.jar.create()">saker.jar.create</a>(</span>
 	<span class="c"># create a JAR file with your contents</span>
 <span class="e">)</span>
 <span class="e"><a href="../../../saker.maven.support/taskdoc/saker.maven.install.html" title="Task: saker.maven.install()">saker.maven.install</a>(</span>
@@ -130,7 +133,7 @@
 				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.maven.support documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.maven.support">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.maven.support">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.maven.support" title="saker.maven.support | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.maven.support" title="saker.maven.support | saker.nest">saker.maven.support on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.maven.support" title="saker.maven.support on GitHub">GitHub</a></div>
 			</div>
 		</div>	

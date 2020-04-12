@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				User guide > <a href="versioning.html" title="Versioning">Versioning</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -69,7 +72,7 @@
 			<div class="doc-content"><h1 id="versioning">Versioning<a class="doc-heading-anchor" href="#versioning"></a></h1>
 <p>The version numbers used in the repository are defined in a specific format. A version number consists of one or more dot (<code>'.'</code>) separated non-negative numbers. Version numbers are non-ambiguous and strictly ordered.</p>
 <p>The first recognized version number is <code>0</code>. This is considered to be smaller than all other version numbers from an ordering perspective. When comparing version numbers, each component is compared individually, and the one that contains the lesser number components are ordered first. <code>.0</code> components at the end of a version number is <strong>not</strong> omitted. Some examples in strictly ascending order:</p>
-<pre><code class="language-plaintext">0
+<pre class="doc-code-block"><code class="language-plaintext">0
 0.0
 0.1
 0.1.0
@@ -94,7 +97,7 @@
 <p>If a version number is prefixed with the character <code>'v'</code>, then it is considered to be a <em>version qualifier</em>. They are used in bundle names to signal the <a href="index.html#names" title="Names">release version</a>.</p>
 <h2 id="version-ranges">Version ranges<a class="doc-heading-anchor" href="#version-ranges"></a></h2>
 <p>A version range is a specification of allowed version numbers for a given use-case. They are often used when declaring <a href="../devguide/dependencies.html" title="Dependencies">bundle dependencies</a>. When a specification is interpreted as a <em>version range</em>, it can consist of the following elements:</p>
-<ul>
+<ul class="doc-md-list">
 <li>
 <p><strong>Number</strong>: A version number as defined above. E.g. <code>1.2.3</code><br />
 Numbers without any enclosing range declaration will allow any versions that start with the given number. E.g. the input <code>1.2</code> allows <code>1.2</code>, <code>1.2.0</code>, <code>1.2.1</code>, and any following version numbers up until <code>1.3</code>.</p>
@@ -106,7 +109,7 @@ E.g. <code>[1, 2)</code> includes any version starting from <code>1</code> and i
 </li>
 <li>
 <p><strong>Singular range</strong>: A range declaration that only contains one version number. It can have three formats:</p>
-<ul>
+<ul class="doc-md-list">
 <li><code>[1.0)</code>: meaning versions at least <code>1.0</code>, without any upper bound.</li>
 <li><code>(1.0]</code>: meaning versions at most <code>1.0</code>, without any lower bound. (The range is inclusive for <code>1.0</code>.) This is semantically same as <code>[0, 1.0]</code>, as the version <code>0</code> is the first one in order.</li>
 <li><code>[1.0]</code>: meaning exactly the version <code>1.0</code></li>
@@ -121,7 +124,7 @@ E.g. <code>[1, 2)</code> includes any version starting from <code>1</code> and i
 </li>
 </ul>
 <p>Some examples:</p>
-<ul>
+<ul class="doc-md-list">
 <li><code>1.0</code>: Includes any version greater or equal to <code>1.0</code> and less than <code>1.1</code>. Semantically same as <code>[1.0, 1.1)</code>.</li>
 <li><code>{1 | 3}</code>: Includes versions starting with <code>1</code> or <code>3</code>, but doesn't include versions with other starting components. <br />
 Included examples: <code>1</code>, <code>1.0</code>, <code>1.1</code>, <code>3</code>, <code>3.2</code><br />
@@ -166,7 +169,7 @@ Not included examples: <code>1.0</code>, <code>1.1</code>, <code>1.4</code>, <co
 				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.nest documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.nest">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.nest">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.nest" title="saker.nest | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.nest" title="saker.nest | saker.nest">saker.nest on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.nest" title="saker.nest on GitHub">GitHub</a></div>
 			</div>
 		</div>	

@@ -69,7 +69,7 @@
 <p><small>2020 February 27</small></p>
 <p>If you've been cross-compiling Java code for older releases, and were using the <code>-source</code> and <code>-target</code> javac parameters, you may experience unexpected errors when your app is deployed. Let's see why.</p>
 <p>In the following, we'll compile a simple class to Java 8, using javac from JDK 9. The source is as follows:</p>
-<pre><code class="language-java code-block-pad">import java.nio.ByteBuffer;
+<pre class="doc-code-block"><code class="language-java">import java.nio.ByteBuffer;
 
 public class Compile8Test {
     public static void main(String[] args) {
@@ -82,32 +82,32 @@ public class Compile8Test {
 <p>It's quite simple and should properly work on Java 8, 9, or later.</p>
 <h3 id="using---release">Using <code>--release</code><a class="doc-heading-anchor" href="#using---release"></a></h3>
 <p>Let's compile it for Java 8, using the <code>--release</code> option.</p>
-<pre><code class="language-plaintext code-block-pad">path/to/jdk9/bin/javac Compile8Test.java -release 8
+<pre class="doc-code-block"><code class="language-plaintext">path/to/jdk9/bin/javac Compile8Test.java -release 8
 </code></pre>
 <p>As a test, we should run it on <strong>Java 8</strong>:</p>
-<pre><code class="language-plaintext code-block-pad">path/to/java8/bin/java Compile8Test
+<pre class="doc-code-block"><code class="language-plaintext">path/to/java8/bin/java Compile8Test
 </code></pre>
 <p>The output is nothing out of the ordinary:</p>
-<pre><code class="language-plaintext code-block-pad">Success
+<pre class="doc-code-block"><code class="language-plaintext">Success
 </code></pre>
 <p>This was the correct example, showcasing how you <em>should</em> cross-compile Java for older versions.</p>
 <h3 id="using--source-and--target">Using <code>-source</code> and <code>-target</code><a class="doc-heading-anchor" href="#using--source-and--target"></a></h3>
 <p>The <code>--release</code> option was introduced in JDK 9. If you're like us, you may've just upgraded your Java version without putting much thought into how it may affect your compilation process. You (or your underlying build system) may've kept using the <code>-source</code> and <code>-target</code> parameters although the <code>--release</code> was just introduced.</p>
 <p>Let's see how it can affect our compilation output:</p>
-<pre><code class="language-plaintext code-block-pad">path/to/jdk9/bin/javac Compile8Test.java -source 8 -target 8
+<pre class="doc-code-block"><code class="language-plaintext">path/to/jdk9/bin/javac Compile8Test.java -source 8 -target 8
 </code></pre>
 <p>It compiles fine, we do receive a warning though:</p>
-<pre><code class="language-plaintext code-block-pad">warning: [options] bootstrap class path not set in conjunction with -source 1.8
+<pre class="doc-code-block"><code class="language-plaintext">warning: [options] bootstrap class path not set in conjunction with -source 1.8
 </code></pre>
 <p>Whatever... Warnings are just warnings. Let's run it!</p>
-<pre><code class="language-plaintext code-block-pad">path/to/java8/bin/java Compile8Test
+<pre class="doc-code-block"><code class="language-plaintext">path/to/java8/bin/java Compile8Test
 </code></pre>
 <p>The output it not what we'd expect:</p>
-<pre><code class="language-plaintext code-block-pad">Exception in thread &quot;main&quot; java.lang.NoSuchMethodError: java.nio.ByteBuffer.flip()Ljava/nio/ByteBuffer;
+<pre class="doc-code-block"><code class="language-plaintext">Exception in thread &quot;main&quot; java.lang.NoSuchMethodError: java.nio.ByteBuffer.flip()Ljava/nio/ByteBuffer;
         at Compile8Test.main(Compile8Test.java:6)
 </code></pre>
 <p>Okay, so what's up? Well the fact is that although we specified the source and target levels to conform to Java 8, the compilation is still done against the classes in JDK 9! Issues don't surface often because of this, as Java is generally developed in a backward compatible way. However, a new method was introduced in <code>ByteBuffer</code> in JDK 9:</p>
-<pre><code class="language-java code-block-pad">@Override
+<pre class="doc-code-block"><code class="language-java">@Override
 public ByteBuffer flip() {
     super.flip();
     return this;
@@ -115,7 +115,7 @@ public ByteBuffer flip() {
 </code></pre>
 <p>It's basically just for convenience to return a more suitable type of the buffer from the method. As it was introduced in Java 9, running the compiled code on Java 8 will fail, as the code still references the above method, but it's not present in Java 8. (Well, it is present as it is overridden, but it has a different return type, therefore the method lookup based on the descriptor fails.)</p>
 <p>We can see this more in detail if we run <code>javap</code>:</p>
-<pre><code class="language-plaintext code-block-pad">&gt; path/to/java8/bin/javap -v -c Compile8Test.class
+<pre class="doc-code-block"><code class="language-plaintext">&gt; path/to/java8/bin/javap -v -c Compile8Test.class
 public class Compile8Test
   minor version: 0
   major version: 52
@@ -138,7 +138,7 @@ public class Compile8Test
         19: return
 </code></pre>
 <p>See the line with <code>7: // Method java/nio/ByteBuffer.flip:()Ljava/nio/ByteBuffer;</code>? That method doesn't exist on Java 8! To put that in contrast with the <code>javap</code> output of the correctly cross-compiled version:</p>
-<pre><code class="language-plaintext code-block-pad">  public static void main(java.lang.String[]);
+<pre class="doc-code-block"><code class="language-plaintext">  public static void main(java.lang.String[]);
     descriptor: ([Ljava/lang/String;)V
     flags: (0x0009) ACC_PUBLIC, ACC_STATIC
     Code:
@@ -159,7 +159,7 @@ public class Compile8Test
 <p>We've seen that using the <code>-source</code> and <code>-target</code> parameters when cross-compiling Java may cause unexpected issues in your deployment environment. If you may take one advice from us is that you should check your build tools if they perform this correctly. This issue probably doesn't affect you, as these are edge cases, and your integration tests probably discovered them already. In any case, we hope this post was informational to you.</p>
 <small>
 <p>This post was made because we've discovered an issue with the <code>apksigner</code> tool when developing <a href="https://github.com/sakerbuild/saker.android" title="GitHub - sakerbuild/saker.android: Android support for the saker.build system">Android support</a> for saker.build. It was mistakenly compiled for Java 9 in the 30 rc1 release of the build tools, and as we load the <code>apksigner.jar</code> directly in the build JVM process, it caused errors such as above.</p>
-<p>We filed an <a href="https://issuetracker.google.com/issues/150189789" title="Bejelentkezés – Google-fiók">issue</a> in the respective tracker, and hope it will be resolved soon. In any way, thankfully this doesn't block the development of Android support for saker.build, as this issue can be mitigated easily by instrumenting the loaded classes and replacing the affected method calls.</p>
+<p>We filed an <a href="https://issuetracker.google.com/issues/150189789" title="APKsigner requires Java 9 in Build tools 30 rc1 [150189789] - Issue Tracker">issue</a> in the respective tracker, and hope it will be resolved soon. In any way, thankfully this doesn't block the development of Android support for saker.build, as this issue can be mitigated easily by instrumenting the loaded classes and replacing the affected method calls.</p>
 </small>
 <link href="../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>
 			<div class="doc-headings-nav">  <ul>    <li><a href="#beware-of-the--source-and--target-javac-parameters" title="Beware of the -source and -target javac parameters">Beware of the -source and -target javac parameters</a>      <ul>        <li><a href="#using---release" title="Using --release">Using --release</a>        </li>        <li><a href="#using--source-and--target" title="Using -source and -target">Using -source and -target</a>        </li>        <li><a href="#mitigation" title="Mitigation">Mitigation</a>        </li>        <li><a href="#conclusion" title="Conclusion">Conclusion</a>        </li>      </ul>    </li>  </ul></div>

@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Maven support > <a href="configuration.html" title="Configuration">Configuration</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -68,7 +71,7 @@
 </div>
 			<div class="doc-content"><h1 id="configuration">Configuration<a class="doc-heading-anchor" href="#configuration"></a></h1>
 <p>The repository configuration of the tasks can be specified by specifying the <code>Configuration</code> parameter:</p>
-<pre><code class="language-sakerscript"><span class="e"><a href="../../../saker.maven.support/taskdoc/saker.maven.resolve.html" title="Task: saker.maven.resolve()">saker.maven.resolve</a>(</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.maven.support/taskdoc/saker.maven.resolve.html" title="Task: saker.maven.resolve()">saker.maven.resolve</a>(</span>
 	<span class="c"># ... other parameters ...</span>
 	<span class="i">Configuration</span>: <span class="b">{</span>
 		<span class="h">LocalRepositoryPath</span>: <span class="f">&quot;c:/Users/user/.m2/repository&quot;</span><span class="b">,</span>
@@ -80,15 +83,15 @@
 			<span class="b">{</span>
 				<span class="h">Id</span>: <span class="f">jcenter</span><span class="b">,</span>
 				<span class="h">Url</span>: <span class="f">&quot;https://jcenter.bintray.com/&quot;</span><span class="b">,</span>
-			<span class="b">}
-		]
-	}</span>
+			<span class="b">}</span>
+		<span class="b">]</span>
+	<span class="b">}</span>
 <span class="e">)</span>
 </code></pre>
 <p>In the above example we set the local repository path and the repositories to be used when the dependencies are resolved. The <code>LocalRepositoryPath</code> parameter specifies the path to the local repository where the artifacts can be stored and cached. The <code>Repositories</code> list the repositories that should be used when resolving artifacts and dependencies.</p>
 <p>If no configuration is specified, the local repository path will be <code>{user.dir}/.m2/repository</code>. If no repositories are specified, the <code>central</code> repository is used with the <code>Url</code> of <code>https://repo.maven.apache.org/maven2/</code>.</p>
 <p>The snapshot and release policy can also be configured for the repositories:</p>
-<pre><code class="language-sakerscript"><span class="e"><a href="../../../saker.maven.support/taskdoc/saker.maven.resolve.html" title="Task: saker.maven.resolve()">saker.maven.resolve</a>(</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.maven.support/taskdoc/saker.maven.resolve.html" title="Task: saker.maven.resolve()">saker.maven.resolve</a>(</span>
 	<span class="c"># ... other parameters ...</span>
 	<span class="i">Configuration</span>: <span class="b">{</span>
 		<span class="h">LocalRepositoryPath</span>: <span class="f">&quot;c:/Users/user/.m2/repository&quot;</span><span class="b">,</span>
@@ -98,11 +101,11 @@
 				<span class="h">Url</span>: <span class="f">&quot;https://repo.maven.apache.org/maven2/&quot;</span><span class="b">,</span>
 				<span class="h">Snapshots</span>: <span class="j">false</span><span class="b">,</span>
 				<span class="h">Releases</span>: <span class="b">{</span>
-					<span class="h">UpdatePolicy</span>: <span class="f">daily</span><span class="b">
-				}
-			},</span>
-		<span class="b">]
-	}</span>
+					<span class="h">UpdatePolicy</span>: <span class="f">daily</span>
+				<span class="b">}</span>
+			<span class="b">},</span>
+		<span class="b">]</span>
+	<span class="b">}</span>
 <span class="e">)</span>
 </code></pre>
 <p>The above showcases that snapshot artifacts are disabled, and the release artifacts should be updated on a daily basis.</p>
@@ -139,7 +142,7 @@
 				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.maven.support documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.maven.support">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.maven.support">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.maven.support" title="saker.maven.support | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.maven.support" title="saker.maven.support | saker.nest">saker.maven.support on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.maven.support" title="saker.maven.support on GitHub">GitHub</a></div>
 			</div>
 		</div>	

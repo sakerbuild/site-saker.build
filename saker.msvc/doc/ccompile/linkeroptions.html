@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				C/C++ compilation > <a href="linkeroptions.html" title="Linker options">Linker options</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -69,15 +72,15 @@
 			<div class="doc-content"><h1 id="linker-options">Linker options<a class="doc-heading-anchor" href="#linker-options"></a></h1>
 <p>The <a href="../../taskdoc/saker.msvc.clink.html"><code>saker.msvc.clink()</code></a> task allows dynamic option merging based on the identifier and architecture of the linker operation. It can be used to define the linker options in one place that can be applied to one or more linker operations selectively.</p>
 <p>A simple example for this is to define different linker parameters for <code>debug</code> and <code>release</code> builds:</p>
-<pre><code class="language-sakerscript"><span class="d">$options</span> = <span class="b">[</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d">$options</span> = <span class="b">[</span>
 	<span class="b">{</span>
 		<span class="h">Identifier</span>: <span class="f">debug</span><span class="b">,</span>
-		<span class="h">SimpleLinkerParameters</span>: <span class="b">[</span> <span class="f">/DEBUG</span><span class="b"> ]
-	},</span>
+		<span class="h">SimpleLinkerParameters</span>: <span class="b">[</span> <span class="f">/DEBUG</span><span class="b"> ]</span>
+	<span class="b">},</span>
 	<span class="b">{</span>
 		<span class="h">Identifier</span>: <span class="f">release</span><span class="b">,</span>
-		<span class="h">SimpleLinkerParameters</span>: <span class="b">[</span> <span class="f">/LTCG</span><span class="b"> ]
-	},</span>
+		<span class="h">SimpleLinkerParameters</span>: <span class="b">[</span> <span class="f">/LTCG</span><span class="b"> ]</span>
+	<span class="b">},</span>
 <span class="b">]</span>
 <span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.clink.html" title="Task: saker.msvc.clink()">saker.msvc.clink</a>(</span>
 	<span class="i">Input</span>: <span class="k">### ... ###</span>,
@@ -126,7 +129,7 @@
 				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.msvc documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.msvc">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.msvc">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.msvc" title="saker.msvc | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.msvc" title="saker.msvc | saker.nest">saker.msvc on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.msvc" title="saker.msvc on GitHub">GitHub</a></div>
 			</div>
 		</div>	

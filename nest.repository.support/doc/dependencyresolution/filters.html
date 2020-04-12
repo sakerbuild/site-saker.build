@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Dependency resolution > <a href="filters.html" title="Dependency filters">Dependency filters</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -69,20 +72,20 @@
 			<div class="doc-content"><h1 id="dependency-filters">Dependency filters<a class="doc-heading-anchor" href="#dependency-filters"></a></h1>
 <p>Dependency filters are the main way of configuring how the dependencies are resolved by the <a href="../../taskdoc/nest.dependency.resolve.html"><code>nest.dependency.resolve()</code></a> task. A dependency filter specifies a mechanism of which and how the given dependencies should be treated. They also get the opportunity to filter transitive dependencies.</p>
 <p>The dependency filters can be applied using the <code>Filters</code> input parameter:</p>
-<pre><code class="language-sakerscript"><span class="e"><a href="../../../nest.repository.support/taskdoc/nest.dependency.resolve.html" title="Task: nest.dependency.resolve()">nest.dependency.resolve</a>(</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../nest.repository.support/taskdoc/nest.dependency.resolve.html" title="Task: nest.dependency.resolve()">nest.dependency.resolve</a>(</span>
 	<span class="i">Filters</span>: <span class="e"><a href="../../../nest.repository.support/taskdoc/nest.dependency.filter.kind.html" title="Task: nest.dependency.filter.kind()">nest.dependency.filter.kind</a>(</span><span class="f">classpath</span><span class="e">)</span>
 <span class="e">)</span>
 </code></pre>
 <p>The above will resolve only the dependencies that are specified with the kind <code>classpath</code>.</p>
 <h2 id="kind-filter">Kind filter<a class="doc-heading-anchor" href="#kind-filter"></a></h2>
 <p>The <a href="../../taskdoc/nest.dependency.filter.kind.html"><code>nest.dependency.filter.kind()</code></a> task can be used to specify a dependency filter that limits the resolved dependencies to those that are declared with the specified kinds:</p>
-<pre><code class="language-sakerscript"><span class="e"><a href="../../../nest.repository.support/taskdoc/nest.dependency.resolve.html" title="Task: nest.dependency.resolve()">nest.dependency.resolve</a>(</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../nest.repository.support/taskdoc/nest.dependency.resolve.html" title="Task: nest.dependency.resolve()">nest.dependency.resolve</a>(</span>
 	<span class="i">DependencyFile</span>: <span class="f">res/META-INF/nest/dependencies</span>,
 	<span class="i">Filters: </span><span class="e"><a href="../../../nest.repository.support/taskdoc/nest.dependency.filter.kind.html" title="Task: nest.dependency.filter.kind()">nest.dependency.filter.kind</a>(</span><span class="f">classpath</span><span class="e">)</span>
 <span class="e">)</span>
 </code></pre>
 <p>If the <code>res/META-INF/nest/dependencies</code> contains the following contents:</p>
-<pre><code class="language-plaintext">example.bundle-api
+<pre class="doc-code-block"><code class="language-plaintext">example.bundle-api
 	classpath: [1.0)
 library.bundle
 	native-lib: [2.3)
@@ -94,39 +97,39 @@ library.bundle
 <p>The <a href="../../taskdoc/nest.dependency.filter.compile.html"><code>nest.dependency.filter.compile()</code></a> task creates a dependency filter that works similarly to the <a href="filters.html#kind-filter" title="Kind filter">kind filter</a>, but handles the <code>compile-transitive</code> meta-data on the dependencies. The advantage of the compile filter is that it can avoid pulling in unnecessary dependencies.</p>
 <p>For the following example, let us work with the following bundles, and their dependencies:</p>
 <p>Bundle <code>example.bundle-v1.0</code>:</p>
-<pre><code class="language-plaintext">example.bundle-api
+<pre class="doc-code-block"><code class="language-plaintext">example.bundle-api
 	classpath: [0)
 </code></pre>
 <p>Bundle <code>example.bundle-api-v1.0</code>:</p>
-<pre><code class="language-plaintext">example.bundle-impl
+<pre class="doc-code-block"><code class="language-plaintext">example.bundle-impl
 	classpath: [this]
 		compile-transitive: false
 </code></pre>
 <p>Bundle <code>example.bundle-impl-v1.0</code>:</p>
-<pre><code class="language-plaintext">example.bundle-api
+<pre class="doc-code-block"><code class="language-plaintext">example.bundle-api
 	classpath: [this]
 </code></pre>
 <p>You can see that we have a separated package taking the <a href="../../../saker.nest/doc/devguide/dependencyhell.html" title="Dependency hell">recommendations</a> for avoiding dependency hell into account.</p>
 <p>The use-case for the compile filter is to resolve the bundle dependencies that are required for compiling against a given bundle, but omitting the transitive dependencies which are implementational details.</p>
 <p>We can use it the following way:</p>
-<pre><code class="language-sakerscript"><span class="e"><a href="../../../nest.repository.support/taskdoc/nest.dependency.resolve.html" title="Task: nest.dependency.resolve()">nest.dependency.resolve</a>(</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../nest.repository.support/taskdoc/nest.dependency.resolve.html" title="Task: nest.dependency.resolve()">nest.dependency.resolve</a>(</span>
 	<span class="i">Bundles</span>: <span class="b">[</span>
-		<span class="f">example.bundle-api</span><span class="b">
-	]</span>,
+		<span class="f">example.bundle-api</span>
+	<span class="b">]</span>,
 	<span class="i">Filters: </span><span class="e"><a href="../../../nest.repository.support/taskdoc/nest.dependency.filter.compile.html" title="Task: nest.dependency.filter.compile()">nest.dependency.filter.compile</a>(</span><span class="i">CompileTransitive</span>: <span class="j">false</span><span class="e">)</span>
 <span class="e">)</span>
 </code></pre>
 <p>The above dependency resolution will only result in <code>example.bundle-api-v1.0</code>, as the <code>example.bundle-impl</code> transitive dependency is omitted, because it is marked with the <code>compile-transitive: false</code> meta-data. The compile filter will omit that dependency.</p>
 <p>If we set the transitivity parameter to <code>true</code>:</p>
-<pre><code class="language-sakerscript"><span class="e"><a href="../../../nest.repository.support/taskdoc/nest.dependency.resolve.html" title="Task: nest.dependency.resolve()">nest.dependency.resolve</a>(</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../nest.repository.support/taskdoc/nest.dependency.resolve.html" title="Task: nest.dependency.resolve()">nest.dependency.resolve</a>(</span>
 	<span class="i">Bundles</span>: <span class="b">[</span>
-		<span class="f">example.bundle-api</span><span class="b">
-	]</span>,
+		<span class="f">example.bundle-api</span>
+	<span class="b">]</span>,
 	<span class="i">Filters: </span><span class="e"><a href="../../../nest.repository.support/taskdoc/nest.dependency.filter.compile.html" title="Task: nest.dependency.filter.compile()">nest.dependency.filter.compile</a>(</span><span class="i">CompileTransitive</span>: <span class="j">true</span><span class="e">)</span>
 <span class="e">)</span>
 </code></pre>
 <p>Then the result bundle dependencies will be:</p>
-<pre><code class="language-plaintext">example.bundle-api-v1.0
+<pre class="doc-code-block"><code class="language-plaintext">example.bundle-api-v1.0
 example.bundle-impl-v1.0
 </code></pre>
 <p>Note that the <a href="../../taskdoc/nest.dependency.filter.compile.html"><code>nest.dependency.filter.compile()</code></a> task can also take dependency kinds as input similarly to <a href="../../taskdoc/nest.dependency.filter.kind.html"><code>nest.dependency.filter.kind()</code></a>. The task can work with other kind of dependencies based on your use-case.</p>
@@ -164,7 +167,7 @@ example.bundle-impl-v1.0
 				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="nest.repository.support documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for nest.repository.support">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in nest.repository.support">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/nest.repository.support" title="nest.repository.support | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/nest.repository.support" title="nest.repository.support | saker.nest">nest.repository.support on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/nest.repository.support" title="nest.repository.support on GitHub">GitHub</a></div>
 			</div>
 		</div>	

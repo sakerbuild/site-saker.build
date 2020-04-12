@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				User guide > <a href="index.html" title="Introduction">Introduction</a> > <a href="datastructures.html" title="Data structures">Data structures</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -68,19 +71,19 @@
 </div>
 			<div class="doc-content"><h1 id="data-structures">Data structures<a class="doc-heading-anchor" href="#data-structures"></a></h1>
 <p>There are no type system in SakerScript. However, you can declare composite data in the format of maps, lists, and literals:</p>
-<pre><code class="language-sakerscript"><span class="d">$map</span> = <span class="b">{</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d">$map</span> = <span class="b">{</span>
 	<span class="h">Key</span>: <span class="f">value</span><span class="b">,</span>
 	<span class="h">ListKey</span>: <span class="b">[</span>
 		<span class="f">item1</span><span class="b">,</span>
 		<span class="f">item2</span><span class="b">,</span>
-	<span class="b">]
-}</span>
+	<span class="b">]</span>
+<span class="b">}</span>
 <span class="d">$list</span> = <span class="b">[</span><span class="f">1</span><span class="b">,</span> <span class="f">2</span><span class="b">,</span> <span class="f">3</span><span class="b">]</span>
 <span class="d">$simpleliteral</span> = <span class="f">abcd1234</span>
 <span class="d">$compoundstring</span> = <span class="f">&quot;interpolated string number: </span>{ <span class="f">2</span> * <span class="f">3</span> }<span class="f">&quot;</span>
 </code></pre>
 <p>These structures can be used in various ways to configure the task invocations. It is mostly dependent on the implementation and purpose of the task, but the following example can shine some light on it:</p>
-<pre><code class="language-sakerscript"><span class="e">example.compile.sources(</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e">example.compile.sources(</span>
 	<span class="i">Sources</span>: <span class="b">[</span>
 		<span class="b">{</span>
 			<span class="h">Directory</span>: <span class="f">src</span><span class="b">,</span>
@@ -133,7 +136,7 @@
 				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.build documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.build">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.build">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.build on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.build" title="saker.build on GitHub">GitHub</a></div>
 			</div>
 		</div>	

@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Extending saker.build > <a href="index.html" title="Repository development">Repository development</a> > <a href="structure.html" title="API structure">API structure</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -71,7 +74,7 @@
 <h2 id="sakerrepositoryfactory"><code>SakerRepositoryFactory</code><a class="doc-heading-anchor" href="#sakerrepositoryfactory"></a></h2>
 <p>The factory interface is a stateless class that is necessary for creating the repository instances. It is the entry point for creating a repository instance. It may be used via the <code>ServiceLoader</code> facility, or instantiated in other ways. The implementations must have a public no-arg constructor.</p>
 <p>In general, the implementation for your factory will be as simple as the following:</p>
-<pre><code class="language-java">public class MyRepositoryFactory implements SakerRepositoryFactory {
+<pre class="doc-code-block"><code class="language-java">public class MyRepositoryFactory implements SakerRepositoryFactory {
 	@Override
 	public SakerRepository create(RepositoryEnvironment environment) {
 		return new MyRepository(environment);
@@ -121,7 +124,7 @@
 				<div data-footer-location="doc-docs"><a href="../../../doc/index.html" title="saker.build documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../../javadoc/index.html" title="JavaDoc for saker.build">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../../taskdoc/index.html"  title="Documentation of build tasks in saker.build">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.build on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.build" title="saker.build on GitHub">GitHub</a></div>
 			</div>
 		</div>	

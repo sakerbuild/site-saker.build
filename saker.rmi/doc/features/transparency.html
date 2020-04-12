@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Features > <a href="transparency.html" title="Transparency">Transparency</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -69,7 +72,7 @@
 			<div class="doc-content"><h1 id="transparency">Transparency<a class="doc-heading-anchor" href="#transparency"></a></h1>
 <p>One of the core features of Saker.rmi is that the RMI proxy objects should work the same way as if they weren't proxy objects. The code that uses an RMI connection should work the same way if it wasn't using the connection. The fact that an object is behind a proxy shouldn't impose any restrictions on the behaviour of the proxy and the code that uses it.</p>
 <p>An example that showcases this is by working with files using an interface:</p>
-<pre><code class="language-java">public interface FileSystemStub {
+<pre class="doc-code-block"><code class="language-java">public interface FileSystemStub {
 	public byte[] getFileBytes(String filepath) throws IOException;
 }
 
@@ -82,7 +85,7 @@ public class FileSystemImpl implements FileSystemStub {
 </code></pre>
 <p>The above defines an interface that provides access to the contents of a file for a given path. Below is a basic implementation for that class.</p>
 <p>The code that uses the <code>FileSystemStub</code> interface doesn't have to work differently if the given interface is backed by an RMI proxy. The following code should <em>always</em> be correct irregardless of the backing implementation of the <code>FileSystemStub</code>:</p>
-<pre><code class="language-java">public static String[] getFileLines(FileSystemStub fs, String filepath) 
+<pre class="doc-code-block"><code class="language-java">public static String[] getFileLines(FileSystemStub fs, String filepath) 
 		throws IOException {
 	return new String(fs.getFileBytes(filepath)).split(&quot;\n&quot;);
 }
@@ -90,7 +93,7 @@ public class FileSystemImpl implements FileSystemStub {
 <p>If the <code>fs</code> argument is a remote object, the above method still works correctly, and needs no special handling. Although this example is overly simplified, accessing remote file system like this is an important use-case for the RMI library.</p>
 <h2 id="exceptions">Exceptions<a class="doc-heading-anchor" href="#exceptions"></a></h2>
 <p>What happens when the RMI connection breaks up, or otherwise fails? The proxy method calls will throw an appropriate <a href="../../javadoc/saker/rmi/exception/RMIRuntimeException.html"><code>RMIRuntimeException</code></a>. You may want to choose to catch it, in which case the code needs special handling. However, you may also hard fail in case of network errors if that seriously distrupts application workflow, or configure the RMI connection to handle it. The RMI library may rethrow an exception if it is caused by connection failures. You can annotate the method using the <a href="../../javadoc/saker/rmi/annot/invoke/RMIExceptionRethrow.html"><code>@RMIExceptionRethrow</code></a> annotation:</p>
-<pre><code class="language-java">public interface FileSystemStub {
+<pre class="doc-code-block"><code class="language-java">public interface FileSystemStub {
 	@RMIExceptionRethrow(RemoteIOException.class)
 	public byte[] getFileBytes(String filepath) throws IOException;
 }
@@ -129,7 +132,7 @@ public class FileSystemImpl implements FileSystemStub {
 				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.rmi documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.rmi">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.rmi">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.rmi" title="saker.rmi | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.rmi" title="saker.rmi | saker.nest">saker.rmi on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.rmi" title="saker.rmi on GitHub">GitHub</a></div>
 			</div>
 		</div>	

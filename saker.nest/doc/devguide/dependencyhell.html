@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Development guide > <a href="dependencyhell.html" title="Dependency hell">Dependency hell</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -71,13 +74,13 @@
 <p>Saker.nest doesn't attempt to provide a direct solution to this problem, but presents development guidelines that help avoiding these issues. As a baseline, see the issue example in presented in the <a href="classpath.html#multiple-classloaders" title="Multiple ClassLoaders">Multiple ClassLoaders</a> section.</p>
 <h2 id="separation-of-concerns">Separation of concerns<a class="doc-heading-anchor" href="#separation-of-concerns"></a></h2>
 <p>A solution for the mentioned problem is by separating the concerns when developing bundles. When creating a package, we recommend separating the bundle classes in the following way:</p>
-<ul>
+<ul class="doc-md-list">
 <li><strong>API bundle</strong>: This bundle contains the classes that other packages can depend on. This contains the classes that provide access to the functionality provided by the package. Generally, this contains classes and interfaces that have a stable binary interface that other bundles can use.</li>
 <li><strong>Implementation bundle</strong>: Contains the implementational details of a given package. Implementational details shouldn't leak into the API bundle, and classes in this bundle shouldn't be used directly by external agents. The binary interface of the classes in this bundle is not required to be stable.</li>
 <li><strong>Main bundle</strong>: Contains implementational classes similar to the implementation bundle, but they are responsible for providing a fronted for accessing via build scripts. This bundle should contain the build task classes that are loaded during build execution. The classes from the main bundle shouldn't escape the main bundle domain.</li>
 </ul>
 <p>Based on the above, let's see how the dependencies are between these bundles:</p>
-<pre><code class="language-plaintext">example.bundle
+<pre class="doc-code-block"><code class="language-plaintext">example.bundle
         |
         | [0)
         |
@@ -94,15 +97,15 @@ example.bundle-impl
 <p>The <code>[this]</code> range specifies that the <code>-api</code> bundle and <code>-impl</code> bundle dependencies should be resolved from the same package version release as they are in. This ensures that there won't be binary incompatibility between the <code>-api</code> and <code>-impl</code> bundles.</p>
 <p>Converting the above dependency schema into dependency file format:</p>
 <p><em>example.bundle</em>:</p>
-<pre><code class="language-plaintext">example.bundle-api
+<pre class="doc-code-block"><code class="language-plaintext">example.bundle-api
     classpath: [0)
 </code></pre>
 <p><em>example.bundle-api</em>:</p>
-<pre><code class="language-plaintext">example.bundle-impl
+<pre class="doc-code-block"><code class="language-plaintext">example.bundle-impl
     classpath: [this]
 </code></pre>
 <p><em>example.bundle-impl</em>:</p>
-<pre><code class="language-plaintext">example.bundle-api
+<pre class="doc-code-block"><code class="language-plaintext">example.bundle-api
     classpath: [this]
 </code></pre>
 <h4 id="restrictions">Restrictions<a class="doc-heading-anchor" href="#restrictions"></a></h4>
@@ -120,7 +123,7 @@ example.bundle-impl
 <p><strong>You don't always need an <code>-impl</code> bundle.</strong> If your use-case don't include others instantiating your implementational classes, you can avoid the need to create an <code>-impl</code> bundle. This can be a scenario when others would want to consume the output of your build task, but don't want to invoke the task itself in a programatic manner. In this case you don't need to separate the implementation to an <code>-impl</code> bundle, but only need to have the task output implement an appropriate interface from the <code>-api</code> bundle.</p>
 <p><strong>For simple use-cases, you don't even need an <code>-api</code> bundle.</strong> If you don't want others to interact with your classes in any way, you don't need to separate the bundles. However, note that if you plan on using the output of your build task as an input to another, then you are <strong>strongly</strong> recommended to create an <code>-api</code> bundle. Not doing so may cause incompatibility between your own tasks. <br />
 For example if your bundle contains build tasks with the names <code>first.task</code> and <code>second.task</code>:</p>
-<pre><code class="language-sakerscript"><span class="d">$firstout</span> = <span class="e">first.task-v1.0()</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d">$firstout</span> = <span class="e">first.task-v1.0()</span>
 <span class="e">second.task-v2.0(</span><span class="d">$firstout</span><span class="e">)</span>
 </code></pre>
 <p>The above will most likely cause incompatibility if you don't have an <code>-api</code> bundle. The output of the <code>first.task</code> should implement an interface from the <code>-api</code> bundle, that the <code>second.task</code> should use to interpret its input.</p>
@@ -128,7 +131,7 @@ For example if your bundle contains build tasks with the names <code>first.task<
 <p>If your bundle includes native libraries, you must develop your bundle in a very specific way. This is due to the fact that the JVM <strong>can't load a native library multiple times.</strong> If there can be multiple instances of your bundle classloader (as seen in <a href="classpath.html#multiple-classloaders" title="Multiple ClassLoaders">Multiple ClassLoaders</a>) then the library loading for the second classloader will <em>fail</em>. This can cause unexpected and hard to solve issues in the runtime.</p>
 <p>The solution for this is that <strong>a bundle that loads native libraries must not have any dependencies</strong>. If your bundle doesn't have any dependencies, then the runtime will <strong>never</strong> construct a second classloader for your bundle. The bundle should have only one single purpose, that is providing access to the native library functionality.</p>
 <p>Any operations that deal with the native library, and use third party dependencies should be exported to another bundle, like the following dependency graph:</p>
-<pre><code class="language-plaintext">example.bundle------&gt;dependency.bundle
+<pre class="doc-code-block"><code class="language-plaintext">example.bundle------&gt;dependency.bundle
       |
       |
       V
@@ -171,7 +174,7 @@ example.bundle-native
 				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.nest documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.nest">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.nest">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.nest" title="saker.nest | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.nest" title="saker.nest | saker.nest">saker.nest on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.nest" title="saker.nest on GitHub">GitHub</a></div>
 			</div>
 		</div>	

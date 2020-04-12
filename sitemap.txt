@@ -86,7 +86,6 @@ https://saker.build/nest.repository.support/taskdoc/types/SakerPath.html
 https://saker.build/nest.repository.support/taskdoc/types/String.html
 https://saker.build/saker.build.ide.eclipse/index.html
 https://saker.build/saker.build.ide.eclipse/update-site/index.html
-https://saker.build/saker.build.ide.eclipse/update-site/v0.8.0/index.html
 https://saker.build/saker.build/doc/buildstatus.html
 https://saker.build/saker.build/doc/contribute.html
 https://saker.build/saker.build/doc/eclipseplugin.html
@@ -743,6 +742,7 @@ https://saker.build/saker.build/javadoc/saker/build/util/java/JavaTools.html
 https://saker.build/saker.build/javadoc/saker/build/util/java/index.html
 https://saker.build/saker.build/javadoc/saker/build/util/property/BuildTimeExecutionProperty.html
 https://saker.build/saker.build/javadoc/saker/build/util/property/IDEConfigurationRequiredExecutionProperty.html
+https://saker.build/saker.build/javadoc/saker/build/util/property/ProcessEnvEnvironmentProperty.html
 https://saker.build/saker.build/javadoc/saker/build/util/property/ScriptParsingConfigurationExecutionProperty.PropertyValue.html
 https://saker.build/saker.build/javadoc/saker/build/util/property/ScriptParsingConfigurationExecutionProperty.html
 https://saker.build/saker.build/javadoc/saker/build/util/property/ScriptParsingOptionsExecutionProperty.html
@@ -829,6 +829,8 @@ https://saker.build/saker.java.compiler/javadoc/all-classes.html
 https://saker.build/saker.java.compiler/javadoc/constants.html
 https://saker.build/saker.java.compiler/javadoc/index.html
 https://saker.build/saker.java.compiler/javadoc/saker/java/compiler/api/classpath/ClassPathEntry.html
+https://saker.build/saker.java.compiler/javadoc/saker/java/compiler/api/classpath/ClassPathEntryInputFile.html
+https://saker.build/saker.java.compiler/javadoc/saker/java/compiler/api/classpath/ClassPathEntryInputFileVisitor.html
 https://saker.build/saker.java.compiler/javadoc/saker/java/compiler/api/classpath/ClassPathReference.html
 https://saker.build/saker.java.compiler/javadoc/saker/java/compiler/api/classpath/ClassPathVisitor.html
 https://saker.build/saker.java.compiler/javadoc/saker/java/compiler/api/classpath/CompilationClassPath.html
@@ -986,6 +988,8 @@ https://saker.build/saker.maven.support/javadoc/saker/maven/support/api/MavenOpe
 https://saker.build/saker.maven.support/javadoc/saker/maven/support/api/MavenOperationConfiguration.RepositoryConfiguration.html
 https://saker.build/saker.maven.support/javadoc/saker/maven/support/api/MavenOperationConfiguration.RepositoryPolicyConfiguration.html
 https://saker.build/saker.maven.support/javadoc/saker/maven/support/api/MavenOperationConfiguration.html
+https://saker.build/saker.maven.support/javadoc/saker/maven/support/api/MavenUtils.html
+https://saker.build/saker.maven.support/javadoc/saker/maven/support/api/dependency/MavenDependencyResolutionExtensionsOutput.html
 https://saker.build/saker.maven.support/javadoc/saker/maven/support/api/dependency/MavenDependencyResolutionScopesOutput.html
 https://saker.build/saker.maven.support/javadoc/saker/maven/support/api/dependency/MavenDependencyResolutionTaskOutput.html
 https://saker.build/saker.maven.support/javadoc/saker/maven/support/api/dependency/ResolvedDependencyArtifact.html
@@ -1025,6 +1029,7 @@ https://saker.build/saker.maven.support/taskdoc/types/ChecksumPolicy.html
 https://saker.build/saker.maven.support/taskdoc/types/DeploymentSpecifier.html
 https://saker.build/saker.maven.support/taskdoc/types/ExclusionTaskOption.html
 https://saker.build/saker.maven.support/taskdoc/types/MavenConfigurationTaskOption.html
+https://saker.build/saker.maven.support/taskdoc/types/MavenDependencyResolutionExtensionsOutput.html
 https://saker.build/saker.maven.support/taskdoc/types/MavenDependencyResolutionScopesOutput.html
 https://saker.build/saker.maven.support/taskdoc/types/MavenDependencyResolutionTaskOutput.html
 https://saker.build/saker.maven.support/taskdoc/types/MavenDependencyScope.html
@@ -1362,6 +1367,8 @@ https://saker.build/saker.standard/javadoc/saker/std/api/file/location/FileLocat
 https://saker.build/saker.standard/javadoc/saker/std/api/file/location/FileLocationVisitor.html
 https://saker.build/saker.standard/javadoc/saker/std/api/file/location/LocalFileLocation.html
 https://saker.build/saker.standard/javadoc/saker/std/api/file/location/index.html
+https://saker.build/saker.standard/javadoc/saker/std/api/util/SakerStandardUtils.html
+https://saker.build/saker.standard/javadoc/saker/std/api/util/index.html
 https://saker.build/saker.standard/taskdoc/index.html
 https://saker.build/saker.standard/taskdoc/std.env.qualifier.any.html
 https://saker.build/saker.standard/taskdoc/std.env.qualifier.params.html

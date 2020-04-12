@@ -2125,6 +2125,10 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 				//show the tasks that have any exception
 				return true;
 			}
+			if (task.cpu_tokens != null && task.cpu_tokens > 0) {
+				//the task is computational. always display on timeline, even if it's short
+				return true;
+			}
 			return false;
 		};
 		let filter = function(task) {
@@ -2134,10 +2138,6 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 			}
 			if (task.inner_tasks != null && task.inner_tasks.length > 0) {
 				//the task has inner tasks, display it
-				return true;
-			}
-			if (task.cpu_tokens != null && task.cpu_tokens > 0) {
-				//the task is computational. display it as default
 				return true;
 			}
 			if (task.classification == "worker") {
@@ -4514,7 +4514,7 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 							adiv.append(
 								$(document.createElement('span'))
 									.attr('data-trace-artifact-type', a.artifact.type)
-									.html('Artifact contents are not present in the build trace. Use the <a class="code-font" href="/saker.build/doc/guide/cmdlineref/build.html#-trace-artifacts-embed">-trace-artifacts-embed</a> command line argument to include them in the build trace.')
+									.html('Artifact contents are not present in the build trace. Use the <a class="code-font" href="/saker.build/doc/guide/cmdlineref/build.html#-trace-artifacts-embed" target="_blank">-trace-artifacts-embed</a> command line argument to include them in the build trace.')
 							);
 							break;
 						}

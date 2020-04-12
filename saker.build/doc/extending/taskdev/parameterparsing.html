@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Extending saker.build > <a href="index.html" title="Task development">Task development</a> > <a href="parameterparsing.html" title="Parameter parsing">Parameter parsing</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -73,11 +76,11 @@
 <p>When developing tasks, you probably want them to be parameterizable from the build script. In order to achieve this, your <code>Task</code> implementation needs to implement the <code>ParameterizableTask</code> interface, and you can override the <code>initParameters</code> method to handle the user provided parameters.</p>
 <p>The saker.build system provides the default functionality for converting the user provided parameters and assigning them to the appropriate fields of your <code>Task</code> object. In order to use this, you need to annotate your fields with <a href="../../../javadoc/saker/build/task/utils/annot/SakerInput.html"><code>@SakerInput</code></a> and related annotations.</p>
 <p>A simplest example for the above is the following:</p>
-<pre><code class="language-java">@SakerInput
+<pre class="doc-code-block"><code class="language-java">@SakerInput
 public String MyValue;
 </code></pre>
 <p>Given that the above field is declared in your <code>ParameterizableTask</code> object, it can be used the following way:</p>
-<pre><code class="language-sakerscript"><span class="e">example.task(</span><span class="i">MyValue</span>: <span class="f">abcd123</span><span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e">example.task(</span><span class="i">MyValue</span>: <span class="f">abcd123</span><span class="e">)</span>
 </code></pre>
 <p>This way the <code>MyValue</code> field will have the <code>&quot;abcd123&quot;</code> value when the <code>run(TaskContext)</code> method is called.</p>
 <h2 id="conversion-mechanics">Conversion mechanics<a class="doc-heading-anchor" href="#conversion-mechanics"></a></h2>
@@ -86,7 +89,7 @@ public String MyValue;
 <p>If a task needs to specially handle some input parameter, override the <code>initParameters</code> function and act accordingly.</p>
 <h2 id="_datacontext"><code>@DataContext</code><a class="doc-heading-anchor" href="#_datacontext"></a></h2>
 <p>The <a href="../../../javadoc/saker/build/task/utils/annot/DataContext.html"><code>@DataContext</code></a> annotation can be used to encapsulate a set of parameters into a custom class. This can be beneficial if the parameters will be reused in other places. The parsing facility will assign the annotated fields of the data context object accordingly.</p>
-<pre><code class="language-java">public class MyParameters {
+<pre class="doc-code-block"><code class="language-java">public class MyParameters {
 	@SakerInput
 	public String MyValue;
 }
@@ -103,10 +106,10 @@ public MyParameters params;
 <p>Boxed primitive types work the same way.</p>
 <h3 id="types-with-valueof">Types with <code>valueOf</code><a class="doc-heading-anchor" href="#types-with-valueof"></a></h3>
 <p>If the parameter field has a type that declares at least one <code>static</code> <code>valueOf</code> method with a single parameter, the build system will attempt to use that method to convert the value to the given type. An example for this is <code>SakerPath</code>, where the <code>valueOf(String)</code> is used to convert the value.</p>
-<pre><code class="language-java">@SakerInput
+<pre class="doc-code-block"><code class="language-java">@SakerInput
 public SakerPath PathParam;
 </code></pre>
-<pre><code class="language-sakerscript"><span class="e">example.task(</span><span class="i">PathParam</span>: <span class="f">res/images</span><span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e">example.task(</span><span class="i">PathParam</span>: <span class="f">res/images</span><span class="e">)</span>
 </code></pre>
 <p>Will result in the <code>PathParam</code> be assigned to a <code>SakerPath</code> instance representing <code>res/images</code>.</p>
 <p>The <code>valueOf</code> methods are considered for conversion even if the target type is an interface.</p>
@@ -115,18 +118,18 @@ public SakerPath PathParam;
 <p>These interfaces should always be used with type parameters, and their declaration should not be raw. (I.e. use <code>List&lt;MyElementType&gt;</code> rather than plain <code>List</code>)</p>
 <p>When a value is being converted to a collection type, the build system will attempt to convert each element to the target type at an appropriate time. This can happen right away when the task parameters are assigned, or lazily when the elements are actually accessed.</p>
 <p>If the build system encounters a non-collection value for the given target, then it will attempt to enclose it into a singleton collection when appropriate.</p>
-<pre><code class="language-java">@SakerInput
+<pre class="doc-code-block"><code class="language-java">@SakerInput
 public List&lt;Integer&gt; IntsParam;
 </code></pre>
-<pre><code class="language-sakerscript"><span class="e">example.task(</span><span class="i">IntsParam</span>: <span class="f">123</span><span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e">example.task(</span><span class="i">IntsParam</span>: <span class="f">123</span><span class="e">)</span>
 <span class="e">example.task(</span><span class="i">IntsParam</span>: <span class="b">[</span><span class="f">1</span><span class="b">,</span> <span class="f">2</span><span class="b">,</span> <span class="f">3</span><span class="b">]</span><span class="e">)</span>
 </code></pre>
 <p>Both of the above parameterization of the tasks are valid, in the first case the <code>IntsParam</code> will have a value of <code>[123]</code>, while in the second case it will have <code>[1, 2, 3]</code> accordingly.</p>
 <p>Maps can be used similarly, but be noted that the key of the declared type should only be <code>String</code> or plain <code>Object</code>. Any other types may cause the map to work incorrectly.</p>
-<pre><code class="language-java">@SakerInput
+<pre class="doc-code-block"><code class="language-java">@SakerInput
 public Map&lt;String, Integer&gt; StringIntsParam;
 </code></pre>
-<pre><code class="language-sakerscript"><span class="e">example.task(</span><span class="i">StringIntsParam</span>: <span class="b">{</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e">example.task(</span><span class="i">StringIntsParam</span>: <span class="b">{</span>
 	<span class="h">First</span>: <span class="f">1</span><span class="b">,</span>
 	<span class="h">Second</span>: <span class="f">2</span><span class="b">,</span>
 <span class="b">}</span><span class="e">)</span>
@@ -135,18 +138,18 @@ public Map&lt;String, Integer&gt; StringIntsParam;
 <p>All collection and map instances assigned by the build system are immutable.</p>
 <h3 id="enums">Enums<a class="doc-heading-anchor" href="#enums"></a></h3>
 <p>The parameters of a task can be declared as <code>enum</code> types. The build system will convert them by looking up the enum value with the corresponding name.</p>
-<pre><code class="language-java">public enum MyEnum {
+<pre class="doc-code-block"><code class="language-java">public enum MyEnum {
 	VAL1, VAL2;
 }
 @SakerInput
 public MyEnum EnumParam;
 </code></pre>
-<pre><code class="language-sakerscript"><span class="e">example.task(</span><span class="i">EnumParam</span>: <span class="f">VAL2</span><span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e">example.task(</span><span class="i">EnumParam</span>: <span class="f">VAL2</span><span class="e">)</span>
 </code></pre>
 <p>The parameter field will be correctly assigned with the enum instance of <code>VAL2</code>.</p>
 <h3 id="interfaces">Interfaces<a class="doc-heading-anchor" href="#interfaces"></a></h3>
 <p>The task parameter types may be <code>interface</code> declarations which the build system will automatically implement based on the parameter value. This is usually advantageous when the parameter is expected to be a map, but the user code wants to handle it in a convenient way.</p>
-<pre><code class="language-java">public interface MyParamType {
+<pre class="doc-code-block"><code class="language-java">public interface MyParamType {
 	public String getValue();
 	
 	public int getNumber();
@@ -158,7 +161,7 @@ public MyEnum EnumParam;
 @SakerInput
 public MyParamType MyParam;
 </code></pre>
-<pre><code class="language-sakerscript"><span class="e">example.task(</span><span class="i">MyParam</span>: <span class="b">{</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e">example.task(</span><span class="i">MyParam</span>: <span class="b">{</span>
 	<span class="h">Value</span>: <span class="f">str</span><span class="b">,</span>
 	<span class="h">Number</span>: <span class="f">123</span><span class="b">,</span>
 <span class="b">}</span><span class="e">)</span>
@@ -198,7 +201,7 @@ public MyParamType MyParam;
 				<div data-footer-location="doc-docs"><a href="../../../doc/index.html" title="saker.build documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../../javadoc/index.html" title="JavaDoc for saker.build">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../../taskdoc/index.html"  title="Documentation of build tasks in saker.build">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.build on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.build" title="saker.build on GitHub">GitHub</a></div>
 			</div>
 		</div>	

@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				C/C++ compilation > <a href="compileroptions.html" title="Compiler options">Compiler options</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -69,19 +72,19 @@
 			<div class="doc-content"><h1 id="compiler-options">Compiler options<a class="doc-heading-anchor" href="#compiler-options"></a></h1>
 <p>The <a href="../../taskdoc/saker.msvc.ccompile.html"><code>saker.msvc.ccompile()</code></a> task allows dynamic option merging based on the identifier, architecture, and compilation language of the inputs. It can be used to define the compilation parameters in one place that can be applied to one or more compilation tasks selectively.</p>
 <p>A simple example for this is to define some macros for the preprocessor based on the compilation architecture:</p>
-<pre><code class="language-sakerscript"><span class="d">$options</span> = <span class="b">[</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d">$options</span> = <span class="b">[</span>
 	<span class="b">{</span>
 		<span class="h">Architecture</span>: <span class="f">x86</span><span class="b">,</span>
 		<span class="h">MacroDefinitions</span>: <span class="b">{</span>
-			<span class="h">MARCHITECTURE</span>: <span class="f">X86</span><span class="b">
-		}
-	},</span>
+			<span class="h">MARCHITECTURE</span>: <span class="f">X86</span>
+		<span class="b">}</span>
+	<span class="b">},</span>
 	<span class="b">{</span>
 		<span class="h">Architecture</span>: <span class="f">x64</span><span class="b">,</span>
 		<span class="h">MacroDefinitions</span>: <span class="b">{</span>
-			<span class="h">MARCHITECTURE</span>: <span class="f">X64</span><span class="b">
-		}
-	},</span>
+			<span class="h">MARCHITECTURE</span>: <span class="f">X64</span>
+		<span class="b">}</span>
+	<span class="b">},</span>
 <span class="b">]</span>
 <span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span>
 	<span class="f">src/**/*.cpp</span>,
@@ -97,20 +100,20 @@
 <p>The compilation tasks will be set up in a way that the <code>MARCHITECTURE</code> preprocessor macro will be defined with the value of <code>X86</code> when compiling for <code>x86</code> and with the value of <code>X64</code> when compiling for <code>x64</code> architecture.</p>
 <p>The mergeability of the options can also be decided based on the compilation <code>Identifier</code> and the <code>Language</code> of the compiled sources.</p>
 <p>This facility can be used to compile various inputs with different options dynamically. For example if we'd like to compile the sources for multiple languages, we can use multiple include directories based on the language:</p>
-<pre><code class="language-sakerscript"><span class="d">$options</span> = <span class="b">[</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d">$options</span> = <span class="b">[</span>
 	<span class="b">{</span>
 		<span class="h">Identifier</span>: <span class="f">en</span><span class="b">,</span>
-		<span class="h">IncludeDirectories</span>: <span class="f">inc/en</span><span class="b">
-	},</span>
+		<span class="h">IncludeDirectories</span>: <span class="f">inc/en</span>
+	<span class="b">},</span>
 	<span class="b">{</span>
 		<span class="h">Identifier</span>: <span class="f">de</span><span class="b">,</span>
-		<span class="h">IncludeDirectories</span>: <span class="f">inc/de</span><span class="b">
-	},</span>
+		<span class="h">IncludeDirectories</span>: <span class="f">inc/de</span>
+	<span class="b">},</span>
 	<span class="b">{</span>
 		<span class="h">Identifier</span>: <span class="f">es</span><span class="b">,</span>
-		<span class="h">IncludeDirectories</span>: <span class="f">inc/es</span><span class="b">
-	}
-]</span>
+		<span class="h">IncludeDirectories</span>: <span class="f">inc/es</span>
+	<span class="b">}</span>
+<span class="b">]</span>
 <span class="j">foreach </span><span class="d">$lang</span><span class="j"> in </span><span class="b">[</span><span class="f">en</span><span class="b">,</span> <span class="f">de</span><span class="b">,</span> <span class="f">es</span><span class="b">]</span> {
 	<span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span>
 		<span class="f">src/**/*.cpp</span>,
@@ -154,7 +157,7 @@
 				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.msvc documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.msvc">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.msvc">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.msvc" title="saker.msvc | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.msvc" title="saker.msvc | saker.nest">saker.msvc on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.msvc" title="saker.msvc on GitHub">GitHub</a></div>
 			</div>
 		</div>	

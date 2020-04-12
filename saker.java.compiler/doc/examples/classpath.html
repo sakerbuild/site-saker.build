@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Examples > <a href="classpath.html" title="Classpath">Classpath</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -68,7 +71,7 @@
 </div>
 			<div class="doc-content"><h1 id="classpath">Classpath<a class="doc-heading-anchor" href="#classpath"></a></h1>
 <p>You can add class paths to the compilation configuration in which case the classes on the class path will be visible for the compiled sources:</p>
-<pre><code class="language-sakerscript"><span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
 	<span class="i">SourceDirectories</span>: <span class="f">src</span>,
 	<span class="i">ClassPath: </span><span class="f">lib/my_library.jar</span>
 <span class="e">)</span>
@@ -76,17 +79,17 @@
 <p>In this case the classes in <code>lib/my_library.jar</code> will be accessible for the compiled classes in the <code>src</code> directory.</p>
 <h2 id="wildcards">Wildcards<a class="doc-heading-anchor" href="#wildcards"></a></h2>
 <p>You can add multiple class paths, and use wildcards as well:</p>
-<pre><code class="language-sakerscript"><span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
 	<span class="i">SourceDirectories</span>: <span class="f">src</span>,
 	<span class="i">ClassPath: </span><span class="b">[</span>
 		<span class="f">lib/*.jar</span><span class="b">,</span>
-		<span class="f">testlib/*.jar</span><span class="b">
-	]</span>
+		<span class="f">testlib/*.jar</span>
+	<span class="b">]</span>
 <span class="e">)</span>
 </code></pre>
 <h2 id="compilation-results">Compilation results<a class="doc-heading-anchor" href="#compilation-results"></a></h2>
 <p>You can add other compilation results to the input class path as well:</p>
-<pre><code class="language-sakerscript"><span class="d">$basejavac</span> = <span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span><span class="f">base</span><span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d">$basejavac</span> = <span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span><span class="f">base</span><span class="e">)</span>
 <span class="d">$libjavac</span> = <span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
 	<span class="i">SourceDirectories</span>: <span class="f">lib</span>,
 	<span class="i">ClassPath: </span><span class="d">$basejavac</span>
@@ -101,13 +104,13 @@
 <h2 id="bundles">Bundles<a class="doc-heading-anchor" href="#bundles"></a></h2>
 <p>See also: <a href="../javacompile/bundleclasspath.html" title="Bundle classpath">Bundle classpath</a></p>
 <p>The <a href="../../taskdoc/saker.java.classpath.bundle.html"><code>saker.java.classpath.bundle()</code></a> task allows creating classpath for a given set of saker.nest bundles:</p>
-<pre><code class="language-sakerscript"><span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
 	<span class="i">SourceDirectories</span>: <span class="f">src</span>,
 	<span class="i">ClassPath: </span><span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.classpath.bundle.html" title="Task: saker.java.classpath.bundle()">saker.java.classpath.bundle</a>(</span><span class="f">example.bundle-v1.0</span><span class="e">)</span>
 <span class="e">)</span>
 </code></pre>
 <p>You can also resolve the dependencies of the specified bundle:</p>
-<pre><code class="language-sakerscript"><span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
 	<span class="i">SourceDirectories</span>: <span class="f">src</span>,
 	<span class="i">ClassPath: </span><span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.classpath.bundle.html" title="Task: saker.java.classpath.bundle()">saker.java.classpath.bundle</a>(</span>
 		<span class="e"><a href="../../../nest.repository.support/taskdoc/nest.dependency.resolve.html" title="Task: nest.dependency.resolve()">nest.dependency.resolve</a>(</span>
@@ -151,7 +154,7 @@
 				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.java.compiler documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.java.compiler">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.java.compiler">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.java.compiler" title="saker.java.compiler | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.java.compiler" title="saker.java.compiler | saker.nest">saker.java.compiler on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.java.compiler" title="saker.java.compiler on GitHub">GitHub</a></div>
 			</div>
 		</div>	

@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Examples > <a href="sdkpaths.html" title="SDK paths">SDK paths</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -68,7 +71,7 @@
 </div>
 			<div class="doc-content"><h1 id="sdk-paths">SDK paths<a class="doc-heading-anchor" href="#sdk-paths"></a></h1>
 <p>SDK paths can be referenced using the <a href="../../taskdoc/sdk.path.html"><code>sdk.path()</code></a> task. This example is based on the <a href="../../../saker.java.compiler/doc/examples/jnicompile.html" title="JNI compilation">JNI compilation</a> example from the <a href="../../../saker.java.compiler/index.html" title="Index">saker.java.compiler</a> package.</p>
-<pre><code class="language-sakerscript"><span class="d">$javac</span> = <span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d">$javac</span> = <span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
 	<span class="c"># ...</span>
 <span class="e">)</span>
 <span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span>
@@ -77,12 +80,12 @@
 		<span class="h">IncludeDirectories</span>: <span class="b">[</span>
 			<span class="e"><a href="../../../saker.sdk.support/taskdoc/sdk.path.html" title="Task: sdk.path()">sdk.path</a>(</span><span class="f">java</span>, <span class="i">Identifier: </span><span class="f">include</span><span class="e">)</span><span class="b">,</span>
 			<span class="e"><a href="../../../saker.sdk.support/taskdoc/sdk.path.html" title="Task: sdk.path()">sdk.path</a>(</span><span class="f">java</span>, <span class="i">Identifier: </span><span class="f">include.platform</span><span class="e">)</span><span class="b">,</span>
-			<span class="d">$javac</span><span class="g">[</span><span class="h">HeaderDirectory</span><span class="g">]</span><span class="b">
-		]
-	}</span>,
+			<span class="d">$javac</span><span class="g">[</span><span class="h">HeaderDirectory</span><span class="g">]</span>
+		<span class="b">]</span>
+	<span class="b">}</span>,
 	<span class="i">SDKs: </span><span class="b">{</span>
-		<span class="h">Java</span>: <span class="d">$javac</span><span class="g">[</span><span class="h">JavaSDK</span><span class="g">]</span><span class="b">
-	}</span>
+		<span class="h">Java</span>: <span class="d">$javac</span><span class="g">[</span><span class="h">JavaSDK</span><span class="g">]</span>
+	<span class="b">}</span>
 <span class="e">)</span>
 </code></pre>
 <p>In the above example we can see that for the <a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html"><code>saker.msvc.ccompile()</code></a> task, we specify the <code>Java</code> SDK as an input, and add include directories (<code>IncludeDirectories</code>) that are path references from the Java SDK.</p>
@@ -120,7 +123,7 @@
 				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.sdk.support documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.sdk.support">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.sdk.support">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.sdk.support" title="saker.sdk.support | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.sdk.support" title="saker.sdk.support | saker.nest">saker.sdk.support on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.sdk.support" title="saker.sdk.support on GitHub">GitHub</a></div>
 			</div>
 		</div>	

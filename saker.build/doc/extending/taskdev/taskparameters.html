@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Extending saker.build > <a href="index.html" title="Task development">Task development</a> > <a href="taskparameters.html" title="Task parameters">Task parameters</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -69,19 +72,19 @@
 			<div class="doc-content"><h1 id="task-parameters">Task parameters<a class="doc-heading-anchor" href="#task-parameters"></a></h1>
 <p>Tasks don't just automatically accept parameters from external sources. That is, you need to take extra measures in order to make your tasks parameterizable from build scripts. In order to support this, the build system defines the <code>ParameterizableTask</code> extension interface.</p>
 <p>
-<pre><code class="language-java">public Task&lt;? extends Void&gt; createTask(ExecutionContext executioncontext) {	return new ParameterizableTask&lt;Void&gt;() {		private Object parameter;
+<pre class="doc-code-block"><code class="language-java">public Task&lt;? extends Void&gt; createTask(ExecutionContext executioncontext) {	return new ParameterizableTask&lt;Void&gt;() {		private Object parameter;
 		@Override		public Void run(TaskContext taskcontext) throws Exception {			taskcontext.println(Objects.toString(parameter));			return null;		}
 		@Override		public void initParameters(TaskContext taskcontext,				NavigableMap&lt;String, ? extends TaskIdentifier&gt; parameters)						throws TaskParameterException {			parameter = taskcontext.getTaskResult(parameters.get(&quot;Parameter&quot;));		}	};}</code></pre>
 </p>
 <p>In the above, instead of creating a task instance of <code>Task</code>, we create an instance of <code>ParameterizableTask</code>. The <code>ParameterizableTask</code> interface contains the interface method <code>initParameters</code> which is called by the build system before <code>run(TaskContext)</code>. It is an initialization method that allows the task object to retrieve and assign the parameters of the task.</p>
 <p>Running the above example in the following way:</p>
-<pre><code class="language-sakerscript"><span class="e">example.task(</span><span class="i">Parameter</span>: <span class="f">&quot;Hello world!&quot;</span><span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e">example.task(</span><span class="i">Parameter</span>: <span class="f">&quot;Hello world!&quot;</span><span class="e">)</span>
 </code></pre>
 <p>Will print out <code>&quot;Hello world!&quot;</code> accordingly.</p>
 <p>The parameters are available through the <code>Map</code> argument which contains all the named parameters that were given to the task invocation. Each <code>String</code> key maps to the identifier of a task that provides the value of the given parameter. You can use the task context to retrieve the results for the given parameter task identifier, or handle the identifier in any other ways.</p>
 <p><code>ParameterizableTask</code> comes with a default implementation that assign the annotated field parameters of a task objects based on their annotations. See <a href="parameterparsing.html" title="Parameter parsing">Parameter parsing</a> for more information about it. Using the default mechanism, the above is roughly equivalent to the following:</p>
 <p>
-<pre><code class="language-java">return new ParameterizableTask&lt;Void&gt;() {	@SakerInput(value = &quot;Parameter&quot;, required = true)	public String parameter;
+<pre class="doc-code-block"><code class="language-java">return new ParameterizableTask&lt;Void&gt;() {	@SakerInput(value = &quot;Parameter&quot;, required = true)	public String parameter;
 	@Override	public Void run(TaskContext taskcontext) throws Exception {		taskcontext.println(parameter);		return null;	}};</code></pre>
 </p>
 <p>In which case the <code>Parameter</code> will be automatically assigned and converted to the <code>String parameter</code> field when the default implementation of <code>initParameters</code> is called.</p>
@@ -118,7 +121,7 @@
 				<div data-footer-location="doc-docs"><a href="../../../doc/index.html" title="saker.build documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../../javadoc/index.html" title="JavaDoc for saker.build">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../../taskdoc/index.html"  title="Documentation of build tasks in saker.build">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.build on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.build" title="saker.build on GitHub">GitHub</a></div>
 			</div>
 		</div>	

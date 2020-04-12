@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Development guide > <a href="runtimeaccess.html" title="Accessing the repository runtime">Accessing the repository runtime</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -69,7 +72,7 @@
 			<div class="doc-content"><h1 id="accessing-the-repository-runtime">Accessing the repository runtime<a class="doc-heading-anchor" href="#accessing-the-repository-runtime"></a></h1>
 <p>When developing Java classes that are loaded by the repository runtime, you may occasionally access the repository runtime and its functionality. You can do that through the <code>ClassLoader</code> of a class that was loaded by the runtime.</p>
 <p>Code sample for a class that has been loaded by the saker.nest repository:</p>
-<pre><code class="language-java">import saker.nest.bundle.NestBundleClassLoader;
+<pre class="doc-code-block"><code class="language-java">import saker.nest.bundle.NestBundleClassLoader;
 
 NestBundleClassLoader nestcl = (NestBundleClassLoader) this.getClass()
 	.getClassLoader();
@@ -110,7 +113,7 @@ NestBundleClassLoader nestcl = (NestBundleClassLoader) this.getClass()
 				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.nest documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.nest">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.nest">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.nest" title="saker.nest | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.nest" title="saker.nest | saker.nest">saker.nest on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.nest" title="saker.nest on GitHub">GitHub</a></div>
 			</div>
 		</div>	

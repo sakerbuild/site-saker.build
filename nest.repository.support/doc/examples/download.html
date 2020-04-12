@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Examples > <a href="download.html" title="Download bundles">Download bundles</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -69,16 +72,16 @@
 			<div class="doc-content"><h1 id="download-bundles">Download bundles<a class="doc-heading-anchor" href="#download-bundles"></a></h1>
 <p>See also: <a href="../bundlemanagement/download.html" title="Bundle downloading">Bundle downloading</a></p>
 <p>Downloading bundles is the process of making them present in the build execution file hierarchy. The <a href="../../taskdoc/nest.bundle.download.html"><code>nest.bundle.download()</code></a> task performs this operation:</p>
-<pre><code class="language-sakerscript"><span class="e"><a href="../../../nest.repository.support/taskdoc/nest.bundle.download.html" title="Task: nest.bundle.download()">nest.bundle.download</a>(</span><span class="b">[</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../nest.repository.support/taskdoc/nest.bundle.download.html" title="Task: nest.bundle.download()">nest.bundle.download</a>(</span><span class="b">[</span>
 	<span class="f">example.bundle-v1.0</span><span class="b">,</span>
-	<span class="f">second.bundle-v2.0</span><span class="b">
-]</span><span class="e">)</span>
+	<span class="f">second.bundle-v2.0</span>
+<span class="b">]</span><span class="e">)</span>
 </code></pre>
 <p>The above example will find the bundles with the specified identifiers, and download them accordingly.</p>
 <p>You can also specify the output of task resolution as the input for the task:</p>
-<pre><code class="language-sakerscript"><span class="e"><a href="../../../nest.repository.support/taskdoc/nest.bundle.download.html" title="Task: nest.bundle.download()">nest.bundle.download</a>(<a href="../../../nest.repository.support/taskdoc/nest.dependency.resolve.html" title="Task: nest.dependency.resolve()">nest.dependency.resolve</a>(</span><span class="b">[</span>
-	<span class="f">example.bundle</span><span class="b">
-]</span><span class="e">))</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../nest.repository.support/taskdoc/nest.bundle.download.html" title="Task: nest.bundle.download()">nest.bundle.download</a>(<a href="../../../nest.repository.support/taskdoc/nest.dependency.resolve.html" title="Task: nest.dependency.resolve()">nest.dependency.resolve</a>(</span><span class="b">[</span>
+	<span class="f">example.bundle</span>
+<span class="b">]</span><span class="e">))</span>
 </code></pre>
 <p>The above will resolve the dependencies of <code>example.bundle</code>, and download all dependent bundles (including <code>example.bundle</code>).</p>
 <link href="../../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>
@@ -114,7 +117,7 @@
 				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="nest.repository.support documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for nest.repository.support">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in nest.repository.support">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/nest.repository.support" title="nest.repository.support | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/nest.repository.support" title="nest.repository.support | saker.nest">nest.repository.support on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/nest.repository.support" title="nest.repository.support on GitHub">GitHub</a></div>
 			</div>
 		</div>	

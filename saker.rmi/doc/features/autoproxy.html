@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Features > <a href="autoproxy.html" title="Automatic proxies">Automatic proxies</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -70,17 +73,17 @@
 <p>The Saker.rmi library automatically creates proxies when necessary. This is in order to provide the implementational <a href="transparency.html" title="Transparency">transparency</a> for the callers, and for proper cooperation between the connection endpoints.</p>
 <p>By default, you can retrieve RMI proxies by either accessing them by name, or explicitly constructing a new object on the other endpoint. However, when calling methods on proxy objects, the arguments or results may be passed as proxy objects rather by serializing them in other ways.</p>
 <p>Taking the example from <a href="backdispatch.html" title="Request back dispatch">Request back dispatch</a>, we work with the following <code>Stub</code>:</p>
-<pre><code class="language-java">public interface Stub {
+<pre class="doc-code-block"><code class="language-java">public interface Stub {
 	public int count(IntPredicate predicate);
 }
 </code></pre>
 <p>When we call the <code>count()</code> method with additional RMI connection configuration in place, the argument will be transferred as a new RMI proxy.</p>
-<pre><code class="language-java">Stub s;
+<pre class="doc-code-block"><code class="language-java">Stub s;
 s.count(i -&gt; i % 2 == 0);
 </code></pre>
 <p>In the above, the lambda argument will be transferred as a proxy. This means that every time its <code>test()</code> method is called, a new RMI request is issued on the connection. In this case, the repeated calls of <code>test()</code> in a loop may cause performance degradation and we recommend specifying the transfer configuration for that argument in a way that is efficient.</p>
 <p>The automatic proxy creation is important to keep the <a href="transparency.html" title="Transparency">transparency</a> requirements of the library, while also allows convenient service declaration. An example for this when one wants to access a specific service from a service provider:</p>
-<pre><code class="language-java">public interface ServiceProviderStub {
+<pre class="doc-code-block"><code class="language-java">public interface ServiceProviderStub {
 	public FileSystemStub getFileSystem();
 }
 </code></pre>
@@ -119,7 +122,7 @@ s.count(i -&gt; i % 2 == 0);
 				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.rmi documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.rmi">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.rmi">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.rmi" title="saker.rmi | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.rmi" title="saker.rmi | saker.nest">saker.rmi on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.rmi" title="saker.rmi on GitHub">GitHub</a></div>
 			</div>
 		</div>	

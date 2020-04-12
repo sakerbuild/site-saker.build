@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Maven support > <a href="resolution.html" title="Dependency resolution">Dependency resolution</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -70,43 +73,43 @@
 <p>The <a href="../../taskdoc/saker.maven.resolve.html"><code>saker.maven.resolve()</code></a> task supports resolving artifact dependencies. The task can operate with any of the following inputs:</p>
 <h5 id="artifact-coordinates">Artifact coordinates<a class="doc-heading-anchor" href="#artifact-coordinates"></a></h5>
 <p>You can specify the artifact coordinates for which the dependencies should be resolved:</p>
-<pre><code class="language-sakerscript"><span class="e"><a href="../../../saker.maven.support/taskdoc/saker.maven.resolve.html" title="Task: saker.maven.resolve()">saker.maven.resolve</a>(</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.maven.support/taskdoc/saker.maven.resolve.html" title="Task: saker.maven.resolve()">saker.maven.resolve</a>(</span>
 	<span class="i">Artifacts</span>: <span class="b">[</span>
 		<span class="f">&quot;junit:junit:4.12&quot;</span><span class="b">,</span>
-		<span class="f">&quot;org.slf4j:slf4j-api:1.7.19&quot;</span><span class="b">
-	]</span>
+		<span class="f">&quot;org.slf4j:slf4j-api:1.7.19&quot;</span>
+	<span class="b">]</span>
 <span class="e">)</span>
 </code></pre>
 <p>In this case the artifact dependencies are resolved using the <code>compile</code> scope. In the above scenario the result of the resolution will be:</p>
-<pre><code class="language-plaintext">junit:junit:jar:4.12
+<pre class="doc-code-block"><code class="language-plaintext">junit:junit:jar:4.12
 org.slf4j:slf4j-api:jar:1.7.19
 org.hamcrest:hamcrest-core:jar:1.3
 </code></pre>
 <p>The specified artifact coordinates are expected to have the following format:</p>
-<pre><code class="language-plaintext">&lt;groupId&gt;:&lt;artifactId&gt;[:&lt;extension&gt;[:&lt;classifier&gt;]]:&lt;version&gt;
+<pre class="doc-code-block"><code class="language-plaintext">&lt;groupId&gt;:&lt;artifactId&gt;[:&lt;extension&gt;[:&lt;classifier&gt;]]:&lt;version&gt;
 </code></pre>
 <h5 id="dependencies">Dependencies<a class="doc-heading-anchor" href="#dependencies"></a></h5>
 <p>The dependencies can also be speified with the scopes and exclusions as well:</p>
-<pre><code class="language-sakerscript"><span class="e"><a href="../../../saker.maven.support/taskdoc/saker.maven.resolve.html" title="Task: saker.maven.resolve()">saker.maven.resolve</a>(</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.maven.support/taskdoc/saker.maven.resolve.html" title="Task: saker.maven.resolve()">saker.maven.resolve</a>(</span>
 	<span class="i">Dependencies</span>: <span class="b">{</span>
 		<span class="h">&quot;junit:junit:4.12&quot;</span>: <span class="b">{</span>
 			<span class="h">Scope</span>: <span class="f">test</span><span class="b">,</span>
-			<span class="h">Exclusions</span>: <span class="f">&quot;org.hamcrest:hamcrest-core&quot;</span><span class="b">
-		}
-	}</span>
+			<span class="h">Exclusions</span>: <span class="f">&quot;org.hamcrest:hamcrest-core&quot;</span>
+		<span class="b">}</span>
+	<span class="b">}</span>
 <span class="e">)</span>
 </code></pre>
 <p>In the above we specify a dependency on <code>junit</code> with the <code>test</code> scope, however exclude the transitive inclusion of the <code>org.hamcrest:hamcrest-core</code> artifact.</p>
 <p>The keys of the <code>Dependencies</code> map specify the dependency artifact, while the value map can configure the nature of the dependency. If we don't want to specify exclusions, we can simply pass the scope as the value:</p>
-<pre><code class="language-sakerscript"><span class="e"><a href="../../../saker.maven.support/taskdoc/saker.maven.resolve.html" title="Task: saker.maven.resolve()">saker.maven.resolve</a>(</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.maven.support/taskdoc/saker.maven.resolve.html" title="Task: saker.maven.resolve()">saker.maven.resolve</a>(</span>
 	<span class="i">Dependencies</span>: <span class="b">{</span>
-		<span class="h">&quot;junit:junit:4.12&quot;</span>: <span class="f">test</span><span class="b">
-	}</span>
+		<span class="h">&quot;junit:junit:4.12&quot;</span>: <span class="f">test</span>
+	<span class="b">}</span>
 <span class="e">)</span>
 </code></pre>
 <h5 id="pom_xml"><code>pom.xml</code><a class="doc-heading-anchor" href="#pom_xml"></a></h5>
 <p>The task can also resolve the dependencies of a <code>pom.xml</code> file:</p>
-<pre><code class="language-sakerscript"><span class="e"><a href="../../../saker.maven.support/taskdoc/saker.maven.resolve.html" title="Task: saker.maven.resolve()">saker.maven.resolve</a>(</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.maven.support/taskdoc/saker.maven.resolve.html" title="Task: saker.maven.resolve()">saker.maven.resolve</a>(</span>
 	<span class="i">Pom</span>: <span class="f">pom.xml</span>
 <span class="e">)</span>
 </code></pre>
@@ -147,7 +150,7 @@ org.hamcrest:hamcrest-core:jar:1.3
 				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.maven.support documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.maven.support">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.maven.support">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.maven.support" title="saker.maven.support | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.maven.support" title="saker.maven.support | saker.nest">saker.maven.support on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.maven.support" title="saker.maven.support on GitHub">GitHub</a></div>
 			</div>
 		</div>	

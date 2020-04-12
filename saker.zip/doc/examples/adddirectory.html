@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Examples > <a href="adddirectory.html" title="Add directory tree">Add directory tree</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -68,22 +71,22 @@
 </div>
 			<div class="doc-content"><h1 id="add-directory-tree">Add directory tree<a class="doc-heading-anchor" href="#add-directory-tree"></a></h1>
 <p>You can add multiple files that are present in a directory the following way:</p>
-<pre><code class="language-sakerscript"><span class="e"><a href="../../../saker.zip/taskdoc/saker.zip.create.html" title="Task: saker.zip.create()">saker.zip.create</a>(</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.zip/taskdoc/saker.zip.create.html" title="Task: saker.zip.create()">saker.zip.create</a>(</span>
 	<span class="i">Resources</span>: <span class="b">[</span>
 		<span class="b">{</span>
 			<span class="h">Directory</span>: <span class="f">res</span><span class="b">,</span>
-			<span class="h">Resources</span>: <span class="f">**</span><span class="b">
-		},</span>
+			<span class="h">Resources</span>: <span class="f">**</span>
+		<span class="b">},</span>
 		<span class="b">{</span>
 			<span class="h">Directory</span>: <span class="f">images</span><span class="b">,</span>
 			<span class="h">Resources</span>: <span class="f">**/*.png</span><span class="b">,</span>
-			<span class="h">TargetDirectory</span>: <span class="f">img</span><span class="b">
-		}
-	]</span>
+			<span class="h">TargetDirectory</span>: <span class="f">img</span>
+		<span class="b">}</span>
+	<span class="b">]</span>
 <span class="e">)</span>
 </code></pre>
 <p>Let's assume that we have the following hierarchy in the <em>working directory</em> of the task:</p>
-<pre><code class="language-plaintext">readme.txt
+<pre class="doc-code-block"><code class="language-plaintext">readme.txt
 res/file.txt
 res/dir/dirfile.txt
 images/favicon.ico
@@ -91,7 +94,7 @@ images/icon.png
 images/bg/background.png
 </code></pre>
 <p>If we call the above task, the contents of the archive will be the following:</p>
-<pre><code class="language-plaintext">file.txt
+<pre class="doc-code-block"><code class="language-plaintext">file.txt
 dir/dirfile.txt
 img/icon.png
 img/bg/background.png
@@ -131,7 +134,7 @@ img/bg/background.png
 				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.zip documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.zip">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.zip">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.zip" title="saker.zip | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.zip" title="saker.zip | saker.nest">saker.zip on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.zip" title="saker.zip on GitHub">GitHub</a></div>
 			</div>
 		</div>	

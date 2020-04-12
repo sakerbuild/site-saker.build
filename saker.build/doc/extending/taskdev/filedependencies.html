@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Extending saker.build > <a href="index.html" title="Task development">Task development</a> > <a href="filehandling.html" title="File handling">File handling</a> > <a href="filedependencies.html" title="File dependencies">File dependencies</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -71,38 +74,38 @@
 <h2 id="input-dependency">Input dependency<a class="doc-heading-anchor" href="#input-dependency"></a></h2>
 <p>The below example task simply returns the contents of a file for a given path:</p>
 <p>
-<pre><code class="language-java">@SakerInput(required = true)public SakerPath Path;
+<pre class="doc-code-block"><code class="language-java">@SakerInput(required = true)public SakerPath Path;
 @Overridepublic String run(TaskContext taskcontext) throws Exception {	SakerFile file = taskcontext.getTaskUtilities().resolveAtPath(Path);	if (file == null) {		throw new NoSuchFileException(Path.toString());	}	taskcontext.reportInputFileDependency(null, 			Path, file.getContentDescriptor());	return file.getContent();}</code></pre>
 </p>
 <p>If we setup an environment that contains a <code>file.txt</code> named file in the working directory, with <code>abcd123</code> as its contents, then the following will print out exactly that:</p>
-<pre><code class="language-sakerscript"><span class="d">$contents</span> = <span class="e">example.filecontents(</span><span class="i">Path</span>: <span class="f">file.txt</span><span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d">$contents</span> = <span class="e">example.filecontents(</span><span class="i">Path</span>: <span class="f">file.txt</span><span class="e">)</span>
 <span class="e"><a href="../../../../saker.build/doc/scripting/builtintasks/print.html" title="Task: print()">print</a>(</span><span class="d">$contents</span><span class="e">)</span>
 </code></pre>
 <p>If we run the build without any changes, it will print out the contents again without rerunning our task. However, if we modify the contents of <code>file.txt</code> to <code>xyz456</code>, and rerun the build, our task will rerun accordingly, because a dependency for the input file was reported, and the build system can detect the file changes.</p>
 <p>In the task implementation we used the task utilities to resolve a file at a given path. The task utilities is an object that provides various convenience functions for dealing with tasks.</p>
-<pre><code class="language-java">SakerFile file = taskcontext.getTaskUtilities().resolveAtPath(Path);
+<pre class="doc-code-block"><code class="language-java">SakerFile file = taskcontext.getTaskUtilities().resolveAtPath(Path);
 if (file == null) {
 	throw new NoSuchFileException(Path.toString());
 }
 </code></pre>
 <p>If the file is not found at the given path, <code>null</code> is returned, signaling its absence. We throw an exception in order to signal the user the failure. The build task in this case will not complete successfully, and if the build is rerun, it will be invoked again.</p>
 <p>The build tasks are required to report input (and output) dependencies using the following (and output correspondent) method:</p>
-<pre><code class="language-java">taskcontext.reportInputFileDependency(null, Path, file.getContentDescriptor());
+<pre class="doc-code-block"><code class="language-java">taskcontext.reportInputFileDependency(null, Path, file.getContentDescriptor());
 </code></pre>
 <p>The <code>null</code> argument corresponds to the <a href="filedependencies.html#dependency-tags" title="Dependency tags">tag</a> of the dependency. The dependency is recorded as a path-content descriptor pair. When a new build execution is started, these pairs will be examined against the current state of the files, and if any changes are detected, the task will be rerun. Reporting an input file dependency is basically saying that <em>&quot;I expect the file at this path to have this contents.&quot;</em>.</p>
 <h2 id="output-dependency">Output dependency<a class="doc-heading-anchor" href="#output-dependency"></a></h2>
 <p>The below task calculates the sum of two integer parameters and writes them to a file under the build directory:</p>
 <p>
-<pre><code class="language-java">@SakerInputpublic int Left;@SakerInputpublic int Right;
+<pre class="doc-code-block"><code class="language-java">@SakerInputpublic int Left;@SakerInputpublic int Right;
 @Overridepublic Void run(TaskContext taskcontext) throws Exception {	SakerDirectory builddir = taskcontext.getTaskBuildDirectory();	if (builddir == null) {		throw new MissingConfigurationException(				&quot;Task requires build directory for output.&quot;);	}	int sum = Left + Right;	ByteArraySakerFile outfile = new ByteArraySakerFile(&quot;sum.txt&quot;, 			Integer.toString(sum).getBytes(StandardCharsets.UTF_8));	builddir.getDirectoryCreate(&quot;example.sum.file&quot;).add(outfile);	outfile.synchronize();		taskcontext.reportOutputFileDependency(null, 			outfile.getSakerPath(), outfile.getContentDescriptor());	return null;}</code></pre>
 </p>
 <p>When used with the following build script:</p>
-<pre><code class="language-sakerscript"><span class="e">example.sum.file(</span><span class="i">Left</span>: <span class="f">4</span>, <span class="i">Right: </span><span class="f">6</span><span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e">example.sum.file(</span><span class="i">Left</span>: <span class="f">4</span>, <span class="i">Right: </span><span class="f">6</span><span class="e">)</span>
 </code></pre>
 <p>A file will be created with the path <code>example.sum.file/sum.txt</code> under the build directory with the contents of <code>10</code>.</p>
 <p>The file dependencies are reported in similar way to the input dependency reporting. If anybody modifies the created <code>sum.txt</code>, and the build executions is rerun, then our task will be rerun as well, as the build system detected that one of our output dependencies have changed. As a result the task will recreate the <code>sum.txt</code> again. Reporting an output file dependency is basically saying that <em>&quot;I've put a file to this path with these contents&quot;</em>.</p>
 <p>We've put the file in the in-memory file tree, and we need to synchronize the contents as well, using the following call:</p>
-<pre><code class="language-java">outfile.synchronize();
+<pre class="doc-code-block"><code class="language-java">outfile.synchronize();
 </code></pre>
 <p>This ensures that the file will be persisted to the appropriate disk location, and will not only exist in the memory.<br />
 <em>The build system will not automatically synchronize the output files.</em></p>
@@ -148,7 +151,7 @@ If the user changes a header file, the task will receive a file change dlta with
 				<div data-footer-location="doc-docs"><a href="../../../doc/index.html" title="saker.build documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../../javadoc/index.html" title="JavaDoc for saker.build">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../../taskdoc/index.html"  title="Documentation of build tasks in saker.build">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.build on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.build" title="saker.build on GitHub">GitHub</a></div>
 			</div>
 		</div>	

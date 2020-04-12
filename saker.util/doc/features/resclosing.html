@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Features > <a href="resclosing.html" title="Resource closing">Resource closing</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -68,7 +71,7 @@
 </div>
 			<div class="doc-content"><h1 id="resource-closing">Resource closing<a class="doc-heading-anchor" href="#resource-closing"></a></h1>
 <p>There are <em>many</em> cases when a class holds multiple managed resources that need to be closed when the class itself is closed. The <a href="../../javadoc/saker/util/io/IOUtils.html"><code>IOUtils</code></a> class provides some utility functions that <a href="https://docs.oracle.com/javase/8/docs/api/java/io/Closeable.html" title="Closeable (Java Platform SE 8 )">close</a> the resources in a simpler way.</p>
-<pre><code class="language-java">public class MyResourceHolder implements Closeable {
+<pre class="doc-code-block"><code class="language-java">public class MyResourceHolder implements Closeable {
 	private InputStream input;
 	private ZipFile zip;
 	private RandomAccessFile file;
@@ -80,7 +83,7 @@
 }
 </code></pre>
 <p>In the above, we close the resources in the class using a single function call. If we didn't use that, we would've needed to write multiple try-catch blocks:</p>
-<pre><code class="language-java">try {
+<pre class="doc-code-block"><code class="language-java">try {
 	input.close();
 } finally {
 	try {
@@ -92,7 +95,7 @@
 </code></pre>
 <p>And even in this case, if multiple <code>close()</code> calls fail, some of the exceptions may be not part of the actually thrown one.</p>
 <p>There are workarounds for more cleaner code:</p>
-<pre><code class="language-java">try (InputStream input = this.input;
+<pre class="doc-code-block"><code class="language-java">try (InputStream input = this.input;
 		ZipFile zip = this.zip;
 		RandomAccessFile file = this.file) {
 }
@@ -131,7 +134,7 @@
 				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.util documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.util">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.util">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.util" title="saker.util | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.util" title="saker.util | saker.nest">saker.util on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.util" title="saker.util on GitHub">GitHub</a></div>
 			</div>
 		</div>	

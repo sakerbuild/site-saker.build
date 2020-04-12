@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Scripting language > <a href="../../index.html" title="Language reference">Language reference</a> > <a href="../index.html" title="Operators">Operators</a> > <a href="index.html" title="Subscript">Subscript</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -69,21 +72,21 @@
 			<div class="doc-content"><h1 id="subscript">Subscript<a class="doc-heading-anchor" href="#subscript"></a></h1>
 <p>The subscript operator is used to retrieve the specified component of the subject expression. The subscript operator can be used on <a href="../../literals/index.html#lists" title="Lists">lists</a>, <a href="../../literals/index.html#maps" title="Maps">maps</a>, and arbitrary objects from external sources.</p>
 <p>The behaviour of the operator is based on the subject expression value.</p>
-<ul>
+<ul class="doc-md-list">
 <li>If the subject is a list, then the index expression will be interpreted to be a zero-based index in the subject list.</li>
 <li>If the subject is a map, then the index is interpreted to be a string key into the subject map, and will retrieve the corresponding value for it. The same applies if the subject is a result object from a build target invocation.</li>
 <li>In any other case, the language implementation will try to retrieve an uniquely identifiable data from the subject object. In the saker.build system implementation it will search for a no-arg method with the name of <code>get&lt;index&gt;()</code> or <code>get_&lt;index&gt;()</code> and call it appropriately.</li>
 </ul>
 <p>The subscript operator can use partially computed subject objects, meaning that it may retrieve fields of an objects for which the corresponding value expression is still being evaluated by the interpreter.</p>
 <p>The subscript operator will throw a runtime exception if the value for the given index is not found. In case of maps, it won't result in <code>null</code>, but in an error if the key is not found. Note however, if subscripting occurs on an external object, it still can result in <code>null</code>.</p>
-<pre><code class="language-sakerscript"><span class="c"># example datas</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="c"># example datas</span>
 <span class="d">$list</span> = <span class="b">[</span><span class="f">1st</span><span class="b">,</span> <span class="f">2nd</span><span class="b">,</span> <span class="f">3rd</span><span class="b">]</span>
 <span class="d">$map</span> = <span class="b">{</span>
 	<span class="h">NumKey</span>: <span class="f">123</span><span class="b">,</span>
 	<span class="h">ListKey</span>: <span class="b">[</span><span class="f">1</span><span class="b">,</span> <span class="f">2</span><span class="b">,</span> <span class="f">3</span><span class="b">],</span>
 	<span class="h">MapKey</span>: <span class="b">{</span>
-		<span class="h">SecondNum</span>: <span class="f">456</span><span class="b">
-	},</span>
+		<span class="h">SecondNum</span>: <span class="f">456</span>
+	<span class="b">},</span>
 <span class="b">}</span>
 
 <span class="c"># evaluates to 1st</span>
@@ -140,7 +143,7 @@
 				<div data-footer-location="doc-docs"><a href="../../../../../doc/index.html" title="saker.build documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../../../../javadoc/index.html" title="JavaDoc for saker.build">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../../../../taskdoc/index.html"  title="Documentation of build tasks in saker.build">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.build on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.build" title="saker.build on GitHub">GitHub</a></div>
 			</div>
 		</div>	

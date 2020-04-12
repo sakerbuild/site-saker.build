@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				User guide > <a href="pathconfiguration.html" title="Path configuration">Path configuration</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -70,10 +73,10 @@
 <p>One important aspect of saker.build system is that it maintains its own file tree representation for the files that it works with. This entails that the files are accessible using different paths than the actual file system that the build is running on.</p>
 <p>Users can configure the paths in the build system to point to various locations on the local or remote file systems. This enables running a build that uses files from multiple computers and making them transparently accessible.</p>
 <p>All absolute paths in the build system have a root name and the specified path names associated with it. The root names can be in the following format:</p>
-<ul>
+<ul class="doc-md-list">
 <li>Simple <code>/</code> character which matches the Unix root drive semantics.</li>
 <li>A named drive root name which contains lowercase characters in the range of <code>'a'</code> - <code>'z'</code>. This matches the Windows root drive semantics.
-<ul>
+<ul class="doc-md-list">
 <li>E.g. <code>wd:</code> for working directory, <code>bd:</code> for build directory, and other arbitrary names that can be specified by the user.</li>
 </ul>
 </li>
@@ -82,7 +85,7 @@
 <p>If you run a build without any explicit path configuration, it will be based on the current working directory of the Java process. For example:</p>
 <p>If the current working directory of the build process is <code>/home/dev</code>, the working directory root for the build execution will be: <code>wd:</code> . It will be mapped to the <code>/home/dev</code> path.</p>
 <p>The build execution roots will be the following:</p>
-<pre><code>wd: -&gt; /home/dev
+<pre class="doc-code-block"><code>wd: -&gt; /home/dev
 </code></pre>
 <p>This way, if you want to reference an absolute path in the build system, you can't use <code>/home/dev/myfile</code>, but need to use <code>wd:/myfile</code>, as the build system has no notion of the <code>/</code> root specified in the former path.</p>
 <p>Another note is that the build tasks will not have access to the files which are not accessible from any of the roots specified. (Note that this is not a security guarantee, but only a semantic one.)</p>
@@ -90,13 +93,13 @@
 <p>Current working directory of the build process: <code>/home/dev</code><br />
 Build working directory: <code>wd:</code> (that is mapped accordingly to <code>/home/dev/project</code>)<br />
 The build system roots:</p>
-<pre><code>wd: -&gt; /home/dev/project
+<pre class="doc-code-block"><code>wd: -&gt; /home/dev/project
 bd: -&gt; /home/dev/build
 sources: -&gt; /home/dev/sources
 res: -&gt; /home/dev/res
 </code></pre>
 <p>The following command line arguments can be used to achieve the above configuration:</p>
-<pre><code>-build-dir bd:
+<pre class="doc-code-block"><code>-build-dir bd:
 -working-dir wd:
 -mount pwd://project wd:
 -mount pwd://build bd:
@@ -149,7 +152,7 @@ res: -&gt; /home/dev/res
 				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.build documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.build">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.build">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.build" title="saker.build | saker.nest">saker.build on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.build" title="saker.build on GitHub">GitHub</a></div>
 			</div>
 		</div>	

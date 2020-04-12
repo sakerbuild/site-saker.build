@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				File management > <a href="copying.html" title="Copying files">Copying files</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -70,14 +73,14 @@
 <p>As a part of the build execution you may want to copy some files from a location to a different one. The <a href="../../taskdoc/std.file.copy.html"><code>std.file.copy()</code></a> task allows performing file copy operations.</p>
 <p>It takes file locations as its input, and executes the copy based on them. The inputs may be execution paths or local file references. The tasks support copying single files as well as directories and its contents.</p>
 <p>A simple example for copying two files:</p>
-<pre><code class="language-sakerscript"><span class="e"><a href="../../../saker.standard/taskdoc/std.file.copy.html" title="Task: std.file.copy()">std.file.copy</a>(</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.standard/taskdoc/std.file.copy.html" title="Task: std.file.copy()">std.file.copy</a>(</span>
 	<span class="i">Source</span>: <span class="f">file.txt</span>,
 	<span class="i">Target: </span><span class="f">resources/contents.txt</span>
 <span class="e">)</span>
 </code></pre>
 <p>The above will copy the <code>file.txt</code> from the working directory to the <code>resources/contents.txt</code> path. The file is renamed as a result of the copying.</p>
 <p>The task supports copying contents of directories. If the <code>Source</code> is a directory then the subtree of that directory will be copied if the files match the specified <code>Wildcards</code>:</p>
-<pre><code class="language-sakerscript"><span class="e"><a href="../../../saker.standard/taskdoc/std.file.copy.html" title="Task: std.file.copy()">std.file.copy</a>(</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.standard/taskdoc/std.file.copy.html" title="Task: std.file.copy()">std.file.copy</a>(</span>
 	<span class="i">Source</span>: <span class="f">images</span>,
 	<span class="i">Target: </span><span class="f">resources</span>,
 	<span class="i">Wildcards: </span><span class="f">**/*.png</span>
@@ -86,7 +89,7 @@
 <p>The above will copy the <code>images</code> directory to the <code>resources</code> directory, and all <code>png</code> files in its subtree.</p>
 <p>Note that file copying should be used only when necessary. Generally it is not recommended to copy files to a target that is not under the build directory, as modifying the user files is discouraged.</p>
 <p>An use-case for copying is that the generated files during the build process is copied to an unrelated location on the local file system that can be shared with other projects:</p>
-<pre><code class="language-sakerscript"><span class="d">$jar</span> = <span class="e"><a href="../../../saker.jar/taskdoc/saker.jar.create.html" title="Task: saker.jar.create()">saker.jar.create</a>(</span><span class="k">### ... ###</span><span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d">$jar</span> = <span class="e"><a href="../../../saker.jar/taskdoc/saker.jar.create.html" title="Task: saker.jar.create()">saker.jar.create</a>(</span><span class="k">### ... ###</span><span class="e">)</span>
 <span class="e"><a href="../../../saker.standard/taskdoc/std.file.copy.html" title="Task: std.file.copy()">std.file.copy</a>(</span>
 	<span class="d">$jar</span><span class="g">[</span><span class="h">Path</span><span class="g">]</span>,
 	<span class="i">Target: </span><span class="e"><a href="../../../saker.standard/taskdoc/std.file.local.html" title="Task: std.file.local()">std.file.local</a>(</span><span class="f">&quot;/home/user/other_project/lib/mylib.jar&quot;</span><span class="e">)</span>
@@ -126,7 +129,7 @@
 				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.standard documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.standard">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.standard">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.standard" title="saker.standard | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.standard" title="saker.standard | saker.nest">saker.standard on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.standard" title="saker.standard on GitHub">GitHub</a></div>
 			</div>
 		</div>	

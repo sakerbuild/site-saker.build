@@ -50,6 +50,9 @@
 			</div>
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				Features > <a href="backdispatch.html" title="Request back dispatch">Request back dispatch</a>
+			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
 	<div class="container">
@@ -69,7 +72,7 @@
 			<div class="doc-content"><h1 id="request-back-dispatch">Request back dispatch<a class="doc-heading-anchor" href="#request-back-dispatch"></a></h1>
 <p><small>Disclaimer: the example in this article is only for showcasing the back dispatching feature. It is not efficient, and there are more performant ways to achieve the same goal.</small></p>
 <p>There may be many cases when you call a method over the RMI connection, and during the serving of that request, the implementation will issue another call back to the caller. One simple example for this:</p>
-<pre><code class="language-java">public interface Stub {
+<pre class="doc-code-block"><code class="language-java">public interface Stub {
 	public int count(IntPredicate predicate);
 }
 public class Impl implements Stub {
@@ -91,7 +94,7 @@ public class Impl implements Stub {
 <p><img src="backdispatch.png" alt="" /></p>
 <p>You can see that the <code>test()</code> method is invoked <em>on the same thread</em> that issued the <code>count()</code> method call.</p>
 <p>This behaviour is <strong>especially</strong> important, as not invoking the back-requests on the same threads could easily cause deadlocks. For example if the caller works as follows:</p>
-<pre><code class="language-java">private final Stub stub;
+<pre class="doc-code-block"><code class="language-java">private final Stub stub;
 private int mod;
 
 public synchronized int getCount() {
@@ -141,7 +144,7 @@ public synchronized void setMod(int mod) {
 				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.rmi documentation index">Documentation</a></div>
 				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.rmi">JavaDoc</a></div>
 				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.rmi">TaskDoc</a></div>
-				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.rmi" title="saker.rmi | saker.nest">saker.nest package page</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.rmi" title="saker.rmi | saker.nest">saker.rmi on saker.nest</a></div>
 				<div><a href="https://github.com/sakerbuild/saker.rmi" title="saker.rmi on GitHub">GitHub</a></div>
 			</div>
 		</div>	
