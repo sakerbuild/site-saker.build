@@ -358,6 +358,7 @@ blockquote {
 	right: 10px;
 	opacity: 0.6;
 	color: #ddd;
+	font-weight: 600;
 	transition: var(--common-transitions-ease);
 }
 .end-section-next>a:before {
@@ -368,6 +369,7 @@ blockquote {
 	left: 10px;
 	opacity: 0.6;
 	color: #ddd;
+	font-weight: 600;
 	transition: var(--common-transitions-ease);
 }
 .end-section-prev>a, .end-section-next>a {
@@ -378,7 +380,6 @@ blockquote {
 	border: 1px solid #ddd;
 	border-radius: 5px;
 	transition: var(--common-transitions-ease);
-	font-weight: 600;
 	
 	box-shadow: 1px 1px 5px -2px #ddd;
 }
