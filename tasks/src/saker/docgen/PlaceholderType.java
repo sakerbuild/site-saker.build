@@ -10,6 +10,7 @@ enum PlaceholderType {
 	NEXT_SECTION,
 	LANGUAGE_SCRIPTS,
 	PATH_TO_ROOT_DIR,
+	BREADCRUMB,
 
 	;
 }

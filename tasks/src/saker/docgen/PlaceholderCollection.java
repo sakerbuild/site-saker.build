@@ -36,4 +36,8 @@ public interface PlaceholderCollection {
 	public default String getPathToRootDir() {
 		return "<!-- DOC-PATH-TO-ROOT-DIR -->";
 	}
+
+	public default String getBreadcrumb() {
+		return "<!-- DOC-BREADCRUMB -->";
+	}
 }

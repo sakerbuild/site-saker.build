@@ -45,6 +45,7 @@ class ProcessedTemplate {
 			addPlaceholderType(placeholders.getNextSection(), PlaceholderType.NEXT_SECTION, typedplaceholders);
 			addPlaceholderType(placeholders.getLanguageScripts(), PlaceholderType.LANGUAGE_SCRIPTS, typedplaceholders);
 			addPlaceholderType(placeholders.getPathToRootDir(), PlaceholderType.PATH_TO_ROOT_DIR, typedplaceholders);
+			addPlaceholderType(placeholders.getBreadcrumb(), PlaceholderType.BREADCRUMB, typedplaceholders);
 		}
 
 		int len = template.length();

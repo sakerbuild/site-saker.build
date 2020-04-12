@@ -203,7 +203,7 @@ foreach $item in $iterable {
 
 ## Indentation 
 
-Indentation should be done using tabs. Tabs are recommended to be displayed with a with of 4 spaces.
+Indentation should be done using tabs. Tabs are recommended to be displayed with a width of 4 spaces.
 
 Every source code element that is enclosed in an other construct should be indented with 1 more tab than its enclosing element. These are build target parameters, map entries, list elements, task parameters, `foreach` local variables, expression statements, and others.
 
@@ -222,7 +222,7 @@ The elements in the source files should have the following order:
 1. Global variable assignments
 2. Static variable assignments
 3. Global expressions
-4. Publicly invokeable build targets
+4. Publicly invokable build targets
 5. Internal build targets
 
 ```sakerscript

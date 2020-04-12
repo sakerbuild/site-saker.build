@@ -37,6 +37,7 @@ import org.commonmark.node.FencedCodeBlock;
 import org.commonmark.node.Heading;
 import org.commonmark.node.Image;
 import org.commonmark.node.Link;
+import org.commonmark.node.ListBlock;
 import org.commonmark.node.Node;
 import org.commonmark.node.Text;
 import org.commonmark.parser.Parser;
@@ -973,6 +974,15 @@ public class DocumentationGeneratorTaskFactory implements TaskFactory<Object>, E
 				result.putIfAbsent("id", anch);
 				return result;
 			}
+			if (node instanceof ListBlock) {
+				attributes = ObjectUtils.newLinkedHashMap(attributes);
+				attributes.compute("class", (k, c) -> {
+					if (c == null) {
+						return "doc-md-list";
+					}
+					return c + " doc-md-list";
+				});
+			}
 			return subject.extendAttributes(node, tagName, attributes);
 		}
 
@@ -1445,21 +1455,21 @@ public class DocumentationGeneratorTaskFactory implements TaskFactory<Object>, E
 	private static class SimpleSiteInfo implements Externalizable {
 		private static final long serialVersionUID = 1L;
 
-		private SakerPath markdownDirectory;
-		private SakerPath outputDirectory;
+		protected SakerPath markdownDirectory;
+		protected SakerPath outputDirectory;
 
-		private SimplePlaceholderCollection placeholders;
+		protected SimplePlaceholderCollection placeholders;
 
-		private Set<SimpleIncludeOption> includes;
+		protected Set<SimpleIncludeOption> includes;
 
-		private SakerPath rootMarkdownPath;
-		private Map<TaskName, SakerPath> taskLinkPaths;
+		protected SakerPath rootMarkdownPath;
+		protected Map<TaskName, SakerPath> taskLinkPaths;
 
-		private List<Entry<String, String>> macros;
+		protected List<Entry<String, String>> macros;
 
-		private List<Entry<String, SakerPath>> embedMacros;
+		protected List<Entry<String, SakerPath>> embedMacros;
 
-		private Map<WildcardPath, SakerPath> templateFiles;
+		protected Map<WildcardPath, SakerPath> templateFiles;
 
 		/**
 		 * For {@link Externalizable}.
@@ -1520,6 +1530,7 @@ public class DocumentationGeneratorTaskFactory implements TaskFactory<Object>, E
 			result = prime * result + ((placeholders == null) ? 0 : placeholders.hashCode());
 			result = prime * result + ((rootMarkdownPath == null) ? 0 : rootMarkdownPath.hashCode());
 			result = prime * result + ((taskLinkPaths == null) ? 0 : taskLinkPaths.hashCode());
+			result = prime * result + ((templateFiles == null) ? 0 : templateFiles.hashCode());
 			return result;
 		}
 
@@ -1572,7 +1583,27 @@ public class DocumentationGeneratorTaskFactory implements TaskFactory<Object>, E
 					return false;
 			} else if (!taskLinkPaths.equals(other.taskLinkPaths))
 				return false;
+			if (templateFiles == null) {
+				if (other.templateFiles != null)
+					return false;
+			} else if (!templateFiles.equals(other.templateFiles))
+				return false;
 			return true;
+		}
+	}
+
+	private static final class BreadcrumbEntry {
+		public BreadcrumbEntry next;
+		public String title;
+		public ParsedMarkdown markdown;
+
+		public BreadcrumbEntry(String title) {
+			this.title = title;
+		}
+
+		public BreadcrumbEntry(ParsedMarkdown parsedmarkdown) {
+			this.title = parsedmarkdown.getHeadingTitle();
+			this.markdown = parsedmarkdown;
 		}
 
 	}
@@ -1875,10 +1906,41 @@ public class DocumentationGeneratorTaskFactory implements TaskFactory<Object>, E
 							sb.append("</div>");
 							return sb.toString();
 						}));
+						placeholdercontents.put(PlaceholderType.BREADCRUMB, LazySupplier.of(() -> {
+							BreadcrumbEntry bc = buildBreadcrumb(rootvisitor, parsedmarkdown,
+									state.relativeParsedMarkdowns);
+							if (bc != null) {
+								if (bc.next == null) {
+									//don't display breadcrumb if there's only a single entry
+									return "";
+								}
+								StringBuilder sb = new StringBuilder();
+								while (bc != null) {
+									if (bc.markdown != null) {
+										sb.append("<a href=\""
+												+ getRelativePathString(parsedmarkdown.getAbsoluteOutputPath(),
+														bc.markdown.getAbsoluteOutputPath())
+												+ "\" title=\"" + bc.title + "\">");
+									}
+									sb.append(bc.title);
+									if (bc.markdown != null) {
+										sb.append("</a>");
+									}
+
+									bc = bc.next;
+									if (bc != null) {
+										sb.append(" > ");
+									}
+
+								}
+								//TODO implement breadcrumb
+								return sb.toString();
+							}
+							return "";
+						}));
 						placeholdercontents.put(PlaceholderType.NAVIGATION, LazySupplier.of(() -> {
 							StringBuilder sb = new StringBuilder();
-							buildNavigationList(sb, state.relativeParsedMarkdowns, rootvisitor, parsedmarkdown,
-									docrootpath);
+							buildNavigationList(sb, state.relativeParsedMarkdowns, rootvisitor, parsedmarkdown);
 							return sb.toString();
 						}));
 						placeholdercontents.put(PlaceholderType.TITLE, parsedmarkdown::getHeadingTitle);
@@ -2094,8 +2156,49 @@ public class DocumentationGeneratorTaskFactory implements TaskFactory<Object>, E
 			sb.append("</ul>");
 		}
 
+		private BreadcrumbEntry buildBreadcrumb(RootMarkdownVisitor rootinfo, ParsedMarkdown parsedmarkdown,
+				NavigableMap<SakerPath, ParsedMarkdown> markdowns) {
+			for (RootMarkdownSection section : rootinfo.getRootSections()) {
+				BreadcrumbEntry subbc = buildBreadcrumbImpl(section.getSections(), parsedmarkdown, markdowns);
+				if (subbc != null) {
+					String title = section.getTitle();
+					if (title == null) {
+						return subbc;
+					}
+					BreadcrumbEntry result = new BreadcrumbEntry(title);
+					result.next = subbc;
+					return result;
+				}
+			}
+			return null;
+		}
+
+		private BreadcrumbEntry buildBreadcrumbImpl(List<NavigationSection> sections, ParsedMarkdown parsedmarkdown,
+				NavigableMap<SakerPath, ParsedMarkdown> markdowns) {
+			for (NavigationSection section : sections) {
+				if (section instanceof MarkdownNavigationSection) {
+					MarkdownNavigationSection mdsection = (MarkdownNavigationSection) section;
+					SakerPath sectionpath = mdsection.getMarkdownPath();
+					ParsedMarkdown markdown = markdowns.get(sectionpath);
+					if (markdown == null) {
+						throw new IllegalArgumentException("Section markdown not found at path: " + sectionpath);
+					}
+					if (markdown == parsedmarkdown) {
+						return new BreadcrumbEntry(parsedmarkdown);
+					}
+					BreadcrumbEntry subres = buildBreadcrumbImpl(markdown.getSubSections(), parsedmarkdown, markdowns);
+					if (subres != null) {
+						BreadcrumbEntry res = new BreadcrumbEntry(markdown);
+						res.next = subres;
+						return res;
+					}
+				}
+			}
+			return null;
+		}
+
 		private void buildNavigationList(StringBuilder sb, NavigableMap<SakerPath, ParsedMarkdown> markdowns,
-				RootMarkdownVisitor rootinfo, ParsedMarkdown currentmarkdown, String docrootpath) {
+				RootMarkdownVisitor rootinfo, ParsedMarkdown currentmarkdown) {
 			sb.append("<div class=\"doc-nav\">");
 			int[] collapseidcounter = new int[1];
 			for (RootMarkdownSection section : rootinfo.getRootSections()) {
@@ -2106,16 +2209,14 @@ public class DocumentationGeneratorTaskFactory implements TaskFactory<Object>, E
 					sb.append(title);
 					sb.append("</p>");
 				}
-				buildNaviationSubSectionsList(sb, markdowns, section.getSections(), currentmarkdown, docrootpath,
-						collapseidcounter);
+				buildNaviationSubSectionsList(sb, markdowns, section.getSections(), currentmarkdown, collapseidcounter);
 				sb.append("  </div>");
 			}
 			sb.append("</div>");
 		}
 
 		private void buildNaviationSubSectionsList(StringBuilder sb, NavigableMap<SakerPath, ParsedMarkdown> markdowns,
-				List<NavigationSection> sections, ParsedMarkdown currentmarkdown, String docrootpath,
-				int[] collapseidcounter) {
+				List<NavigationSection> sections, ParsedMarkdown currentmarkdown, int[] collapseidcounter) {
 			if (sections.isEmpty()) {
 				return;
 			}
@@ -2135,8 +2236,7 @@ public class DocumentationGeneratorTaskFactory implements TaskFactory<Object>, E
 					if (title == null) {
 						continue;
 					}
-					buildNavigationSectionList(sb, markdowns, markdown, title, currentmarkdown, docrootpath,
-							collapseidcounter);
+					buildNavigationSectionList(sb, markdowns, markdown, title, currentmarkdown, collapseidcounter);
 					continue;
 				}
 				if (section instanceof LinkNavigationSection) {
@@ -2183,8 +2283,7 @@ public class DocumentationGeneratorTaskFactory implements TaskFactory<Object>, E
 		}
 
 		private void buildNavigationSectionList(StringBuilder sb, NavigableMap<SakerPath, ParsedMarkdown> markdowns,
-				ParsedMarkdown markdown, String title, ParsedMarkdown currentmarkdown, String docrootpath,
-				int[] collapseidcounter) {
+				ParsedMarkdown markdown, String title, ParsedMarkdown currentmarkdown, int[] collapseidcounter) {
 			List<NavigationSection> subsections = markdown.getSubSections();
 
 			sb.append("<li");
@@ -2223,8 +2322,7 @@ public class DocumentationGeneratorTaskFactory implements TaskFactory<Object>, E
 
 				sb.append("<label class=\"doc-nav-section-arrow\" for=\"" + inputid + "\"></label>");
 
-				buildNaviationSubSectionsList(sb, markdowns, subsections, currentmarkdown, docrootpath,
-						collapseidcounter);
+				buildNaviationSubSectionsList(sb, markdowns, subsections, currentmarkdown, collapseidcounter);
 			} else {
 				sb.append(linkatag);
 			}
@@ -2464,6 +2562,7 @@ public class DocumentationGeneratorTaskFactory implements TaskFactory<Object>, E
 		public Collection<IncludeTaskOption> getInclude();
 
 		public Map<String, SakerPath> getEmbedMacros();
+
 	}
 
 	private static final class TaskImplementation implements ParameterizableTask<Object> {
@@ -2535,11 +2634,12 @@ public class DocumentationGeneratorTaskFactory implements TaskFactory<Object>, E
 				if (embedmacros == null) {
 					embedmacros = Collections.emptyMap();
 				}
-				sites.add(new SimpleSiteInfo(site.getDirectory(), siteoutputdir, templatefiles,
+				SimpleSiteInfo siteinfo = new SimpleSiteInfo(site.getDirectory(), siteoutputdir, templatefiles,
 						DEFAULTS_PLACEHOLDER_COLLECTION, ImmutableUtils.makeImmutableLinkedHashSet(includes),
 						site.getRootMarkdown(), sitetasklinkpaths,
 						ImmutableUtils.makeImmutableList(sitemacros.entrySet()),
-						ImmutableUtils.makeImmutableList(embedmacros.entrySet())));
+						ImmutableUtils.makeImmutableList(embedmacros.entrySet()));
+				sites.add(siteinfo);
 			}
 
 			WorkerTaskFactory workertaskfactory = new WorkerTaskFactory(outputDirectoryOption, cssDirectoryOption,
