@@ -1929,7 +1929,7 @@ public class DocumentationGeneratorTaskFactory implements TaskFactory<Object>, E
 
 									bc = bc.next;
 									if (bc != null) {
-										sb.append(" > ");
+										sb.append(" &gt; ");
 									}
 
 								}
