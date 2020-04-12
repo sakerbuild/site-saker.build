@@ -92,6 +92,7 @@ h1, h2, h3, h4, h5, h6 {
 .doc-content pre>code.code-wrap {
 	overflow-x: hidden;
 	white-space: pre-wrap;
+	word-break: break-word;
 }
 
 .doc-code-block {
@@ -120,7 +121,12 @@ h1, h2, h3, h4, h5, h6 {
 	margin-bottom: 20px;
 }
 .doc-page {
-	padding: 0 30px;
+	padding: 0 15px;
+}
+@media (min-width: 992px) {
+	.doc-page {
+		padding: 0 30px;
+	}
 }
 
 .doc-breadcrumb:empty{
