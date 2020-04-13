@@ -72,6 +72,12 @@ build {
 				],
 				SiteOutputDirectory: saker.build,
 				TaskLinkPaths: $tasklinkpaths,
+				BreadcrumpRoots: [
+					{
+						Name: saker.build,
+						Link: "index.md",
+					}
+				],
 			},
 			{
 				Directory: site/saker.nest/,
@@ -94,6 +100,12 @@ build {
 				],
 				SiteOutputDirectory: saker.nest,
 				TaskLinkPaths: $tasklinkpaths,
+				BreadcrumpRoots: [
+					{
+						Name: saker.nest,
+						Link: "index.md",
+					}
+				],
 			},
 			{
 				Directory: site/saker.java.compiler/,
@@ -125,6 +137,12 @@ build {
 				],
 				SiteOutputDirectory: saker.java.compiler,
 				TaskLinkPaths: $tasklinkpaths,
+				BreadcrumpRoots: [
+					{
+						Name: saker.java.compiler,
+						Link: "index.md",
+					}
+				],
 			},
 			{
 				Directory: site/saker.zip/,
@@ -156,6 +174,12 @@ build {
 				],
 				SiteOutputDirectory: saker.zip,
 				TaskLinkPaths: $tasklinkpaths,
+				BreadcrumpRoots: [
+					{
+						Name: saker.zip,
+						Link: "index.md",
+					}
+				],
 			},
 			{
 				Directory: site/saker.jar/,
@@ -187,6 +211,12 @@ build {
 				],
 				SiteOutputDirectory: saker.jar,
 				TaskLinkPaths: $tasklinkpaths,
+				BreadcrumpRoots: [
+					{
+						Name: saker.jar,
+						Link: "index.md",
+					}
+				],
 			},
 			{
 				Directory: site/saker.sdk.support/,
@@ -218,6 +248,12 @@ build {
 				],
 				SiteOutputDirectory: saker.sdk.support,
 				TaskLinkPaths: $tasklinkpaths,
+				BreadcrumpRoots: [
+					{
+						Name: saker.sdk.support,
+						Link: "index.md",
+					}
+				],
 			},
 			{
 				Directory: site/saker.maven.support/,
@@ -249,6 +285,12 @@ build {
 				],
 				SiteOutputDirectory: saker.maven.support,
 				TaskLinkPaths: $tasklinkpaths,
+				BreadcrumpRoots: [
+					{
+						Name: saker.maven.support,
+						Link: "index.md",
+					}
+				],
 			},
 			{
 				Directory: site/saker.maven.classpath/,
@@ -280,6 +322,12 @@ build {
 				],
 				SiteOutputDirectory: saker.maven.classpath,
 				TaskLinkPaths: $tasklinkpaths,
+				BreadcrumpRoots: [
+					{
+						Name: saker.maven.classpath,
+						Link: "index.md",
+					}
+				],
 			},
 			{
 				Directory: site/saker.msvc/,
@@ -311,6 +359,12 @@ build {
 				],
 				SiteOutputDirectory: saker.msvc,
 				TaskLinkPaths: $tasklinkpaths,
+				BreadcrumpRoots: [
+					{
+						Name: saker.msvc,
+						Link: "index.md",
+					}
+				],
 			},
 			{
 				Directory: site/saker.java.testing/,
@@ -342,6 +396,12 @@ build {
 				],
 				SiteOutputDirectory: saker.java.testing,
 				TaskLinkPaths: $tasklinkpaths,
+				BreadcrumpRoots: [
+					{
+						Name: saker.java.testing,
+						Link: "index.md",
+					}
+				],
 			},
 			{
 				Directory: site/saker.standard/,
@@ -373,6 +433,12 @@ build {
 				],
 				SiteOutputDirectory: saker.standard,
 				TaskLinkPaths: $tasklinkpaths,
+				BreadcrumpRoots: [
+					{
+						Name: saker.standard,
+						Link: "index.md",
+					}
+				],
 			},
 			{
 				Directory: site/nest.repository.support/,
@@ -404,6 +470,12 @@ build {
 				],
 				SiteOutputDirectory: nest.repository.support,
 				TaskLinkPaths: $tasklinkpaths,
+				BreadcrumpRoots: [
+					{
+						Name: nest.repository.support,
+						Link: "index.md",
+					}
+				],
 			},
 			{
 				Directory: site/saker.rmi/,
@@ -426,6 +498,12 @@ build {
 				],
 				SiteOutputDirectory: saker.rmi,
 				TaskLinkPaths: $tasklinkpaths,
+				BreadcrumpRoots: [
+					{
+						Name: saker.rmi,
+						Link: "index.md",
+					}
+				],
 			},
 			{
 				Directory: site/saker.util/,
@@ -448,6 +526,12 @@ build {
 				],
 				SiteOutputDirectory: saker.util,
 				TaskLinkPaths: $tasklinkpaths,
+				BreadcrumpRoots: [
+					{
+						Name: saker.util,
+						Link: "index.md",
+					}
+				],
 			},
 			{
 				Directory: site/saker.compiler.utils/,
@@ -479,6 +563,12 @@ build {
 				],
 				SiteOutputDirectory: saker.compiler.utils,
 				TaskLinkPaths: $tasklinkpaths,
+				BreadcrumpRoots: [
+					{
+						Name: saker.compiler.utils,
+						Link: "index.md",
+					}
+				],
 			},
 		],
 	)

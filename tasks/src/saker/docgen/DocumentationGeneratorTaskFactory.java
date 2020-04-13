@@ -16,6 +16,7 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -1471,6 +1472,8 @@ public class DocumentationGeneratorTaskFactory implements TaskFactory<Object>, E
 
 		protected Map<WildcardPath, SakerPath> templateFiles;
 
+		protected List<BreadcrumbRootOption> breadcrumbRoots;
+
 		/**
 		 * For {@link Externalizable}.
 		 */
@@ -1503,6 +1506,7 @@ public class DocumentationGeneratorTaskFactory implements TaskFactory<Object>, E
 			SerialUtils.writeExternalMap(out, templateFiles);
 			SerialUtils.writeExternalCollection(out, macros);
 			SerialUtils.writeExternalCollection(out, embedMacros);
+			SerialUtils.writeExternalCollection(out, breadcrumbRoots);
 		}
 
 		@Override
@@ -1516,12 +1520,14 @@ public class DocumentationGeneratorTaskFactory implements TaskFactory<Object>, E
 			templateFiles = SerialUtils.readExternalImmutableLinkedHashMap(in);
 			macros = SerialUtils.readExternalImmutableList(in);
 			embedMacros = SerialUtils.readExternalImmutableList(in);
+			breadcrumbRoots = SerialUtils.readExternalImmutableList(in);
 		}
 
 		@Override
 		public int hashCode() {
 			final int prime = 31;
 			int result = 1;
+			result = prime * result + ((breadcrumbRoots == null) ? 0 : breadcrumbRoots.hashCode());
 			result = prime * result + ((embedMacros == null) ? 0 : embedMacros.hashCode());
 			result = prime * result + ((includes == null) ? 0 : includes.hashCode());
 			result = prime * result + ((macros == null) ? 0 : macros.hashCode());
@@ -1543,6 +1549,11 @@ public class DocumentationGeneratorTaskFactory implements TaskFactory<Object>, E
 			if (getClass() != obj.getClass())
 				return false;
 			SimpleSiteInfo other = (SimpleSiteInfo) obj;
+			if (breadcrumbRoots == null) {
+				if (other.breadcrumbRoots != null)
+					return false;
+			} else if (!breadcrumbRoots.equals(other.breadcrumbRoots))
+				return false;
 			if (embedMacros == null) {
 				if (other.embedMacros != null)
 					return false;
@@ -1622,6 +1633,7 @@ public class DocumentationGeneratorTaskFactory implements TaskFactory<Object>, E
 		public Map<WildcardPath, ProcessedTemplate> templateFiles;
 		public NavigableSet<SakerPath> includeRelativePaths;
 		public NavigableMap<SakerPath, ParsedMarkdown> relativeParsedMarkdowns = new TreeMap<>();
+		public List<BreadcrumbRootOption> breadcrumbRoots = Collections.emptyList();
 
 		public ProcessedTemplate getTemplate(SakerPath markdownpath) {
 			for (Entry<WildcardPath, ProcessedTemplate> entry : templateFiles.entrySet()) {
@@ -1811,6 +1823,7 @@ public class DocumentationGeneratorTaskFactory implements TaskFactory<Object>, E
 					ParsedMarkdown parsedmarkdown = parseMarkup(taskcontext, parser, file, relpath, path,
 							pageoutputpath, state.markdownDirectoryPath, siteentry.getKey());
 					state.relativeParsedMarkdowns.put(relpath, parsedmarkdown);
+					state.breadcrumbRoots = siteentry.getKey().breadcrumbRoots;
 
 					SakerPath rootrelative = mainoutputdirpath.relativize(parsedmarkdown.getAbsoluteOutputPath());
 					rootrelativeoutputmarkdowns.put(rootrelative, parsedmarkdown);
@@ -1909,6 +1922,29 @@ public class DocumentationGeneratorTaskFactory implements TaskFactory<Object>, E
 						placeholdercontents.put(PlaceholderType.BREADCRUMB, LazySupplier.of(() -> {
 							BreadcrumbEntry bc = buildBreadcrumb(rootvisitor, parsedmarkdown,
 									state.relativeParsedMarkdowns);
+							if (!ObjectUtils.isNullOrEmpty(state.breadcrumbRoots)) {
+								ListIterator<BreadcrumbRootOption> it = state.breadcrumbRoots
+										.listIterator(state.breadcrumbRoots.size());
+								while (it.hasPrevious()) {
+									BreadcrumbRootOption bcoption = it.previous();
+									BreadcrumbEntry nbc;
+									if (!ObjectUtils.isNullOrEmpty(bcoption.link)) {
+										ParsedMarkdown linkedmd = state.relativeParsedMarkdowns
+												.get(SakerPath.valueOf(bcoption.link));
+										nbc = new BreadcrumbEntry(linkedmd);
+										if (!ObjectUtils.isNullOrEmpty(bcoption.name)) {
+											nbc.title = bcoption.name;
+										}
+									} else if (bcoption.name != null) {
+										nbc = new BreadcrumbEntry(bcoption.name);
+									} else {
+										throw new UnsupportedOperationException(
+												"No root breadcrumb information defined: " + bcoption);
+									}
+									nbc.next = bc;
+									bc = nbc;
+								}
+							}
 							if (bc != null) {
 								if (bc.next == null) {
 									//don't display breadcrumb if there's only a single entry
@@ -1933,7 +1969,6 @@ public class DocumentationGeneratorTaskFactory implements TaskFactory<Object>, E
 									}
 
 								}
-								//TODO implement breadcrumb
 								return sb.toString();
 							}
 							return "";
@@ -2563,6 +2598,94 @@ public class DocumentationGeneratorTaskFactory implements TaskFactory<Object>, E
 
 		public Map<String, SakerPath> getEmbedMacros();
 
+		public List<BreadcrumbRootTaskOption> getBreadcrumpRoots();
+	}
+
+	private static class BreadcrumbRootOption implements Externalizable {
+		private static final long serialVersionUID = 1L;
+
+		public String name;
+		public String link;
+
+		/**
+		 * For {@link Externalizable}.
+		 */
+		public BreadcrumbRootOption() {
+		}
+
+		public BreadcrumbRootOption(String name, String link) {
+			this.name = name;
+			this.link = link;
+		}
+
+		@Override
+		public void writeExternal(ObjectOutput out) throws IOException {
+			out.writeObject(name);
+			out.writeObject(link);
+		}
+
+		@Override
+		public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+			name = SerialUtils.readExternalObject(in);
+			link = SerialUtils.readExternalObject(in);
+		}
+
+		@Override
+		public int hashCode() {
+			final int prime = 31;
+			int result = 1;
+			result = prime * result + ((link == null) ? 0 : link.hashCode());
+			result = prime * result + ((name == null) ? 0 : name.hashCode());
+			return result;
+		}
+
+		@Override
+		public boolean equals(Object obj) {
+			if (this == obj)
+				return true;
+			if (obj == null)
+				return false;
+			if (getClass() != obj.getClass())
+				return false;
+			BreadcrumbRootOption other = (BreadcrumbRootOption) obj;
+			if (link == null) {
+				if (other.link != null)
+					return false;
+			} else if (!link.equals(other.link))
+				return false;
+			if (name == null) {
+				if (other.name != null)
+					return false;
+			} else if (!name.equals(other.name))
+				return false;
+			return true;
+		}
+
+		@Override
+		public String toString() {
+			return "BreadcrumbRootOption[name=" + name + ", link=" + link + "]";
+		}
+
+	}
+
+	public static interface BreadcrumbRootTaskOption {
+		public String getName();
+
+		public String getLink();
+
+		public static BreadcrumbRootTaskOption valueOf(String name) {
+			return new BreadcrumbRootTaskOption() {
+				@Override
+				public String getName() {
+					return name;
+				}
+
+				@Override
+				public String getLink() {
+					return null;
+				}
+			};
+		}
 	}
 
 	private static final class TaskImplementation implements ParameterizableTask<Object> {
@@ -2634,11 +2757,22 @@ public class DocumentationGeneratorTaskFactory implements TaskFactory<Object>, E
 				if (embedmacros == null) {
 					embedmacros = Collections.emptyMap();
 				}
+				List<BreadcrumbRootOption> breadcrumbroots = new ArrayList<>();
+				List<BreadcrumbRootTaskOption> brrootsoption = site.getBreadcrumpRoots();
+				if (brrootsoption != null) {
+					for (BreadcrumbRootTaskOption to : brrootsoption) {
+						if (to == null) {
+							continue;
+						}
+						breadcrumbroots.add(new BreadcrumbRootOption(to.getName(), to.getLink()));
+					}
+				}
 				SimpleSiteInfo siteinfo = new SimpleSiteInfo(site.getDirectory(), siteoutputdir, templatefiles,
 						DEFAULTS_PLACEHOLDER_COLLECTION, ImmutableUtils.makeImmutableLinkedHashSet(includes),
 						site.getRootMarkdown(), sitetasklinkpaths,
 						ImmutableUtils.makeImmutableList(sitemacros.entrySet()),
 						ImmutableUtils.makeImmutableList(embedmacros.entrySet()));
+				siteinfo.breadcrumbRoots = breadcrumbroots;
 				sites.add(siteinfo);
 			}
 
