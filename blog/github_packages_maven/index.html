@@ -67,7 +67,7 @@
 </div>
 			<div class="doc-content"><h1 id="using-the-github-packages-maven-repository">Using the GitHub packages Maven repository<a class="doc-heading-anchor" href="#using-the-github-packages-maven-repository"></a></h1>
 <p><small>2020 January 11</small></p>
-<p>You may've heard about <a href="https://github.com/features/packages" title="GitHub Packages: Your packages, at home with their code · GitHub">GitHub Packages</a> which allows you to publish and consume packages with various repositories. One in particular is Maven repositories, which we'll explore in detail in this post.</p>
+<p>You may've heard about <a href="https://github.com/features/packages" title="GitHub Packages: Your packages, at home with their code">GitHub Packages</a> which allows you to publish and consume packages with various repositories. One in particular is Maven repositories, which we'll explore in detail in this post.</p>
 <p>You'll be needing the following:</p>
 <ul class="doc-md-list">
 <li>A GitHub account</li>
@@ -80,7 +80,7 @@
 <p><img src="get_started_with_packages.png" alt="" /></p>
 <h4 id="creating-your-app">Creating your app<a class="doc-heading-anchor" href="#creating-your-app"></a></h4>
 <p>You probably have something in mind that you want to publish to GitHub packages. For this example, we're going to have a simple utility class with a dependency on <a href="https://github.com/apache/commons-lang" title="GitHub - apache/commons-lang: Mirror of Apache Commons Lang">Apache Commons Lang</a>.</p>
-<p>You can set up your project in any way you like, or just clone the <a href="https://github.com/Sipkab/example-gh-maven" title="GitHub - Sipkab/example-gh-maven: Example repository showcasing Maven deployment to GitHub packages">example repository</a> that we use for this post. It simply resolves the Maven dependencies, compiles the app into a JAR, and deploys it to GitHub Packages.</p>
+<p>You can set up your project in any way you like, or just clone the <a href="https://github.com/Sipkab/example-gh-maven" title="Sipkab/example-gh-maven: Example repository showcasing Maven deployment to GitHub packages">example repository</a> that we use for this post. It simply resolves the Maven dependencies, compiles the app into a JAR, and deploys it to GitHub Packages.</p>
 <pre class="doc-code-block"><code class="language-shell">git clone https://github.com/Sipkab/example-gh-maven.git
 </code></pre>
 <h4 id="creating-a-personal-access-token">Creating a personal access token<a class="doc-heading-anchor" href="#creating-a-personal-access-token"></a></h4>
@@ -186,7 +186,7 @@ example.saker.build:maven-gh-packages:jar:0.1.0
 <span class="e">)</span>
 </code></pre>
 <p>We also recommend exporting the whole <code>Configuration</code> parameter value of Maven operations.</p>
-<p>You should also make effors to not upload your personal access tokens to GitHub. You should store them in a build script file that is not uploaded to version control, and set the <code>.gitignore</code> to exclude it. You can the <code>include()</code> that build script from the known location and use the token from there. We employ this behaviour in the <a href="https://github.com/sakerbuild/saker.build/tree/ec4b88671fd77d8c9f61faf4c7fc8973f80b08a0/secret" title="saker.build/secret at ec4b88671fd77d8c9f61faf4c7fc8973f80b08a0 · sakerbuild/saker.build · GitHub">saker.build repositories</a>.</p>
+<p>You should also make effors to not upload your personal access tokens to GitHub. You should store them in a build script file that is not uploaded to version control, and set the <code>.gitignore</code> to exclude it. You can the <code>include()</code> that build script from the known location and use the token from there. We employ this behaviour in the <a href="https://github.com/sakerbuild/saker.build/tree/ec4b88671fd77d8c9f61faf4c7fc8973f80b08a0/secret" title="saker.build/secret at ec4b88671fd77d8c9f61faf4c7fc8973f80b08a0 &#183; sakerbuild/saker.build &#183; GitHub">saker.build repositories</a>.</p>
 <h2 id="conclusion">Conclusion<a class="doc-heading-anchor" href="#conclusion"></a></h2>
 <p>GitHub packages can be a nice place to distribute your Maven artifacts. Be it private or public use, having a free option (or paid for larget scale) to host some content allows you to experiment with your software and may require less hassle to maintain. It is also alongside your repository, making discoverability easier.</p>
 <p>However, others who consume the artifacts that you publish to GitHub Packages will need to add it to their Maven repositories. If a lot of people publishes to GitHub Packages, this list of repository configuration can grow significantly, making it hard to maintain. We recommend you publish to already established repositories to allow easier access to your artifacts.</p>
