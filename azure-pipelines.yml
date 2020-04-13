@@ -146,7 +146,7 @@ steps:
     python ../saker.build-site/download_update_sites.py $DOWNLOAD_TOKEN
     for f in *.zip; do
       VER=$(echo "$f" | sed -r 's/site-v(.*)\.zip/\1/')
-      echo "$ver" >> _update_site_versions.txt
+      echo "$VER" >> _update_site_versions.txt
       unzip "$f" -d "../saker.build-site/site/saker.build.ide.eclipse/update-site/v$VER"
     done
     SAKER_ECLIPSE_VERSION=$(sort -V -r < _update_site_versions.txt | head -n 1)
