@@ -263,7 +263,7 @@ steps:
   workingDirectory: build-javadoc
 - script: cp -r build-javadoc/javadoc/* saker.build-site/site/
   displayName: 'Copy Javadoc results to working tree'
-- script: java -jar ../saker.build.jar -bd build "-EUsaker.java.jre.install.locations=$(JAVA_HOME_9_X64)" "-EUsite.version.saker.build=$(SAKER_BUILD_VERSION)" "-EUsite.version.saker.nest=$(SAKER_NEST_VERSION)" "-EUsite.version.saker.build.ide.eclipse=$(SAKER_ECLIPSE_VERSION)" build
+- script: java -jar ../saker.build.jar -bd build "-Usaker.java.jre.install.locations=$(JAVA_HOME_9_X64)" "-Usite.version.saker.build=$(SAKER_BUILD_VERSION)" "-Usite.version.saker.nest=$(SAKER_NEST_VERSION)" "-Usite.version.saker.build.ide.eclipse=$(SAKER_ECLIPSE_VERSION)" build
   displayName: 'Generate site'
   workingDirectory: saker.build-site
 
