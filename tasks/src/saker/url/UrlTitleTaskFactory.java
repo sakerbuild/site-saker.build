@@ -21,6 +21,7 @@ import saker.build.task.TaskContext;
 import saker.build.task.TaskFactory;
 import saker.build.task.identifier.TaskIdentifier;
 import saker.build.thirdparty.saker.util.ObjectUtils;
+import saker.build.thirdparty.saker.util.io.ByteArrayRegion;
 import saker.build.thirdparty.saker.util.io.StreamUtils;
 
 public class UrlTitleTaskFactory implements TaskFactory<String>, Task<String>, Externalizable, TaskIdentifier {
@@ -44,6 +45,7 @@ public class UrlTitleTaskFactory implements TaskFactory<String>, Task<String>, E
 		if (prevout != null) {
 			return prevout;
 		}
+		taskcontext.setStandardOutDisplayIdentifier("url.title");
 
 		SakerFile titlestile = taskcontext.getTaskUtilities().resolveFileAtPath(SakerPath.valueOf("url_titles.txt"));
 		if (titlestile != null) {
@@ -164,7 +166,7 @@ public class UrlTitleTaskFactory implements TaskFactory<String>, Task<String>, E
 		}
 		long time = (System.nanoTime() - nanos) / 1_000_000;
 		if (time > 100) {
-			System.out.println("UrlTitleTaskFactory.run() Retrieving " + url + " took " + time + " ms");
+			System.out.println("Retrieving " + this.url + " took " + time + " ms");
 		}
 		String lcstr = str.toLowerCase(Locale.ENGLISH);
 		int titleidx = lcstr.indexOf("<title>");
@@ -177,7 +179,25 @@ public class UrlTitleTaskFactory implements TaskFactory<String>, Task<String>, E
 			SakerLog.warning().println("No <title> closing tag found for: " + url);
 			return null;
 		}
-		return str.substring(titleidx + 7, endidx).trim();
+		StringBuilder sb = new StringBuilder();
+		str.substring(titleidx + 7, endidx).trim().codePoints().forEach(cp -> {
+			if (cp >= 32 && cp <= 126) {
+				sb.appendCodePoint(cp);
+			} else {
+				sb.append("&#");
+				sb.append(cp);
+				sb.append(";");
+			}
+		});
+		String result = sb.toString();
+		taskcontext.acquireStandardIOLock();
+		try {
+			taskcontext.getStandardOut().write(ByteArrayRegion.wrap((this.url + "\n").getBytes()));
+			taskcontext.getStandardOut().write(ByteArrayRegion.wrap(("\t" + result + "\n").getBytes()));
+		} finally {
+			taskcontext.releaseStandardIOLock();
+		}
+		return result;
 	}
 
 	@Override

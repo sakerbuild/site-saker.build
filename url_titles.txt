@@ -14,3 +14,395 @@ https://github.com/markdown-it/markdown-it
 	markdown-it/markdown-it: Markdown parser, done right. 100% CommonMark support, extensions, syntax plugins & high speed
 https://github.com/
 	GitHub
+https://github.com/Sipkab/example-gh-maven
+	Sipkab/example-gh-maven: Example repository showcasing Maven deployment to GitHub packages
+https://github.com/new
+	Create a New Repository
+https://github.com/features/packages
+	GitHub Packages: Your packages, at home with their code
+https://en.wikipedia.org/wiki/List_of_build_automation_software#Build_script_generation
+	List of build automation software - Wikipedia
+https://en.wikipedia.org/wiki/Eating_your_own_dog_food
+	Eating your own dog food - Wikipedia
+https://en.wikipedia.org/wiki/List_of_build_automation_software#Meta-build
+	List of build automation software - Wikipedia
+https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/utility/publish-build-artifacts?view=azure-devops
+	Publish Build Artifacts task - Azure Pipelines | Microsoft Docs
+https://docs.oracle.com/javase/7/docs/api/java/lang/Runtime.html#availableProcessors()
+	Runtime (Java Platform SE 7 )
+https://dev.azure.com/sakerbuild/saker.compiler.utils/_build
+	Pipelines
+https://dev.azure.com/sakerbuild/saker.maven.support/_build
+	Pipelines
+https://dev.azure.com/sakerbuild/saker.java.testing/_build
+	Pipelines
+https://dev.azure.com/sakerbuild/saker.util/_build
+	Pipelines
+https://dev.azure.com/sakerbuild/saker.build/_build
+	Pipelines
+https://dev.azure.com/sakerbuild/saker.maven.classpath/_build
+	Pipelines
+https://en.wikipedia.org/wiki/Java_Classloader#JAR_hell
+	Java Classloader - Wikipedia
+https://xkcd.com/927/
+	xkcd: Standards
+https://dev.azure.com/sakerbuild/saker.process/_build
+	Pipelines
+https://dev.azure.com/sakerbuild/saker.android/_build
+	Pipelines
+https://github.com/sakerbuild/saker.android
+	GitHub - sakerbuild/saker.android: Android support for the saker.build system
+https://dev.azure.com/sakerbuild/saker.zip/_build
+	Pipelines
+https://github.com/apache/commons-lang
+	GitHub - apache/commons-lang: Mirror of Apache Commons Lang
+https://en.wikipedia.org/wiki/Contributor_License_Agreement
+	Contributor License Agreement - Wikipedia
+https://dev.azure.com/sakerbuild/saker.sdk.support/_build
+	Pipelines
+https://github.com/sakerbuild/saker.zip
+	GitHub - sakerbuild/saker.zip: ZIP archive creation support for the saker.build system
+https://dev.azure.com/sakerbuild/saker.clang/_build
+	Pipelines
+https://semver.org/#how-should-i-deal-with-revisions-in-the-0yz-initial-development-phase
+	Semantic Versioning 2.0.0 | Semantic Versioning
+https://semver.org/
+	Semantic Versioning 2.0.0 | Semantic Versioning
+https://github.com/sakerbuild/saker.build/tree/ec4b88671fd77d8c9f61faf4c7fc8973f80b08a0/secret
+	saker.build/secret at ec4b88671fd77d8c9f61faf4c7fc8973f80b08a0 &#183; sakerbuild/saker.build &#183; GitHub
+https://dev.azure.com/sakerbuild/saker.apiextract/_build
+	Pipelines
+https://dev.azure.com/sakerbuild/saker.standard/_build
+	Pipelines
+https://dev.azure.com/sakerbuild/saker.msvc/_build
+	Pipelines
+https://dev.azure.com/sakerbuild/saker.rmi/_build
+	Pipelines
+https://dev.azure.com/sakerbuild/saker.build-site/_build
+	Pipelines
+https://dev.azure.com/sakerbuild/nest.repository.support/_build
+	Pipelines
+https://dev.azure.com/sakerbuild/saker.nest/_build
+	Pipelines
+https://docs.oracle.com/javase/8/docs/api/java/util/ServiceLoader.html
+	ServiceLoader (Java Platform SE 8 )
+https://docs.oracle.com/javase/specs/jls/se7/html/jls-3.html#jls-3.10.6
+	Chapter&nbsp;3.&nbsp;Lexical Structure
+https://en.wikipedia.org/wiki/Shebang_(Unix)
+	Shebang (Unix) - Wikipedia
+https://github.com/sakerbuild/saker.clang
+	GitHub - sakerbuild/saker.clang: Clang support for the saker.build system
+https://docs.oracle.com/javase/8/docs/api/java/io/BufferedInputStream.html
+	BufferedInputStream (Java Platform SE 8 )
+https://docs.oracle.com/javase/specs/jls/se7/html/jls-15.html#jls-15.17
+	Chapter&nbsp;15.&nbsp;Expressions
+https://github.com/sakerbuild/saker.build.ide.intellij
+	GitHub - sakerbuild/saker.build.ide.intellij: IntelliJ plugin for the saker.build system
+https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html#hashCode--
+	Object (Java Platform SE 8 )
+https://dev.azure.com/sakerbuild/saker.java.compiler/_build
+	Pipelines
+https://dev.azure.com/sakerbuild/saker.build.ide.eclipse/_build
+	Pipelines
+https://en.wikipedia.org/wiki/Glob_(programming)
+	glob (programming) - Wikipedia
+https://dev.azure.com/sakerbuild/saker.build.ide.intellij/_build
+	Pipelines
+https://docs.oracle.com/javase/8/docs/api/java/util/Map.Entry.html
+	Map.Entry (Java Platform SE 8 )
+https://github.com/sakerbuild/saker.build/issues/
+	Issues &#183; sakerbuild/saker.build &#183; GitHub
+https://docs.oracle.com/javase/8/docs/api/java/util/Map.html
+	Map (Java Platform SE 8 )
+https://docs.oracle.com/javase/8/docs/api/java/util/NavigableSet.html
+	NavigableSet (Java Platform SE 8 )
+https://docs.oracle.com/javase/8/docs/api/java/security/Signature.html
+	Signature (Java Platform SE 8 )
+https://github.com/sakerbuild/saker.maven.classpath
+	GitHub - sakerbuild/saker.maven.classpath: Java classpath creation support for Maven artifacts in the saker.build system
+https://docs.oracle.com/javase/8/docs/api/java/util/TreeSet.html
+	TreeSet (Java Platform SE 8 )
+https://github.com/sakerbuild/saker.java.ide.eclipse
+	GitHub - sakerbuild/saker.java.ide.eclipse: Java language support for the saker.build Eclipse plugin
+https://github.com/sakerbuild/saker.build.ide.eclipse
+	GitHub - sakerbuild/saker.build.ide.eclipse: Eclipse plugin for the saker.build system
+https://gradle.com/build-scans/
+	Build scans | Gradle Enterprise
+https://docs.oracle.com/javase/8/docs/jdk/api/javac/tree/index.html
+	Compiler Tree API
+https://docs.oracle.com/javase/8/docs/api/javax/annotation/processing/Filer.html
+	Filer (Java Platform SE 8 )
+https://docs.oracle.com/en/java/javase/11/tools/javac.html
+	javac
+https://dev.azure.com/sakerbuild/saker.jar/_build
+	Pipelines
+https://docs.oracle.com/javase/8/docs/jdk/api/javac/tree/com/sun/source/tree/CompilationUnitTree.html
+	CompilationUnitTree (Compiler Tree API )
+https://docs.oracle.com/javase/8/docs/jdk/api/javac/tree/
+	Compiler Tree API
+https://dev.azure.com/sakerbuild/saker.java.ide.eclipse/_build
+	Pipelines
+https://docs.oracle.com/javase/8/docs/technotes/guides/jar/jar.html#Service_Provider
+	JAR File Specification
+https://github.com/sakerbuild/saker.build-site
+	GitHub - sakerbuild/saker.build-site: Static website of saker.build documentation and related contents
+https://github.com/sakerbuild/saker.maven.support
+	GitHub - sakerbuild/saker.maven.support: Maven support build tasks for the saker.build system
+https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests
+	About pull requests - GitHub Help
+https://docs.oracle.com/javase/8/docs/api/java/io/BufferedOutputStream.html
+	BufferedOutputStream (Java Platform SE 8 )
+https://docs.oracle.com/javase/specs/jls/se7/html/jls-3.html#jls-3.10.2
+	Chapter&nbsp;3.&nbsp;Lexical Structure
+https://docs.oracle.com/javase/8/docs/api/javax/tools/StandardLocation.html
+	StandardLocation (Java Platform SE 8 )
+https://docs.microsoft.com/en-us/cpp/build/reference/o1-o2-minimize-size-maximize-speed?view=vs-2019
+	/O1, /O2 (Minimize Size, Maximize Speed) | Microsoft Docs
+https://docs.oracle.com/javase/8/docs/technotes/guides/jar/jar.html#JAR_Manifest
+	JAR File Specification
+https://docs.oracle.com/javase/8/docs/api/java/util/zip/ZipEntry.html
+	ZipEntry (Java Platform SE 8 )
+https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javac.html
+	javac
+https://docs.oracle.com/javase/9/tools/jar.htm
+	jar
+https://docs.oracle.com/javase/8/docs/api/javax/annotation/processing/ProcessingEnvironment.html#getOptions--
+	ProcessingEnvironment (Java Platform SE 8 )
+https://en.wikipedia.org/wiki/Zip_(file_format)
+	Zip (file format) - Wikipedia
+https://docs.oracle.com/javase/8/docs/api/javax/tools/StandardLocation.html#CLASS_OUTPUT
+	StandardLocation (Java Platform SE 8 )
+https://github.com/sakerbuild/saker.build/blob/master/core/common/saker/build/task/dependencies/FileCollectionStrategy.java
+	saker.build/FileCollectionStrategy.java at master &#183; sakerbuild/saker.build &#183; GitHub
+https://en.wikipedia.org/wiki/Dependency_hell
+	Dependency hell - Wikipedia
+https://docs.oracle.com/javase/8/docs/api/java/util/Base64.html#getUrlEncoder--
+	Base64 (Java Platform SE 8 )
+https://en.wikipedia.org/wiki/JAR_(file_format)
+	JAR (file format) - Wikipedia
+https://docs.oracle.com/javase/8/docs/api/javax/tools/StandardLocation.html#locationFor-java.lang.String-
+	StandardLocation (Java Platform SE 8 )
+https://docs.oracle.com/javase/8/docs/api/java/rmi/package-summary.html
+	java.rmi (Java Platform SE 8 )
+https://en.wikipedia.org/wiki/Bleeding_edge_technology
+	Bleeding edge technology - Wikipedia
+https://docs.oracle.com/javase/8/docs/api/java/lang/ThreadLocal.html
+	ThreadLocal (Java Platform SE 8 )
+https://docs.oracle.com/javase/8/docs/api/java/io/ByteArrayOutputStream.html
+	ByteArrayOutputStream (Java Platform SE 8 )
+https://docs.oracle.com/javase/9/docs/api/java/util/ServiceLoader.html
+	ServiceLoader (Java SE 9 &amp; JDK 9 )
+https://docs.oracle.com/javase/specs/jls/se7/html/jls-3.html#jls-3.10.1
+	Chapter&nbsp;3.&nbsp;Lexical Structure
+https://docs.oracle.com/javase/8/docs/api/java/util/AbstractList.html
+	AbstractList (Java Platform SE 8 )
+https://en.wikipedia.org/wiki/Technical_debt
+	Technical debt - Wikipedia
+https://docs.oracle.com/javase/8/docs/api/java/lang/ClassLoader.html
+	ClassLoader (Java Platform SE 8 )
+https://docs.oracle.com/javase/8/docs/api/java/util/AbstractList.html#modCount
+	AbstractList (Java Platform SE 8 )
+https://docs.oracle.com/javase/9/tools/javac.htm
+	javac
+https://github.com/sakerbuild/saker.util
+	GitHub - sakerbuild/saker.util: General Java utilities library
+https://github.com/sakerbuild/saker.compiler.utils
+	GitHub - sakerbuild/saker.compiler.utils: Utility library for implementing language compiler support for the saker.build system
+https://docs.oracle.com/javase/8/docs/api/java/lang/System.html#getProperties--
+	System (Java Platform SE 8 )
+https://docs.oracle.com/javase/8/docs/api/java/lang/System.html#mapLibraryName-java.lang.String-
+	System (Java Platform SE 8 )
+https://github.com/sakerbuild/saker.build/blob/master/core/common/saker/build/task/utils/dependencies/RecursiveIgnoreCaseExtensionFileCollectionStrategy.java
+	saker.build/RecursiveIgnoreCaseExtensionFileCollectionStrategy.java at master &#183; sakerbuild/saker.build &#183; GitHub
+https://docs.oracle.com/javase/8/docs/api/java/lang/System.html
+	System (Java Platform SE 8 )
+https://docs.oracle.com/javase/8/docs/api/javax/annotation/processing/ProcessingEnvironment.html
+	ProcessingEnvironment (Java Platform SE 8 )
+https://asm.ow2.io/
+	ASM
+https://docs.oracle.com/javase/8/docs/api/javax/annotation/processing/Processor.html
+	Processor (Java Platform SE 8 )
+https://docs.oracle.com/javase/8/docs/api/java/nio/file/Files.html
+	Files (Java Platform SE 8 )
+https://docs.gradle.org/current/userguide/java_plugin.html
+	The Java Plugin
+https://github.com/sakerbuild/saker.msvc
+	GitHub - sakerbuild/saker.msvc: MSVC toolchain support for the saker.build system
+https://gradle.org/gradle-vs-maven-performance/
+	Gradle | Gradle vs Maven: Performance Comparison
+https://docs.microsoft.com/en-us/cpp/build/reference/d-preprocessor-definitions?view=vs-2019
+	/D (Preprocessor Definitions) | Microsoft Docs
+https://docs.microsoft.com/en-us/cpp/build/reference/c-cpp-building-reference?view=vs-2019
+	C/C++ Building Reference - Visual Studio | Microsoft Docs
+https://www.oracle.com/technetwork/java/javase/downloads/index.html
+	Java SE - Downloads | Oracle Technology Network | Oracle
+https://github.com/sakerbuild/saker.java.testing
+	GitHub - sakerbuild/saker.java.testing: Incremental Java testing support for the saker.build system
+https://docs.oracle.com/javase/8/docs/api/java/util/SortedMap.html
+	SortedMap (Java Platform SE 8 )
+https://docs.microsoft.com/en-us/cpp/build/reference/oi-generate-intrinsic-functions?view=vs-2019
+	/Oi (Generate Intrinsic Functions) | Microsoft Docs
+https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.html
+	ProcessBuilder (Java Platform SE 8 )
+https://github.com/sakerbuild/saker.standard
+	GitHub - sakerbuild/saker.standard: Standard classes and build tasks for the saker.build system
+https://docs.microsoft.com/en-us/cpp/build/creating-precompiled-header-files?view=vs-2019
+	Precompiled Header Files | Microsoft Docs
+https://docs.oracle.com/javase/8/docs/api/java/security/MessageDigest.html
+	MessageDigest (Java Platform SE 8 )
+https://docs.microsoft.com/en-us/cpp/build/reference/dll-build-a-dll?view=vs-2019
+	/DLL (Build a DLL) | Microsoft Docs
+https://docs.oracle.com/javase/10/tools/javac.htm
+	javac
+https://reproducible-builds.org/docs/definition/
+	Definitions &mdash; reproducible-builds.org
+https://docs.oracle.com/en/java/javase/12/tools/javac.html
+	javac
+https://docs.microsoft.com/en-us/cpp/build/reference/od-disable-debug?view=vs-2019
+	/Od (Disable (Debug)) | Microsoft Docs
+https://docs.microsoft.com/en-us/cpp/build/reference/gy-enable-function-level-linking?view=vs-2019
+	/Gy (Enable Function-Level Linking) | Microsoft Docs
+https://docs.oracle.com/javase/8/docs/api/java/util/TreeMap.html
+	TreeMap (Java Platform SE 8 )
+https://docs.oracle.com/javase/8/docs/api/java/util/Collections.html
+	Collections (Java Platform SE 8 )
+https://maven.apache.org/guides/introduction/introduction-to-repositories.html
+	Maven &#x2013; Introduction to Repositories
+https://docs.microsoft.com/en-us/cpp/build/reference/fi-name-forced-include-file?view=vs-2019
+	/FI (Name Forced Include File) | Microsoft Docs
+https://gradle.org/
+	Gradle Build Tool
+https://docs.oracle.com/javase/8/docs/api/java/io/Closeable.html
+	Closeable (Java Platform SE 8 )
+https://help.github.com/en/github/managing-packages-with-github-packages/deleting-a-package
+	Deleting a package - GitHub Help
+https://docs.microsoft.com/en-us/cpp/build/reference/opt-optimizations?view=vs-2019
+	/OPT (Optimizations) | Microsoft Docs
+https://pages.github.com/
+	GitHub Pages | Websites for you and your projects, hosted directly from your GitHub repository. Just edit, push, and your changes are live.
+https://adoptopenjdk.net
+	AdoptOpenJDK - Open source, prebuilt OpenJDK binaries
+https://junit.org/junit4/javadoc/latest/org/junit/runner/JUnitCore.html
+	JUnitCore (JUnit API)
+https://docs.microsoft.com/en-us/cpp/build/reference/subsystem-specify-subsystem?view=vs-2019
+	/SUBSYSTEM (Specify Subsystem) | Microsoft Docs
+https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ConcurrentSkipListSet.html
+	ConcurrentSkipListSet (Java Platform SE 8 )
+https://docs.microsoft.com/en-us/cpp/build/reference/yu-use-precompiled-header-file?view=vs-2019
+	/Yu (Use Precompiled Header File) | Microsoft Docs
+https://devblogs.microsoft.com/cppblog/compiler-tools-layout-in-visual-studio-15/
+	Compiler Tools Layout in Visual Studio 2017 | C++ Team Blog
+https://github.com/google/dagger
+	GitHub - google/dagger: A fast dependency injector for Android and Java.
+https://github.com/sakerbuild/performance-comparisons/tree/bf6bbd6f2d9bb0eb66eeb1973dc069bf5c0a2ba7/msvc-cluster-realistic-1000
+	performance-comparisons/msvc-cluster-realistic-1000 at bf6bbd6f2d9bb0eb66eeb1973dc069bf5c0a2ba7 &#183; sakerbuild/performance-comparisons &#183; GitHub
+https://github.com/sakerbuild/saker.sdk.support
+	GitHub - sakerbuild/saker.sdk.support: SDK based configuration support for the saker.build system
+https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
+	Cross-Origin Resource Sharing (CORS) - HTTP | MDN
+https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/measure-command?view=powershell-6
+	Measure-Command
+https://docs.microsoft.com/en-us/cpp/build/reference/libpath-additional-libpath?view=vs-2019
+	/LIBPATH (Additional Libpath) | Microsoft Docs
+https://docs.oracle.com/javase/8/docs/api/java/io/Externalizable.html
+	Externalizable (Java Platform SE 8 )
+https://ninja-build.org/
+	Ninja, a small build system with a focus on speed
+https://github.com/sakerbuild/saker.apiextract
+	GitHub - sakerbuild/saker.apiextract: Java annotation processor for extracting API bytecode stubs
+https://github.com/sakerbuild/nest.repository.support
+	GitHub - sakerbuild/nest.repository.support: Build tasks related to the saker.nest repository for the saker.build system
+https://blog.gradle.org/incremental-compiler-avoidance
+	Incremental Compilation, the Java Library Plugin, and other performance features in Gradle 3.4
+https://www.incredibuild.com/
+	Home - Incredibuild
+https://github.com/gradle/performance-comparisons/tree/13739fa299e485c079335b0cd5b30da1cff92234/single-large-project
+	performance-comparisons/single-large-project at 13739fa299e485c079335b0cd5b30da1cff92234 &#183; gradle/performance-comparisons &#183; GitHub
+https://maven.apache.org/
+	Maven &#x2013; Welcome to Apache Maven
+https://github.com/sakerbuild/saker.build/blob/master/core/common/saker/build/task/utils/dependencies/WildcardFileCollectionStrategy.java
+	saker.build/WildcardFileCollectionStrategy.java at master &#183; sakerbuild/saker.build &#183; GitHub
+https://github.com/sakerbuild/saker.build/blob/master/core/common/saker/build/task/utils/dependencies/PathFileCollectionStrategy.java
+	saker.build/PathFileCollectionStrategy.java at master &#183; sakerbuild/saker.build &#183; GitHub
+https://stackoverflow.com/questions/37203247
+	java - While loading JNI library, how the mapping happens with the actual library name - Stack Overflow
+https://docs.microsoft.com/en-us/cpp/build/reference/gl-whole-program-optimization?view=vs-2019
+	/GL (Whole Program Optimization) | Microsoft Docs
+https://github.com/microsoft/language-server-protocol/issues/33
+	Syntax highlight &#183; Issue #33 &#183; microsoft/language-server-protocol &#183; GitHub
+https://github.com/sakerbuild/saker.jar
+	GitHub - sakerbuild/saker.jar: Java Archive creation support for the saker.build system
+https://github.com/gradle/performance-comparisons/tree/master/single-large-project
+	performance-comparisons/single-large-project at master &#183; gradle/performance-comparisons &#183; GitHub
+https://adoptopenjdk.net/
+	AdoptOpenJDK - Open source, prebuilt OpenJDK binaries
+https://github.com/sakerbuild/saker.java.compiler
+	GitHub - sakerbuild/saker.java.compiler: Incremental Java compilation support for the saker.build system
+https://github.com/apache/commons-lang/tree/404d67841ecba0d2a5e8055fe5650907d582ac03
+	GitHub - apache/commons-lang at 404d67841ecba0d2a5e8055fe5650907d582ac03
+https://github.com/sakerbuild/saker.java.compiler/issues/
+	Issues &#183; sakerbuild/saker.java.compiler &#183; GitHub
+https://docs.microsoft.com/en-us/cpp/build/reference/compiling-a-c-cpp-program?view=vs-2019
+	MSVC C/C++ compiler reference - Visual Studio | Microsoft Docs
+https://github.com/gradle/gradle/issues/8590
+	Adding a class in a package with same name as a class in another package may break incremental compilation &#183; Issue #8590 &#183; gradle/gradle &#183; GitHub
+https://docs.oracle.com/javase/specs/jls/se7/html/jls-15.html#jls-15.18.2
+	Chapter&nbsp;15.&nbsp;Expressions
+https://github.com/sakerbuild/saker.msvc/issues/1
+	Re-examine distributed compilation performance results &#183; Issue #1 &#183; sakerbuild/saker.msvc &#183; GitHub
+https://openjdk.java.net/jeps/238
+	JEP 238: Multi-Release JAR Files
+https://github.com/sakerbuild/performance-comparisons/tree/bf6bbd6f2d9bb0eb66eeb1973dc069bf5c0a2ba7/java-large-multiproject
+	performance-comparisons/java-large-multiproject at bf6bbd6f2d9bb0eb66eeb1973dc069bf5c0a2ba7 &#183; sakerbuild/performance-comparisons &#183; GitHub
+https://bugs.eclipse.org/bugs/show_bug.cgi?id=531202
+	531202 &ndash; Java compilation succeeds when functions collide by type variable
+https://github.com/sakerbuild/performance-comparisons/tree/bf6bbd6f2d9bb0eb66eeb1973dc069bf5c0a2ba7/msvc-ninja-1000
+	performance-comparisons/msvc-ninja-1000 at bf6bbd6f2d9bb0eb66eeb1973dc069bf5c0a2ba7 &#183; sakerbuild/performance-comparisons &#183; GitHub
+https://github.com/sakerbuild/saker.build/blob/master/core/common/saker/build/task/utils/dependencies/DirectoryChildrenFileCollectionStrategy.java
+	saker.build/DirectoryChildrenFileCollectionStrategy.java at master &#183; sakerbuild/saker.build &#183; GitHub
+https://docs.oracle.com/javase/8/docs/api/java/lang/annotation/RetentionPolicy.html#SOURCE
+	RetentionPolicy (Java Platform SE 8 )
+https://docs.oracle.com/en/java/javase/13/docs/specs/man/javac.html
+	The javac Command
+https://docs.oracle.com/javase/8/docs/api/java/lang/System.html#loadLibrary-java.lang.String-
+	System (Java Platform SE 8 )
+https://docs.oracle.com/javase/8/docs/api/java/io/File.html
+	File (Java Platform SE 8 )
+https://bugs.eclipse.org/bugs/show_bug.cgi?id=278673
+	278673 &ndash; update site feature category does not work
+https://maven.apache.org/pom.html
+	Maven &#x2013; POM Reference
+https://www.eclipse.org/eclipseide/
+	Eclipse IDE 2020-03 | The Eclipse Foundation
+https://bugs.openjdk.java.net/browse/JDK-7133447
+	[JDK-7133447] (fs) Need WatchService optimized for macOS - Java Bug System
+https://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html#Dependency_Scope
+	Maven &#x2013; Introduction to the Dependency Mechanism
+https://github.com/gradle/gradle/issues/6482
+	Make incremental compile faster on constant changes &#183; Issue #6482 &#183; gradle/gradle &#183; GitHub
+https://docs.microsoft.com/en-us/cpp/build/reference/i-additional-include-directories?view=vs-2019
+	/I (Additional include directories) | Microsoft Docs
+https://docs.microsoft.com/en-us/cpp/build/reference/debug-generate-debug-info?view=vs-2019
+	/DEBUG (Generate Debug Info) | Microsoft Docs
+https://docs.microsoft.com/en-us/cpp/build/reference/linking?view=vs-2019
+	MSVC linker reference | Microsoft Docs
+https://docs.microsoft.com/en-us/cpp/build/reference/ltcg-link-time-code-generation?view=vs-2019
+	/LTCG (Link-time Code Generation) | Microsoft Docs
+https://github.com/gradle/performance-comparisons/tree/13739fa299e485c079335b0cd5b30da1cff92234/large-multiproject
+	performance-comparisons/large-multiproject at 13739fa299e485c079335b0cd5b30da1cff92234 &#183; gradle/performance-comparisons &#183; GitHub
+https://github.com/sakerbuild/saker.build
+	GitHub - sakerbuild/saker.build: A modern build system focusing on fast and incremental builds for all project sizes
+https://github.com/Microsoft/language-server-protocol/issues/18
+	Support semantic highlighting &#183; Issue #18 &#183; microsoft/language-server-protocol &#183; GitHub
+https://github.com/gradle/gradle/issues/11559
+	StackOverFlowError during incremental Java compilation with annotation processors &#183; Issue #11559 &#183; gradle/gradle &#183; GitHub
+https://www.eclipse.org/jdt/core/
+	JDT Core Component | The Eclipse Foundation
+https://bugs.eclipse.org/bugs/show_bug.cgi?id=528363
+	528363 &ndash; Eclipse compiler resolves typename from superclass instead of template type
+https://bugs.eclipse.org/bugs/show_bug.cgi?id=528859
+	528859 &ndash; Compilation fails for heavily templated functional interface
+https://tools.ietf.org/html/rfc2388
+	RFC 2388 - Returning Values from Forms: multipart/form-data
+https://tools.ietf.org/html/rfc4648
+	RFC 4648 - The Base16, Base32, and Base64 Data Encodings
