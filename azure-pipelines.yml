@@ -146,16 +146,28 @@ steps:
     python ../saker.build-site/download_update_sites.py $DOWNLOAD_TOKEN
     for f in *.zip; do
       VER=$(echo "$f" | sed -r 's/site-v(.*)\.zip/\1/')
+      echo "$ver" >> _update_site_versions.txt
       unzip "$f" -d "../saker.build-site/site/saker.build.ide.eclipse/update-site/v$VER"
     done
+    SAKER_ECLIPSE_VERSION=$(sort -V -r < _update_site_versions.txt | head -n 1)
+    echo "##vso[task.setvariable variable=SAKER_ECLIPSE_VERSION]$SAKER_ECLIPSE_VERSION"
+    
+    echo "saker.build.ide.eclipse version: $SAKER_ECLIPSE_VERSION"
+    
+    rm _update_site_versions.txt
   displayName: 'Download update sites'
   env:
     DOWNLOAD_TOKEN: $(SITE_DOWNLOAD_TOKEN)
 - script: |
     set -e
     SAKER_BUILD_VERSION=$(curl -s https://mirror.nest.saker.build/badges/saker.build/latest.txt)
+    SAKER_NEST_VERSION=$(curl -s https://mirror.nest.saker.build/badges/saker.nest/latest.txt)
     curl https://api.nest.saker.build/bundle/download/saker.build-v$SAKER_BUILD_VERSION -o saker.build.jar
     echo "##vso[task.setvariable variable=SAKER_BUILD_VERSION]$SAKER_BUILD_VERSION"
+    echo "##vso[task.setvariable variable=SAKER_NEST_VERSION]$SAKER_NEST_VERSION"
+    
+    echo "saker.build version: $SAKER_BUILD_VERSION"
+    echo "saker.nest version: $SAKER_NEST_VERSION"
   displayName: 'Download saker.build'
 - script: java -jar ../saker.build.jar -bd build install tasks/saker.build
   displayName: 'Build documentation tasks'
@@ -208,7 +220,7 @@ steps:
     cd build-javadoc
     curl https://api.nest.saker.build/bundle/download/saker.apiextract-api-v$(curl -s https://mirror.nest.saker.build/badges/saker.apiextract/latest.txt) -o saker.apiextract-api.jar
     curl https://api.nest.saker.build/bundle/download/saker.build-api-v$(SAKER_BUILD_VERSION) -o saker.build-api.jar
-    curl https://api.nest.saker.build/bundle/download/saker.nest-api-v$(curl -s https://mirror.nest.saker.build/badges/saker.nest/latest.txt) -o saker.nest-api.jar
+    curl https://api.nest.saker.build/bundle/download/saker.nest-api-v$(SAKER_NEST_VERSION) -o saker.nest-api.jar
   displayName: 'Setup javadoc libs'
 - script: $(JAVA_HOME_9_X64)/bin/javadoc -locale en_US -sourcepath "../saker.build-site/doclet/pseudo:saker.build/core/common:saker.build/thirdparty/rmi/api/src:saker.build/thirdparty/rmi/impl/src:saker.build/thirdparty/utils/common:saker.build/thirdparty/utils/jdk8:saker.build/core/test/api/common:saker.build/core/test/api/enabled:saker.build/thirdparty/asm/src:saker.build/core/jdk8" -docletpath "../saker.build.jar:../saker.doclet.jar" -doclet saker.doclet.SakerDoclet -subpackages saker -classpath saker.apiextract-api.jar -apijar saker.build-api.jar -d javadoc/saker.build/javadoc -template ../saker.build-site/templates/javadoc_template.html -index-title "Saker.build API JavaDoc" -embed-macro DOC_FOOTER_TEMPLATE ../saker.build-site/templates/footer/packagefootertemplate.html -embed-macro DOC_NAV_TEMPLATE ../saker.build-site/templates/nav/navtemplate.html -macro "<!-- DOC-PATH-TO-ROOT-DIR -->" "JAVADOC_ROOT../" -macro PACKAGE_NAME saker.build -macro DOC_DATA_PRESENCE "nest-package packagedoc javadoc" -macro FOOTER_COPYRIGHT "Bence Sipka 2020"
   displayName: 'Javadoc: saker.build'
@@ -251,7 +263,7 @@ steps:
   workingDirectory: build-javadoc
 - script: cp -r build-javadoc/javadoc/* saker.build-site/site/
   displayName: 'Copy Javadoc results to working tree'
-- script: java -jar ../saker.build.jar -bd build "-EUsaker.java.jre.install.locations=$(JAVA_HOME_9_X64)" build
+- script: java -jar ../saker.build.jar -bd build "-EUsaker.java.jre.install.locations=$(JAVA_HOME_9_X64)" "-EUsite.version.saker.build=$(SAKER_BUILD_VERSION)" "-EUsite.version.saker.nest=$(SAKER_NEST_VERSION)" "-EUsite.version.saker.build.ide.eclipse=$(SAKER_ECLIPSE_VERSION)" build
   displayName: 'Generate site'
   workingDirectory: saker.build-site
 
