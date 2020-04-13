@@ -51,7 +51,7 @@
 		</div>
 		<div class="col-12 col-lg-9 col-xl-10 doc-page">
 			<div class="doc-breadcrumb">
-				Scripting language &gt; <a href="index.html" title="Built-in tasks">Built-in tasks</a> &gt; <a href="global.html" title="global()">global()</a>
+				<a href="../../../index.html" title="saker.build">saker.build</a> &gt; Scripting language &gt; <a href="index.html" title="Built-in tasks">Built-in tasks</a> &gt; <a href="global.html" title="global()">global()</a>
 			</div>
 			<div class="sb-sponsors" style="display: none;">
 	<span class="sb-sponsors-title">Sponsors</span>
@@ -114,7 +114,7 @@
 </code></pre>
 </p>
 <p>The above example showcases one use-case for global variables. The <code>config.build</code> file is not published to any source control platforms, and contains secret data related to the operation of the associated project. The <code>saker.build</code> file is the main entry points for builds and developers use this to build the project.</p>
-<p>When the <code>publish</code> build target is invoked, the <code>include(Path = config.build)</code> global expression includes the <code>config.build</code> file. The expressions in it are invoked, and the global variables get assigned with the appropriate values. The <code>publish</code> task then encrypts and publishes some arbitrary data, and uses the globally set configuration values to do its work.</p>
+<p>When the <code>publish</code> build target is invoked, the <code>include(Path: config.build)</code> global expression includes the <code>config.build</code> file. The expressions in it are invoked, and the global variables get assigned with the appropriate values. The <code>publish</code> task then encrypts and publishes some arbitrary data, and uses the globally set configuration values to do its work.</p>
 <link href="../../../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>
 			<div class="end-section-links">
 				<div class="end-section-prev">
