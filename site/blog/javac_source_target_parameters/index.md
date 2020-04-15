@@ -25,7 +25,7 @@ It's quite simple and should properly work on Java 8, 9, or later.
 Let's compile it for Java 8, using the `--release` option.
 
 ```plaintext
-path/to/jdk9/bin/javac Compile8Test.java -release 8
+path/to/jdk9/bin/javac Compile8Test.java --release 8
 ```
 
 As a test, we should run it on **Java 8**:
