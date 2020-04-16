@@ -8,6 +8,7 @@ server upload [@command-file] [parameters] file
 
 <div class="doc-cmdref-cmd-doc">
 
+Uploads a single bundle to the specified saker.nest repository.
 
 </div>
 
@@ -43,6 +44,9 @@ E.g: @path/to/arguments.txt
 
 <div class="doc-cmdref-param-doc">
 
+The URL of the server to which the upload should be performed.
+
+It is https://api.nest.saker.build by default.
 
 </div>
 
@@ -57,6 +61,10 @@ E.g: @path/to/arguments.txt
 
 <div class="doc-cmdref-param-doc">
 
+Flag specifying that the already existing bundles can be overwritten.
+
+If not set, the server will decide whether or not the bundles may be
+overwritten.
 
 </div>
 
@@ -72,6 +80,9 @@ E.g: @path/to/arguments.txt
 
 <div class="doc-cmdref-param-doc">
 
+Specifies the API Key to be used for the upload request.
+
+The argument is expected to be in URL safe Base64 format.
 
 </div>
 
@@ -87,6 +98,9 @@ E.g: @path/to/arguments.txt
 
 <div class="doc-cmdref-param-doc">
 
+Specifies the API Secret to be used for the upload request.
+
+The argument is expected to be in URL safe Base64 format.
 
 </div>
 
@@ -102,6 +116,10 @@ Positional parameter.
 
 <div class="doc-cmdref-param-doc">
 
+Path to the bundle to upload.
+
+The specified Java archive should be a valid saker.nest bundle.
+If not, an exception is thrown before the upload request is initiated.
 
 </div>
 

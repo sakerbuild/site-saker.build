@@ -8,7 +8,7 @@ version [@command-file]
 
 <div class="doc-cmdref-cmd-doc">
 
-Displays the version information of the saker.nest repository.
+Displays the version information about the saker.nest repository.
 
 </div>
 

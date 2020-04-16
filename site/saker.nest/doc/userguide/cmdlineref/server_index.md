@@ -10,6 +10,8 @@ server index [@command-file] [subcommand] ...
 
 <div class="doc-cmdref-cmd-doc">
 
+Top level command for interaction with the index
+management of the server bundle storage.
 
 </div>
 

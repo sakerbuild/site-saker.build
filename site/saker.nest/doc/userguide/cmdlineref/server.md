@@ -11,6 +11,7 @@ server [@command-file] [subcommand] ...
 
 <div class="doc-cmdref-cmd-doc">
 
+Top level command for interaction with the server bundle storage.
 
 </div>
 

@@ -10,6 +10,7 @@ local [@command-file] [subcommand] ...
 
 <div class="doc-cmdref-cmd-doc">
 
+Top level command for interaction with the local bundle storage.
 
 </div>
 

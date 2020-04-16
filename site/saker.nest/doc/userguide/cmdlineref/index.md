@@ -13,6 +13,9 @@
 
 <div class="doc-cmdref-cmd-doc">
 
+saker.nest repository command line action interface.
+
+See subcommands for available actions.
 
 </div>
 
