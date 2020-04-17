@@ -122,6 +122,10 @@ public class SakerDoclet implements Doclet {
 	private Types types;
 	private DocTrees trees;
 
+	private ErrorReporter errorReporter = new ThrowingErrorReporter();
+	private String warningFormat = "Warning: %s";
+	private String errorFormat = "Warning: %s";
+
 	private NavigableMap<String, PackageDocumentationInfo> docPackages = new TreeMap<>();
 	/**
 	 * The type documentation infos mapped by their qualified names.
@@ -157,7 +161,8 @@ public class SakerDoclet implements Doclet {
 	public Set<? extends Option> getSupportedOptions() {
 		return ObjectUtils.newHashSet(new ApiJarOption(), new OutputDirectoryOption(), new TemplateFileOption(),
 				new IndexTitleOption(), new FaviconOption(), new DefaultFaviconOption(), new MacroOption(),
-				new EmbedMacroOption(), new ExternalDocSiteOption(), new ExcludeClassOption());
+				new EmbedMacroOption(), new ExternalDocSiteOption(), new ExcludeClassOption(),
+				new ErrorReportingOption(), new WarningFormatOption(), new ErrorFormatOption());
 	}
 
 	@Override
@@ -1059,7 +1064,7 @@ public class SakerDoclet implements Doclet {
 			case CONSTRUCTOR: {
 				ExecutableElement ee = (ExecutableElement) element;
 				if (!isMethodDocumented(ee)) {
-					throw new IllegalArgumentException("Trying to acquire link to undocumented element: " + element);
+					errorReporter.error("Trying to acquire link to undocumented element: " + element);
 				}
 				out.append(getNestingQualifiedName((TypeElement) element.getEnclosingElement()));
 				DocCommentHtmlWriter.writeReferenceParameterTypes(this, pagepath, ee, DocCommentHtmlWriter.TM_NO_HTML,
@@ -1069,7 +1074,7 @@ public class SakerDoclet implements Doclet {
 			case METHOD: {
 				ExecutableElement ee = (ExecutableElement) element;
 				if (!isMethodDocumented(ee)) {
-					throw new IllegalArgumentException("Trying to acquire link to undocumented element: " + element);
+					errorReporter.error("Trying to acquire link to undocumented element: " + element);
 				}
 				out.append(getNestingQualifiedName((TypeElement) element.getEnclosingElement()));
 				out.append('.');
@@ -1081,7 +1086,7 @@ public class SakerDoclet implements Doclet {
 			case PACKAGE: {
 				PackageElement packelem = (PackageElement) element;
 				if (!isPackageDocumented(packelem)) {
-					throw new IllegalArgumentException("Trying to acquire link to undocumented element: " + element);
+					errorReporter.error("Trying to acquire link to undocumented element: " + element);
 				}
 				out.append(packelem.getQualifiedName());
 				break;
@@ -1089,7 +1094,7 @@ public class SakerDoclet implements Doclet {
 			case FIELD:
 			case ENUM_CONSTANT: {
 				if (!isFieldDocumented((VariableElement) element)) {
-					throw new IllegalArgumentException("Trying to acquire link to undocumented element: " + element);
+					errorReporter.error("Trying to acquire link to undocumented element: " + element);
 				}
 				out.append(getNestingQualifiedName((TypeElement) element.getEnclosingElement()));
 				out.append('.');
@@ -1102,7 +1107,7 @@ public class SakerDoclet implements Doclet {
 			case INTERFACE: {
 				TypeElement type = (TypeElement) element;
 				if (!isTypeDocumented(type)) {
-					throw new IllegalArgumentException("Trying to acquire link to undocumented element: " + element);
+					errorReporter.error("Trying to acquire link to undocumented element: " + element);
 				}
 				writeTypeElementKindKeyword(type, out);
 				out.append(type.getQualifiedName());
@@ -1369,7 +1374,7 @@ public class SakerDoclet implements Doclet {
 
 	private void checkPackageDocumentationExistence(PackageElement elem) {
 		if (!isPackageDocumented(elem)) {
-			throw new IllegalArgumentException("Package not documented: " + elem);
+			errorReporter.error("Package not documented: " + elem);
 		}
 	}
 
@@ -1384,7 +1389,7 @@ public class SakerDoclet implements Doclet {
 		}
 		TypeDocumentationInfo got = docTypes.get(qname);
 		if (got == null || got.getElement() == null) {
-			throw new IllegalArgumentException("Documentation referenced type is not documented: " + qname);
+			errorReporter.error("Documentation referenced type is not documented: " + qname);
 		}
 	}
 
@@ -4356,4 +4361,160 @@ public class SakerDoclet implements Doclet {
 		}
 	}
 
+	private class ErrorReportingOption implements Option {
+		@Override
+		public int getArgumentCount() {
+			return 1;
+		}
+
+		@Override
+		public String getDescription() {
+			return "Specifies how some errors should be handled.";
+		}
+
+		@Override
+		public Kind getKind() {
+			return Kind.STANDARD;
+		}
+
+		@Override
+		public List<String> getNames() {
+			return Arrays.asList("-error-reporting");
+		}
+
+		@Override
+		public String getParameters() {
+			return "<type>";
+		}
+
+		@Override
+		public boolean process(String option, List<String> arguments) {
+			String arg = arguments.get(0).toLowerCase(Locale.ENGLISH);
+			switch (arg) {
+				case "error": {
+					errorReporter = new ThrowingErrorReporter();
+					break;
+				}
+				case "warn": {
+					errorReporter = new WarningErrorReporter();
+					break;
+				}
+				case "ignore": {
+					errorReporter = new IgnoreErrorReporter();
+					break;
+				}
+				default: {
+					throw new IllegalArgumentException(arg);
+				}
+			}
+			return true;
+		}
+	}
+
+	private class WarningFormatOption implements Option {
+		@Override
+		public int getArgumentCount() {
+			return 1;
+		}
+
+		@Override
+		public String getDescription() {
+			return "Specifies the warning display format string.";
+		}
+
+		@Override
+		public Kind getKind() {
+			return Kind.STANDARD;
+		}
+
+		@Override
+		public List<String> getNames() {
+			return Arrays.asList("-warning-format");
+		}
+
+		@Override
+		public String getParameters() {
+			return "<format string>";
+		}
+
+		@Override
+		public boolean process(String option, List<String> arguments) {
+			warningFormat = arguments.get(0);
+			return true;
+		}
+	}
+
+	private class ErrorFormatOption implements Option {
+		@Override
+		public int getArgumentCount() {
+			return 1;
+		}
+
+		@Override
+		public String getDescription() {
+			return "Specifies the error display format string.";
+		}
+
+		@Override
+		public Kind getKind() {
+			return Kind.STANDARD;
+		}
+
+		@Override
+		public List<String> getNames() {
+			return Arrays.asList("-error-format");
+		}
+
+		@Override
+		public String getParameters() {
+			return "<format string>";
+		}
+
+		@Override
+		public boolean process(String option, List<String> arguments) {
+			errorFormat = arguments.get(0);
+			return true;
+		}
+	}
+
+	private final class ThrowingErrorReporter implements ErrorReporter {
+		@Override
+		public void error(String message, Throwable cause) {
+			if (errorFormat != null) {
+				printWithFormat(message, cause, errorFormat);
+			}
+			throw new IllegalArgumentException(message, cause);
+		}
+	}
+
+	private final class WarningErrorReporter implements ErrorReporter {
+		@Override
+		public void error(String message, Throwable cause) {
+			printWithFormat(message, cause, warningFormat);
+		}
+
+	}
+
+	private static void printWithFormat(String message, Throwable cause, String format) {
+		if (format == null) {
+			return;
+		}
+		if (message == null) {
+			System.out.println(String.format(format, cause.toString()));
+			cause.printStackTrace();
+		} else {
+			if (cause != null) {
+				System.out.println(String.format(format, message + "(" + cause + ")"));
+			} else {
+				System.out.println(String.format(format, message));
+			}
+		}
+	}
+
+	private static final class IgnoreErrorReporter implements ErrorReporter {
+		@Override
+		public void error(String message, Throwable cause) {
+		}
+
+	}
 }
