@@ -74,6 +74,7 @@
 <p>server upload [@command-file] [parameters] file</p>
 </div>
 <div class="doc-cmdref-cmd-doc">
+<p>Uploads a single bundle to the specified saker.nest repository.</p>
 </div>
 <h5 id="_command-file">@command-file<a class="doc-heading-anchor" href="#_command-file"></a></h5>
 <div class="doc-cmdref-param-aliases">@command-file
@@ -95,6 +96,8 @@ The file path may be absolute or relative.</p>
 <div class="doc-cmdref-param-flags">
 </div>
 <div class="doc-cmdref-param-doc">
+<p>The URL of the server to which the upload should be performed.</p>
+<p>It is https://api.nest.saker.build by default.</p>
 </div>
 <h5 id="-overwrite">-overwrite<a class="doc-heading-anchor" href="#-overwrite"></a></h5>
 <div class="doc-cmdref-param-aliases">-overwrite
@@ -102,6 +105,9 @@ The file path may be absolute or relative.</p>
 <div class="doc-cmdref-param-flags">
 </div>
 <div class="doc-cmdref-param-doc">
+<p>Flag specifying that the already existing bundles can be overwritten.</p>
+<p>If not set, the server will decide whether or not the bundles may be
+overwritten.</p>
 </div>
 <h5 id="-api-key">-api-key<a class="doc-heading-anchor" href="#-api-key"></a></h5>
 <div class="doc-cmdref-param-aliases">-api-key &lt;base64&gt;
@@ -110,6 +116,8 @@ The file path may be absolute or relative.</p>
 <b>Required parameter.</b> 
 </div>
 <div class="doc-cmdref-param-doc">
+<p>Specifies the API Key to be used for the upload request.</p>
+<p>The argument is expected to be in URL safe Base64 format.</p>
 </div>
 <h5 id="-api-secret">-api-secret<a class="doc-heading-anchor" href="#-api-secret"></a></h5>
 <div class="doc-cmdref-param-aliases">-api-secret &lt;base64&gt;
@@ -118,6 +126,8 @@ The file path may be absolute or relative.</p>
 <b>Required parameter.</b> 
 </div>
 <div class="doc-cmdref-param-doc">
+<p>Specifies the API Secret to be used for the upload request.</p>
+<p>The argument is expected to be in URL safe Base64 format.</p>
 </div>
 <h5 id="file">file<a class="doc-heading-anchor" href="#file"></a></h5>
 <div class="doc-cmdref-param-format">&lt;file-path&gt;</div>
@@ -126,6 +136,9 @@ The file path may be absolute or relative.</p>
 Positional parameter. 
 </div>
 <div class="doc-cmdref-param-doc">
+<p>Path to the bundle to upload.</p>
+<p>The specified Java archive should be a valid saker.nest bundle.
+If not, an exception is thrown before the upload request is initiated.</p>
 </div>
 <link href="../../../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>
 			<div class="end-section-links">

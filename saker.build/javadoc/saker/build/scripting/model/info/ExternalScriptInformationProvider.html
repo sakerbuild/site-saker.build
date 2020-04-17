@@ -87,7 +87,11 @@
  The literal and type context hints may be <code>null</code>, but at least one of them will be
  non-<code>null</code>.
  <p>
- The resulting collection should be ordered based on relevance to the hint parameters.
+ The literal keyword hint should be interpreted the same way as in <span class="javadoc-code-ref"><a href="#getTaskInformation-saker.build.task.TaskName-" title="ExternalScriptInformationProvider.getTaskInformation(TaskName)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface">getTaskInformation<span class="javadoc-code-ref">(<wbr>TaskName)</span></a></span>.
+ Implementations should only return literals that are related to the specified keyword.
+ <p>
+ The resulting collection should be ordered based on relevance to the hint parameters. We recommend using
+ <span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/util/LinkedHashSet.html" title="class java.util.LinkedHashSet" data-javadoc-kind="class">LinkedHashSet</a></span> to keep the insertion order for the returned literals.
  <p>
  This method is usually useful when creating completion proposals for a script model.</div><div class="javadoc-method-detail-params javadoc-blocktag-section"><div class="javadoc-method-detail-param"><span class="javadoc-method-detail-param-name">literalkeyword</span><span class="javadoc-method-detail-param-detail">The literal hint or <code>null</code> if not available.</span></div><div class="javadoc-method-detail-param"><span class="javadoc-method-detail-param-name">typecontext</span><span class="javadoc-method-detail-param-detail">The type information context hint or <code>null</code> if not available.</span></div></div><div class="javadoc-method-detail-return javadoc-blocktag-section"><div class="javadoc-method-detail-return-body">The literal informations.</div></div></div></div><div id="getTaskInformation-saker.build.task.TaskName-" class="javadoc-class-detail-method javadoc-class-detail-member"><div class="javadoc-class-detail-method-sig javadoc-member-sig"><span class="javadoc-kw">public default </span><span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Map.html" title="interface java.util.Map" data-javadoc-kind="interface">Map</a>&lt;<wbr><a href="../../../task/TaskName.html" title="class saker.build.task.TaskName" data-javadoc-kind="class">TaskName</a>, ?&nbsp;<span class="javadoc-kw">extends</span> <a href="TaskInformation.html" title="interface saker.build.scripting.model.info.TaskInformation" data-javadoc-kind="interface">TaskInformation</a>&gt;</span> <a href="#getTaskInformation-saker.build.task.TaskName-" title="ExternalScriptInformationProvider.getTaskInformation(TaskName)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">getTaskInformation</a><span class="javadoc-code-ref">(<wbr><span class="javadoc-method-param"><a href="../../../task/TaskName.html" title="class saker.build.task.TaskName" data-javadoc-kind="class">TaskName</a> taskname</span>)</span></div><div class="javadoc-class-detail-method-detail javadoc-member-detail"><div class="javadoc-detail-body">Gets the task informations based on a task name hint. <p>
  This method queries the information provider for task informations based on a hint task name. The provider should
@@ -122,6 +126,9 @@
  it has information about. (I.e. there is no need to build a full index of all the tasks in a given
  implementation, as that could result in too big work. E.g. no need to retrieve all tasks from a repository, only
  return the ones it currently knows about.)
+ <p>
+ If the hint keyword is not <code>null</code>, then implementations should <b>not</b> return tasks which are not
+ related to it. That is, it should properly filter the task informations based on the hint keyword.
  <p>
  The value informations in the returned map are allowed to be lazily populated. The values in the map can be
  <code>null</code> to signal that they are not available or are still pending due to background retrieval.</div><div class="javadoc-method-detail-params javadoc-blocktag-section"><div class="javadoc-method-detail-param"><span class="javadoc-method-detail-param-name">tasknamekeyword</span><span class="javadoc-method-detail-param-detail">The task name hint keyword or <code>null</code>.</span></div></div><div class="javadoc-method-detail-return javadoc-blocktag-section"><div class="javadoc-method-detail-return-body">The informations for the related tasks.</div></div></div></div></div></div>

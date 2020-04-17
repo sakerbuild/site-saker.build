@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
+		<meta charset="UTF-8">
 	<title>Saker.build - A modern build system</title>
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +10,41 @@
 	<link rel="stylesheet" href="/res/doc-saker.css">
 	
 	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+
+	<style>
+		.cc-image>img {
+			max-width: min(100%, 80vw);
+		    margin: auto;
+    		display: block;
+		}
+		.landing-syntax-highlight .sl-images {
+			position: relative;
+			margin: auto;
+			width: 374px;
+			max-width: 80vw;
+		}
+		.ide-highlight-img {
+			border-radius: 2px;
+			box-shadow: 1px 1px 4px var(--color-ui-element-shadow);
+		}
+		.landing-syntax-highlight .syntax-highlight-container img {
+			transition: clip-path 0.2s;
+		    max-width: 100%;
+		}
+		.landing-syntax-highlight .sl-images .sl-dark {
+			position: absolute;
+			top: 0;
+			left: 0;
+			bottom: 0;
+			clip-path: polygon(0% 30%, 100% 50%, 100% 100%, 0% 100%);
+		}
+		.landing-syntax-highlight .sl-images .sl-dark:hover {
+			clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+		}
+		.landing-syntax-highlight .sl-images .sl-light:hover~.sl-dark {
+			clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%);
+		}
+	</style>
 </head>
 <body class="style-landing landing-index" data-nav-location="landing">
 <div class="doc-nav-bar">
@@ -42,9 +77,10 @@
 			<div class="main-sub">
 				Fast, incremental builds for all project sizes.
 			</div>
-			<a class="main-dl" href="/saker.build/doc/installation.html" title="saker.build installation">Get started</a>
+			<a class="main-button" href="/saker.build/doc/installation.html" title="saker.build installation">Get started</a>
 		</div>
 	</div>
+	
 	<div class="landing-features landing-section">
 		<div class="landing-section-title">Features</div>
 		<div class="container">
@@ -95,6 +131,45 @@
 					<p>See the <a href="/saker.build/doc/eclipseplugin.html" title="Eclipse plugin guide">Eclipse plugin guide</a> for more information.</p>
 				</div>
 				<div class="col-12 text-center">Support for other IDEs are on the <a href="/saker.build/doc/roadmap.html#ide-plugin-support" title="Roadmap: IDE plugin support">roadmap</a>.</div>
+			</div>
+		</div>
+	</div>
+	<div class="landing-syntax-highlight landing-section">
+		<div class="container">
+			<div class="row flex-column-reverse flex-md-row">
+				<div class="offset-xl-2 col-xl-4 col-lg-5 col-md-6 col-12 p-0 mt-3 mt-md-0">
+					<div class="syntax-highlight-container">
+						<div class="sl-images">
+							<img class="ide-highlight-img sl-light" src="res/gfx/syntax_highlight_light.png">
+							</img>
+							<img class="ide-highlight-img sl-dark" src="res/gfx/syntax_highlight_dark.png">
+							</img>
+						</div>
+					</div>
+				</div>
+				<div class="col-12 col-md-6 col-lg-6 col-xl-5 pl-md-5 pl-lg-3 mt-md-2 mt-lg-4">
+					<div class="landing-section-title">Syntax highlight</div>
+					<p>Automatic syntax higlighting helps you read and write your build scripts more efficiently.</p>
+					<p>The script assistance features are available in the IDE with the saker.build plugins.</p>
+					<p><em>Hint</em>: hover over this script with your mouse!</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="landing-code-completion landing-section">
+		<div class="container">
+			<div class="row">
+				<div class="offset-xl-1 pl-xl-5 col-12 col-md-6 col-lg-6 col-xl-5 mt-md-2 mt-lg-4">
+					<div class="landing-section-title">Code completion</div>
+					<p>Content assistance is available in the build script editor of your favorite IDE.</p>
+					<p>Context driven completion proposals help you write build scripts faster while quick documentation helps you choose the appropriate build configuration.</p>
+				</div>
+				<div class="col-xl-6 col-lg-5 col-md-6 col-12 p-0 mt-md-0 mt-3">
+					<div class="cc-image">
+						<img class="ide-highlight-img" src="res/gfx/code_completion.gif">
+						</img>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

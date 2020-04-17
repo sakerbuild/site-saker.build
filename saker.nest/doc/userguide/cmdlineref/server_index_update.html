@@ -74,6 +74,13 @@
 <p>server index update [@command-file] [parameters]</p>
 </div>
 <div class="doc-cmdref-cmd-doc">
+<p>Updates the index files for the server bundle storage.</p>
+<p>The command will freshen up the index files and retrieve
+the latest ones from the associated servers.</p>
+<p>Invoking this command can be useful if you've just published
+a package and want to see its results as soon as possible.
+Without the manual update of the index files, seeing the published
+package may take some time.</p>
 </div>
 <h5 id="_command-file">@command-file<a class="doc-heading-anchor" href="#_command-file"></a></h5>
 <div class="doc-cmdref-param-aliases">@command-file
@@ -89,20 +96,6 @@ is not supported for arguments in the command file.
 The file path may be absolute or relative.</p>
 <p>E.g: @path/to/arguments.txt</p>
 </div>
-<h5 id="-repo-id">-repo-id<a class="doc-heading-anchor" href="#-repo-id"></a></h5>
-<div class="doc-cmdref-param-aliases">-repo-id &lt;string&gt;
-</div>
-<div class="doc-cmdref-param-flags">
-</div>
-<div class="doc-cmdref-param-doc">
-</div>
-<h5 id="-u">-U<a class="doc-heading-anchor" href="#-u"></a></h5>
-<div class="doc-cmdref-param-aliases">-U&lt;key&gt;=&lt;value&gt;
-</div>
-<div class="doc-cmdref-param-flags">
-</div>
-<div class="doc-cmdref-param-doc">
-</div>
 <h5 id="-storage">-storage<a class="doc-heading-anchor" href="#-storage"></a></h5>
 <div class="doc-cmdref-param-aliases">-storage &lt;string&gt;
 </div>
@@ -110,6 +103,30 @@ The file path may be absolute or relative.</p>
 Multi-parameter. 
 </div>
 <div class="doc-cmdref-param-doc">
+<p>Specifies the names of the configured server bundle storages
+of which the index files should be updated.</p>
+</div>
+<h5 id="-repo-id">-repo-id<a class="doc-heading-anchor" href="#-repo-id"></a></h5>
+<div class="doc-cmdref-param-aliases">-repo-id &lt;string&gt;
+</div>
+<div class="doc-cmdref-param-flags">
+</div>
+<div class="doc-cmdref-param-doc">
+<p>Specifies the identifier of the repository.</p>
+<p>The identifier is used to properly determine the
+configuration user parameters from the -U arguments.</p>
+<p>It is &quot;nest&quot; by default.</p>
+</div>
+<h5 id="-u">-U<a class="doc-heading-anchor" href="#-u"></a></h5>
+<div class="doc-cmdref-param-aliases">-U&lt;key&gt;=&lt;value&gt;
+</div>
+<div class="doc-cmdref-param-flags">
+Multi-parameter. 
+</div>
+<div class="doc-cmdref-param-doc">
+<p>Specifies the user parameters for configuring the repository.</p>
+<p>This string key-value pairs are interpreted the same way as the
+-U user parameters for the build execution.</p>
 </div>
 <link href="../../../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>
 			<div class="end-section-links">
@@ -124,7 +141,7 @@ Multi-parameter.
 </svg></a>
 				</div>
 			</div>
-			<div class="doc-headings-nav">  <ul>    <li><a href="#update" title="update">update</a>      <ul>        <li><a href="#_command-file" title="@command-file">@command-file</a>        </li>        <li><a href="#-repo-id" title="-repo-id">-repo-id</a>        </li>        <li><a href="#-u" title="-U">-U</a>        </li>        <li><a href="#-storage" title="-storage">-storage</a>        </li>      </ul>    </li>  </ul></div>
+			<div class="doc-headings-nav">  <ul>    <li><a href="#update" title="update">update</a>      <ul>        <li><a href="#_command-file" title="@command-file">@command-file</a>        </li>        <li><a href="#-storage" title="-storage">-storage</a>        </li>        <li><a href="#-repo-id" title="-repo-id">-repo-id</a>        </li>        <li><a href="#-u" title="-U">-U</a>        </li>      </ul>    </li>  </ul></div>
 		</div>
 	</div>
 </div>

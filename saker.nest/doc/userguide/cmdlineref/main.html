@@ -71,9 +71,21 @@
 </div>
 			<div class="doc-content"><h1 id="main">main<a class="doc-heading-anchor" href="#main"></a></h1>
 <div class="doc-cmdref-cmd-usage">
-<p>main [@command-file] [parameters] arguments?</p>
+<p>main [@command-file] [parameters] arguments...?</p>
 </div>
 <div class="doc-cmdref-cmd-doc">
+<p>Invokes the main method of a specified bundle.</p>
+<p>The command will load the bundle with the given name
+and invoke the main method of it. The command can be
+configured similarly as you can configure the repository
+for build executions.</p>
+<p>Any extra arguments specified will be passed to the main
+method of the bundle.</p>
+<p>The command will search for the methods intMain(String[]) or
+main(String[]). It will invoke the one it first finds. If the
+invoked method is declared to return an integer, then that will
+be used as an exit code of the process. Use the -system-exit flag
+to control how this value is interpreted.</p>
 </div>
 <h5 id="_command-file">@command-file<a class="doc-heading-anchor" href="#_command-file"></a></h5>
 <div class="doc-cmdref-param-aliases">@command-file
@@ -89,26 +101,17 @@ is not supported for arguments in the command file.
 The file path may be absolute or relative.</p>
 <p>E.g: @path/to/arguments.txt</p>
 </div>
-<h5 id="-repo-id">-repo-id<a class="doc-heading-anchor" href="#-repo-id"></a></h5>
-<div class="doc-cmdref-param-aliases">-repo-id &lt;string&gt;
-</div>
-<div class="doc-cmdref-param-flags">
-</div>
-<div class="doc-cmdref-param-doc">
-</div>
 <h5 id="-class">-class<a class="doc-heading-anchor" href="#-class"></a></h5>
 <div class="doc-cmdref-param-aliases">-class &lt;string&gt;
 </div>
 <div class="doc-cmdref-param-flags">
 </div>
 <div class="doc-cmdref-param-doc">
-</div>
-<h5 id="-u">-U<a class="doc-heading-anchor" href="#-u"></a></h5>
-<div class="doc-cmdref-param-aliases">-U&lt;key&gt;=&lt;value&gt;
-</div>
-<div class="doc-cmdref-param-flags">
-</div>
-<div class="doc-cmdref-param-doc">
+<p>Specifies the name of the class to invoke.</p>
+<p>This parameter is used to specify the name of the Java
+class that is loaded and used to invoke its main method.</p>
+<p>If this argument is not specified, the Main-Class attribute
+of the bundle manifest will be used.</p>
 </div>
 <h5 id="-bundle">-bundle<a class="doc-heading-anchor" href="#-bundle"></a></h5>
 <div class="doc-cmdref-param-aliases">-bundle
@@ -116,6 +119,25 @@ The file path may be absolute or relative.</p>
 <div class="doc-cmdref-param-flags">
 </div>
 <div class="doc-cmdref-param-doc">
+<p>The identifier of the bundle which should be invoked.</p>
+<p>The bundle with the specified identifier will be loaded
+(possibly downloaded from the internet) and the main class
+of it will be invoked.</p>
+<p>If the specified bundle identifier has no version qualifier,
+then it will be resolved to the most recent version of it.</p>
+<p>If this parameter is not specified, the first value for the
+arguments parameter is used as bundle identifier.</p>
+</div>
+<h5 id="-repo-id">-repo-id<a class="doc-heading-anchor" href="#-repo-id"></a></h5>
+<div class="doc-cmdref-param-aliases">-repo-id &lt;string&gt;
+</div>
+<div class="doc-cmdref-param-flags">
+</div>
+<div class="doc-cmdref-param-doc">
+<p>Specifies the identifier of the repository.</p>
+<p>The identifier is used to properly determine the
+configuration user parameters from the -U arguments.</p>
+<p>It is &quot;nest&quot; by default.</p>
 </div>
 <h5 id="-system-exit">-system-exit<a class="doc-heading-anchor" href="#-system-exit"></a></h5>
 <div class="doc-cmdref-param-aliases">-system-exit &lt;enum&gt;
@@ -123,12 +145,56 @@ The file path may be absolute or relative.</p>
 <div class="doc-cmdref-param-flags">
 </div>
 <div class="doc-cmdref-param-doc">
+<p>Specifies how and when the current process should be exited.</p>
+<p>This parameter controls whether or not the current process
+should be exited at the end of the main method invocation.</p>
+<p>Exit codes are determined the following way:</p>
+<ul class="doc-md-list">
+<li>0: if the main method invocation is successful</li>
+<li>-1: if an exception was thrown</li>
+<li>int: the value returned by the main method (if any)</li>
+<li>none: if there is no exit code</li>
+</ul>
+<p>The values may be the following:</p>
+<ul class="doc-md-list">
+<li>always
+The current process will always be exited.
+0 exit code will be used if there was none.</li>
+<li>on_exception
+The process will only exit, if there was an exception
+thrown by the main method.
+The exit code will be -1.</li>
+<li>forward
+The process will exit, if there was an exception, or
+the main method returns an integer.</li>
+<li>never
+The command will never cause the current process to exit.
+(Note that the main invocation may still do so.)</li>
+</ul>
 </div>
-<h5 id="arguments">arguments<a class="doc-heading-anchor" href="#arguments"></a></h5>
+<h5 id="-u">-U<a class="doc-heading-anchor" href="#-u"></a></h5>
+<div class="doc-cmdref-param-aliases">-U&lt;key&gt;=&lt;value&gt;
+</div>
+<div class="doc-cmdref-param-flags">
+Multi-parameter. 
+</div>
+<div class="doc-cmdref-param-doc">
+<p>Specifies the user parameters for configuring the repository.</p>
+<p>This string key-value pairs are interpreted the same way as the
+-U user parameters for the build execution.</p>
+</div>
+<h5 id="arguments___">arguments...<a class="doc-heading-anchor" href="#arguments___"></a></h5>
 <div class="doc-cmdref-param-flags">
 Positional parameter. 
 </div>
 <div class="doc-cmdref-param-doc">
+<p>The arguments that are passed as the input to the main method
+of the invoked class.</p>
+<p>Zero, one, or more strings that are directly passed as the
+String[] argument of the main method.</p>
+<p>If no -bundle is specified, the bundle identifier is determined
+using the first value of this parameter. In that case that value
+will not be part of the input arguments.</p>
 </div>
 <link href="../../../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>
 			<div class="end-section-links">
@@ -143,7 +209,7 @@ Positional parameter.
 </svg></a>
 				</div>
 			</div>
-			<div class="doc-headings-nav">  <ul>    <li><a href="#main" title="main">main</a>      <ul>        <li><a href="#_command-file" title="@command-file">@command-file</a>        </li>        <li><a href="#-repo-id" title="-repo-id">-repo-id</a>        </li>        <li><a href="#-class" title="-class">-class</a>        </li>        <li><a href="#-u" title="-U">-U</a>        </li>        <li><a href="#-bundle" title="-bundle">-bundle</a>        </li>        <li><a href="#-system-exit" title="-system-exit">-system-exit</a>        </li>        <li><a href="#arguments" title="arguments">arguments</a>        </li>      </ul>    </li>  </ul></div>
+			<div class="doc-headings-nav">  <ul>    <li><a href="#main" title="main">main</a>      <ul>        <li><a href="#_command-file" title="@command-file">@command-file</a>        </li>        <li><a href="#-class" title="-class">-class</a>        </li>        <li><a href="#-bundle" title="-bundle">-bundle</a>        </li>        <li><a href="#-repo-id" title="-repo-id">-repo-id</a>        </li>        <li><a href="#-system-exit" title="-system-exit">-system-exit</a>        </li>        <li><a href="#-u" title="-U">-U</a>        </li>        <li><a href="#arguments___" title="arguments...">arguments...</a>        </li>      </ul>    </li>  </ul></div>
 		</div>
 	</div>
 </div>
