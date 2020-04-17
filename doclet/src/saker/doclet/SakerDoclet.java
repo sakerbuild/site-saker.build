@@ -4395,7 +4395,8 @@ public class SakerDoclet implements Doclet {
 					errorReporter = new ThrowingErrorReporter();
 					break;
 				}
-				case "warn": {
+				case "warn":
+				case "warning": {
 					errorReporter = new WarningErrorReporter();
 					break;
 				}
