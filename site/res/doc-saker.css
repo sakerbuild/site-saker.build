@@ -1487,11 +1487,9 @@ body.style-landing.landing-index .doc-nav-bar {
 	font-size: 1.5em;
 	margin-bottom: 20px;
 }
-.landing-main .main-dl{
-	font-size: 1.2em;
-}
 
-.landing-main .main-dl {
+.landing-main .main-button {
+	font-size: 1.2em;
 	padding: 10px 20px;
 	border: 1px solid #ddd;
 	border-radius: 5px;
@@ -1501,7 +1499,7 @@ body.style-landing.landing-index .doc-nav-bar {
 	
 	box-shadow: 1px 1px 5px -2px #ddd;
 }
-.landing-main .main-dl:hover {
+.landing-main .main-button:hover {
 	border-color: #aaa;
 	box-shadow: 2px 2px 10px -3px #999;
 }
