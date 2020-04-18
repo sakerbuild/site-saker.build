@@ -409,6 +409,10 @@ public class SakerDoclet implements Doclet {
 				writePackagePage(packinfo);
 			}
 			for (Entry<String, TypeDocumentationInfo> entry : docTypes.entrySet()) {
+				TypeElement elem = entry.getValue().getElement();
+				if (elem != null) {
+					System.out.println(elem.getQualifiedName());
+				}
 				writeTypePage(entry.getValue());
 			}
 			writeIndexHtml();
@@ -1658,8 +1662,6 @@ public class SakerDoclet implements Doclet {
 		out.append("</div>");
 		out.append("</div>");
 
-		System.out.println(elem.getQualifiedName());
-
 		Map<String, DeclaredType> alltypesinhierarchy = collectAllSuperTypesAndElement(elem);
 
 		if (elem.getSuperclass().getKind() == TypeKind.NONE && elem.getInterfaces().isEmpty()) {
@@ -2268,6 +2270,9 @@ public class SakerDoclet implements Doclet {
 		}
 		if (linkelem.getKind() == ee.getKind()) {
 			ExecutableElement linkedexec = (ExecutableElement) linkelem;
+			if (linkedexec.equals(ee)) {
+				throw new IllegalArgumentException("Self referencing @see tag: " + linkedexec);
+			}
 			return getDocCommentTreeWalkSeeTags(linkedexec, LinkedDocRelation.LINKED);
 		}
 		throw new IllegalArgumentException("Different linked doc kind: " + linkelem.getKind() + " for " + ee + " in "
