@@ -2941,9 +2941,10 @@ public class SakerDoclet implements Doclet {
 		if (elem != docelem) {
 			List<? extends VariableElement> docelemparams = docelem.getParameters();
 			if (paramcount != docelemparams.size()) {
-				throw new IllegalArgumentException("Documentation parameter count mismatch: " + elem + " - " + docelem);
+				errorReporter.error("Documentation parameter count mismatch: " + elem + " - " + docelem);
 			}
-			for (int i = 0; i < nameswitch.length; i++) {
+			int size = Math.min(nameswitch.length, docelemparams.size());
+			for (int i = 0; i < size; i++) {
 				nameswitch[i] = docelemparams.get(i).getSimpleName().toString();
 			}
 		} else {
@@ -2964,8 +2965,8 @@ public class SakerDoclet implements Doclet {
 			}
 			ParamTree prev = paramdocs.put(pt.getName().getName().toString(), pt);
 			if (prev != null) {
-				throw new IllegalArgumentException("Multiple parameter documentation definition: "
-						+ pt.getName().getName() + " for " + elem.getEnclosingElement() + "." + elem);
+				errorReporter.error("Multiple parameter documentation definition: " + pt.getName().getName() + " for "
+						+ elem.getEnclosingElement() + "." + elem);
 			}
 		}
 		if (!paramdocs.isEmpty()) {
@@ -2985,7 +2986,8 @@ public class SakerDoclet implements Doclet {
 //						System.out.println("Warning: " + warnmsg);
 //						continue;
 //					}
-					throw new IllegalArgumentException(warnmsg);
+					errorReporter.error(warnmsg);
+					break;
 				}
 				out.append("<div class=\"javadoc-method-detail-param\">");
 				out.append("<span class=\"javadoc-method-detail-param-name\">");
@@ -3001,8 +3003,8 @@ public class SakerDoclet implements Doclet {
 			out.append("</div>");
 		}
 		if (!paramdocs.isEmpty()) {
-			throw new IllegalArgumentException("Extraneous parameter documentation: " + paramdocs + " on "
-					+ elem.getEnclosingElement() + "." + elem);
+			errorReporter.error("Extraneous parameter documentation: " + paramdocs + " on " + elem.getEnclosingElement()
+					+ "." + elem);
 		}
 	}
 
@@ -3073,8 +3075,8 @@ public class SakerDoclet implements Doclet {
 			}
 			ParamTree prev = paramdocs.put(pt.getName().getName().toString(), pt);
 			if (prev != null) {
-				throw new IllegalArgumentException("Multiple type parameter documentation definition: "
-						+ pt.getName().getName() + " for " + elem.getEnclosingElement() + "." + elem);
+				errorReporter.error("Multiple type parameter documentation definition: " + pt.getName().getName()
+						+ " for " + elem.getEnclosingElement() + "." + elem);
 			}
 		}
 		if (!paramdocs.isEmpty()) {
@@ -3085,8 +3087,9 @@ public class SakerDoclet implements Doclet {
 				String name = tpe.getSimpleName().toString();
 				ParamTree pt = paramdocs.remove(name);
 				if (pt == null) {
-					throw new IllegalArgumentException("Missing type parameter documentation: " + name + " for "
+					errorReporter.error("Missing type parameter documentation: " + name + " for "
 							+ elem.getEnclosingElement() + "." + elem);
+					break;
 				}
 				out.append("<div class=\"javadoc-detail-typeparam\">");
 				out.append("<span class=\"javadoc-detail-typeparam-name\">");
@@ -3102,7 +3105,7 @@ public class SakerDoclet implements Doclet {
 			out.append("</div>");
 		}
 		if (!paramdocs.isEmpty()) {
-			throw new IllegalArgumentException("Extraneous type parameter documentation: " + paramdocs + " on "
+			errorReporter.error("Extraneous type parameter documentation: " + paramdocs + " on "
 					+ elem.getEnclosingElement() + "." + elem);
 		}
 	}
