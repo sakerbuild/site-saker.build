@@ -78,12 +78,12 @@
 <p>What's the most readable description of a build process? Simple statements in the order of their execution.<sup>*</sup></p>
 <p>What's the most performant description of a build process? Declarative definition of build tasks and their dependencies.<sup>*</sup></p>
 <p>SakerScript combines both. The statements in the build script can be declared in any order while maintaining the same execution flow of the build. The expressions are evaluated eagerly and in parallel based on the operands of theirs. A language like this is readable, as you can exactly trace back the source of a value while being performant, as the interpreter can evaluate as many expressions as possible at once.</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="d">$archive</span> = <span class="e">example.download.archive(</span><span class="f">&quot;http://example.com/myarchive.jar&quot;</span><span class="e">)</span>
-<span class="e">example.extract.archive(</span><span class="d">$archive</span>, <span class="i">Directory: </span><span class="f">output</span><span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="c">$archive</span> = <span class="d">example.download.archive(</span><span class="e">&quot;http://example.com/myarchive.jar&quot;</span><span class="d">)</span>
+<span class="d">example.extract.archive(</span><span class="c">$archive</span>, <span class="h">Directory</span>: <span class="e">output</span><span class="d">)</span>
 </code></pre>
 <p>In the above example, we download some archive, and the extract its contents to the specified <code>output</code> directory. It is straightforward, however, if you change the order:</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="e">example.extract.archive(</span><span class="d">$archive</span>, <span class="i">Directory: </span><span class="f">output</span><span class="e">)</span>
-<span class="d">$archive</span> = <span class="e">example.download.archive(</span><span class="f">&quot;http://example.com/myarchive.jar&quot;</span><span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d">example.extract.archive(</span><span class="c">$archive</span>, <span class="h">Directory</span>: <span class="e">output</span><span class="d">)</span>
+<span class="c">$archive</span> = <span class="d">example.download.archive(</span><span class="e">&quot;http://example.com/myarchive.jar&quot;</span><span class="d">)</span>
 </code></pre>
 <p>Exactly the same things will happen. The order of statement declarations are irrelevant. The extraction of the downloaded archive will only happen once the download has finished. This way the build system can appropriately parallelize the build tasks as the inputs of the tasks define the order of execution not their declaration order.</p>
 <p>However, for the sake of readability, we recommend following the order of the first example.</p>

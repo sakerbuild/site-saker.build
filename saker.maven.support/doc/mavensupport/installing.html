@@ -76,29 +76,29 @@
 <p>Artifact installing is the process of putting an artifact into the local Maven repository. After the installation, agents in the current system can retrieve that artifact to use it.</p>
 <p>Installing artifacts doesn't require any authentication, as that is performed on the local machine that you have authority over.</p>
 <p>Installing an artifact can be done by simply providing the coordinates and artifact file:</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.maven.support/taskdoc/saker.maven.install.html" title="Task: saker.maven.install()">saker.maven.install</a>(</span>
-	<span class="i">ArtifactPath</span>: <span class="f">path/to/artifact.jar</span>,
-	<span class="i">Coordinates: </span><span class="f">&quot;example.groupid:example.artifactid:0.1&quot;</span>,
-	<span class="i">Configuration: </span><span class="c"># ...</span>
-<span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.maven.support/taskdoc/saker.maven.install.html" title="Task: saker.maven.install()">saker.maven.install</a>(</span>
+	<span class="h">ArtifactPath</span>: <span class="e">path/to/artifact.jar</span>,
+	<span class="h">Coordinates</span>: <span class="e">&quot;example.groupid:example.artifactid:0.1&quot;</span>,
+	<span class="h">Configuration</span>: <span class="b"># ...</span>
+<span class="d">)</span>
 </code></pre>
 <p>The artifact can have any format, you are not required to put <code>pom.xml</code> or other meta-data in it. It may not even be necessary that it is a JAR file. However, it is recommended that you adhere to the conventions of the environment. If you install to a repository that is shared with others, make sure to include any necessary meta-data.</p>
 <p>You may also want to install the <code>pom.xml</code> that declares the artifact dependencies and other data. In order to do so, you can set the <code>pom</code> extension in the artifact coordinates:</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.maven.support/taskdoc/saker.maven.install.html" title="Task: saker.maven.install()">saker.maven.install</a>(</span>
-	<span class="i">ArtifactPath</span>: <span class="f">path/to/pom.xml</span>,
-	<span class="i">Coordinates: </span><span class="f">&quot;example.groupid:example.artifactid:pom:0.1&quot;</span>
-<span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.maven.support/taskdoc/saker.maven.install.html" title="Task: saker.maven.install()">saker.maven.install</a>(</span>
+	<span class="h">ArtifactPath</span>: <span class="e">path/to/pom.xml</span>,
+	<span class="h">Coordinates</span>: <span class="e">&quot;example.groupid:example.artifactid:pom:0.1&quot;</span>
+<span class="d">)</span>
 </code></pre>
 <p>If not specified, the extension part of the coordinates will default to <code>jar</code>.</p>
 <h2 id="installing-a-jar">Installing a JAR<a class="doc-heading-anchor" href="#installing-a-jar"></a></h2>
 <p>While the above example simply installs an a artifact with a specified path, you can create and install JAR artifacts as follows:</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="d">$jar</span> = <span class="e"><a href="../../../saker.jar/taskdoc/saker.jar.create.html" title="Task: saker.jar.create()">saker.jar.create</a>(</span>
-	<span class="c"># create a JAR file with your contents</span>
-<span class="e">)</span>
-<span class="e"><a href="../../../saker.maven.support/taskdoc/saker.maven.install.html" title="Task: saker.maven.install()">saker.maven.install</a>(</span>
-	<span class="i">ArtifactPath</span>: <span class="d">$jar</span><span class="g">[</span><span class="h">Path</span><span class="g">]</span>,
-	<span class="i">Coordinates: </span><span class="f">&quot;example.groupid:example.artifactid:0.1&quot;</span>
-<span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="c">$jar</span> = <span class="d"><a href="../../../saker.jar/taskdoc/saker.jar.create.html" title="Task: saker.jar.create()">saker.jar.create</a>(</span>
+	<span class="b"># create a JAR file with your contents</span>
+<span class="d">)</span>
+<span class="d"><a href="../../../saker.maven.support/taskdoc/saker.maven.install.html" title="Task: saker.maven.install()">saker.maven.install</a>(</span>
+	<span class="h">ArtifactPath</span>: <span class="c">$jar</span><span class="f">[</span><span class="g">Path</span><span class="f">]</span>,
+	<span class="h">Coordinates</span>: <span class="e">&quot;example.groupid:example.artifactid:0.1&quot;</span>
+<span class="d">)</span>
 </code></pre>
 <link href="../../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>
 			<div class="end-section-links">

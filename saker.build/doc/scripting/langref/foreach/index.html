@@ -73,43 +73,43 @@
 <p>The <code>foreach</code> expression can be used to iterate over lists and maps, execute other expressions based on their elements, and generate new data based on them. Important to note that the <code>foreach</code> expression is not considered to be a loop, but a substitute of recurring expressions.</p>
 <p>The simplest example of a <code>foreach</code> expression:</p>
 <p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="j">foreach </span><span class="d">$item</span><span class="j"> in </span><span class="b">[</span><span class="f">1</span><span class="b">,</span> <span class="f">2</span><span class="b">,</span> <span class="f">3</span><span class="b">]</span> {
-	<span class="e">example.task(</span><span class="d">$item</span><span class="e">)</span>
-}
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="j">foreach </span><span class="c">$item</span><span class="j"> in </span><span class="i">[</span><span class="e">1</span><span class="i">,</span> <span class="e">2</span><span class="i">,</span> <span class="e">3</span><span class="i">]</span> <span class="j">{</span>
+	<span class="d">example.task(</span><span class="c">$item</span><span class="d">)</span>
+<span class="j">}</span>
 </code></pre>
 </p>
 <p>In the above example we iterate over the list <code>[1, 2, 3]</code> with a loop variable of <code>$item</code>. For every item in the list we execute the <code>example.task()</code> with the item as parameter. The above is semantically the same as the following:</p>
 <p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="e">example.task(</span><span class="f">1</span><span class="e">)</span>
-<span class="e">example.task(</span><span class="f">2</span><span class="e">)</span>
-<span class="e">example.task(</span><span class="f">3</span><span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d">example.task(</span><span class="e">1</span><span class="d">)</span>
+<span class="d">example.task(</span><span class="e">2</span><span class="d">)</span>
+<span class="d">example.task(</span><span class="e">3</span><span class="d">)</span>
 </code></pre>
 </p>
 <p>The iterable object must not be a literal expression, other expressions can be used as well:</p>
 <p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="d">$mapvariable</span> = <span class="b">{</span>
-	<span class="h">Key1</span>: <span class="f">val1</span><span class="b">,</span>
-	<span class="h">Key2</span>: <span class="f">val2</span><span class="b">,</span>
-<span class="b">}</span>
-<span class="j">foreach </span><span class="d">$key</span><span class="j">, </span><span class="d">$val</span><span class="j"> in </span><span class="d">$mapvariable</span> {
-	<span class="e">example.task(</span><span class="i">Key</span>: <span class="d">$key</span>, <span class="i">Value: </span><span class="d">$val</span><span class="e">)</span>
-}
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="c">$mapvariable</span> = <span class="i">{</span>
+	<span class="g">Key1</span>: <span class="e">val1</span><span class="i">,</span>
+	<span class="g">Key2</span>: <span class="e">val2</span><span class="i">,</span>
+<span class="i">}</span>
+<span class="j">foreach </span><span class="c">$key</span><span class="j">, </span><span class="c">$val</span><span class="j"> in </span><span class="c">$mapvariable</span> <span class="j">{</span>
+	<span class="d">example.task(</span><span class="h">Key</span>: <span class="c">$key</span>, <span class="h">Value</span>: <span class="c">$val</span><span class="d">)</span>
+<span class="j">}</span>
 </code></pre>
 </p>
 <p>The <code>foreach</code> expression can be used to iterate over maps as well. In that case two loop variables need to be declared separated by a comma. The first one will be the key of the current map entry and the second will be the associated value. The entries of a map may be iterated over without any specific order.</p>
 <p>The above example is semantically equivalent to the following:</p>
 <p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="e">example.task(</span><span class="i">Key</span>: <span class="f">Key1</span>, <span class="i">Value: </span><span class="f">val1</span><span class="e">)</span>
-<span class="e">example.task(</span><span class="i">Key</span>: <span class="f">Key2</span>, <span class="i">Value: </span><span class="f">val2</span><span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d">example.task(</span><span class="h">Key</span>: <span class="e">Key1</span>, <span class="h">Value</span>: <span class="e">val1</span><span class="d">)</span>
+<span class="d">example.task(</span><span class="h">Key</span>: <span class="e">Key2</span>, <span class="h">Value</span>: <span class="e">val2</span><span class="d">)</span>
 </code></pre>
 </p>
 <h2 id="local-variables">Local variables<a class="doc-heading-anchor" href="#local-variables"></a></h2>
 <p>The <code>foreach</code> expression allows declaring local variables which are private to the scope of the <code>foreach</code> expression:</p>
 <p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="j">foreach </span><span class="d">$item</span><span class="j"> in </span><span class="b">[</span><span class="f">1</span><span class="b">,</span> <span class="f">2</span><span class="b">,</span> <span class="f">3</span><span class="b">]</span><span class="j"> 
-	with </span><span class="d">$local</span> = <span class="d">$item</span> * <span class="f">3</span> {
-	<span class="e">example.task(</span><span class="d">$local</span><span class="e">)</span>
-}
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="j">foreach </span><span class="c">$item</span><span class="j"> in </span><span class="i">[</span><span class="e">1</span><span class="i">,</span> <span class="e">2</span><span class="i">,</span> <span class="e">3</span><span class="i">]</span><span class="j"> 
+	with </span><span class="c">$local</span> = <span class="c">$item</span> * <span class="e">3</span> <span class="j">{</span>
+	<span class="d">example.task(</span><span class="c">$local</span><span class="d">)</span>
+<span class="j">}</span>
 </code></pre>
 </p>
 <p>The local variables can be declared in a comma separated list after the iterable expression, and optionally specified with an initializer that assigns the value of the variable. If an initializer is not present, the variable may be initialized at most once in the body of the loop.</p>
@@ -117,43 +117,43 @@
 <p>The local variables can be accessed in the same way as the loop variables.</p>
 <p>The above example is equivalent to the following when unrolled:</p>
 <p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="e">example.task(</span><span class="f">1</span><span class="i"> * </span><span class="f">3</span><span class="e">)</span>
-<span class="e">example.task(</span><span class="f">2</span><span class="i"> * </span><span class="f">3</span><span class="e">)</span>
-<span class="e">example.task(</span><span class="f">3</span><span class="i"> * </span><span class="f">3</span><span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d">example.task(</span><span class="e">1</span> * <span class="e">3</span><span class="d">)</span>
+<span class="d">example.task(</span><span class="e">2</span> * <span class="e">3</span><span class="d">)</span>
+<span class="d">example.task(</span><span class="e">3</span> * <span class="e">3</span><span class="d">)</span>
 </code></pre>
 </p>
 <p>Some other notable examples are the following:</p>
 <p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="c"># initialize local in loop body</span>
-<span class="j">foreach </span><span class="d">$item</span><span class="j"> in </span><span class="b">[</span><span class="f">1</span><span class="b">,</span> <span class="f">2</span><span class="b">,</span> <span class="f">3</span><span class="b">]</span><span class="j"> 
-	with </span><span class="d">$local</span> {
-	<span class="d">$local</span> = <span class="d">$item</span> * <span class="f">3</span>
-	<span class="c"># ...</span>
-}
-<span class="c"># multiple local variables</span>
-<span class="j">foreach </span><span class="d">$item</span><span class="j"> in </span><span class="b">[</span><span class="f">1</span><span class="b">,</span> <span class="f">2</span><span class="b">,</span> <span class="f">3</span><span class="b">]</span><span class="j"> 
-	with </span><span class="d">$local1</span> = <span class="d">$item</span> * <span class="f">3</span><span class="j">, </span><span class="d">$local2</span><span class="j">, </span><span class="d">$local3</span> = <span class="d">$item</span> * <span class="f">11</span> {
-	<span class="d">$local2</span> = <span class="d">$item</span> * <span class="f">7</span>
-	<span class="c"># ...</span>
-}
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="b"># initialize local in loop body</span>
+<span class="j">foreach </span><span class="c">$item</span><span class="j"> in </span><span class="i">[</span><span class="e">1</span><span class="i">,</span> <span class="e">2</span><span class="i">,</span> <span class="e">3</span><span class="i">]</span><span class="j"> 
+	with </span><span class="c">$local</span> <span class="j">{</span>
+	<span class="c">$local</span> = <span class="c">$item</span> * <span class="e">3</span>
+	<span class="b"># ...</span>
+<span class="j">}</span>
+<span class="b"># multiple local variables</span>
+<span class="j">foreach </span><span class="c">$item</span><span class="j"> in </span><span class="i">[</span><span class="e">1</span><span class="i">,</span> <span class="e">2</span><span class="i">,</span> <span class="e">3</span><span class="i">]</span><span class="j"> 
+	with </span><span class="c">$local1</span> = <span class="c">$item</span> * <span class="e">3</span><span class="j">, </span><span class="c">$local2</span><span class="j">, </span><span class="c">$local3</span> = <span class="c">$item</span> * <span class="e">11</span> <span class="j">{</span>
+	<span class="c">$local2</span> = <span class="c">$item</span> * <span class="e">7</span>
+	<span class="b"># ...</span>
+<span class="j">}</span>
 </code></pre>
 </p>
 <h2 id="expression-result">Expression result<a class="doc-heading-anchor" href="#expression-result"></a></h2>
 <p><code>foreach</code> expressions can be specified to produce a result. This can be done by appending the declaration by a result statement as follows:</p>
 <p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="j">foreach </span><span class="d">$item</span><span class="j"> in </span><span class="b">[</span><span class="f">1</span><span class="b">,</span> <span class="f">2</span><span class="b">,</span> <span class="f">3</span><span class="b">]</span> {
-	<span class="c"># ...</span>
-} : <span class="b">[</span> <span class="d">$item</span> * <span class="f">3</span><span class="b"> ]</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="j">foreach </span><span class="c">$item</span><span class="j"> in </span><span class="i">[</span><span class="e">1</span><span class="i">,</span> <span class="e">2</span><span class="i">,</span> <span class="e">3</span><span class="i">]</span> <span class="j">{</span>
+	<span class="b"># ...</span>
+<span class="j">}</span> <span class="j">:</span> <span class="j">[</span> <span class="c">$item</span> * <span class="e">3</span> <span class="j">]</span>
 </code></pre>
 </p>
 <p>The result declaration is specified by a separating colon (<code>':'</code>) character and the result expression. In the above, the result is declared to be a list with the elements muliplied by <code>3</code>. If the body of the loop is empty, it will be equivalent to the same:</p>
 <p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="b">[</span><span class="f">1</span> * <span class="f">3</span><span class="b">,</span> <span class="f">2</span> * <span class="f">3</span><span class="b">,</span> <span class="f">3</span> * <span class="f">3</span><span class="b">]</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="i">[</span><span class="e">1</span> * <span class="e">3</span><span class="i">,</span> <span class="e">2</span> * <span class="e">3</span><span class="i">,</span> <span class="e">3</span> * <span class="e">3</span><span class="i">]</span>
 </code></pre>
 </p>
 <p>The body of the <code>foreach</code> may be omitted if it contains no expressions. The following declaration is the same:</p>
 <p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="j">foreach </span><span class="d">$item</span><span class="j"> in </span><span class="b">[</span><span class="f">1</span><span class="b">,</span> <span class="f">2</span><span class="b">,</span> <span class="f">3</span><span class="b">]</span> : <span class="b">[</span> <span class="d">$item</span> * <span class="f">3</span><span class="b"> ]</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="j">foreach </span><span class="c">$item</span><span class="j"> in </span><span class="i">[</span><span class="e">1</span><span class="i">,</span> <span class="e">2</span><span class="i">,</span> <span class="e">3</span><span class="i">]</span> <span class="j">:</span> <span class="j">[</span> <span class="c">$item</span> * <span class="e">3</span> <span class="j">]</span>
 </code></pre>
 </p>
 <p>The result expression may be only one of the following expression types:</p>
@@ -176,83 +176,83 @@
 </ul>
 <p>Some notable examples of using result expressions:</p>
 <p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="c"># results in [3, 6, 9]</span>
-<span class="j">foreach </span><span class="d">$item</span><span class="j"> in </span><span class="b">[</span><span class="f">1</span><span class="b">,</span> <span class="f">2</span><span class="b">,</span> <span class="f">3</span><span class="b">]</span> : <span class="b">[</span> <span class="d">$item</span> * <span class="f">3</span><span class="b"> ]</span>
-<span class="c"># same with local variable</span>
-<span class="j">foreach </span><span class="d">$item</span><span class="j"> in </span><span class="b">[</span><span class="f">1</span><span class="b">,</span> <span class="f">2</span><span class="b">,</span> <span class="f">3</span><span class="b">]</span><span class="j"> with </span><span class="d">$local</span> = <span class="d">$item</span> * <span class="f">3</span> : <span class="b">[</span> <span class="d">$local</span><span class="b"> ]</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="b"># results in [3, 6, 9]</span>
+<span class="j">foreach </span><span class="c">$item</span><span class="j"> in </span><span class="i">[</span><span class="e">1</span><span class="i">,</span> <span class="e">2</span><span class="i">,</span> <span class="e">3</span><span class="i">]</span> <span class="j">:</span> <span class="j">[</span> <span class="c">$item</span> * <span class="e">3</span> <span class="j">]</span>
+<span class="b"># same with local variable</span>
+<span class="j">foreach </span><span class="c">$item</span><span class="j"> in </span><span class="i">[</span><span class="e">1</span><span class="i">,</span> <span class="e">2</span><span class="i">,</span> <span class="e">3</span><span class="i">]</span><span class="j"> with </span><span class="c">$local</span> = <span class="c">$item</span> * <span class="e">3</span> <span class="j">:</span> <span class="j">[</span> <span class="c">$local</span> <span class="j">]</span>
 
-<span class="c"># results in { K1: 3, K2: 6 }</span>
-<span class="j">foreach </span><span class="d">$k</span><span class="j">, </span><span class="d">$v</span><span class="j"> in </span><span class="b">{</span> <span class="h">K1</span>: <span class="f">1</span><span class="b">,</span> <span class="h">K2</span>: <span class="f">2</span><span class="b"> }</span> : <span class="b">{</span> <span class="d">$k</span>: <span class="d">$v</span> * <span class="f">3</span><span class="b"> }</span>
-<span class="c"># results in { K1: 1, K2: 2, K3: 3 }</span>
-<span class="j">foreach </span><span class="d">$item</span><span class="j"> in </span><span class="b">[</span><span class="f">1</span><span class="b">,</span> <span class="f">2</span><span class="b">,</span> <span class="f">3</span><span class="b">]</span> : <span class="b">{</span> <span class="f">&quot;K</span>{ <span class="d">$item</span> }<span class="f">&quot;</span>: <span class="d">$item</span><span class="b"> }</span>
+<span class="b"># results in { K1: 3, K2: 6 }</span>
+<span class="j">foreach </span><span class="c">$k</span><span class="j">, </span><span class="c">$v</span><span class="j"> in </span><span class="i">{</span> <span class="g">K1</span>: <span class="e">1</span><span class="i">,</span> <span class="g">K2</span>: <span class="e">2</span><span class="i"> }</span> <span class="j">:</span> <span class="j">{</span> <span class="c">$k</span>: <span class="c">$v</span> * <span class="e">3</span> <span class="j">}</span>
+<span class="b"># results in { K1: 1, K2: 2, K3: 3 }</span>
+<span class="j">foreach </span><span class="c">$item</span><span class="j"> in </span><span class="i">[</span><span class="e">1</span><span class="i">,</span> <span class="e">2</span><span class="i">,</span> <span class="e">3</span><span class="i">]</span> <span class="j">:</span> <span class="j">{</span> <span class="e">&quot;K</span><span class="j">{</span> <span class="c">$item</span><span class="j"> }</span><span class="e">&quot;</span>: <span class="c">$item</span> <span class="j">}</span>
 
-<span class="c"># results in &quot;3,6,9,&quot;</span>
-<span class="j">foreach </span><span class="d">$item</span><span class="j"> in </span><span class="b">[</span><span class="f">1</span><span class="b">,</span> <span class="f">2</span><span class="b">,</span> <span class="f">3</span><span class="b">]</span> : <span class="f">&quot;</span>{ <span class="d">$item</span> * <span class="f">3</span> }<span class="f">,&quot;</span>
+<span class="b"># results in &quot;3,6,9,&quot;</span>
+<span class="j">foreach </span><span class="c">$item</span><span class="j"> in </span><span class="i">[</span><span class="e">1</span><span class="i">,</span> <span class="e">2</span><span class="i">,</span> <span class="e">3</span><span class="i">]</span> <span class="j">:</span> <span class="j">&quot;{</span> <span class="c">$item</span> * <span class="e">3</span><span class="j"> }</span><span class="e">,</span><span class="j">&quot;</span>
 
-<span class="c"># results in &quot;xxx&quot;</span>
-<span class="c"># the result expression is not required to include loop variables</span>
-<span class="j">foreach </span><span class="d">$item</span><span class="j"> in </span><span class="b">[</span><span class="f">1</span><span class="b">,</span> <span class="f">2</span><span class="b">,</span> <span class="f">3</span><span class="b">]</span> : <span class="f">&quot;x&quot;</span>
+<span class="b"># results in &quot;xxx&quot;</span>
+<span class="b"># the result expression is not required to include loop variables</span>
+<span class="j">foreach </span><span class="c">$item</span><span class="j"> in </span><span class="i">[</span><span class="e">1</span><span class="i">,</span> <span class="e">2</span><span class="i">,</span> <span class="e">3</span><span class="i">]</span> <span class="j">:</span> <span class="j">&quot;</span><span class="e">x</span><span class="j">&quot;</span>
 
-<span class="c"># results can be used like any other expression</span>
-<span class="d">$variable</span> = <span class="j">foreach </span><span class="d">$item</span><span class="j"> in </span><span class="b">[</span><span class="f">1</span><span class="b">,</span> <span class="f">2</span><span class="b">,</span> <span class="f">3</span><span class="b">]</span> : <span class="f">&quot;x&quot;</span></code></pre>
+<span class="b"># results can be used like any other expression</span>
+<span class="c">$variable</span> = <span class="j">foreach </span><span class="c">$item</span><span class="j"> in </span><span class="i">[</span><span class="e">1</span><span class="i">,</span> <span class="e">2</span><span class="i">,</span> <span class="e">3</span><span class="i">]</span> <span class="j">:</span> <span class="j">&quot;</span><span class="e">x</span><span class="j">&quot;</span></code></pre>
 </p>
 <p>Important to note that while both the body and the result expression may be omitted, not both can be at the same time. <code>foreach</code> expressions without a body and a result declaration is erroneous.</p>
 <h2 id="nesting-loops">Nesting loops<a class="doc-heading-anchor" href="#nesting-loops"></a></h2>
 <p><code>foreach</code> loops may be nested in each other. When nested loops are declared, the names of loop and local variables may not collide, and they may not shadow each other. Any such declaration is erroneous.</p>
 <p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="j">foreach </span><span class="d">$item</span><span class="j"> in </span><span class="b">[</span><span class="f">1</span><span class="b">,</span> <span class="f">2</span><span class="b">]</span><span class="j"> 
-	with </span><span class="d">$local</span> = <span class="d">$item</span> * <span class="f">3</span> {
-	<span class="j">foreach </span><span class="d">$inneritem</span><span class="j"> in </span><span class="b">[</span><span class="f">4</span><span class="b">,</span> <span class="f">5</span><span class="b">]</span><span class="j"> 
-		with </span><span class="d">$innerlocal</span> = <span class="d">$local</span> + <span class="d">$inneritem</span> {
-		<span class="e">example.task(</span><span class="d">$innerlocal</span><span class="e">)</span>
-	}
-}
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="j">foreach </span><span class="c">$item</span><span class="j"> in </span><span class="i">[</span><span class="e">1</span><span class="i">,</span> <span class="e">2</span><span class="i">]</span><span class="j"> 
+	with </span><span class="c">$local</span> = <span class="c">$item</span> * <span class="e">3</span> <span class="j">{</span>
+	<span class="j">foreach </span><span class="c">$inneritem</span><span class="j"> in </span><span class="i">[</span><span class="e">4</span><span class="i">,</span> <span class="e">5</span><span class="i">]</span><span class="j"> 
+		with </span><span class="c">$innerlocal</span> = <span class="c">$local</span> + <span class="c">$inneritem</span> <span class="j">{</span>
+		<span class="d">example.task(</span><span class="c">$innerlocal</span><span class="d">)</span>
+	<span class="j">}</span>
+<span class="j">}</span>
 </code></pre>
 </p>
 <p>All loop and local variables declared in an enclosing loop are visible for inner <code>foreach</code> expressions. The above example is semantically the same as the following:</p>
 <p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="e">example.task(</span><span class="f">1</span><span class="i"> * </span><span class="f">3</span><span class="i"> + </span><span class="f">4</span><span class="e">)</span>
-<span class="e">example.task(</span><span class="f">1</span><span class="i"> * </span><span class="f">3</span><span class="i"> + </span><span class="f">5</span><span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d">example.task(</span><span class="e">1</span> * <span class="e">3</span> + <span class="e">4</span><span class="d">)</span>
+<span class="d">example.task(</span><span class="e">1</span> * <span class="e">3</span> + <span class="e">5</span><span class="d">)</span>
 
-<span class="e">example.task(</span><span class="f">2</span><span class="i"> * </span><span class="f">3</span><span class="i"> + </span><span class="f">4</span><span class="e">)</span>
-<span class="e">example.task(</span><span class="f">2</span><span class="i"> * </span><span class="f">3</span><span class="i"> + </span><span class="f">5</span><span class="e">)</span>
+<span class="d">example.task(</span><span class="e">2</span> * <span class="e">3</span> + <span class="e">4</span><span class="d">)</span>
+<span class="d">example.task(</span><span class="e">2</span> * <span class="e">3</span> + <span class="e">5</span><span class="d">)</span>
 </code></pre>
 </p>
 <h2 id="accessing-foreach-variables">Accessing <code>foreach</code> variables<a class="doc-heading-anchor" href="#accessing-foreach-variables"></a></h2>
 <p>Both the loop and local variables can be accessed by using the <code>$</code> dereference operator. It has similarities with the variables, with imposes a strict requirement for the access declarations.</p>
 <p>The <code>foreach</code> variables cannot be accessed via dereferencing a complex expression. If you have a <code>foreach</code> variable named <code>var</code>, then the accessing syntax <strong>must</strong> be <code>$var</code>. Any other format will access the variable in the enclosing build target scope. Some examples for this:</p>
 <p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="c"># a variable with the name $item in the build target scope</span>
-<span class="d">$item</span> = <span class="c"># ...</span>
-<span class="j">foreach </span><span class="d">$item</span><span class="j"> in </span><span class="b">[</span><span class="f">1</span><span class="b">,</span> <span class="f">2</span><span class="b">,</span> <span class="f">3</span><span class="b">]</span><span class="j">
-	with </span><span class="d">$local</span> {
-	<span class="c"># accesses the loop variable</span>
-	<span class="d">$item</span> 
-	<span class="c"># accesses the $item variable in the build target scope</span>
-	<span class="d">$&quot;item&quot;</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="b"># a variable with the name $item in the build target scope</span>
+<span class="c">$item</span> = <span class="b"># ...</span>
+<span class="j">foreach </span><span class="c">$item</span><span class="j"> in </span><span class="i">[</span><span class="e">1</span><span class="i">,</span> <span class="e">2</span><span class="i">,</span> <span class="e">3</span><span class="i">]</span><span class="j">
+	with </span><span class="c">$local</span> <span class="j">{</span>
+	<span class="b"># accesses the loop variable</span>
+	<span class="c">$item</span> 
+	<span class="b"># accesses the $item variable in the build target scope</span>
+	<span class="c">$&quot;item&quot;</span>
 	
-	<span class="c"># accesses and assigns the local variable</span>
-	<span class="d">$local</span> = <span class="c"># ...</span>
-	<span class="c"># accesses the variable $local in the build target scope</span>
-	<span class="d">$</span><span class="f">&quot;loc</span>{ <span class="f">al</span> }<span class="f">&quot;</span>
+	<span class="b"># accesses and assigns the local variable</span>
+	<span class="c">$local</span> = <span class="b"># ...</span>
+	<span class="b"># accesses the variable $local in the build target scope</span>
+	<span class="c">$</span><span class="e">&quot;loc</span><span class="j">{</span> <span class="e">al</span><span class="j"> }</span><span class="e">&quot;</span>
 	
-	<span class="j">foreach </span><span class="d">$inneritem</span><span class="j"> in </span><span class="b">[</span><span class="f">4</span><span class="b">,</span> <span class="f">5</span><span class="b">]</span><span class="j"> 
-		with </span><span class="d">$inlocal</span> {
-		<span class="c"># accesses the outer loop variable</span>
-		<span class="d">$item</span>
-		<span class="c"># accesses the inner loop variable</span>
-		<span class="d">$inneritem</span>
-		<span class="c"># accesses the $item variable in the build target scope</span>
-		<span class="d">$&quot;item&quot;</span>
+	<span class="j">foreach </span><span class="c">$inneritem</span><span class="j"> in </span><span class="i">[</span><span class="e">4</span><span class="i">,</span> <span class="e">5</span><span class="i">]</span><span class="j"> 
+		with </span><span class="c">$inlocal</span> <span class="j">{</span>
+		<span class="b"># accesses the outer loop variable</span>
+		<span class="c">$item</span>
+		<span class="b"># accesses the inner loop variable</span>
+		<span class="c">$inneritem</span>
+		<span class="b"># accesses the $item variable in the build target scope</span>
+		<span class="c">$&quot;item&quot;</span>
 		
-		<span class="c"># accesses and assigns the local variable for the inner loop</span>
-		<span class="d">$inlocal</span> = <span class="c"># ...</span>
-		<span class="c"># accesses the local variable of the outer loop</span>
-		<span class="d">$local</span>
-		<span class="c"># accesses the variable $local in the build target scope</span>
-		<span class="d">$&quot;local&quot;</span>
-	}
-}</code></pre>
+		<span class="b"># accesses and assigns the local variable for the inner loop</span>
+		<span class="c">$inlocal</span> = <span class="b"># ...</span>
+		<span class="b"># accesses the local variable of the outer loop</span>
+		<span class="c">$local</span>
+		<span class="b"># accesses the variable $local in the build target scope</span>
+		<span class="c">$&quot;local&quot;</span>
+	<span class="j">}</span>
+<span class="j">}</span></code></pre>
 </p>
 <link href="../../../../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>
 			<div class="end-section-links">

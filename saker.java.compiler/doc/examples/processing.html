@@ -72,40 +72,40 @@
 			<div class="doc-content"><h1 id="annotation-processing">Annotation processing<a class="doc-heading-anchor" href="#annotation-processing"></a></h1>
 <p>We recommend reading <a href="../javacompile/processorconfig.html" title="Configuration">Annotation processor configuration</a> before this article. (Some of the examples are similar to the ones in that article.)</p>
 <p>To simply load an annotation processor from a classpath and use it in a compilation:</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="d">$processor</span> = <span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.processor.html" title="Task: saker.java.processor()">saker.java.processor</a>(</span>
-	<span class="i">ClassPath</span>: <span class="f">lib/my_processor.jar</span>,
-	<span class="i">Class: </span><span class="f">example.MyProcessor</span>
-<span class="e">)</span>
-<span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
-	<span class="i">SourceDirectories</span>: <span class="f">src</span>,
-	<span class="i">AnnotationProcessors: </span><span class="d">$processor</span>
-<span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="c">$processor</span> = <span class="d"><a href="../../../saker.java.compiler/taskdoc/saker.java.processor.html" title="Task: saker.java.processor()">saker.java.processor</a>(</span>
+	<span class="h">ClassPath</span>: <span class="e">lib/my_processor.jar</span>,
+	<span class="h">Class</span>: <span class="e">example.MyProcessor</span>
+<span class="d">)</span>
+<span class="d"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
+	<span class="h">SourceDirectories</span>: <span class="e">src</span>,
+	<span class="h">AnnotationProcessors</span>: <span class="c">$processor</span>
+<span class="d">)</span>
 </code></pre>
 <p>The above will result in the <code>example.MyProcessor</code> being used when compiling the sources in <code>src</code>.</p>
 <h2 id="options">Options<a class="doc-heading-anchor" href="#options"></a></h2>
 <p>To pass options for the used annotation processors:</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="d">$processor</span> = <span class="c"># ...</span>
-<span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
-	<span class="i">SourceDirectories</span>: <span class="f">src</span>,
-	<span class="i">AnnotationProcessors: </span><span class="d">$processor</span>,
-	<span class="i">AnnotationProcessorOptions: </span><span class="b">{</span>
-		<span class="h">example.MyProcessor.option</span>: <span class="f">abc</span>
-	<span class="b">}</span>
-<span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="c">$processor</span> = <span class="b"># ...</span>
+<span class="d"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
+	<span class="h">SourceDirectories</span>: <span class="e">src</span>,
+	<span class="h">AnnotationProcessors</span>: <span class="c">$processor</span>,
+	<span class="h">AnnotationProcessorOptions</span>: <span class="i">{</span>
+		<span class="g">example.MyProcessor.option</span>: <span class="e">abc</span>
+	<span class="i">}</span>
+<span class="d">)</span>
 </code></pre>
 <p>This will pass the <code>example.MyProcessor.option</code> option with the <code>abc</code> value to the invoked processor(s). Processors can also be configured with processor-private options, see the example <a href="../javacompile/processorconfig.html#options" title="Options">here for more information</a>.</p>
 <h2 id="input-locations">Input locations<a class="doc-heading-anchor" href="#input-locations"></a></h2>
 <p>Input locations may be specified for annotation processors to use. They will be able to read files from the specified locations:</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
-	<span class="i">SourceDirectories</span>: <span class="f">src</span>,
-	<span class="i">AnnotationProcessors: </span><span class="b">{</span>
-		<span class="h">Processor</span>: <span class="k">### ... ###</span> 
-	<span class="b">}</span>,
-	<span class="i">ProcessorInputLocations: </span><span class="b">{</span>
-		<span class="h">WORKING_DIRECTORY</span>: <span class="f">&quot;&quot;</span><span class="b">,</span>
-		<span class="h">PROC_RES</span>: <span class="f">processor_resources</span>
-	<span class="b">}</span>,
-<span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
+	<span class="h">SourceDirectories</span>: <span class="e">src</span>,
+	<span class="h">AnnotationProcessors</span>: <span class="i">{</span>
+		<span class="g">Processor</span>: <span class="k">### ... ###</span> 
+	<span class="i">}</span>,
+	<span class="h">ProcessorInputLocations</span>: <span class="i">{</span>
+		<span class="g">WORKING_DIRECTORY</span>: <span class="e">&quot;&quot;</span><span class="i">,</span>
+		<span class="g">PROC_RES</span>: <span class="e">processor_resources</span>
+	<span class="i">}</span>,
+<span class="d">)</span>
 </code></pre>
 <p>In the above scenario, processor implementations will have access to the files in the current working directory by using the <code>WORKING_DIRECTORY</code> location, and to the resources in the <code>processor_resources</code> subdirectory using the <code>PROC_RES</code> location.</p>
 <p>More information <a href="../javacompile/processorconfig.html#input-locations" title="Input locations">here</a>.</p>

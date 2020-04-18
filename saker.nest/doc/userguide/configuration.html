@@ -168,9 +168,9 @@ no version number specified already.</p>
 </code></pre>
 <p>Extraneous semicolons and whitespace is omitted. The given pin configuration will cause the following build
 script to work in the following way:</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="e">my.task()</span>      <span class="c"># will use my.task-v1.0</span>
-<span class="e">my.task-v3.0()</span> <span class="c"># will use my.task-v3.0, no override</span>
-<span class="e">my.task-q1()</span>   <span class="c"># will use my.task-q1-v1.1</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d">my.task()</span>      <span class="b"># will use my.task-v1.0</span>
+<span class="d">my.task-v3.0()</span> <span class="b"># will use my.task-v3.0, no override</span>
+<span class="d">my.task-q1()</span>   <span class="b"># will use my.task-q1-v1.1</span>
 </code></pre>
 <p>If the repository fails to load the task with the pinned version, the lookup will fail, and no other versions
 will be searched for.</p>

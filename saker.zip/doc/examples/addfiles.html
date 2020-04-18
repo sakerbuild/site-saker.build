@@ -71,13 +71,13 @@
 </div>
 			<div class="doc-content"><h1 id="add-files">Add files<a class="doc-heading-anchor" href="#add-files"></a></h1>
 <p>For adding files to the create archive, use the <code>Resources</code> parameter of the <a href="../../taskdoc/saker.zip.create.html"><code>saker.zip.create()</code></a> task:</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.zip/taskdoc/saker.zip.create.html" title="Task: saker.zip.create()">saker.zip.create</a>(</span>
-	<span class="i">Resources</span>: <span class="b">[</span>
-		<span class="f">readme.txt</span><span class="b">,</span>
-		<span class="f">res/file.txt</span><span class="b">,</span>
-		<span class="f">img/icon.png</span>
-	<span class="b">]</span>
-<span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.zip/taskdoc/saker.zip.create.html" title="Task: saker.zip.create()">saker.zip.create</a>(</span>
+	<span class="h">Resources</span>: <span class="i">[</span>
+		<span class="e">readme.txt</span><span class="i">,</span>
+		<span class="e">res/file.txt</span><span class="i">,</span>
+		<span class="e">img/icon.png</span>
+	<span class="i">]</span>
+<span class="d">)</span>
 </code></pre>
 <p>The created ZIP archive will have the following contents:</p>
 <pre class="doc-code-block"><code class="language-plaintext">readme.txt
@@ -86,19 +86,19 @@ icon.png
 </code></pre>
 <p><strong>Note</strong> that any files that you specify this way will be added to the root of the archive. If the files to be included reside in a directory, that is not taken into account.</p>
 <p>If you want to put the files to a specific directory, use the following:</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.zip/taskdoc/saker.zip.create.html" title="Task: saker.zip.create()">saker.zip.create</a>(</span>
-	<span class="i">Resources</span>: <span class="b">[</span>
-		<span class="f">readme.txt</span><span class="b">,</span>
-		<span class="b">{</span>
-			<span class="h">Files</span>: <span class="f">res/file.txt</span><span class="b">,</span>
-			<span class="h">TargetDirectory</span>: <span class="f">resources</span>
-		<span class="b">},</span>
-		<span class="b">{</span>
-			<span class="h">Files</span>: <span class="f">img/icon.png</span><span class="b">,</span>
-			<span class="h">TargetDirectory</span>: <span class="f">img</span>
-		<span class="b">}</span>
-	<span class="b">]</span>
-<span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.zip/taskdoc/saker.zip.create.html" title="Task: saker.zip.create()">saker.zip.create</a>(</span>
+	<span class="h">Resources</span>: <span class="i">[</span>
+		<span class="e">readme.txt</span><span class="i">,</span>
+		<span class="i">{</span>
+			<span class="g">Files</span>: <span class="e">res/file.txt</span><span class="i">,</span>
+			<span class="g">TargetDirectory</span>: <span class="e">resources</span>
+		<span class="i">},</span>
+		<span class="i">{</span>
+			<span class="g">Files</span>: <span class="e">img/icon.png</span><span class="i">,</span>
+			<span class="g">TargetDirectory</span>: <span class="e">img</span>
+		<span class="i">}</span>
+	<span class="i">]</span>
+<span class="d">)</span>
 </code></pre>
 <p>The above will create a ZIP archive that contains the files as follows:</p>
 <pre class="doc-code-block"><code class="language-plaintext">readme.txt

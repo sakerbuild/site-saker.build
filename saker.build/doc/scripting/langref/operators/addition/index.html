@@ -71,14 +71,14 @@
 </div>
 			<div class="doc-content"><h1 id="addition">Addition<a class="doc-heading-anchor" href="#addition"></a></h1>
 <p>Apart from <a href="../mathoperators/index.html" title="Mathematic operators">mathematical numeric additions</a>, the language supports merging lists and maps. The operator takes two arguments of the same type (list and list, or map and map) and results in a merged value of the same type.</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="c"># concatenate lists</span>
-<span class="b">[</span><span class="f">1</span><span class="b">,</span> <span class="f">2</span><span class="b">]</span> + <span class="b">[</span><span class="f">3</span><span class="b">,</span> <span class="f">4</span><span class="b">]</span> <span class="c"># [1, 2, 3, 4]</span>
-<span class="b">[</span><span class="f">1</span><span class="b">,</span> <span class="f">1</span><span class="b">]</span> + <span class="b">[</span><span class="f">1</span><span class="b">,</span> <span class="f">2</span><span class="b">]</span> <span class="c"># [1, 1, 1, 2]</span>
-<span class="b">[</span><span class="f">1</span><span class="b">,</span> <span class="f">2</span><span class="b">]</span> + <span class="f">3</span> <span class="c"># error, right operand is not a list</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="b"># concatenate lists</span>
+<span class="i">[</span><span class="e">1</span><span class="i">,</span> <span class="e">2</span><span class="i">]</span> + <span class="i">[</span><span class="e">3</span><span class="i">,</span> <span class="e">4</span><span class="i">]</span> <span class="b"># [1, 2, 3, 4]</span>
+<span class="i">[</span><span class="e">1</span><span class="i">,</span> <span class="e">1</span><span class="i">]</span> + <span class="i">[</span><span class="e">1</span><span class="i">,</span> <span class="e">2</span><span class="i">]</span> <span class="b"># [1, 1, 1, 2]</span>
+<span class="i">[</span><span class="e">1</span><span class="i">,</span> <span class="e">2</span><span class="i">]</span> + <span class="e">3</span> <span class="b"># error, right operand is not a list</span>
 
-<span class="c"># concatenate maps</span>
-<span class="b">{</span> <span class="h">K1</span>: <span class="f">v1</span><span class="b"> }</span> + <span class="b">{</span> <span class="h">K2</span>: <span class="f">v2</span><span class="b">}</span> <span class="c"># { K1: v1, K2: v2}</span>
-<span class="b">{</span> <span class="h">Key</span>: <span class="f">left</span><span class="b">,</span> <span class="h">KX</span>: <span class="f">x</span><span class="b"> }</span> + <span class="b">{</span> <span class="h">Key</span>: <span class="f">right</span><span class="b">,</span> <span class="h">KY</span>: <span class="f">y</span><span class="b">}</span> <span class="c"># { Key: right, KX: x, KY: y}</span>
+<span class="b"># concatenate maps</span>
+<span class="i">{</span> <span class="g">K1</span>: <span class="e">v1</span><span class="i"> }</span> + <span class="i">{</span> <span class="g">K2</span>: <span class="e">v2</span><span class="i">}</span> <span class="b"># { K1: v1, K2: v2}</span>
+<span class="i">{</span> <span class="g">Key</span>: <span class="e">left</span><span class="i">,</span> <span class="g">KX</span>: <span class="e">x</span><span class="i"> }</span> + <span class="i">{</span> <span class="g">Key</span>: <span class="e">right</span><span class="i">,</span> <span class="g">KY</span>: <span class="e">y</span><span class="i">}</span> <span class="b"># { Key: right, KX: x, KY: y}</span>
 </code></pre>
 <p>When lists are being concatenated, the resulting list will have the elements of both lists and the elements of the first list will be ordered first in the result.</p>
 <p>When maps are being merged, the resulting list will contain all of the key-value pairs from the left map and the right map. If there is a key collision, the key-value pair from the right operand will be present in the result. (I.e. the key-value from the left map is not present in the result.)</p>

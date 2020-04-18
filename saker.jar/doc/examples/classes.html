@@ -71,13 +71,13 @@
 </div>
 			<div class="doc-content"><h1 id="java-classes">Java classes<a class="doc-heading-anchor" href="#java-classes"></a></h1>
 <p>In the following example we use the <a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html"><code>saker.java.compile()</code></a> task to compile Java sources and include it in the Java archive:</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="d">$javac</span> = <span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span><span class="f">src</span><span class="e">)</span>
-<span class="e"><a href="../../../saker.jar/taskdoc/saker.jar.create.html" title="Task: saker.jar.create()">saker.jar.create</a>(</span>
-	<span class="i">Resources</span>: <span class="b">{</span>
-		<span class="h">Directory</span>: <span class="d">$javac</span><span class="g">[</span><span class="h">ClassDirectory</span><span class="g">]</span><span class="b">,</span>
-		<span class="h">Resources</span>: <span class="f">**</span>
-	<span class="b">}</span>
-<span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="c">$javac</span> = <span class="d"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span><span class="e">src</span><span class="d">)</span>
+<span class="d"><a href="../../../saker.jar/taskdoc/saker.jar.create.html" title="Task: saker.jar.create()">saker.jar.create</a>(</span>
+	<span class="h">Resources</span>: <span class="i">{</span>
+		<span class="g">Directory</span>: <span class="c">$javac</span><span class="f">[</span><span class="g">ClassDirectory</span><span class="f">]</span><span class="i">,</span>
+		<span class="g">Resources</span>: <span class="e">**</span>
+	<span class="i">}</span>
+<span class="d">)</span>
 </code></pre>
 <p>In the above, we compile the Java sources in the <code>src</code> directory. We then retrieve the output class directory that contains the compilation result, and pass it as an input to the Java archive.</p>
 <p><strong>Note</strong> that if the Java compilation uses class paths, the class files from the class paths are not included in the JAR.</p>

@@ -89,28 +89,28 @@
 <h2 id="example">Example<a class="doc-heading-anchor" href="#example"></a></h2>
 <p>The following example contains two files (<code>config.build</code>, and <code>saker.build</code>):</p>
 <p><code>config.build</code>:
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="c"># this file is not uploaded to source control</span>
-<span class="c"># contains secret data for the project</span>
-<span class="e"><a href="../../../../saker.build/doc/scripting/builtintasks/global.html" title="Task: global()">global</a>(</span><span class="d">company.ENCRYPTION_KEY</span><span class="e">)</span> = <span class="f">abcd1234</span>
-<span class="e"><a href="../../../../saker.build/doc/scripting/builtintasks/global.html" title="Task: global()">global</a>(</span><span class="d">company.PUBLISH_API_KEY</span><span class="e">)</span> = <span class="f">Y29tcGFueV9zZWNyZXQ=</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="b"># this file is not uploaded to source control</span>
+<span class="b"># contains secret data for the project</span>
+<span class="d"><a href="../../../../saker.build/doc/scripting/builtintasks/global.html" title="Task: global()">global</a>(</span><span class="c">company.ENCRYPTION_KEY</span><span class="d">)</span> = <span class="e">abcd1234</span>
+<span class="d"><a href="../../../../saker.build/doc/scripting/builtintasks/global.html" title="Task: global()">global</a>(</span><span class="c">company.PUBLISH_API_KEY</span><span class="d">)</span> = <span class="e">Y29tcGFueV9zZWNyZXQ=</span>
 </code></pre>
 </p>
 <p><code>saker.build</code>:
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="c"># this file is the main entry point for builds</span>
-<span class="c"># include the configuration build file</span>
-<span class="e"><a href="../../../../saker.build/doc/scripting/builtintasks/include.html" title="Task: include()">include</a>(</span><span class="i">Path</span>: <span class="f">config.build</span><span class="e">)</span>
-<span class="a">publish</span> <span class="b">{</span>
-	<span class="c"># encrypt some data with a secret key</span>
-	<span class="d">$data</span> = <span class="e">example.encrypt.data(</span>
-		<span class="i">Data</span>: <span class="f">exampledata</span>,
-		<span class="i">Key: </span><span class="e"><a href="../../../../saker.build/doc/scripting/builtintasks/global.html" title="Task: global()">global</a>(</span><span class="d">company.ENCRYPTION_KEY</span><span class="e">)</span>
-	<span class="e">)</span>
-	<span class="c"># publish that data to somewhere</span>
-	<span class="e">example.company.publish(</span>
-		<span class="d">$data</span>, 
-		<span class="i">ApiKey: </span><span class="e"><a href="../../../../saker.build/doc/scripting/builtintasks/global.html" title="Task: global()">global</a>(</span><span class="d">company.PUBLISH_API_KEY</span><span class="e">)</span>
-	<span class="e">)</span>
-<span class="b">}</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="b"># this file is the main entry point for builds</span>
+<span class="b"># include the configuration build file</span>
+<span class="d"><a href="../../../../saker.build/doc/scripting/builtintasks/include.html" title="Task: include()">include</a>(</span><span class="h">Path</span>: <span class="e">config.build</span><span class="d">)</span>
+<span class="a">publish</span> <span class="a">{</span>
+	<span class="b"># encrypt some data with a secret key</span>
+	<span class="c">$data</span> = <span class="d">example.encrypt.data(</span>
+		<span class="h">Data</span>: <span class="e">exampledata</span>,
+		<span class="h">Key</span>: <span class="d"><a href="../../../../saker.build/doc/scripting/builtintasks/global.html" title="Task: global()">global</a>(</span><span class="c">company.ENCRYPTION_KEY</span><span class="d">)</span>
+	<span class="d">)</span>
+	<span class="b"># publish that data to somewhere</span>
+	<span class="d">example.company.publish(</span>
+		<span class="c">$data</span>, 
+		<span class="h">ApiKey</span>: <span class="d"><a href="../../../../saker.build/doc/scripting/builtintasks/global.html" title="Task: global()">global</a>(</span><span class="c">company.PUBLISH_API_KEY</span><span class="d">)</span>
+	<span class="d">)</span>
+<span class="a">}</span>
 </code></pre>
 </p>
 <p>The above example showcases one use-case for global variables. The <code>config.build</code> file is not published to any source control platforms, and contains secret data related to the operation of the associated project. The <code>saker.build</code> file is the main entry points for builds and developers use this to build the project.</p>

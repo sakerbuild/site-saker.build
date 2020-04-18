@@ -99,35 +99,35 @@ If the <code>Target</code> parameter is missing, a default build target will be 
 <h2 id="example">Example<a class="doc-heading-anchor" href="#example"></a></h2>
 <p>The following example contains two files (<code>saker.build</code>, and <code>library.build</code>):</p>
 <p><code>saker.build</code>:
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="a">build</span> <span class="b">{</span>
-	<span class="c"># includes the compile target in saker.build</span>
-	<span class="c">#   with the &quot;src&quot; value as Directory parameter</span>
-	<span class="e"><a href="../../../../saker.build/doc/scripting/builtintasks/include.html" title="Task: include()">include</a>(</span><span class="f">compile</span>, <span class="i">Directory: </span><span class="f">src</span><span class="e">)</span>
-	<span class="c"># ... some other build steps</span>
-<span class="b">}</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="a">build</span> <span class="a">{</span>
+	<span class="b"># includes the compile target in saker.build</span>
+	<span class="b">#   with the &quot;src&quot; value as Directory parameter</span>
+	<span class="d"><a href="../../../../saker.build/doc/scripting/builtintasks/include.html" title="Task: include()">include</a>(</span><span class="e">compile</span>, <span class="h">Directory</span>: <span class="e">src</span><span class="d">)</span>
+	<span class="b"># ... some other build steps</span>
+<span class="a">}</span>
 <span class="a">compile(</span>
-	<span class="j">in</span> <span class="d">Directory</span>,
-<span class="a">)</span> <span class="b">{</span>
-	<span class="c"># compiles some sources in the parameter directory</span>
-	<span class="c">#   with the library from library.build on path</span>
-	<span class="e">example.compile.sources(</span>
-		<span class="d">$Directory</span>,
-		<span class="c"># include the build target in library.build</span>
-		<span class="c">#   and access the Library output parameter</span>
-		<span class="i">LibraryPath: </span><span class="e"><a href="../../../../saker.build/doc/scripting/builtintasks/include.html" title="Task: include()">include</a>(</span><span class="i">Path</span>: <span class="f">library.build</span><span class="e">)</span><span class="g">[</span><span class="h">Library</span><span class="g">]</span>
-	<span class="e">)</span>
-<span class="b">}</span>
+	<span class="j">in</span> <span class="c">Directory</span>,
+<span class="a">)</span> <span class="a">{</span>
+	<span class="b"># compiles some sources in the parameter directory</span>
+	<span class="b">#   with the library from library.build on path</span>
+	<span class="d">example.compile.sources(</span>
+		<span class="c">$Directory</span>,
+		<span class="b"># include the build target in library.build</span>
+		<span class="b">#   and access the Library output parameter</span>
+		<span class="h">LibraryPath</span>: <span class="d"><a href="../../../../saker.build/doc/scripting/builtintasks/include.html" title="Task: include()">include</a>(</span><span class="h">Path</span>: <span class="e">library.build</span><span class="d">)</span><span class="f">[</span><span class="g">Library</span><span class="f">]</span>
+	<span class="d">)</span>
+<span class="a">}</span>
 </code></pre>
 </p>
 <p><code>library.build</code>:
 <pre class="doc-code-block"><code class="language-sakerscript"><span class="a">build(</span>
-	<span class="c"># input parameter with default value</span>
-	<span class="j">in</span> <span class="d">Sources</span> = <span class="f">libsrc</span>,
-	<span class="c"># output parameter of the compiled library</span>
-	<span class="j">out</span> <span class="d">Library</span>,
-<span class="a">)</span> <span class="b">{</span>
-	<span class="d">$Library</span> = <span class="e">example.compile.library(</span><span class="d">$Sources</span><span class="e">)</span>
-<span class="b">}</span>
+	<span class="b"># input parameter with default value</span>
+	<span class="j">in</span> <span class="c">Sources</span> = <span class="e">libsrc</span>,
+	<span class="b"># output parameter of the compiled library</span>
+	<span class="j">out</span> <span class="c">Library</span>,
+<span class="a">)</span> <span class="a">{</span>
+	<span class="c">$Library</span> = <span class="d">example.compile.library(</span><span class="c">$Sources</span><span class="d">)</span>
+<span class="a">}</span>
 </code></pre>
 </p>
 <p>In the above example we can see that the compilation of a library and the user of that library have been decoupled into different build files. They include each other when the result of the given result is needed.</p>

@@ -78,7 +78,7 @@
 </p>
 <p>In the above, instead of creating a task instance of <code>Task</code>, we create an instance of <code>ParameterizableTask</code>. The <code>ParameterizableTask</code> interface contains the interface method <code>initParameters</code> which is called by the build system before <code>run(TaskContext)</code>. It is an initialization method that allows the task object to retrieve and assign the parameters of the task.</p>
 <p>Running the above example in the following way:</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="e">example.task(</span><span class="i">Parameter</span>: <span class="f">&quot;Hello world!&quot;</span><span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d">example.task(</span><span class="h">Parameter</span>: <span class="e">&quot;Hello world!&quot;</span><span class="d">)</span>
 </code></pre>
 <p>Will print out <code>&quot;Hello world!&quot;</code> accordingly.</p>
 <p>The parameters are available through the <code>Map</code> argument which contains all the named parameters that were given to the task invocation. Each <code>String</code> key maps to the identifier of a task that provides the value of the given parameter. You can use the task context to retrieve the results for the given parameter task identifier, or handle the identifier in any other ways.</p>

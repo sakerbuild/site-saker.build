@@ -71,31 +71,31 @@
 </div>
 			<div class="doc-content"><h1 id="macro-definitions">Macro definitions<a class="doc-heading-anchor" href="#macro-definitions"></a></h1>
 <p>The <a href="../../taskdoc/saker.msvc.ccompile.html"><code>saker.msvc.ccompile()</code></a> task allows you to add macro preprocessor definitions to the compiled files. This corresponds to the <a href="https://docs.microsoft.com/en-us/cpp/build/reference/d-preprocessor-definitions?view=vs-2019" title="/D (Preprocessor Definitions) | Microsoft Docs"><code>/D</code></a> parameter of <a href="https://docs.microsoft.com/en-us/cpp/build/reference/compiling-a-c-cpp-program?view=vs-2019" title="MSVC C/C++ compiler reference - Visual Studio | Microsoft Docs"><code>cl.exe</code></a>:</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span><span class="b">[</span>
-	<span class="b">{</span>
-		<span class="h">Files</span>: <span class="f">src/**/*.cpp</span><span class="b">,</span>
-		<span class="h">MacroDefinitions</span>: <span class="b">{</span>
-			<span class="h">MY_MACRO</span>: <span class="f">123</span>
-		<span class="b">}</span>
-	<span class="b">},</span>
-	<span class="b">{</span>
-		<span class="h">Files</span>: <span class="f">src/**/*.c</span><span class="b">,</span>
-		<span class="h">MacroDefinitions</span>: <span class="b">{</span>
-			<span class="h">MY_MACRO</span>: <span class="f">456</span>
-		<span class="b">}</span>
-	<span class="b">}</span>
-<span class="b">]</span><span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span><span class="i">[</span>
+	<span class="i">{</span>
+		<span class="g">Files</span>: <span class="e">src/**/*.cpp</span><span class="i">,</span>
+		<span class="g">MacroDefinitions</span>: <span class="i">{</span>
+			<span class="g">MY_MACRO</span>: <span class="e">123</span>
+		<span class="i">}</span>
+	<span class="i">},</span>
+	<span class="i">{</span>
+		<span class="g">Files</span>: <span class="e">src/**/*.c</span><span class="i">,</span>
+		<span class="g">MacroDefinitions</span>: <span class="i">{</span>
+			<span class="g">MY_MACRO</span>: <span class="e">456</span>
+		<span class="i">}</span>
+	<span class="i">}</span>
+<span class="i">]</span><span class="d">)</span>
 </code></pre>
 <p>In the above all C++ files will have the <code>MY_MACRO</code> with the value <code>123</code> defined for them, while for C files the <code>MY_MACRO</code> will have the <code>456</code> value.</p>
 <p>To define a macro without any value, use the following:</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span>
-	<span class="b">{</span>
-		<span class="h">Files</span>: <span class="f">src/**/*.cpp</span><span class="b">,</span>
-		<span class="h">MacroDefinitions</span>: <span class="b">{</span>
-			<span class="h">MY_MACRO</span>: <span class="f">&quot;&quot;</span>
-		<span class="b">}</span>
-	<span class="b">}</span>
-<span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span>
+	<span class="i">{</span>
+		<span class="g">Files</span>: <span class="e">src/**/*.cpp</span><span class="i">,</span>
+		<span class="g">MacroDefinitions</span>: <span class="i">{</span>
+			<span class="g">MY_MACRO</span>: <span class="e">&quot;&quot;</span>
+		<span class="i">}</span>
+	<span class="i">}</span>
+<span class="d">)</span>
 </code></pre>
 <p>This way the actual argument passed to the <a href="https://docs.microsoft.com/en-us/cpp/build/reference/compiling-a-c-cpp-program?view=vs-2019" title="MSVC C/C++ compiler reference - Visual Studio | Microsoft Docs"><code>cl.exe</code></a> is <code>/DMY_MACRO</code>.</p>
 <link href="../../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>

@@ -90,21 +90,21 @@
 <h2 id="example">Example<a class="doc-heading-anchor" href="#example"></a></h2>
 <p>The following example is contained in a file at the path <code>wd:/project/saker.build</code>:</p>
 <p><code>wd:/project/saker.build</code>:</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="c"># the build script path is: wd:/project/saker.build</span>
-<span class="c"># the build target is invoked with wd:/project as working directory</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="b"># the build script path is: wd:/project/saker.build</span>
+<span class="b"># the build target is invoked with wd:/project as working directory</span>
 
-<span class="c"># equals wd:/project</span>
-<span class="e"><a href="../../../../saker.build/doc/scripting/builtintasks/path.html" title="Task: path()">path</a>()</span>
-<span class="c"># equals wd:/project/file.txt</span>
-<span class="e"><a href="../../../../saker.build/doc/scripting/builtintasks/path.html" title="Task: path()">path</a>(</span><span class="f">file.txt</span><span class="e">)</span>
-<span class="c"># equals wd:/parentfile.txt</span>
-<span class="e"><a href="../../../../saker.build/doc/scripting/builtintasks/path.html" title="Task: path()">path</a>(</span><span class="f">../parentfile.txt</span><span class="e">)</span>
+<span class="b"># equals wd:/project</span>
+<span class="d"><a href="../../../../saker.build/doc/scripting/builtintasks/path.html" title="Task: path()">path</a>()</span>
+<span class="b"># equals wd:/project/file.txt</span>
+<span class="d"><a href="../../../../saker.build/doc/scripting/builtintasks/path.html" title="Task: path()">path</a>(</span><span class="e">file.txt</span><span class="d">)</span>
+<span class="b"># equals wd:/parentfile.txt</span>
+<span class="d"><a href="../../../../saker.build/doc/scripting/builtintasks/path.html" title="Task: path()">path</a>(</span><span class="e">../parentfile.txt</span><span class="d">)</span>
 
-<span class="c"># equals /absolute/path</span>
-<span class="e"><a href="../../../../saker.build/doc/scripting/builtintasks/path.html" title="Task: path()">path</a>(</span><span class="f">/absolute/path</span><span class="e">)</span>
+<span class="b"># equals /absolute/path</span>
+<span class="d"><a href="../../../../saker.build/doc/scripting/builtintasks/path.html" title="Task: path()">path</a>(</span><span class="e">/absolute/path</span><span class="d">)</span>
 
-<span class="c"># error, cannot be resolved as it would escape the root</span>
-<span class="e"><a href="../../../../saker.build/doc/scripting/builtintasks/path.html" title="Task: path()">path</a>(</span><span class="f">../../error.txt</span><span class="e">)</span>
+<span class="b"># error, cannot be resolved as it would escape the root</span>
+<span class="d"><a href="../../../../saker.build/doc/scripting/builtintasks/path.html" title="Task: path()">path</a>(</span><span class="e">../../error.txt</span><span class="d">)</span>
 </code></pre>
 <link href="../../../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>
 			<div class="end-section-links">

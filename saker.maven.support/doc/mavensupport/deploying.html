@@ -77,22 +77,22 @@
 <p>The artifact deploying usually requires <a href="authentication.html" title="Authentication">authentication</a> from the client.</p>
 <p>The deploying can be performed using the <a href="../../taskdoc/saker.maven.deploy.html"><code>saker.maven.deploy()</code></a> task. The task deploys multiple artifacts under the specified coordinates in a batch. Each artifact can be given using a specifier and an artifact path.</p>
 <p>The specifiers tell the task the classifier and extension parts of a given artifact. The following example demonstrates it:</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.maven.support/taskdoc/saker.maven.deploy.html" title="Task: saker.maven.deploy()">saker.maven.deploy</a>(</span>
-	<span class="i">Artifacts</span>: <span class="b">{</span>
-		<span class="h">&quot;pom&quot;</span>: <span class="f">pom.xml</span><span class="b">,</span>
-		<span class="h">&quot;jar&quot;</span>: <span class="f">artifact.jar</span><span class="b">,</span>
-		<span class="h">&quot;sources:jar&quot;</span>: <span class="f">artifact-sources.jar</span><span class="b">,</span>
-	<span class="b">}</span>,
-	<span class="i">Coordinates: </span><span class="f">&quot;example.groupid:example.artifactid:0.1&quot;</span>,
-	<span class="i">RemoteRepository: </span><span class="b">{</span>
-		<span class="h">Id</span>: <span class="f">github</span><span class="b">,</span>
-		<span class="h">Url</span>: <span class="f">&quot;https://maven.pkg.github.com/exampleuser/example_repository&quot;</span><span class="b">,</span>
-		<span class="h">Authentication</span>: <span class="e"><a href="../../../saker.maven.support/taskdoc/saker.maven.auth.account.html" title="Task: saker.maven.auth.account()">saker.maven.auth.account</a>(</span>
-			<span class="i">UserName</span>: <span class="f">exampleuser</span>,
-			<span class="i">Password: </span><span class="f">123456789abcdef123456789abcdef123456789a</span>,
-		<span class="e">)</span>
-	<span class="b">}</span>,
-<span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.maven.support/taskdoc/saker.maven.deploy.html" title="Task: saker.maven.deploy()">saker.maven.deploy</a>(</span>
+	<span class="h">Artifacts</span>: <span class="i">{</span>
+		<span class="g">&quot;pom&quot;</span>: <span class="e">pom.xml</span><span class="i">,</span>
+		<span class="g">&quot;jar&quot;</span>: <span class="e">artifact.jar</span><span class="i">,</span>
+		<span class="g">&quot;sources:jar&quot;</span>: <span class="e">artifact-sources.jar</span><span class="i">,</span>
+	<span class="i">}</span>,
+	<span class="h">Coordinates</span>: <span class="e">&quot;example.groupid:example.artifactid:0.1&quot;</span>,
+	<span class="h">RemoteRepository</span>: <span class="i">{</span>
+		<span class="g">Id</span>: <span class="e">github</span><span class="i">,</span>
+		<span class="g">Url</span>: <span class="e">&quot;https://maven.pkg.github.com/exampleuser/example_repository&quot;</span><span class="i">,</span>
+		<span class="g">Authentication</span>: <span class="d"><a href="../../../saker.maven.support/taskdoc/saker.maven.auth.account.html" title="Task: saker.maven.auth.account()">saker.maven.auth.account</a>(</span>
+			<span class="h">UserName</span>: <span class="e">exampleuser</span>,
+			<span class="h">Password</span>: <span class="e">123456789abcdef123456789abcdef123456789a</span>,
+		<span class="d">)</span>
+	<span class="i">}</span>,
+<span class="d">)</span>
 </code></pre>
 <p>The <code>Artifacts</code> are specified in a map where the keys are the classifier and extension specifiers, while the values are the paths to the deployed artifacts.</p>
 <p>The actual artifact coordinates under which the artifacts are deployed are constructed by merging the <code>Coordinates</code> parameter and the specifier. The above will result in the following artifacts being deployed:</p>

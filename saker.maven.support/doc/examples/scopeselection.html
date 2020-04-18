@@ -72,11 +72,11 @@
 			<div class="doc-content"><h1 id="scope-selection">Scope selection<a class="doc-heading-anchor" href="#scope-selection"></a></h1>
 <p>See also: <a href="https://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html#Dependency_Scope" title="Maven &#x2013; Introduction to the Dependency Mechanism">Maven dependency scopes</a></p>
 <p>When you resolve dependencies, they may have different scopes associated with them. Using the result of the dependency resolution you can select the appropriate set or artifacts that you'd like to use:</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.maven.support/taskdoc/saker.maven.resolve.html" title="Task: saker.maven.resolve()">saker.maven.resolve</a>(</span><span class="i">Dependencies</span>: <span class="b">{</span>
-	<span class="h">&quot;junit:junit:4.12&quot;</span>: <span class="f">test</span><span class="b">,</span>
-	<span class="h">&quot;org.slf4j:slf4j-api:1.7.19&quot;</span>: <span class="f">compile</span><span class="b">,</span>
-	<span class="h">&quot;javax.servlet:servlet-api:2.5&quot;</span>: <span class="f">provided</span>
-<span class="b">}</span><span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.maven.support/taskdoc/saker.maven.resolve.html" title="Task: saker.maven.resolve()">saker.maven.resolve</a>(</span><span class="h">Dependencies</span>: <span class="i">{</span>
+	<span class="g">&quot;junit:junit:4.12&quot;</span>: <span class="e">test</span><span class="i">,</span>
+	<span class="g">&quot;org.slf4j:slf4j-api:1.7.19&quot;</span>: <span class="e">compile</span><span class="i">,</span>
+	<span class="g">&quot;javax.servlet:servlet-api:2.5&quot;</span>: <span class="e">provided</span>
+<span class="i">}</span><span class="d">)</span>
 </code></pre>
 <p>The result of the dependency resolution will be the following with the scopes included:</p>
 <pre class="doc-code-block"><code class="language-plaintext">junit:junit:jar:4.12 - test
@@ -86,8 +86,8 @@ javax.servlet:servlet-api:jar:2.5 - provided
 </code></pre>
 <p>We may want to select different artifacts based on the operation that we'd like to perform.</p>
 <p>For example if we want to select the dependencies for compilation (not for testing):</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="d">$resolved</span> = <span class="e"><a href="../../../saker.maven.support/taskdoc/saker.maven.resolve.html" title="Task: saker.maven.resolve()">saker.maven.resolve</a>(</span><span class="k">### ... ###</span><span class="e">)</span>
-<span class="d">$resolved</span><span class="g">[</span><span class="h">Scopes</span><span class="g">][</span><span class="h">Compilation</span><span class="g">]</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="c">$resolved</span> = <span class="d"><a href="../../../saker.maven.support/taskdoc/saker.maven.resolve.html" title="Task: saker.maven.resolve()">saker.maven.resolve</a>(</span><span class="k">### ... ###</span><span class="d">)</span>
+<span class="c">$resolved</span><span class="f">[</span><span class="g">Scopes</span><span class="f">][</span><span class="g">Compilation</span><span class="f">]</span>
 </code></pre>
 <p>The <code>[Scopes]</code> field of the task output allows limiting the dependency set based on the scopes. The <code>[Compilation]</code> field will return only the dependencies for the <code>compile</code> and <code>provided</code> scopes. Applying it to the above resolution result will contain the following artifacts:</p>
 <pre class="doc-code-block"><code class="language-plaintext">org.slf4j:slf4j-api:jar:1.7.19 - compile
@@ -95,8 +95,8 @@ javax.servlet:servlet-api:jar:2.5 - provided
 </code></pre>
 <p>The result of the scope limitation will have the same semantics as the direct output from the task.</p>
 <p>The scope limitation can be also specified for arbitrary scopes:</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="d">$resolved</span> = <span class="e"><a href="../../../saker.maven.support/taskdoc/saker.maven.resolve.html" title="Task: saker.maven.resolve()">saker.maven.resolve</a>(</span><span class="k">### ... ###</span><span class="e">)</span>
-<span class="d">$resolved</span><span class="g">[</span><span class="h">Scopes</span><span class="g">][</span><span class="h">&quot;test | provided&quot;</span><span class="g">]</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="c">$resolved</span> = <span class="d"><a href="../../../saker.maven.support/taskdoc/saker.maven.resolve.html" title="Task: saker.maven.resolve()">saker.maven.resolve</a>(</span><span class="k">### ... ###</span><span class="d">)</span>
+<span class="c">$resolved</span><span class="f">[</span><span class="g">Scopes</span><span class="f">][</span><span class="g">&quot;test | provided&quot;</span><span class="f">]</span>
 </code></pre>
 <p>In which case the result will contain the <code>test</code> and <code>provided</code> dependencies:</p>
 <pre class="doc-code-block"><code class="language-plaintext">junit:junit:jar:4.12 - test

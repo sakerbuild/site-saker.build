@@ -82,7 +82,7 @@ h1, h2, h3, h4, h5, h6 {
 .doc-content h1:not(:first-child), .doc-content h2:not(:first-child), .doc-content h3:not(:first-child), .doc-content h4:not(:first-child), .doc-content h5:not(:first-child), .doc-content h6:not(:first-child) {
 	margin-top: 15px;
 }
-.doc-content strong {
+.doc-content strong, .style-landing b {
 	font-weight: 600;
 }
 .footer-section-title {

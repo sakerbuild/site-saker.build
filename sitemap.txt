@@ -205,6 +205,7 @@ https://saker.build/saker.build/javadoc/all-classes.html
 https://saker.build/saker.build/javadoc/constants.html
 https://saker.build/saker.build/javadoc/index.html
 https://saker.build/saker.build/javadoc/saker/build/exception/BuildExecutionFailedException.html
+https://saker.build/saker.build/javadoc/saker/build/exception/BuildTargetNotFoundException.html
 https://saker.build/saker.build/javadoc/saker/build/exception/FileMirroringUnavailableException.html
 https://saker.build/saker.build/javadoc/saker/build/exception/InvalidFileTypeException.html
 https://saker.build/saker.build/javadoc/saker/build/exception/InvalidPathFormatException.html

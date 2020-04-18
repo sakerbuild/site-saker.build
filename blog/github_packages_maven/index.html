@@ -98,25 +98,25 @@
 <p><small>Tip: you don't have to deal with command line when using the <a href="../../saker.build/doc/eclipseplugin.html" title="Eclipse plugin">Eclipse plugin</a>.</small></p>
 <h3 id="deploying-to-github">Deploying to GitHub<a class="doc-heading-anchor" href="#deploying-to-github"></a></h3>
 <p>For deployment, we use the <a href="../../saker.maven.support/taskdoc/saker.maven.deploy.html"><code>saker.maven.deploy()</code></a> build task. It will take the specified artifacts, and upload them to GitHub. Let's see it in more detail:</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="a">deploy()</span> <span class="b">{</span>
-	<span class="c"># Replace USERNAME, REPOSITORY_NAME, and PERSONAL_ACCESS_TOKEN literals with your own</span>
-	<span class="d">$jar</span> = <span class="e"><a href="../../saker.build/doc/scripting/builtintasks/include.html" title="Task: include()">include</a>(</span><span class="f">export</span><span class="e">)</span><span class="g">[</span><span class="h">jar</span><span class="g">]</span>
-	<span class="e"><a href="../../saker.maven.support/taskdoc/saker.maven.deploy.html" title="Task: saker.maven.deploy()">saker.maven.deploy</a>(</span>
-		<span class="i">Artifacts</span>: <span class="b">{</span>
-			<span class="h">&quot;pom&quot;</span>: <span class="f">pom.xml</span><span class="b">,</span>
-			<span class="h">&quot;jar&quot;</span>: <span class="d">$jar</span><span class="g">[</span><span class="h">Path</span><span class="g">]</span><span class="b">,</span>
-		<span class="b">}</span>,
-		<span class="i">Coordinates: </span><span class="f">&quot;example.saker.build:maven-gh-packages:0.1.0&quot;</span>,
-		<span class="i">RemoteRepository: </span><span class="b">{</span>
-			<span class="h">Id</span>: <span class="f">github</span><span class="b">,</span>
-			<span class="h">Url</span>: <span class="f">&quot;https://maven.pkg.github.com/USERNAME/REPOSITORY_NAME&quot;</span><span class="b">,</span>
-			<span class="h">Authentication</span>: <span class="e"><a href="../../saker.maven.support/taskdoc/saker.maven.auth.account.html" title="Task: saker.maven.auth.account()">saker.maven.auth.account</a>(</span>
-				<span class="i">Username</span>: <span class="f">USERNAME</span>,
-				<span class="i">Password: </span><span class="f">PERSONAL_ACCESS_TOKEN</span>,
-			<span class="e">)</span>
-		<span class="b">}</span>
-	<span class="e">)</span>
-<span class="b">}</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="a">deploy()</span> <span class="a">{</span>
+	<span class="b"># Replace USERNAME, REPOSITORY_NAME, and PERSONAL_ACCESS_TOKEN literals with your own</span>
+	<span class="c">$jar</span> = <span class="d"><a href="../../saker.build/doc/scripting/builtintasks/include.html" title="Task: include()">include</a>(</span><span class="e">export</span><span class="d">)</span><span class="f">[</span><span class="g">jar</span><span class="f">]</span>
+	<span class="d"><a href="../../saker.maven.support/taskdoc/saker.maven.deploy.html" title="Task: saker.maven.deploy()">saker.maven.deploy</a>(</span>
+		<span class="h">Artifacts</span>: <span class="i">{</span>
+			<span class="g">&quot;pom&quot;</span>: <span class="e">pom.xml</span><span class="i">,</span>
+			<span class="g">&quot;jar&quot;</span>: <span class="c">$jar</span><span class="f">[</span><span class="g">Path</span><span class="f">]</span><span class="i">,</span>
+		<span class="i">}</span>,
+		<span class="h">Coordinates</span>: <span class="e">&quot;example.saker.build:maven-gh-packages:0.1.0&quot;</span>,
+		<span class="h">RemoteRepository</span>: <span class="i">{</span>
+			<span class="g">Id</span>: <span class="e">github</span><span class="i">,</span>
+			<span class="g">Url</span>: <span class="e">&quot;https://maven.pkg.github.com/USERNAME/REPOSITORY_NAME&quot;</span><span class="i">,</span>
+			<span class="g">Authentication</span>: <span class="d"><a href="../../saker.maven.support/taskdoc/saker.maven.auth.account.html" title="Task: saker.maven.auth.account()">saker.maven.auth.account</a>(</span>
+				<span class="h">Username</span>: <span class="e">USERNAME</span>,
+				<span class="h">Password</span>: <span class="e">PERSONAL_ACCESS_TOKEN</span>,
+			<span class="d">)</span>
+		<span class="i">}</span>
+	<span class="d">)</span>
+<span class="a">}</span>
 
 </code></pre>
 <p><small>Tip: you can click on task names to view their documentation.</small></p>
@@ -129,25 +129,25 @@
 <p><strong>Important!</strong> After deploying artifacts to GitHub Packages, you won't be able to overwrite them! Not even <code>SNAPSHOT</code> artifacts. You can <a href="https://help.github.com/en/github/managing-packages-with-github-packages/deleting-a-package" title="Deleting a package - GitHub Help">delete</a> them, but it should be only used as a last resort.</p>
 <h3 id="using-the-repository">Using the repository<a class="doc-heading-anchor" href="#using-the-repository"></a></h3>
 <p>After deploying, you probably want to use your artifacts. You can authenticate yourself for other Maven build tasks the same way you did for deployment:</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../saker.maven.support/taskdoc/saker.maven.resolve.html" title="Task: saker.maven.resolve()">saker.maven.resolve</a>(</span>
-	<span class="i">Artifacts</span>: <span class="f">&quot;example.saker.build:maven-gh-packages:0.1.0&quot;</span>,
-	<span class="i">Configuration: </span><span class="b">{</span>
-		<span class="h">Repositories</span>: <span class="b">[</span>
-			<span class="b">{</span>
-				<span class="h">Id</span>: <span class="f">central</span><span class="b">,</span>
-				<span class="h">Url</span>: <span class="f">&quot;https://repo.maven.apache.org/maven2/&quot;</span><span class="b">,</span>
-			<span class="b">},</span>
-			<span class="b">{</span>
-				<span class="h">Id</span>: <span class="f">github</span><span class="b">,</span>
-				<span class="h">Url</span>: <span class="f">&quot;https://maven.pkg.github.com/USERNAME/REPOSITORY_NAME&quot;</span><span class="b">,</span>
-				<span class="h">Authentication</span>: <span class="e"><a href="../../saker.maven.support/taskdoc/saker.maven.auth.account.html" title="Task: saker.maven.auth.account()">saker.maven.auth.account</a>(</span>
-					<span class="i">Username</span>: <span class="f">USERNAME</span>,
-					<span class="i">Password: </span><span class="f">PERSONAL_ACCESS_TOKEN</span>,
-				<span class="e">)</span><span class="b">,</span>
-			<span class="b">}</span>
-		<span class="b">]</span>
-	<span class="b">}</span>
-<span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../saker.maven.support/taskdoc/saker.maven.resolve.html" title="Task: saker.maven.resolve()">saker.maven.resolve</a>(</span>
+	<span class="h">Artifacts</span>: <span class="e">&quot;example.saker.build:maven-gh-packages:0.1.0&quot;</span>,
+	<span class="h">Configuration</span>: <span class="i">{</span>
+		<span class="g">Repositories</span>: <span class="i">[</span>
+			<span class="i">{</span>
+				<span class="g">Id</span>: <span class="e">central</span><span class="i">,</span>
+				<span class="g">Url</span>: <span class="e">&quot;https://repo.maven.apache.org/maven2/&quot;</span><span class="i">,</span>
+			<span class="i">},</span>
+			<span class="i">{</span>
+				<span class="g">Id</span>: <span class="e">github</span><span class="i">,</span>
+				<span class="g">Url</span>: <span class="e">&quot;https://maven.pkg.github.com/USERNAME/REPOSITORY_NAME&quot;</span><span class="i">,</span>
+				<span class="g">Authentication</span>: <span class="d"><a href="../../saker.maven.support/taskdoc/saker.maven.auth.account.html" title="Task: saker.maven.auth.account()">saker.maven.auth.account</a>(</span>
+					<span class="h">Username</span>: <span class="e">USERNAME</span>,
+					<span class="h">Password</span>: <span class="e">PERSONAL_ACCESS_TOKEN</span>,
+				<span class="d">)</span><span class="i">,</span>
+			<span class="i">}</span>
+		<span class="i">]</span>
+	<span class="i">}</span>
+<span class="d">)</span>
 </code></pre>
 <p>The above will use the <code>central</code> repository as well as the one we deployed our artifact to. The dependencies of our artifact will be resolved, resulting in the following:</p>
 <pre class="doc-code-block"><code class="language-plaintext">org.apache.commons:commons-lang3:jar:3.9
@@ -156,34 +156,34 @@ example.saker.build:maven-gh-packages:jar:0.1.0
 <p>If your git repository is public, you can omit the <code>Authentication</code> when retrieving from the repository.</p>
 <h3 id="further-improvements">Further improvements<a class="doc-heading-anchor" href="#further-improvements"></a></h3>
 <p>You may've noticed that we specified the full configuration and credentials for accessing GitHub Packages in both of the examples. This would be very verbose and make the build scripts hard to follow. You can easily export this configuration to a <code>static</code> or <code>global</code> variable for the build, letting you define the congfiguration in a single place:</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../saker.build/doc/scripting/builtintasks/static.html" title="Task: static()">static</a>(</span><span class="d">GITHUB_CONF</span><span class="e">)</span> = <span class="b">{</span>
-	<span class="h">Id</span>: <span class="f">github</span><span class="b">,</span>
-	<span class="h">Url</span>: <span class="f">&quot;https://maven.pkg.github.com/USERNAME/REPOSITORY_NAME&quot;</span><span class="b">,</span>
-	<span class="h">Authentication</span>: <span class="e"><a href="../../saker.maven.support/taskdoc/saker.maven.auth.account.html" title="Task: saker.maven.auth.account()">saker.maven.auth.account</a>(</span>
-		<span class="i">Username</span>: <span class="f">USERNAME</span>,
-		<span class="i">Password: </span><span class="f">PERSONAL_ACCESS_TOKEN</span>,
-	<span class="e">)</span>
-<span class="b">}</span>
-<span class="e"><a href="../../saker.maven.support/taskdoc/saker.maven.deploy.html" title="Task: saker.maven.deploy()">saker.maven.deploy</a>(</span>
-	<span class="i">Artifacts</span>: <span class="b">{</span>
-		<span class="h">&quot;pom&quot;</span>: <span class="f">pom.xml</span><span class="b">,</span>
-		<span class="h">&quot;jar&quot;</span>: <span class="d">$jar</span><span class="g">[</span><span class="h">Path</span><span class="g">]</span><span class="b">,</span>
-	<span class="b">}</span>,
-	<span class="i">Coordinates: </span><span class="f">&quot;example.saker.build:maven-gh-packages:0.1.0&quot;</span>,
-	<span class="i">RemoteRepository: </span><span class="e"><a href="../../saker.build/doc/scripting/builtintasks/static.html" title="Task: static()">static</a>(</span><span class="d">GITHUB_CONF</span><span class="e">)</span>
-<span class="e">)</span>
-<span class="e"><a href="../../saker.maven.support/taskdoc/saker.maven.resolve.html" title="Task: saker.maven.resolve()">saker.maven.resolve</a>(</span>
-	<span class="i">Artifacts</span>: <span class="f">&quot;example.saker.build:maven-gh-packages:0.1.0&quot;</span>,
-	<span class="i">Configuration: </span><span class="b">{</span>
-		<span class="h">Repositories</span>: <span class="b">[</span>
-			<span class="b">{</span>
-				<span class="h">Id</span>: <span class="f">central</span><span class="b">,</span>
-				<span class="h">Url</span>: <span class="f">&quot;https://repo.maven.apache.org/maven2/&quot;</span><span class="b">,</span>
-			<span class="b">},</span>
-			<span class="e"><a href="../../saker.build/doc/scripting/builtintasks/static.html" title="Task: static()">static</a>(</span><span class="d">GITHUB_CONF</span><span class="e">)</span>
-		<span class="b">]</span>
-	<span class="b">}</span>
-<span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../saker.build/doc/scripting/builtintasks/static.html" title="Task: static()">static</a>(</span><span class="c">GITHUB_CONF</span><span class="d">)</span> = <span class="i">{</span>
+	<span class="g">Id</span>: <span class="e">github</span><span class="i">,</span>
+	<span class="g">Url</span>: <span class="e">&quot;https://maven.pkg.github.com/USERNAME/REPOSITORY_NAME&quot;</span><span class="i">,</span>
+	<span class="g">Authentication</span>: <span class="d"><a href="../../saker.maven.support/taskdoc/saker.maven.auth.account.html" title="Task: saker.maven.auth.account()">saker.maven.auth.account</a>(</span>
+		<span class="h">Username</span>: <span class="e">USERNAME</span>,
+		<span class="h">Password</span>: <span class="e">PERSONAL_ACCESS_TOKEN</span>,
+	<span class="d">)</span>
+<span class="i">}</span>
+<span class="d"><a href="../../saker.maven.support/taskdoc/saker.maven.deploy.html" title="Task: saker.maven.deploy()">saker.maven.deploy</a>(</span>
+	<span class="h">Artifacts</span>: <span class="i">{</span>
+		<span class="g">&quot;pom&quot;</span>: <span class="e">pom.xml</span><span class="i">,</span>
+		<span class="g">&quot;jar&quot;</span>: <span class="c">$jar</span><span class="f">[</span><span class="g">Path</span><span class="f">]</span><span class="i">,</span>
+	<span class="i">}</span>,
+	<span class="h">Coordinates</span>: <span class="e">&quot;example.saker.build:maven-gh-packages:0.1.0&quot;</span>,
+	<span class="h">RemoteRepository</span>: <span class="d"><a href="../../saker.build/doc/scripting/builtintasks/static.html" title="Task: static()">static</a>(</span><span class="c">GITHUB_CONF</span><span class="d">)</span>
+<span class="d">)</span>
+<span class="d"><a href="../../saker.maven.support/taskdoc/saker.maven.resolve.html" title="Task: saker.maven.resolve()">saker.maven.resolve</a>(</span>
+	<span class="h">Artifacts</span>: <span class="e">&quot;example.saker.build:maven-gh-packages:0.1.0&quot;</span>,
+	<span class="h">Configuration</span>: <span class="i">{</span>
+		<span class="g">Repositories</span>: <span class="i">[</span>
+			<span class="i">{</span>
+				<span class="g">Id</span>: <span class="e">central</span><span class="i">,</span>
+				<span class="g">Url</span>: <span class="e">&quot;https://repo.maven.apache.org/maven2/&quot;</span><span class="i">,</span>
+			<span class="i">},</span>
+			<span class="d"><a href="../../saker.build/doc/scripting/builtintasks/static.html" title="Task: static()">static</a>(</span><span class="c">GITHUB_CONF</span><span class="d">)</span>
+		<span class="i">]</span>
+	<span class="i">}</span>
+<span class="d">)</span>
 </code></pre>
 <p>We also recommend exporting the whole <code>Configuration</code> parameter value of Maven operations.</p>
 <p>You should also make effors to not upload your personal access tokens to GitHub. You should store them in a build script file that is not uploaded to version control, and set the <code>.gitignore</code> to exclude it. You can the <code>include()</code> that build script from the known location and use the token from there. We employ this behaviour in the <a href="https://github.com/sakerbuild/saker.build/tree/ec4b88671fd77d8c9f61faf4c7fc8973f80b08a0/secret" title="saker.build/secret at ec4b88671fd77d8c9f61faf4c7fc8973f80b08a0 &#183; sakerbuild/saker.build &#183; GitHub">saker.build repositories</a>.</p>

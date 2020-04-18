@@ -72,8 +72,8 @@
 			<div class="doc-content"><h1 id="file-mirroring">File mirroring<a class="doc-heading-anchor" href="#file-mirroring"></a></h1>
 <p>File mirroring is the process of taking a file in the build execution file hierarchy and making them available on the local file system. This can be useful when files need to be passed as inputs to other external processes, or in other use-cases.</p>
 <p>The <a href="../../taskdoc/std.file.mirror.html"><code>std.file.mirror()</code></a> task allows you to perform this operation:</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="d">$localpath</span> = <span class="e"><a href="../../../saker.standard/taskdoc/std.file.mirror.html" title="Task: std.file.mirror()">std.file.mirror</a>(</span><span class="f">path/to/file.txt</span><span class="e">)</span>
-<span class="d">$localdirpath</span> = <span class="e"><a href="../../../saker.standard/taskdoc/std.file.mirror.html" title="Task: std.file.mirror()">std.file.mirror</a>(</span><span class="f">path/to/directory</span><span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="c">$localpath</span> = <span class="d"><a href="../../../saker.standard/taskdoc/std.file.mirror.html" title="Task: std.file.mirror()">std.file.mirror</a>(</span><span class="e">path/to/file.txt</span><span class="d">)</span>
+<span class="c">$localdirpath</span> = <span class="d"><a href="../../../saker.standard/taskdoc/std.file.mirror.html" title="Task: std.file.mirror()">std.file.mirror</a>(</span><span class="e">path/to/directory</span><span class="d">)</span>
 </code></pre>
 <p>The above will mirror the files with the specified execution paths. The result of the task is the path on the local file system.</p>
 <p>You may want to convert it to a local file reference using the <a href="../../taskdoc/std.file.local.html"><code>std.file.local()</code></a> task.</p>

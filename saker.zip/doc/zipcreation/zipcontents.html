@@ -81,18 +81,18 @@
 <p>All of the files which are added using the <code>Resources</code> parameter will have the same modification time set for them, which equals to the <code>ModificationTime</code> parameter. (Or the epoch 1970-01-01T00:00:00Z if unspecified.)</p>
 <h3 id="adding-files">Adding files<a class="doc-heading-anchor" href="#adding-files"></a></h3>
 <p>When adding files to the archive, the files will be placed in the root of the created archive with the same name as the added file. If the <code>TargetDirectory</code> property is specified, they will be placed under that directory path.</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.zip/taskdoc/saker.zip.create.html" title="Task: saker.zip.create()">saker.zip.create</a>(</span>
-	<span class="i">Resources</span>: <span class="b">[</span>
-		<span class="f">input.txt</span><span class="b">,</span>
-		<span class="b">{</span>
-			<span class="h">Files</span>: <span class="b">[</span>
-				<span class="f">libfoo.so</span><span class="b">,</span>
-				<span class="f">libbar.so</span>
-			<span class="b">],</span>
-			<span class="h">TargetDirectory</span>: <span class="f">lib</span>
-		<span class="b">}</span>
-	<span class="b">]</span>
-<span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.zip/taskdoc/saker.zip.create.html" title="Task: saker.zip.create()">saker.zip.create</a>(</span>
+	<span class="h">Resources</span>: <span class="i">[</span>
+		<span class="e">input.txt</span><span class="i">,</span>
+		<span class="i">{</span>
+			<span class="g">Files</span>: <span class="i">[</span>
+				<span class="e">libfoo.so</span><span class="i">,</span>
+				<span class="e">libbar.so</span>
+			<span class="i">],</span>
+			<span class="g">TargetDirectory</span>: <span class="e">lib</span>
+		<span class="i">}</span>
+	<span class="i">]</span>
+<span class="d">)</span>
 </code></pre>
 <p>In the above example, the created ZIP archive will have the following files in it:</p>
 <pre class="doc-code-block"><code class="language-plaintext">input.txt
@@ -101,27 +101,27 @@ lib/libbar.so
 </code></pre>
 <h3 id="adding-directory-contents">Adding directory contents<a class="doc-heading-anchor" href="#adding-directory-contents"></a></h3>
 <p>You can specify a directory and its subtree to be added to the created archive. This is a common use-case, as developers often store their to-be-archived resources in a single folder for easier management. To add a directory and its contents to the archive, use the following:</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.zip/taskdoc/saker.zip.create.html" title="Task: saker.zip.create()">saker.zip.create</a>(</span>
-	<span class="i">Resources</span>: <span class="b">{</span>
-		<span class="h">Directory</span>: <span class="f">res</span><span class="b">,</span>
-		<span class="h">Resources</span>: <span class="f">**</span>
-	<span class="b">}</span>
-<span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.zip/taskdoc/saker.zip.create.html" title="Task: saker.zip.create()">saker.zip.create</a>(</span>
+	<span class="h">Resources</span>: <span class="i">{</span>
+		<span class="g">Directory</span>: <span class="e">res</span><span class="i">,</span>
+		<span class="g">Resources</span>: <span class="e">**</span>
+	<span class="i">}</span>
+<span class="d">)</span>
 </code></pre>
 <p>The <code>Directory</code> property specifies the path to the directory that should be added to the archive, while the <code>Resources</code> property specifies a wildcard pattern that selects the files to be added. The created archive will contain all files that is in the subtree of the <code>res</code> directory. The archive paths of the files are relativized against the <code>res</code> directory path.</p>
 <p>You can also specify the <code>TargetDirectory</code> property alongside the <code>Directory</code> and <code>Resources</code>, that will cause the files to be placed under the specified directory path.</p>
 <h2 id="include"><code>Include</code><a class="doc-heading-anchor" href="#include"></a></h2>
 <p>The <code>Include</code> parameter of the <a href="../../taskdoc/saker.zip.create.html"><code>saker.zip.create()</code></a> tasks allows you to include entries from other ZIP archives. You can specify the resources to be included using wildcard patterns, and can set a target directory under which they should be placed.</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.zip/taskdoc/saker.zip.create.html" title="Task: saker.zip.create()">saker.zip.create</a>(</span>
-	<span class="i">Include</span>: <span class="b">[</span>
-		<span class="f">resources.zip</span><span class="b">,</span>
-		<span class="b">{</span>
-			<span class="h">Archive</span>: <span class="f">input.zip</span><span class="b">,</span>
-			<span class="h">Resources</span>: <span class="f">**/*.txt</span><span class="b">,</span>
-			<span class="h">TargetDirectory</span>: <span class="f">input_res</span>
-		<span class="b">}</span>
-	<span class="b">]</span>
-<span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.zip/taskdoc/saker.zip.create.html" title="Task: saker.zip.create()">saker.zip.create</a>(</span>
+	<span class="h">Include</span>: <span class="i">[</span>
+		<span class="e">resources.zip</span><span class="i">,</span>
+		<span class="i">{</span>
+			<span class="g">Archive</span>: <span class="e">input.zip</span><span class="i">,</span>
+			<span class="g">Resources</span>: <span class="e">**/*.txt</span><span class="i">,</span>
+			<span class="g">TargetDirectory</span>: <span class="e">input_res</span>
+		<span class="i">}</span>
+	<span class="i">]</span>
+<span class="d">)</span>
 </code></pre>
 <p>The above example will include <em>all</em> entries from the <code>resources.zip</code> in the created archive, and will include all <code>txt</code> files from the <code>input.zip</code> archive. The <code>txt</code> files will be placed under the <code>input_res</code> path for the created archive. The <code>input_res</code> target directory is prepended to the entry paths, the <code>txt</code> files are placed with respect to their original archive paths.</p>
 <p>The modification time of the included entries are <em>preserved</em>. The <code>ModificationTime</code> parameter of the task doesn't override the modification time from the included entries.</p>

@@ -71,22 +71,22 @@
 </div>
 			<div class="doc-content"><h1 id="bundle-dependencies">Bundle dependencies<a class="doc-heading-anchor" href="#bundle-dependencies"></a></h1>
 <p>To resolve dependencies on bundles, you can specify them as the input of the <a href="../../taskdoc/nest.dependency.resolve.html"><code>nest.dependency.resolve()</code></a> task;</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../nest.repository.support/taskdoc/nest.dependency.resolve.html" title="Task: nest.dependency.resolve()">nest.dependency.resolve</a>(</span><span class="b">[</span>
-	<span class="f">first.bundle</span><span class="b">,</span>
-	<span class="f">second.bundle-api</span><span class="b">,</span>
-	<span class="f">third.bundle-v1.0</span><span class="b">,</span>
-<span class="b">]</span><span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../nest.repository.support/taskdoc/nest.dependency.resolve.html" title="Task: nest.dependency.resolve()">nest.dependency.resolve</a>(</span><span class="i">[</span>
+	<span class="e">first.bundle</span><span class="i">,</span>
+	<span class="e">second.bundle-api</span><span class="i">,</span>
+	<span class="e">third.bundle-v1.0</span><span class="i">,</span>
+<span class="i">]</span><span class="d">)</span>
 </code></pre>
 <p>In the above we resolve all the dependencies of the specified bundles, including transitive ones. (I.e. the dependencies of the dependencies, and so on.)</p>
 <p>You may want to resolve only dependencies with a specific kind. In order to do that, specify a dependency <code>Filter</code>:</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../nest.repository.support/taskdoc/nest.dependency.resolve.html" title="Task: nest.dependency.resolve()">nest.dependency.resolve</a>(</span>
-	<span class="b">[</span>
-		<span class="f">first.bundle</span><span class="b">,</span>
-		<span class="f">second.bundle-api</span><span class="b">,</span>
-		<span class="f">third.bundle-v1.0</span><span class="b">,</span>
-	<span class="b">]</span>,
-	<span class="i">Filter: </span><span class="e"><a href="../../../nest.repository.support/taskdoc/nest.dependency.filter.kind.html" title="Task: nest.dependency.filter.kind()">nest.dependency.filter.kind</a>(</span><span class="f">classpath</span><span class="e">)</span>
-<span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../nest.repository.support/taskdoc/nest.dependency.resolve.html" title="Task: nest.dependency.resolve()">nest.dependency.resolve</a>(</span>
+	<span class="i">[</span>
+		<span class="e">first.bundle</span><span class="i">,</span>
+		<span class="e">second.bundle-api</span><span class="i">,</span>
+		<span class="e">third.bundle-v1.0</span><span class="i">,</span>
+	<span class="i">]</span>,
+	<span class="h">Filter</span>: <span class="d"><a href="../../../nest.repository.support/taskdoc/nest.dependency.filter.kind.html" title="Task: nest.dependency.filter.kind()">nest.dependency.filter.kind</a>(</span><span class="e">classpath</span><span class="d">)</span>
+<span class="d">)</span>
 </code></pre>
 <p>In this case only the dependencies for the kind <code>classpath</code> will be resolved.</p>
 <p>After resolving the dependencies, you can pass them to other tasks to consume. E.g. <a href="javacompileclasspath.html" title="Java compile classpath">Java compile classpath</a>.</p>

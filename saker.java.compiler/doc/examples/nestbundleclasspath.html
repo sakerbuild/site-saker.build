@@ -71,30 +71,30 @@
 </div>
 			<div class="doc-content"><h1 id="nest-bundle-classpath">Nest bundle classpath<a class="doc-heading-anchor" href="#nest-bundle-classpath"></a></h1>
 <p>If you want to use a saker.nest bundle as an input classpath to the compilation, you can use the <a href="../../taskdoc/saker.java.classpath.bundle.html"><code>saker.java.classpath.bundle()</code></a> task to create a classpath for them. The task will automatically retrieve any source bundles if you're building inside an IDE:</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
-	<span class="i">SourceDirectories</span>: <span class="f">src</span>,
-	<span class="i">ClassPath: </span><span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.classpath.bundle.html" title="Task: saker.java.classpath.bundle()">saker.java.classpath.bundle</a>(</span><span class="f">example.bundle-v1.0</span><span class="e">)</span>
-<span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
+	<span class="h">SourceDirectories</span>: <span class="e">src</span>,
+	<span class="h">ClassPath</span>: <span class="d"><a href="../../../saker.java.compiler/taskdoc/saker.java.classpath.bundle.html" title="Task: saker.java.classpath.bundle()">saker.java.classpath.bundle</a>(</span><span class="e">example.bundle-v1.0</span><span class="d">)</span>
+<span class="d">)</span>
 </code></pre>
 <p>The above will use the <code>example.bundle-v1.0</code> bundle as the compilation classpath. <strong>Note</strong> that the task doesn't perform any dependency resolution. In order to do that, you may pass the output of the <a href="../../../nest.repository.support/taskdoc/nest.dependency.resolve.html"><code>nest.dependency.resolve()</code></a> task as an input:</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
-	<span class="i">SourceDirectories</span>: <span class="f">src</span>,
-	<span class="i">ClassPath: </span><span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.classpath.bundle.html" title="Task: saker.java.classpath.bundle()">saker.java.classpath.bundle</a>(</span>
-		<span class="e"><a href="../../../nest.repository.support/taskdoc/nest.dependency.resolve.html" title="Task: nest.dependency.resolve()">nest.dependency.resolve</a>(</span><span class="f">example.bundle-v1.0</span><span class="e">)</span>
-	<span class="e">)</span>
-<span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
+	<span class="h">SourceDirectories</span>: <span class="e">src</span>,
+	<span class="h">ClassPath</span>: <span class="d"><a href="../../../saker.java.compiler/taskdoc/saker.java.classpath.bundle.html" title="Task: saker.java.classpath.bundle()">saker.java.classpath.bundle</a>(</span>
+		<span class="d"><a href="../../../nest.repository.support/taskdoc/nest.dependency.resolve.html" title="Task: nest.dependency.resolve()">nest.dependency.resolve</a>(</span><span class="e">example.bundle-v1.0</span><span class="d">)</span>
+	<span class="d">)</span>
+<span class="d">)</span>
 </code></pre>
 <p>The above will have the <code>example.bundle-v1.0</code> bundle and <strong>all</strong> of its dependencies as the input classpath. However, in some cases you don't want all the dependencies to be present on the classpath.</p>
 <p>When you depend on bundles that have its classes separated by API and implementation, then you probably don't want the implementation bundle to be on the classpath, but only the API. You can use the <a href="../../../nest.repository.support/doc/examples/compilefilter.html" title="Compile filter">compile dependency filter</a> to filter out the unnecessary transitive dependencies:</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
-	<span class="i">SourceDirectories</span>: <span class="f">src</span>,
-	<span class="i">ClassPath: </span><span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.classpath.bundle.html" title="Task: saker.java.classpath.bundle()">saker.java.classpath.bundle</a>(</span>
-		<span class="e"><a href="../../../nest.repository.support/taskdoc/nest.dependency.resolve.html" title="Task: nest.dependency.resolve()">nest.dependency.resolve</a>(</span>
-			<span class="f">example.bundle-v1.0</span>,
-			<span class="i">Filter: </span><span class="e"><a href="../../../nest.repository.support/taskdoc/nest.dependency.filter.compile.html" title="Task: nest.dependency.filter.compile()">nest.dependency.filter.compile</a>(</span><span class="i">CompileTransitive</span>: <span class="j">false</span><span class="e">)</span>
-		<span class="e">)</span>
-	<span class="e">)</span>
-<span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
+	<span class="h">SourceDirectories</span>: <span class="e">src</span>,
+	<span class="h">ClassPath</span>: <span class="d"><a href="../../../saker.java.compiler/taskdoc/saker.java.classpath.bundle.html" title="Task: saker.java.classpath.bundle()">saker.java.classpath.bundle</a>(</span>
+		<span class="d"><a href="../../../nest.repository.support/taskdoc/nest.dependency.resolve.html" title="Task: nest.dependency.resolve()">nest.dependency.resolve</a>(</span>
+			<span class="e">example.bundle-v1.0</span>,
+			<span class="h">Filter</span>: <span class="d"><a href="../../../nest.repository.support/taskdoc/nest.dependency.filter.compile.html" title="Task: nest.dependency.filter.compile()">nest.dependency.filter.compile</a>(</span><span class="h">CompileTransitive</span>: <span class="j">false</span><span class="d">)</span>
+		<span class="d">)</span>
+	<span class="d">)</span>
+<span class="d">)</span>
 </code></pre>
 <p>This way, the dependencies which shouldn't be transitive for Java compilation will be filtered out accordingly. See the <a href="../../../nest.repository.support/doc/examples/compilefilter.html" title="Compile filter">Compile filter</a> example in the <a href="../../../nest.repository.support/doc/index.html" title="Overview">nest.repository.support</a> package for more information about the compile dependency filter.</p>
 <link href="../../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>

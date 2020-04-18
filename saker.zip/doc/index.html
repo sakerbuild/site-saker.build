@@ -75,12 +75,12 @@
 <p>The task supports adding resources from directories, including files from other archives, and allows arbitrary transformations to be executed during the archiving process.</p>
 <p>The task creates a deterministic output by default, that is achieved by setting the same modification time for all the entries in the created archive.</p>
 <p>The simplest example for getting started is:</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../saker.zip/taskdoc/saker.zip.create.html" title="Task: saker.zip.create()">saker.zip.create</a>(</span>
-	<span class="i">Resources</span>: <span class="b">{</span>
-		<span class="h">Directory</span>: <span class="f">res</span><span class="b">,</span>
-		<span class="h">Resources</span>: <span class="f">**</span>
-	<span class="b">}</span>
-<span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../saker.zip/taskdoc/saker.zip.create.html" title="Task: saker.zip.create()">saker.zip.create</a>(</span>
+	<span class="h">Resources</span>: <span class="i">{</span>
+		<span class="g">Directory</span>: <span class="e">res</span><span class="i">,</span>
+		<span class="g">Resources</span>: <span class="e">**</span>
+	<span class="i">}</span>
+<span class="d">)</span>
 </code></pre>
 <p>The above will create a ZIP archive that contains all the files from the <code>res</code> directory. For further examples see <a href="gettingstarted.html" title="Getting started">Getting started</a> and <a href="examples/index.html" title="Overview">Examples</a>.</p>
 <link href="../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>

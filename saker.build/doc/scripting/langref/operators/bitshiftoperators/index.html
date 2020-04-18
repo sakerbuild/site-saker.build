@@ -74,23 +74,23 @@
 <p><code>&lt;&lt;</code>: left shift <br />
 <code>&gt;&gt;</code>: right shift</p>
 <p>These operators take two operands, where the left is the number that is the subject of the bit manipulation and the right specifies the number of places to shift the bits.</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="c"># shift left 1 by 4 places: 16</span>
-<span class="f">1</span> &lt;&lt; <span class="f">4</span>
-<span class="c"># shift left hexadecimal values: 0x380</span>
-<span class="f">0x1C</span> &lt;&lt; <span class="f">5</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="b"># shift left 1 by 4 places: 16</span>
+<span class="e">1</span> &lt;&lt; <span class="e">4</span>
+<span class="b"># shift left hexadecimal values: 0x380</span>
+<span class="e">0x1C</span> &lt;&lt; <span class="e">5</span>
 
-<span class="c"># shift right positive numbers: 2</span>
-<span class="f">9</span> &gt;&gt; <span class="f">2</span>
-<span class="c"># shift right hexadecimal: 0x15</span>
-<span class="f">0x57</span> &gt;&gt; <span class="f">2</span>
-<span class="c"># shift right negative: -2</span>
--<span class="f">5</span> &gt;&gt; <span class="f">2</span>
-<span class="c"># right shifting -1 always results in -1</span>
--<span class="f">1</span> &gt;&gt; <span class="f">20</span>
+<span class="b"># shift right positive numbers: 2</span>
+<span class="e">9</span> &gt;&gt; <span class="e">2</span>
+<span class="b"># shift right hexadecimal: 0x15</span>
+<span class="e">0x57</span> &gt;&gt; <span class="e">2</span>
+<span class="b"># shift right negative: -2</span>
+-<span class="e">5</span> &gt;&gt; <span class="e">2</span>
+<span class="b"># right shifting -1 always results in -1</span>
+-<span class="e">1</span> &gt;&gt; <span class="e">20</span>
 
-<span class="c"># shifting by negative. the two expressions are the same</span>
-<span class="d">$number</span> &lt;&lt; <span class="d">$shift</span>
-<span class="d">$number</span> &gt;&gt; -<span class="d">$shift</span>
+<span class="b"># shifting by negative. the two expressions are the same</span>
+<span class="c">$number</span> &lt;&lt; <span class="c">$shift</span>
+<span class="c">$number</span> &gt;&gt; -<span class="c">$shift</span>
 </code></pre>
 <p>The operators work on the two's complement binary representation of the subject number. It takes the sign of the number into account, and executes the shifting of bits accordingly. The left and right shift operators are interchangeable in a way, that a left shift operation is semantically the same as the right shift operation with the shifting number negated, and vice versa.</p>
 <p>The operators are allowed to expand the precision of the shifted number in cases when the shifted bits on left would fall out of the binary representation. Implementations may throw an exception or provide an implementation dependent result if this behaviour is not supported.</p>

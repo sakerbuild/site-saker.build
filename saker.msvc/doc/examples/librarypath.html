@@ -71,19 +71,19 @@
 </div>
 			<div class="doc-content"><h1 id="library-path">Library path<a class="doc-heading-anchor" href="#library-path"></a></h1>
 <p>The <code>LibraryPath</code> property for the <a href="../../taskdoc/saker.msvc.clink.html"><code>saker.msvc.clink()</code></a> task can be used to specify library paths where the linker will search for library files:</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.clink.html" title="Task: saker.msvc.clink()">saker.msvc.clink</a>(</span>
-	<span class="i">Input</span>: <span class="k">### ... ###</span>,
-	<span class="i">LibraryPath: </span><span class="f">lib</span>
-<span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.msvc/taskdoc/saker.msvc.clink.html" title="Task: saker.msvc.clink()">saker.msvc.clink</a>(</span>
+	<span class="h">Input</span>: <span class="k">### ... ###</span>,
+	<span class="h">LibraryPath</span>: <span class="e">lib</span>
+<span class="d">)</span>
 </code></pre>
 <p>The above simply adds the <code>lib</code> subdirectory of the current working directory to the current library search path. The specified directories are passed to the linker using the <a href="https://docs.microsoft.com/en-us/cpp/build/reference/libpath-additional-libpath?view=vs-2019" title="/LIBPATH (Additional Libpath) | Microsoft Docs"><code>/LIBPATH</code></a> parameter.</p>
 <p>You can also add SDK paths as library paths. You may need to add the library path of the MSVC toolchain if you don't use any <a href="../ccompile/optionpresets.html" title="Option presets">option presets</a>:</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.clink.html" title="Task: saker.msvc.clink()">saker.msvc.clink</a>(</span>
-	<span class="i">Input</span>: <span class="k">### ... ###</span>,
-	<span class="i">LibraryPath: </span><span class="b">[</span>
-		<span class="e"><a href="../../../saker.sdk.support/taskdoc/sdk.path.html" title="Task: sdk.path()">sdk.path</a>(</span><span class="f">MSVC</span>, <span class="i">Identifier: </span><span class="f">lib.x64</span><span class="e">)</span>
-	<span class="b">]</span>
-<span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.msvc/taskdoc/saker.msvc.clink.html" title="Task: saker.msvc.clink()">saker.msvc.clink</a>(</span>
+	<span class="h">Input</span>: <span class="k">### ... ###</span>,
+	<span class="h">LibraryPath</span>: <span class="i">[</span>
+		<span class="d"><a href="../../../saker.sdk.support/taskdoc/sdk.path.html" title="Task: sdk.path()">sdk.path</a>(</span><span class="e">MSVC</span>, <span class="h">Identifier</span>: <span class="e">lib.x64</span><span class="d">)</span>
+	<span class="i">]</span>
+<span class="d">)</span>
 </code></pre>
 <p>The above assumes that you're linking for the <code>x64</code> architecture.</p>
 <p>The associated SDK with the name <code>MSVC</code> is implicitly added by the task implementation.</p>

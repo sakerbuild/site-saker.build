@@ -85,21 +85,21 @@
 <h2 id="task-result">Task result<a class="doc-heading-anchor" href="#task-result"></a></h2>
 <p>The reference to the variable.</p>
 <h2 id="example">Example<a class="doc-heading-anchor" href="#example"></a></h2>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="c"># the following is the same</span>
-<span class="d">$num</span> = <span class="f">3</span>
-<span class="e"><a href="../../../../saker.build/doc/scripting/builtintasks/var.html" title="Task: var()">var</a>(</span><span class="d">num</span><span class="e">)</span> = <span class="f">3</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="b"># the following is the same</span>
+<span class="c">$num</span> = <span class="e">3</span>
+<span class="d"><a href="../../../../saker.build/doc/scripting/builtintasks/var.html" title="Task: var()">var</a>(</span><span class="c">num</span><span class="d">)</span> = <span class="e">3</span>
 
-<span class="j">foreach </span><span class="d">$item</span><span class="j"> in </span><span class="b">[</span><span class="f">1</span><span class="b">,</span> <span class="f">2</span><span class="b">]</span> {
-	<span class="c"># accesses the item variable, not the loop variable</span>
-	<span class="e"><a href="../../../../saker.build/doc/scripting/builtintasks/var.html" title="Task: var()">var</a>(</span><span class="d">item</span><span class="e">)</span>
-	<span class="c"># accesses the loop variable</span>
-	<span class="d">$item</span>
-}
+<span class="j">foreach </span><span class="c">$item</span><span class="j"> in </span><span class="i">[</span><span class="e">1</span><span class="i">,</span> <span class="e">2</span><span class="i">]</span> <span class="j">{</span>
+	<span class="b"># accesses the item variable, not the loop variable</span>
+	<span class="d"><a href="../../../../saker.build/doc/scripting/builtintasks/var.html" title="Task: var()">var</a>(</span><span class="c">item</span><span class="d">)</span>
+	<span class="b"># accesses the loop variable</span>
+	<span class="c">$item</span>
+<span class="j">}</span>
 
-<span class="a">build(</span><span class="j">in</span> <span class="d">Input</span><span class="a">)</span> <span class="b">{</span>
-	<span class="c"># accesses the Input parameter</span>
-	<span class="e"><a href="../../../../saker.build/doc/scripting/builtintasks/var.html" title="Task: var()">var</a>(</span><span class="d">Input</span><span class="e">)</span>
-<span class="b">}</span>
+<span class="a">build(</span><span class="j">in</span> <span class="c">Input</span><span class="a">)</span> <span class="a">{</span>
+	<span class="b"># accesses the Input parameter</span>
+	<span class="d"><a href="../../../../saker.build/doc/scripting/builtintasks/var.html" title="Task: var()">var</a>(</span><span class="c">Input</span><span class="d">)</span>
+<span class="a">}</span>
 </code></pre>
 <link href="../../../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>
 			<div class="end-section-links">

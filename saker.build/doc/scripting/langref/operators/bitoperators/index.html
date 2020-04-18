@@ -75,13 +75,13 @@
 <code>&amp;</code>: bitwise AND <br />
 <code>^</code>: bitwise XOR</p>
 <p>The operators take the binary representation of the numbers and result in an aggregated number that has its bits determined based on the operands and the operation type. When numbers with different precision are used in the expression the lower precision will be converted to the type of the greater precision number.</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="f">1</span> | <span class="f">2</span> <span class="c"># results in 3</span>
-<span class="f">1</span> &amp; <span class="f">3</span> <span class="c"># results in 1</span>
-<span class="f">1</span> ^ <span class="f">3</span> <span class="c"># results in 2</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e">1</span> | <span class="e">2</span> <span class="b"># results in 3</span>
+<span class="e">1</span> &amp; <span class="e">3</span> <span class="b"># results in 1</span>
+<span class="e">1</span> ^ <span class="e">3</span> <span class="b"># results in 2</span>
 
-<span class="f">0xF0</span> | <span class="f">0x0C</span> <span class="c"># results in 0xFC</span>
-<span class="f">0x0F</span> &amp; <span class="f">0x0C</span> <span class="c"># results in 0x0C</span>
-<span class="f">0x0F</span> ^ <span class="f">0x0C</span> <span class="c"># results in 0x03</span>
+<span class="e">0xF0</span> | <span class="e">0x0C</span> <span class="b"># results in 0xFC</span>
+<span class="e">0x0F</span> &amp; <span class="e">0x0C</span> <span class="b"># results in 0x0C</span>
+<span class="e">0x0F</span> ^ <span class="e">0x0C</span> <span class="b"># results in 0x03</span>
 </code></pre>
 <p><strong>Truth table</strong></p>
 <p>The truth tables of the operators are the following for each bit in the operands:</p>

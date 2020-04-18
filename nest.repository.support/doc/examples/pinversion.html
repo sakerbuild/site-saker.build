@@ -72,11 +72,11 @@
 			<div class="doc-content"><h1 id="pin-version">Pin version<a class="doc-heading-anchor" href="#pin-version"></a></h1>
 <p>See also: <a href="../dependencyresolution/resolvingdependencies.html#version-pinning" title="Version pinning">Version pinning</a></p>
 <p>Pinning a dependency version may be important if you want to explicitly set the version of a resolved bundle. It is usually used for transitive dependencies. Version pinning works by explicitly adding a dependency on the bundle with a specific version:</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../nest.repository.support/taskdoc/nest.dependency.resolve.html" title="Task: nest.dependency.resolve()">nest.dependency.resolve</a>(</span><span class="b">[</span>
-	<span class="f">example.bundle</span><span class="b">,</span>
-	<span class="c"># Pinning v1.0 of transitive dependency on depend.bundle</span>
-	<span class="f">depend.bundle-v1.0</span>
-<span class="b">]</span><span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../nest.repository.support/taskdoc/nest.dependency.resolve.html" title="Task: nest.dependency.resolve()">nest.dependency.resolve</a>(</span><span class="i">[</span>
+	<span class="e">example.bundle</span><span class="i">,</span>
+	<span class="b"># Pinning v1.0 of transitive dependency on depend.bundle</span>
+	<span class="e">depend.bundle-v1.0</span>
+<span class="i">]</span><span class="d">)</span>
 </code></pre>
 <p>If the dependencies of the <code>example.bundle</code> is the following:</p>
 <pre class="doc-code-block"><code class="language-plaintext">depend.bundle
@@ -84,12 +84,12 @@
 </code></pre>
 <p>And you want to explicitly say that you want to use the <code>1.0</code> version of the <code>depend.bundle</code>, then explicitly adding <code>depend.bundle-v1.0</code> to the dependencies can be used to pin the bundle version.</p>
 <p>The version pinning can also be used if you resolve the dependencies using a <code>DependencyFile</code>:</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../nest.repository.support/taskdoc/nest.dependency.resolve.html" title="Task: nest.dependency.resolve()">nest.dependency.resolve</a>(</span>
-	<span class="i">DependencyFile</span>: <span class="f">res/META-INF/nest/dependencies</span>,
-	<span class="i">Bundles: </span><span class="b">[</span>
-		<span class="f">depend.bundle-v1.0</span>
-	<span class="b">]</span>
-<span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../nest.repository.support/taskdoc/nest.dependency.resolve.html" title="Task: nest.dependency.resolve()">nest.dependency.resolve</a>(</span>
+	<span class="h">DependencyFile</span>: <span class="e">res/META-INF/nest/dependencies</span>,
+	<span class="h">Bundles</span>: <span class="i">[</span>
+		<span class="e">depend.bundle-v1.0</span>
+	<span class="i">]</span>
+<span class="d">)</span>
 </code></pre>
 <p>Without the pinning, <code>depend.bundle</code> would resolve to the most recent suitable version. Note that a pinned bundle must satisfy the depedencies of others. In this case the pinned version must be in the range <code>[1.0, 3.0]</code>.</p>
 <link href="../../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>

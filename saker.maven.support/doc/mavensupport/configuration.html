@@ -71,42 +71,42 @@
 </div>
 			<div class="doc-content"><h1 id="configuration">Configuration<a class="doc-heading-anchor" href="#configuration"></a></h1>
 <p>The repository configuration of the tasks can be specified by specifying the <code>Configuration</code> parameter:</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.maven.support/taskdoc/saker.maven.resolve.html" title="Task: saker.maven.resolve()">saker.maven.resolve</a>(</span>
-	<span class="c"># ... other parameters ...</span>
-	<span class="i">Configuration</span>: <span class="b">{</span>
-		<span class="h">LocalRepositoryPath</span>: <span class="f">&quot;c:/Users/user/.m2/repository&quot;</span><span class="b">,</span>
-		<span class="h">Repositories</span>: <span class="b">[</span>
-			<span class="b">{</span>
-				<span class="h">Id</span>: <span class="f">central</span><span class="b">,</span>
-				<span class="h">Url</span>: <span class="f">&quot;https://repo.maven.apache.org/maven2/&quot;</span><span class="b">,</span>
-			<span class="b">},</span>
-			<span class="b">{</span>
-				<span class="h">Id</span>: <span class="f">jcenter</span><span class="b">,</span>
-				<span class="h">Url</span>: <span class="f">&quot;https://jcenter.bintray.com/&quot;</span><span class="b">,</span>
-			<span class="b">}</span>
-		<span class="b">]</span>
-	<span class="b">}</span>
-<span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.maven.support/taskdoc/saker.maven.resolve.html" title="Task: saker.maven.resolve()">saker.maven.resolve</a>(</span>
+	<span class="b"># ... other parameters ...</span>
+	<span class="h">Configuration</span>: <span class="i">{</span>
+		<span class="g">LocalRepositoryPath</span>: <span class="e">&quot;c:/Users/user/.m2/repository&quot;</span><span class="i">,</span>
+		<span class="g">Repositories</span>: <span class="i">[</span>
+			<span class="i">{</span>
+				<span class="g">Id</span>: <span class="e">central</span><span class="i">,</span>
+				<span class="g">Url</span>: <span class="e">&quot;https://repo.maven.apache.org/maven2/&quot;</span><span class="i">,</span>
+			<span class="i">},</span>
+			<span class="i">{</span>
+				<span class="g">Id</span>: <span class="e">jcenter</span><span class="i">,</span>
+				<span class="g">Url</span>: <span class="e">&quot;https://jcenter.bintray.com/&quot;</span><span class="i">,</span>
+			<span class="i">}</span>
+		<span class="i">]</span>
+	<span class="i">}</span>
+<span class="d">)</span>
 </code></pre>
 <p>In the above example we set the local repository path and the repositories to be used when the dependencies are resolved. The <code>LocalRepositoryPath</code> parameter specifies the path to the local repository where the artifacts can be stored and cached. The <code>Repositories</code> list the repositories that should be used when resolving artifacts and dependencies.</p>
 <p>If no configuration is specified, the local repository path will be <code>{user.dir}/.m2/repository</code>. If no repositories are specified, the <code>central</code> repository is used with the <code>Url</code> of <code>https://repo.maven.apache.org/maven2/</code>.</p>
 <p>The snapshot and release policy can also be configured for the repositories:</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.maven.support/taskdoc/saker.maven.resolve.html" title="Task: saker.maven.resolve()">saker.maven.resolve</a>(</span>
-	<span class="c"># ... other parameters ...</span>
-	<span class="i">Configuration</span>: <span class="b">{</span>
-		<span class="h">LocalRepositoryPath</span>: <span class="f">&quot;c:/Users/user/.m2/repository&quot;</span><span class="b">,</span>
-		<span class="h">Repositories</span>: <span class="b">[</span>
-			<span class="b">{</span>
-				<span class="h">Id</span>: <span class="f">central</span><span class="b">,</span>
-				<span class="h">Url</span>: <span class="f">&quot;https://repo.maven.apache.org/maven2/&quot;</span><span class="b">,</span>
-				<span class="h">Snapshots</span>: <span class="j">false</span><span class="b">,</span>
-				<span class="h">Releases</span>: <span class="b">{</span>
-					<span class="h">UpdatePolicy</span>: <span class="f">daily</span>
-				<span class="b">}</span>
-			<span class="b">},</span>
-		<span class="b">]</span>
-	<span class="b">}</span>
-<span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.maven.support/taskdoc/saker.maven.resolve.html" title="Task: saker.maven.resolve()">saker.maven.resolve</a>(</span>
+	<span class="b"># ... other parameters ...</span>
+	<span class="h">Configuration</span>: <span class="i">{</span>
+		<span class="g">LocalRepositoryPath</span>: <span class="e">&quot;c:/Users/user/.m2/repository&quot;</span><span class="i">,</span>
+		<span class="g">Repositories</span>: <span class="i">[</span>
+			<span class="i">{</span>
+				<span class="g">Id</span>: <span class="e">central</span><span class="i">,</span>
+				<span class="g">Url</span>: <span class="e">&quot;https://repo.maven.apache.org/maven2/&quot;</span><span class="i">,</span>
+				<span class="g">Snapshots</span>: <span class="j">false</span><span class="i">,</span>
+				<span class="g">Releases</span>: <span class="i">{</span>
+					<span class="g">UpdatePolicy</span>: <span class="e">daily</span>
+				<span class="i">}</span>
+			<span class="i">},</span>
+		<span class="i">]</span>
+	<span class="i">}</span>
+<span class="d">)</span>
 </code></pre>
 <p>The above showcases that snapshot artifacts are disabled, and the release artifacts should be updated on a daily basis.</p>
 <link href="../../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>

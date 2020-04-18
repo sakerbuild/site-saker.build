@@ -75,12 +75,12 @@
 <p>For saker.build, we've developed our own public repository that is able to host and look up tasks and their related implementation. See the <a href="../../../saker.nest/index.html" title="Index">saker.nest repository</a> for more information. <br />
 The saker.nest repository is automatically included in the build configuration if not specified otherwise. (It will have the <code>nest</code> identifier by default.)</p>
 <p>When a repository is configured for the build, it will have an user-specified or generated identifier. This identifier can be used to reference the loaded repository when necessary. One example for this is when developers want to explicitly specify the location from where a given task should be loaded:</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="c"># the following task will be loaded from </span>
-<span class="c">#   the repository with 'nest' identifier </span>
-<span class="e">example.compile.sources@nest()</span>
-<span class="c"># the following task is loaded from the first</span>
-<span class="c">#   repository that can provide a task with that name</span>
-<span class="e">example.compile.sources()</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="b"># the following task will be loaded from </span>
+<span class="b">#   the repository with 'nest' identifier </span>
+<span class="d">example.compile.sources@nest()</span>
+<span class="b"># the following task is loaded from the first</span>
+<span class="b">#   repository that can provide a task with that name</span>
+<span class="d">example.compile.sources()</span>
 </code></pre>
 <h2 id="actions">Actions<a class="doc-heading-anchor" href="#actions"></a></h2>
 <p>Repositories can optionally implement the functionality for executing custom actions. Actions are basically the <code>main</code> functions of a repository. A repository action is executed with a list of string arguments, and the operations that they do can be completely arbitrary.</p>

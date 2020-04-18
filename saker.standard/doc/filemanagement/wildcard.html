@@ -73,9 +73,9 @@
 <p>The <a href="../../taskdoc/std.file.wildcard.html"><code>std.file.wildcard()</code></a> and <a href="../../taskdoc/std.file.wildcard.local.html"><code>std.file.wildcard.local()</code></a> tasks allow you the resolve a <a href="../../../saker.build/doc/guide/wildcards.html" title="Wildcard paths">wildcard path</a> and query all files that matches it.</p>
 <p>The output of these tasks is a set of file references that can be passed to other tasks which support them as inputs.</p>
 <p>As an example, we print out the paths of files in the working directory that end with <code>*.txt</code>:</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="j">foreach </span><span class="d">$file</span><span class="j"> in </span><span class="e"><a href="../../../saker.standard/taskdoc/std.file.wildcard.html" title="Task: std.file.wildcard()">std.file.wildcard</a>(</span><span class="f">*.txt</span><span class="e">)</span>{
-	<span class="e"><a href="../../../saker.build/doc/scripting/builtintasks/print.html" title="Task: print()">print</a>(</span><span class="d">$file</span><span class="g">[</span><span class="h">Path</span><span class="g">]</span><span class="e">)</span>
-}
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="j">foreach </span><span class="c">$file</span><span class="j"> in </span><span class="d"><a href="../../../saker.standard/taskdoc/std.file.wildcard.html" title="Task: std.file.wildcard()">std.file.wildcard</a>(</span><span class="e">*.txt</span><span class="d">)</span><span class="j">{</span>
+	<span class="d"><a href="../../../saker.build/doc/scripting/builtintasks/print.html" title="Task: print()">print</a>(</span><span class="c">$file</span><span class="f">[</span><span class="g">Path</span><span class="f">]</span><span class="d">)</span>
+<span class="j">}</span>
 </code></pre>
 <p>If the contents of the working directory is the following:</p>
 <pre class="doc-code-block"><code class="language-plaintext">file.txt
@@ -88,23 +88,23 @@ wd:/readme.txt
 <p>(Given that the working directory is <code>wd:/</code>.)</p>
 <h2 id="local-wildcard">Local wildcard<a class="doc-heading-anchor" href="#local-wildcard"></a></h2>
 <p>The <a href="../../taskdoc/std.file.wildcard.local.html"><code>std.file.wildcard.local()</code></a> task allows you to query the local file system using a wildcard. Following up on the previous example:</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="j">foreach </span><span class="d">$file</span><span class="j"> in </span><span class="e"><a href="../../../saker.standard/taskdoc/std.file.wildcard.local.html" title="Task: std.file.wildcard.local()">std.file.wildcard.local</a>(</span>
-	<span class="f">*.txt</span>, 
-	<span class="i">Directory: </span><span class="f">&quot;c:/path/to/project/directory&quot;</span>
-<span class="e">)</span> {
-	<span class="e"><a href="../../../saker.build/doc/scripting/builtintasks/print.html" title="Task: print()">print</a>(</span><span class="d">$file</span><span class="g">[</span><span class="h">LocalPath</span><span class="g">]</span><span class="e">)</span>
-}
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="j">foreach </span><span class="c">$file</span><span class="j"> in </span><span class="d"><a href="../../../saker.standard/taskdoc/std.file.wildcard.local.html" title="Task: std.file.wildcard.local()">std.file.wildcard.local</a>(</span>
+	<span class="e">*.txt</span>, 
+	<span class="h">Directory</span>: <span class="e">&quot;c:/path/to/project/directory&quot;</span>
+<span class="d">)</span> <span class="j">{</span>
+	<span class="d"><a href="../../../saker.build/doc/scripting/builtintasks/print.html" title="Task: print()">print</a>(</span><span class="c">$file</span><span class="f">[</span><span class="g">LocalPath</span><span class="f">]</span><span class="d">)</span>
+<span class="j">}</span>
 </code></pre>
 <p>The the output will be:</p>
 <pre class="doc-code-block"><code class="language-plaintext">c:/path/to/project/directory/file.txt
 c:/path/to/project/directory/readme.txt
 </code></pre>
 <p>Note that you don't always need to specify the <code>Directory</code> parameter for the local wildcard task. You can use absolute wildcards:</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="j">foreach </span><span class="d">$file</span><span class="j"> in </span><span class="e"><a href="../../../saker.standard/taskdoc/std.file.wildcard.local.html" title="Task: std.file.wildcard.local()">std.file.wildcard.local</a>(</span>
-	<span class="f">&quot;c:/path/to/project/directory/*.txt&quot;</span>
-<span class="e">)</span> {
-	<span class="e"><a href="../../../saker.build/doc/scripting/builtintasks/print.html" title="Task: print()">print</a>(</span><span class="d">$file</span><span class="g">[</span><span class="h">LocalPath</span><span class="g">]</span><span class="e">)</span>
-}
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="j">foreach </span><span class="c">$file</span><span class="j"> in </span><span class="d"><a href="../../../saker.standard/taskdoc/std.file.wildcard.local.html" title="Task: std.file.wildcard.local()">std.file.wildcard.local</a>(</span>
+	<span class="e">&quot;c:/path/to/project/directory/*.txt&quot;</span>
+<span class="d">)</span> <span class="j">{</span>
+	<span class="d"><a href="../../../saker.build/doc/scripting/builtintasks/print.html" title="Task: print()">print</a>(</span><span class="c">$file</span><span class="f">[</span><span class="g">LocalPath</span><span class="f">]</span><span class="d">)</span>
+<span class="j">}</span>
 </code></pre>
 <p>And the output will be the same.</p>
 <link href="../../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>

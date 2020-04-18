@@ -71,10 +71,10 @@
 </div>
 			<div class="doc-content"><h1 id="local-file-input">Local file input<a class="doc-heading-anchor" href="#local-file-input"></a></h1>
 <p>In some cases, you may want to use files from the local file system as the input to other tasks. In order to achieve that you need to reference them as the input to the associated build task:</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
-	<span class="i">SourceDirectories</span>: <span class="f">src</span>,
-	<span class="i">ClassPath: </span><span class="e"><a href="../../../saker.standard/taskdoc/std.file.local.html" title="Task: std.file.local()">std.file.local</a>(</span><span class="f">&quot;/home/User/lib/mylib.jar&quot;</span><span class="e">)</span>
-<span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
+	<span class="h">SourceDirectories</span>: <span class="e">src</span>,
+	<span class="h">ClassPath</span>: <span class="d"><a href="../../../saker.standard/taskdoc/std.file.local.html" title="Task: std.file.local()">std.file.local</a>(</span><span class="e">&quot;/home/User/lib/mylib.jar&quot;</span><span class="d">)</span>
+<span class="d">)</span>
 </code></pre>
 <p>The above will cause the <a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html"><code>saker.java.compile()</code></a> task to use the <code>/home/User/lib/mylib.jar</code> JAR file as the input classpath for the compilation.</p>
 <p>The <a href="../../taskdoc/std.file.local.html"><code>std.file.local()</code></a> task can be used to reference files on the local file system.</p>

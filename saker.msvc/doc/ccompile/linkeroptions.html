@@ -72,26 +72,26 @@
 			<div class="doc-content"><h1 id="linker-options">Linker options<a class="doc-heading-anchor" href="#linker-options"></a></h1>
 <p>The <a href="../../taskdoc/saker.msvc.clink.html"><code>saker.msvc.clink()</code></a> task allows dynamic option merging based on the identifier and architecture of the linker operation. It can be used to define the linker options in one place that can be applied to one or more linker operations selectively.</p>
 <p>A simple example for this is to define different linker parameters for <code>debug</code> and <code>release</code> builds:</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="d">$options</span> = <span class="b">[</span>
-	<span class="b">{</span>
-		<span class="h">Identifier</span>: <span class="f">debug</span><span class="b">,</span>
-		<span class="h">SimpleLinkerParameters</span>: <span class="b">[</span> <span class="f">/DEBUG</span><span class="b"> ]</span>
-	<span class="b">},</span>
-	<span class="b">{</span>
-		<span class="h">Identifier</span>: <span class="f">release</span><span class="b">,</span>
-		<span class="h">SimpleLinkerParameters</span>: <span class="b">[</span> <span class="f">/LTCG</span><span class="b"> ]</span>
-	<span class="b">},</span>
-<span class="b">]</span>
-<span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.clink.html" title="Task: saker.msvc.clink()">saker.msvc.clink</a>(</span>
-	<span class="i">Input</span>: <span class="k">### ... ###</span>,
-	<span class="i">Identifier: </span><span class="f">main-debug</span>,
-	<span class="i">LinkerOptions: </span><span class="d">$options</span>
-<span class="e">)</span>
-<span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.clink.html" title="Task: saker.msvc.clink()">saker.msvc.clink</a>(</span>
-	<span class="i">Input</span>: <span class="k">### ... ###</span>,
-	<span class="i">Identifier: </span><span class="f">main-release</span>,
-	<span class="i">LinkerOptions: </span><span class="d">$options</span>
-<span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="c">$options</span> = <span class="i">[</span>
+	<span class="i">{</span>
+		<span class="g">Identifier</span>: <span class="e">debug</span><span class="i">,</span>
+		<span class="g">SimpleLinkerParameters</span>: <span class="i">[</span> <span class="e">/DEBUG</span><span class="i"> ]</span>
+	<span class="i">},</span>
+	<span class="i">{</span>
+		<span class="g">Identifier</span>: <span class="e">release</span><span class="i">,</span>
+		<span class="g">SimpleLinkerParameters</span>: <span class="i">[</span> <span class="e">/LTCG</span><span class="i"> ]</span>
+	<span class="i">},</span>
+<span class="i">]</span>
+<span class="d"><a href="../../../saker.msvc/taskdoc/saker.msvc.clink.html" title="Task: saker.msvc.clink()">saker.msvc.clink</a>(</span>
+	<span class="h">Input</span>: <span class="k">### ... ###</span>,
+	<span class="h">Identifier</span>: <span class="e">main-debug</span>,
+	<span class="h">LinkerOptions</span>: <span class="c">$options</span>
+<span class="d">)</span>
+<span class="d"><a href="../../../saker.msvc/taskdoc/saker.msvc.clink.html" title="Task: saker.msvc.clink()">saker.msvc.clink</a>(</span>
+	<span class="h">Input</span>: <span class="k">### ... ###</span>,
+	<span class="h">Identifier</span>: <span class="e">main-release</span>,
+	<span class="h">LinkerOptions</span>: <span class="c">$options</span>
+<span class="d">)</span>
 </code></pre>
 <p>The above will cause the <a href="https://docs.microsoft.com/en-us/cpp/build/reference/debug-generate-debug-info?view=vs-2019" title="/DEBUG (Generate Debug Info) | Microsoft Docs"><code>/DEBUG</code></a> argument to be passed to the <a href="https://docs.microsoft.com/en-us/cpp/build/reference/linking?view=vs-2019" title="MSVC linker reference | Microsoft Docs"><code>link.exe</code></a> backend for the <code>main-debug</code> linker operation, while the <a href="https://docs.microsoft.com/en-us/cpp/build/reference/ltcg-link-time-code-generation?view=vs-2019" title="/LTCG (Link-time Code Generation) | Microsoft Docs"><code>/LTCG</code></a> argument to be passed for the <code>main-release</code> linker operation.</p>
 <p>A linker option entry will be merged with the linker operation if all of the dot separated identifier parts are contained in the operation identifier of the task.</p>

@@ -73,29 +73,29 @@
 <p>This article describes the top level constructs that can appear in a script file.</p>
 <h2 id="build-target">Build target<a class="doc-heading-anchor" href="#build-target"></a></h2>
 <p>The expressions of the language are enclosed in top level build targets. The build targets are the access points for external users to invoke parts of the build script. E.g. these get invoked when you start a build process.</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="a">build</span> <span class="b">{</span>
-	<span class="c"># you can declare your build expressions here</span>
-<span class="b">}</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="a">build</span> <span class="a">{</span>
+	<span class="b"># you can declare your build expressions here</span>
+<span class="a">}</span>
 </code></pre>
 <p>The build targets are not subject to any access control by the language. If you declare a build target, it will be callable from outside of the script. (See <a href="../../builtintasks/include.html" title="include()"><code>include()</code></a>) To discourage calling internal build targets, we recommend prefixing them with the <code>'_'</code> character to signal that they're private.</p>
 <p>Build targets are allowed to bear multiple names, in which case they serve as an alias.</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="a">build</span>, <span class="a">compile</span> <span class="b">{</span>
-	<span class="c"># expressions...</span>
-<span class="b">}</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="a">build</span>, <span class="a">compile</span> <span class="a">{</span>
+	<span class="b"># expressions...</span>
+<span class="a">}</span>
 </code></pre>
 <p>In the above example, invoking either <code>build</code> or <code>compile</code> will result in the same execution of expressions.</p>
 <h3 id="parameters">Parameters<a class="doc-heading-anchor" href="#parameters"></a></h3>
 <p>The build targets can declare multiple input and output parameters. This facility can help reusability of build targets when they are executing commonly occurring tasks.</p>
 <p>The parameters are declared in parentheses after the name (and aliases) of the build target. Any parameter are preceded by the type of it, which is either <code>in</code> for input and <code>out</code> for output parameters:</p>
 <pre class="doc-code-block"><code class="language-sakerscript"><span class="a">build(</span>
-	<span class="j">in</span> <span class="d">InputParam1</span> = <span class="f">123</span>,
-	<span class="j">in</span> <span class="d">InputParam2</span>,
+	<span class="j">in</span> <span class="c">InputParam1</span> = <span class="e">123</span>,
+	<span class="j">in</span> <span class="c">InputParam2</span>,
 	
-	<span class="j">out</span> <span class="d">OutputParam1</span>,
-	<span class="j">out</span> <span class="d">OutputParam2</span> = <span class="e">execute.some.task()</span>,
-<span class="a">)</span> <span class="b">{</span>
-	<span class="d">$OutputParam1</span> = <span class="c">#...</span>
-<span class="b">}</span>
+	<span class="j">out</span> <span class="c">OutputParam1</span>,
+	<span class="j">out</span> <span class="c">OutputParam2</span> = <span class="d">execute.some.task()</span>,
+<span class="a">)</span> <span class="a">{</span>
+	<span class="c">$OutputParam1</span> = <span class="b">#...</span>
+<span class="a">}</span>
 </code></pre>
 <p>The parameter list for a build target is optional.</p>
 <h4 id="input-parameters">Input parameters<a class="doc-heading-anchor" href="#input-parameters"></a></h4>
@@ -110,10 +110,10 @@
 <p>If an output parameter is not assigned in the body of the target, the target execution will fail.</p>
 <h2 id="global-expressions">Global expressions<a class="doc-heading-anchor" href="#global-expressions"></a></h2>
 <p>The build files can contain global expressions. Global expressions are part of all build targets, and they will run when any of the build targets are invoked. Note that if none of the build targets are invoked in the script, the global expressions will <strong>not</strong> run at all.</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="e">global.expression.task()</span>
-<span class="a">build</span> <span class="b">{</span>
-	<span class="e">build.target.task()</span>
-<span class="b">}</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d">global.expression.task()</span>
+<span class="a">build</span> <span class="a">{</span>
+	<span class="d">build.target.task()</span>
+<span class="a">}</span>
 </code></pre>
 <p>In the above example, a build target and a single global expression is defined. When any of the build targets are invoked, both <code>global.expression.task()</code> and <code>build.target.task()</code> will be evaluated.</p>
 <p>In global expressions, the same expressions can be used as inside build targets. See the expressions sections of the reference for more information.</p>

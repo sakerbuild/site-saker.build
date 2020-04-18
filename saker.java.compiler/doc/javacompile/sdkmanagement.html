@@ -72,12 +72,12 @@
 			<div class="doc-content"><h1 id="sdk-management">SDK management<a class="doc-heading-anchor" href="#sdk-management"></a></h1>
 <p>The <a href="../../taskdoc/saker.java.compile.html"><code>saker.java.compile()</code></a> tasks allows specifying SDKs for the <code>SDKs</code> parameter. The usage of SDKs are based on the <a href="../../../saker.sdk.support/index.html" title="Index">saker.sdk.support</a> package.</p>
 <p>SDKs are used for specifying the Java Development Kit that should be used for compilation, and occasionally specifying classpath and other resources for compilation. The <a href="../../taskdoc/saker.java.compile.html"><code>saker.java.compile()</code></a> task specially handles the <code>Java</code> SDK. It will use that to execute the Java compilation.</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
-	<span class="i">SourceDirectories</span>: <span class="f">src</span>,
-	<span class="i">SDKs: </span><span class="b">{</span>
-		<span class="h">Java</span>: <span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.sdk.html" title="Task: saker.java.sdk()">saker.java.sdk</a>(</span><span class="f">13</span><span class="e">)</span>
-	<span class="b">}</span>
-<span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
+	<span class="h">SourceDirectories</span>: <span class="e">src</span>,
+	<span class="h">SDKs</span>: <span class="i">{</span>
+		<span class="g">Java</span>: <span class="d"><a href="../../../saker.java.compiler/taskdoc/saker.java.sdk.html" title="Task: saker.java.sdk()">saker.java.sdk</a>(</span><span class="e">13</span><span class="d">)</span>
+	<span class="i">}</span>
+<span class="d">)</span>
 </code></pre>
 <p>The above example shows that the task will use a JDK with the major version 13 to compile the Java sources in the <code>src</code> directory.</p>
 <p>You can use the <code>saker.java.sdk()</code> task to request a JDK with a specific version.</p>

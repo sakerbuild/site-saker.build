@@ -73,21 +73,21 @@
 <p>Artifact localization is the process of making the Maven artifacts available on the <em>local</em> machine. The <a href="../../taskdoc/saker.maven.localize.html"><code>saker.maven.localize()</code></a> tasks provide this feature and makes the specified artifacts available in the local repository.</p>
 <p>This task differs from <a href="../../taskdoc/saker.maven.download.html"><code>saker.maven.download()</code></a> in that it doesn't copy the artifacts into the file system of the build execution.</p>
 <p>The task taskes a list of artifacts as its input:</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.maven.support/taskdoc/saker.maven.localize.html" title="Task: saker.maven.localize()">saker.maven.localize</a>(</span>
-	<span class="i">Artifacts</span>: <span class="b">[</span>
-		<span class="f">&quot;junit:junit:4.12&quot;</span><span class="b">,</span>
-		<span class="f">&quot;org.slf4j:slf4j-api:1.7.19&quot;</span>
-	<span class="b">]</span>
-<span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.maven.support/taskdoc/saker.maven.localize.html" title="Task: saker.maven.localize()">saker.maven.localize</a>(</span>
+	<span class="h">Artifacts</span>: <span class="i">[</span>
+		<span class="e">&quot;junit:junit:4.12&quot;</span><span class="i">,</span>
+		<span class="e">&quot;org.slf4j:slf4j-api:1.7.19&quot;</span>
+	<span class="i">]</span>
+<span class="d">)</span>
 </code></pre>
 <p>The above task will make the specified artifacts available in the local repository. It may require for them to be downloaded from remote repositories.</p>
 <p>Note that the task doesn't perform any dependency resolution. In order to do that, you can use the <a href="../../taskdoc/saker.maven.resolve.html"><code>saker.maven.resolve()</code></a> task as follows:</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.maven.support/taskdoc/saker.maven.localize.html" title="Task: saker.maven.localize()">saker.maven.localize</a>(</span>
-	<span class="i">Artifacts</span>: <span class="e"><a href="../../../saker.maven.support/taskdoc/saker.maven.resolve.html" title="Task: saker.maven.resolve()">saker.maven.resolve</a>(</span><span class="b">[</span>
-		<span class="f">&quot;junit:junit:4.12&quot;</span><span class="b">,</span>
-		<span class="f">&quot;org.slf4j:slf4j-api:1.7.19&quot;</span>
-	<span class="b">]</span><span class="e">)</span>
-<span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.maven.support/taskdoc/saker.maven.localize.html" title="Task: saker.maven.localize()">saker.maven.localize</a>(</span>
+	<span class="h">Artifacts</span>: <span class="d"><a href="../../../saker.maven.support/taskdoc/saker.maven.resolve.html" title="Task: saker.maven.resolve()">saker.maven.resolve</a>(</span><span class="i">[</span>
+		<span class="e">&quot;junit:junit:4.12&quot;</span><span class="i">,</span>
+		<span class="e">&quot;org.slf4j:slf4j-api:1.7.19&quot;</span>
+	<span class="i">]</span><span class="d">)</span>
+<span class="d">)</span>
 </code></pre>
 <p>While the first example doesn't include the dependencies, the latter will have the <code>org.hamcrest:hamcrest-core:jar:1.3</code> dependent artifact localized as well.</p>
 <link href="../../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>

@@ -72,10 +72,10 @@
 			<div class="doc-content"><h1 id="precompiled-headers">Precompiled headers<a class="doc-heading-anchor" href="#precompiled-headers"></a></h1>
 <p>The <a href="../../taskdoc/saker.msvc.ccompile.html"><code>saker.msvc.ccompile()</code></a> task supports using precompiled headers during compilation. Precompiled headers can improve build times by precompiling infrequently changing header files and reusing them later. See more information on the <a href="https://docs.microsoft.com/en-us/cpp/build/creating-precompiled-header-files?view=vs-2019" title="Precompiled Header Files | Microsoft Docs">Precompiled Header Files | Microsoft Docs</a> site for an in-depth explanation.</p>
 <p>In order to use precompiled headers, you need to specify the <code>PrecompiledHeader</code> parameter for the source files in your build task invocation:</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span><span class="b">{</span>
-	<span class="h">Files</span>: <span class="f">src/*.cpp</span><span class="b">,</span>
-	<span class="h">PrecompiledHeader</span>: <span class="f">pch/pch.h</span><span class="b">,</span>
-<span class="b">}</span><span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span><span class="i">{</span>
+	<span class="g">Files</span>: <span class="e">src/*.cpp</span><span class="i">,</span>
+	<span class="g">PrecompiledHeader</span>: <span class="e">pch/pch.h</span><span class="i">,</span>
+<span class="i">}</span><span class="d">)</span>
 </code></pre>
 <p>The above will result in the <code>pch/pch.h</code> header being precompiled before any of the <code>cpp</code> files, and it can be used in the source files themselves. The precompiled header can be included in your source files with the <code>#include &quot;pch.h&quot;</code> line as the first line of the source code. The expected for the <code>#include</code> statement is the same as the file name of the precompiled header:</p>
 <pre class="doc-code-block"><code class="language-cpp">#include &quot;pch.h&quot;

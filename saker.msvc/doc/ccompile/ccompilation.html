@@ -73,51 +73,51 @@
 <p>The <a href="../../taskdoc/saker.msvc.ccompile.html"><code>saker.msvc.ccompile()</code></a> task allows compiling C/C++ source files into object files. The task can be used to compile for the local machine, or for any other supported architectures.</p>
 <p>The task serves as a frontend for the <a href="https://docs.microsoft.com/en-us/cpp/build/reference/compiling-a-c-cpp-program?view=vs-2019" title="MSVC C/C++ compiler reference - Visual Studio | Microsoft Docs"><code>cl.exe</code></a> present in the MSVC toolchain.</p>
 <p>The simplest example for compilation is the following:</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span><span class="f">src/**/*.cpp</span><span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span><span class="e">src/**/*.cpp</span><span class="d">)</span>
 </code></pre>
 <p>The above compiles all source files in the <code>src</code> directory that end with <code>.cpp</code>. The compilation language is automatically determined by the extension of the source file. You can also specify various options for the compiled files:</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span>
-	<span class="b">{</span>
-		<span class="h">Files</span>: <span class="f">src/**/*.cpp</span><span class="b">,</span>
-		<span class="h">MacroDefinitions</span>: <span class="b">{</span>
-			<span class="h">MY_MACRO</span>: <span class="f">123</span>
-		<span class="b">}</span>
-	<span class="b">}</span>
-<span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span>
+	<span class="i">{</span>
+		<span class="g">Files</span>: <span class="e">src/**/*.cpp</span><span class="i">,</span>
+		<span class="g">MacroDefinitions</span>: <span class="i">{</span>
+			<span class="g">MY_MACRO</span>: <span class="e">123</span>
+		<span class="i">}</span>
+	<span class="i">}</span>
+<span class="d">)</span>
 </code></pre>
 <p>In the above, the <code>MY_MACRO</code> will be defined for the preprocessor with the value <code>123</code>. You can also specify different inputs and different configurations for them:</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span><span class="b">[</span>
-	<span class="b">{</span>
-		<span class="h">Files</span>: <span class="f">src/**/*.cpp</span><span class="b">,</span>
-		<span class="h">MacroDefinitions</span>: <span class="b">{</span>
-			<span class="h">MY_MACRO</span>: <span class="f">123</span>
-		<span class="b">}</span>
-	<span class="b">},</span>
-	<span class="b">{</span>
-		<span class="h">Files</span>: <span class="f">src/**/*.c</span><span class="b">,</span>
-		<span class="h">MacroDefinitions</span>: <span class="b">{</span>
-			<span class="h">MY_MACRO</span>: <span class="f">456</span>
-		<span class="b">}</span>
-	<span class="b">}</span>
-<span class="b">]</span><span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span><span class="i">[</span>
+	<span class="i">{</span>
+		<span class="g">Files</span>: <span class="e">src/**/*.cpp</span><span class="i">,</span>
+		<span class="g">MacroDefinitions</span>: <span class="i">{</span>
+			<span class="g">MY_MACRO</span>: <span class="e">123</span>
+		<span class="i">}</span>
+	<span class="i">},</span>
+	<span class="i">{</span>
+		<span class="g">Files</span>: <span class="e">src/**/*.c</span><span class="i">,</span>
+		<span class="g">MacroDefinitions</span>: <span class="i">{</span>
+			<span class="g">MY_MACRO</span>: <span class="e">456</span>
+		<span class="i">}</span>
+	<span class="i">}</span>
+<span class="i">]</span><span class="d">)</span>
 </code></pre>
 <p>In the above, the macro definition for <code>MY_MACRO</code> will be set to <code>456</code> for the compiled C files.</p>
 <h2 id="output">Output<a class="doc-heading-anchor" href="#output"></a></h2>
 <p>The output of the compilation is placed in the build directory. It will be under the <code>{build-dir}/saker.msvc.ccompile/{compilation-id}/{architecture}</code> directory where <code>{compilation-id}</code> is the <a href="ccompilation.html#compilation-identifier" title="Compilation identifier">compilation identifier</a> of the compilation pass and <code>{architecture}</code> is the target <a href="ccompilation.html#architecture" title="Architecture">architecture</a> of the compilation.</p>
 <h2 id="compilation-identifier">Compilation identifier<a class="doc-heading-anchor" href="#compilation-identifier"></a></h2>
 <p>The compilation identifier (and the target architecture) uniquely identifies a given compilation pass during the build system execution. It is used to distinguish the different compilations, their outputs, and to prevent accidental overwriting of each others outputs. The <code>Identifier</code> parameter can be used to set a custom one:</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span>
-	<span class="i">Input</span>: <span class="k">#### ... ###</span>,
-	<span class="i">Identifier: </span><span class="f">main</span>
-<span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span>
+	<span class="h">Input</span>: <span class="k">#### ... ###</span>,
+	<span class="h">Identifier</span>: <span class="e">main</span>
+<span class="d">)</span>
 </code></pre>
 <p>The compilation identifier is also used to determine if any <a href="compileroptions.html" title="Compiler options">compiler options</a> need to be merged for the compilation pass.</p>
 <h2 id="architecture">Architecture<a class="doc-heading-anchor" href="#architecture"></a></h2>
 <p>The compilation can be done in order to target a given architecture. The <a href="../../taskdoc/saker.msvc.ccompile.html"><code>saker.msvc.ccompile()</code></a> task can be instructed to compile for a given architecture by specifying the <code>Architecture</code> parameter:</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span>
-	<span class="i">Input</span>: <span class="k">#### ... ###</span>,
-	<span class="i">Architecture: </span><span class="f">x64</span>
-<span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span>
+	<span class="h">Input</span>: <span class="k">#### ... ###</span>,
+	<span class="h">Architecture</span>: <span class="e">x64</span>
+<span class="d">)</span>
 </code></pre>
 <p>If no architecture is specified, the compilation will be executed targetting the architecture of the local machine.</p>
 <link href="../../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>

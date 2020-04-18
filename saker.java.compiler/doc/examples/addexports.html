@@ -72,28 +72,28 @@
 			<div class="doc-content"><h1 id="add-module-exports">Add module exports<a class="doc-heading-anchor" href="#add-module-exports"></a></h1>
 <p>Starting from Java 9, when developing for the module system, you may not be able to access some internal classes in the JDK. If you're getting compilation errors due to encapsulation, you can use the <code>AddExports</code> parameter to force exporting of packages.</p>
 <p>The <code>AddExports</code> parameter corresponds to the --add-exports command line parameter for <code>javac</code>.</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
-	<span class="i">SourceDirectories</span>: <span class="f">src</span>,
-	<span class="i">AddExports: </span><span class="b">{</span>
-		<span class="h">Module</span>: <span class="f">jdk.compiler</span><span class="b">,</span>
-		<span class="h">Package</span>:<span class="b">[</span>
-			<span class="f">com.sun.tools.javac.jvm</span><span class="b">,</span>
-			<span class="f">com.sun.tools.javac.main</span>
-		<span class="b">],</span>
-		<span class="h">Target</span>: <span class="f">example.module</span>
-	<span class="b">}</span>,
-<span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
+	<span class="h">SourceDirectories</span>: <span class="e">src</span>,
+	<span class="h">AddExports</span>: <span class="i">{</span>
+		<span class="g">Module</span>: <span class="e">jdk.compiler</span><span class="i">,</span>
+		<span class="g">Package</span>:<span class="i">[</span>
+			<span class="e">com.sun.tools.javac.jvm</span><span class="i">,</span>
+			<span class="e">com.sun.tools.javac.main</span>
+		<span class="i">],</span>
+		<span class="g">Target</span>: <span class="e">example.module</span>
+	<span class="i">}</span>,
+<span class="d">)</span>
 </code></pre>
 <p>In the above example we've added the exports from the <code>jdk.compiler</code> module of the <code>com.sun.tools.javac.jvm</code> and <code>com.sun.tools.javac.main</code> packages to the <code>example.Module</code> module.</p>
 <p>The <code>Target</code> property can also accept multiple module names. If the <code>Target</code> property is omitted, the packages will be exported for all unnamed modules.</p>
 <p>The parameter also accepts simple string based input in the format of <code>module/package=other-module(,other-module)*</code>. If <code>=other-module...</code> is not provided, the package is exported to all unnamed modules:</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
-	<span class="i">SourceDirectories</span>: <span class="f">src</span>,
-	<span class="i">AddExports: </span><span class="b">[</span>
-		<span class="f">jdk.compiler/com.sun.tools.javac.jvm=example.module</span><span class="b">,</span>
-		<span class="f">jdk.compiler/com.sun.tools.javac.main=example.module</span><span class="b">,</span>
-	<span class="b">]</span>,
-<span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
+	<span class="h">SourceDirectories</span>: <span class="e">src</span>,
+	<span class="h">AddExports</span>: <span class="i">[</span>
+		<span class="e">jdk.compiler/com.sun.tools.javac.jvm=example.module</span><span class="i">,</span>
+		<span class="e">jdk.compiler/com.sun.tools.javac.main=example.module</span><span class="i">,</span>
+	<span class="i">]</span>,
+<span class="d">)</span>
 </code></pre>
 <p>This definition corresponds to the command line syntax of <code>--add-exports</code>.</p>
 <link href="../../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>

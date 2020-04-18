@@ -71,19 +71,19 @@
 </div>
 			<div class="doc-content"><h1 id="filter-sources">Filter sources<a class="doc-heading-anchor" href="#filter-sources"></a></h1>
 <p>When specifying a source directory as an input, you can specify which source files should be compiled under it. The source files can be specified using wildcard patterns which are resolved with the associated directory:</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span><span class="b">{</span>
-	<span class="h">Directory</span>: <span class="f">src</span><span class="b">,</span>
-	<span class="h">Files</span>: <span class="f">**/*Test.java</span>
-<span class="b">}</span><span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span><span class="i">{</span>
+	<span class="g">Directory</span>: <span class="e">src</span><span class="i">,</span>
+	<span class="g">Files</span>: <span class="e">**/*Test.java</span>
+<span class="i">}</span><span class="d">)</span>
 </code></pre>
 <p>The above will only compile source files that end with <code>Test.java</code>, and are under the <code>src</code> directory. You can specify multiple wildcards for the <code>Files</code> property:</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span><span class="b">{</span>
-	<span class="h">Directory</span>: <span class="f">src</span><span class="b">,</span>
-	<span class="h">Files</span>: <span class="b">[</span>
-		<span class="f">**/*Test.java</span><span class="b">,</span>
-		<span class="f">**/Foo*.java</span>
-	<span class="b">]</span>
-<span class="b">}</span><span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span><span class="i">{</span>
+	<span class="g">Directory</span>: <span class="e">src</span><span class="i">,</span>
+	<span class="g">Files</span>: <span class="i">[</span>
+		<span class="e">**/*Test.java</span><span class="i">,</span>
+		<span class="e">**/Foo*.java</span>
+	<span class="i">]</span>
+<span class="i">}</span><span class="d">)</span>
 </code></pre>
 <p>In this case any source file that starts with <code>Foo</code> will be compiled additionally to the previous example.</p>
 <p>Generally you wouldn't need to use source file filters, as common Java development practices don't really make use of these. However, you have the option nonetheless.</p>

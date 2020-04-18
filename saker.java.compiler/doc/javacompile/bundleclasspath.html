@@ -71,18 +71,18 @@
 </div>
 			<div class="doc-content"><h1 id="bundle-classpath">Bundle classpath<a class="doc-heading-anchor" href="#bundle-classpath"></a></h1>
 <p>The package provides facility for creating a classpath that contains saker.nest bundles. The <a href="../../taskdoc/saker.java.classpath.bundle.html"><code>saker.java.classpath.bundle()</code></a> task allows creating classpath for a given set of bundles. If the build is running inside an IDE, then the source attachments will be automatically downloaded byte the task.</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
-	<span class="i">SourceDirectories</span>: <span class="f">src</span>,
-	<span class="i">ClassPath: </span><span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.classpath.bundle.html" title="Task: saker.java.classpath.bundle()">saker.java.classpath.bundle</a>(</span><span class="f">example.bundle-v1.0</span><span class="e">)</span>
-<span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
+	<span class="h">SourceDirectories</span>: <span class="e">src</span>,
+	<span class="h">ClassPath</span>: <span class="d"><a href="../../../saker.java.compiler/taskdoc/saker.java.classpath.bundle.html" title="Task: saker.java.classpath.bundle()">saker.java.classpath.bundle</a>(</span><span class="e">example.bundle-v1.0</span><span class="d">)</span>
+<span class="d">)</span>
 </code></pre>
 <p>The above compilation will have the <code>example.bundle-v1.0</code> on its classpath. <strong>Note</strong> that the dependencies of the bundle are not resolved. To resolve them, use the <a href="../../../nest.repository.support/taskdoc/nest.dependency.resolve.html"><code>nest.dependency.resolve()</code></a> task:</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
-	<span class="i">SourceDirectories</span>: <span class="f">src</span>,
-	<span class="i">ClassPath: </span><span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.classpath.bundle.html" title="Task: saker.java.classpath.bundle()">saker.java.classpath.bundle</a>(</span>
-		<span class="e"><a href="../../../nest.repository.support/taskdoc/nest.dependency.resolve.html" title="Task: nest.dependency.resolve()">nest.dependency.resolve</a>(</span><span class="f">example.bundle</span><span class="e">)</span>
-	<span class="e">)</span>
-<span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
+	<span class="h">SourceDirectories</span>: <span class="e">src</span>,
+	<span class="h">ClassPath</span>: <span class="d"><a href="../../../saker.java.compiler/taskdoc/saker.java.classpath.bundle.html" title="Task: saker.java.classpath.bundle()">saker.java.classpath.bundle</a>(</span>
+		<span class="d"><a href="../../../nest.repository.support/taskdoc/nest.dependency.resolve.html" title="Task: nest.dependency.resolve()">nest.dependency.resolve</a>(</span><span class="e">example.bundle</span><span class="d">)</span>
+	<span class="d">)</span>
+<span class="d">)</span>
 </code></pre>
 <p>The above will include the <code>example.bundle</code> with an appropriate version as well as its dependencies (including transitive ones).</p>
 <link href="../../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>

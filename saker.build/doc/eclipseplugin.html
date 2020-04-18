@@ -73,7 +73,7 @@
 <p>The following contains installation, introduction, and other information about the Eclipse plugin for saker.build.</p>
 <h2 id="installation">Installation<a class="doc-heading-anchor" href="#installation"></a></h2>
 <p>Open Eclipse, and choose the Help &gt; Install New Software... option in the menu.</p>
-<p>Enter the <code>https://saker.build/saker.build.ide.eclipse/update-site/v0.8.9</code> update site into the <em>Work with:</em> text field, and press Enter. Eclipse should load the following plug-ins from the site:</p>
+<p>Enter the <code>https://saker.build/saker.build.ide.eclipse/update-site/v0.8.11</code> update site into the <em>Work with:</em> text field, and press Enter. Eclipse should load the following plug-ins from the site:</p>
 <p><img src="res/eclipse_installsoftware.png" alt="" /></p>
 <p>You may need to uncheck <em>Group items by category</em> to see the plug-ins. Select <em>Saker.build system plugin</em> to add the saker.build system support to Eclipse. If you plan on using Java, we recommend installing <em>Java IDE support for Saker.build</em> as well.</p>
 <p>Wait for the installation to complete, and restart Eclipse.</p>
@@ -94,7 +94,7 @@
 <h2 id="running-a-build">Running a build<a class="doc-heading-anchor" href="#running-a-build"></a></h2>
 <p>Let's continue our example from above. We're going to compile some Java sources. Create a new directory for your project called <code>src</code> using the New &gt; Folder option.</p>
 <p>Open the <code>saker.build</code> build file, and add the following to it:</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span><span class="f">src</span><span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span><span class="e">src</span><span class="d">)</span>
 </code></pre>
 <p>You can build the project using the following ways:</p>
 <p><strong>1. Project &gt; Build project</strong></p>

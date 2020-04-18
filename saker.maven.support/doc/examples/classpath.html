@@ -73,28 +73,28 @@
 <p>First of all, we recommend using the <a href="../../../saker.maven.classpath/index.html" title="Index">saker.maven.classpath</a> package for dealing with Maven artifacts as Java classpath. However, if you can't use that package, the following examples may apply:</p>
 <h4 id="localized-classpath">Localized classpath<a class="doc-heading-anchor" href="#localized-classpath"></a></h4>
 <p>If the receiver task supports it, you can specify the class path using localization:</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="d">$localized</span> = <span class="e"><a href="../../../saker.maven.support/taskdoc/saker.maven.localize.html" title="Task: saker.maven.localize()">saker.maven.localize</a>(</span><span class="b">[</span>
-	<span class="f">&quot;org.slf4j:slf4j-api:1.7.19&quot;</span>
-<span class="b">]</span><span class="e">)</span>
-<span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
-	<span class="i">SourceDirectories</span>: <span class="f">src</span>,
-	<span class="i">ClassPath: </span><span class="j">foreach </span><span class="d">$path</span><span class="j"> in </span><span class="d">$localized</span><span class="g">[</span><span class="h">ArtifactLocalPaths</span><span class="g">]</span>: 
-		<span class="b">[</span> <span class="e"><a href="../../../saker.standard/taskdoc/std.file.local.html" title="Task: std.file.local()">std.file.local</a>(</span><span class="d">$path</span><span class="e">)</span><span class="b"> ]</span> 
-<span class="e">)</span>	
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="c">$localized</span> = <span class="d"><a href="../../../saker.maven.support/taskdoc/saker.maven.localize.html" title="Task: saker.maven.localize()">saker.maven.localize</a>(</span><span class="i">[</span>
+	<span class="e">&quot;org.slf4j:slf4j-api:1.7.19&quot;</span>
+<span class="i">]</span><span class="d">)</span>
+<span class="d"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
+	<span class="h">SourceDirectories</span>: <span class="e">src</span>,
+	<span class="h">ClassPath</span>: <span class="j">foreach </span><span class="c">$path</span><span class="j"> in </span><span class="c">$localized</span><span class="f">[</span><span class="g">ArtifactLocalPaths</span><span class="f">]</span><span class="j">:</span> 
+		<span class="j">[</span> <span class="d"><a href="../../../saker.standard/taskdoc/std.file.local.html" title="Task: std.file.local()">std.file.local</a>(</span><span class="c">$path</span><span class="d">)</span> <span class="j">]</span> 
+<span class="d">)</span>	
 </code></pre>
 <p>In the above, we localize the artifact with the coordinates of <code>org.slf4j:slf4j-api:1.7.19</code>. Then we use the localization result to convert the local paths of the artifacts to a local file reference. The <a href="../../../saker.standard/taskdoc/std.file.local.html"><code>std.file.local()</code></a> task is used to create a file path reference on the local file system.</p>
 <p>Note that the above requires that the receiver task supports classpath input using local files.</p>
 <p>This solution doesn't support automatic downloading of attached source artifacts.</p>
 <h4 id="downloaded-classpath">Downloaded classpath<a class="doc-heading-anchor" href="#downloaded-classpath"></a></h4>
 <p>If the receiver task doesn't support local paths as the classpath input, you may need to download the artifacts for the build execution:</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="d">$downloaded</span> = <span class="e"><a href="../../../saker.maven.support/taskdoc/saker.maven.download.html" title="Task: saker.maven.download()">saker.maven.download</a>(</span><span class="b">[</span>
-	<span class="f">&quot;org.slf4j:slf4j-api:1.7.19&quot;</span>
-<span class="b">]</span><span class="e">)</span>
-<span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
-	<span class="i">SourceDirectories</span>: <span class="f">src</span>,
-	<span class="i">ClassPath: </span><span class="j">foreach </span><span class="d">$path</span><span class="j"> in </span><span class="d">$downloaded</span><span class="g">[</span><span class="h">ArtifactPaths</span><span class="g">]</span>: 
-		<span class="b">[</span> <span class="d">$path</span><span class="b"> ]</span> 
-<span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="c">$downloaded</span> = <span class="d"><a href="../../../saker.maven.support/taskdoc/saker.maven.download.html" title="Task: saker.maven.download()">saker.maven.download</a>(</span><span class="i">[</span>
+	<span class="e">&quot;org.slf4j:slf4j-api:1.7.19&quot;</span>
+<span class="i">]</span><span class="d">)</span>
+<span class="d"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
+	<span class="h">SourceDirectories</span>: <span class="e">src</span>,
+	<span class="h">ClassPath</span>: <span class="j">foreach </span><span class="c">$path</span><span class="j"> in </span><span class="c">$downloaded</span><span class="f">[</span><span class="g">ArtifactPaths</span><span class="f">]</span><span class="j">:</span> 
+		<span class="j">[</span> <span class="c">$path</span> <span class="j">]</span> 
+<span class="d">)</span>
 </code></pre>
 <p>The above is similar to the <a href="classpath.html#localized-classpath" title="Localized classpath">Localized classpath</a> example, but doesn't need the paths to be converted to local file references, as the artifacts are available in the build file system.</p>
 <p>This solution has the disadvantage of requiring the artifacts to be copied for the build execution.</p>

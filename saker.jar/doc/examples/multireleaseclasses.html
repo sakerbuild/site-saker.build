@@ -72,25 +72,25 @@
 			<div class="doc-content"><h1 id="multi-release-java-classes">Multi-release Java classes<a class="doc-heading-anchor" href="#multi-release-java-classes"></a></h1>
 <p>See also: <a href="../jarcreation/multirelease.html" title="Multi-release contents">Multi-release contents</a>, <a href="classes.html" title="Java classes">Java classes</a></p>
 <p>In the following example we use the <a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html"><code>saker.java.compile()</code></a> task to compile Java sources and include it in the Java archive. We'll compile the codebase for multiple target JDK versions and include them in the created JAR file. The following example uses the <a href="../../../saker.java.compiler/doc/javacompile/compileroptions.html" title="Compiler options">compiler options</a> to set an appropriate JDK for each task.</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="d">$options</span> = <span class="c"># ... the compilation options ...</span>
-<span class="d">$multireleasecontents</span> = <span class="j">foreach </span><span class="d">$jdk</span><span class="j"> in </span><span class="b">[</span><span class="f">8</span><span class="b">,</span> <span class="f">9</span><span class="b">,</span> <span class="f">10</span><span class="b">]</span><span class="j"> 
-		with </span><span class="d">$javac</span> {
-	<span class="d">$javac</span> = <span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
-		<span class="i">SourceDirectories</span>: <span class="f">src</span>,
-		<span class="i">Identifier: </span><span class="f">&quot;jdk</span>{ <span class="d">$jdk</span> }<span class="f">&quot;</span>,
-		<span class="i">CompilerOptions: </span><span class="d">$options</span>
-	<span class="e">)</span>
-} : <span class="b">{</span>
-	<span class="d">$jdk</span>: <span class="b">{</span>
-		<span class="h">Resources</span>: <span class="b">{</span>
-			<span class="h">Directory</span>: <span class="d">$javac</span><span class="g">[</span><span class="h">ClassDirectory</span><span class="g">]</span><span class="b">,</span>
-			<span class="h">Resources</span>: <span class="f">**</span>
-		<span class="b">}</span>
-	<span class="b">}</span>
-<span class="b">}</span>
-<span class="e"><a href="../../../saker.jar/taskdoc/saker.jar.create.html" title="Task: saker.jar.create()">saker.jar.create</a>(</span>
-	<span class="i">MultiReleaseContents</span>: <span class="d">$multireleasecontents</span>
-<span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="c">$options</span> = <span class="b"># ... the compilation options ...</span>
+<span class="c">$multireleasecontents</span> = <span class="j">foreach </span><span class="c">$jdk</span><span class="j"> in </span><span class="i">[</span><span class="e">8</span><span class="i">,</span> <span class="e">9</span><span class="i">,</span> <span class="e">10</span><span class="i">]</span><span class="j"> 
+		with </span><span class="c">$javac</span> <span class="j">{</span>
+	<span class="c">$javac</span> = <span class="d"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
+		<span class="h">SourceDirectories</span>: <span class="e">src</span>,
+		<span class="h">Identifier</span>: <span class="e">&quot;jdk</span><span class="j">{</span> <span class="c">$jdk</span><span class="j"> }</span><span class="e">&quot;</span>,
+		<span class="h">CompilerOptions</span>: <span class="c">$options</span>
+	<span class="d">)</span>
+<span class="j">}</span> <span class="j">:</span> <span class="j">{</span>
+	<span class="c">$jdk</span>: <span class="i">{</span>
+		<span class="g">Resources</span>: <span class="i">{</span>
+			<span class="g">Directory</span>: <span class="c">$javac</span><span class="f">[</span><span class="g">ClassDirectory</span><span class="f">]</span><span class="i">,</span>
+			<span class="g">Resources</span>: <span class="e">**</span>
+		<span class="i">}</span>
+	<span class="i">}</span>
+<span class="j">}</span>
+<span class="d"><a href="../../../saker.jar/taskdoc/saker.jar.create.html" title="Task: saker.jar.create()">saker.jar.create</a>(</span>
+	<span class="h">MultiReleaseContents</span>: <span class="c">$multireleasecontents</span>
+<span class="d">)</span>
 </code></pre>
 <p>The JAR archive creation part of the above example simply passes the <code>MultiReleaseContents</code> parameter as its input. However, the compilation for different JDKs are more complex:</p>
 <p>We use a <code>foreach</code> loop to compile the Java sources in the <code>src</code> directory for Java major versions 8, 9, and 10. The result expression of the <code>foreach</code> constructs a map that has the major versions of the target Java versions as its key, and the ZIP content specification for the value.</p>

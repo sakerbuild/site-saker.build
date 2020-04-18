@@ -76,23 +76,23 @@
 <code>&lt;</code>: Less than <br />
 <code>&lt;=</code>: Less than or equal to</p>
 <p>The operators take the numeric value of their number operands and compare them by value using the associated semantics to the given operator. The result of the comparison is a boolean value.</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="c"># the below examples work the same when</span>
-<span class="c"># floating point numbers are used</span>
-<span class="f">4</span> &lt; <span class="f">6</span> <span class="c"># true</span>
-<span class="f">6</span> &lt; <span class="f">4</span> <span class="c"># false</span>
-<span class="f">4</span> &lt; <span class="f">4</span> <span class="c"># false</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="b"># the below examples work the same when</span>
+<span class="b"># floating point numbers are used</span>
+<span class="e">4</span> &lt; <span class="e">6</span> <span class="b"># true</span>
+<span class="e">6</span> &lt; <span class="e">4</span> <span class="b"># false</span>
+<span class="e">4</span> &lt; <span class="e">4</span> <span class="b"># false</span>
 
-<span class="f">4</span> &lt;= <span class="f">6</span> <span class="c"># true</span>
-<span class="f">6</span> &lt;= <span class="f">4</span> <span class="c"># false</span>
-<span class="f">4</span> &lt;= <span class="f">4</span> <span class="c"># true</span>
+<span class="e">4</span> &lt;= <span class="e">6</span> <span class="b"># true</span>
+<span class="e">6</span> &lt;= <span class="e">4</span> <span class="b"># false</span>
+<span class="e">4</span> &lt;= <span class="e">4</span> <span class="b"># true</span>
 
-<span class="f">4</span> &gt; <span class="f">6</span> <span class="c"># false</span>
-<span class="f">6</span> &gt; <span class="f">4</span> <span class="c"># true</span>
-<span class="f">4</span> &gt; <span class="f">4</span> <span class="c"># false</span>
+<span class="e">4</span> &gt; <span class="e">6</span> <span class="b"># false</span>
+<span class="e">6</span> &gt; <span class="e">4</span> <span class="b"># true</span>
+<span class="e">4</span> &gt; <span class="e">4</span> <span class="b"># false</span>
 
-<span class="f">4</span> &gt;= <span class="f">6</span> <span class="c"># false</span>
-<span class="f">6</span> &gt;= <span class="f">4</span> <span class="c"># true</span>
-<span class="f">4</span> &gt;= <span class="f">4</span> <span class="c"># true</span>
+<span class="e">4</span> &gt;= <span class="e">6</span> <span class="b"># false</span>
+<span class="e">6</span> &gt;= <span class="e">4</span> <span class="b"># true</span>
+<span class="e">4</span> &gt;= <span class="e">4</span> <span class="b"># true</span>
 </code></pre>
 <p>The operators can employ precision extension, meaning that if the two operands have different precision, the lower one will be converted to the representation of the greater one.</p>
 <p>The results of the comparison operators are implementation dependent when any of the operand is a <code>NaN</code> floating point value.</p>

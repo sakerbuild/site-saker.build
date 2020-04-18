@@ -71,11 +71,11 @@
 </div>
 			<div class="doc-content"><h1 id="local-file-output">Local file output<a class="doc-heading-anchor" href="#local-file-output"></a></h1>
 <p>The <a href="../../taskdoc/std.file.copy.html"><code>std.file.copy()</code></a> task can be used to copy files to a specified local file system path as the result of the build execution.</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="d">$zip</span> = <span class="e"><a href="../../../saker.zip/taskdoc/saker.zip.create.html" title="Task: saker.zip.create()">saker.zip.create</a>(</span><span class="k">### ... ###</span><span class="e">)</span>
-<span class="e"><a href="../../../saker.standard/taskdoc/std.file.copy.html" title="Task: std.file.copy()">std.file.copy</a>(</span>
-	<span class="i">Source</span>: <span class="d">$zip</span><span class="g">[</span><span class="h">Path</span><span class="g">]</span>, 
-	<span class="i">Target: </span><span class="e"><a href="../../../saker.standard/taskdoc/std.file.local.html" title="Task: std.file.local()">std.file.local</a>(</span><span class="f">&quot;/home/User/output.zip&quot;</span><span class="e">)</span>
-<span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="c">$zip</span> = <span class="d"><a href="../../../saker.zip/taskdoc/saker.zip.create.html" title="Task: saker.zip.create()">saker.zip.create</a>(</span><span class="k">### ... ###</span><span class="d">)</span>
+<span class="d"><a href="../../../saker.standard/taskdoc/std.file.copy.html" title="Task: std.file.copy()">std.file.copy</a>(</span>
+	<span class="h">Source</span>: <span class="c">$zip</span><span class="f">[</span><span class="g">Path</span><span class="f">]</span>, 
+	<span class="h">Target</span>: <span class="d"><a href="../../../saker.standard/taskdoc/std.file.local.html" title="Task: std.file.local()">std.file.local</a>(</span><span class="e">&quot;/home/User/output.zip&quot;</span><span class="d">)</span>
+<span class="d">)</span>
 </code></pre>
 <p>The above simplified script will create a new ZIP archive as part of the build, and will copy it to the <code>/home/User/output.zip</code> path on the local file system.</p>
 <link href="../../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>

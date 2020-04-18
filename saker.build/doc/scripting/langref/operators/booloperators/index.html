@@ -102,29 +102,29 @@
 <tr><td align="right"><code>true</code></td><td align="center"><code>&amp;&amp;</code></td><td align="left"><code>true</code></td><td align="center"><code>=</code></td><td><code>true</code></td></tr>
 </tbody>
 </table>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="c"># simple usage</span>
-<span class="d">$left</span> || <span class="d">$right</span>
-<span class="d">$left</span> &amp;&amp; <span class="d">$right</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="b"># simple usage</span>
+<span class="c">$left</span> || <span class="c">$right</span>
+<span class="c">$left</span> &amp;&amp; <span class="c">$right</span>
 
-<span class="c"># using in an if condition</span>
-<span class="j">if </span><span class="d">$left</span> || <span class="d">$right</span> {
-	<span class="c"># ...</span>
+<span class="b"># using in an if condition</span>
+<span class="j">if </span><span class="c">$left</span> || <span class="c">$right</span> {
+	<span class="b"># ...</span>
 }
 
-<span class="c"># using in ternary</span>
-<span class="d">$left</span> || <span class="d">$right</span> ? <span class="d">$trueval</span> : <span class="d">$falseval</span>
+<span class="b"># using in ternary</span>
+<span class="c">$left</span> || <span class="c">$right</span> ? <span class="c">$trueval</span> : <span class="c">$falseval</span>
 
-<span class="c"># complex conditions</span>
-(<span class="d">$first</span> || <span class="d">$second</span>) &amp;&amp; (<span class="d">$third</span> &amp;&amp; (<span class="d">$fourth</span> || !<span class="d">$fifth</span>))
+<span class="b"># complex conditions</span>
+(<span class="c">$first</span> || <span class="c">$second</span>) &amp;&amp; (<span class="c">$third</span> &amp;&amp; (<span class="c">$fourth</span> || !<span class="c">$fifth</span>))
 </code></pre>
 <p>The AND (<code>&amp;&amp;</code>) operator takes precedence before the OR (<code>||</code>) operator. However, we recommend developers to use parentheses in order to improve readability of the code.</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="c"># the following are the same given the precedence of the operators</span>
- <span class="d">$first</span> &amp;&amp; <span class="f">second</span>  || <span class="d">$third</span> ||  <span class="d">$fourth</span> &amp;&amp; <span class="d">$fifth</span>
-(<span class="d">$first</span> &amp;&amp; <span class="f">second</span>) || <span class="d">$third</span> || (<span class="d">$fourth</span> &amp;&amp; <span class="d">$fifth</span>)
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="b"># the following are the same given the precedence of the operators</span>
+ <span class="c">$first</span> &amp;&amp; <span class="e">second</span>  || <span class="c">$third</span> ||  <span class="c">$fourth</span> &amp;&amp; <span class="c">$fifth</span>
+(<span class="c">$first</span> &amp;&amp; <span class="e">second</span>) || <span class="c">$third</span> || (<span class="c">$fourth</span> &amp;&amp; <span class="c">$fifth</span>)
 
-<span class="c"># the following is false</span>
+<span class="b"># the following is false</span>
 <span class="j">false</span> &amp;&amp; <span class="j">true</span> || <span class="j">false</span>
-<span class="c"># same as </span>
+<span class="b"># same as </span>
 (<span class="j">false</span> &amp;&amp; <span class="j">true</span>) || <span class="j">false</span>
 </code></pre>
 <link href="../../../../../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>

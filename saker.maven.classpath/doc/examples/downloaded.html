@@ -71,24 +71,24 @@
 </div>
 			<div class="doc-content"><h1 id="downloaded-artifacts">Downloaded artifacts<a class="doc-heading-anchor" href="#downloaded-artifacts"></a></h1>
 <p>The <a href="../../taskdoc/saker.maven.classpath.html"><code>saker.maven.classpath()</code></a> task can take the result of the <a href="../../../saker.maven.support/taskdoc/saker.maven.download.html"><code>saker.maven.download()</code></a> task as its input:</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
-	<span class="i">SourceDirectories</span>: <span class="f">src</span>,
-	<span class="i">ClassPath: </span><span class="e"><a href="../../../saker.maven.classpath/taskdoc/saker.maven.classpath.html" title="Task: saker.maven.classpath()">saker.maven.classpath</a>(<a href="../../../saker.maven.support/taskdoc/saker.maven.download.html" title="Task: saker.maven.download()">saker.maven.download</a>(</span><span class="b">[</span>
-		<span class="f">&quot;junit:junit:4.12&quot;</span><span class="b">,</span>
-		<span class="f">&quot;org.slf4j:slf4j-api:1.7.19&quot;</span>
-	<span class="b">]</span><span class="e">))</span>
-<span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
+	<span class="h">SourceDirectories</span>: <span class="e">src</span>,
+	<span class="h">ClassPath</span>: <span class="d"><a href="../../../saker.maven.classpath/taskdoc/saker.maven.classpath.html" title="Task: saker.maven.classpath()">saker.maven.classpath</a>(<a href="../../../saker.maven.support/taskdoc/saker.maven.download.html" title="Task: saker.maven.download()">saker.maven.download</a>(</span><span class="i">[</span>
+		<span class="e">&quot;junit:junit:4.12&quot;</span><span class="i">,</span>
+		<span class="e">&quot;org.slf4j:slf4j-api:1.7.19&quot;</span>
+	<span class="i">]</span><span class="d">))</span>
+<span class="d">)</span>
 </code></pre>
 <p>This works the same way as <a href="artifacts.html" title="Artifact classpath">Artifact classpath</a>, but you don't have to specify the artifact coordinates multiple times. The classpath will reference the downloaded artifacts, instead of the ones that are present in the local repository.</p>
 <p>If you download the artifacts separately, the use-case can be simplified:</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="d">$artifactdl</span> = <span class="e"><a href="../../../saker.maven.support/taskdoc/saker.maven.download.html" title="Task: saker.maven.download()">saker.maven.download</a>(</span><span class="b">[</span>
-	<span class="f">&quot;junit:junit:4.12&quot;</span><span class="b">,</span>
-	<span class="f">&quot;org.slf4j:slf4j-api:1.7.19&quot;</span>
-<span class="b">]</span><span class="e">)</span>
-<span class="e"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
-	<span class="i">SourceDirectories</span>: <span class="f">src</span>,
-	<span class="i">ClassPath: </span><span class="e"><a href="../../../saker.maven.classpath/taskdoc/saker.maven.classpath.html" title="Task: saker.maven.classpath()">saker.maven.classpath</a>(</span><span class="d">$artifactdl</span><span class="e">)</span>
-<span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="c">$artifactdl</span> = <span class="d"><a href="../../../saker.maven.support/taskdoc/saker.maven.download.html" title="Task: saker.maven.download()">saker.maven.download</a>(</span><span class="i">[</span>
+	<span class="e">&quot;junit:junit:4.12&quot;</span><span class="i">,</span>
+	<span class="e">&quot;org.slf4j:slf4j-api:1.7.19&quot;</span>
+<span class="i">]</span><span class="d">)</span>
+<span class="d"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
+	<span class="h">SourceDirectories</span>: <span class="e">src</span>,
+	<span class="h">ClassPath</span>: <span class="d"><a href="../../../saker.maven.classpath/taskdoc/saker.maven.classpath.html" title="Task: saker.maven.classpath()">saker.maven.classpath</a>(</span><span class="c">$artifactdl</span><span class="d">)</span>
+<span class="d">)</span>
 </code></pre>
 <link href="../../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>
 			<div class="end-section-links">

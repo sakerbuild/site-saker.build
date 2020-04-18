@@ -71,14 +71,14 @@
 </div>
 			<div class="doc-content"><h1 id="classpath">Classpath<a class="doc-heading-anchor" href="#classpath"></a></h1>
 <p>You can add saker.rmi as the classpath for your project. You'll need to resolve the bundles during build execution and set it to the classpath of your task. An example for setting it for compilation:</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
-	<span class="i">ClassPath</span>: <span class="e"><a href="../../saker.java.compiler/taskdoc/saker.java.classpath.bundle.html" title="Task: saker.java.classpath.bundle()">saker.java.classpath.bundle</a>(</span>
-		<span class="e"><a href="../../nest.repository.support/taskdoc/nest.dependency.resolve.html" title="Task: nest.dependency.resolve()">nest.dependency.resolve</a>(</span>
-			<span class="f">saker.rmi</span>,
-			<span class="i">Filter: </span><span class="e"><a href="../../nest.repository.support/taskdoc/nest.dependency.filter.compile.html" title="Task: nest.dependency.filter.compile()">nest.dependency.filter.compile</a>(</span><span class="i">CompileTransitive</span>: <span class="j">false</span><span class="e">)</span>
-		<span class="e">)</span>
-	<span class="e">)</span>
-<span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
+	<span class="h">ClassPath</span>: <span class="d"><a href="../../saker.java.compiler/taskdoc/saker.java.classpath.bundle.html" title="Task: saker.java.classpath.bundle()">saker.java.classpath.bundle</a>(</span>
+		<span class="d"><a href="../../nest.repository.support/taskdoc/nest.dependency.resolve.html" title="Task: nest.dependency.resolve()">nest.dependency.resolve</a>(</span>
+			<span class="e">saker.rmi</span>,
+			<span class="h">Filter</span>: <span class="d"><a href="../../nest.repository.support/taskdoc/nest.dependency.filter.compile.html" title="Task: nest.dependency.filter.compile()">nest.dependency.filter.compile</a>(</span><span class="h">CompileTransitive</span>: <span class="j">false</span><span class="d">)</span>
+		<span class="d">)</span>
+	<span class="d">)</span>
+<span class="d">)</span>
 </code></pre>
 <p>The above will resolve the most recent version of saker.rmi and use it as the Java compilation input classpath. See <a href="../../saker.java.compiler/doc/examples/nestbundleclasspath.html" title="Nest bundle classpath">Nest bundle classpath</a> for more information.</p>
 <p>If you don't want to use the runtime of the library, you can use the <code>saker.rmi-api</code> dependency for resolution.</p>

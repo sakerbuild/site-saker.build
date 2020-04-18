@@ -92,10 +92,10 @@ int main() {
 }
 </code></pre>
 <p>And use the <a href="../../taskdoc/types/CompilationInputPassTaskOption.html#f-ForceInclude"><code>ForceInclude</code></a> parameter to add the <code>foo.h</code> to the compilation unit:</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span><span class="b">{</span>
-	<span class="h">Files</span>: <span class="f">*.cpp</span><span class="b">,</span>
-	<span class="h">ForceInclude</span>: <span class="f">foo.h</span><span class="b">,</span>
-<span class="b">}</span><span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span><span class="i">{</span>
+	<span class="g">Files</span>: <span class="e">*.cpp</span><span class="i">,</span>
+	<span class="g">ForceInclude</span>: <span class="e">foo.h</span><span class="i">,</span>
+<span class="i">}</span><span class="d">)</span>
 </code></pre>
 <p>Then the code will compile just as fine. See the <a href="https://docs.microsoft.com/en-us/cpp/build/reference/fi-name-forced-include-file?view=vs-2019" title="/FI (Name Forced Include File) | Microsoft Docs"><code>/FI</code></a> compiler option for more information.</p>
 <p>(Note that you can specify multiple files to be force included, they will be added in the order they are specified for the parameter.)</p>

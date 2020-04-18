@@ -71,34 +71,34 @@
 </div>
 			<div class="doc-content"><h1 id="data-structures">Data structures<a class="doc-heading-anchor" href="#data-structures"></a></h1>
 <p>There are no type system in SakerScript. However, you can declare composite data in the format of maps, lists, and literals:</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="d">$map</span> = <span class="b">{</span>
-	<span class="h">Key</span>: <span class="f">value</span><span class="b">,</span>
-	<span class="h">ListKey</span>: <span class="b">[</span>
-		<span class="f">item1</span><span class="b">,</span>
-		<span class="f">item2</span><span class="b">,</span>
-	<span class="b">]</span>
-<span class="b">}</span>
-<span class="d">$list</span> = <span class="b">[</span><span class="f">1</span><span class="b">,</span> <span class="f">2</span><span class="b">,</span> <span class="f">3</span><span class="b">]</span>
-<span class="d">$simpleliteral</span> = <span class="f">abcd1234</span>
-<span class="d">$compoundstring</span> = <span class="f">&quot;interpolated string number: </span>{ <span class="f">2</span> * <span class="f">3</span> }<span class="f">&quot;</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="c">$map</span> = <span class="i">{</span>
+	<span class="g">Key</span>: <span class="e">value</span><span class="i">,</span>
+	<span class="g">ListKey</span>: <span class="i">[</span>
+		<span class="e">item1</span><span class="i">,</span>
+		<span class="e">item2</span><span class="i">,</span>
+	<span class="i">]</span>
+<span class="i">}</span>
+<span class="c">$list</span> = <span class="i">[</span><span class="e">1</span><span class="i">,</span> <span class="e">2</span><span class="i">,</span> <span class="e">3</span><span class="i">]</span>
+<span class="c">$simpleliteral</span> = <span class="e">abcd1234</span>
+<span class="c">$compoundstring</span> = <span class="e">&quot;interpolated string number: </span><span class="j">{</span> <span class="e">2</span> * <span class="e">3</span><span class="j"> }</span><span class="e">&quot;</span>
 </code></pre>
 <p>These structures can be used in various ways to configure the task invocations. It is mostly dependent on the implementation and purpose of the task, but the following example can shine some light on it:</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="e">example.compile.sources(</span>
-	<span class="i">Sources</span>: <span class="b">[</span>
-		<span class="b">{</span>
-			<span class="h">Directory</span>: <span class="f">src</span><span class="b">,</span>
-			<span class="h">Sources</span>: <span class="f">**/*.cpp</span><span class="b">,</span>
-		<span class="b">},</span>
-		<span class="b">{</span>
-			<span class="h">Directory</span>: <span class="f">test</span><span class="b">,</span>
-			<span class="h">Sources</span>: <span class="f">**/test_*.cpp</span><span class="b">,</span>
-		<span class="b">},</span>
-	<span class="b">]</span>,
-	<span class="i">LinkLibraries: </span><span class="b">[</span>
-		<span class="f">lib1.lib</span><span class="b">,</span>
-		<span class="f">lib2.lib</span><span class="b">,</span>
-	<span class="b">]</span>,
-<span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d">example.compile.sources(</span>
+	<span class="h">Sources</span>: <span class="i">[</span>
+		<span class="i">{</span>
+			<span class="g">Directory</span>: <span class="e">src</span><span class="i">,</span>
+			<span class="g">Sources</span>: <span class="e">**/*.cpp</span><span class="i">,</span>
+		<span class="i">},</span>
+		<span class="i">{</span>
+			<span class="g">Directory</span>: <span class="e">test</span><span class="i">,</span>
+			<span class="g">Sources</span>: <span class="e">**/test_*.cpp</span><span class="i">,</span>
+		<span class="i">},</span>
+	<span class="i">]</span>,
+	<span class="h">LinkLibraries</span>: <span class="i">[</span>
+		<span class="e">lib1.lib</span><span class="i">,</span>
+		<span class="e">lib2.lib</span><span class="i">,</span>
+	<span class="i">]</span>,
+<span class="d">)</span>
 </code></pre>
 <p>The above fictional task would compile the sources with the <code>.cpp</code> extension the the <code>src</code> directory, and the sources in <code>test</code> directory that begin with <code>test_</code> and end with <code>.cpp</code>. It would also link the libraries <code>lib1.lib</code> and <code>lib2.lib</code> to the resulting binary.</p>
 <p>Note that the data structures in the language are immutable, they cannot be modified after they've been constructed.</p>

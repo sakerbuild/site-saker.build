@@ -71,10 +71,10 @@
 </div>
 			<div class="doc-content"><h1 id="dependency-kinds">Dependency kinds<a class="doc-heading-anchor" href="#dependency-kinds"></a></h1>
 <p>Bundles are allowed to define various dependencies with different kinds. The kinds are used to differentiate the dependencies based on their use-case. The kind dependency filter can be used to only resolve dependencies which have any of the specified kinds:</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../nest.repository.support/taskdoc/nest.dependency.resolve.html" title="Task: nest.dependency.resolve()">nest.dependency.resolve</a>(</span>
-	<span class="i">DependencyFile</span>: <span class="f">res/META-INF/nest/dependencies</span>,
-	<span class="i">Filters: </span><span class="e"><a href="../../../nest.repository.support/taskdoc/nest.dependency.filter.kind.html" title="Task: nest.dependency.filter.kind()">nest.dependency.filter.kind</a>(</span><span class="f">classpath</span><span class="e">)</span>
-<span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../nest.repository.support/taskdoc/nest.dependency.resolve.html" title="Task: nest.dependency.resolve()">nest.dependency.resolve</a>(</span>
+	<span class="h">DependencyFile</span>: <span class="e">res/META-INF/nest/dependencies</span>,
+	<span class="h">Filters</span>: <span class="d"><a href="../../../nest.repository.support/taskdoc/nest.dependency.filter.kind.html" title="Task: nest.dependency.filter.kind()">nest.dependency.filter.kind</a>(</span><span class="e">classpath</span><span class="d">)</span>
+<span class="d">)</span>
 </code></pre>
 <p>If the <code>res/META-INF/nest/dependencies</code> contains the following contents:</p>
 <pre class="doc-code-block"><code class="language-plaintext">example.bundle-api
@@ -84,13 +84,13 @@ library.bundle
 </code></pre>
 <p>Then specifying the above kind dependency filter will result in only the <code>example.bundle-api</code> being resolved. The dependency with any other kind(s) are omitted.</p>
 <p>The <a href="../../taskdoc/nest.dependency.filter.kind.html"><code>nest.dependency.filter.kind()</code></a> task can take one or more dependency kinds to filter the interested dependencies.</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../nest.repository.support/taskdoc/nest.dependency.resolve.html" title="Task: nest.dependency.resolve()">nest.dependency.resolve</a>(</span>
-	<span class="i">DependencyFile</span>: <span class="f">res/META-INF/nest/dependencies</span>,
-	<span class="i">Filters: </span><span class="e"><a href="../../../nest.repository.support/taskdoc/nest.dependency.filter.kind.html" title="Task: nest.dependency.filter.kind()">nest.dependency.filter.kind</a>(</span><span class="b">[</span>
-		<span class="f">classpath</span><span class="b">,</span>
-		<span class="f">native-lib</span>
-	<span class="b">]</span><span class="e">)</span>
-<span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../nest.repository.support/taskdoc/nest.dependency.resolve.html" title="Task: nest.dependency.resolve()">nest.dependency.resolve</a>(</span>
+	<span class="h">DependencyFile</span>: <span class="e">res/META-INF/nest/dependencies</span>,
+	<span class="h">Filters</span>: <span class="d"><a href="../../../nest.repository.support/taskdoc/nest.dependency.filter.kind.html" title="Task: nest.dependency.filter.kind()">nest.dependency.filter.kind</a>(</span><span class="i">[</span>
+		<span class="e">classpath</span><span class="i">,</span>
+		<span class="e">native-lib</span>
+	<span class="i">]</span><span class="d">)</span>
+<span class="d">)</span>
 </code></pre>
 <p>If we specify the above, then no dependencies will be omitted from the dependency file. However, any other kinds from transitive dependencies will be omitted accordingly.</p>
 <link href="../../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>

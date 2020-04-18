@@ -71,14 +71,14 @@
 </div>
 			<div class="doc-content"><h1 id="hello-dll">Hello DLL<a class="doc-heading-anchor" href="#hello-dll"></a></h1>
 <p>This example shows a minimal example for creating a simple Dynamic Link Library using the MSVC toolchain:</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="d">$ccompile</span> = <span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span>
-	<span class="f">src/**/*.cpp</span>,
-	<span class="i">CompilerOptions: </span><span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.coptions.preset.html" title="Task: saker.msvc.coptions.preset()">saker.msvc.coptions.preset</a>(</span><span class="f">dll</span><span class="e">)</span>
-<span class="e">)</span>
-<span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.clink.html" title="Task: saker.msvc.clink()">saker.msvc.clink</a>(</span>
-	<span class="d">$ccompile</span>,
-	<span class="i">LinkerOptions: </span><span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.coptions.preset.html" title="Task: saker.msvc.coptions.preset()">saker.msvc.coptions.preset</a>(</span><span class="f">dll</span><span class="e">)</span>
-<span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="c">$ccompile</span> = <span class="d"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span>
+	<span class="e">src/**/*.cpp</span>,
+	<span class="h">CompilerOptions</span>: <span class="d"><a href="../../../saker.msvc/taskdoc/saker.msvc.coptions.preset.html" title="Task: saker.msvc.coptions.preset()">saker.msvc.coptions.preset</a>(</span><span class="e">dll</span><span class="d">)</span>
+<span class="d">)</span>
+<span class="d"><a href="../../../saker.msvc/taskdoc/saker.msvc.clink.html" title="Task: saker.msvc.clink()">saker.msvc.clink</a>(</span>
+	<span class="c">$ccompile</span>,
+	<span class="h">LinkerOptions</span>: <span class="d"><a href="../../../saker.msvc/taskdoc/saker.msvc.coptions.preset.html" title="Task: saker.msvc.coptions.preset()">saker.msvc.coptions.preset</a>(</span><span class="e">dll</span><span class="d">)</span>
+<span class="d">)</span>
 </code></pre>
 <p>In the above we have a source file in the <code>src/main.cpp</code> path:</p>
 <pre class="doc-code-block"><code class="language-cpp">#include &lt;stdio.h&gt;

@@ -77,29 +77,29 @@
 <code>/</code>: division <br />
 <code>%</code>: integer remainder</p>
 <p>The operators take the numeric value of their number operands and apply the associated mathematical function to them. The resulting value will be the resul of the expression.</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="f">4</span> + <span class="f">6</span> <span class="c"># 10</span>
-<span class="f">1.2</span> + <span class="f">3.4</span> <span class="c"># 3.6</span>
-<span class="f">5</span> + <span class="f">6.1</span> <span class="c"># 11.1</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="e">4</span> + <span class="e">6</span> <span class="b"># 10</span>
+<span class="e">1.2</span> + <span class="e">3.4</span> <span class="b"># 3.6</span>
+<span class="e">5</span> + <span class="e">6.1</span> <span class="b"># 11.1</span>
 
-<span class="f">2</span> - <span class="f">10</span> <span class="c"># -8</span>
-<span class="f">1.2</span> - <span class="f">3.4</span> <span class="c"># -2.2</span>
+<span class="e">2</span> - <span class="e">10</span> <span class="b"># -8</span>
+<span class="e">1.2</span> - <span class="e">3.4</span> <span class="b"># -2.2</span>
 
-<span class="f">7</span> * <span class="f">8</span> <span class="c"># 56</span>
-<span class="f">6</span> * -<span class="f">4</span> <span class="c"># -24</span>
-<span class="f">2</span> * <span class="f">1.75</span> <span class="c"># 3.5</span>
+<span class="e">7</span> * <span class="e">8</span> <span class="b"># 56</span>
+<span class="e">6</span> * -<span class="e">4</span> <span class="b"># -24</span>
+<span class="e">2</span> * <span class="e">1.75</span> <span class="b"># 3.5</span>
 
-<span class="f">12</span> / <span class="f">5</span> <span class="c"># 2</span>
-<span class="f">12.0</span> / <span class="f">5</span> <span class="c"># 2.4</span>
-<span class="f">20</span> / -<span class="f">1</span> <span class="c"># -20</span>
-<span class="f">0xff</span> / <span class="f">4</span> <span class="c"># 0x3f</span>
+<span class="e">12</span> / <span class="e">5</span> <span class="b"># 2</span>
+<span class="e">12.0</span> / <span class="e">5</span> <span class="b"># 2.4</span>
+<span class="e">20</span> / -<span class="e">1</span> <span class="b"># -20</span>
+<span class="e">0xff</span> / <span class="e">4</span> <span class="b"># 0x3f</span>
 
-<span class="f">20</span> % <span class="f">6</span> <span class="c"># 2</span>
-<span class="f">3.4</span> % <span class="f">1.4</span> <span class="c"># 0.6</span>
-<span class="f">3</span> % <span class="f">1.4</span> <span class="c"># 0.2</span>
-<span class="f">3.1</span> % <span class="f">2</span> <span class="c"># 1.1</span>
--<span class="f">5</span> % <span class="f">3</span> <span class="c"># -2</span>
-<span class="f">5</span> % -<span class="f">3</span> <span class="c"># 2</span>
--<span class="f">5</span> % -<span class="f">3</span> <span class="c"># -2</span>
+<span class="e">20</span> % <span class="e">6</span> <span class="b"># 2</span>
+<span class="e">3.4</span> % <span class="e">1.4</span> <span class="b"># 0.6</span>
+<span class="e">3</span> % <span class="e">1.4</span> <span class="b"># 0.2</span>
+<span class="e">3.1</span> % <span class="e">2</span> <span class="b"># 1.1</span>
+-<span class="e">5</span> % <span class="e">3</span> <span class="b"># -2</span>
+<span class="e">5</span> % -<span class="e">3</span> <span class="b"># 2</span>
+-<span class="e">5</span> % -<span class="e">3</span> <span class="b"># -2</span>
 </code></pre>
 <p>The operators can employ precision extension, meaning that if the two operands have different precision, the lower one will be converted to the representation of the greater one. When the numeric value of the result would overflow for the applied precision, the implementations may either convert the result to a bigger precision representation, or handle the overflow in an implementation dependent way.</p>
 <p>The mathematic operations are executed the same way as the Java languge specification dictates. (See <a href="https://docs.oracle.com/javase/specs/jls/se7/html/jls-15.html#jls-15.18.2" title="Chapter&nbsp;15.&nbsp;Expressions">JLS 15.18.2</a> and <a href="https://docs.oracle.com/javase/specs/jls/se7/html/jls-15.html#jls-15.17" title="Chapter&nbsp;15.&nbsp;Expressions">JLS 15.17</a>)</p>

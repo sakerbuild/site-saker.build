@@ -73,41 +73,41 @@
 <p>Expressions are the basic unit of execution in the language. It can be simple (e.g. literals such as <code>&quot;abcd123&quot;</code>) or complex (e.g. by using operators like <code>123 + 456</code>). All of them have a result which can be used with other expressions.</p>
 <p>The expressions can be declared in body of an execution block. Execution blocks are part of build targets, if-else statements, foreach loops and the global expression scope. Declaring an expression will result in it being evaluated when the enclosing expression or execution block is being evaluated.</p>
 <p>Root expressions are the ones that have no enclosing expression, but directly declared in an execution block.</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="a">build</span> <span class="b">{</span>
-	<span class="c"># root expression</span>
-	<span class="e">example.task()</span>
-	<span class="c"># calc.task() is not a root expression</span>
-	<span class="c">#    but the whole &quot;$sum = 123 + calc.task()&quot; is</span>
-	<span class="d">$sum</span> = <span class="f">123</span> + <span class="e">calc.task()</span>
-<span class="b">}</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="a">build</span> <span class="a">{</span>
+	<span class="b"># root expression</span>
+	<span class="d">example.task()</span>
+	<span class="b"># calc.task() is not a root expression</span>
+	<span class="b">#    but the whole &quot;$sum = 123 + calc.task()&quot; is</span>
+	<span class="c">$sum</span> = <span class="e">123</span> + <span class="d">calc.task()</span>
+<span class="a">}</span>
 </code></pre>
 <h2 id="declaring-expression-statements">Declaring expression statements<a class="doc-heading-anchor" href="#declaring-expression-statements"></a></h2>
 <p>When declaring root expressions, they need to be followed by expression statement closing character(s). This may be either a semicolon (<code>';'</code>) or newline characters. This is in order to avoid the language parser to involuntarily merge expression statements together.</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="c"># followed by semicolon</span>
-<span class="e">example.task()</span>;
-<span class="c"># semicolons allow multiple expressions on the same line</span>
-<span class="e">example.task(</span><span class="f">1</span><span class="e">)</span>;<span class="e">example.task(</span><span class="f">2</span><span class="e">)</span>; 
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="b"># followed by semicolon</span>
+<span class="d">example.task()</span>;
+<span class="b"># semicolons allow multiple expressions on the same line</span>
+<span class="d">example.task(</span><span class="e">1</span><span class="d">)</span>;<span class="d">example.task(</span><span class="e">2</span><span class="d">)</span>; 
 
-<span class="c"># followed by new line</span>
-<span class="e">example.task()</span>
+<span class="b"># followed by new line</span>
+<span class="d">example.task()</span>
 
-<span class="c"># followed by comment</span>
-<span class="e">example.task()</span><span class="c"># ending comment</span>
-<span class="e">example.task()</span> <span class="c"># ending comment with spaces between</span>
-<span class="c"># multiline commends can be used as well</span>
-<span class="e">example.task()</span> <span class="k">### multiline comment ###</span>
-<span class="e">example.task()</span> <span class="k">### comment on
+<span class="b"># followed by comment</span>
+<span class="d">example.task()</span><span class="b"># ending comment</span>
+<span class="d">example.task()</span> <span class="b"># ending comment with spaces between</span>
+<span class="b"># multiline commends can be used as well</span>
+<span class="d">example.task()</span> <span class="k">### multiline comment ###</span>
+<span class="d">example.task()</span> <span class="k">### comment on
 	multiple
-lines ###</span> <span class="e">example.task()</span>
+lines ###</span> <span class="d">example.task()</span>
 </code></pre>
 <h2 id="using-operators">Using operators<a class="doc-heading-anchor" href="#using-operators"></a></h2>
 <p>Using operators in the language also have requirements for their syntax. When using an operator with an operand that preceeds its, the operator must be declared on the same line as the preceeding operand.</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="c"># single line complex expression</span>
-<span class="d">$var</span> = <span class="f">123</span> + <span class="f">456</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="b"># single line complex expression</span>
+<span class="c">$var</span> = <span class="e">123</span> + <span class="e">456</span>
 
-<span class="c"># complex expression spread over multiple lines</span>
-<span class="d">$var</span> = <span class="f">123</span> +
-	<span class="f">456</span>
+<span class="b"># complex expression spread over multiple lines</span>
+<span class="c">$var</span> = <span class="e">123</span> +
+	<span class="e">456</span>
 </code></pre>
 <p>When expressions are spread over multiple lines, the operator must be on the preceeding line than the next operand. The following declaration will not work as expected:</p>
 <pre class="doc-code-block"><code>$var = 123
@@ -116,10 +116,10 @@ lines ###</span> <span class="e">example.task()</span>
 <p>As we allow the new line to be an expression closing character, the assignment to <code>$var</code> will have the value of <code>123</code> instead of <code>123 + 456</code>. This is because the assignment statement is considered to be complete as a new line separator was encountered. The following expression is <code>+ 456</code>, which is invalid, as its left operand is missing, but the language parser cannot properly look ahead.</p>
 <p>If the <code>+</code> operator is declared after the literal <code>123</code>, then the parser will expect another expression after it, so it will not consider the new line to be a valid expression closer.</p>
 <p>It is also strongly recommended to have the operator tokens surrounded by whitespace. <a href="../literals/index.html#simple-string-literals" title="Simple string literals">Simple string literals</a> will not stop when they encounter most of the operators, and the operator therefore will be part of the literal.</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="c"># sum has the value of &quot;123+456&quot; as string </span>
-<span class="d">$sum</span> = <span class="f">123+456</span>
-<span class="c"># sum has the value of 579 as number</span>
-<span class="d">$sum</span> = <span class="f">123</span> + <span class="f">456</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="b"># sum has the value of &quot;123+456&quot; as string </span>
+<span class="c">$sum</span> = <span class="e">123+456</span>
+<span class="b"># sum has the value of 579 as number</span>
+<span class="c">$sum</span> = <span class="e">123</span> + <span class="e">456</span>
 </code></pre>
 <link href="../../../../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>
 			<div class="end-section-links">

@@ -72,16 +72,16 @@
 			<div class="doc-content"><h1 id="build-tasks">Build tasks<a class="doc-heading-anchor" href="#build-tasks"></a></h1>
 <p>Bundles uploaded to the repository may contain build tasks that can be invoked using the saker.build system during build execution. The build tasks can be invoked in the build script by simply referencing it by name and <a href="index.html#names" title="Names">bundle qualifiers</a>. Task qualifiers work the same way as bundle qualifiers and are used to choose the bundle to load the task from.</p>
 <p>Example, if the <code>example.package</code> publishes the <code>example.task</code> build task:</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="c"># invokes the task from the latest example.package release</span>
-<span class="e">example.task()</span>
-<span class="c"># invokes the task from the v1.0 release</span>
-<span class="e">example.task-v1.0()</span>
-<span class="c"># invokes the task from the latest release</span>
-<span class="c"># and from the example.package-q1 bundle</span>
-<span class="e">example.task-q1()</span>
-<span class="c"># invokes the task from the v1.0.1 release</span>
-<span class="c"># and from the example.package-q1 bundle</span>
-<span class="e">example.task-q1-v1.0.1()</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="b"># invokes the task from the latest example.package release</span>
+<span class="d">example.task()</span>
+<span class="b"># invokes the task from the v1.0 release</span>
+<span class="d">example.task-v1.0()</span>
+<span class="b"># invokes the task from the latest release</span>
+<span class="b"># and from the example.package-q1 bundle</span>
+<span class="d">example.task-q1()</span>
+<span class="b"># invokes the task from the v1.0.1 release</span>
+<span class="b"># and from the example.package-q1 bundle</span>
+<span class="d">example.task-q1-v1.0.1()</span>
 </code></pre>
 <p>Using task qualifiers, you can choose which task implentation to use during the build execution. Generally, we recommend to include your tasks in your main bundle (that is the one without any extra qualifiers), so there are no confusion about what kind of qualifiers should be used for a given task invocation. However, this method supports use-cases where different task implementations should be chosen based on the circumstances.</p>
 <p>If no version is specified for a given task invocation, the repository will choose the latest release version that is available.</p>

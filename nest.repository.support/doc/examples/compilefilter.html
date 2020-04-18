@@ -89,24 +89,24 @@
 <p>We have a separated package taking the <a href="../../../saker.nest/doc/devguide/dependencyhell.html" title="Dependency hell">recommendations</a> for avoiding dependency hell into account.</p>
 <p>The use-case for the compile filter is to resolve the bundle dependencies that are required for compiling against a given bundle, but omitting the transitive dependencies which are implementational details.</p>
 <p>We can use it the following way:</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../nest.repository.support/taskdoc/nest.dependency.resolve.html" title="Task: nest.dependency.resolve()">nest.dependency.resolve</a>(</span>
-	<span class="i">Bundles</span>: <span class="b">[</span>
-		<span class="f">example.bundle-api</span>
-	<span class="b">]</span>,
-	<span class="i">Filters: </span><span class="e"><a href="../../../nest.repository.support/taskdoc/nest.dependency.filter.compile.html" title="Task: nest.dependency.filter.compile()">nest.dependency.filter.compile</a>(</span><span class="i">CompileTransitive</span>: <span class="j">false</span><span class="e">)</span>
-<span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../nest.repository.support/taskdoc/nest.dependency.resolve.html" title="Task: nest.dependency.resolve()">nest.dependency.resolve</a>(</span>
+	<span class="h">Bundles</span>: <span class="i">[</span>
+		<span class="e">example.bundle-api</span>
+	<span class="i">]</span>,
+	<span class="h">Filters</span>: <span class="d"><a href="../../../nest.repository.support/taskdoc/nest.dependency.filter.compile.html" title="Task: nest.dependency.filter.compile()">nest.dependency.filter.compile</a>(</span><span class="h">CompileTransitive</span>: <span class="j">false</span><span class="d">)</span>
+<span class="d">)</span>
 </code></pre>
 <p>The result of the dependency resolution will be the following:</p>
 <pre class="doc-code-block"><code class="language-plaintext">example.bundle-api-v1.0
 </code></pre>
 <p>The <code>example.bundle-impl</code> is not part of the result, as it is omitted by the filter, due to the <code>compile-transitive: false</code> being set on the dependency.</p>
 <p>If we depend on <code>example.bundle</code> instead of <code>example.bundle-api</code>:</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../nest.repository.support/taskdoc/nest.dependency.resolve.html" title="Task: nest.dependency.resolve()">nest.dependency.resolve</a>(</span>
-	<span class="i">Bundles</span>: <span class="b">[</span>
-		<span class="f">example.bundle</span>
-	<span class="b">]</span>,
-	<span class="i">Filters: </span><span class="e"><a href="../../../nest.repository.support/taskdoc/nest.dependency.filter.compile.html" title="Task: nest.dependency.filter.compile()">nest.dependency.filter.compile</a>(</span><span class="i">CompileTransitive</span>: <span class="j">false</span><span class="e">)</span>
-<span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../nest.repository.support/taskdoc/nest.dependency.resolve.html" title="Task: nest.dependency.resolve()">nest.dependency.resolve</a>(</span>
+	<span class="h">Bundles</span>: <span class="i">[</span>
+		<span class="e">example.bundle</span>
+	<span class="i">]</span>,
+	<span class="h">Filters</span>: <span class="d"><a href="../../../nest.repository.support/taskdoc/nest.dependency.filter.compile.html" title="Task: nest.dependency.filter.compile()">nest.dependency.filter.compile</a>(</span><span class="h">CompileTransitive</span>: <span class="j">false</span><span class="d">)</span>
+<span class="d">)</span>
 </code></pre>
 <p>The result of the dependency resolution will be the following:</p>
 <pre class="doc-code-block"><code class="language-plaintext">example.bundle-v1.0

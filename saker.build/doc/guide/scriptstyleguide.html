@@ -77,35 +77,35 @@
 <p>The following naming schemes are recommended for naming different parts of the script.</p>
 <h3 id="build-targets">Build targets<a class="doc-heading-anchor" href="#build-targets"></a></h3>
 <p>Build targets should be all lowercase, and single word describing the action that it does. <code>build</code>, <code>compile</code>, <code>test</code>, <code>export</code> are all great examples. When the action consists of multiple words, they should be separated by underscore (<code>'_'</code>).</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="a">build</span> <span class="b">{</span>
-	<span class="c"># ...</span>
-<span class="b">}</span>
-<span class="a">test_remote</span> <span class="b">{</span>
-	<span class="c"># ...</span>
-<span class="b">}</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="a">build</span> <span class="a">{</span>
+	<span class="b"># ...</span>
+<span class="a">}</span>
+<span class="a">test_remote</span> <span class="a">{</span>
+	<span class="b"># ...</span>
+<span class="a">}</span>
 </code></pre>
 <p>We don't recommend using build target <a href="../scripting/langref/sourcefile/index.html#build-target" title="Build target">name aliases</a>.</p>
 <p>SakerScript doesn't specify visibility rules for build targets. All declared build targets can be called externally. This can cause compatibility errors in larger organizations, as someone who is not familiar with the build script may call build targets that should be internal to the enclosing script.</p>
 <p>We recommend prefixing private build targets with underscore (<code>'_'</code>) to explicitly signal that it should not be called externally.</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="a">build</span> <span class="b">{</span>
-	<span class="e"><a href="../../../saker.build/doc/scripting/builtintasks/include.html" title="Task: include()">include</a>(</span><span class="f">_private_build_target</span><span class="e">)</span>
-<span class="b">}</span>
-<span class="a">_private_build_target</span> <span class="b">{</span>
-	<span class="c"># ...</span>
-<span class="b">}</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="a">build</span> <span class="a">{</span>
+	<span class="d"><a href="../../../saker.build/doc/scripting/builtintasks/include.html" title="Task: include()">include</a>(</span><span class="e">_private_build_target</span><span class="d">)</span>
+<span class="a">}</span>
+<span class="a">_private_build_target</span> <span class="a">{</span>
+	<span class="b"># ...</span>
+<span class="a">}</span>
 </code></pre>
 <h3 id="parameters">Parameters<a class="doc-heading-anchor" href="#parameters"></a></h3>
 <p>The build target parameters should be formatted in <code>PascalCase</code>, with the first letter of each word component being uppercase. Parameters should be declared on their own lines, ending with comma. It may be beneficial to separate the input and output parameters by a single empty line.</p>
 <p>Default values for input parameters and assignments for the output parameters are allowed in the parameter list.</p>
 <pre class="doc-code-block"><code class="language-sakerscript"><span class="a">build(</span>
-	<span class="j">in</span> <span class="d">SourceDirectory</span>,
-	<span class="j">in</span> <span class="d">SomeNumber</span> = <span class="f">123</span>,
+	<span class="j">in</span> <span class="c">SourceDirectory</span>,
+	<span class="j">in</span> <span class="c">SomeNumber</span> = <span class="e">123</span>,
 	
-	<span class="j">out</span> <span class="d">CompiledBinary</span>,
-	<span class="j">out</span> <span class="d">SumValue</span> = <span class="d">$SomeNumber</span> + <span class="f">456</span>,
-<span class="a">)</span> <span class="b">{</span>
-	<span class="c"># ...</span>
-<span class="b">}</span>
+	<span class="j">out</span> <span class="c">CompiledBinary</span>,
+	<span class="j">out</span> <span class="c">SumValue</span> = <span class="c">$SomeNumber</span> + <span class="e">456</span>,
+<span class="a">)</span> <span class="a">{</span>
+	<span class="b"># ...</span>
+<span class="a">}</span>
 </code></pre>
 <p>The parameter names shouldn't include any phrases that denote their nature of being input or output parameters. Don't name them something like <code>SourceDirectoryInput</code> or <code>InputSourceDirectory</code>.</p>
 <p>The parameter list with the parentheses for a build target should be omitted if there are no parameters. Don't declare a build target with empty parameter list.</p>
@@ -113,81 +113,81 @@
 <p>Variables have 3 scopes based on their accessability. We recommend different naming conventions for all 3 of them.</p>
 <h4 id="build-target-variables">Build target variables<a class="doc-heading-anchor" href="#build-target-variables"></a></h4>
 <p>For variables that appear in build targets, we recommend either all lowercase, or <code>camelCase</code> naming conventions. They should begin with lowercase characters to clearly distinguish them from being input or output parameters.</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="d">$applesEatenPerDay</span> = <span class="f">2</span>
-<span class="d">$doctorskeptaway</span> = <span class="d">$applesEatenPerDay</span> &gt;= <span class="f">1</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="c">$applesEatenPerDay</span> = <span class="e">2</span>
+<span class="c">$doctorskeptaway</span> = <span class="c">$applesEatenPerDay</span> &gt;= <span class="e">1</span>
 </code></pre>
 <p>Whichever style you choose, make sure to be consistent over the build scripts of your project.</p>
 <h4 id="static-variables">Static variables<a class="doc-heading-anchor" href="#static-variables"></a></h4>
 <p>Static variables are file-level variables which are accessable from every expression in the same build script. See <a href="../scripting/builtintasks/static.html" title="static()"><code>static()</code></a> for more information about them.</p>
 <p>Static variables which contain constant configuration data should be named in <code>UPPER_SNAKE_CASE</code> format. If the value of the variable is calculated dynamically, they should have the same naming format as <a href="scriptstyleguide.html#build-target-variables" title="Build target variables">Build target variables</a>.</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.build/doc/scripting/builtintasks/static.html" title="Task: static()">static</a>(</span><span class="d">DEPENDENCY_VERSION</span><span class="e">)</span> = <span class="f">1.0</span>
-<span class="e"><a href="../../../saker.build/doc/scripting/builtintasks/static.html" title="Task: static()">static</a>(</span><span class="d">commonResult</span><span class="e">)</span> = <span class="e">common.task()</span>
-<span class="a">build</span> <span class="b">{</span>
-	<span class="e">example.load.dependency(</span><span class="f">&quot;my.dependency-v</span>{ <span class="e"><a href="../../../saker.build/doc/scripting/builtintasks/static.html" title="Task: static()">static</a>(</span><span class="d">DEPENDENCY_VERSION</span><span class="e">)</span> }<span class="f">&quot;</span><span class="e">)</span>
-<span class="b">}</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.build/doc/scripting/builtintasks/static.html" title="Task: static()">static</a>(</span><span class="c">DEPENDENCY_VERSION</span><span class="d">)</span> = <span class="e">1.0</span>
+<span class="d"><a href="../../../saker.build/doc/scripting/builtintasks/static.html" title="Task: static()">static</a>(</span><span class="c">commonResult</span><span class="d">)</span> = <span class="d">common.task()</span>
+<span class="a">build</span> <span class="a">{</span>
+	<span class="d">example.load.dependency(</span><span class="e">&quot;my.dependency-v</span><span class="j">{</span> <span class="d"><a href="../../../saker.build/doc/scripting/builtintasks/static.html" title="Task: static()">static</a>(</span><span class="c">DEPENDENCY_VERSION</span><span class="d">)</span><span class="j"> }</span><span class="e">&quot;</span><span class="d">)</span>
+<span class="a">}</span>
 </code></pre>
 <h4 id="global-variables">Global variables<a class="doc-heading-anchor" href="#global-variables"></a></h4>
 <p>Global variables are named build execution level variables that are shared with <strong>all</strong> of the build scripts, regardless of the language of the associated script. See <a href="../scripting/builtintasks/global.html" title="global()"><code>global()</code></a> for mor information about them.</p>
 <p>They should be named in <code>&lt;identifier&gt;.UPPER_SNAKE_CASE</code> format. The <code>&lt;identifier&gt;</code> should uniquely identify the company and/or the project that the variable is present in.</p>
 <p>Global variables should only contain constant configuration data, and their value should not be dynamically computed.</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.build/doc/scripting/builtintasks/global.html" title="Task: global()">global</a>(</span><span class="d">company.hello.world.DEPENDENCY_VERSION</span><span class="e">)</span> = <span class="f">1.0</span>
-<span class="a">build</span> <span class="b">{</span>
-	<span class="e">example.load.dependency(</span><span class="f">&quot;my.dependency-v</span>{ <span class="e"><a href="../../../saker.build/doc/scripting/builtintasks/global.html" title="Task: global()">global</a>(</span><span class="d">company.hello.world.DEPENDENCY_VERSION</span><span class="e">)</span> }<span class="f">&quot;</span><span class="e">)</span>
-<span class="b">}</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.build/doc/scripting/builtintasks/global.html" title="Task: global()">global</a>(</span><span class="c">company.hello.world.DEPENDENCY_VERSION</span><span class="d">)</span> = <span class="e">1.0</span>
+<span class="a">build</span> <span class="a">{</span>
+	<span class="d">example.load.dependency(</span><span class="e">&quot;my.dependency-v</span><span class="j">{</span> <span class="d"><a href="../../../saker.build/doc/scripting/builtintasks/global.html" title="Task: global()">global</a>(</span><span class="c">company.hello.world.DEPENDENCY_VERSION</span><span class="d">)</span><span class="j"> }</span><span class="e">&quot;</span><span class="d">)</span>
+<span class="a">}</span>
 </code></pre>
 <p>This naming conventions applies for all scripting languages. It also helps avoiding conflicts when build scripts from other sources are included.</p>
 <h3 id="task-parameters">Task parameters<a class="doc-heading-anchor" href="#task-parameters"></a></h3>
 <p>The following mainly applies for task implementation developers. Task parameters should be named in <code>PascalCase</code>, similarly to build target parameters.</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="e">example.compile.sources(</span>
-	<span class="i">SourceDirectory</span>: <span class="f">src</span>, 
-	<span class="i">Architecture: </span><span class="f">x86</span>
-<span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d">example.compile.sources(</span>
+	<span class="h">SourceDirectory</span>: <span class="e">src</span>, 
+	<span class="h">Architecture</span>: <span class="e">x86</span>
+<span class="d">)</span>
 </code></pre>
 <p>If the task declares unnamed parameters, the expected value for that parameter should be straight forward to understand based on the name or behaviour of the declaring task.</p>
 <h2 id="calling-tasks">Calling tasks<a class="doc-heading-anchor" href="#calling-tasks"></a></h2>
 <p>When task invocations are declared, they might take multiple parameters. With multiple parameters, the line of the declaration may be too long, or otherwise be chaotic.</p>
 <p>We recommend breaking up the parameters of a task invocation into multiple lines in the following way:</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="c"># single unnamed parameter, no breaking</span>
-<span class="e"><a href="../../../saker.build/doc/scripting/builtintasks/include.html" title="Task: include()">include</a>(</span><span class="f">build</span><span class="e">)</span>
-<span class="c"># unnamed parameter, and one single named parameter.</span>
-<span class="c"># breaking is optional</span>
-<span class="e"><a href="../../../saker.build/doc/scripting/builtintasks/include.html" title="Task: include()">include</a>(</span><span class="f">build</span>, <span class="i">Path: </span><span class="f">saker.build</span><span class="e">)</span>
-<span class="c"># more than 1 named parameter, the declaration should be broken up</span>
-<span class="c"># each parameter on a new line indented with 1 tab</span>
-<span class="c"># all parameters should have a separator comma after them</span>
-<span class="c"># closing parentheses indented the same amount as the task name</span>
-<span class="e"><a href="../../../saker.build/doc/scripting/builtintasks/include.html" title="Task: include()">include</a>(</span>
-	<span class="f">build</span>, 
-	<span class="i">Path: </span><span class="f">saker.build</span>, 
-	<span class="i">SourceDirectory: </span><span class="f">src</span>, 
-	<span class="i">Architecture: </span><span class="f">x86</span>,
-<span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="b"># single unnamed parameter, no breaking</span>
+<span class="d"><a href="../../../saker.build/doc/scripting/builtintasks/include.html" title="Task: include()">include</a>(</span><span class="e">build</span><span class="d">)</span>
+<span class="b"># unnamed parameter, and one single named parameter.</span>
+<span class="b"># breaking is optional</span>
+<span class="d"><a href="../../../saker.build/doc/scripting/builtintasks/include.html" title="Task: include()">include</a>(</span><span class="e">build</span>, <span class="h">Path</span>: <span class="e">saker.build</span><span class="d">)</span>
+<span class="b"># more than 1 named parameter, the declaration should be broken up</span>
+<span class="b"># each parameter on a new line indented with 1 tab</span>
+<span class="b"># all parameters should have a separator comma after them</span>
+<span class="b"># closing parentheses indented the same amount as the task name</span>
+<span class="d"><a href="../../../saker.build/doc/scripting/builtintasks/include.html" title="Task: include()">include</a>(</span>
+	<span class="e">build</span>, 
+	<span class="h">Path</span>: <span class="e">saker.build</span>, 
+	<span class="h">SourceDirectory</span>: <span class="e">src</span>, 
+	<span class="h">Architecture</span>: <span class="e">x86</span>,
+<span class="d">)</span>
 </code></pre>
 <h2 id="literals">Literals<a class="doc-heading-anchor" href="#literals"></a></h2>
 <p>Simple literal declarations should be on a single line without breaking up.<br />
 Lists may be broken up when it becomes too long on a single line. If a list is broken up, then all of the elements should be on a separate line.<br />
 Maps can be on a single line if they contain at most 1 entry. In other cases they should be broken up with 1 entry on each line.</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="d">$simple</span> = <span class="f">abcd123</span>
-<span class="d">$simplelist</span> = <span class="b">[</span><span class="f">1</span><span class="b">,</span> <span class="f">2</span><span class="b">,</span> <span class="f">3</span><span class="b">]</span>
-<span class="d">$biglist</span> = <span class="b">[</span>
-	<span class="f">1</span><span class="b">,</span>
-	<span class="f">2</span><span class="b">,</span>
-	<span class="f">3</span><span class="b">,</span>
-<span class="b">]</span>
-<span class="d">$simplemap</span> = <span class="b">{</span> <span class="h">Key</span>: <span class="f">value</span><span class="b"> }</span>
-<span class="d">$bigmap</span> = <span class="b">{</span>
-	<span class="h">Key</span>: <span class="f">value</span><span class="b">,</span>
-	<span class="h">ListKey</span>: <span class="b">[</span><span class="f">1</span><span class="b">,</span> <span class="f">2</span><span class="b">,</span> <span class="f">3</span><span class="b">],</span>
-	<span class="h">BigListKey</span>: <span class="b">[</span>
-		<span class="f">1</span><span class="b">,</span>
-		<span class="f">2</span><span class="b">,</span>
-		<span class="f">3</span><span class="b">,</span>
-	<span class="b">],</span>
-	<span class="h">MapKey</span>: <span class="b">{</span> <span class="h">Key</span>: <span class="f">value</span><span class="b"> },</span>
-	<span class="h">BigMapKey</span>: <span class="b">{</span>
-		<span class="h">TheValue</span>: <span class="f">abcd123</span><span class="b">,</span>
-	<span class="b">},</span>
-<span class="b">}</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="c">$simple</span> = <span class="e">abcd123</span>
+<span class="c">$simplelist</span> = <span class="i">[</span><span class="e">1</span><span class="i">,</span> <span class="e">2</span><span class="i">,</span> <span class="e">3</span><span class="i">]</span>
+<span class="c">$biglist</span> = <span class="i">[</span>
+	<span class="e">1</span><span class="i">,</span>
+	<span class="e">2</span><span class="i">,</span>
+	<span class="e">3</span><span class="i">,</span>
+<span class="i">]</span>
+<span class="c">$simplemap</span> = <span class="i">{</span> <span class="g">Key</span>: <span class="e">value</span><span class="i"> }</span>
+<span class="c">$bigmap</span> = <span class="i">{</span>
+	<span class="g">Key</span>: <span class="e">value</span><span class="i">,</span>
+	<span class="g">ListKey</span>: <span class="i">[</span><span class="e">1</span><span class="i">,</span> <span class="e">2</span><span class="i">,</span> <span class="e">3</span><span class="i">],</span>
+	<span class="g">BigListKey</span>: <span class="i">[</span>
+		<span class="e">1</span><span class="i">,</span>
+		<span class="e">2</span><span class="i">,</span>
+		<span class="e">3</span><span class="i">,</span>
+	<span class="i">],</span>
+	<span class="g">MapKey</span>: <span class="i">{</span> <span class="g">Key</span>: <span class="e">value</span><span class="i"> },</span>
+	<span class="g">BigMapKey</span>: <span class="i">{</span>
+		<span class="g">TheValue</span>: <span class="e">abcd123</span><span class="i">,</span>
+	<span class="i">},</span>
+<span class="i">}</span>
 </code></pre>
 <p>When lists or maps are broken up, all of their elements/entries should end with a comma.</p>
 <h2 id="compound-literals">Compound literals<a class="doc-heading-anchor" href="#compound-literals"></a></h2>
@@ -195,28 +195,28 @@ Maps can be on a single line if they contain at most 1 entry. In other cases the
 <p>Writers of a build script are recommended to use simple unquoted literals when possible, and use quotes when they contain special characters. They should not actively search for literals that could be unquoted, meaning that if a literal has been used in quotes, they may remain in quotes.</p>
 <h2 id="whitespace">Whitespace<a class="doc-heading-anchor" href="#whitespace"></a></h2>
 <p>Spaces should be used in places of operators or other kind of separator source elements.</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="c"># spaces around operators</span>
-<span class="d">$sum</span> = <span class="f">123</span> + <span class="f">456</span>
-<span class="c"># spaces around map braces and after key ':'</span>
-<span class="d">$map</span> = <span class="b">{</span> <span class="h">Key</span>: <span class="f">value</span><span class="b"> }</span>
-<span class="c"># spaces after commas, but not necessarily around list brackets</span>
-<span class="d">$list</span> = <span class="b">[</span><span class="f">1</span><span class="b">,</span> <span class="f">2</span><span class="b">,</span> <span class="f">3</span><span class="b">]</span>
-<span class="c"># spaces around if-else braces</span>
-<span class="j">if </span><span class="d">$condition</span> {
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="b"># spaces around operators</span>
+<span class="c">$sum</span> = <span class="e">123</span> + <span class="e">456</span>
+<span class="b"># spaces around map braces and after key ':'</span>
+<span class="c">$map</span> = <span class="i">{</span> <span class="g">Key</span>: <span class="e">value</span><span class="i"> }</span>
+<span class="b"># spaces after commas, but not necessarily around list brackets</span>
+<span class="c">$list</span> = <span class="i">[</span><span class="e">1</span><span class="i">,</span> <span class="e">2</span><span class="i">,</span> <span class="e">3</span><span class="i">]</span>
+<span class="b"># spaces around if-else braces</span>
+<span class="j">if </span><span class="c">$condition</span> {
 }<span class="j"> else </span>{
 }
-<span class="c">#spaces around braces and result expression ':'</span>
-<span class="j">foreach </span><span class="d">$item</span><span class="j"> in </span><span class="d">$iterable</span> {
-} : <span class="b">[</span><span class="d">$item</span><span class="b">]</span>
+<span class="b">#spaces around braces and result expression ':'</span>
+<span class="j">foreach </span><span class="c">$item</span><span class="j"> in </span><span class="c">$iterable</span> <span class="j">{</span>
+<span class="j">}</span> <span class="j">:</span> <span class="j">[</span><span class="c">$item</span><span class="j">]</span>
 </code></pre>
 <h2 id="indentation">Indentation<a class="doc-heading-anchor" href="#indentation"></a></h2>
 <p>Indentation should be done using tabs. Tabs are recommended to be displayed with a width of 4 spaces.</p>
 <p>Every source code element that is enclosed in an other construct should be indented with 1 more tab than its enclosing element. These are build target parameters, map entries, list elements, task parameters, <code>foreach</code> local variables, expression statements, and others.</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="c"># indent local declarations by 1, on the same level as expressions</span>
-<span class="j">foreach </span><span class="d">$item</span><span class="j"> in </span><span class="d">$iterable</span><span class="j">
-	with </span><span class="d">$local</span> {
-	<span class="c"># ...	</span>
-}
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="b"># indent local declarations by 1, on the same level as expressions</span>
+<span class="j">foreach </span><span class="c">$item</span><span class="j"> in </span><span class="c">$iterable</span><span class="j">
+	with </span><span class="c">$local</span> <span class="j">{</span>
+	<span class="b"># ...	</span>
+<span class="j">}</span>
 </code></pre>
 <h2 id="ordering">Ordering<a class="doc-heading-anchor" href="#ordering"></a></h2>
 <p>The elements in the source files should have the following order:</p>
@@ -227,20 +227,20 @@ Maps can be on a single line if they contain at most 1 entry. In other cases the
 <li>Publicly invokable build targets</li>
 <li>Internal build targets</li>
 </ol>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="e"><a href="../../../saker.build/doc/scripting/builtintasks/global.html" title="Task: global()">global</a>(</span><span class="d">global.VAR</span><span class="e">)</span> = <span class="f">123</span>
-<span class="e"><a href="../../../saker.build/doc/scripting/builtintasks/static.html" title="Task: static()">static</a>(</span><span class="d">STATIC_VAR</span><span class="e">)</span> = <span class="f">456</span>
-<span class="e">global.expression.task()</span>
-<span class="a">build</span> <span class="b">{</span>
-	<span class="c"># ...</span>
-<span class="b">}</span>
-<span class="a">_private_build_target</span> <span class="b">{</span>
-	<span class="c"># ...</span>
-<span class="b">}</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.build/doc/scripting/builtintasks/global.html" title="Task: global()">global</a>(</span><span class="c">global.VAR</span><span class="d">)</span> = <span class="e">123</span>
+<span class="d"><a href="../../../saker.build/doc/scripting/builtintasks/static.html" title="Task: static()">static</a>(</span><span class="c">STATIC_VAR</span><span class="d">)</span> = <span class="e">456</span>
+<span class="d">global.expression.task()</span>
+<span class="a">build</span> <span class="a">{</span>
+	<span class="b"># ...</span>
+<span class="a">}</span>
+<span class="a">_private_build_target</span> <span class="a">{</span>
+	<span class="b"># ...</span>
+<span class="a">}</span>
 </code></pre>
 <p>Expressions in build targets or among the global expressions should be ordered in a way that it can be semantically followed. Generally this is the order that the build process would do if the execution was sequential. (When possible to declare them this way.)</p>
 <p>We strongly advise against declaring expressions in the following order:</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="e">example.compile.sources(</span><span class="i">SourceDirectory</span>: <span class="d">$sourcedir</span><span class="e">)</span>
-<span class="d">$sourcedir</span> = <span class="f">src</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d">example.compile.sources(</span><span class="h">SourceDirectory</span>: <span class="c">$sourcedir</span><span class="d">)</span>
+<span class="c">$sourcedir</span> = <span class="e">src</span>
 </code></pre>
 <p>You see that the <code>$sourcedir</code> variable is assigned <em>after</em> it is being used. This can be counterintuitive for the reader. We recommend declaring the inputs of an expression before they are being used in that expression.</p>
 <link href="../../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>

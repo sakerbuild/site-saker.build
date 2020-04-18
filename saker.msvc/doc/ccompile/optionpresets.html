@@ -73,18 +73,18 @@
 <p>Option presets are predefined configurations that can be applied to compiler and linker tasks. They are provided by the <a href="../../taskdoc/saker.msvc.coptions.preset.html"><code>saker.msvc.coptions.preset()</code></a> task and they can be applied to the <code>CompilerOptions</code> parameter for C compilation and <code>LinkerOptions</code> parameter for linking.</p>
 <p>The purpose of presets is to ease common configurations instead of requiring the developer to manually configure the <a href="https://docs.microsoft.com/en-us/cpp/build/reference/compiling-a-c-cpp-program?view=vs-2019" title="MSVC C/C++ compiler reference - Visual Studio | Microsoft Docs"><code>cl.exe</code></a> and <a href="https://docs.microsoft.com/en-us/cpp/build/reference/linking?view=vs-2019" title="MSVC linker reference | Microsoft Docs"><code>link.exe</code></a> arguments.</p>
 <p>An example that uses the preset for creating a dynamic link library:</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="d">$ccompile</span> = <span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span>
-	<span class="f">src/**/*.cpp</span>,
-	<span class="i">CompilerOptions: </span><span class="b">[</span>
-		<span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.coptions.preset.html" title="Task: saker.msvc.coptions.preset()">saker.msvc.coptions.preset</a>(</span><span class="f">dll</span><span class="e">)</span><span class="b">,</span>
-	<span class="b">]</span>
-<span class="e">)</span>
-<span class="d">$procclink</span> = <span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.clink.html" title="Task: saker.msvc.clink()">saker.msvc.clink</a>(</span>
-	<span class="d">$ccompile</span>,
-	<span class="i">LinkerOptions: </span><span class="b">[</span>
-		<span class="e"><a href="../../../saker.msvc/taskdoc/saker.msvc.coptions.preset.html" title="Task: saker.msvc.coptions.preset()">saker.msvc.coptions.preset</a>(</span><span class="f">dll</span><span class="e">)</span><span class="b">,</span>
-	<span class="b">]</span>
-<span class="e">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="c">$ccompile</span> = <span class="d"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span>
+	<span class="e">src/**/*.cpp</span>,
+	<span class="h">CompilerOptions</span>: <span class="i">[</span>
+		<span class="d"><a href="../../../saker.msvc/taskdoc/saker.msvc.coptions.preset.html" title="Task: saker.msvc.coptions.preset()">saker.msvc.coptions.preset</a>(</span><span class="e">dll</span><span class="d">)</span><span class="i">,</span>
+	<span class="i">]</span>
+<span class="d">)</span>
+<span class="c">$procclink</span> = <span class="d"><a href="../../../saker.msvc/taskdoc/saker.msvc.clink.html" title="Task: saker.msvc.clink()">saker.msvc.clink</a>(</span>
+	<span class="c">$ccompile</span>,
+	<span class="h">LinkerOptions</span>: <span class="i">[</span>
+		<span class="d"><a href="../../../saker.msvc/taskdoc/saker.msvc.coptions.preset.html" title="Task: saker.msvc.coptions.preset()">saker.msvc.coptions.preset</a>(</span><span class="e">dll</span><span class="d">)</span><span class="i">,</span>
+	<span class="i">]</span>
+<span class="d">)</span>
 </code></pre>
 <p>The preset with the name <code>dll</code> can be used to get a preset configuration that when applied to the compilation and linker tasks will produce a DLL output.</p>
 <p>The use of presets are optional, and the tasks may be configured the same way to the full extent without them.</p>
