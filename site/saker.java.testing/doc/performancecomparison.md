@@ -30,7 +30,7 @@ test {
 
 Let's see the results:
 
-<div id="perf-large-monolithic-test" style="--doc-metric:'ms';" class="doc-bar-graph" doc-label-y="duration">
+<div id="perf-large-monolithic-test" style="--doc-metric:' ms';" class="doc-bar-graph" doc-label-y="duration">
 
 <div class="doc-bar-graph-title">Large monolithic project compile + test</div>
 

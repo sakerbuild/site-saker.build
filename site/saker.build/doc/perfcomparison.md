@@ -8,7 +8,7 @@ We'll be showcasing the performance measurements from the [saker.java.compiler](
 
 We've made many efforts to improve both or clean and incremental Java compilation times. As a result, saker.build compiles Java projects **15-70%** faster compared to [Gradle](https://gradle.org/). For clean builds, the following results were measured:
 
-<div id="perf-clean-java-compile" style="--doc-metric:'ms';" class="doc-bar-graph" doc-label-y="duration">
+<div id="perf-clean-java-compile" style="--doc-metric:' ms';" class="doc-bar-graph" doc-label-y="duration">
 
 <div class="doc-bar-graph-title">Clean Java compilation</div>
 
@@ -24,7 +24,7 @@ When it comes to clean build performance, saker.build overtakes Gradle in every 
 
 However, incremental build times matter more when it comes to the edit-build-run development cycle:
 
-<div id="perf-incremental-java-compile" style="--doc-metric:'ms';" class="doc-bar-graph" doc-label-y="duration">
+<div id="perf-incremental-java-compile" style="--doc-metric:' ms';" class="doc-bar-graph" doc-label-y="duration">
 
 <div class="doc-bar-graph-title">Incremental Java compilation</div>
 
@@ -43,7 +43,7 @@ No matter how you structure your codebase, the incremental compilation implement
 
 Saker.build is a general build system, therefore supporting any kind of language for which the build tasks are implemented. We've added support for C/C++ compilation using the MSVC toolchain. As a starter, we measured the performance of how saker.build can manage the scheduling of the compilation tasks. For this, we compared the results to the [Ninja](https://ninja-build.org/) build tool. 
 
-<div id="perf-cpp-ninja" style="--doc-metric:'ms';" class="doc-bar-graph" doc-label-y="duration">
+<div id="perf-cpp-ninja" style="--doc-metric:' ms';" class="doc-bar-graph" doc-label-y="duration">
 
 <div class="doc-bar-graph-title">C/C++ builds</div>
 
@@ -65,7 +65,7 @@ Building C/C++ sources are such a task, as the source files that need to be comp
 
 For cluster comparison we measured the performance of saker.build against the [IncrediBuild](https://www.incredibuild.com/) tool. The test case distributes 1000 source files and uses 2 worker machines to compile C++ sources.
 
-<div id="perf-cluster-incredibuild" style="--doc-metric:'ms';" class="doc-bar-graph" doc-label-y="duration">
+<div id="perf-cluster-incredibuild" style="--doc-metric:' ms';" class="doc-bar-graph" doc-label-y="duration">
 
 <div class="doc-bar-graph-title">Distributed compilation</div>
 

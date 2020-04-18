@@ -18,6 +18,7 @@ build {
 		LANDING_FOOTER: templates/landing/footer.html,
 		LANDING_HEADER: templates/landing/header.html,
 		DOC_SPONSOR_TEMPLATE: templates/sponsor/sponsortemplate.html,
+		BAR_GRAPH_INCLUDE: buildres/inc/bargraph.inc.txt,
 	}
 	$landingmacros = {
 		PACKAGE_NAME: "",

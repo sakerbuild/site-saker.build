@@ -24,7 +24,7 @@ We'll be using the (currently latest) `6.0.1` version of Gradle in the following
 
 For this measurement we take the [current latest](https://github.com/apache/commons-lang/tree/404d67841ecba0d2a5e8055fe5650907d582ac03) available version of the master branch, and perform clean and incremental compilations.
 
-<div id="perf-apache-commons" style="--doc-metric:'ms';" class="doc-bar-graph" doc-label-y="duration">
+<div id="perf-apache-commons" style="--doc-metric:' ms';" class="doc-bar-graph" doc-label-y="duration">
 
 <div class="doc-bar-graph-title">Apache Commons Lang</div>
 
@@ -47,7 +47,7 @@ In the following measurement we compile a project that contains of multiple cros
 
 We also used the `--parallel` flag when invoking Gradle, as without it the builds were much slower. The actual project that was built is available [here](https://github.com/sakerbuild/performance-comparisons/tree/bf6bbd6f2d9bb0eb66eeb1973dc069bf5c0a2ba7/java-large-multiproject).
 
-<div id="perf-large-multi" style="--doc-metric:'ms';" class="doc-bar-graph" doc-label-y="duration">
+<div id="perf-large-multi" style="--doc-metric:' ms';" class="doc-bar-graph" doc-label-y="duration">
 
 <div class="doc-bar-graph-title">Large multi-project build</div>
 
@@ -70,7 +70,7 @@ For the ABI changing tests, we added a new `public int i` field for every measur
 
 Next up is a measurement that compiles large amount of Java sources in a single compilation pass. The project is taken from the [Gradle single-large-project](https://github.com/gradle/performance-comparisons/tree/13739fa299e485c079335b0cd5b30da1cff92234/single-large-project) performance comparion scenario, and we measured both tools by running the builds. We've cleaned up the Gradle build file so it doesn't include unnecessary dependencies and IDE plugins.
 
-<div id="perf-large-monolithic" style="--doc-metric:'ms';" class="doc-bar-graph" doc-label-y="duration">
+<div id="perf-large-monolithic" style="--doc-metric:' ms';" class="doc-bar-graph" doc-label-y="duration">
 
 <div class="doc-bar-graph-title">Large monolithic build</div>
 

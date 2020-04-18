@@ -23,7 +23,7 @@ In the following tests we generated 1000 source files each with a single declare
 
 The project is available [here](https://github.com/sakerbuild/performance-comparisons/tree/bf6bbd6f2d9bb0eb66eeb1973dc069bf5c0a2ba7/msvc-ninja-1000).
 
-<div id="perf-1000-ninja" style="--doc-metric:'ms';" class="doc-bar-graph" doc-label-y="duration">
+<div id="perf-1000-ninja" style="--doc-metric:' ms';" class="doc-bar-graph" doc-label-y="duration">
 
 <div class="doc-bar-graph-title">Ninja comparison</div>
 
@@ -55,7 +55,7 @@ We use a second PC that is attached as an agent/cluster to our main one. The sec
 
 IncrediBuild is run inside Visual Studio 2019. The linking times are not included in the results. The CPUs total in 17.6 GHz, and 6 cores. We're using the verison 9.4.4 (build 3042).
 
-<div id="perf-1000-cluster" style="--doc-metric:'ms';" class="doc-bar-graph" doc-label-y="duration">
+<div id="perf-1000-cluster" style="--doc-metric:' ms';" class="doc-bar-graph" doc-label-y="duration">
 
 <div class="doc-bar-graph-title">Distributed compilation scheduling</div>
 
@@ -86,7 +86,7 @@ The test case contains of 1000 C++ source files with each of them including `<Wi
 
 The project codebase is available [here](https://github.com/sakerbuild/performance-comparisons/tree/bf6bbd6f2d9bb0eb66eeb1973dc069bf5c0a2ba7/msvc-cluster-realistic-1000).
 
-<div id="perf-realistic-1000-cluster" style="--doc-metric:'ms';" class="doc-bar-graph" doc-label-y="duration">
+<div id="perf-realistic-1000-cluster" style="--doc-metric:' ms';" class="doc-bar-graph" doc-label-y="duration">
 
 <div class="doc-bar-graph-title">Realistic distributed compilation</div>
 
