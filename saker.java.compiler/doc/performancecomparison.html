@@ -82,7 +82,7 @@
 <p>We'll be using the (currently latest) <code>6.0.1</code> version of Gradle in the following tests.</p>
 <h3 id="apache-commons-lang">Apache Commons Lang<a class="doc-heading-anchor" href="#apache-commons-lang"></a></h3>
 <p>For this measurement we take the <a href="https://github.com/apache/commons-lang/tree/404d67841ecba0d2a5e8055fe5650907d582ac03" title="GitHub - apache/commons-lang at 404d67841ecba0d2a5e8055fe5650907d582ac03">current latest</a> available version of the master branch, and perform clean and incremental compilations.</p>
-<div id="perf-apache-commons" style="--doc-metric:'ms';" class="doc-bar-graph" doc-label-y="duration">
+<div id="perf-apache-commons" style="--doc-metric:' ms';" class="doc-bar-graph" doc-label-y="duration">
 <div class="doc-bar-graph-title">Apache Commons Lang</div>
 <table>
 <thead>
@@ -101,7 +101,7 @@
 <h3 id="large-multi-project">Large multi-project<a class="doc-heading-anchor" href="#large-multi-project"></a></h3>
 <p>In the following measurement we compile a project that contains of multiple cross-dependent Java subprojects. We took the <a href="https://github.com/gradle/performance-comparisons/tree/13739fa299e485c079335b0cd5b30da1cff92234/large-multiproject" title="performance-comparisons/large-multiproject at 13739fa299e485c079335b0cd5b30da1cff92234 &#183; gradle/performance-comparisons &#183; GitHub">Gradle large multi-project</a> codebase as the basis of the test, removed unnecesssary testing and library classpath code, and simplified the Gradle build process to have a fair comparison.</p>
 <p>We also used the <code>--parallel</code> flag when invoking Gradle, as without it the builds were much slower. The actual project that was built is available <a href="https://github.com/sakerbuild/performance-comparisons/tree/bf6bbd6f2d9bb0eb66eeb1973dc069bf5c0a2ba7/java-large-multiproject" title="performance-comparisons/java-large-multiproject at bf6bbd6f2d9bb0eb66eeb1973dc069bf5c0a2ba7 &#183; sakerbuild/performance-comparisons &#183; GitHub">here</a>.</p>
-<div id="perf-large-multi" style="--doc-metric:'ms';" class="doc-bar-graph" doc-label-y="duration">
+<div id="perf-large-multi" style="--doc-metric:' ms';" class="doc-bar-graph" doc-label-y="duration">
 <div class="doc-bar-graph-title">Large multi-project build</div>
 <table>
 <thead>
@@ -120,7 +120,7 @@
 <p>For the ABI changing tests, we added a new <code>public int i</code> field for every measurement that we've performed. This causes all the subprojects which depend on the structure of the <code>Production1_315</code> class to be recompiled. In the end, multiple subprojects are recompiled. This was the case where the difference between the two tools were the smallest, saker.build is only <strong>41%</strong> faster than Gradle.</p>
 <h3 id="large-monolithic-project">Large monolithic project<a class="doc-heading-anchor" href="#large-monolithic-project"></a></h3>
 <p>Next up is a measurement that compiles large amount of Java sources in a single compilation pass. The project is taken from the <a href="https://github.com/gradle/performance-comparisons/tree/13739fa299e485c079335b0cd5b30da1cff92234/single-large-project" title="performance-comparisons/single-large-project at 13739fa299e485c079335b0cd5b30da1cff92234 &#183; gradle/performance-comparisons &#183; GitHub">Gradle single-large-project</a> performance comparion scenario, and we measured both tools by running the builds. We've cleaned up the Gradle build file so it doesn't include unnecessary dependencies and IDE plugins.</p>
-<div id="perf-large-monolithic" style="--doc-metric:'ms';" class="doc-bar-graph" doc-label-y="duration">
+<div id="perf-large-monolithic" style="--doc-metric:' ms';" class="doc-bar-graph" doc-label-y="duration">
 <div class="doc-bar-graph-title">Large monolithic build</div>
 <table>
 <thead>
@@ -155,9 +155,13 @@
 		'incredibuild': '#8c114e'
 	};
 	function groupedNumber(x) {
-	  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+		if(x == null) {
+			return null;
+		}
+	  	return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
 	}
-	function createChart(targetid, title, data, metric, color, ylabel) {
+	function createChart(targetid, title, data, metric, color, ylabel, grouping) {
+	console.log(grouping);
 		c3.generate({
 			bindto: targetid,
 			data: {
@@ -165,9 +169,10 @@
 				type: 'bar',
 				x: data[0][0],
 				labels: {
-					format: function(v, id, i, j) { return groupedNumber(v) + " " + metric; }
+					format: function(v, id, i, j) { return v == null ? null : (groupedNumber(v) + metric); }
 				},
-				order: null
+				order: null,
+				groups: grouping
 			},
 			axis: {
 				x: {
@@ -194,7 +199,7 @@
 			},
 			tooltip: {
 				format: {
-					value: function (value, ratio, id, index) { return groupedNumber(value) + " " + metric; }
+					value: function (value, ratio, id, index) { return value == null ? null : (groupedNumber(value) + metric); }
 				}
 			}
 		});
@@ -204,7 +209,8 @@
 	graphdivs.forEach(function(gdiv) {
 		let tableinfo = Array.prototype.map.call(gdiv.querySelectorAll('tr'), function(tr){
 			return Array.prototype.map.call(tr.querySelectorAll('td,th'), function(td){
-		    	return td.innerHTML;
+				let ih = td.innerHTML;
+		    	return ih == "" ? null : ih;
 			});
 		});
 		let colorspattern = [];
@@ -217,13 +223,16 @@
 				colorspattern.push(colors[id]);
 			}
 		}
+		let grouping = gdiv.getAttribute('doc-grouping');
+		let graphtitle = gdiv.querySelector('.doc-bar-graph-title');
 		createChart(
 			'#' + gdiv.id, 
-			gdiv.querySelector('.doc-bar-graph-title').textContent, 
+			graphtitle == null ? null : graphtitle.textContent, 
 			tableinfo, 
 			window.getComputedStyle(gdiv).getPropertyValue('--doc-metric').slice(1, -1), 
 			colorspattern, 
-			gdiv.getAttribute('doc-label-y')
+			gdiv.getAttribute('doc-label-y'),
+			grouping == null ? undefined : JSON.parse(grouping)
 		);
 	});
 }());

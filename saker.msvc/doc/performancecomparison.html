@@ -95,7 +95,7 @@
 <p><a href="https://ninja-build.org/" title="Ninja, a small build system with a focus on speed">Ninja</a> is a widely used tool that is used in the C/C++ ecosystem. Most commonly it is a backend for other meta build systems that run the processes as part of the build. It focuses on speed, and is an appropriate candidate to compare the performance of saker.build.</p>
 <p>In the following tests we generated 1000 source files each with a single declared function. No include directories and special options are passed to the <code>cl.exe</code> compiler. We don't perform linking of the created object files. Important aspect is that both saker.build and Ninja executes the same command line commands.</p>
 <p>The project is available <a href="https://github.com/sakerbuild/performance-comparisons/tree/bf6bbd6f2d9bb0eb66eeb1973dc069bf5c0a2ba7/msvc-ninja-1000" title="performance-comparisons/msvc-ninja-1000 at bf6bbd6f2d9bb0eb66eeb1973dc069bf5c0a2ba7 &#183; sakerbuild/performance-comparisons &#183; GitHub">here</a>.</p>
-<div id="perf-1000-ninja" style="--doc-metric:'ms';" class="doc-bar-graph" doc-label-y="duration">
+<div id="perf-1000-ninja" style="--doc-metric:' ms';" class="doc-bar-graph" doc-label-y="duration">
 <div class="doc-bar-graph-title">Ninja comparison</div>
 <table>
 <thead>
@@ -124,7 +124,7 @@
 <p>We will be using the same test case as in the <a href="performancecomparison.html#ninja" title="Ninja">Ninja</a> comparison.</p>
 <p>We use a second PC that is attached as an agent/cluster to our main one. The second PC is slower than the coordinator. It usually takes 23 seconds to compile the test case using Ninja. Based on this, we assume that the agent has only the 41% performance compared to the coordinator. Based on this, the optimal scenario in which both PCs work on 100% during the compilation, the build would take around 7.25 seconds (without any network communication).</p>
 <p>IncrediBuild is run inside Visual Studio 2019. The linking times are not included in the results. The CPUs total in 17.6 GHz, and 6 cores. We're using the verison 9.4.4 (build 3042).</p>
-<div id="perf-1000-cluster" style="--doc-metric:'ms';" class="doc-bar-graph" doc-label-y="duration">
+<div id="perf-1000-cluster" style="--doc-metric:' ms';" class="doc-bar-graph" doc-label-y="duration">
 <div class="doc-bar-graph-title">Distributed compilation scheduling</div>
 <table>
 <thead>
@@ -150,7 +150,7 @@
 <p>In the previous test case we've seen that the network communication can have a non-negligible impact on the distributed compilation, if the compilation times are minimal. In the following test, we'll be looking on a more realistic example. The example will have source files that take longer to compile, and use include directories that need to be synchronized with the build clusters.</p>
 <p>The test case contains of 1000 C++ source files with each of them including <code>&lt;Windows.h&gt;</code>, <code>&lt;vector&gt;</code>, and random amount of user includes that are also part of the project. The inclusion of these files cause the compilation times to go up (around 600-700 ms on our main machine), therefore the the compilation times should now outweigh the network communication times.</p>
 <p>The project codebase is available <a href="https://github.com/sakerbuild/performance-comparisons/tree/bf6bbd6f2d9bb0eb66eeb1973dc069bf5c0a2ba7/msvc-cluster-realistic-1000" title="performance-comparisons/msvc-cluster-realistic-1000 at bf6bbd6f2d9bb0eb66eeb1973dc069bf5c0a2ba7 &#183; sakerbuild/performance-comparisons &#183; GitHub">here</a>.</p>
-<div id="perf-realistic-1000-cluster" style="--doc-metric:'ms';" class="doc-bar-graph" doc-label-y="duration">
+<div id="perf-realistic-1000-cluster" style="--doc-metric:' ms';" class="doc-bar-graph" doc-label-y="duration">
 <div class="doc-bar-graph-title">Realistic distributed compilation</div>
 <table>
 <thead>
@@ -187,9 +187,13 @@
 		'incredibuild': '#8c114e'
 	};
 	function groupedNumber(x) {
-	  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+		if(x == null) {
+			return null;
+		}
+	  	return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
 	}
-	function createChart(targetid, title, data, metric, color, ylabel) {
+	function createChart(targetid, title, data, metric, color, ylabel, grouping) {
+	console.log(grouping);
 		c3.generate({
 			bindto: targetid,
 			data: {
@@ -197,9 +201,10 @@
 				type: 'bar',
 				x: data[0][0],
 				labels: {
-					format: function(v, id, i, j) { return groupedNumber(v) + " " + metric; }
+					format: function(v, id, i, j) { return v == null ? null : (groupedNumber(v) + metric); }
 				},
-				order: null
+				order: null,
+				groups: grouping
 			},
 			axis: {
 				x: {
@@ -226,7 +231,7 @@
 			},
 			tooltip: {
 				format: {
-					value: function (value, ratio, id, index) { return groupedNumber(value) + " " + metric; }
+					value: function (value, ratio, id, index) { return value == null ? null : (groupedNumber(value) + metric); }
 				}
 			}
 		});
@@ -236,7 +241,8 @@
 	graphdivs.forEach(function(gdiv) {
 		let tableinfo = Array.prototype.map.call(gdiv.querySelectorAll('tr'), function(tr){
 			return Array.prototype.map.call(tr.querySelectorAll('td,th'), function(td){
-		    	return td.innerHTML;
+				let ih = td.innerHTML;
+		    	return ih == "" ? null : ih;
 			});
 		});
 		let colorspattern = [];
@@ -249,13 +255,16 @@
 				colorspattern.push(colors[id]);
 			}
 		}
+		let grouping = gdiv.getAttribute('doc-grouping');
+		let graphtitle = gdiv.querySelector('.doc-bar-graph-title');
 		createChart(
 			'#' + gdiv.id, 
-			gdiv.querySelector('.doc-bar-graph-title').textContent, 
+			graphtitle == null ? null : graphtitle.textContent, 
 			tableinfo, 
 			window.getComputedStyle(gdiv).getPropertyValue('--doc-metric').slice(1, -1), 
 			colorspattern, 
-			gdiv.getAttribute('doc-label-y')
+			gdiv.getAttribute('doc-label-y'),
+			grouping == null ? undefined : JSON.parse(grouping)
 		);
 	});
 }());

@@ -74,7 +74,7 @@
 <p>We'll be showcasing the performance measurements from the <a href="../../saker.java.compiler/doc/performancecomparison.html" title="Performance comparison">saker.java.compiler</a> and the <a href="../../saker.msvc/doc/performancecomparison.html" title="Performance comparison">saker.msvc</a> packages.</p>
 <h2 id="java-compilation">Java compilation<a class="doc-heading-anchor" href="#java-compilation"></a></h2>
 <p>We've made many efforts to improve both or clean and incremental Java compilation times. As a result, saker.build compiles Java projects <strong>15-70%</strong> faster compared to <a href="https://gradle.org/" title="Gradle Build Tool">Gradle</a>. For clean builds, the following results were measured:</p>
-<div id="perf-clean-java-compile" style="--doc-metric:'ms';" class="doc-bar-graph" doc-label-y="duration">
+<div id="perf-clean-java-compile" style="--doc-metric:' ms';" class="doc-bar-graph" doc-label-y="duration">
 <div class="doc-bar-graph-title">Clean Java compilation</div>
 <table>
 <thead>
@@ -89,7 +89,7 @@
 </div>
 <p>When it comes to clean build performance, saker.build overtakes Gradle in every of the above cases. The difference for smaller projects (Apache commons) may be smaller, but when it comes to large codebases, the advantage is closer to <strong>40-50%</strong>.</p>
 <p>However, incremental build times matter more when it comes to the edit-build-run development cycle:</p>
-<div id="perf-incremental-java-compile" style="--doc-metric:'ms';" class="doc-bar-graph" doc-label-y="duration">
+<div id="perf-incremental-java-compile" style="--doc-metric:' ms';" class="doc-bar-graph" doc-label-y="duration">
 <div class="doc-bar-graph-title">Incremental Java compilation</div>
 <table>
 <thead>
@@ -106,7 +106,7 @@
 <p>No matter how you structure your codebase, the incremental compilation implementation for Java determines the sources to recompile in a fast and correct way. Saker.build is faster in all cases, providing a quicker feedback for your developers.</p>
 <h2 id="c_c__">C/C++<a class="doc-heading-anchor" href="#c_c__"></a></h2>
 <p>Saker.build is a general build system, therefore supporting any kind of language for which the build tasks are implemented. We've added support for C/C++ compilation using the MSVC toolchain. As a starter, we measured the performance of how saker.build can manage the scheduling of the compilation tasks. For this, we compared the results to the <a href="https://ninja-build.org/" title="Ninja, a small build system with a focus on speed">Ninja</a> build tool.</p>
-<div id="perf-cpp-ninja" style="--doc-metric:'ms';" class="doc-bar-graph" doc-label-y="duration">
+<div id="perf-cpp-ninja" style="--doc-metric:' ms';" class="doc-bar-graph" doc-label-y="duration">
 <div class="doc-bar-graph-title">C/C++ builds</div>
 <table>
 <thead>
@@ -124,7 +124,7 @@
 <p>Saker.build supports build clusters which can be used to spread out the build task workloads to different build machines. This feature is relevant when large codebases need to be built and the build tasks are highly parallelizable.</p>
 <p>Building C/C++ sources are such a task, as the source files that need to be compiled can be passed to worker machines that perform the compilation. Utilizing multiple machines to execute the build can significantly shorten the time it takes.</p>
 <p>For cluster comparison we measured the performance of saker.build against the <a href="https://www.incredibuild.com/" title="Home - Incredibuild">IncrediBuild</a> tool. The test case distributes 1000 source files and uses 2 worker machines to compile C++ sources.</p>
-<div id="perf-cluster-incredibuild" style="--doc-metric:'ms';" class="doc-bar-graph" doc-label-y="duration">
+<div id="perf-cluster-incredibuild" style="--doc-metric:' ms';" class="doc-bar-graph" doc-label-y="duration">
 <div class="doc-bar-graph-title">Distributed compilation</div>
 <table>
 <thead>
@@ -158,9 +158,13 @@
 		'incredibuild': '#8c114e'
 	};
 	function groupedNumber(x) {
-	  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+		if(x == null) {
+			return null;
+		}
+	  	return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
 	}
-	function createChart(targetid, title, data, metric, color, ylabel) {
+	function createChart(targetid, title, data, metric, color, ylabel, grouping) {
+	console.log(grouping);
 		c3.generate({
 			bindto: targetid,
 			data: {
@@ -168,9 +172,10 @@
 				type: 'bar',
 				x: data[0][0],
 				labels: {
-					format: function(v, id, i, j) { return groupedNumber(v) + " " + metric; }
+					format: function(v, id, i, j) { return v == null ? null : (groupedNumber(v) + metric); }
 				},
-				order: null
+				order: null,
+				groups: grouping
 			},
 			axis: {
 				x: {
@@ -197,7 +202,7 @@
 			},
 			tooltip: {
 				format: {
-					value: function (value, ratio, id, index) { return groupedNumber(value) + " " + metric; }
+					value: function (value, ratio, id, index) { return value == null ? null : (groupedNumber(value) + metric); }
 				}
 			}
 		});
@@ -207,7 +212,8 @@
 	graphdivs.forEach(function(gdiv) {
 		let tableinfo = Array.prototype.map.call(gdiv.querySelectorAll('tr'), function(tr){
 			return Array.prototype.map.call(tr.querySelectorAll('td,th'), function(td){
-		    	return td.innerHTML;
+				let ih = td.innerHTML;
+		    	return ih == "" ? null : ih;
 			});
 		});
 		let colorspattern = [];
@@ -220,13 +226,16 @@
 				colorspattern.push(colors[id]);
 			}
 		}
+		let grouping = gdiv.getAttribute('doc-grouping');
+		let graphtitle = gdiv.querySelector('.doc-bar-graph-title');
 		createChart(
 			'#' + gdiv.id, 
-			gdiv.querySelector('.doc-bar-graph-title').textContent, 
+			graphtitle == null ? null : graphtitle.textContent, 
 			tableinfo, 
 			window.getComputedStyle(gdiv).getPropertyValue('--doc-metric').slice(1, -1), 
 			colorspattern, 
-			gdiv.getAttribute('doc-label-y')
+			gdiv.getAttribute('doc-label-y'),
+			grouping == null ? undefined : JSON.parse(grouping)
 		);
 	});
 }());

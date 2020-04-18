@@ -19,9 +19,11 @@
 		}
 		.landing-syntax-highlight .sl-images {
 			position: relative;
-			margin: auto;
+		}
+		.landing-syntax-highlight .syntax-highlight-container{
 			width: 374px;
 			max-width: 80vw;
+			margin: auto;
 		}
 		.ide-highlight-img {
 			border-radius: 2px;
@@ -85,35 +87,71 @@
 		<div class="landing-section-title">Features</div>
 		<div class="container">
 			<div class="row">
-				<div class="col-xl-4 col-md-6 feature-section">
+				<div class="col-lg-4 col-md-6 feature-section">
 					<div class="feature-title">General purpose</div>
 					<p>Saker.build can be used to build project of any languages. From Java through C++, it can be used to create applications of any type. The different types can be even mixed in a single project.</p>
 					<p>The <a href="/saker.build/javadoc/index.html" title="Saker.build JavaDoc">rich Java API</a> of the build system allows implementing support for <b>any</b> use-case.</p>
 				</div>
-				<div class="col-xl-4 col-md-6 feature-section">
-					<div class="feature-title">Performance 2.0</div>
-					<p>Every build tool claims that it's fast. Saker.build won't be the odd one out. It focuses on fast clean and incremental builds, reducing the build feedback cycle significantly.</p>
-					<p>We also made some <a href="/saker.build/doc/perfcomparison.html" title="Performance comparison">performance measurements</a> you can check out with pretty graphs showing the advantage.</p>
+				<div class="col-lg-4 col-md-6 feature-section">
+					<div class="feature-title">Extensible by all</div>
+					<p>Extensibility is the core of saker.build. You can develop your own build tasks or even build languages for the build system.</p>
+					<p>The <a href="https://nest.saker.build" title="Saker.nest repository">saker.nest repository</a> helps the distribution of community packages as the default build system repository.</p>
 				</div>
-				<div class="col-xl-4 col-md-6 feature-section">
-					<div class="feature-title">Next level Java compilation</div>
-					<p>As a plugin to saker.build, we've implemented improved Java compilation capabilities. With deep code and dependency analysis, the incremental and clean Java builds complete in fraction of the time compared to other build tools.</p>
-					<p>See the <a href="/saker.java.compiler/doc/featurecomparison.html" title="saker.java.compiler feature comparison">feature comparison</a> and the <a href="/saker.java.compiler/doc/performancecomparison.html" title="saker.java.compiler performance comparison">performance measurements</a> for more information.</p>
-				</div>
-				<div class="col-xl-4 col-md-6 feature-section">
+				<div class="offset-lg-0 col-lg-4 offset-md-2 col-md-8 feature-section">
 					<div class="feature-title">Distributed builds</div>
 					<p>Saker.build supports automatic dispatching of your build tasks to other machines in your network. Throwing more hardware at the build process can easily reduce your build times.</p>
 					<p>See the <a href="/saker.msvc/doc/performancecomparison.html" title="saker.msvc performance comparison">performance comparison</a> for build clusters using the MSVC C/C++ toolchain.</p>
 				</div>
-				<div class="col-xl-4 col-md-6 feature-section">
-					<div class="feature-title">Build trace</div>
+			</div>
+		</div>
+	</div>
+	<div class="landing-performance landing-section">
+		<div class="container">
+			<div class="row flex-column-reverse flex-lg-row">
+				<div class="col-lg-6 col-sm-12">
+					<div id="perf-comparison" style="--doc-metric:'%';" class="doc-bar-graph" doc-label-y="relative performance" doc-grouping='[ ["Saker.build"], ["Gradle","IncrediBuild","Ninja"] ]'>
+						<noscript>
+							<div>
+								<img src="res/gfx/relative_performance_comparison.png" style="display: block;max-width: 100%;margin: auto;">
+								</img>
+							</div>
+						</noscript>
+						<div style="display: none;">
+							<div class="doc-bar-graph-title">Relative build times</div>
+							<table>
+							<thead>
+								<tr><th>Test case</th><th>Saker.build</th><th>Gradle</th><th>Ninja</th><th>IncrediBuild</th></tr>
+							</thead>
+							<tbody>
+								<tr><td>Java compilation</td><td>50</td><td>100</td><td></td><td></td></tr>
+								<tr><td>Incremental Java builds</td><td>40</td><td>100</td><td></td><td></td></tr>
+								<tr><td>C++ compilation</td><td>100</td><td></td><td>90</td><td></td></tr>
+								<tr><td>Distributed C++ build</td><td>70</td><td></td><td></td><td>100</td></tr>
+							</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				<div class="col-12 col-lg-6 mt-xl-5 mt-lg-4">
+					<div class="landing-section-title">A performant build system</div>
+					<p>We'd spend our time writing code rather than watching it compile and believe you would too. Saker.build excels in running fast for clean and incremental builds alike!</p>
+					<p>Saker.build achieves this by parallelizing every build task that it can, and also can distribute the workload to other build machines.</p>
+					<p>Check out the <a href="/saker.build/doc/perfcomparison.html" title="Performance comparison">performance measurements</a> that we've made to get a clearer picture.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="landing-buildtrace landing-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-12 col-md-6 offset-lg-1 col-lg-5 mt-lg-2 offset-xl-2 col-xl-4">
+					<div class="landing-section-title">Build trace</div>
 					<p>Visualize and analyze your builds to remove performance bottlenecks and discover the cause of errors. Build trace is a recording of your build execution that you can examine to improve your build process.</p>
 					<p>See the <a href="/buildtrace.html" title="Build trace viewer">Build trace viewer</a> to open one or view an <a href="/buildtrace.html?url=%2Fres%2Ftrace_example_saker.build.trace" title="saker.build build trace">example build</a> of saker.build itself.</p>
 				</div>
-				<div class="col-xl-4 col-md-6 feature-section">
-					<div class="feature-title">Extensible by all</div>
-					<p>Extensibility is the core of saker.build. You can develop your own build tasks and even build languages for the build system.</p>
-					<p>The <a href="https://nest.saker.build" title="Saker.nest repository">saker.nest repository</a> helps the distribution of community packages as the default build system repository.</p>
+				<div class="col-md-6 col-sm-12">
+					<img title="Build trace" class="ide-highlight-img m-auto m-md-0" src="res/gfx/buildtrace_showcase.png" style="display: block;max-width: 100%;">
+					</img>
 				</div>
 			</div>
 		</div>
@@ -137,17 +175,17 @@
 	<div class="landing-syntax-highlight landing-section">
 		<div class="container">
 			<div class="row flex-column-reverse flex-md-row">
-				<div class="offset-xl-2 col-xl-4 col-lg-5 col-md-6 col-12 p-0 mt-3 mt-md-0">
+				<div class="offset-xl-2 col-xl-4 offset-lg-1 col-lg-5 col-md-6 col-12 p-0 mt-3 mt-md-0">
 					<div class="syntax-highlight-container">
 						<div class="sl-images">
-							<img class="ide-highlight-img sl-light" src="res/gfx/syntax_highlight_light.png">
+							<img title="Light theme syntax highlight"class="ide-highlight-img sl-light" src="res/gfx/syntax_highlight_light.png">
 							</img>
-							<img class="ide-highlight-img sl-dark" src="res/gfx/syntax_highlight_dark.png">
+							<img title="Dark theme syntax highlight" class="ide-highlight-img sl-dark" src="res/gfx/syntax_highlight_dark.png">
 							</img>
 						</div>
 					</div>
 				</div>
-				<div class="col-12 col-md-6 col-lg-6 col-xl-5 pl-md-5 pl-lg-3 mt-md-2 mt-lg-4">
+				<div class="col-12 col-md-6 col-lg-6 col-xl-5 px-md-5 px-lg-3 mt-md-2 mt-lg-4">
 					<div class="landing-section-title">Syntax highlight</div>
 					<p>Automatic syntax higlighting helps you read and write your build scripts more efficiently.</p>
 					<p>The script assistance features are available in the IDE with the saker.build plugins.</p>
@@ -159,14 +197,14 @@
 	<div class="landing-code-completion landing-section">
 		<div class="container">
 			<div class="row">
-				<div class="offset-xl-1 pl-xl-5 col-12 col-md-6 col-lg-6 col-xl-5 mt-md-2 mt-lg-4">
+				<div class="offset-xl-1 col-12 col-md-6 col-lg-6 col-xl-5 mt-md-2 mt-lg-4">
 					<div class="landing-section-title">Code completion</div>
 					<p>Content assistance is available in the build script editor of your favorite IDE.</p>
 					<p>Context driven completion proposals help you write build scripts faster while quick documentation helps you choose the appropriate build configuration.</p>
 				</div>
-				<div class="col-xl-6 col-lg-5 col-md-6 col-12 p-0 mt-md-0 mt-3">
+				<div class="col-xl-6 col-lg-6 col-md-6 col-12 p-0 mt-md-0 mt-3">
 					<div class="cc-image">
-						<img class="ide-highlight-img" src="res/gfx/code_completion.gif">
+						<img title="Code completion in use" class="ide-highlight-img" src="res/gfx/code_completion.gif">
 						</img>
 					</div>
 				</div>
@@ -177,20 +215,25 @@
 		<div class="landing-section-title">News & Blog</div>
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-4 offset-lg-0 col-md-8 offset-md-2 col-sm-10 offset-sm-1">
+				<div class="col-xl-3 col-lg-4 offset-lg-0 offset-md-0 col-md-6 col-sm-10 offset-sm-1">
 					<div class="news-title"><a href="/blog/javac_source_target_parameters/index.html" title="Beware of the -source and -target javac parameters">Beware of the <code>-source</code> and <code>-target</code> javac parameters</a></div>
 					<div class="news-date">2020 February 27</div>
 					<p class="news-summary">Using these options for cross-compilation may cause runtime errors.</p>
 				</div>
-				<div class="col-lg-4 offset-lg-0 col-md-8 offset-md-2 col-sm-10 offset-sm-1">
+				<div class="col-xl-3 col-lg-4 offset-lg-0 offset-md-0 col-md-6 col-sm-10 offset-sm-1">
 					<div class="news-title"><a href="/blog/intro_build_trace/index.html" title="Introducing the build trace">Introducing the build trace</a></div>
 					<div class="news-date">2020 February 20</div>
 					<p class="news-summary">Build traces can be used to debug builds and find performance bottlenecks.</p>
 				</div>
-				<div class="col-lg-4 offset-lg-0 col-md-8 offset-md-2 col-sm-10 offset-sm-1">
+				<div class="col-xl-3 col-lg-4 offset-lg-0 offset-md-0 col-md-6 col-sm-10 offset-sm-1">
 					<div class="news-title"><a href="/blog/do_i_need_a_build_system.html" title="\"Do I need a build system?\"">"Do I need a build system?"</a></div>
 					<div class="news-date">2020 January 27</div>
 					<p class="news-summary">A question for which the answer is always...</p>
+				</div>
+				<div class="col-xl-3 col-lg-4 offset-lg-0 offset-md-0 col-md-6 col-sm-10 offset-sm-1 d-lg-none d-xl-block">
+					<div class="news-title"><a href="/blog/github_packages_maven/index.html" title="Using the GitHub packages Maven repository">Using the GitHub packages Maven repository</a></div>
+					<div class="news-date">2020 January 11</div>
+					<p class="news-summary">An introduction to using GitHub packages Maven repository with saker.build.</p>
 				</div>
 			</div>
 			<p class="text-center mt-3 mb-3">See the <a href="/blog/archive.html" title="News archive">archive</a> for older posts.</p>
@@ -234,5 +277,102 @@
 		</div>
 	</div>
 </div>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.3/c3.min.css" integrity="sha256-RSMIOX07BNUXyf71hwmYRrUZ8RmiBxMTpqI0GOAy0GM=" crossorigin="anonymous" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.9.7/d3.min.js" integrity="sha256-D+2/goqcjnuoryb9A0rifuH0rBYS9hKOzNqG91JhAVc=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.3/c3.min.js" integrity="sha256-SyrzeJ/tU+9ZJk4n351h9iJftMf9VdsEx2QQMx8+Pik=" crossorigin="anonymous"></script>
+<script>
+(function(){
+	let colors = {
+		'saker': '#1da9d8',
+		'saker.build ide': '#208bc3',
+		'saker.build + cluster': '#208bc3',
+		'gradle': '#175643',
+		'ninja': '#444444',
+		'incredibuild': '#8c114e'
+	};
+	function groupedNumber(x) {
+		if(x == null) {
+			return null;
+		}
+	  	return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+	}
+	function createChart(targetid, title, data, metric, color, ylabel, grouping) {
+	console.log(grouping);
+		c3.generate({
+			bindto: targetid,
+			data: {
+				rows: data,
+				type: 'bar',
+				x: data[0][0],
+				labels: {
+					format: function(v, id, i, j) { return v == null ? null : (groupedNumber(v) + metric); }
+				},
+				order: null,
+				groups: grouping
+			},
+			axis: {
+				x: {
+					type: 'category'
+				},
+				y: {
+					label: `${ylabel} (${metric})`,
+					tick: {
+						format: function(v, id, i, j) { return groupedNumber(v); }
+					}
+				}
+			},
+			legend: {
+				position: 'bottom'
+			},
+			padding: {
+	            bottom: 10
+	        },
+			title: {
+				text: title
+			},
+			color: {
+				pattern: color
+			},
+			tooltip: {
+				format: {
+					value: function (value, ratio, id, index) { return value == null ? null : (groupedNumber(value) + metric); }
+				}
+			}
+		});
+	}
+
+	let graphdivs = document.querySelectorAll('div.doc-bar-graph');
+	graphdivs.forEach(function(gdiv) {
+		let tableinfo = Array.prototype.map.call(gdiv.querySelectorAll('tr'), function(tr){
+			return Array.prototype.map.call(tr.querySelectorAll('td,th'), function(td){
+				let ih = td.innerHTML;
+		    	return ih == "" ? null : ih;
+			});
+		});
+		let colorspattern = [];
+		for(let i = 1; i < tableinfo[0].length; i++) {
+			let c = colors[tableinfo[0][i].toLowerCase()];
+			if(c != null) {
+				colorspattern.push(c);
+			} else {
+				let id = tableinfo[0][i].match(/[A-Za-z]+/)[0].toLowerCase();
+				colorspattern.push(colors[id]);
+			}
+		}
+		let grouping = gdiv.getAttribute('doc-grouping');
+		let graphtitle = gdiv.querySelector('.doc-bar-graph-title');
+		createChart(
+			'#' + gdiv.id, 
+			graphtitle == null ? null : graphtitle.textContent, 
+			tableinfo, 
+			window.getComputedStyle(gdiv).getPropertyValue('--doc-metric').slice(1, -1), 
+			colorspattern, 
+			gdiv.getAttribute('doc-label-y'),
+			grouping == null ? undefined : JSON.parse(grouping)
+		);
+	});
+}());
+</script>
 </body>
 </html>

@@ -88,7 +88,7 @@
 }
 </code></pre>
 <p>Let's see the results:</p>
-<div id="perf-large-monolithic-test" style="--doc-metric:'ms';" class="doc-bar-graph" doc-label-y="duration">
+<div id="perf-large-monolithic-test" style="--doc-metric:' ms';" class="doc-bar-graph" doc-label-y="duration">
 <div class="doc-bar-graph-title">Large monolithic project compile + test</div>
 <table>
 <thead>
@@ -120,9 +120,13 @@
 		'incredibuild': '#8c114e'
 	};
 	function groupedNumber(x) {
-	  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+		if(x == null) {
+			return null;
+		}
+	  	return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
 	}
-	function createChart(targetid, title, data, metric, color, ylabel) {
+	function createChart(targetid, title, data, metric, color, ylabel, grouping) {
+	console.log(grouping);
 		c3.generate({
 			bindto: targetid,
 			data: {
@@ -130,9 +134,10 @@
 				type: 'bar',
 				x: data[0][0],
 				labels: {
-					format: function(v, id, i, j) { return groupedNumber(v) + " " + metric; }
+					format: function(v, id, i, j) { return v == null ? null : (groupedNumber(v) + metric); }
 				},
-				order: null
+				order: null,
+				groups: grouping
 			},
 			axis: {
 				x: {
@@ -159,7 +164,7 @@
 			},
 			tooltip: {
 				format: {
-					value: function (value, ratio, id, index) { return groupedNumber(value) + " " + metric; }
+					value: function (value, ratio, id, index) { return value == null ? null : (groupedNumber(value) + metric); }
 				}
 			}
 		});
@@ -169,7 +174,8 @@
 	graphdivs.forEach(function(gdiv) {
 		let tableinfo = Array.prototype.map.call(gdiv.querySelectorAll('tr'), function(tr){
 			return Array.prototype.map.call(tr.querySelectorAll('td,th'), function(td){
-		    	return td.innerHTML;
+				let ih = td.innerHTML;
+		    	return ih == "" ? null : ih;
 			});
 		});
 		let colorspattern = [];
@@ -182,13 +188,16 @@
 				colorspattern.push(colors[id]);
 			}
 		}
+		let grouping = gdiv.getAttribute('doc-grouping');
+		let graphtitle = gdiv.querySelector('.doc-bar-graph-title');
 		createChart(
 			'#' + gdiv.id, 
-			gdiv.querySelector('.doc-bar-graph-title').textContent, 
+			graphtitle == null ? null : graphtitle.textContent, 
 			tableinfo, 
 			window.getComputedStyle(gdiv).getPropertyValue('--doc-metric').slice(1, -1), 
 			colorspattern, 
-			gdiv.getAttribute('doc-label-y')
+			gdiv.getAttribute('doc-label-y'),
+			grouping == null ? undefined : JSON.parse(grouping)
 		);
 	});
 }());
