@@ -162,7 +162,7 @@ steps:
     DOWNLOAD_TOKEN: $(SITE_DOWNLOAD_TOKEN)
 - script: |
     set -e
-    SAKER_INTELLIJ_VERSION=python saker.build-site/list_release_versions.py $DOWNLOAD_TOKEN "sakerbuild/saker.build.ide.intellij" | sort -V -r | head -n 1
+    SAKER_INTELLIJ_VERSION=$(python saker.build-site/list_release_versions.py $DOWNLOAD_TOKEN "sakerbuild/saker.build.ide.intellij" | sort -V -r | head -n 1)
     echo "##vso[task.setvariable variable=SAKER_INTELLIJ_VERSION]$SAKER_INTELLIJ_VERSION"
     echo "saker.build.ide.intellij version: $SAKER_INTELLIJ_VERSION"
   displayName: 'Determine latest IDEA plugin version'
