@@ -138,11 +138,13 @@ steps:
 - checkout: self
 - script: |
     set -e
+    pip install PyGithub
+  displayName: 'Install PyGithub'
+- script: |
+    set -e
     ls -la
-    echo $(pwd)
     mkdir build-update-sites
     cd build-update-sites
-    pip install PyGithub
     python ../saker.build-site/download_update_sites.py $DOWNLOAD_TOKEN
     for f in *.zip; do
       VER=$(echo "$f" | sed -r 's/site-v(.*)\.zip/\1/')
@@ -156,6 +158,14 @@ steps:
     
     rm _update_site_versions.txt
   displayName: 'Download update sites'
+  env:
+    DOWNLOAD_TOKEN: $(SITE_DOWNLOAD_TOKEN)
+- script: |
+    set -e
+    SAKER_INTELLIJ_VERSION=python ../saker.build-site/list_release_versions.py $DOWNLOAD_TOKEN "sakerbuild/saker.build.ide.intellij" | sort -V -r | head -n 1
+    echo "##vso[task.setvariable variable=SAKER_INTELLIJ_VERSION]$SAKER_INTELLIJ_VERSION"
+    echo "saker.build.ide.intellij version: $SAKER_INTELLIJ_VERSION"
+  displayName: 'Determine latest IDEA plugin version'
   env:
     DOWNLOAD_TOKEN: $(SITE_DOWNLOAD_TOKEN)
 - script: |
@@ -263,7 +273,7 @@ steps:
   workingDirectory: build-javadoc
 - script: cp -r build-javadoc/javadoc/* saker.build-site/site/
   displayName: 'Copy Javadoc results to working tree'
-- script: java -jar ../saker.build.jar -bd build "-Usaker.java.jre.install.locations=$(JAVA_HOME_9_X64)" "-Usite.version.saker.build=$(SAKER_BUILD_VERSION)" "-Usite.version.saker.nest=$(SAKER_NEST_VERSION)" "-Usite.version.saker.build.ide.eclipse=$(SAKER_ECLIPSE_VERSION)" build
+- script: java -jar ../saker.build.jar -bd build "-Usaker.java.jre.install.locations=$(JAVA_HOME_9_X64)" "-Usite.version.saker.build=$(SAKER_BUILD_VERSION)" "-Usite.version.saker.nest=$(SAKER_NEST_VERSION)" "-Usite.version.saker.build.ide.eclipse=$(SAKER_ECLIPSE_VERSION)" "-Usite.version.saker.build.ide.intellij=$(SAKER_INTELLIJ_VERSION)" build
   displayName: 'Generate site'
   workingDirectory: saker.build-site
 
