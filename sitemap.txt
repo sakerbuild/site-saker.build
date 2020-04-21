@@ -161,6 +161,7 @@ https://saker.build/saker.build/doc/guide/scriptstyleguide.html
 https://saker.build/saker.build/doc/guide/wildcards.html
 https://saker.build/saker.build/doc/index.html
 https://saker.build/saker.build/doc/installation.html
+https://saker.build/saker.build/doc/intellijplugin.html
 https://saker.build/saker.build/doc/perfcomparison.html
 https://saker.build/saker.build/doc/releasearchive.html
 https://saker.build/saker.build/doc/roadmap.html
