@@ -1,3 +1,4 @@
+[!section](intellijplugin.md)
 [!section](eclipseplugin.md)
 [!section](releasearchive.md)
 
@@ -50,6 +51,18 @@ You can also download older releases by visiting the [release archive](releasear
 ## IDEs
 
 Saker.build support is available for the following Integrated Development Environment(s).
+
+### IntelliJ IDEs
+
+Saker.build system plugin is available for various JetBrains IDEs. The plugin is available on the [JetBrains plugin marketplace](https://plugins.jetbrains.com/plugin/14152-saker-build-system). Use the following steps to install:
+
+1. Open the *File* > *Settings* dialog.
+2. Select the **Plugins** page.
+3. On the *Marketplace* tab, search for *saker.build*.
+4. Select and install the *Saker.build system* plugin. 
+5. Restart the IDE.
+
+See the [](intellijplugin.md) section for alternative installations and more information.
 
 ### Eclipse
 

@@ -406,3 +406,11 @@ https://tools.ietf.org/html/rfc2388
 	RFC 2388 - Returning Values from Forms: multipart/form-data
 https://tools.ietf.org/html/rfc4648
 	RFC 4648 - The Base16, Base32, and Base64 Data Encodings
+https://plugins.jetbrains.com
+	Plugins | JetBrains
+https://plugins.jetbrains.com/plugin/14152-saker-build-system
+	Saker.build system - plugin for IntelliJ IDEs | JetBrains
+https://github.com/sakerbuild/saker.build.ide.intellij
+	sakerbuild/saker.build.ide.intellij: IntelliJ plugin for the saker.build system
+https://github.com/sakerbuild/saker.build.ide.intellij/releases
+	Releases &#183; sakerbuild/saker.build.ide.intellij

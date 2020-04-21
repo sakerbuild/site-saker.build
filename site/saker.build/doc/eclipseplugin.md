@@ -2,6 +2,8 @@
 
 The following contains installation, introduction, and other information about the Eclipse plugin for saker.build.
 
+The source code for the plugin is available on GitHub: [sakerbuild/saker.build.ide.eclipse](https://github.com/sakerbuild/saker.build.ide.eclipse).
+
 ## Installation
 
 Open Eclipse, and choose the Help > Install New Software... option in the menu.
@@ -30,13 +32,9 @@ A new empty project will be created. You can add the saker.build system for it b
 
 ![](res/eclipse_configurenature.png)
 
-This will cause the saker.build system to be used by your project. If you have automatic builds enabled, you might be presented with the following dialog:
+This will cause the saker.build system to be used by your project. 
 
-![](res/eclipse_missingbuildfile.png)
-
-This is due to the fact that Eclipse will start a build for the project after you've added the saker.build nature, however, the build system won't find any build files in your newly created empty project.
-
-If you have automatic builds turned off (we recommend doing that), and don't have a build file, you can add a new build file by right clicking the project and using the Saker.build > Add new build file option:
+If you don't already have a build file in your project tree, you can add a new one by right clicking the project and using the Saker.build > Add new build file option:
 
 ![](res/eclipse_addnewbuildfile.png)
 
@@ -54,23 +52,21 @@ saker.java.compile(src)
 
 You can build the project using the following ways:
 
-**1. Project > Build project**
-
-If you have automatic builds turned off, using the Project > Build project option will cause saker.build to be run for your project. This will cause the build target that was last invoked for your project to be run. If you haven't run a previous build for your project, the following dialog will be presented for you to choose:
-
-![](res/eclipse_choosebuildtarget.png)
-
-**2. Saker.build > [build_script.build] > [build-target]**
+**1. Saker.build > [build_script.build] > [build-target]**
 
 You can manually select the build target to be run from the saker.build menu:
 
 ![](res/eclipse_sakerbuild_build.png)
 
-This will cause the selected build target to be run for your project. Note, that in this case other builders associated with your project won't run.
+It will cause the selected build target to be run for your project.
 
-**3. Use the Run saker.build command (hotkey)**
+**2. Use the Run saker.build command (hotkey)**
 
 The saker.build Eclipse plugin provides a command that can be invoked to run the build for the active project. It is bound to the key F9 by default. You can simply press F9 to run saker.build for your project.
+
+It will run the last build target that was executed for the project. If there's none, it will ask you to choose one:
+
+![](res/eclipse_choosebuildtarget.png)
 
 You can modify the associated hotkey in the Window > Preferences > General > Keys > Run saker.build option:
 

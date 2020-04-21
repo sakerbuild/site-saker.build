@@ -67,6 +67,8 @@ It shall be examined how developing for .NET, C# and related technologies can be
 
 #### IDE plugin support
 
+**Update 2**: The first release of the IntelliJ plugin is available. See [](intellijplugin.md) for install instructions.
+
 **Update**: The IntelliJ plugin is under development. See the [saker.build.ide.intellij](https://github.com/sakerbuild/saker.build.ide.intellij) repository.
 
 Plugin support for other Integrated Development Environments should be added (other than [Eclipse](eclipseplugin.md)). It should be examined how popular IDEs can be integrated with, its feasibility, and possibility of the implementation.
