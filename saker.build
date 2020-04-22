@@ -592,7 +592,7 @@ build {
 		},
 		{
 			FileName: buildtrace.html,
-			Title: "Build trace | saker.build",
+			Title: "Build trace viewer | saker.build",
 		},
 	]
 	foreach $pageref in $pages 

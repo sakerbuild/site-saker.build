@@ -2,6 +2,14 @@
 
 This page contains all published news and blog posts.
 
+#### 2020 April
+
+<div class="doc-table-of-contents">
+
+* [](intellij_plugin_release/index.md)
+
+</div>
+
 #### 2020 February
 
 <div class="doc-table-of-contents">

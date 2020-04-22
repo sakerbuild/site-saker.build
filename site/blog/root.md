@@ -2,6 +2,7 @@
 [!section](archive.md)
 
 ```Releases
+[!section](intellij_plugin_release/index.md)
 [!section](release_0.8.0.md)
 ```
 

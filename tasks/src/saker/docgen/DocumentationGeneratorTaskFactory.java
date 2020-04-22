@@ -688,6 +688,11 @@ public class DocumentationGeneratorTaskFactory implements TaskFactory<Object>, E
 		@Override
 		public void visit(Image image) {
 			String linkpath = image.getDestination();
+			if (linkpath.startsWith(LINK_ROOT_RAW)) {
+				image.setDestination(linkpath.substring(LINK_ROOT_RAW.length()));
+				super.visit(image);
+				return;
+			}
 			try {
 				SakerPath destpath = SakerPath.valueOf(linkpath);
 
