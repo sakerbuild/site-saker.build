@@ -1962,14 +1962,15 @@ public class DocumentationGeneratorTaskFactory implements TaskFactory<Object>, E
 									if (bc.markdown != null) {
 										sb.append(
 												"<li itemprop=\"itemListElement\" itemscope itemtype=\"https://schema.org/ListItem\">");
+										SakerPath itemid = siteInfo.outputDirectory
+												.resolve(bc.markdown.getRelativePath());
+										itemid = itemid.getParent()
+												.resolve(FileUtils.changeExtension(itemid.getFileName(), "html"));
 										sb.append(
 												"<a itemscope itemtype=\"https://schema.org/WebPage\" itemprop=\"item\" href=\""
 														+ getRelativePathString(parsedmarkdown.getAbsoluteOutputPath(),
 																bc.markdown.getAbsoluteOutputPath())
-														+ "\" title=\"" + bc.title + "\" itemid=\"/"
-														+ siteInfo.outputDirectory
-																.resolve(bc.markdown.getRelativePath())
-														+ "\">");
+														+ "\" title=\"" + bc.title + "\" itemid=\"/" + itemid + "\">");
 										sb.append("<span itemprop=\"name\">" + bc.title + "</span>");
 										sb.append("</a>");
 										sb.append("<meta itemprop=\"position\" content=\"" + metapos + "\" />");
