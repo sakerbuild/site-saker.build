@@ -1955,25 +1955,43 @@ public class DocumentationGeneratorTaskFactory implements TaskFactory<Object>, E
 									//don't display breadcrumb if there's only a single entry
 									return "";
 								}
+								int metapos = 1;
 								StringBuilder sb = new StringBuilder();
+								sb.append("<ol itemscope itemtype=\"https://schema.org/BreadcrumbList\">");
 								while (bc != null) {
 									if (bc.markdown != null) {
-										sb.append("<a href=\""
-												+ getRelativePathString(parsedmarkdown.getAbsoluteOutputPath(),
-														bc.markdown.getAbsoluteOutputPath())
-												+ "\" title=\"" + bc.title + "\">");
-									}
-									sb.append(bc.title);
-									if (bc.markdown != null) {
+										sb.append(
+												"<li itemprop=\"itemListElement\" itemscope itemtype=\"https://schema.org/ListItem\">");
+										sb.append(
+												"<a itemscope itemtype=\"https://schema.org/WebPage\" itemprop=\"item\" href=\""
+														+ getRelativePathString(parsedmarkdown.getAbsoluteOutputPath(),
+																bc.markdown.getAbsoluteOutputPath())
+														+ "\" title=\"" + bc.title + "\" itemid=\"/"
+														+ siteInfo.outputDirectory
+																.resolve(bc.markdown.getRelativePath())
+														+ "\">");
+										sb.append("<span itemprop=\"name\">" + bc.title + "</span>");
 										sb.append("</a>");
+										sb.append("<meta itemprop=\"position\" content=\"" + metapos + "\" />");
+										++metapos;
+
+										sb.append("</li>");
+									} else {
+										sb.append("<li>");
+										sb.append("<span title=\"" + bc.title + "\">");
+										sb.append(bc.title);
+										sb.append("</span>");
+										sb.append("</li>");
 									}
 
 									bc = bc.next;
 									if (bc != null) {
-										sb.append(" &gt; ");
+										//a better looking > character
+										sb.append(" &rsaquo; ");
 									}
 
 								}
+								sb.append("</ol>");
 								return sb.toString();
 							}
 							return "";
