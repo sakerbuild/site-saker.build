@@ -132,6 +132,12 @@ h1, h2, h3, h4, h5, h6 {
 .doc-breadcrumb:empty{
 	display: none;
 }
+.doc-breadcrumb ol {
+	padding: 0;
+}
+.doc-breadcrumb li {
+	display: inline;
+}
 .doc-breadcrumb {
     font-weight: 600;
     opacity: 0.9;
