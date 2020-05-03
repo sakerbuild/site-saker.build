@@ -24,7 +24,6 @@ import java.util.NavigableSet;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.UUID;
-import java.util.function.Function;
 import java.util.function.Supplier;
 
 import org.commonmark.renderer.html.HtmlWriter;
@@ -50,17 +49,18 @@ import saker.build.scripting.SimpleScriptParsingOptions;
 import saker.build.scripting.model.ScriptModellingEngine;
 import saker.build.scripting.model.ScriptModellingEnvironment;
 import saker.build.scripting.model.ScriptModellingEnvironmentConfiguration;
+import saker.build.scripting.model.ScriptStructureOutline;
 import saker.build.scripting.model.ScriptSyntaxModel;
 import saker.build.scripting.model.ScriptToken;
 import saker.build.scripting.model.SimpleScriptToken;
 import saker.build.scripting.model.SimpleTokenStyle;
+import saker.build.scripting.model.StructureOutlineEntry;
 import saker.build.scripting.model.TokenStyle;
 import saker.build.scripting.model.info.ExternalScriptInformationProvider;
 import saker.build.task.TaskContext;
 import saker.build.thirdparty.saker.util.ImmutableUtils;
 import saker.build.thirdparty.saker.util.ObjectUtils;
 import saker.build.thirdparty.saker.util.StringUtils;
-import saker.build.thirdparty.saker.util.function.Functionals;
 import saker.build.thirdparty.saker.util.function.LazySupplier;
 import saker.build.thirdparty.saker.util.io.ByteSink;
 import saker.build.thirdparty.saker.util.io.ByteSource;
@@ -154,7 +154,8 @@ public class ScriptStyleCSSBuilder implements AutoCloseable {
 				tokenslist.add(new SimpleScriptToken(t.getOffset(), t.getLength(), t.getType()));
 			}
 			Map<String, Set<? extends TokenStyle>> styles = model.getTokenStyles();
-			return new ProcessedScript(tokenslist, styles, scriptcontents);
+			ScriptStructureOutline outline = model.getStructureOutline();
+			return new ProcessedScript(tokenslist, styles, scriptcontents, outline);
 		}
 	}
 
@@ -162,41 +163,93 @@ public class ScriptStyleCSSBuilder implements AutoCloseable {
 	public void close() throws IOException {
 	}
 
+	public interface TaskLinkHrefProvider {
+		public String getTaskLink(String taskid);
+	}
+
+	private static StructureOutlineEntry findTaskEntryForParameterOffsetInOutline(
+			List<? extends StructureOutlineEntry> entries, int offset) {
+		for (StructureOutlineEntry entry : entries) {
+			if (offset >= entry.getOffset() && offset <= entry.getOffset() + entry.getLength()) {
+				if ("saker.script.task".equals(entry.getSchemaIdentifier())) {
+					for (StructureOutlineEntry c : entry.getChildren()) {
+						if ("saker.script.task.parameter".equals(c.getSchemaIdentifier())) {
+							if (offset >= c.getOffset() && offset <= c.getOffset() + c.getLength()) {
+								return entry;
+							}
+						}
+					}
+				}
+				StructureOutlineEntry tn = findTaskEntryForParameterOffsetInOutline(entry.getChildren(), offset);
+				if (tn != null) {
+					return tn;
+				}
+			}
+		}
+		return null;
+	}
+
 	public class ProcessedScript {
 		private List<ScriptToken> tokensList;
 		private Map<String, Set<? extends TokenStyle>> styles;
 		private String contents;
+		private ScriptStructureOutline outline;
 
 		public ProcessedScript(List<ScriptToken> tokenslist, Map<String, Set<? extends TokenStyle>> styles,
-				String scriptcontents) {
+				String scriptcontents, ScriptStructureOutline outline) {
 			this.tokensList = tokenslist;
 			this.styles = styles;
 			this.contents = scriptcontents;
+			this.outline = outline;
 		}
 
 		public void write(HtmlWriter writer, int startoffset, int endoffset) {
-			write(writer, startoffset, endoffset, Functionals.nullFunction());
+			write(writer, startoffset, endoffset, null);
 		}
 
 		public void write(HtmlWriter writer, int startoffset, int endoffset,
-				Function<String, String> tasklinkhreffunction) {
+				TaskLinkHrefProvider tasklinkhreffunction) {
 			String lastclass = null;
 			for (ScriptToken token : tokensList) {
+				if (token.getOffset() >= endoffset) {
+					break;
+				}
 				if (token.isEmpty() || token.getEndOffset() < startoffset) {
 					//token empty or not in range
 					continue;
 				}
-				if (token.getOffset() >= endoffset) {
-					break;
-				}
+
 				int tokenstartoffset = Math.max(startoffset, token.getOffset());
 				int tokenendoffset = Math.min(token.getEndOffset(), endoffset);
 				String text = contents.substring(tokenstartoffset, tokenendoffset);
 
+				String title = null;
 				String link = null;
-				if ("task_identifier".equals(token.getType())) {
-					//link the task if appropriate
-					link = tasklinkhreffunction.apply(text);
+				switch (token.getType()) {
+					case "task_identifier": {
+						if (tasklinkhreffunction != null) {
+							//link the task if appropriate
+							link = tasklinkhreffunction.getTaskLink(text);
+							title = "Task: " + text + "()";
+						}
+						break;
+					}
+					case "param_name_content": {
+						StructureOutlineEntry taskoutlineentry = findTaskEntryForParameterOffsetInOutline(
+								outline.getRootEntries(), token.getOffset() + token.getLength() / 2);
+						if (taskoutlineentry != null) {
+							String taskname = contents.substring(taskoutlineentry.getSelectionOffset(),
+									taskoutlineentry.getSelectionOffset() + taskoutlineentry.getSelectionLength());
+							String tlink = tasklinkhreffunction.getTaskLink(taskname);
+							if (tlink != null) {
+								title = "Parameter " + text + " of task " + taskname + "()";
+								link = tlink + "#" + text;
+							}
+						}
+						break;
+					}
+					default:
+						break;
 				}
 
 				Set<? extends TokenStyle> tokenstyles;
@@ -210,7 +263,7 @@ public class ScriptStyleCSSBuilder implements AutoCloseable {
 						writer.tag("/span");
 						lastclass = null;
 					}
-					writeTextWithLink(writer, text, link);
+					writeTextWithLink(writer, text, link, title);
 				} else {
 					String styleclassname;
 					String foundstylecname = styleClasses.get(tokenstyles);
@@ -222,8 +275,6 @@ public class ScriptStyleCSSBuilder implements AutoCloseable {
 						lastCssName = nextcname;
 						for (TokenStyle ts : tokenstyles) {
 							int theme = ts.getStyle() & TokenStyle.THEME_MASK;
-							System.out.println("ScriptStyleCSSBuilder.ProcessedScript.write() THEME " + token.getType()
-									+ " - " + theme + " - " + nextcname);
 							styleClasses.put(tokenstyles, nextcname);
 							classStyles.put(nextcname, tokenstyles);
 							switch (theme) {
@@ -270,10 +321,10 @@ public class ScriptStyleCSSBuilder implements AutoCloseable {
 							writer.tag("/span");
 							lastclass = null;
 						}
-						writeTextWithLink(writer, text, link);
+						writeTextWithLink(writer, text, link, title);
 					} else {
 						if (styleclassname.equals(lastclass)) {
-							writeTextWithLink(writer, text, link);
+							writeTextWithLink(writer, text, link, title);
 						} else {
 							if (lastclass != null) {
 								writer.tag("/span");
@@ -282,7 +333,7 @@ public class ScriptStyleCSSBuilder implements AutoCloseable {
 							Map<String, String> attrs = new TreeMap<>();
 							attrs.put("class", styleclassname);
 							writer.tag("span", attrs);
-							writeTextWithLink(writer, text, link);
+							writeTextWithLink(writer, text, link, title);
 						}
 					}
 				}
@@ -293,11 +344,13 @@ public class ScriptStyleCSSBuilder implements AutoCloseable {
 			}
 		}
 
-		private void writeTextWithLink(HtmlWriter writer, String text, String link) {
+		private void writeTextWithLink(HtmlWriter writer, String text, String link, String title) {
 			if (link != null) {
 				Map<String, String> attrmap = new TreeMap<>();
 				attrmap.put("href", link);
-				attrmap.put("title", "Task: " + text + "()");
+				if (title != null) {
+					attrmap.put("title", title);
+				}
 				writer.tag("a", attrmap);
 				writer.text(text);
 				writer.tag("/a");

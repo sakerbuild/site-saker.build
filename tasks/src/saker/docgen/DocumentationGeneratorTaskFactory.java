@@ -77,6 +77,7 @@ import saker.build.thirdparty.saker.util.function.LazySupplier;
 import saker.build.thirdparty.saker.util.io.FileUtils;
 import saker.build.thirdparty.saker.util.io.SerialUtils;
 import saker.docgen.ScriptStyleCSSBuilder.ProcessedScript;
+import saker.docgen.ScriptStyleCSSBuilder.TaskLinkHrefProvider;
 import saker.url.UrlTitleTaskFactory;
 
 public class DocumentationGeneratorTaskFactory implements TaskFactory<Object>, Externalizable {
@@ -1023,12 +1024,12 @@ public class DocumentationGeneratorTaskFactory implements TaskFactory<Object>, E
 		private final ParsedMarkdown markdown;
 
 		private final ScriptStyleCSSBuilder scriptStyleCssBuilder;
-		private final Function<String, String> taskLinkFunction;
+		private final TaskLinkHrefProvider taskLinkFunction;
 		private NavigableMap<SakerPath, ParsedMarkdown> relativeParsedMarkdowns;
 
 		public HtmlMarkdownRenderer(ParsedMarkdown markdown, HtmlNodeRendererContext context, TaskContext taskcontext,
 				SakerDirectory docDirectory, SakerDirectory outputDirectory, String rootDomain,
-				ScriptStyleCSSBuilder scriptStyleCssBuilder, Function<String, String> taskLinkFunction,
+				ScriptStyleCSSBuilder scriptStyleCssBuilder, TaskLinkHrefProvider taskLinkFunction,
 				NavigableMap<SakerPath, ParsedMarkdown> relativeParsedMarkdowns) {
 			super(new AnchoringHtmlNodeRendererContext(context, markdown.getNodeAnchors()));
 			this.markdown = markdown;
@@ -1891,7 +1892,7 @@ public class DocumentationGeneratorTaskFactory implements TaskFactory<Object>, E
 						String docrootpath = getDocRootPath(markdowndirectory, relpath);
 						SakerPath pageoutputpath = outputdirabsolutepath.resolve(relpath);
 
-						Function<String, String> tasklinkfunction = ti -> {
+						TaskLinkHrefProvider tasklinkfunction = ti -> {
 							TaskName tn;
 							try {
 								tn = TaskName.valueOf(ti);
