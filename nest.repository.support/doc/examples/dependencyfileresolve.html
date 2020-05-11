@@ -81,7 +81,7 @@
 			<div class="doc-content"><h1 id="resolve-dependency-file">Resolve dependency file<a class="doc-heading-anchor" href="#resolve-dependency-file"></a></h1>
 <p>The <a href="../../taskdoc/nest.dependency.resolve.html"><code>nest.dependency.resolve()</code></a> task can be used to resolve the dependencies specified in a <a href="../../../saker.nest/doc/devguide/bundleformat.html#dependency-file" title="Dependency file">dependency file</a>:</p>
 <pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../nest.repository.support/taskdoc/nest.dependency.resolve.html" title="Task: nest.dependency.resolve()">nest.dependency.resolve</a>(</span>
-	<span class="h">DependencyFile</span>: <span class="e">res/META-INF/nest/dependencies</span>
+	<span class="h"><a href="../../../nest.repository.support/taskdoc/nest.dependency.resolve.html#DependencyFile" title="Parameter DependencyFile of task nest.dependency.resolve()">DependencyFile</a></span>: <span class="e">res/META-INF/nest/dependencies</span>
 <span class="d">)</span>
 </code></pre>
 <p>In the above, the dependencies specified in the <code>res/META-INF/nest/dependencies</code> file will be resolved. The resolution works transitively. (I.e. the dependencies of the dependencies are also resolved, and so on.)</p>
@@ -93,8 +93,8 @@ second.bundle
 </code></pre>
 <p>The the dependencies for both <code>first.bundle</code> and <code>second.bundle</code> will be resolved. In order to filter out the unnecessary dependencies for your use-case, specify a dependency <code>Filter</code>:</p>
 <pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../nest.repository.support/taskdoc/nest.dependency.resolve.html" title="Task: nest.dependency.resolve()">nest.dependency.resolve</a>(</span>
-	<span class="h">DependencyFile</span>: <span class="e">res/META-INF/nest/dependencies</span>,
-	<span class="h">Filter</span>: <span class="d"><a href="../../../nest.repository.support/taskdoc/nest.dependency.filter.kind.html" title="Task: nest.dependency.filter.kind()">nest.dependency.filter.kind</a>(</span><span class="e">classpath</span><span class="d">)</span>
+	<span class="h"><a href="../../../nest.repository.support/taskdoc/nest.dependency.resolve.html#DependencyFile" title="Parameter DependencyFile of task nest.dependency.resolve()">DependencyFile</a></span>: <span class="e">res/META-INF/nest/dependencies</span>,
+	<span class="h"><a href="../../../nest.repository.support/taskdoc/nest.dependency.resolve.html#Filter" title="Parameter Filter of task nest.dependency.resolve()">Filter</a></span>: <span class="d"><a href="../../../nest.repository.support/taskdoc/nest.dependency.filter.kind.html" title="Task: nest.dependency.filter.kind()">nest.dependency.filter.kind</a>(</span><span class="e">classpath</span><span class="d">)</span>
 <span class="d">)</span>
 </code></pre>
 <p>In this case only the dependencies for the kind <code>classpath</code> will be resolved, and the dependency on <code>second.bundle</code> is omitted.</p>

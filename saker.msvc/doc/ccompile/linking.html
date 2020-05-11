@@ -88,8 +88,8 @@
 <p>The above takes the result of a compilation and performs the linking for the output object files. The target architecture, and identifier will be inferred from the compilation task output.</p>
 <p>The task allows specifying various options on how the linking should be done:</p>
 <pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.msvc/taskdoc/saker.msvc.clink.html" title="Task: saker.msvc.clink()">saker.msvc.clink</a>(</span>
-	<span class="h">Input</span>: <span class="k">### ... ###</span>,
-	<span class="h">SimpleParameters</span>: <span class="i">[</span> <span class="e">/DLL</span><span class="i">,</span> <span class="e">/LTCG</span><span class="i"> ]</span>
+	<span class="h"><a href="../../../saker.msvc/taskdoc/saker.msvc.clink.html#Input" title="Parameter Input of task saker.msvc.clink()">Input</a></span>: <span class="k">### ... ###</span>,
+	<span class="h"><a href="../../../saker.msvc/taskdoc/saker.msvc.clink.html#SimpleParameters" title="Parameter SimpleParameters of task saker.msvc.clink()">SimpleParameters</a></span>: <span class="i">[</span> <span class="e">/DLL</span><span class="i">,</span> <span class="e">/LTCG</span><span class="i"> ]</span>
 <span class="d">)</span>
 </code></pre>
 <p>The above will cause the task to pass the <a href="https://docs.microsoft.com/en-us/cpp/build/reference/dll-build-a-dll?view=vs-2019" title="/DLL (Build a DLL) | Microsoft Docs"><code>/DLL</code></a> and <a href="https://docs.microsoft.com/en-us/cpp/build/reference/ltcg-link-time-code-generation?view=vs-2019" title="/LTCG (Link-time Code Generation) | Microsoft Docs"><code>/LTCG</code></a> parameters directly to the backend <a href="https://docs.microsoft.com/en-us/cpp/build/reference/linking?view=vs-2019" title="MSVC linker reference | Microsoft Docs"><code>link.exe</code></a>.</p>
@@ -98,16 +98,16 @@
 <h2 id="compilation-identifier">Compilation identifier<a class="doc-heading-anchor" href="#compilation-identifier"></a></h2>
 <p>The compilation identifier (and the target architecture) uniquely identifies a given linker pass during the build system execution. It is used to distinguish the different linking operations, their outputs, and to prevent accidental overwriting of each others outputs. The <code>Identifier</code> parameter can be used to set a custom one:</p>
 <pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.msvc/taskdoc/saker.msvc.clink.html" title="Task: saker.msvc.clink()">saker.msvc.clink</a>(</span>
-	<span class="h">Input</span>: <span class="k">#### ... ###</span>,
-	<span class="h">Identifier</span>: <span class="e">main</span>
+	<span class="h"><a href="../../../saker.msvc/taskdoc/saker.msvc.clink.html#Input" title="Parameter Input of task saker.msvc.clink()">Input</a></span>: <span class="k">#### ... ###</span>,
+	<span class="h"><a href="../../../saker.msvc/taskdoc/saker.msvc.clink.html#Identifier" title="Parameter Identifier of task saker.msvc.clink()">Identifier</a></span>: <span class="e">main</span>
 <span class="d">)</span>
 </code></pre>
 <p>The compilation identifier is also used to determine if any <a href="linkeroptions.html" title="Linker options">linker options</a> need to be merged for the linker pass.</p>
 <h2 id="architecture">Architecture<a class="doc-heading-anchor" href="#architecture"></a></h2>
 <p>The linking of the inputs can be done for a given target architecture. The <a href="../../taskdoc/saker.msvc.clink.html"><code>saker.msvc.clink()</code></a> task can be instructed to link for a given architecture by specifying the <code>Architecture</code> parameter:</p>
 <pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.msvc/taskdoc/saker.msvc.clink.html" title="Task: saker.msvc.clink()">saker.msvc.clink</a>(</span>
-	<span class="h">Input</span>: <span class="k">#### ... ###</span>,
-	<span class="h">Architecture</span>: <span class="e">x64</span>
+	<span class="h"><a href="../../../saker.msvc/taskdoc/saker.msvc.clink.html#Input" title="Parameter Input of task saker.msvc.clink()">Input</a></span>: <span class="k">#### ... ###</span>,
+	<span class="h"><a href="../../../saker.msvc/taskdoc/saker.msvc.clink.html#Architecture" title="Parameter Architecture of task saker.msvc.clink()">Architecture</a></span>: <span class="e">x64</span>
 <span class="d">)</span>
 </code></pre>
 <p>If no architecture is specified, the linker task will attempt to infer the target architecture based on the inputs. If that cannot be done, the architecture of the local machine is used.</p>

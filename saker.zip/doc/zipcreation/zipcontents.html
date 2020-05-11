@@ -91,7 +91,7 @@
 <h3 id="adding-files">Adding files<a class="doc-heading-anchor" href="#adding-files"></a></h3>
 <p>When adding files to the archive, the files will be placed in the root of the created archive with the same name as the added file. If the <code>TargetDirectory</code> property is specified, they will be placed under that directory path.</p>
 <pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.zip/taskdoc/saker.zip.create.html" title="Task: saker.zip.create()">saker.zip.create</a>(</span>
-	<span class="h">Resources</span>: <span class="i">[</span>
+	<span class="h"><a href="../../../saker.zip/taskdoc/saker.zip.create.html#Resources" title="Parameter Resources of task saker.zip.create()">Resources</a></span>: <span class="i">[</span>
 		<span class="e">input.txt</span><span class="i">,</span>
 		<span class="i">{</span>
 			<span class="g">Files</span>: <span class="i">[</span>
@@ -111,7 +111,7 @@ lib/libbar.so
 <h3 id="adding-directory-contents">Adding directory contents<a class="doc-heading-anchor" href="#adding-directory-contents"></a></h3>
 <p>You can specify a directory and its subtree to be added to the created archive. This is a common use-case, as developers often store their to-be-archived resources in a single folder for easier management. To add a directory and its contents to the archive, use the following:</p>
 <pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.zip/taskdoc/saker.zip.create.html" title="Task: saker.zip.create()">saker.zip.create</a>(</span>
-	<span class="h">Resources</span>: <span class="i">{</span>
+	<span class="h"><a href="../../../saker.zip/taskdoc/saker.zip.create.html#Resources" title="Parameter Resources of task saker.zip.create()">Resources</a></span>: <span class="i">{</span>
 		<span class="g">Directory</span>: <span class="e">res</span><span class="i">,</span>
 		<span class="g">Resources</span>: <span class="e">**</span>
 	<span class="i">}</span>
@@ -122,7 +122,7 @@ lib/libbar.so
 <h2 id="include"><code>Include</code><a class="doc-heading-anchor" href="#include"></a></h2>
 <p>The <code>Include</code> parameter of the <a href="../../taskdoc/saker.zip.create.html"><code>saker.zip.create()</code></a> tasks allows you to include entries from other ZIP archives. You can specify the resources to be included using wildcard patterns, and can set a target directory under which they should be placed.</p>
 <pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.zip/taskdoc/saker.zip.create.html" title="Task: saker.zip.create()">saker.zip.create</a>(</span>
-	<span class="h">Include</span>: <span class="i">[</span>
+	<span class="h"><a href="../../../saker.zip/taskdoc/saker.zip.create.html#Include" title="Parameter Include of task saker.zip.create()">Include</a></span>: <span class="i">[</span>
 		<span class="e">resources.zip</span><span class="i">,</span>
 		<span class="i">{</span>
 			<span class="g">Archive</span>: <span class="e">input.zip</span><span class="i">,</span>

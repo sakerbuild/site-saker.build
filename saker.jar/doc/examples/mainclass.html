@@ -82,12 +82,12 @@
 <p>See also: <a href="../jarcreation/manifest.html" title="Manifest">Manifest</a></p>
 <p>You can specify the main class of your JAR file in two ways. Via the <code>Main-Class</code> manifest attribute, and using the module-info of the archive:</p>
 <pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.jar/taskdoc/saker.jar.create.html" title="Task: saker.jar.create()">saker.jar.create</a>(</span>
-	<span class="h">Manifest</span>: <span class="i">{</span>
+	<span class="h"><a href="../../../saker.jar/taskdoc/saker.jar.create.html#Manifest" title="Parameter Manifest of task saker.jar.create()">Manifest</a></span>: <span class="i">{</span>
 		<span class="g">MainAttributes</span>: <span class="i">{</span>
 			<span class="g">Main-Class</span>: <span class="e">example.Main</span>
 		<span class="i">}</span>
 	<span class="i">}</span>,
-	<span class="h">ModuleInfoMainClass</span>: <span class="e">example.Main</span>
+	<span class="h"><a href="../../../saker.jar/taskdoc/saker.jar.create.html#ModuleInfoMainClass" title="Parameter ModuleInfoMainClass of task saker.jar.create()">ModuleInfoMainClass</a></span>: <span class="e">example.Main</span>
 <span class="d">)</span>
 </code></pre>
 <p>We recommend specifying both, so you'll have the main class defined independent whether you're using modules or not. If you don't use modules, the <code>ModuleInfoMainClass</code> parameter will have no effect.</p>

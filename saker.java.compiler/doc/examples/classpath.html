@@ -81,16 +81,16 @@
 			<div class="doc-content"><h1 id="classpath">Classpath<a class="doc-heading-anchor" href="#classpath"></a></h1>
 <p>You can add class paths to the compilation configuration in which case the classes on the class path will be visible for the compiled sources:</p>
 <pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
-	<span class="h">SourceDirectories</span>: <span class="e">src</span>,
-	<span class="h">ClassPath</span>: <span class="e">lib/my_library.jar</span>
+	<span class="h"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html#SourceDirectories" title="Parameter SourceDirectories of task saker.java.compile()">SourceDirectories</a></span>: <span class="e">src</span>,
+	<span class="h"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html#ClassPath" title="Parameter ClassPath of task saker.java.compile()">ClassPath</a></span>: <span class="e">lib/my_library.jar</span>
 <span class="d">)</span>
 </code></pre>
 <p>In this case the classes in <code>lib/my_library.jar</code> will be accessible for the compiled classes in the <code>src</code> directory.</p>
 <h2 id="wildcards">Wildcards<a class="doc-heading-anchor" href="#wildcards"></a></h2>
 <p>You can add multiple class paths, and use wildcards as well:</p>
 <pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
-	<span class="h">SourceDirectories</span>: <span class="e">src</span>,
-	<span class="h">ClassPath</span>: <span class="i">[</span>
+	<span class="h"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html#SourceDirectories" title="Parameter SourceDirectories of task saker.java.compile()">SourceDirectories</a></span>: <span class="e">src</span>,
+	<span class="h"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html#ClassPath" title="Parameter ClassPath of task saker.java.compile()">ClassPath</a></span>: <span class="i">[</span>
 		<span class="e">lib/*.jar</span><span class="i">,</span>
 		<span class="e">testlib/*.jar</span>
 	<span class="i">]</span>
@@ -100,12 +100,12 @@
 <p>You can add other compilation results to the input class path as well:</p>
 <pre class="doc-code-block"><code class="language-sakerscript"><span class="c">$basejavac</span> = <span class="d"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span><span class="e">base</span><span class="d">)</span>
 <span class="c">$libjavac</span> = <span class="d"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
-	<span class="h">SourceDirectories</span>: <span class="e">lib</span>,
-	<span class="h">ClassPath</span>: <span class="c">$basejavac</span>
+	<span class="h"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html#SourceDirectories" title="Parameter SourceDirectories of task saker.java.compile()">SourceDirectories</a></span>: <span class="e">lib</span>,
+	<span class="h"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html#ClassPath" title="Parameter ClassPath of task saker.java.compile()">ClassPath</a></span>: <span class="c">$basejavac</span>
 <span class="d">)</span>
 <span class="d"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
-	<span class="h">SourceDirectories</span>: <span class="e">src</span>,
-	<span class="h">ClassPath</span>: <span class="c">$libjavac</span>
+	<span class="h"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html#SourceDirectories" title="Parameter SourceDirectories of task saker.java.compile()">SourceDirectories</a></span>: <span class="e">src</span>,
+	<span class="h"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html#ClassPath" title="Parameter ClassPath of task saker.java.compile()">ClassPath</a></span>: <span class="c">$libjavac</span>
 <span class="d">)</span>
 </code></pre>
 <p>In this case we compile sources three times. First the <code>base</code> directory, which then passed as an input class path to <code>lib</code>. The compilation result of <code>lib</code> will be used for compiling the sources in <code>src</code>.</p>
@@ -114,17 +114,17 @@
 <p>See also: <a href="../javacompile/bundleclasspath.html" title="Bundle classpath">Bundle classpath</a></p>
 <p>The <a href="../../taskdoc/saker.java.classpath.bundle.html"><code>saker.java.classpath.bundle()</code></a> task allows creating classpath for a given set of saker.nest bundles:</p>
 <pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
-	<span class="h">SourceDirectories</span>: <span class="e">src</span>,
-	<span class="h">ClassPath</span>: <span class="d"><a href="../../../saker.java.compiler/taskdoc/saker.java.classpath.bundle.html" title="Task: saker.java.classpath.bundle()">saker.java.classpath.bundle</a>(</span><span class="e">example.bundle-v1.0</span><span class="d">)</span>
+	<span class="h"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html#SourceDirectories" title="Parameter SourceDirectories of task saker.java.compile()">SourceDirectories</a></span>: <span class="e">src</span>,
+	<span class="h"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html#ClassPath" title="Parameter ClassPath of task saker.java.compile()">ClassPath</a></span>: <span class="d"><a href="../../../saker.java.compiler/taskdoc/saker.java.classpath.bundle.html" title="Task: saker.java.classpath.bundle()">saker.java.classpath.bundle</a>(</span><span class="e">example.bundle-v1.0</span><span class="d">)</span>
 <span class="d">)</span>
 </code></pre>
 <p>You can also resolve the dependencies of the specified bundle:</p>
 <pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
-	<span class="h">SourceDirectories</span>: <span class="e">src</span>,
-	<span class="h">ClassPath</span>: <span class="d"><a href="../../../saker.java.compiler/taskdoc/saker.java.classpath.bundle.html" title="Task: saker.java.classpath.bundle()">saker.java.classpath.bundle</a>(</span>
+	<span class="h"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html#SourceDirectories" title="Parameter SourceDirectories of task saker.java.compile()">SourceDirectories</a></span>: <span class="e">src</span>,
+	<span class="h"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html#ClassPath" title="Parameter ClassPath of task saker.java.compile()">ClassPath</a></span>: <span class="d"><a href="../../../saker.java.compiler/taskdoc/saker.java.classpath.bundle.html" title="Task: saker.java.classpath.bundle()">saker.java.classpath.bundle</a>(</span>
 		<span class="d"><a href="../../../nest.repository.support/taskdoc/nest.dependency.resolve.html" title="Task: nest.dependency.resolve()">nest.dependency.resolve</a>(</span>
 			<span class="e">example.bundle</span>,
-			<span class="h">Filters</span>: <span class="d"><a href="../../../nest.repository.support/taskdoc/nest.dependency.filter.compile.html" title="Task: nest.dependency.filter.compile()">nest.dependency.filter.compile</a>(</span><span class="h">CompileTransitive</span>: <span class="j">false</span><span class="d">)</span>
+			<span class="h"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html#Filters" title="Parameter Filters of task saker.java.compile()">Filters</a></span>: <span class="d"><a href="../../../nest.repository.support/taskdoc/nest.dependency.filter.compile.html" title="Task: nest.dependency.filter.compile()">nest.dependency.filter.compile</a>(</span><span class="h"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html#CompileTransitive" title="Parameter CompileTransitive of task saker.java.compile()">CompileTransitive</a></span>: <span class="j">false</span><span class="d">)</span>
 		<span class="d">)</span>
 	<span class="d">)</span>
 <span class="d">)</span>

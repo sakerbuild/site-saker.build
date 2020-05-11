@@ -82,7 +82,7 @@
 <p>As a base about the manifest of a JAR file we recommend reading the manifest part of the <a href="https://docs.oracle.com/javase/8/docs/technotes/guides/jar/jar.html#JAR_Manifest" title="JAR File Specification">JAR File Secification</a>.</p>
 <p>The manifest of a JAR file is the entry with the path <code>META-INF/MANIFEST.MF</code>. The <a href="../../taskdoc/saker.jar.create.html"><code>saker.jar.create()</code></a> tasks supports specifying the manifest by direct resource inclusion and via task parameters:</p>
 <pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.jar/taskdoc/saker.jar.create.html" title="Task: saker.jar.create()">saker.jar.create</a>(</span>
-	<span class="h">Manifest</span>: <span class="i">{</span>
+	<span class="h"><a href="../../../saker.jar/taskdoc/saker.jar.create.html#Manifest" title="Parameter Manifest of task saker.jar.create()">Manifest</a></span>: <span class="i">{</span>
 		<span class="g">MainAttributes</span>: <span class="i">{</span>
 			<span class="g">Main-Class</span>: <span class="e">example.Main</span>
 		<span class="i">}</span>
@@ -96,7 +96,7 @@ Main-Class: example.Main
 <p>Note that the <code>Manifest-Version: 1.0</code> entry is automatically included, as it is required by the manifest specification.</p>
 <p>You can also specify per-entry attributes:</p>
 <pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.jar/taskdoc/saker.jar.create.html" title="Task: saker.jar.create()">saker.jar.create</a>(</span>
-	<span class="h">Manifest</span>: <span class="i">{</span>
+	<span class="h"><a href="../../../saker.jar/taskdoc/saker.jar.create.html#Manifest" title="Parameter Manifest of task saker.jar.create()">Manifest</a></span>: <span class="i">{</span>
 		<span class="g">MainAttributes</span>: <span class="i">{</span>
 			<span class="g">Main-Class</span>: <span class="e">example.Main</span>
 		<span class="i">},</span>

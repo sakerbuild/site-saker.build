@@ -85,8 +85,8 @@
 <h2 id="artifact-classpath">Artifact classpath<a class="doc-heading-anchor" href="#artifact-classpath"></a></h2>
 <p>Classpath can be created and used for a given set of artifacts:</p>
 <pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
-	<span class="h">SourceDirectories</span>: <span class="e">src</span>,
-	<span class="h">ClassPath</span>: <span class="d"><a href="../../../saker.maven.classpath/taskdoc/saker.maven.classpath.html" title="Task: saker.maven.classpath()">saker.maven.classpath</a>(</span><span class="i">[</span>
+	<span class="h"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html#SourceDirectories" title="Parameter SourceDirectories of task saker.java.compile()">SourceDirectories</a></span>: <span class="e">src</span>,
+	<span class="h"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html#ClassPath" title="Parameter ClassPath of task saker.java.compile()">ClassPath</a></span>: <span class="d"><a href="../../../saker.maven.classpath/taskdoc/saker.maven.classpath.html" title="Task: saker.maven.classpath()">saker.maven.classpath</a>(</span><span class="i">[</span>
 		<span class="e">&quot;junit:junit:4.12&quot;</span><span class="i">,</span>
 		<span class="e">&quot;org.slf4j:slf4j-api:1.7.19&quot;</span>
 	<span class="i">]</span><span class="d">)</span>
@@ -97,8 +97,8 @@
 <h2 id="dependency-classpath">Dependency classpath<a class="doc-heading-anchor" href="#dependency-classpath"></a></h2>
 <p>The task can accept resolved dependencies as its input. Extending the example from above:</p>
 <pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
-	<span class="h">SourceDirectories</span>: <span class="e">src</span>,
-	<span class="h">ClassPath</span>: <span class="d"><a href="../../../saker.maven.classpath/taskdoc/saker.maven.classpath.html" title="Task: saker.maven.classpath()">saker.maven.classpath</a>(<a href="../../../saker.maven.support/taskdoc/saker.maven.resolve.html" title="Task: saker.maven.resolve()">saker.maven.resolve</a>(</span><span class="i">[</span>
+	<span class="h"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html#SourceDirectories" title="Parameter SourceDirectories of task saker.java.compile()">SourceDirectories</a></span>: <span class="e">src</span>,
+	<span class="h"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html#ClassPath" title="Parameter ClassPath of task saker.java.compile()">ClassPath</a></span>: <span class="d"><a href="../../../saker.maven.classpath/taskdoc/saker.maven.classpath.html" title="Task: saker.maven.classpath()">saker.maven.classpath</a>(<a href="../../../saker.maven.support/taskdoc/saker.maven.resolve.html" title="Task: saker.maven.resolve()">saker.maven.resolve</a>(</span><span class="i">[</span>
 		<span class="e">&quot;junit:junit:4.12&quot;</span><span class="i">,</span>
 		<span class="e">&quot;org.slf4j:slf4j-api:1.7.19&quot;</span>
 	<span class="i">]</span><span class="d">))</span>

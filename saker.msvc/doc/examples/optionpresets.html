@@ -83,13 +83,13 @@
 <p>The option presets allow you to use predefined configuration for the MSVC toolchain in order to develop specific applications. The <code>saker.msvc.coptions.preset()</code> task returns an options object that when passed to the compiler and linker tasks as an option, it will configure it appropriately for the given use-case:</p>
 <pre class="doc-code-block"><code class="language-sakerscript"><span class="c">$ccompile</span> = <span class="d"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span>
 	<span class="e">src/**/*.cpp</span>,
-	<span class="h">CompilerOptions</span>: <span class="i">[</span>
+	<span class="h"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html#CompilerOptions" title="Parameter CompilerOptions of task saker.msvc.ccompile()">CompilerOptions</a></span>: <span class="i">[</span>
 		<span class="d"><a href="../../../saker.msvc/taskdoc/saker.msvc.coptions.preset.html" title="Task: saker.msvc.coptions.preset()">saker.msvc.coptions.preset</a>(</span><span class="e">console</span><span class="d">)</span><span class="i">,</span>
 	<span class="i">]</span>
 <span class="d">)</span>
 <span class="c">$procclink</span> = <span class="d"><a href="../../../saker.msvc/taskdoc/saker.msvc.clink.html" title="Task: saker.msvc.clink()">saker.msvc.clink</a>(</span>
 	<span class="c">$ccompile</span>,
-	<span class="h">LinkerOptions</span>: <span class="i">[</span>
+	<span class="h"><a href="../../../saker.msvc/taskdoc/saker.msvc.clink.html#LinkerOptions" title="Parameter LinkerOptions of task saker.msvc.clink()">LinkerOptions</a></span>: <span class="i">[</span>
 		<span class="d"><a href="../../../saker.msvc/taskdoc/saker.msvc.coptions.preset.html" title="Task: saker.msvc.coptions.preset()">saker.msvc.coptions.preset</a>(</span><span class="e">console</span><span class="d">)</span><span class="i">,</span>
 	<span class="i">]</span>
 <span class="d">)</span>
@@ -118,30 +118,30 @@
 <h2 id="preset-identifier">Preset identifier<a class="doc-heading-anchor" href="#preset-identifier"></a></h2>
 <p>The presets can be created with a given <code>Identifier</code> specified for them:</p>
 <pre class="doc-code-block"><code class="language-sakerscript"><span class="c">$options</span> = <span class="i">[</span>
-	<span class="d"><a href="../../../saker.msvc/taskdoc/saker.msvc.coptions.preset.html" title="Task: saker.msvc.coptions.preset()">saker.msvc.coptions.preset</a>(</span><span class="e">console</span>, <span class="h">Identifier</span>: <span class="e">con</span><span class="d">)</span><span class="i">,</span>
-	<span class="d"><a href="../../../saker.msvc/taskdoc/saker.msvc.coptions.preset.html" title="Task: saker.msvc.coptions.preset()">saker.msvc.coptions.preset</a>(</span><span class="e">dll</span>, <span class="h">Identifier</span>: <span class="e">lib</span><span class="d">)</span><span class="i">,</span>
+	<span class="d"><a href="../../../saker.msvc/taskdoc/saker.msvc.coptions.preset.html" title="Task: saker.msvc.coptions.preset()">saker.msvc.coptions.preset</a>(</span><span class="e">console</span>, <span class="h"><a href="../../../saker.msvc/taskdoc/saker.msvc.coptions.preset.html#Identifier" title="Parameter Identifier of task saker.msvc.coptions.preset()">Identifier</a></span>: <span class="e">con</span><span class="d">)</span><span class="i">,</span>
+	<span class="d"><a href="../../../saker.msvc/taskdoc/saker.msvc.coptions.preset.html" title="Task: saker.msvc.coptions.preset()">saker.msvc.coptions.preset</a>(</span><span class="e">dll</span>, <span class="h"><a href="../../../saker.msvc/taskdoc/saker.msvc.coptions.preset.html#Identifier" title="Parameter Identifier of task saker.msvc.coptions.preset()">Identifier</a></span>: <span class="e">lib</span><span class="d">)</span><span class="i">,</span>
 <span class="i">]</span>
 <span class="b"># Compiling the console app</span>
 <span class="c">$conccompile</span> = <span class="d"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span>
 	<span class="e">consrc/**/*.cpp</span>,
-	<span class="h">CompilerOptions</span>: <span class="c">$options</span>,
-	<span class="h">Identifier</span>: <span class="e">main-con</span>
+	<span class="h"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html#CompilerOptions" title="Parameter CompilerOptions of task saker.msvc.ccompile()">CompilerOptions</a></span>: <span class="c">$options</span>,
+	<span class="h"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html#Identifier" title="Parameter Identifier of task saker.msvc.ccompile()">Identifier</a></span>: <span class="e">main-con</span>
 <span class="d">)</span>
 <span class="d"><a href="../../../saker.msvc/taskdoc/saker.msvc.clink.html" title="Task: saker.msvc.clink()">saker.msvc.clink</a>(</span>
 	<span class="c">$conccompile</span>,
-	<span class="h">LinkerOptions</span>: <span class="c">$options</span>,
-	<span class="h">Identifier</span>: <span class="e">main-con</span>
+	<span class="h"><a href="../../../saker.msvc/taskdoc/saker.msvc.clink.html#LinkerOptions" title="Parameter LinkerOptions of task saker.msvc.clink()">LinkerOptions</a></span>: <span class="c">$options</span>,
+	<span class="h"><a href="../../../saker.msvc/taskdoc/saker.msvc.clink.html#Identifier" title="Parameter Identifier of task saker.msvc.clink()">Identifier</a></span>: <span class="e">main-con</span>
 <span class="d">)</span>
 <span class="b"># Compiling the library</span>
 <span class="c">$libccompile</span> = <span class="d"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span>
 	<span class="e">libsrc/**/*.cpp</span>,
-	<span class="h">CompilerOptions</span>: <span class="c">$options</span>,
-	<span class="h">Identifier</span>: <span class="e">main-lib</span>
+	<span class="h"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html#CompilerOptions" title="Parameter CompilerOptions of task saker.msvc.ccompile()">CompilerOptions</a></span>: <span class="c">$options</span>,
+	<span class="h"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html#Identifier" title="Parameter Identifier of task saker.msvc.ccompile()">Identifier</a></span>: <span class="e">main-lib</span>
 <span class="d">)</span>
 <span class="d"><a href="../../../saker.msvc/taskdoc/saker.msvc.clink.html" title="Task: saker.msvc.clink()">saker.msvc.clink</a>(</span>
 	<span class="c">$libccompile</span>,
-	<span class="h">LinkerOptions</span>: <span class="c">$options</span>,
-	<span class="h">Identifier</span>: <span class="e">main-lib</span>
+	<span class="h"><a href="../../../saker.msvc/taskdoc/saker.msvc.clink.html#LinkerOptions" title="Parameter LinkerOptions of task saker.msvc.clink()">LinkerOptions</a></span>: <span class="c">$options</span>,
+	<span class="h"><a href="../../../saker.msvc/taskdoc/saker.msvc.clink.html#Identifier" title="Parameter Identifier of task saker.msvc.clink()">Identifier</a></span>: <span class="e">main-lib</span>
 <span class="d">)</span>
 </code></pre>
 <p>If an <code>Identifier</code> is specified for the retrieved preset configurations, then they will be only merged with the associated tasks if the <code>Identifier</code> of the task contains all the componets as specified in the preset <code>Identifier</code>.</p>

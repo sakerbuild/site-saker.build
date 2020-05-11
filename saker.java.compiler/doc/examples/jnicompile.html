@@ -82,28 +82,28 @@
 <p>The following example showcases how you can compile a native library alongside your Java sources. We'll be using the <a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html"><code>saker.msvc.ccompile()</code></a> task to compile the C sources, and use <a href="../../../saker.msvc/taskdoc/saker.msvc.clink.html"><code>saker.msvc.clink()</code></a> to link the object files (from the <a href="../../../saker.msvc/index.html" title="Index">saker.msvc</a> package). These tasks use the Microsoft Visual C++ compiler.</p>
 <p>The example also uses the <a href="../../../saker.sdk.support/index.html" title="Index">saker.sdk.support</a> package.</p>
 <pre class="doc-code-block"><code class="language-sakerscript"><span class="c">$javac</span> = <span class="d"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
-	<span class="h">SourceDirectories</span>: <span class="e">src</span>,
-	<span class="h">GenerateNativeHeaders</span>: <span class="j">true</span>
+	<span class="h"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html#SourceDirectories" title="Parameter SourceDirectories of task saker.java.compile()">SourceDirectories</a></span>: <span class="e">src</span>,
+	<span class="h"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html#GenerateNativeHeaders" title="Parameter GenerateNativeHeaders of task saker.java.compile()">GenerateNativeHeaders</a></span>: <span class="j">true</span>
 <span class="d">)</span>
 <span class="c">$ccompile</span> = <span class="d"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span>
 	<span class="i">{</span>
 		<span class="g">Files</span>: <span class="e">csrc/**/*.cpp</span><span class="i">,</span>
 		<span class="g">IncludeDirectories</span>: <span class="i">[</span>
-			<span class="d"><a href="../../../saker.sdk.support/taskdoc/sdk.path.html" title="Task: sdk.path()">sdk.path</a>(</span><span class="e">java</span>, <span class="h">Identifier</span>: <span class="e">include</span><span class="d">)</span><span class="i">,</span>
-			<span class="d"><a href="../../../saker.sdk.support/taskdoc/sdk.path.html" title="Task: sdk.path()">sdk.path</a>(</span><span class="e">java</span>, <span class="h">Identifier</span>: <span class="e">include.platform</span><span class="d">)</span><span class="i">,</span>
+			<span class="d"><a href="../../../saker.sdk.support/taskdoc/sdk.path.html" title="Task: sdk.path()">sdk.path</a>(</span><span class="e">java</span>, <span class="h"><a href="../../../saker.sdk.support/taskdoc/sdk.path.html#Identifier" title="Parameter Identifier of task sdk.path()">Identifier</a></span>: <span class="e">include</span><span class="d">)</span><span class="i">,</span>
+			<span class="d"><a href="../../../saker.sdk.support/taskdoc/sdk.path.html" title="Task: sdk.path()">sdk.path</a>(</span><span class="e">java</span>, <span class="h"><a href="../../../saker.sdk.support/taskdoc/sdk.path.html#Identifier" title="Parameter Identifier of task sdk.path()">Identifier</a></span>: <span class="e">include.platform</span><span class="d">)</span><span class="i">,</span>
 			<span class="c">$javac</span><span class="f">[</span><span class="g">HeaderDirectory</span><span class="f">]</span>
 		<span class="i">]</span>
 	<span class="i">}</span>,
-	<span class="h">SDKs</span>: <span class="i">{</span>
+	<span class="h"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html#SDKs" title="Parameter SDKs of task saker.msvc.ccompile()">SDKs</a></span>: <span class="i">{</span>
 		<span class="g">Java</span>: <span class="c">$javac</span><span class="f">[</span><span class="g">JavaSDK</span><span class="f">]</span>
 	<span class="i">}</span>,
-	<span class="h">CompilerOptions</span>: <span class="i">[</span>
+	<span class="h"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html#CompilerOptions" title="Parameter CompilerOptions of task saker.msvc.ccompile()">CompilerOptions</a></span>: <span class="i">[</span>
 		<span class="d"><a href="../../../saker.msvc/taskdoc/saker.msvc.coptions.preset.html" title="Task: saker.msvc.coptions.preset()">saker.msvc.coptions.preset</a>(</span><span class="e">dll</span><span class="d">)</span>
 	<span class="i">]</span>
 <span class="d">)</span>
 <span class="d"><a href="../../../saker.msvc/taskdoc/saker.msvc.clink.html" title="Task: saker.msvc.clink()">saker.msvc.clink</a>(</span>
 	<span class="c">$ccompile</span>,
-	<span class="h">LinkerOptions</span>: <span class="i">[</span>
+	<span class="h"><a href="../../../saker.msvc/taskdoc/saker.msvc.clink.html#LinkerOptions" title="Parameter LinkerOptions of task saker.msvc.clink()">LinkerOptions</a></span>: <span class="i">[</span>
 		<span class="d"><a href="../../../saker.msvc/taskdoc/saker.msvc.coptions.preset.html" title="Task: saker.msvc.coptions.preset()">saker.msvc.coptions.preset</a>(</span><span class="e">dll</span><span class="d">)</span>
 	<span class="i">]</span>
 <span class="d">)</span>

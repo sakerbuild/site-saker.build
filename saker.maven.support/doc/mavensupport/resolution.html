@@ -83,7 +83,7 @@
 <h5 id="artifact-coordinates">Artifact coordinates<a class="doc-heading-anchor" href="#artifact-coordinates"></a></h5>
 <p>You can specify the artifact coordinates for which the dependencies should be resolved:</p>
 <pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.maven.support/taskdoc/saker.maven.resolve.html" title="Task: saker.maven.resolve()">saker.maven.resolve</a>(</span>
-	<span class="h">Artifacts</span>: <span class="i">[</span>
+	<span class="h"><a href="../../../saker.maven.support/taskdoc/saker.maven.resolve.html#Artifacts" title="Parameter Artifacts of task saker.maven.resolve()">Artifacts</a></span>: <span class="i">[</span>
 		<span class="e">&quot;junit:junit:4.12&quot;</span><span class="i">,</span>
 		<span class="e">&quot;org.slf4j:slf4j-api:1.7.19&quot;</span>
 	<span class="i">]</span>
@@ -100,7 +100,7 @@ org.hamcrest:hamcrest-core:jar:1.3
 <h5 id="dependencies">Dependencies<a class="doc-heading-anchor" href="#dependencies"></a></h5>
 <p>The dependencies can also be speified with the scopes and exclusions as well:</p>
 <pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.maven.support/taskdoc/saker.maven.resolve.html" title="Task: saker.maven.resolve()">saker.maven.resolve</a>(</span>
-	<span class="h">Dependencies</span>: <span class="i">{</span>
+	<span class="h"><a href="../../../saker.maven.support/taskdoc/saker.maven.resolve.html#Dependencies" title="Parameter Dependencies of task saker.maven.resolve()">Dependencies</a></span>: <span class="i">{</span>
 		<span class="g">&quot;junit:junit:4.12&quot;</span>: <span class="i">{</span>
 			<span class="g">Scope</span>: <span class="e">test</span><span class="i">,</span>
 			<span class="g">Exclusions</span>: <span class="e">&quot;org.hamcrest:hamcrest-core&quot;</span>
@@ -111,7 +111,7 @@ org.hamcrest:hamcrest-core:jar:1.3
 <p>In the above we specify a dependency on <code>junit</code> with the <code>test</code> scope, however exclude the transitive inclusion of the <code>org.hamcrest:hamcrest-core</code> artifact.</p>
 <p>The keys of the <code>Dependencies</code> map specify the dependency artifact, while the value map can configure the nature of the dependency. If we don't want to specify exclusions, we can simply pass the scope as the value:</p>
 <pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.maven.support/taskdoc/saker.maven.resolve.html" title="Task: saker.maven.resolve()">saker.maven.resolve</a>(</span>
-	<span class="h">Dependencies</span>: <span class="i">{</span>
+	<span class="h"><a href="../../../saker.maven.support/taskdoc/saker.maven.resolve.html#Dependencies" title="Parameter Dependencies of task saker.maven.resolve()">Dependencies</a></span>: <span class="i">{</span>
 		<span class="g">&quot;junit:junit:4.12&quot;</span>: <span class="e">test</span>
 	<span class="i">}</span>
 <span class="d">)</span>
@@ -119,7 +119,7 @@ org.hamcrest:hamcrest-core:jar:1.3
 <h5 id="pom_xml"><code>pom.xml</code><a class="doc-heading-anchor" href="#pom_xml"></a></h5>
 <p>The task can also resolve the dependencies of a <code>pom.xml</code> file:</p>
 <pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.maven.support/taskdoc/saker.maven.resolve.html" title="Task: saker.maven.resolve()">saker.maven.resolve</a>(</span>
-	<span class="h">Pom</span>: <span class="e">pom.xml</span>
+	<span class="h"><a href="../../../saker.maven.support/taskdoc/saker.maven.resolve.html#Pom" title="Parameter Pom of task saker.maven.resolve()">Pom</a></span>: <span class="e">pom.xml</span>
 <span class="d">)</span>
 </code></pre>
 <p>The task will parse the specified POM file and resolve the dependencies from it. Note that only the dependencies are resolved, other parts of the POM file are note taken into account.</p>

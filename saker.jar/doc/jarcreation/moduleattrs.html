@@ -81,8 +81,8 @@
 			<div class="doc-content"><h1 id="module-attributes">Module attributes<a class="doc-heading-anchor" href="#module-attributes"></a></h1>
 <p>The <a href="../../taskdoc/saker.jar.create.html"><code>saker.jar.create()</code></a> task allows injecting the module main class and module version into the created archive if it contains a <code>module-info.class</code> file:</p>
 <pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.jar/taskdoc/saker.jar.create.html" title="Task: saker.jar.create()">saker.jar.create</a>(</span>
-	<span class="h">ModuleInfoMainClass</span>: <span class="e">example.Main</span>,
-	<span class="h">ModuleInfoVersion</span>: <span class="e">&quot;1.0&quot;</span>,
+	<span class="h"><a href="../../../saker.jar/taskdoc/saker.jar.create.html#ModuleInfoMainClass" title="Parameter ModuleInfoMainClass of task saker.jar.create()">ModuleInfoMainClass</a></span>: <span class="e">example.Main</span>,
+	<span class="h"><a href="../../../saker.jar/taskdoc/saker.jar.create.html#ModuleInfoVersion" title="Parameter ModuleInfoVersion of task saker.jar.create()">ModuleInfoVersion</a></span>: <span class="e">&quot;1.0&quot;</span>,
 <span class="d">)</span>
 </code></pre>
 <p>Specifying the above parameters will cause the archiving process to <em>overwrite</em> the main class and module version attributes of the <code>module-info.class</code> file that is include in the created JAR. If no <code>module-info.class</code> entry was added to the JAR, the attributes are <strong>not</strong> injected.</p>

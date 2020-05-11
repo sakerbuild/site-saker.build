@@ -82,7 +82,7 @@
 <p>Artifact downloading is the process of making the Maven artifacts available for the build execution in the build file system. The task will <a href="localization.html" title="Artifact localization">localize</a> the artifacts and copy them in the build file system for use. This usually entails that the artifacts will be copied in the build directory.</p>
 <p>The task taskes a list of artifacts as its input:</p>
 <pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.maven.support/taskdoc/saker.maven.download.html" title="Task: saker.maven.download()">saker.maven.download</a>(</span>
-	<span class="h">Artifacts</span>: <span class="i">[</span>
+	<span class="h"><a href="../../../saker.maven.support/taskdoc/saker.maven.download.html#Artifacts" title="Parameter Artifacts of task saker.maven.download()">Artifacts</a></span>: <span class="i">[</span>
 		<span class="e">&quot;junit:junit:4.12&quot;</span><span class="i">,</span>
 		<span class="e">&quot;org.slf4j:slf4j-api:1.7.19&quot;</span>
 	<span class="i">]</span>
@@ -90,7 +90,7 @@
 </code></pre>
 <p>Note that the task doesn't perform any dependency resolution. In order to do that, you can use the <a href="../../taskdoc/saker.maven.resolve.html"><code>saker.maven.resolve()</code></a> task as follows:</p>
 <pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.maven.support/taskdoc/saker.maven.download.html" title="Task: saker.maven.download()">saker.maven.download</a>(</span>
-	<span class="h">Artifacts</span>: <span class="d"><a href="../../../saker.maven.support/taskdoc/saker.maven.resolve.html" title="Task: saker.maven.resolve()">saker.maven.resolve</a>(</span><span class="i">[</span>
+	<span class="h"><a href="../../../saker.maven.support/taskdoc/saker.maven.download.html#Artifacts" title="Parameter Artifacts of task saker.maven.download()">Artifacts</a></span>: <span class="d"><a href="../../../saker.maven.support/taskdoc/saker.maven.resolve.html" title="Task: saker.maven.resolve()">saker.maven.resolve</a>(</span><span class="i">[</span>
 		<span class="e">&quot;junit:junit:4.12&quot;</span><span class="i">,</span>
 		<span class="e">&quot;org.slf4j:slf4j-api:1.7.19&quot;</span>
 	<span class="i">]</span><span class="d">)</span>

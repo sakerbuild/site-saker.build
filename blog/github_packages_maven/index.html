@@ -110,17 +110,17 @@
 	<span class="b"># Replace USERNAME, REPOSITORY_NAME, and PERSONAL_ACCESS_TOKEN literals with your own</span>
 	<span class="c">$jar</span> = <span class="d"><a href="../../saker.build/doc/scripting/builtintasks/include.html" title="Task: include()">include</a>(</span><span class="e">export</span><span class="d">)</span><span class="f">[</span><span class="g">jar</span><span class="f">]</span>
 	<span class="d"><a href="../../saker.maven.support/taskdoc/saker.maven.deploy.html" title="Task: saker.maven.deploy()">saker.maven.deploy</a>(</span>
-		<span class="h">Artifacts</span>: <span class="i">{</span>
+		<span class="h"><a href="../../saker.maven.support/taskdoc/saker.maven.deploy.html#Artifacts" title="Parameter Artifacts of task saker.maven.deploy()">Artifacts</a></span>: <span class="i">{</span>
 			<span class="g">&quot;pom&quot;</span>: <span class="e">pom.xml</span><span class="i">,</span>
 			<span class="g">&quot;jar&quot;</span>: <span class="c">$jar</span><span class="f">[</span><span class="g">Path</span><span class="f">]</span><span class="i">,</span>
 		<span class="i">}</span>,
-		<span class="h">Coordinates</span>: <span class="e">&quot;example.saker.build:maven-gh-packages:0.1.0&quot;</span>,
-		<span class="h">RemoteRepository</span>: <span class="i">{</span>
+		<span class="h"><a href="../../saker.maven.support/taskdoc/saker.maven.deploy.html#Coordinates" title="Parameter Coordinates of task saker.maven.deploy()">Coordinates</a></span>: <span class="e">&quot;example.saker.build:maven-gh-packages:0.1.0&quot;</span>,
+		<span class="h"><a href="../../saker.maven.support/taskdoc/saker.maven.deploy.html#RemoteRepository" title="Parameter RemoteRepository of task saker.maven.deploy()">RemoteRepository</a></span>: <span class="i">{</span>
 			<span class="g">Id</span>: <span class="e">github</span><span class="i">,</span>
 			<span class="g">Url</span>: <span class="e">&quot;https://maven.pkg.github.com/USERNAME/REPOSITORY_NAME&quot;</span><span class="i">,</span>
 			<span class="g">Authentication</span>: <span class="d"><a href="../../saker.maven.support/taskdoc/saker.maven.auth.account.html" title="Task: saker.maven.auth.account()">saker.maven.auth.account</a>(</span>
-				<span class="h">Username</span>: <span class="e">USERNAME</span>,
-				<span class="h">Password</span>: <span class="e">PERSONAL_ACCESS_TOKEN</span>,
+				<span class="h"><a href="../../saker.maven.support/taskdoc/saker.maven.deploy.html#Username" title="Parameter Username of task saker.maven.deploy()">Username</a></span>: <span class="e">USERNAME</span>,
+				<span class="h"><a href="../../saker.maven.support/taskdoc/saker.maven.deploy.html#Password" title="Parameter Password of task saker.maven.deploy()">Password</a></span>: <span class="e">PERSONAL_ACCESS_TOKEN</span>,
 			<span class="d">)</span>
 		<span class="i">}</span>
 	<span class="d">)</span>
@@ -138,8 +138,8 @@
 <h3 id="using-the-repository">Using the repository<a class="doc-heading-anchor" href="#using-the-repository"></a></h3>
 <p>After deploying, you probably want to use your artifacts. You can authenticate yourself for other Maven build tasks the same way you did for deployment:</p>
 <pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../saker.maven.support/taskdoc/saker.maven.resolve.html" title="Task: saker.maven.resolve()">saker.maven.resolve</a>(</span>
-	<span class="h">Artifacts</span>: <span class="e">&quot;example.saker.build:maven-gh-packages:0.1.0&quot;</span>,
-	<span class="h">Configuration</span>: <span class="i">{</span>
+	<span class="h"><a href="../../saker.maven.support/taskdoc/saker.maven.resolve.html#Artifacts" title="Parameter Artifacts of task saker.maven.resolve()">Artifacts</a></span>: <span class="e">&quot;example.saker.build:maven-gh-packages:0.1.0&quot;</span>,
+	<span class="h"><a href="../../saker.maven.support/taskdoc/saker.maven.resolve.html#Configuration" title="Parameter Configuration of task saker.maven.resolve()">Configuration</a></span>: <span class="i">{</span>
 		<span class="g">Repositories</span>: <span class="i">[</span>
 			<span class="i">{</span>
 				<span class="g">Id</span>: <span class="e">central</span><span class="i">,</span>
@@ -149,8 +149,8 @@
 				<span class="g">Id</span>: <span class="e">github</span><span class="i">,</span>
 				<span class="g">Url</span>: <span class="e">&quot;https://maven.pkg.github.com/USERNAME/REPOSITORY_NAME&quot;</span><span class="i">,</span>
 				<span class="g">Authentication</span>: <span class="d"><a href="../../saker.maven.support/taskdoc/saker.maven.auth.account.html" title="Task: saker.maven.auth.account()">saker.maven.auth.account</a>(</span>
-					<span class="h">Username</span>: <span class="e">USERNAME</span>,
-					<span class="h">Password</span>: <span class="e">PERSONAL_ACCESS_TOKEN</span>,
+					<span class="h"><a href="../../saker.maven.support/taskdoc/saker.maven.resolve.html#Username" title="Parameter Username of task saker.maven.resolve()">Username</a></span>: <span class="e">USERNAME</span>,
+					<span class="h"><a href="../../saker.maven.support/taskdoc/saker.maven.resolve.html#Password" title="Parameter Password of task saker.maven.resolve()">Password</a></span>: <span class="e">PERSONAL_ACCESS_TOKEN</span>,
 				<span class="d">)</span><span class="i">,</span>
 			<span class="i">}</span>
 		<span class="i">]</span>
@@ -168,21 +168,21 @@ example.saker.build:maven-gh-packages:jar:0.1.0
 	<span class="g">Id</span>: <span class="e">github</span><span class="i">,</span>
 	<span class="g">Url</span>: <span class="e">&quot;https://maven.pkg.github.com/USERNAME/REPOSITORY_NAME&quot;</span><span class="i">,</span>
 	<span class="g">Authentication</span>: <span class="d"><a href="../../saker.maven.support/taskdoc/saker.maven.auth.account.html" title="Task: saker.maven.auth.account()">saker.maven.auth.account</a>(</span>
-		<span class="h">Username</span>: <span class="e">USERNAME</span>,
-		<span class="h">Password</span>: <span class="e">PERSONAL_ACCESS_TOKEN</span>,
+		<span class="h"><a href="../../saker.maven.support/taskdoc/saker.maven.auth.account.html#Username" title="Parameter Username of task saker.maven.auth.account()">Username</a></span>: <span class="e">USERNAME</span>,
+		<span class="h"><a href="../../saker.maven.support/taskdoc/saker.maven.auth.account.html#Password" title="Parameter Password of task saker.maven.auth.account()">Password</a></span>: <span class="e">PERSONAL_ACCESS_TOKEN</span>,
 	<span class="d">)</span>
 <span class="i">}</span>
 <span class="d"><a href="../../saker.maven.support/taskdoc/saker.maven.deploy.html" title="Task: saker.maven.deploy()">saker.maven.deploy</a>(</span>
-	<span class="h">Artifacts</span>: <span class="i">{</span>
+	<span class="h"><a href="../../saker.maven.support/taskdoc/saker.maven.deploy.html#Artifacts" title="Parameter Artifacts of task saker.maven.deploy()">Artifacts</a></span>: <span class="i">{</span>
 		<span class="g">&quot;pom&quot;</span>: <span class="e">pom.xml</span><span class="i">,</span>
 		<span class="g">&quot;jar&quot;</span>: <span class="c">$jar</span><span class="f">[</span><span class="g">Path</span><span class="f">]</span><span class="i">,</span>
 	<span class="i">}</span>,
-	<span class="h">Coordinates</span>: <span class="e">&quot;example.saker.build:maven-gh-packages:0.1.0&quot;</span>,
-	<span class="h">RemoteRepository</span>: <span class="d"><a href="../../saker.build/doc/scripting/builtintasks/static.html" title="Task: static()">static</a>(</span><span class="c">GITHUB_CONF</span><span class="d">)</span>
+	<span class="h"><a href="../../saker.maven.support/taskdoc/saker.maven.deploy.html#Coordinates" title="Parameter Coordinates of task saker.maven.deploy()">Coordinates</a></span>: <span class="e">&quot;example.saker.build:maven-gh-packages:0.1.0&quot;</span>,
+	<span class="h"><a href="../../saker.maven.support/taskdoc/saker.maven.deploy.html#RemoteRepository" title="Parameter RemoteRepository of task saker.maven.deploy()">RemoteRepository</a></span>: <span class="d"><a href="../../saker.build/doc/scripting/builtintasks/static.html" title="Task: static()">static</a>(</span><span class="c">GITHUB_CONF</span><span class="d">)</span>
 <span class="d">)</span>
 <span class="d"><a href="../../saker.maven.support/taskdoc/saker.maven.resolve.html" title="Task: saker.maven.resolve()">saker.maven.resolve</a>(</span>
-	<span class="h">Artifacts</span>: <span class="e">&quot;example.saker.build:maven-gh-packages:0.1.0&quot;</span>,
-	<span class="h">Configuration</span>: <span class="i">{</span>
+	<span class="h"><a href="../../saker.maven.support/taskdoc/saker.maven.resolve.html#Artifacts" title="Parameter Artifacts of task saker.maven.resolve()">Artifacts</a></span>: <span class="e">&quot;example.saker.build:maven-gh-packages:0.1.0&quot;</span>,
+	<span class="h"><a href="../../saker.maven.support/taskdoc/saker.maven.resolve.html#Configuration" title="Parameter Configuration of task saker.maven.resolve()">Configuration</a></span>: <span class="i">{</span>
 		<span class="g">Repositories</span>: <span class="i">[</span>
 			<span class="i">{</span>
 				<span class="g">Id</span>: <span class="e">central</span><span class="i">,</span>

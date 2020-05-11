@@ -116,16 +116,16 @@
 <h2 id="compilation-identifier">Compilation identifier<a class="doc-heading-anchor" href="#compilation-identifier"></a></h2>
 <p>The compilation identifier (and the target architecture) uniquely identifies a given compilation pass during the build system execution. It is used to distinguish the different compilations, their outputs, and to prevent accidental overwriting of each others outputs. The <code>Identifier</code> parameter can be used to set a custom one:</p>
 <pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span>
-	<span class="h">Input</span>: <span class="k">#### ... ###</span>,
-	<span class="h">Identifier</span>: <span class="e">main</span>
+	<span class="h"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html#Input" title="Parameter Input of task saker.msvc.ccompile()">Input</a></span>: <span class="k">#### ... ###</span>,
+	<span class="h"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html#Identifier" title="Parameter Identifier of task saker.msvc.ccompile()">Identifier</a></span>: <span class="e">main</span>
 <span class="d">)</span>
 </code></pre>
 <p>The compilation identifier is also used to determine if any <a href="compileroptions.html" title="Compiler options">compiler options</a> need to be merged for the compilation pass.</p>
 <h2 id="architecture">Architecture<a class="doc-heading-anchor" href="#architecture"></a></h2>
 <p>The compilation can be done in order to target a given architecture. The <a href="../../taskdoc/saker.msvc.ccompile.html"><code>saker.msvc.ccompile()</code></a> task can be instructed to compile for a given architecture by specifying the <code>Architecture</code> parameter:</p>
 <pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span>
-	<span class="h">Input</span>: <span class="k">#### ... ###</span>,
-	<span class="h">Architecture</span>: <span class="e">x64</span>
+	<span class="h"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html#Input" title="Parameter Input of task saker.msvc.ccompile()">Input</a></span>: <span class="k">#### ... ###</span>,
+	<span class="h"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html#Architecture" title="Parameter Architecture of task saker.msvc.ccompile()">Architecture</a></span>: <span class="e">x64</span>
 <span class="d">)</span>
 </code></pre>
 <p>If no architecture is specified, the compilation will be executed targetting the architecture of the local machine.</p>

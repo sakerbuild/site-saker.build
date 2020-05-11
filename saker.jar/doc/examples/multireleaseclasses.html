@@ -85,9 +85,9 @@
 <span class="c">$multireleasecontents</span> = <span class="j">foreach </span><span class="c">$jdk</span><span class="j"> in </span><span class="i">[</span><span class="e">8</span><span class="i">,</span> <span class="e">9</span><span class="i">,</span> <span class="e">10</span><span class="i">]</span><span class="j"> 
 		with </span><span class="c">$javac</span> <span class="j">{</span>
 	<span class="c">$javac</span> = <span class="d"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
-		<span class="h">SourceDirectories</span>: <span class="e">src</span>,
-		<span class="h">Identifier</span>: <span class="e">&quot;jdk</span><span class="j">{</span> <span class="c">$jdk</span><span class="j"> }</span><span class="e">&quot;</span>,
-		<span class="h">CompilerOptions</span>: <span class="c">$options</span>
+		<span class="h"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html#SourceDirectories" title="Parameter SourceDirectories of task saker.java.compile()">SourceDirectories</a></span>: <span class="e">src</span>,
+		<span class="h"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html#Identifier" title="Parameter Identifier of task saker.java.compile()">Identifier</a></span>: <span class="e">&quot;jdk</span><span class="j">{</span> <span class="c">$jdk</span><span class="j"> }</span><span class="e">&quot;</span>,
+		<span class="h"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html#CompilerOptions" title="Parameter CompilerOptions of task saker.java.compile()">CompilerOptions</a></span>: <span class="c">$options</span>
 	<span class="d">)</span>
 <span class="j">}</span> <span class="j">:</span> <span class="j">{</span>
 	<span class="c">$jdk</span>: <span class="i">{</span>
@@ -98,7 +98,7 @@
 	<span class="i">}</span>
 <span class="j">}</span>
 <span class="d"><a href="../../../saker.jar/taskdoc/saker.jar.create.html" title="Task: saker.jar.create()">saker.jar.create</a>(</span>
-	<span class="h">MultiReleaseContents</span>: <span class="c">$multireleasecontents</span>
+	<span class="h"><a href="../../../saker.jar/taskdoc/saker.jar.create.html#MultiReleaseContents" title="Parameter MultiReleaseContents of task saker.jar.create()">MultiReleaseContents</a></span>: <span class="c">$multireleasecontents</span>
 <span class="d">)</span>
 </code></pre>
 <p>The JAR archive creation part of the above example simply passes the <code>MultiReleaseContents</code> parameter as its input. However, the compilation for different JDKs are more complex:</p>

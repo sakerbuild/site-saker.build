@@ -82,12 +82,12 @@
 <p>We recommend reading <a href="../javacompile/processorconfig.html" title="Configuration">Annotation processor configuration</a> before this article. (Some of the examples are similar to the ones in that article.)</p>
 <p>To simply load an annotation processor from a classpath and use it in a compilation:</p>
 <pre class="doc-code-block"><code class="language-sakerscript"><span class="c">$processor</span> = <span class="d"><a href="../../../saker.java.compiler/taskdoc/saker.java.processor.html" title="Task: saker.java.processor()">saker.java.processor</a>(</span>
-	<span class="h">ClassPath</span>: <span class="e">lib/my_processor.jar</span>,
-	<span class="h">Class</span>: <span class="e">example.MyProcessor</span>
+	<span class="h"><a href="../../../saker.java.compiler/taskdoc/saker.java.processor.html#ClassPath" title="Parameter ClassPath of task saker.java.processor()">ClassPath</a></span>: <span class="e">lib/my_processor.jar</span>,
+	<span class="h"><a href="../../../saker.java.compiler/taskdoc/saker.java.processor.html#Class" title="Parameter Class of task saker.java.processor()">Class</a></span>: <span class="e">example.MyProcessor</span>
 <span class="d">)</span>
 <span class="d"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
-	<span class="h">SourceDirectories</span>: <span class="e">src</span>,
-	<span class="h">AnnotationProcessors</span>: <span class="c">$processor</span>
+	<span class="h"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html#SourceDirectories" title="Parameter SourceDirectories of task saker.java.compile()">SourceDirectories</a></span>: <span class="e">src</span>,
+	<span class="h"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html#AnnotationProcessors" title="Parameter AnnotationProcessors of task saker.java.compile()">AnnotationProcessors</a></span>: <span class="c">$processor</span>
 <span class="d">)</span>
 </code></pre>
 <p>The above will result in the <code>example.MyProcessor</code> being used when compiling the sources in <code>src</code>.</p>
@@ -95,9 +95,9 @@
 <p>To pass options for the used annotation processors:</p>
 <pre class="doc-code-block"><code class="language-sakerscript"><span class="c">$processor</span> = <span class="b"># ...</span>
 <span class="d"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
-	<span class="h">SourceDirectories</span>: <span class="e">src</span>,
-	<span class="h">AnnotationProcessors</span>: <span class="c">$processor</span>,
-	<span class="h">AnnotationProcessorOptions</span>: <span class="i">{</span>
+	<span class="h"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html#SourceDirectories" title="Parameter SourceDirectories of task saker.java.compile()">SourceDirectories</a></span>: <span class="e">src</span>,
+	<span class="h"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html#AnnotationProcessors" title="Parameter AnnotationProcessors of task saker.java.compile()">AnnotationProcessors</a></span>: <span class="c">$processor</span>,
+	<span class="h"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html#AnnotationProcessorOptions" title="Parameter AnnotationProcessorOptions of task saker.java.compile()">AnnotationProcessorOptions</a></span>: <span class="i">{</span>
 		<span class="g">example.MyProcessor.option</span>: <span class="e">abc</span>
 	<span class="i">}</span>
 <span class="d">)</span>
@@ -106,11 +106,11 @@
 <h2 id="input-locations">Input locations<a class="doc-heading-anchor" href="#input-locations"></a></h2>
 <p>Input locations may be specified for annotation processors to use. They will be able to read files from the specified locations:</p>
 <pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
-	<span class="h">SourceDirectories</span>: <span class="e">src</span>,
-	<span class="h">AnnotationProcessors</span>: <span class="i">{</span>
+	<span class="h"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html#SourceDirectories" title="Parameter SourceDirectories of task saker.java.compile()">SourceDirectories</a></span>: <span class="e">src</span>,
+	<span class="h"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html#AnnotationProcessors" title="Parameter AnnotationProcessors of task saker.java.compile()">AnnotationProcessors</a></span>: <span class="i">{</span>
 		<span class="g">Processor</span>: <span class="k">### ... ###</span> 
 	<span class="i">}</span>,
-	<span class="h">ProcessorInputLocations</span>: <span class="i">{</span>
+	<span class="h"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html#ProcessorInputLocations" title="Parameter ProcessorInputLocations of task saker.java.compile()">ProcessorInputLocations</a></span>: <span class="i">{</span>
 		<span class="g">WORKING_DIRECTORY</span>: <span class="e">&quot;&quot;</span><span class="i">,</span>
 		<span class="g">PROC_RES</span>: <span class="e">processor_resources</span>
 	<span class="i">}</span>,

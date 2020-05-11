@@ -83,8 +83,8 @@
 <p>Both the compiler and linker task work with the SDK named <code>MSVC</code>. They will locate the <a href="https://docs.microsoft.com/en-us/cpp/build/reference/compiling-a-c-cpp-program?view=vs-2019" title="MSVC C/C++ compiler reference - Visual Studio | Microsoft Docs"><code>cl.exe</code></a> and <a href="https://docs.microsoft.com/en-us/cpp/build/reference/linking?view=vs-2019" title="MSVC linker reference | Microsoft Docs"><code>link.exe</code></a> which are used to perform their operations based on the specified SDK. If no SDKs are specified with the name <code>MSVC</code>, the tasks will attempt to locate a default one based on the environment they're running on.</p>
 <p>To specify an SDK to be used with a given version, you can use the <a href="../../taskdoc/saker.msvc.sdk.html"><code>saker.msvc.sdk()</code></a> task:</p>
 <pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span>
-	<span class="h">Input</span>: <span class="k">### ... ###</span>,
-	<span class="h">SDKs</span>: <span class="i">{</span>
+	<span class="h"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html#Input" title="Parameter Input of task saker.msvc.ccompile()">Input</a></span>: <span class="k">### ... ###</span>,
+	<span class="h"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html#SDKs" title="Parameter SDKs of task saker.msvc.ccompile()">SDKs</a></span>: <span class="i">{</span>
 		<span class="g">MSVC</span>: <span class="d"><a href="../../../saker.msvc/taskdoc/saker.msvc.sdk.html" title="Task: saker.msvc.sdk()">saker.msvc.sdk</a>(</span><span class="e">14.22.27905</span><span class="d">)</span>
 	<span class="i">}</span>
 <span class="d">)</span>
@@ -103,9 +103,9 @@
 </code></pre>
 <p>You can reference legacy layout SDKs using the <code>LegacyVersion</code> parameter:</p>
 <pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span>
-	<span class="h">Input</span>: <span class="k">### ... ###</span>,
-	<span class="h">SDKs</span>: <span class="i">{</span>
-		<span class="g">MSVC</span>: <span class="d"><a href="../../../saker.msvc/taskdoc/saker.msvc.sdk.html" title="Task: saker.msvc.sdk()">saker.msvc.sdk</a>(</span><span class="h">LegacyVersion</span>: <span class="e">14.0</span><span class="d">)</span>
+	<span class="h"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html#Input" title="Parameter Input of task saker.msvc.ccompile()">Input</a></span>: <span class="k">### ... ###</span>,
+	<span class="h"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html#SDKs" title="Parameter SDKs of task saker.msvc.ccompile()">SDKs</a></span>: <span class="i">{</span>
+		<span class="g">MSVC</span>: <span class="d"><a href="../../../saker.msvc/taskdoc/saker.msvc.sdk.html" title="Task: saker.msvc.sdk()">saker.msvc.sdk</a>(</span><span class="h"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html#LegacyVersion" title="Parameter LegacyVersion of task saker.msvc.ccompile()">LegacyVersion</a></span>: <span class="e">14.0</span><span class="d">)</span>
 	<span class="i">}</span>
 <span class="d">)</span>
 </code></pre>
@@ -114,15 +114,15 @@
 <p>When developing with the MSVC toolchain, you are most likely to use the Windows SDK. The Windows SDK contains the necessary headers, libraries and other resources to develop for the Windows operating system. (E.g. <code>Windows.h</code>)</p>
 <p>The <a href="../../taskdoc/saker.msvc.sdk.windowskits.html"><code>saker.msvc.sdk.windowskits()</code></a> task allows locating the Windows SDK. Without any arguments, it will look for it under the <code>Program Files (x86)</code> and <code>Program Files</code> directory. However, you can also set the requested version number:</p>
 <pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span>
-	<span class="h">Input</span>: <span class="i">{</span>
+	<span class="h"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html#Input" title="Parameter Input of task saker.msvc.ccompile()">Input</a></span>: <span class="i">{</span>
 		<span class="g">Files</span>: <span class="e">src/**/*.cpp</span><span class="i">,</span>
 		<span class="g">IncludeDirectories</span>: <span class="i">[</span>
-			<span class="d"><a href="../../../saker.sdk.support/taskdoc/sdk.path.html" title="Task: sdk.path()">sdk.path</a>(</span><span class="e">WindowsKits</span>, <span class="h">Identifier</span>: <span class="e">include.shared</span><span class="d">)</span><span class="i">,</span>
-			<span class="d"><a href="../../../saker.sdk.support/taskdoc/sdk.path.html" title="Task: sdk.path()">sdk.path</a>(</span><span class="e">WindowsKits</span>, <span class="h">Identifier</span>: <span class="e">include.ucrt</span><span class="d">)</span><span class="i">,</span>
-			<span class="d"><a href="../../../saker.sdk.support/taskdoc/sdk.path.html" title="Task: sdk.path()">sdk.path</a>(</span><span class="e">WindowsKits</span>, <span class="h">Identifier</span>: <span class="e">include.um</span><span class="d">)</span>
+			<span class="d"><a href="../../../saker.sdk.support/taskdoc/sdk.path.html" title="Task: sdk.path()">sdk.path</a>(</span><span class="e">WindowsKits</span>, <span class="h"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html#Identifier" title="Parameter Identifier of task saker.msvc.ccompile()">Identifier</a></span>: <span class="e">include.shared</span><span class="d">)</span><span class="i">,</span>
+			<span class="d"><a href="../../../saker.sdk.support/taskdoc/sdk.path.html" title="Task: sdk.path()">sdk.path</a>(</span><span class="e">WindowsKits</span>, <span class="h"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html#Identifier" title="Parameter Identifier of task saker.msvc.ccompile()">Identifier</a></span>: <span class="e">include.ucrt</span><span class="d">)</span><span class="i">,</span>
+			<span class="d"><a href="../../../saker.sdk.support/taskdoc/sdk.path.html" title="Task: sdk.path()">sdk.path</a>(</span><span class="e">WindowsKits</span>, <span class="h"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html#Identifier" title="Parameter Identifier of task saker.msvc.ccompile()">Identifier</a></span>: <span class="e">include.um</span><span class="d">)</span>
 		<span class="i">]</span>
 	<span class="i">}</span>,
-	<span class="h">SDKs</span>: <span class="i">{</span>
+	<span class="h"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html#SDKs" title="Parameter SDKs of task saker.msvc.ccompile()">SDKs</a></span>: <span class="i">{</span>
 		<span class="g">WindowsKits</span>: <span class="d"><a href="../../../saker.msvc/taskdoc/saker.msvc.sdk.windowskits.html" title="Task: saker.msvc.sdk.windowskits()">saker.msvc.sdk.windowskits</a>(</span><span class="e">10.0.18362.0</span><span class="d">)</span>
 	<span class="i">}</span>
 <span class="d">)</span>

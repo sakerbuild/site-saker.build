@@ -414,6 +414,8 @@ https://saker.build/saker.build/javadoc/saker/build/task/TaskExecutionUtilities.
 https://saker.build/saker.build/javadoc/saker/build/task/TaskFactory.html
 https://saker.build/saker.build/javadoc/saker/build/task/TaskFileDeltas.html
 https://saker.build/saker.build/javadoc/saker/build/task/TaskFuture.html
+https://saker.build/saker.build/javadoc/saker/build/task/TaskInvocationConfiguration.Builder.html
+https://saker.build/saker.build/javadoc/saker/build/task/TaskInvocationConfiguration.html
 https://saker.build/saker.build/javadoc/saker/build/task/TaskLaunchArguments.html
 https://saker.build/saker.build/javadoc/saker/build/task/TaskName.html
 https://saker.build/saker.build/javadoc/saker/build/task/TaskProgressMonitor.html
@@ -1166,6 +1168,17 @@ https://saker.build/saker.nest/javadoc/saker/nest/bundle/BundleInformation.html
 https://saker.build/saker.nest/javadoc/saker/nest/bundle/BundleKey.html
 https://saker.build/saker.nest/javadoc/saker/nest/bundle/DependencyConstraintConfiguration.Builder.html
 https://saker.build/saker.nest/javadoc/saker/nest/bundle/DependencyConstraintConfiguration.html
+https://saker.build/saker.nest/javadoc/saker/nest/bundle/ExternalArchive.html
+https://saker.build/saker.nest/javadoc/saker/nest/bundle/ExternalArchiveClassLoader.html
+https://saker.build/saker.nest/javadoc/saker/nest/bundle/ExternalArchiveKey.html
+https://saker.build/saker.nest/javadoc/saker/nest/bundle/ExternalAttachmentInformation.Builder.html
+https://saker.build/saker.nest/javadoc/saker/nest/bundle/ExternalAttachmentInformation.html
+https://saker.build/saker.nest/javadoc/saker/nest/bundle/ExternalDependency.Builder.html
+https://saker.build/saker.nest/javadoc/saker/nest/bundle/ExternalDependency.html
+https://saker.build/saker.nest/javadoc/saker/nest/bundle/ExternalDependencyInformation.html
+https://saker.build/saker.nest/javadoc/saker/nest/bundle/ExternalDependencyList.Builder.html
+https://saker.build/saker.nest/javadoc/saker/nest/bundle/ExternalDependencyList.html
+https://saker.build/saker.nest/javadoc/saker/nest/bundle/JarExternalArchive.html
 https://saker.build/saker.nest/javadoc/saker/nest/bundle/JarNestRepositoryBundle.html
 https://saker.build/saker.nest/javadoc/saker/nest/bundle/NestBundleClassLoader.html
 https://saker.build/saker.nest/javadoc/saker/nest/bundle/NestBundleStorageConfiguration.html
@@ -1197,7 +1210,10 @@ https://saker.build/saker.nest/javadoc/saker/nest/dependency/index.html
 https://saker.build/saker.nest/javadoc/saker/nest/exc/BundleDependencyUnsatisfiedException.html
 https://saker.build/saker.nest/javadoc/saker/nest/exc/BundleLoadingFailedException.html
 https://saker.build/saker.nest/javadoc/saker/nest/exc/BundleStorageInitializationException.html
+https://saker.build/saker.nest/javadoc/saker/nest/exc/ExternalArchiveLoadingFailedException.html
+https://saker.build/saker.nest/javadoc/saker/nest/exc/IllegalArchiveEntryNameException.html
 https://saker.build/saker.nest/javadoc/saker/nest/exc/InvalidNestBundleException.html
+https://saker.build/saker.nest/javadoc/saker/nest/exc/NestResourceLoadingFailedException.html
 https://saker.build/saker.nest/javadoc/saker/nest/exc/OfflineStorageIOException.html
 https://saker.build/saker.nest/javadoc/saker/nest/exc/index.html
 https://saker.build/saker.nest/javadoc/saker/nest/index.html

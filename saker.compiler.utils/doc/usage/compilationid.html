@@ -84,23 +84,23 @@
 <p>When a compilation task is run, it is run with an assigned compilation identifier. This identifier will uniquely identify the output location of the compilation, and is associated with a build task in the build system. This ensures that only a single compilation task will produce its outputs for the given location, and the tasks won't overwrite each others outputs.</p>
 <p>Let's look at an example, with Java compilation:</p>
 <pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
-	<span class="h">SourceDirectories</span>: <span class="e">src/main</span>,
-	<span class="h">Identifier</span>: <span class="e">main</span>
+	<span class="h"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html#SourceDirectories" title="Parameter SourceDirectories of task saker.java.compile()">SourceDirectories</a></span>: <span class="e">src/main</span>,
+	<span class="h"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html#Identifier" title="Parameter Identifier of task saker.java.compile()">Identifier</a></span>: <span class="e">main</span>
 <span class="d">)</span>
 <span class="d"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
-	<span class="h">SourceDirectories</span>: <span class="e">src/lib</span>,
-	<span class="h">Identifier</span>: <span class="e">lib</span>
+	<span class="h"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html#SourceDirectories" title="Parameter SourceDirectories of task saker.java.compile()">SourceDirectories</a></span>: <span class="e">src/lib</span>,
+	<span class="h"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html#Identifier" title="Parameter Identifier of task saker.java.compile()">Identifier</a></span>: <span class="e">lib</span>
 <span class="d">)</span>
 </code></pre>
 <p>In the above, we assigned different compilation identifiers for the different compilation tasks. They will run concurrently, and produce their outputs for the associated location. (See <a href="../../../saker.java.compiler/doc/javacompile/basics.html#compilation-output" title="Compilation output">Compilation output</a>.)</p>
 <p>The compilation identifiers also ensure that no differently configured compilation tasks will run with the same identifier:</p>
 <pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
-	<span class="h">SourceDirectories</span>: <span class="e">src/main</span>,
-	<span class="h">Identifier</span>: <span class="e">main</span>
+	<span class="h"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html#SourceDirectories" title="Parameter SourceDirectories of task saker.java.compile()">SourceDirectories</a></span>: <span class="e">src/main</span>,
+	<span class="h"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html#Identifier" title="Parameter Identifier of task saker.java.compile()">Identifier</a></span>: <span class="e">main</span>
 <span class="d">)</span>
 <span class="d"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
-	<span class="h">SourceDirectories</span>: <span class="e">src/lib</span>,
-	<span class="h">Identifier</span>: <span class="e">main</span>
+	<span class="h"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html#SourceDirectories" title="Parameter SourceDirectories of task saker.java.compile()">SourceDirectories</a></span>: <span class="e">src/lib</span>,
+	<span class="h"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html#Identifier" title="Parameter Identifier of task saker.java.compile()">Identifier</a></span>: <span class="e">main</span>
 <span class="d">)</span>
 </code></pre>
 <p>The above will cause a build error thrown by the saker.build system, as different compilation tasks are started for the same compilation identifier.</p>

@@ -97,13 +97,13 @@
 <span class="i">]</span>
 <span class="d"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span>
 	<span class="e">src/**/*.cpp</span>,
-	<span class="h">Architecture</span>: <span class="e">x86</span>,
-	<span class="h">CompilerOptions</span>: <span class="c">$options</span>
+	<span class="h"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html#Architecture" title="Parameter Architecture of task saker.msvc.ccompile()">Architecture</a></span>: <span class="e">x86</span>,
+	<span class="h"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html#CompilerOptions" title="Parameter CompilerOptions of task saker.msvc.ccompile()">CompilerOptions</a></span>: <span class="c">$options</span>
 <span class="d">)</span>
 <span class="d"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span>
 	<span class="e">src/**/*.cpp</span>,
-	<span class="h">Architecture</span>: <span class="e">x64</span>,
-	<span class="h">CompilerOptions</span>: <span class="c">$options</span>
+	<span class="h"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html#Architecture" title="Parameter Architecture of task saker.msvc.ccompile()">Architecture</a></span>: <span class="e">x64</span>,
+	<span class="h"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html#CompilerOptions" title="Parameter CompilerOptions of task saker.msvc.ccompile()">CompilerOptions</a></span>: <span class="c">$options</span>
 <span class="d">)</span>
 </code></pre>
 <p>The compilation tasks will be set up in a way that the <code>MARCHITECTURE</code> preprocessor macro will be defined with the value of <code>X86</code> when compiling for <code>x86</code> and with the value of <code>X64</code> when compiling for <code>x64</code> architecture.</p>
@@ -126,8 +126,8 @@
 <span class="j">foreach </span><span class="c">$lang</span><span class="j"> in </span><span class="i">[</span><span class="e">en</span><span class="i">,</span> <span class="e">de</span><span class="i">,</span> <span class="e">es</span><span class="i">]</span> <span class="j">{</span>
 	<span class="d"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span>
 		<span class="e">src/**/*.cpp</span>,
-		<span class="h">Identifier</span>: <span class="e">&quot;main-</span><span class="j">{</span> <span class="c">$lang</span><span class="j"> }</span><span class="e">&quot;</span>,
-		<span class="h">CompilerOptions</span>: <span class="c">$options</span>
+		<span class="h"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html#Identifier" title="Parameter Identifier of task saker.msvc.ccompile()">Identifier</a></span>: <span class="e">&quot;main-</span><span class="j">{</span> <span class="c">$lang</span><span class="j"> }</span><span class="e">&quot;</span>,
+		<span class="h"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html#CompilerOptions" title="Parameter CompilerOptions of task saker.msvc.ccompile()">CompilerOptions</a></span>: <span class="c">$options</span>
 	<span class="d">)</span>
 <span class="j">}</span>
 </code></pre>

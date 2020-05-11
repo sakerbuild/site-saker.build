@@ -83,7 +83,7 @@
 <p>You can specify the target architecture using the <code>Architecture</code> parameter:</p>
 <pre class="doc-code-block"><code class="language-sakerscript"><span class="c">$ccompile</span> = <span class="d"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span>
 	<span class="e">src/**/*.cpp</span>,
-	<span class="h">Architecture</span>: <span class="e">x86</span>
+	<span class="h"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html#Architecture" title="Parameter Architecture of task saker.msvc.ccompile()">Architecture</a></span>: <span class="e">x86</span>
 <span class="d">)</span>
 <span class="d"><a href="../../../saker.msvc/taskdoc/saker.msvc.clink.html" title="Task: saker.msvc.clink()">saker.msvc.clink</a>(</span><span class="c">$ccompile</span><span class="d">)</span>
 </code></pre>
@@ -92,11 +92,11 @@
 <p>Note that it may happen to misconfigure the architectures, or mistakenly mix them up:</p>
 <pre class="doc-code-block"><code class="language-sakerscript"><span class="c">$ccompile</span> = <span class="d"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span>
 	<span class="e">src/**/*.cpp</span>,
-	<span class="h">Architecture</span>: <span class="e">x86</span>
+	<span class="h"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html#Architecture" title="Parameter Architecture of task saker.msvc.ccompile()">Architecture</a></span>: <span class="e">x86</span>
 <span class="d">)</span>
 <span class="d"><a href="../../../saker.msvc/taskdoc/saker.msvc.clink.html" title="Task: saker.msvc.clink()">saker.msvc.clink</a>(</span>
 	<span class="c">$ccompile</span>,
-	<span class="h">Architecture</span>: <span class="e">x64</span>
+	<span class="h"><a href="../../../saker.msvc/taskdoc/saker.msvc.clink.html#Architecture" title="Parameter Architecture of task saker.msvc.clink()">Architecture</a></span>: <span class="e">x64</span>
 <span class="d">)</span>
 </code></pre>
 <p>The above will most likely not work, and the backend <a href="https://docs.microsoft.com/en-us/cpp/build/reference/linking?view=vs-2019" title="MSVC linker reference | Microsoft Docs"><code>link.exe</code></a> may throw an error or appropriate warnings signaling the misconfiguration. Note that the task implementations doesn't necessarily check the matching architectures themselves, as they don't perform deep analysis of the linker input files.</p>

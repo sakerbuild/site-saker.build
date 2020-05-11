@@ -83,10 +83,10 @@
 <p><a href="https://docs.oracle.com/javase/8/docs/api/javax/annotation/processing/Processor.html" title="Processor (Java Platform SE 8 )">Annotation processors</a> are basically plugins for the Java compilation workflow. They are presented the opportunity to analyze the compiled sources and generate other sources, classes, and resources based on them. They are a very versatile and useful tool for compile-time code generation.</p>
 <p>Processors are supported by the <a href="../../taskdoc/saker.java.compile.html"><code>saker.java.compile()</code></a> task and allows them running in an incremental manner. Processors can be specified for the task using the <code>AnnotationProcessors</code> parameter:</p>
 <pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
-	<span class="h">SourceDirectories</span>: <span class="e">src</span>,
-	<span class="h">AnnotationProcessors</span>: <span class="d"><a href="../../../saker.java.compiler/taskdoc/saker.java.processor.html" title="Task: saker.java.processor()">saker.java.processor</a>(</span>
-		<span class="h">ClassPath</span>: <span class="e">lib/my_processor.jar</span>,
-		<span class="h">Class</span>: <span class="e">example.MyProcessor</span>
+	<span class="h"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html#SourceDirectories" title="Parameter SourceDirectories of task saker.java.compile()">SourceDirectories</a></span>: <span class="e">src</span>,
+	<span class="h"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html#AnnotationProcessors" title="Parameter AnnotationProcessors of task saker.java.compile()">AnnotationProcessors</a></span>: <span class="d"><a href="../../../saker.java.compiler/taskdoc/saker.java.processor.html" title="Task: saker.java.processor()">saker.java.processor</a>(</span>
+		<span class="h"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html#ClassPath" title="Parameter ClassPath of task saker.java.compile()">ClassPath</a></span>: <span class="e">lib/my_processor.jar</span>,
+		<span class="h"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html#Class" title="Parameter Class of task saker.java.compile()">Class</a></span>: <span class="e">example.MyProcessor</span>
 	<span class="d">)</span>
 <span class="d">)</span>
 </code></pre>

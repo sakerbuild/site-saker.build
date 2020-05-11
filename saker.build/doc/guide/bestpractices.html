@@ -91,11 +91,11 @@
 <p>You should <strong>not</strong> use direct paths to outputs of build tasks if you expect them to be part of the input of one. An example:</p>
 <pre class="doc-code-block"><code class="language-sakerscript"><span class="b"># !!! THIS IS BAD, don't do this !!!</span>
 <span class="d"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
-	<span class="h">SourceDirectories</span>: <span class="e">src</span>,
-	<span class="h">Identifier</span>: <span class="e">main</span>,
+	<span class="h"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html#SourceDirectories" title="Parameter SourceDirectories of task saker.java.compile()">SourceDirectories</a></span>: <span class="e">src</span>,
+	<span class="h"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html#Identifier" title="Parameter Identifier of task saker.java.compile()">Identifier</a></span>: <span class="e">main</span>,
 <span class="d">)</span>
 <span class="d"><a href="../../../saker.jar/taskdoc/saker.jar.create.html" title="Task: saker.jar.create()">saker.jar.create</a>(</span>
-	<span class="h">Resources</span>: <span class="i">{</span>
+	<span class="h"><a href="../../../saker.jar/taskdoc/saker.jar.create.html#Resources" title="Parameter Resources of task saker.jar.create()">Resources</a></span>: <span class="i">{</span>
 		<span class="g">Directory</span>: <span class="e">&quot;builddir:/saker.java.compile/main/bin&quot;</span><span class="i">,</span>
 		<span class="g">Resources</span>: <span class="e">**/*.class</span><span class="i">,</span>
 	<span class="i">}</span>
@@ -105,11 +105,11 @@
 <p>You can see that we compile the Java sources in the <code>src</code> directory, and want to package the <code>class</code> files into a <code>jar</code> Java archive. The above code <strong>will not work</strong> as the <code>saker.jar.create()</code> task may run before the compilation task therefore not seeing the produced <code>class</code> files.</p>
 <p>The correct way of doing the above is:</p>
 <pre class="doc-code-block"><code class="language-sakerscript"><span class="c">$javac</span> = <span class="d"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
-	<span class="h">SourceDirectories</span>: <span class="e">src</span>,
-	<span class="h">Identifier</span>: <span class="e">main</span>,
+	<span class="h"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html#SourceDirectories" title="Parameter SourceDirectories of task saker.java.compile()">SourceDirectories</a></span>: <span class="e">src</span>,
+	<span class="h"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html#Identifier" title="Parameter Identifier of task saker.java.compile()">Identifier</a></span>: <span class="e">main</span>,
 <span class="d">)</span>
 <span class="d"><a href="../../../saker.jar/taskdoc/saker.jar.create.html" title="Task: saker.jar.create()">saker.jar.create</a>(</span>
-	<span class="h">Resources</span>: <span class="i">{</span>
+	<span class="h"><a href="../../../saker.jar/taskdoc/saker.jar.create.html#Resources" title="Parameter Resources of task saker.jar.create()">Resources</a></span>: <span class="i">{</span>
 		<span class="g">Directory</span>: <span class="c">$javac</span><span class="f">[</span><span class="g">ClassDirectory</span><span class="f">]</span><span class="i">,</span>
 		<span class="g">Resources</span>: <span class="e">**/*.class</span><span class="i">,</span>
 	<span class="i">}</span>

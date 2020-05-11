@@ -83,16 +83,16 @@
 <p>It takes file locations as its input, and executes the copy based on them. The inputs may be execution paths or local file references. The tasks support copying single files as well as directories and its contents.</p>
 <p>A simple example for copying two files:</p>
 <pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.standard/taskdoc/std.file.copy.html" title="Task: std.file.copy()">std.file.copy</a>(</span>
-	<span class="h">Source</span>: <span class="e">file.txt</span>,
-	<span class="h">Target</span>: <span class="e">resources/contents.txt</span>
+	<span class="h"><a href="../../../saker.standard/taskdoc/std.file.copy.html#Source" title="Parameter Source of task std.file.copy()">Source</a></span>: <span class="e">file.txt</span>,
+	<span class="h"><a href="../../../saker.standard/taskdoc/std.file.copy.html#Target" title="Parameter Target of task std.file.copy()">Target</a></span>: <span class="e">resources/contents.txt</span>
 <span class="d">)</span>
 </code></pre>
 <p>The above will copy the <code>file.txt</code> from the working directory to the <code>resources/contents.txt</code> path. The file is renamed as a result of the copying.</p>
 <p>The task supports copying contents of directories. If the <code>Source</code> is a directory then the subtree of that directory will be copied if the files match the specified <code>Wildcards</code>:</p>
 <pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.standard/taskdoc/std.file.copy.html" title="Task: std.file.copy()">std.file.copy</a>(</span>
-	<span class="h">Source</span>: <span class="e">images</span>,
-	<span class="h">Target</span>: <span class="e">resources</span>,
-	<span class="h">Wildcards</span>: <span class="e">**/*.png</span>
+	<span class="h"><a href="../../../saker.standard/taskdoc/std.file.copy.html#Source" title="Parameter Source of task std.file.copy()">Source</a></span>: <span class="e">images</span>,
+	<span class="h"><a href="../../../saker.standard/taskdoc/std.file.copy.html#Target" title="Parameter Target of task std.file.copy()">Target</a></span>: <span class="e">resources</span>,
+	<span class="h"><a href="../../../saker.standard/taskdoc/std.file.copy.html#Wildcards" title="Parameter Wildcards of task std.file.copy()">Wildcards</a></span>: <span class="e">**/*.png</span>
 <span class="d">)</span>
 </code></pre>
 <p>The above will copy the <code>images</code> directory to the <code>resources</code> directory, and all <code>png</code> files in its subtree.</p>
@@ -101,7 +101,7 @@
 <pre class="doc-code-block"><code class="language-sakerscript"><span class="c">$jar</span> = <span class="d"><a href="../../../saker.jar/taskdoc/saker.jar.create.html" title="Task: saker.jar.create()">saker.jar.create</a>(</span><span class="k">### ... ###</span><span class="d">)</span>
 <span class="d"><a href="../../../saker.standard/taskdoc/std.file.copy.html" title="Task: std.file.copy()">std.file.copy</a>(</span>
 	<span class="c">$jar</span><span class="f">[</span><span class="g">Path</span><span class="f">]</span>,
-	<span class="h">Target</span>: <span class="d"><a href="../../../saker.standard/taskdoc/std.file.local.html" title="Task: std.file.local()">std.file.local</a>(</span><span class="e">&quot;/home/user/other_project/lib/mylib.jar&quot;</span><span class="d">)</span>
+	<span class="h"><a href="../../../saker.standard/taskdoc/std.file.copy.html#Target" title="Parameter Target of task std.file.copy()">Target</a></span>: <span class="d"><a href="../../../saker.standard/taskdoc/std.file.local.html" title="Task: std.file.local()">std.file.local</a>(</span><span class="e">&quot;/home/user/other_project/lib/mylib.jar&quot;</span><span class="d">)</span>
 <span class="d">)</span>
 </code></pre>
 <p>The above example will create a JAR file as a result of the build process, and then copy that to the library directory of a different project. This can avoid the necessity of manually copying the result of the build when it is also used by other endeavors.</p>

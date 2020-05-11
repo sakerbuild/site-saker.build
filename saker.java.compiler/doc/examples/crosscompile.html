@@ -84,10 +84,10 @@
 <h3 id="older-target-version">Older target version<a class="doc-heading-anchor" href="#older-target-version"></a></h3>
 <p>The following example showcases cross-compiling for an older Java version:</p>
 <pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
-	<span class="h">SourceDirectories</span>: <span class="e">src</span>,
-	<span class="h">SourceVersion</span>: <span class="e">7</span>,
-	<span class="h">TargetVersion</span>: <span class="e">7</span>,
-	<span class="h">Parameters</span>: <span class="i">[</span> --<span class="e">release</span><span class="i">,</span> <span class="e">7</span><span class="i"> ]</span>
+	<span class="h"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html#SourceDirectories" title="Parameter SourceDirectories of task saker.java.compile()">SourceDirectories</a></span>: <span class="e">src</span>,
+	<span class="h"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html#SourceVersion" title="Parameter SourceVersion of task saker.java.compile()">SourceVersion</a></span>: <span class="e">7</span>,
+	<span class="h"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html#TargetVersion" title="Parameter TargetVersion of task saker.java.compile()">TargetVersion</a></span>: <span class="e">7</span>,
+	<span class="h"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html#Parameters" title="Parameter Parameters of task saker.java.compile()">Parameters</a></span>: <span class="i">[</span> --<span class="e">release</span><span class="i">,</span> <span class="e">7</span><span class="i"> ]</span>
 <span class="d">)</span>
 </code></pre>
 <p>The above example compiles the sources in the <code>src</code> directory for Java 7.</p>
@@ -97,8 +97,8 @@
 <p>If you want to compiler for more recent Java versions than the one the current build is running on, you'll need a JDK installation for that version, and use forked compilation.</p>
 <p>This can be done by specifying a different JDK for the compilation task to use:</p>
 <pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
-	<span class="h">SourceDirectories</span>: <span class="e">src</span>,
-	<span class="h">SDKs</span>: <span class="i">{</span>
+	<span class="h"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html#SourceDirectories" title="Parameter SourceDirectories of task saker.java.compile()">SourceDirectories</a></span>: <span class="e">src</span>,
+	<span class="h"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html#SDKs" title="Parameter SDKs of task saker.java.compile()">SDKs</a></span>: <span class="i">{</span>
 		<span class="g">Java</span>: <span class="d"><a href="../../../saker.java.compiler/taskdoc/saker.java.sdk.html" title="Task: saker.java.sdk()">saker.java.sdk</a>(</span><span class="e">13</span><span class="d">)</span>
 	<span class="i">}</span>
 <span class="d">)</span>

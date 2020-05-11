@@ -63,6 +63,8 @@
  The implementations are required to report the environment properties which resulted in successful selection of the
  build environment.
  <p>
+ Implementations of <span class="javadoc-code-ref"><a href="#" title="interface saker.build.task.TaskExecutionEnvironmentSelector" data-javadoc-kind="interface">TaskExecutionEnvironmentSelector</a></span> should not be stateful objects.
+ <p>
  Implementations are required to be <span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/io/Externalizable.html" title="interface java.io.Externalizable" data-javadoc-kind="interface">Externalizable</a></span>, and/or in any other way RMI-transferrable, as methods of
  this interface cannot be called through RMI.
  <p>

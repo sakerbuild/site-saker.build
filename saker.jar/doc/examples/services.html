@@ -82,7 +82,7 @@
 <p>See also: <a href="../jarcreation/services.html" title="Services">Services</a></p>
 <p>You can add service declarations to your archive using the <code>Services</code> parameter:</p>
 <pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.jar/taskdoc/saker.jar.create.html" title="Task: saker.jar.create()">saker.jar.create</a>(</span>
-	<span class="h">Services</span>: <span class="i">{</span>
+	<span class="h"><a href="../../../saker.jar/taskdoc/saker.jar.create.html#Services" title="Parameter Services of task saker.jar.create()">Services</a></span>: <span class="i">{</span>
 		<span class="g">javax.annotation.processing.Processor</span>: <span class="e">example.MyAnnotationProcessor</span>
 	<span class="i">}</span>
 <span class="d">)</span>
@@ -90,7 +90,7 @@
 <p>The above will cause the archive to contain a service declaration file with the path <code>META-INF/services/javax.annotation.processing.Processor</code> that declares the <code>example.MyAnnotationProcessor</code> implementation class.</p>
 <p>You can specify multiple services and multiple implementation names as well:</p>
 <pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.jar/taskdoc/saker.jar.create.html" title="Task: saker.jar.create()">saker.jar.create</a>(</span>
-	<span class="h">Services</span>: <span class="i">{</span>
+	<span class="h"><a href="../../../saker.jar/taskdoc/saker.jar.create.html#Services" title="Parameter Services of task saker.jar.create()">Services</a></span>: <span class="i">{</span>
 		<span class="g">example.one.Service</span>: <span class="i">[</span>
 			<span class="e">example.one.FirstServiceImplementation</span><span class="i">,</span>
 			<span class="e">example.one.SecondServiceImplementation</span>
