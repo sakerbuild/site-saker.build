@@ -238,8 +238,9 @@ steps:
     runVersion: 'latestFromBranch'
     runBranch: 'refs/heads/master'
     artifactName: 'export_jars_8'
-    path: 'javadoc/build-javadoc/'
-    patterns: saker.build-api.jar
+    path: 'build-javadoc/'
+    patterns: '**/saker.build-api.jar'
+  displayName: 'Download saker.build-api'
 - task: DownloadPipelineArtifact@2
   inputs:
     source: 'specific'
@@ -248,8 +249,14 @@ steps:
     runVersion: 'latestFromBranch'
     runBranch: 'refs/heads/master'
     artifactName: 'export_jars'
-    path: 'javadoc/build-javadoc/'
-    patterns: saker.nest-api.jar
+    path: 'build-javadoc/'
+    patterns: '**/saker.nest-api.jar'
+  displayName: 'Download saker.nest-api'
+- script: |
+    set -e
+    mv build-javadoc/export_jars_8/* build-javadoc/
+    mv build-javadoc/export_jars/* build-javadoc/	
+  displayName: 'Move API libs'
 - script: $(JAVA_HOME_9_X64)/bin/javadoc -locale en_US -sourcepath "../saker.build-site/doclet/pseudo:saker.build/core/common:saker.build/thirdparty/rmi/api/src:saker.build/thirdparty/rmi/impl/src:saker.build/thirdparty/utils/common:saker.build/thirdparty/utils/jdk8:saker.build/core/test/api/common:saker.build/core/test/api/enabled:saker.build/thirdparty/asm/src:saker.build/core/jdk8" -docletpath "../saker.build.jar:../saker.doclet.jar" -doclet saker.doclet.SakerDoclet -subpackages saker -classpath saker.apiextract-api.jar -apijar saker.build-api.jar -d javadoc/saker.build/javadoc -template ../saker.build-site/templates/javadoc_template.html -index-title "Saker.build API JavaDoc" -embed-macro DOC_FOOTER_TEMPLATE ../saker.build-site/templates/footer/packagefootertemplate.html -embed-macro DOC_NAV_TEMPLATE ../saker.build-site/templates/nav/navtemplate.html -macro "<!-- DOC-PATH-TO-ROOT-DIR -->" "JAVADOC_ROOT../" -macro PACKAGE_NAME saker.build -macro DOC_DATA_PRESENCE "nest-package packagedoc javadoc" -macro FOOTER_COPYRIGHT "Bence Sipka 2020" -error-reporting warning -warning-format "##vso[task.logissue type=warning]%s" -error-format "##vso[task.logissue type=error]%s"
   displayName: 'Javadoc: saker.build'
   workingDirectory: build-javadoc
