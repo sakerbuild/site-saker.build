@@ -9,6 +9,18 @@ resources:
       trigger:
         branches:
         - releases/*
+    - pipeline: saker_build
+      project: 'saker.build'
+      source: 'sakerbuild.saker.build'
+      trigger:
+        branches:
+        - master
+    - pipeline: saker_nest
+      project: 'saker.nest'
+      source: 'sakerbuild.saker.nest'
+      trigger:
+        branches:
+        - master
   repositories:
   - repository: repo_saker_build
     type: github
