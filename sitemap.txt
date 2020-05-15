@@ -784,6 +784,7 @@ https://saker.build/saker.jar/doc/jarcreation/services.html
 https://saker.build/saker.jar/index.html
 https://saker.build/saker.jar/taskdoc/index.html
 https://saker.build/saker.jar/taskdoc/saker.jar.create.html
+https://saker.build/saker.jar/taskdoc/saker.jar.multi_release.optimize.html
 https://saker.build/saker.jar/taskdoc/types/ExecutionFileLocation.html
 https://saker.build/saker.jar/taskdoc/types/FileCollection.html
 https://saker.build/saker.jar/taskdoc/types/FileLocation.html
