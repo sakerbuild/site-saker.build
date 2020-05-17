@@ -27,6 +27,26 @@
 		<a class="nav-location-item" data-nav-location="doc-docs" href="../../doc/index.html" title="Documentation">Documentation</a>
 		<a class="nav-location-item" data-nav-location="doc-taskdoc" href="../../taskdoc/index.html" title="Build task documentation">TaskDoc</a>
 		<a class="nav-location-item" data-nav-location="doc-javadoc" href="../../javadoc/index.html"title="Java API documentation">JavaDoc</a>
+		<span class="nav-hover-packages-item"><span class="nav-hover-packages-span" onclick="return false;">Packages</span><div class="nav-hover-packages">
+<ul>
+<li><a href="/nest.repository.support/doc/index.html">nest.repository.support</a></li>
+<li><a href="/saker.android/doc/index.html">saker.android</a></li>
+<li><a href="/saker.build/doc/index.html">saker.build</a></li>
+<li><a href="/saker.compiler.utils/doc/index.html">saker.compiler.utils</a></li>
+<li><a href="/saker.jar/doc/index.html">saker.jar</a></li>
+<li><a href="/saker.java.compiler/doc/index.html">saker.java.compiler</a></li>
+<li><a href="/saker.java.testing/doc/index.html">saker.java.testing</a></li>
+<li><a href="/saker.maven.classpath/doc/index.html">saker.maven.classpath</a></li>
+<li><a href="/saker.maven.support/doc/index.html">saker.maven.support</a></li>
+<li><a href="/saker.msvc/doc/index.html">saker.msvc</a></li>
+<li><a href="/saker.nest/doc/index.html">saker.nest</a></li>
+<li><a href="/saker.rmi/doc/index.html">saker.rmi</a></li>
+<li><a href="/saker.sdk.support/doc/index.html">saker.sdk.support</a></li>
+<li><a href="/saker.standard/doc/index.html">saker.standard</a></li>
+<li><a href="/saker.util/doc/index.html">saker.util</a></li>
+<li><a href="/saker.zip/doc/index.html">saker.zip</a></li>
+</ul>
+</div></span>
 		<div class="nav-bar-controls">
 			<label class="d-xl-none nav-bar-collapse" for="collapse-nav-bar-label">
 				<svg style="height: 1.5em;" viewBox="0 0 24 24">
@@ -99,7 +119,12 @@ org.super.company.lang.compiler
 <pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>()</span>
 <span class="d"><a href="../../../saker.jar/taskdoc/saker.jar.create.html" title="Task: saker.jar.create()">saker.jar.create</a>()</span>
 </code></pre>
-<p>Claiming a task name can happen any time after you create a package, however, if you've published at least one bundle that contains a task for the given name, that task name cannot be unclaimed.</p>
+<p>Task names in which a component conists of a complex phrase, the underscore (<code>'_'</code>) should be used to separate the consisting words or their parts. E.g.:</p>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d">company.topic.do_something()</span>
+<span class="d">company.topic.perform_the_thing()</span>
+</code></pre>
+<p>No <code>camelCase</code> or <code>PascalCase</code> spelling should be used, as the task names are interpreted in a case insensitive manner.</p>
+<p>In order to use a task name for your package, you need to claim it in the repository website. Claiming a task name can happen any time after you create a package, however, if you've published at least one bundle that contains a task for the given name, that task name cannot be unclaimed.</p>
 <h2 id="restricted-names">Restricted names<a class="doc-heading-anchor" href="#restricted-names"></a></h2>
 <p>In order to avoid ambiguities, impersonation, and to build trust, we've decided to restrict the usage of some common names in task and package names. This is in order to avoid confusion about the contents of a package, their authors and the validity of the resources.</p>
 <p>Various names that may be commonly used or represent well-known actors in the community may only be allocated by verified users. For example if someone wants to allocate a package name of <code>apple.swift.compiler</code>, then that name allocation will fail, unless the user have manually authenticated themselves to be an Apple representative. This is in order to ensure that if someone sees a package that starts with <code>apple.</code>, then they can be sure that it's authentic Apple provided package, rather than some other (possibly malicious) member of the community.</p>

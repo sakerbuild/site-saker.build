@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Dependencies&nbsp;|&nbsp;saker.android</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+	
+	<link rel="stylesheet" href="../../../res/bootstrap.min.css" >
+	<link rel="stylesheet" href="../../../res/doc-saker.css" >
+
+	<script type="application/ld+json">
+	{
+	  "@context": "https://schema.org",
+	  "@type": "WebSite",
+	  "name": "saker.android",
+	  "url": "https://saker.build/saker.android"
+	}
+	</script>
+</head>
+<body data-nav-location="packagedoc" data-subdoc-presence="nest-package packagedoc javadoc taskdoc">
+<div class="doc-nav-bar">
+	<div class="container">
+		<a class="home-link" href="../../index.html" title="saker.android"><img style="height: 2.5em;" class="logo" src="../../../res/logo.svg"/><span class="page-name">saker.android</span></a>
+		<a class="nav-location-item" data-nav-location="doc-docs" href="../../doc/index.html" title="Documentation">Documentation</a>
+		<a class="nav-location-item" data-nav-location="doc-taskdoc" href="../../taskdoc/index.html" title="Build task documentation">TaskDoc</a>
+		<a class="nav-location-item" data-nav-location="doc-javadoc" href="../../javadoc/index.html"title="Java API documentation">JavaDoc</a>
+		<span class="nav-hover-packages-item"><span class="nav-hover-packages-span" onclick="return false;">Packages</span><div class="nav-hover-packages">
+<ul>
+<li><a href="/nest.repository.support/doc/index.html">nest.repository.support</a></li>
+<li><a href="/saker.android/doc/index.html">saker.android</a></li>
+<li><a href="/saker.build/doc/index.html">saker.build</a></li>
+<li><a href="/saker.compiler.utils/doc/index.html">saker.compiler.utils</a></li>
+<li><a href="/saker.jar/doc/index.html">saker.jar</a></li>
+<li><a href="/saker.java.compiler/doc/index.html">saker.java.compiler</a></li>
+<li><a href="/saker.java.testing/doc/index.html">saker.java.testing</a></li>
+<li><a href="/saker.maven.classpath/doc/index.html">saker.maven.classpath</a></li>
+<li><a href="/saker.maven.support/doc/index.html">saker.maven.support</a></li>
+<li><a href="/saker.msvc/doc/index.html">saker.msvc</a></li>
+<li><a href="/saker.nest/doc/index.html">saker.nest</a></li>
+<li><a href="/saker.rmi/doc/index.html">saker.rmi</a></li>
+<li><a href="/saker.sdk.support/doc/index.html">saker.sdk.support</a></li>
+<li><a href="/saker.standard/doc/index.html">saker.standard</a></li>
+<li><a href="/saker.util/doc/index.html">saker.util</a></li>
+<li><a href="/saker.zip/doc/index.html">saker.zip</a></li>
+</ul>
+</div></span>
+		<div class="nav-bar-controls">
+			<label class="d-xl-none nav-bar-collapse" for="collapse-nav-bar-label">
+				<svg style="height: 1.5em;" viewBox="0 0 24 24">
+				    <path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+				</svg>
+			</label>
+			<input style="display:none;" id="collapse-nav-bar-label" type="checkbox"/>
+			<div class="nav-bar-items">
+				<a href="/" title="saker.build home page">Home</a>
+				<a href="/buildtrace.html" title="Build trace viewer">Build trace</a>
+				<a style="display:none;" href="/sponsor.html" title="Sponsoring development">Sponsor</a>
+				<a href="/blog/" title="saker.build system blog">Blog</a>
+				<a class="no-external-icon" href="https://github.com/sakerbuild/saker.build" title="saker.build GitHub repository">GitHub</a>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container page-contents packagedoc">
+	<div class="row">
+		<div class="col-12 col-lg-3 col-xl-2 p-lg-0">
+			<div class="doc-navigation-container">
+				<label class="d-lg-none nav-collapse" for="doc-collapse-nav-label">
+					<svg style="height: 1.5em;" viewBox="0 0 24 24">
+					    <path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+					</svg>
+					Navigation
+				</label>
+				<input style="display:none;" id="doc-collapse-nav-label" type="checkbox"/> 
+				<div class="doc-nav">  <div class="doc-section"><ul><li><a class="doc-nav-section-link" href="../../index.html" title="Index">Index</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Package details</p><ul><li><a class="doc-nav-section-link" href="../index.html" title="Overview">Overview</a></li><li><a class="doc-nav-section-link" href="../gettingstarted.html" title="Getting started">Getting started</a></li><li><a class="doc-nav-section-link" href="../perfcomparison.html" title="Performance comparison">Performance comparison</a></li><li><a class="doc-nav-section-link" href="../unsupported.html" title="Unsupported features">Unsupported features</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Android development</p><ul><li><a class="doc-nav-section-link" href="index.html" title="Introduction">Introduction</a></li><li><a class="doc-nav-section-link" href="resources.html" title="Android resources">Android resources</a></li><li><a class="doc-nav-section-link" href="java.html" title="Java compilation">Java compilation</a></li><li><a class="doc-nav-section-link" href="dexing.html" title="Dexing">Dexing</a></li><li><a class="doc-nav-section-link" href="apkcreation.html" title="APK creation">APK creation</a></li><li><a class="doc-nav-section-link" href="apksigning.html" title="APK signing">APK signing</a></li><li><a class="doc-nav-section-link" href="zipaligning.html" title="Zipaligning">Zipaligning</a></li><li><a class="doc-nav-section-link" href="sdkmanagement.html" title="SDK management">SDK management</a></li><li class="doc-active doc-active-parent"><a class="doc-nav-section-link" href="dependencies.html" title="Dependencies">Dependencies</a></li></ul>  </div></div>
+			</div>
+		</div>
+		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				<ol itemscope itemtype="https://schema.org/BreadcrumbList"><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a itemscope itemtype="https://schema.org/WebPage" itemprop="item" href="../../index.html" title="saker.android" itemid="/saker.android/index.html"><span itemprop="name">saker.android</span></a><meta itemprop="position" content="1" /></li> &rsaquo; <li><span title="Android development">Android development</span></li> &rsaquo; <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a itemscope itemtype="https://schema.org/WebPage" itemprop="item" href="dependencies.html" title="Dependencies" itemid="/saker.android/doc/androiddev/dependencies.html"><span itemprop="name">Dependencies</span></a><meta itemprop="position" content="2" /></li></ol>
+			</div>
+			<div class="sb-sponsors" style="display: none;">
+	<span class="sb-sponsors-title">Sponsors</span>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4 col-12">
+				<a class="sb-sponsors-link"></a>
+			</div>
+			<div class="col-md-4 col-12">
+				<a class="sb-sponsors-link"></a>
+			</div>
+			<div class="col-md-4 col-12">
+				<a class="sb-sponsors-link"></a>
+			</div>
+		</div>
+	</div>
+</div>
+			<div class="doc-content"><h1 id="dependencies">Dependencies<a class="doc-heading-anchor" href="#dependencies"></a></h1>
+<p>Part of Android development, you'll probably use some external libraries to improve your application. You can use <a href="https://developer.android.com/studio/projects/android-library" title="Create an Android library &nbsp;|&nbsp; Android Developers">Android libraries</a> which are distributed as AAR files, or JAR files that contain Java classes for your app.</p>
+<h2 id="aar-files">AAR files<a class="doc-heading-anchor" href="#aar-files"></a></h2>
+<p>AAR dependencies may contain resources, classes, assets, and other files for your Android app. This needs to be handled appropriately when compiling resources and Java code.</p>
+<p>AAR resource compilation needs to be separated into two aapt2 compilation steps:</p>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="c">$libs</span> = <span class="d"><a href="../../../saker.android/taskdoc/saker.android.aapt2.compile.html" title="Task: saker.android.aapt2.compile()">saker.android.aapt2.compile</a>(</span>
+	<span class="e">lib/my_dependency.aar</span>,
+	<span class="h"><a href="../../../saker.android/taskdoc/saker.android.aapt2.compile.html#Identifier" title="Parameter Identifier of task saker.android.aapt2.compile()">Identifier</a></span>: <span class="e">libs</span>
+<span class="d">)</span>
+<span class="c">$aapt2</span> = <span class="d"><a href="../../../saker.android/taskdoc/saker.android.aapt2.compile.html" title="Task: saker.android.aapt2.compile()">saker.android.aapt2.compile</a>(</span><span class="e">res</span><span class="d">)</span>
+
+<span class="c">$aaptlink</span> = <span class="d"><a href="../../../saker.android/taskdoc/saker.android.aapt2.link.html" title="Task: saker.android.aapt2.link()">saker.android.aapt2.link</a>(</span>
+	<span class="c">$aapt2</span>,
+	<span class="h"><a href="../../../saker.android/taskdoc/saker.android.aapt2.link.html#Overlay" title="Parameter Overlay of task saker.android.aapt2.link()">Overlay</a></span>: <span class="c">$libs</span>,
+	<span class="h"><a href="../../../saker.android/taskdoc/saker.android.aapt2.link.html#Manifest" title="Parameter Manifest of task saker.android.aapt2.link()">Manifest</a></span>: <span class="e">AndroidManifest.xml</span>,
+	<span class="h"><a href="../../../saker.android/taskdoc/saker.android.aapt2.link.html#AutoAddOverlay" title="Parameter AutoAddOverlay of task saker.android.aapt2.link()">AutoAddOverlay</a></span>: <span class="j">true</span>
+<span class="d">)</span>
+</code></pre>
+<p>The above compiles the resources from both the AAR dependency (<code>lib/my_dependency.aar</code>) and the usual <code>res</code> directory for the project. Both needs to be passed as an input to the linking build task.</p>
+<p>The main resources of the application is added as a direct input to the linking phase, while the library dependencies are added as overlay. You set the <code>AutoAddOverlay</code> parameter to <code>true</code> so the library resources are automatically added to the application.</p>
+<h3 id="aar-classpath">AAR classpath<a class="doc-heading-anchor" href="#aar-classpath"></a></h3>
+<p>As AAR files may also contain Java classes, we need to add them to the compilation classpath to be properly included in the application:</p>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="c">$libs</span> = <span class="d"><a href="../../../saker.android/taskdoc/saker.android.aapt2.compile.html" title="Task: saker.android.aapt2.compile()">saker.android.aapt2.compile</a>(</span>
+	<span class="e">lib/my_dependency.aar</span>,
+	<span class="h"><a href="../../../saker.android/taskdoc/saker.android.aapt2.compile.html#Identifier" title="Parameter Identifier of task saker.android.aapt2.compile()">Identifier</a></span>: <span class="e">libs</span>
+<span class="d">)</span>
+<span class="c">$aaptlink</span> = <span class="d"><a href="../../../saker.android/taskdoc/saker.android.aapt2.link.html" title="Task: saker.android.aapt2.link()">saker.android.aapt2.link</a>(</span><span class="k">### ... ###</span><span class="d">)</span>
+
+<span class="c">$javac</span> = <span class="d"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
+	<span class="h"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html#SourceDirectories" title="Parameter SourceDirectories of task saker.java.compile()">SourceDirectories</a></span>: <span class="i">[</span> <span class="e">src</span><span class="i"> ]</span> + <span class="c">$aaptlink</span><span class="f">[</span><span class="g">JavaSourceDirectories</span><span class="f">]</span>,
+	<span class="h"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html#ClassPath" title="Parameter ClassPath of task saker.java.compile()">ClassPath</a></span>: <span class="d"><a href="../../../saker.android/taskdoc/saker.android.classpath.html" title="Task: saker.android.classpath()">saker.android.classpath</a>(</span><span class="c">$libs</span><span class="d">)</span>
+<span class="d">)</span>
+</code></pre>
+<p>The above simply creates a classpath configuration based on the compiled AAR libraries. It will extract the necessary embedded JAR files from the AARs and add them to the classpath.</p>
+<h2 id="jar-files">JAR files<a class="doc-heading-anchor" href="#jar-files"></a></h2>
+<p>JAR files contain Java classes that are added to the application. They are much simpler to use, as we don't need to deal with resource compilation, only the addition to the classpath:</p>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="c">$javac</span> = <span class="d"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
+	<span class="e">src</span>,
+	<span class="h"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html#Classpath" title="Parameter Classpath of task saker.java.compile()">Classpath</a></span>: <span class="e">lib/my_library.jar</span>
+<span class="d">)</span>
+</code></pre>
+<h2 id="maven-dependency">Maven dependency<a class="doc-heading-anchor" href="#maven-dependency"></a></h2>
+<p>Maven can be used to resolve external dependencies for your application. Typically, you'll be using the Google Maven repository to retrieve some Android dependencies.</p>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="c">$dependencies</span> = <span class="d"><a href="../../../saker.maven.support/taskdoc/saker.maven.resolve.html" title="Task: saker.maven.resolve()">saker.maven.resolve</a>(</span>
+	<span class="h"><a href="../../../saker.maven.support/taskdoc/saker.maven.resolve.html#Artifacts" title="Parameter Artifacts of task saker.maven.resolve()">Artifacts</a></span>: <span class="i">[</span>
+		<span class="e">&quot;androidx.multidex:multidex:2.0.1&quot;</span><span class="i">,</span>
+		<span class="e">&quot;androidx.drawerlayout:drawerlayout:1.0.0&quot;</span>
+	<span class="i">]</span>,
+	<span class="h"><a href="../../../saker.maven.support/taskdoc/saker.maven.resolve.html#Configuration" title="Parameter Configuration of task saker.maven.resolve()">Configuration</a></span>: <span class="i">{</span>
+		<span class="g">Repositories</span>: <span class="i">[</span>
+			<span class="i">{</span>
+				<span class="g">Id</span>: <span class="e">google</span><span class="i">,</span>
+				<span class="g">Url</span>: <span class="e">&quot;https://maven.google.com/&quot;</span><span class="i">,</span>
+			<span class="i">}</span>
+		<span class="i">]</span>
+	<span class="i">}</span>
+<span class="d">)</span>
+
+<span class="c">$libs</span> = <span class="d"><a href="../../../saker.android/taskdoc/saker.android.aapt2.compile.html" title="Task: saker.android.aapt2.compile()">saker.android.aapt2.compile</a>(</span>
+	<span class="c">$dependencies</span>,
+	<span class="h"><a href="../../../saker.android/taskdoc/saker.android.aapt2.compile.html#Identifier" title="Parameter Identifier of task saker.android.aapt2.compile()">Identifier</a></span>: <span class="e">libs</span>
+<span class="d">)</span>
+</code></pre>
+<p>The above will simply resolve the dependencies of <code>androidx.multidex:multidex:2.0.1</code> and <code>androidx.drawerlayout:drawerlayout:1.0.0</code> artifacts and compile them as an Android library. You can pass the output of the Maven dependency resolution as the input for the aapt2 linker task.</p>
+<p>If you're using saker.build in an IDE, then the sources of the artifacts will also be downloaded so you can use them inside the IDE.</p>
+<h2 id="dexing">Dexing<a class="doc-heading-anchor" href="#dexing"></a></h2>
+<p>The <a href="../../taskdoc/saker.android.d8.html"><code>saker.android.d8()</code></a> task will transitively include all classpath in the dexing operation, so you don't need to deal with adding each dependency individually as the input.</p>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="c">$javac</span> = <span class="d"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span><span class="k">### ... ###</span><span class="d">)</span>
+<span class="d"><a href="../../../saker.android/taskdoc/saker.android.d8.html" title="Task: saker.android.d8()">saker.android.d8</a>(</span><span class="c">$javac</span><span class="d">)</span>
+</code></pre>
+<link href="../../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>
+			<div class="end-section-links">
+				<div class="end-section-prev">
+					<a class="doc-prev-section" href="../../doc/androiddev/sdkmanagement.html" title="SDK management"><svg class="doc-section-arrow" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" />
+</svg>SDK management</a>
+				</div>
+				<div class="end-section-next">
+					
+				</div>
+			</div>
+			<div class="doc-headings-nav">  <ul>    <li><a href="#dependencies" title="Dependencies">Dependencies</a>      <ul>        <li><a href="#aar-files" title="AAR files">AAR files</a>          <ul>            <li><a href="#aar-classpath" title="AAR classpath">AAR classpath</a>            </li>          </ul>        </li>        <li><a href="#jar-files" title="JAR files">JAR files</a>        </li>        <li><a href="#maven-dependency" title="Maven dependency">Maven dependency</a>        </li>        <li><a href="#dexing" title="Dexing">Dexing</a>        </li>      </ul>    </li>  </ul></div>
+		</div>
+	</div>
+</div>
+<div class="doc-footer">
+	<div class="container">
+		<div class="row">
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">About</p>
+				<div><a href="/index.html" title="Saker.build home page">Home</a></div>
+				<div data-footer-location="doc-docs"><a href="../../index.html" title="saker.android documentation index">Documentation index</a></div>
+				<div><a href="../../../saker.build/index.html" title="Information about the saker.build system">saker.build system</a></div>
+				<div><a href="../../../saker.nest/index.html" title="Information about the saker.nest repository">saker.nest repository</a></div>
+				<div><a href="/contact.html" title="Contact us">Contact</a></div>
+			</div>
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">Resources</p>
+				<div data-footer-location="doc-docs"><a href="../../doc/index.html" title="saker.android documentation index">Documentation</a></div>
+				<div data-footer-location="doc-javadoc"><a href="../../javadoc/index.html" title="JavaDoc for saker.android">JavaDoc</a></div>
+				<div data-footer-location="doc-taskdoc"><a href="../../taskdoc/index.html"  title="Documentation of build tasks in saker.android">TaskDoc</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.android" title="saker.android | saker.nest">saker.android on saker.nest</a></div>
+				<div><a href="https://github.com/sakerbuild/saker.android" title="saker.android on GitHub">GitHub</a></div>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col">
+			&copy; Bence Sipka 2020
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script>
+if(window.hasOwnProperty("hljs")){
+	hljs.configure({
+	  languages: []
+	});
+	hljs.initHighlightingOnLoad();
+}
+</script>
+
+</body>
+</html>

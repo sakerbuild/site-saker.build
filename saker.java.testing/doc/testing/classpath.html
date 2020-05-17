@@ -27,6 +27,26 @@
 		<a class="nav-location-item" data-nav-location="doc-docs" href="../../doc/index.html" title="Documentation">Documentation</a>
 		<a class="nav-location-item" data-nav-location="doc-taskdoc" href="../../taskdoc/index.html" title="Build task documentation">TaskDoc</a>
 		<a class="nav-location-item" data-nav-location="doc-javadoc" href="../../javadoc/index.html"title="Java API documentation">JavaDoc</a>
+		<span class="nav-hover-packages-item"><span class="nav-hover-packages-span" onclick="return false;">Packages</span><div class="nav-hover-packages">
+<ul>
+<li><a href="/nest.repository.support/doc/index.html">nest.repository.support</a></li>
+<li><a href="/saker.android/doc/index.html">saker.android</a></li>
+<li><a href="/saker.build/doc/index.html">saker.build</a></li>
+<li><a href="/saker.compiler.utils/doc/index.html">saker.compiler.utils</a></li>
+<li><a href="/saker.jar/doc/index.html">saker.jar</a></li>
+<li><a href="/saker.java.compiler/doc/index.html">saker.java.compiler</a></li>
+<li><a href="/saker.java.testing/doc/index.html">saker.java.testing</a></li>
+<li><a href="/saker.maven.classpath/doc/index.html">saker.maven.classpath</a></li>
+<li><a href="/saker.maven.support/doc/index.html">saker.maven.support</a></li>
+<li><a href="/saker.msvc/doc/index.html">saker.msvc</a></li>
+<li><a href="/saker.nest/doc/index.html">saker.nest</a></li>
+<li><a href="/saker.rmi/doc/index.html">saker.rmi</a></li>
+<li><a href="/saker.sdk.support/doc/index.html">saker.sdk.support</a></li>
+<li><a href="/saker.standard/doc/index.html">saker.standard</a></li>
+<li><a href="/saker.util/doc/index.html">saker.util</a></li>
+<li><a href="/saker.zip/doc/index.html">saker.zip</a></li>
+</ul>
+</div></span>
 		<div class="nav-bar-controls">
 			<label class="d-xl-none nav-bar-collapse" for="collapse-nav-bar-label">
 				<svg style="height: 1.5em;" viewBox="0 0 24 24">
@@ -105,7 +125,7 @@
 <p>The test runner classpath won't be able to access other classes from the saker.nest or saker.build runtime.</p>
 <p>The <code>TestClassPath</code> can access the classes from <code>ClassPath</code> in order to test them. It can also access the <code>TestRunnerClassPath</code> in order to integrate with the test runner framework. However, it <strong>cannot</strong> access the classes from the <code>saker.java.testing</code> package, or any other transitive parent class loaders.</p>
 <p><strong>But how does the <code>TestRunnerClassPath</code> know about the test cases defined in <code>TestClassPath</code>?</strong></p>
-<p>You might ask. The test runner is initialized with the reference to the <code>TestClassPath</code> (this is not displayed in the above diagram). For each test case that is being invoked, the test runner will be passed the name of the test case class. It will then use the <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/ClassLoader.html" title="ClassLoader (Java Platform SE 8 )"><code>ClassLoader</code></a> for the test class path, and load the test case class for the given name.</p>
+<p>The test runner is initialized with the reference to the <code>TestClassPath</code> (this is not displayed in the above diagram). For each test case that is being invoked, the test runner will be passed the name of the test case class. It will then use the <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/ClassLoader.html" title="ClassLoader (Java Platform SE 8 )"><code>ClassLoader</code></a> for the test class path, and load the test case class for the given name.</p>
 <link href="../../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>
 			<div class="end-section-links">
 				<div class="end-section-prev">

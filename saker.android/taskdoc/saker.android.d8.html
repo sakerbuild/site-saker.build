@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>saker.android.d8()&nbsp|&nbsp;saker.android</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+	
+	<link rel="stylesheet" href="../../res/bootstrap.min.css" >
+	<link rel="stylesheet" href="../../res/doc-saker.css" >
+	<script type="application/ld+json">
+	{
+	  "@context": "https://schema.org",
+	  "@type": "WebSite",
+	  "name": "saker.android",
+	  "url": "https://saker.build/saker.android/taskdoc"
+	}
+	</script>
+</head>
+<body data-nav-location="taskdoc" data-subdoc-presence="nest-package packagedoc javadoc taskdoc">
+<div class="doc-nav-bar">
+	<div class="container">
+		<a class="home-link" href="../index.html" title="saker.android"><img style="height: 2.5em;" class="logo" src="../../res/logo.svg"/><span class="page-name">saker.android</span></a>
+		<a class="nav-location-item" data-nav-location="doc-docs" href="../doc/index.html" title="Documentation">Documentation</a>
+		<a class="nav-location-item" data-nav-location="doc-taskdoc" href="../taskdoc/index.html" title="Build task documentation">TaskDoc</a>
+		<a class="nav-location-item" data-nav-location="doc-javadoc" href="../javadoc/index.html"title="Java API documentation">JavaDoc</a>
+		<span class="nav-hover-packages-item"><span class="nav-hover-packages-span" onclick="return false;">Packages</span><div class="nav-hover-packages">
+<ul>
+<li><a href="/nest.repository.support/doc/index.html">nest.repository.support</a></li>
+<li><a href="/saker.android/doc/index.html">saker.android</a></li>
+<li><a href="/saker.build/doc/index.html">saker.build</a></li>
+<li><a href="/saker.compiler.utils/doc/index.html">saker.compiler.utils</a></li>
+<li><a href="/saker.jar/doc/index.html">saker.jar</a></li>
+<li><a href="/saker.java.compiler/doc/index.html">saker.java.compiler</a></li>
+<li><a href="/saker.java.testing/doc/index.html">saker.java.testing</a></li>
+<li><a href="/saker.maven.classpath/doc/index.html">saker.maven.classpath</a></li>
+<li><a href="/saker.maven.support/doc/index.html">saker.maven.support</a></li>
+<li><a href="/saker.msvc/doc/index.html">saker.msvc</a></li>
+<li><a href="/saker.nest/doc/index.html">saker.nest</a></li>
+<li><a href="/saker.rmi/doc/index.html">saker.rmi</a></li>
+<li><a href="/saker.sdk.support/doc/index.html">saker.sdk.support</a></li>
+<li><a href="/saker.standard/doc/index.html">saker.standard</a></li>
+<li><a href="/saker.util/doc/index.html">saker.util</a></li>
+<li><a href="/saker.zip/doc/index.html">saker.zip</a></li>
+</ul>
+</div></span>
+		<div class="nav-bar-controls">
+			<label class="d-xl-none nav-bar-collapse" for="collapse-nav-bar-label">
+				<svg style="height: 1.5em;" viewBox="0 0 24 24">
+				    <path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+				</svg>
+			</label>
+			<input style="display:none;" id="collapse-nav-bar-label" type="checkbox"/>
+			<div class="nav-bar-items">
+				<a href="/" title="saker.build home page">Home</a>
+				<a href="/buildtrace.html" title="Build trace viewer">Build trace</a>
+				<a style="display:none;" href="/sponsor.html" title="Sponsoring development">Sponsor</a>
+				<a href="/blog/" title="saker.build system blog">Blog</a>
+				<a class="no-external-icon" href="https://github.com/sakerbuild/saker.build" title="saker.build GitHub repository">GitHub</a>
+			</div>
+		</div>
+	</div>
+</div>
+<nav class="taskdoc-nav" data-nav-location="saker.android.d8">
+	<div class="container">
+		<span class="taskdoc-nav-title">TaskDoc</span>
+		<a class="nav-location-item" data-nav-location="taskdoc-index" href="index.html" title="Task doc index">Index</a>
+	</div>
+</nav>
+<div class="container page-contents taskdoc">
+	<div class="taskdoc-content">
+	<div class="taskdoc-header"><div class="taskdoc-header-sig"><div class="taskdoc-taskname"><a href="" title="Build task saker.android.d8()">saker.android.d8()</a></div><div class="taskdoc-return-type"><a href="types/D8TaskOutput.html" title="Type D8TaskOutput">D8TaskOutput</a></div></div><div class="taskdoc-container-bundle">In bundle: <a title="Bundle saker.android">saker.android</a></div></div><div class="taskdoc-info" taskdoc-info-format="format.plaintext">Performs dexing operations on Java bytecode using the Android d8 tool.
+The task converts the input Java bytecode to dex format that can run on Android devices.
+The result of this operation can be passed to the saker.apk.create() task to generate the APK that contains the classes.</div><div class="taskdoc-idx"><div class="taskdoc-idx-title">Summary</div><div class="taskdoc-idx-section taskdoc-idx-parameters"><table><caption>Parameters</caption><tbody><tr class="taskdoc-idx-member"><td class="taskdoc-idx-param-meta"><a class="taskdoc-idx-paramname" href="#Identifier" title="Task parameter Identifier">Identifier</a></td><td class="taskdoc-idx-param-summary">Specifies an identifier for the dexing operation.
+</td></tr><tr class="taskdoc-idx-member" taskdoc-required><td class="taskdoc-idx-param-meta"><a class="taskdoc-idx-paramname" href="#Input" title="Task parameter Input">Input</a></td><td class="taskdoc-idx-param-summary"><div class="taskdoc-required-parameter">Required parameter. </div>Specifies the inputs for the dexing operation.
+</td></tr><tr class="taskdoc-idx-member"><td class="taskdoc-idx-param-meta"><a class="taskdoc-idx-paramname" href="#MainDexClasses" title="Task parameter MainDexClasses">MainDexClasses</a></td><td class="taskdoc-idx-param-summary">Specifies the binary names of Java classes that should be part of the main dex file.
+</td></tr><tr class="taskdoc-idx-member"><td class="taskdoc-idx-param-meta"><a class="taskdoc-idx-paramname" href="#MinAPI" title="Task parameter MinAPI">MinAPI</a></td><td class="taskdoc-idx-param-summary">Specifies the minimum API level you want the output DEX files to support.
+</td></tr><tr class="taskdoc-idx-member"><td class="taskdoc-idx-param-meta"><a class="taskdoc-idx-paramname" href="#NoDesugaring" title="Task parameter NoDesugaring">NoDesugaring</a></td><td class="taskdoc-idx-param-summary">Disables Java 8 language features.
+</td></tr><tr class="taskdoc-idx-member"><td class="taskdoc-idx-param-meta"><a class="taskdoc-idx-paramname" href="#OptimizeMultidexForLinearAlloc" title="Task parameter OptimizeMultidexForLinearAlloc">OptimizeMultidexForLinearAlloc</a></td><td class="taskdoc-idx-param-summary">If set to true, legacy multidex partitioning will be optimized to reduce LinearAlloc usage  during Dalvik DexOpt.
+</td></tr><tr class="taskdoc-idx-member"><td class="taskdoc-idx-param-meta"><a class="taskdoc-idx-paramname" href="#Release" title="Task parameter Release">Release</a></td><td class="taskdoc-idx-param-summary">Compiles DEX bytecode without debug information.
+</td></tr><tr class="taskdoc-idx-member"><td class="taskdoc-idx-param-meta"><a class="taskdoc-idx-paramname" href="#SDKs" title="Task parameter SDKs">SDKs</a></td><td class="taskdoc-idx-param-summary">Specifies the SDKs (Software Development Kits) used by the task.
+</td></tr></tbody></table></div></div><div class="taskdoc-details-parameters"><div class="taskdoc-details-title">Parameters</div><div id="Identifier" class="taskdoc-detail-param"><div class="taskdoc-detail-param-header"><div class="taskdoc-detail-param-header-sig"><div class="taskdoc-detail-param-header-name"><a href="#Identifier" title="Task parameter Identifier">Identifier</a></div><div class="taskdoc-detail-param-header-type"><a href="types/CompilationIdentifierTaskOption.html" title="Type CompilationIdentifierTaskOption">CompilationIdentifierTaskOption</a></div></div></div><div class="taskdoc-detail-member taskdoc-detail-param-detail" taskdoc-info-format="format.plaintext">Specifies an identifier for the dexing operation.
+The identifier will be used to uniquely identify this operation, and to generate the output directory name.</div></div><div id="Input" class="taskdoc-detail-param" taskdoc-required><div class="taskdoc-detail-param-header"><div class="taskdoc-detail-param-header-sig"><div class="taskdoc-detail-param-header-name"><a href="#Input" title="Task parameter Input">Input</a></div><div class="taskdoc-detail-param-header-type">Collection of <a href="types/D8InputTaskOption.html" title="Type D8InputTaskOption">D8InputTaskOption</a></div></div><div class="taskdoc-detail-param-header-aliases">Aliases: <div class="taskdoc-detail-param-header-alias"><a title="Unnamed parameter">&lt;unnamed&gt;</a></div></div></div><div class="taskdoc-detail-member taskdoc-detail-param-detail" taskdoc-info-format="format.plaintext"><div class="taskdoc-required-parameter">Required parameter.</div>Specifies the inputs for the dexing operation.
+The inputs may be paths or wildcards to Java archives and directories containing .class files.
+Outputs of the saker.java.compile() task can also be passed directly as input. Classpath objects are also accepted.
+The parameter accepts results of Maven artifact resolutions.
+Note that aar bundles are not accepted as a direct input to this parameter. You may need to perform the class extractions from aar bundles if necessary.</div></div><div id="MainDexClasses" class="taskdoc-detail-param"><div class="taskdoc-detail-param-header"><div class="taskdoc-detail-param-header-sig"><div class="taskdoc-detail-param-header-name"><a href="#MainDexClasses" title="Task parameter MainDexClasses">MainDexClasses</a></div><div class="taskdoc-detail-param-header-type">Collection of <a href="types/ClassBinaryName.html" title="Type ClassBinaryName">ClassBinaryName</a></div></div></div><div class="taskdoc-detail-member taskdoc-detail-param-detail" taskdoc-info-format="format.plaintext">Specifies the binary names of Java classes that should be part of the main dex file.
+This parameter must be used to enable multidexing. The specified classes will be placed in the main dex file.</div></div><div id="MinAPI" class="taskdoc-detail-param"><div class="taskdoc-detail-param-header"><div class="taskdoc-detail-param-header-sig"><div class="taskdoc-detail-param-header-name"><a href="#MinAPI" title="Task parameter MinAPI">MinAPI</a></div><div class="taskdoc-detail-param-header-type"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html" title="Integer">Integer</a></div></div><div class="taskdoc-detail-param-header-aliases">Aliases: <div class="taskdoc-detail-param-header-alias">MinSDKVersion</div></div></div><div class="taskdoc-detail-member taskdoc-detail-param-detail" taskdoc-info-format="format.plaintext">Specifies the minimum API level you want the output DEX files to support.
+Corresponds to the --min-api argument of d8.</div></div><div id="NoDesugaring" class="taskdoc-detail-param"><div class="taskdoc-detail-param-header"><div class="taskdoc-detail-param-header-sig"><div class="taskdoc-detail-param-header-name"><a href="#NoDesugaring" title="Task parameter NoDesugaring">NoDesugaring</a></div><div class="taskdoc-detail-param-header-type"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html" title="Boolean">Boolean</a></div></div></div><div class="taskdoc-detail-member taskdoc-detail-param-detail" taskdoc-info-format="format.plaintext">Disables Java 8 language features.
+Set this parameter to tru only if you don&#39;t intend to compile Java bytecode that uses Java 8 language features.
+Corresponds to the --no-desugaring flag of d8.</div></div><div id="OptimizeMultidexForLinearAlloc" class="taskdoc-detail-param"><div class="taskdoc-detail-param-header"><div class="taskdoc-detail-param-header-sig"><div class="taskdoc-detail-param-header-name"><a href="#OptimizeMultidexForLinearAlloc" title="Task parameter OptimizeMultidexForLinearAlloc">OptimizeMultidexForLinearAlloc</a></div><div class="taskdoc-detail-param-header-type"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html" title="Boolean">Boolean</a></div></div></div><div class="taskdoc-detail-member taskdoc-detail-param-detail" taskdoc-info-format="format.plaintext">If set to true, legacy multidex partitioning will be optimized to reduce LinearAlloc usage  during Dalvik DexOpt.
+This option may not be available with d8 present in older build-tools versions.Corresponds to the --optimize-multidex-for-linearalloc flag of d8.</div></div><div id="Release" class="taskdoc-detail-param"><div class="taskdoc-detail-param-header"><div class="taskdoc-detail-param-header-sig"><div class="taskdoc-detail-param-header-name"><a href="#Release" title="Task parameter Release">Release</a></div><div class="taskdoc-detail-param-header-type"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html" title="Boolean">Boolean</a></div></div></div><div class="taskdoc-detail-member taskdoc-detail-param-detail" taskdoc-info-format="format.plaintext">Compiles DEX bytecode without debug information.
+Set this parameter to true when compiling bytecode for a public release.
+Corresponds to the --release flag of d8.</div></div><div id="SDKs" class="taskdoc-detail-param"><div class="taskdoc-detail-param-header"><div class="taskdoc-detail-param-header-sig"><div class="taskdoc-detail-param-header-name"><a href="#SDKs" title="Task parameter SDKs">SDKs</a></div><div class="taskdoc-detail-param-header-type">Map of <a href="types/SDKName.html" title="Type SDKName">SDKName</a> : <a href="types/SDKDescriptionTaskOption.html" title="Type SDKDescriptionTaskOption">SDKDescriptionTaskOption</a></div></div></div><div class="taskdoc-detail-member taskdoc-detail-param-detail" taskdoc-info-format="format.plaintext">Specifies the SDKs (Software Development Kits) used by the task.
+SDKs represent development kits that are available in the build environment and to the task. They are used to find the necessary tools to perform the necessary operations.
+You should specify the AndroidBuildTools and AndroidPlatform SDKs so the build tasks can find the relevant tools to perform their operations.
+If you don&#39;t specify these SDKs, then the build tasks will attempt to locate them automatically. If they fail to do so, an exception is thrown.
+You can use the saker.android.sdk.buildtools() and saker.android.sdk.platform() tasks to retrieve SDKs with specific versions.
+The SDK names are compared in a case-insensitive way.</div></div></div>
+	</div>
+</div>
+<div class="doc-footer">
+	<div class="container">
+		<div class="row">
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">About</p>
+				<div><a href="/index.html" title="Saker.build home page">Home</a></div>
+				<div data-footer-location="doc-docs"><a href="../index.html" title="saker.android documentation index">Documentation index</a></div>
+				<div><a href="../../saker.build/index.html" title="Information about the saker.build system">saker.build system</a></div>
+				<div><a href="../../saker.nest/index.html" title="Information about the saker.nest repository">saker.nest repository</a></div>
+				<div><a href="/contact.html" title="Contact us">Contact</a></div>
+			</div>
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">Resources</p>
+				<div data-footer-location="doc-docs"><a href="../doc/index.html" title="saker.android documentation index">Documentation</a></div>
+				<div data-footer-location="doc-javadoc"><a href="../javadoc/index.html" title="JavaDoc for saker.android">JavaDoc</a></div>
+				<div data-footer-location="doc-taskdoc"><a href="../taskdoc/index.html"  title="Documentation of build tasks in saker.android">TaskDoc</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.android" title="saker.android | saker.nest">saker.android on saker.nest</a></div>
+				<div><a href="https://github.com/sakerbuild/saker.android" title="saker.android on GitHub">GitHub</a></div>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col">
+			&copy; Bence Sipka 2020
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

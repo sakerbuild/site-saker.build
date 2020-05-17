@@ -27,6 +27,26 @@
 		<a class="nav-location-item" data-nav-location="doc-docs" href="../doc/index.html" title="Documentation">Documentation</a>
 		<a class="nav-location-item" data-nav-location="doc-taskdoc" href="../taskdoc/index.html" title="Build task documentation">TaskDoc</a>
 		<a class="nav-location-item" data-nav-location="doc-javadoc" href="../javadoc/index.html"title="Java API documentation">JavaDoc</a>
+		<span class="nav-hover-packages-item"><span class="nav-hover-packages-span" onclick="return false;">Packages</span><div class="nav-hover-packages">
+<ul>
+<li><a href="/nest.repository.support/doc/index.html">nest.repository.support</a></li>
+<li><a href="/saker.android/doc/index.html">saker.android</a></li>
+<li><a href="/saker.build/doc/index.html">saker.build</a></li>
+<li><a href="/saker.compiler.utils/doc/index.html">saker.compiler.utils</a></li>
+<li><a href="/saker.jar/doc/index.html">saker.jar</a></li>
+<li><a href="/saker.java.compiler/doc/index.html">saker.java.compiler</a></li>
+<li><a href="/saker.java.testing/doc/index.html">saker.java.testing</a></li>
+<li><a href="/saker.maven.classpath/doc/index.html">saker.maven.classpath</a></li>
+<li><a href="/saker.maven.support/doc/index.html">saker.maven.support</a></li>
+<li><a href="/saker.msvc/doc/index.html">saker.msvc</a></li>
+<li><a href="/saker.nest/doc/index.html">saker.nest</a></li>
+<li><a href="/saker.rmi/doc/index.html">saker.rmi</a></li>
+<li><a href="/saker.sdk.support/doc/index.html">saker.sdk.support</a></li>
+<li><a href="/saker.standard/doc/index.html">saker.standard</a></li>
+<li><a href="/saker.util/doc/index.html">saker.util</a></li>
+<li><a href="/saker.zip/doc/index.html">saker.zip</a></li>
+</ul>
+</div></span>
 		<div class="nav-bar-controls">
 			<label class="d-xl-none nav-bar-collapse" for="collapse-nav-bar-label">
 				<svg style="height: 1.5em;" viewBox="0 0 24 24">
@@ -85,19 +105,19 @@
 <p>Saker.build has a single and only dependency on the Java Runtime Environment (JRE). In order to use it you first need to install it for your operating system of choice.</p>
 <ol class="doc-md-list">
 <li>Install an appropriate Java Development Kit (version 8+)</li>
-<li><a href="https://api.nest.saker.build/bundle/download/saker.build-v0.8.11" title="Download saker.build-v0.8.11">Download</a> the saker.build distribution</li>
+<li><a href="https://api.nest.saker.build/bundle/download/saker.build-v0.8.12" title="Download saker.build-v0.8.12">Download</a> the saker.build distribution</li>
 <li>Run <code>java -jar saker.build.jar</code></li>
 </ol>
 <p>You can also use command line tools to download a release with a specific version:</p>
 <p>cURL:</p>
-<pre class="doc-code-block"><code class="language-plaintext code-wrap">curl https://api.nest.saker.build/bundle/download/saker.build-v0.8.11 -o saker.build.jar
+<pre class="doc-code-block"><code class="language-plaintext code-wrap">curl -L https://api.nest.saker.build/bundle/download/saker.build-v0.8.12 -o saker.build.jar
 </code></pre>
 <p>PowerShell:</p>
-<pre class="doc-code-block"><code class="language-plaintext code-wrap">Invoke-WebRequest &quot;https://api.nest.saker.build/bundle/download/saker.build-v0.8.11&quot; -OutFile saker.build.jar
+<pre class="doc-code-block"><code class="language-plaintext code-wrap">Invoke-WebRequest &quot;https://api.nest.saker.build/bundle/download/saker.build-v0.8.12&quot; -OutFile saker.build.jar
 </code></pre>
 <p>You can also use the following commands to download the latest version:</p>
 <p>cURL:</p>
-<pre class="doc-code-block"><code class="language-plaintext code-wrap">curl https://api.nest.saker.build/bundle/download/saker.build-v$(curl -s https://mirror.nest.saker.build/badges/saker.build/latest.txt) -o saker.build.jar
+<pre class="doc-code-block"><code class="language-plaintext code-wrap">curl -L https://api.nest.saker.build/bundle/download/saker.build-v$(curl -s https://mirror.nest.saker.build/badges/saker.build/latest.txt) -o saker.build.jar
 </code></pre>
 <p>PowerShell:</p>
 <pre class="doc-code-block"><code class="language-plaintext code-wrap">Invoke-WebRequest &quot;https://api.nest.saker.build/bundle/download/saker.build-v$((Invoke-WebRequest &quot;https://mirror.nest.saker.build/badges/saker.build/latest.txt&quot; -UseBasicParsing).Content)&quot; -OutFile saker.build.jar
@@ -107,7 +127,7 @@
 <p>Saker.build requires the minimum JRE version of 8. You can download it from <a href="https://adoptopenjdk.net" title="AdoptOpenJDK - Open source, prebuilt OpenJDK binaries">AdoptOpenJDK.net</a> or from the <a href="https://www.oracle.com/technetwork/java/javase/downloads/index.html" title="Java SE - Downloads | Oracle Technology Network | Oracle">Oracle Website</a>. You can also use other installation mechanisms depending on your environment, but in the end, make sure to have a properly configured JVM installed on your machine.</p>
 <p>When you're given the choice whether you want to install the JRE or JDK (Java Development Kit), we recommend choosing JDK, as that enables compiling Java sources and contains other development tools.</p>
 <h2 id="saker_build">Saker.build<a class="doc-heading-anchor" href="#saker_build"></a></h2>
-<p>The build system is distributed as a single self-contained Java Archive. You can download the latest release JAR file using <a href="https://api.nest.saker.build/bundle/download/saker.build-v0.8.11" title="Download saker.build-v0.8.11">this link</a>.</p>
+<p>The build system is distributed as a single self-contained Java Archive. You can download the latest release JAR file using <a href="https://api.nest.saker.build/bundle/download/saker.build-v0.8.12" title="Download saker.build-v0.8.12">this link</a>.</p>
 <p>You can also download older releases by visiting the <a href="releasearchive.html" title="Release archive">release archive</a>.</p>
 <h2 id="ides">IDEs<a class="doc-heading-anchor" href="#ides"></a></h2>
 <p>Saker.build support is available for the following Integrated Development Environment(s).</p>
@@ -125,7 +145,7 @@
 <p>The steps to install the saker.build plugin for <a href="https://www.eclipse.org/eclipseide/" title="Eclipse IDE 2020-03 | The Eclipse Foundation">Eclipse</a> are the following:</p>
 <ol class="doc-md-list">
 <li>Open Eclipse and select the Help &gt; Install New Software... menu.</li>
-<li>Enter the <code>https://saker.build/saker.build.ide.eclipse/update-site/v0.8.11</code> link for the update site. (&quot;Work with:&quot; textbox)</li>
+<li>Enter the <code>https://saker.build/saker.build.ide.eclipse/update-site/v0.8.12</code> link for the update site. (&quot;Work with:&quot; textbox)</li>
 <li>Select the plugins and install them.
 <ul class="doc-md-list">
 <li>If you don't see the plugins, uncheck 'Group items by category'. (Eclipse <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=278673" title="278673 &ndash; update site feature category does not work">bugs</a> may cause categories to not show up.)</li>

@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Performance comparison&nbsp;|&nbsp;saker.android</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+	
+	<link rel="stylesheet" href="../../res/bootstrap.min.css" >
+	<link rel="stylesheet" href="../../res/doc-saker.css" >
+
+	<script type="application/ld+json">
+	{
+	  "@context": "https://schema.org",
+	  "@type": "WebSite",
+	  "name": "saker.android",
+	  "url": "https://saker.build/saker.android"
+	}
+	</script>
+</head>
+<body data-nav-location="packagedoc" data-subdoc-presence="nest-package packagedoc javadoc taskdoc">
+<div class="doc-nav-bar">
+	<div class="container">
+		<a class="home-link" href="../index.html" title="saker.android"><img style="height: 2.5em;" class="logo" src="../../res/logo.svg"/><span class="page-name">saker.android</span></a>
+		<a class="nav-location-item" data-nav-location="doc-docs" href="../doc/index.html" title="Documentation">Documentation</a>
+		<a class="nav-location-item" data-nav-location="doc-taskdoc" href="../taskdoc/index.html" title="Build task documentation">TaskDoc</a>
+		<a class="nav-location-item" data-nav-location="doc-javadoc" href="../javadoc/index.html"title="Java API documentation">JavaDoc</a>
+		<span class="nav-hover-packages-item"><span class="nav-hover-packages-span" onclick="return false;">Packages</span><div class="nav-hover-packages">
+<ul>
+<li><a href="/nest.repository.support/doc/index.html">nest.repository.support</a></li>
+<li><a href="/saker.android/doc/index.html">saker.android</a></li>
+<li><a href="/saker.build/doc/index.html">saker.build</a></li>
+<li><a href="/saker.compiler.utils/doc/index.html">saker.compiler.utils</a></li>
+<li><a href="/saker.jar/doc/index.html">saker.jar</a></li>
+<li><a href="/saker.java.compiler/doc/index.html">saker.java.compiler</a></li>
+<li><a href="/saker.java.testing/doc/index.html">saker.java.testing</a></li>
+<li><a href="/saker.maven.classpath/doc/index.html">saker.maven.classpath</a></li>
+<li><a href="/saker.maven.support/doc/index.html">saker.maven.support</a></li>
+<li><a href="/saker.msvc/doc/index.html">saker.msvc</a></li>
+<li><a href="/saker.nest/doc/index.html">saker.nest</a></li>
+<li><a href="/saker.rmi/doc/index.html">saker.rmi</a></li>
+<li><a href="/saker.sdk.support/doc/index.html">saker.sdk.support</a></li>
+<li><a href="/saker.standard/doc/index.html">saker.standard</a></li>
+<li><a href="/saker.util/doc/index.html">saker.util</a></li>
+<li><a href="/saker.zip/doc/index.html">saker.zip</a></li>
+</ul>
+</div></span>
+		<div class="nav-bar-controls">
+			<label class="d-xl-none nav-bar-collapse" for="collapse-nav-bar-label">
+				<svg style="height: 1.5em;" viewBox="0 0 24 24">
+				    <path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+				</svg>
+			</label>
+			<input style="display:none;" id="collapse-nav-bar-label" type="checkbox"/>
+			<div class="nav-bar-items">
+				<a href="/" title="saker.build home page">Home</a>
+				<a href="/buildtrace.html" title="Build trace viewer">Build trace</a>
+				<a style="display:none;" href="/sponsor.html" title="Sponsoring development">Sponsor</a>
+				<a href="/blog/" title="saker.build system blog">Blog</a>
+				<a class="no-external-icon" href="https://github.com/sakerbuild/saker.build" title="saker.build GitHub repository">GitHub</a>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container page-contents packagedoc">
+	<div class="row">
+		<div class="col-12 col-lg-3 col-xl-2 p-lg-0">
+			<div class="doc-navigation-container">
+				<label class="d-lg-none nav-collapse" for="doc-collapse-nav-label">
+					<svg style="height: 1.5em;" viewBox="0 0 24 24">
+					    <path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+					</svg>
+					Navigation
+				</label>
+				<input style="display:none;" id="doc-collapse-nav-label" type="checkbox"/> 
+				<div class="doc-nav">  <div class="doc-section"><ul><li><a class="doc-nav-section-link" href="../index.html" title="Index">Index</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Package details</p><ul><li><a class="doc-nav-section-link" href="index.html" title="Overview">Overview</a></li><li><a class="doc-nav-section-link" href="gettingstarted.html" title="Getting started">Getting started</a></li><li class="doc-active doc-active-parent"><a class="doc-nav-section-link" href="perfcomparison.html" title="Performance comparison">Performance comparison</a></li><li><a class="doc-nav-section-link" href="unsupported.html" title="Unsupported features">Unsupported features</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Android development</p><ul><li><a class="doc-nav-section-link" href="androiddev/index.html" title="Introduction">Introduction</a></li><li><a class="doc-nav-section-link" href="androiddev/resources.html" title="Android resources">Android resources</a></li><li><a class="doc-nav-section-link" href="androiddev/java.html" title="Java compilation">Java compilation</a></li><li><a class="doc-nav-section-link" href="androiddev/dexing.html" title="Dexing">Dexing</a></li><li><a class="doc-nav-section-link" href="androiddev/apkcreation.html" title="APK creation">APK creation</a></li><li><a class="doc-nav-section-link" href="androiddev/apksigning.html" title="APK signing">APK signing</a></li><li><a class="doc-nav-section-link" href="androiddev/zipaligning.html" title="Zipaligning">Zipaligning</a></li><li><a class="doc-nav-section-link" href="androiddev/sdkmanagement.html" title="SDK management">SDK management</a></li><li><a class="doc-nav-section-link" href="androiddev/dependencies.html" title="Dependencies">Dependencies</a></li></ul>  </div></div>
+			</div>
+		</div>
+		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="doc-breadcrumb">
+				<ol itemscope itemtype="https://schema.org/BreadcrumbList"><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a itemscope itemtype="https://schema.org/WebPage" itemprop="item" href="../index.html" title="saker.android" itemid="/saker.android/index.html"><span itemprop="name">saker.android</span></a><meta itemprop="position" content="1" /></li> &rsaquo; <li><span title="Package details">Package details</span></li> &rsaquo; <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a itemscope itemtype="https://schema.org/WebPage" itemprop="item" href="perfcomparison.html" title="Performance comparison" itemid="/saker.android/doc/perfcomparison.html"><span itemprop="name">Performance comparison</span></a><meta itemprop="position" content="2" /></li></ol>
+			</div>
+			<div class="sb-sponsors" style="display: none;">
+	<span class="sb-sponsors-title">Sponsors</span>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4 col-12">
+				<a class="sb-sponsors-link"></a>
+			</div>
+			<div class="col-md-4 col-12">
+				<a class="sb-sponsors-link"></a>
+			</div>
+			<div class="col-md-4 col-12">
+				<a class="sb-sponsors-link"></a>
+			</div>
+		</div>
+	</div>
+</div>
+			<div class="doc-content"><h1 id="performance-comparison">Performance comparison<a class="doc-heading-anchor" href="#performance-comparison"></a></h1>
+<p>In the following, we'd like to present some of the build performance comparisons that we've made when building Android applications. The measurements will be performed for saker.build as well as for <a href="https://gradle.org" title="Gradle Build Tool">Gradle</a>, the official build system for Android.<noscript> (Enabling JavaScript will convert the below measurement tables to bar graphs.)</noscript></p>
+<p>All the comparisons are done on the same and single machine. The comparions are done on Windows 10, with the Windows Defender being turned off all times. When doing the comparisons, we'll be using the build daemons for both tools when applicable.</p>
+<p>We'll perform 8 runs for a given case and take the lowest (fastest) time result for each tool. This lowest measurement will be the result for a given test case.</p>
+<p>We'll use the <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/measure-command?view=powershell-6" title="Measure-Command"><code>Measure-Command</code></a> PowerShell cmdlet to measure the time it takes to execute a build. (We use the time the cmdlet displays instead that the given tool displays to have a consistent measuring practice.) Note that when the tools are used inside an IDE, the startup cost of the Java processes may be omitted.</p>
+<p>When clean builds are measured, the previous outputs are manually cleaned from the output directory rather than running <code>clean</code> commands for a given tool.</p>
+<p>The Gradle wrapper wasn't used for running Gradle, it was invoked directly from the installation directory.</p>
+<h2 id="medium-sized-project">Medium sized project<a class="doc-heading-anchor" href="#medium-sized-project"></a></h2>
+<p>For this test case we've constructed a medium sized Android application that has:</p>
+<ul class="doc-md-list">
+<li>3000 Java source files</li>
+<li>500 layout resource files</li>
+<li>500 drawable resource files</li>
+<li>115 PNG image files</li>
+<li>1000 string declarations in a single resource XML</li>
+</ul>
+<p>The test case is available <a href="https://github.com/sakerbuild/performance-comparisons/tree/78cd8d7896c4b0255ec77304762471e6cab95411/android-medium" title="performance-comparisons/android-medium at 78cd8d7896c4b0255ec77304762471e6cab95411 &#183; sakerbuild/performance-comparisons">on GitHub</a>. The measurements are performed for building the debug APK for the Android application. It includes compilation of the Android resources, the associated Java code, converting it to dex format, and finally creating and signing the APK.</p>
+<p>The results of our measurements are the following:</p>
+<div id="perf-android" style="--doc-metric:' ms';" class="doc-bar-graph" doc-label-y="duration">
+<div class="doc-bar-graph-title">Android build time comparison</div>
+<table>
+<thead>
+<tr><th>Test case</th><th align="right">Saker.build</th><th align="right">Gradle 6.3</th></tr>
+</thead>
+<tbody>
+<tr><td>Clean build</td><td align="right">11396</td><td align="right">15836</td></tr>
+<tr><td>Java incremental</td><td align="right">2656</td><td align="right">3596</td></tr>
+<tr><td>Modify Android resource</td><td align="right">2778</td><td align="right">3519</td></tr>
+<tr><td>Add Android resource</td><td align="right">4224</td><td align="right">5081</td></tr>
+<tr><td>No-op (no changes)</td><td align="right">614</td><td align="right">2214</td></tr>
+</tbody>
+</table>
+</div>
+<p>We can see that saker.build performed the builds <strong>15 - 28%</strong> faster, averaging around <strong>22%</strong> (not taking no-op into account).</p>
+<p>Clean builds are mostly self explanatory, while for incremental builds we've done the following:</p>
+<ul class="doc-md-list">
+<li><strong>Java incremental</strong>: We modified a string value (literal) inside the method body of <a href="https://github.com/sakerbuild/performance-comparisons/blob/78cd8d7896c4b0255ec77304762471e6cab95411/android-medium/app/src/main/java/saker/android/perftest/MainActivity.java#L16" title="performance-comparisons/MainActivity.java at 78cd8d7896c4b0255ec77304762471e6cab95411 &#183; sakerbuild/performance-comparisons"><code>MainActivity.onCreate()</code></a>.</li>
+<li><strong>Modify Android resource</strong>: Modified the value of a string resource in <a href="https://github.com/sakerbuild/performance-comparisons/blob/78cd8d7896c4b0255ec77304762471e6cab95411/android-medium/app/src/main/res/values/strings.xml" title="performance-comparisons/strings.xml at 78cd8d7896c4b0255ec77304762471e6cab95411 &#183; sakerbuild/performance-comparisons"><code>strings.xml</code></a>.</li>
+<li><strong>Add Android resource</strong>: Added a new string resource to <a href="https://github.com/sakerbuild/performance-comparisons/blob/78cd8d7896c4b0255ec77304762471e6cab95411/android-medium/app/src/main/res/values/strings.xml" title="performance-comparisons/strings.xml at 78cd8d7896c4b0255ec77304762471e6cab95411 &#183; sakerbuild/performance-comparisons"><code>strings.xml</code></a>.</li>
+</ul>
+<p>We believe that these kind of modifications are often done when developing Android applications and reflect the build times one
+should expect when building the apps.</p>
+<div class="doc-wip">
+<p>This article is work in progress. In the future we'd like to add comparisons for more use-cases and for different project sizes. Android support is still in early stages for saker.build, so as more functionality gets added (such as Kotlin and NDK support), we'll update the this article accordingly.</p>
+</div>
+<p><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.3/c3.min.css" integrity="sha256-RSMIOX07BNUXyf71hwmYRrUZ8RmiBxMTpqI0GOAy0GM=" crossorigin="anonymous" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.9.7/d3.min.js" integrity="sha256-D+2/goqcjnuoryb9A0rifuH0rBYS9hKOzNqG91JhAVc=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.3/c3.min.js" integrity="sha256-SyrzeJ/tU+9ZJk4n351h9iJftMf9VdsEx2QQMx8+Pik=" crossorigin="anonymous"></script>
+<script>
+(function(){
+	let colors = {
+		'saker': '#1da9d8',
+		'saker.build ide': '#208bc3',
+		'saker.build + cluster': '#208bc3',
+		'gradle': '#175643',
+		'ninja': '#444444',
+		'incredibuild': '#8c114e'
+	};
+	function groupedNumber(x) {
+		if(x == null) {
+			return null;
+		}
+	  	return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+	}
+	function createChart(targetid, title, data, metric, color, ylabel, grouping) {
+	console.log(grouping);
+		c3.generate({
+			bindto: targetid,
+			data: {
+				rows: data,
+				type: 'bar',
+				x: data[0][0],
+				labels: {
+					format: function(v, id, i, j) { return v == null ? null : (groupedNumber(v) + metric); }
+				},
+				order: null,
+				groups: grouping
+			},
+			axis: {
+				x: {
+					type: 'category'
+				},
+				y: {
+					label: `${ylabel} (${metric})`,
+					tick: {
+						format: function(v, id, i, j) { return groupedNumber(v); }
+					}
+				}
+			},
+			legend: {
+				position: 'bottom'
+			},
+			padding: {
+	            bottom: 10
+	        },
+			title: {
+				text: title
+			},
+			color: {
+				pattern: color
+			},
+			tooltip: {
+				format: {
+					value: function (value, ratio, id, index) { return value == null ? null : (groupedNumber(value) + metric); }
+				}
+			}
+		});
+	}
+
+	let graphdivs = document.querySelectorAll('div.doc-bar-graph');
+	graphdivs.forEach(function(gdiv) {
+		let tableinfo = Array.prototype.map.call(gdiv.querySelectorAll('tr'), function(tr){
+			return Array.prototype.map.call(tr.querySelectorAll('td,th'), function(td){
+				let ih = td.innerHTML;
+		    	return ih == "" ? null : ih;
+			});
+		});
+		let colorspattern = [];
+		for(let i = 1; i < tableinfo[0].length; i++) {
+			let c = colors[tableinfo[0][i].toLowerCase()];
+			if(c != null) {
+				colorspattern.push(c);
+			} else {
+				let id = tableinfo[0][i].match(/[A-Za-z]+/)[0].toLowerCase();
+				colorspattern.push(colors[id]);
+			}
+		}
+		let grouping = gdiv.getAttribute('doc-grouping');
+		let graphtitle = gdiv.querySelector('.doc-bar-graph-title');
+		createChart(
+			'#' + gdiv.id, 
+			graphtitle == null ? null : graphtitle.textContent, 
+			tableinfo, 
+			window.getComputedStyle(gdiv).getPropertyValue('--doc-metric').slice(1, -1), 
+			colorspattern, 
+			gdiv.getAttribute('doc-label-y'),
+			grouping == null ? undefined : JSON.parse(grouping)
+		);
+	});
+}());
+</script></p>
+<link href="../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>
+			<div class="end-section-links">
+				<div class="end-section-prev">
+					<a class="doc-prev-section" href="../doc/gettingstarted.html" title="Getting started"><svg class="doc-section-arrow" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" />
+</svg>Getting started</a>
+				</div>
+				<div class="end-section-next">
+					<a class="doc-next-section" href="../doc/unsupported.html" title="Unsupported features">Unsupported features<svg class="doc-section-arrow" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z" />
+</svg></a>
+				</div>
+			</div>
+			<div class="doc-headings-nav">  <ul>    <li><a href="#performance-comparison" title="Performance comparison">Performance comparison</a>      <ul>        <li><a href="#medium-sized-project" title="Medium sized project">Medium sized project</a>        </li>      </ul>    </li>  </ul></div>
+		</div>
+	</div>
+</div>
+<div class="doc-footer">
+	<div class="container">
+		<div class="row">
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">About</p>
+				<div><a href="/index.html" title="Saker.build home page">Home</a></div>
+				<div data-footer-location="doc-docs"><a href="../index.html" title="saker.android documentation index">Documentation index</a></div>
+				<div><a href="../../saker.build/index.html" title="Information about the saker.build system">saker.build system</a></div>
+				<div><a href="../../saker.nest/index.html" title="Information about the saker.nest repository">saker.nest repository</a></div>
+				<div><a href="/contact.html" title="Contact us">Contact</a></div>
+			</div>
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">Resources</p>
+				<div data-footer-location="doc-docs"><a href="../doc/index.html" title="saker.android documentation index">Documentation</a></div>
+				<div data-footer-location="doc-javadoc"><a href="../javadoc/index.html" title="JavaDoc for saker.android">JavaDoc</a></div>
+				<div data-footer-location="doc-taskdoc"><a href="../taskdoc/index.html"  title="Documentation of build tasks in saker.android">TaskDoc</a></div>
+				<div data-footer-location="nest-package"><a href="https://nest.saker.build/package/saker.android" title="saker.android | saker.nest">saker.android on saker.nest</a></div>
+				<div><a href="https://github.com/sakerbuild/saker.android" title="saker.android on GitHub">GitHub</a></div>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col">
+			&copy; Bence Sipka 2020
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script>
+if(window.hasOwnProperty("hljs")){
+	hljs.configure({
+	  languages: []
+	});
+	hljs.initHighlightingOnLoad();
+}
+</script>
+
+</body>
+</html>

@@ -27,6 +27,26 @@
 		<a class="nav-location-item" data-nav-location="doc-docs" href="../../../../../../doc/index.html" title="Documentation">Documentation</a>
 		<a class="nav-location-item" data-nav-location="doc-taskdoc" href="../../../../../../taskdoc/index.html" title="Build task documentation">TaskDoc</a>
 		<a class="nav-location-item" data-nav-location="doc-javadoc" href="../../../../../../javadoc/index.html"title="Java API documentation">JavaDoc</a>
+		<span class="nav-hover-packages-item"><span class="nav-hover-packages-span" onclick="return false;">Packages</span><div class="nav-hover-packages">
+<ul>
+<li><a href="/nest.repository.support/doc/index.html">nest.repository.support</a></li>
+<li><a href="/saker.android/doc/index.html">saker.android</a></li>
+<li><a href="/saker.build/doc/index.html">saker.build</a></li>
+<li><a href="/saker.compiler.utils/doc/index.html">saker.compiler.utils</a></li>
+<li><a href="/saker.jar/doc/index.html">saker.jar</a></li>
+<li><a href="/saker.java.compiler/doc/index.html">saker.java.compiler</a></li>
+<li><a href="/saker.java.testing/doc/index.html">saker.java.testing</a></li>
+<li><a href="/saker.maven.classpath/doc/index.html">saker.maven.classpath</a></li>
+<li><a href="/saker.maven.support/doc/index.html">saker.maven.support</a></li>
+<li><a href="/saker.msvc/doc/index.html">saker.msvc</a></li>
+<li><a href="/saker.nest/doc/index.html">saker.nest</a></li>
+<li><a href="/saker.rmi/doc/index.html">saker.rmi</a></li>
+<li><a href="/saker.sdk.support/doc/index.html">saker.sdk.support</a></li>
+<li><a href="/saker.standard/doc/index.html">saker.standard</a></li>
+<li><a href="/saker.util/doc/index.html">saker.util</a></li>
+<li><a href="/saker.zip/doc/index.html">saker.zip</a></li>
+</ul>
+</div></span>
 		<div class="nav-bar-controls">
 			<label class="d-xl-none nav-bar-collapse" for="collapse-nav-bar-label">
 				<svg style="height: 1.5em;" viewBox="0 0 24 24">
@@ -62,8 +82,11 @@
  dependencies then it should do that when it is being constructed.
  <p>
  Clients shouldn't implement this interface.</div></div><div class="javadoc-class-idx"><div class="javadoc-class-idx-methods javadoc-idx-section"><table><caption>Methods</caption><thead><tr><th class="javadoc-th-method-meta"></th><th class="javadoc-th-method-details"></th></tr></thead><tbody><tr class="javadoc-class-idx-method javadoc-idx-member"><td class="javadoc-class-idx-method-meta javadoc-idx-member-meta"><span class="javadoc-kw">public </span><span class="javadoc-code-ref"><a href="/saker.build/javadoc/saker/build/runtime/environment/SakerEnvironment.html" title="interface saker.build.runtime.environment.SakerEnvironment" data-javadoc-kind="interface">SakerEnvironment</a></span></td><td class="javadoc-class-idx-method-sig javadoc-idx-member-sig"><div class="javadoc-class-idx-method-name javadoc-idx-member-name"><a href="#getEnvironment--" title="ProcessorCreationContext.getEnvironment()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">getEnvironment</a><span class="javadoc-code-ref">()</span></div><div class="javadoc-class-idx-method-short javadoc-member-short">Gets the build environment.</div></td></tr></tbody></table></div></div><div class="javadoc-class-details"><div class="javadoc-class-details-methods javadoc-details-section"><div id="getEnvironment--" class="javadoc-class-detail-method javadoc-class-detail-member"><div class="javadoc-class-detail-method-sig javadoc-member-sig"><span class="javadoc-kw">public abstract </span><span class="javadoc-code-ref"><a href="/saker.build/javadoc/saker/build/runtime/environment/SakerEnvironment.html" title="interface saker.build.runtime.environment.SakerEnvironment" data-javadoc-kind="interface">SakerEnvironment</a></span> <a href="#getEnvironment--" title="ProcessorCreationContext.getEnvironment()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface" class="javadoc-sig-name">getEnvironment</a><span class="javadoc-code-ref">()</span></div><div class="javadoc-class-detail-method-detail javadoc-member-detail"><div class="javadoc-detail-body">Gets the build environment. <p>
- The callers should only use the <span class="javadoc-code-ref"><a href="/saker.build/javadoc/saker/build/runtime/environment/SakerEnvironment.html" title="interface saker.build.runtime.environment.SakerEnvironment" data-javadoc-kind="interface">SakerEnvironment</a>.<a href="/saker.build/javadoc/saker/build/runtime/environment/SakerEnvironment.html#getEnvironmentPropertyCurrentValue-saker.build.runtime.environment.EnvironmentProperty-" title="SakerEnvironment.getEnvironmentPropertyCurrentValue(EnvironmentProperty<T>)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface">getEnvironmentPropertyCurrentValue<span class="javadoc-code-ref">(<wbr>EnvironmentProperty&lt;<wbr><span class="javadoc-tp" title="T of SakerEnvironment.getEnvironmentPropertyCurrentValue(EnvironmentProperty<T>)">T</span>&gt;)</span></a></span>
- if they already reported a dependency to it when the processor creator was created.</div><div class="javadoc-method-detail-return javadoc-blocktag-section"><div class="javadoc-method-detail-return-body">The environment.</div></div></div></div></div></div>
+ Callers shouldn't expect the returned build environment to have any specific properties that they previously
+ retrieved.
+ <p>
+ The processor creation may run on completely different build environment than the one that was used to
+ instantiate the <span class="javadoc-code-ref"><a href="ProcessorCreator.html" title="interface saker.java.compiler.api.processor.ProcessorCreator" data-javadoc-kind="interface">ProcessorCreator</a></span> itself.</div><div class="javadoc-method-detail-return javadoc-blocktag-section"><div class="javadoc-method-detail-return-body">The environment.</div></div></div></div></div></div>
 	</div>
 </div>
 <div class="doc-footer">

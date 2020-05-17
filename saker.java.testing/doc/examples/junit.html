@@ -27,6 +27,26 @@
 		<a class="nav-location-item" data-nav-location="doc-docs" href="../../doc/index.html" title="Documentation">Documentation</a>
 		<a class="nav-location-item" data-nav-location="doc-taskdoc" href="../../taskdoc/index.html" title="Build task documentation">TaskDoc</a>
 		<a class="nav-location-item" data-nav-location="doc-javadoc" href="../../javadoc/index.html"title="Java API documentation">JavaDoc</a>
+		<span class="nav-hover-packages-item"><span class="nav-hover-packages-span" onclick="return false;">Packages</span><div class="nav-hover-packages">
+<ul>
+<li><a href="/nest.repository.support/doc/index.html">nest.repository.support</a></li>
+<li><a href="/saker.android/doc/index.html">saker.android</a></li>
+<li><a href="/saker.build/doc/index.html">saker.build</a></li>
+<li><a href="/saker.compiler.utils/doc/index.html">saker.compiler.utils</a></li>
+<li><a href="/saker.jar/doc/index.html">saker.jar</a></li>
+<li><a href="/saker.java.compiler/doc/index.html">saker.java.compiler</a></li>
+<li><a href="/saker.java.testing/doc/index.html">saker.java.testing</a></li>
+<li><a href="/saker.maven.classpath/doc/index.html">saker.maven.classpath</a></li>
+<li><a href="/saker.maven.support/doc/index.html">saker.maven.support</a></li>
+<li><a href="/saker.msvc/doc/index.html">saker.msvc</a></li>
+<li><a href="/saker.nest/doc/index.html">saker.nest</a></li>
+<li><a href="/saker.rmi/doc/index.html">saker.rmi</a></li>
+<li><a href="/saker.sdk.support/doc/index.html">saker.sdk.support</a></li>
+<li><a href="/saker.standard/doc/index.html">saker.standard</a></li>
+<li><a href="/saker.util/doc/index.html">saker.util</a></li>
+<li><a href="/saker.zip/doc/index.html">saker.zip</a></li>
+</ul>
+</div></span>
 		<div class="nav-bar-controls">
 			<label class="d-xl-none nav-bar-collapse" for="collapse-nav-bar-label">
 				<svg style="height: 1.5em;" viewBox="0 0 24 24">
@@ -107,7 +127,7 @@
 <span class="d">)</span>
 </code></pre>
 <p>The above is what we consider the absolute minimal example that uses JUnit. Let's break it apart:</p>
-<p>The <code>$junitcp</code> variable is set to represent a <a href="../../../saker.maven.classpath/index.html" title="Index">Maven classpath</a>. It is passed as the input for the test compilation, and as well to the test runtime classpath.</p>
+<p>The <code>$junitcp</code> variable is set to represent a <a href="../../../saker.maven.classpath/doc/index.html" title="Overview">Maven classpath</a>. It is passed as the input for the test compilation, and as well to the test runtime classpath.</p>
 <p>The <code>$src</code> variable contains the compilation results of our Java app. The sources are under the <code>src</code> directory.</p>
 <p>The <code>$tests</code> variable is the result of the test compilation. It has the <code>$src</code> as one of its classpath input, as the tests are supposed to test the classes of our app.</p>
 <p>We call the <a href="../../taskdoc/saker.java.test.html"><code>saker.java.test()</code></a> task to invoke the testing. The <a href="../../taskdoc/saker.java.test.html#TestRunnerClassPath"><code>TestRunnerClassPath</code></a> contains the JUnit testing framework. The <a href="../../taskdoc/saker.java.test.html#ClassPath"><code>ClassPath</code></a> contains the classes that are the subject of testing.</p>

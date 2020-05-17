@@ -27,6 +27,26 @@
 		<a class="nav-location-item" data-nav-location="doc-docs" href="../doc/index.html" title="Documentation">Documentation</a>
 		<a class="nav-location-item" data-nav-location="doc-taskdoc" href="../taskdoc/index.html" title="Build task documentation">TaskDoc</a>
 		<a class="nav-location-item" data-nav-location="doc-javadoc" href="../javadoc/index.html"title="Java API documentation">JavaDoc</a>
+		<span class="nav-hover-packages-item"><span class="nav-hover-packages-span" onclick="return false;">Packages</span><div class="nav-hover-packages">
+<ul>
+<li><a href="/nest.repository.support/doc/index.html">nest.repository.support</a></li>
+<li><a href="/saker.android/doc/index.html">saker.android</a></li>
+<li><a href="/saker.build/doc/index.html">saker.build</a></li>
+<li><a href="/saker.compiler.utils/doc/index.html">saker.compiler.utils</a></li>
+<li><a href="/saker.jar/doc/index.html">saker.jar</a></li>
+<li><a href="/saker.java.compiler/doc/index.html">saker.java.compiler</a></li>
+<li><a href="/saker.java.testing/doc/index.html">saker.java.testing</a></li>
+<li><a href="/saker.maven.classpath/doc/index.html">saker.maven.classpath</a></li>
+<li><a href="/saker.maven.support/doc/index.html">saker.maven.support</a></li>
+<li><a href="/saker.msvc/doc/index.html">saker.msvc</a></li>
+<li><a href="/saker.nest/doc/index.html">saker.nest</a></li>
+<li><a href="/saker.rmi/doc/index.html">saker.rmi</a></li>
+<li><a href="/saker.sdk.support/doc/index.html">saker.sdk.support</a></li>
+<li><a href="/saker.standard/doc/index.html">saker.standard</a></li>
+<li><a href="/saker.util/doc/index.html">saker.util</a></li>
+<li><a href="/saker.zip/doc/index.html">saker.zip</a></li>
+</ul>
+</div></span>
 		<div class="nav-bar-controls">
 			<label class="d-xl-none nav-bar-collapse" for="collapse-nav-bar-label">
 				<svg style="height: 1.5em;" viewBox="0 0 24 24">
@@ -86,6 +106,7 @@
 <li><strong>Extensibility.</strong> Be it custom tasks, new build script languages, or custom task management implementation, saker.build lets you extend it in various ways. It provides a rich API to take full advantage of the build system services.</li>
 <li><strong>Incrementality.</strong> Saker.build considers incremental builds to be the highest priority. It strives to rebuild only parts of the project which have changed and is built from the ground up to support this facility. Short incremental builds lets you think more about your code rather than waiting for the project to compile.</li>
 <li><strong>Scalability.</strong> Saker.build is able to scale both vertically (faster CPU) and horizontally (more build PCs). Maximizing parallelization of build tasks and the support for build clusters bring great performance for both small and large projects.</li>
+<li><strong>Build trace.</strong> Record and visualize your build execution to find bottlenecks and debug build failures.</li>
 <li><strong>Build clusters.</strong> You don't need to install any other tools to use multiple PCs for building your project. Support for dispatching build tasks over the network is included.</li>
 <li><strong>Build language.</strong> Saker.build uses a custom language for the build definitions by default. The language focuses on performance and readability while using a clutter-free syntax.</li>
 <li><strong>Build cache.</strong> (Work in progress) If a task has already been run by others, the build cache lets you download its outputs rather than executing it again on your machine.</li>

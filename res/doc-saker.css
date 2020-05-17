@@ -1305,6 +1305,66 @@ body[data-subdoc-presence~=taskdoc] .doc-nav-bar .nav-location-item[data-nav-loc
 	display: block;
 }
 
+.nav-hover-packages-item .nav-hover-packages {
+	display: none;
+	z-index: 1000;
+}
+.nav-hover-packages-item {
+	position: relative;
+    margin: 0px 5px;
+}
+.nav-hover-packages-span {
+    padding: 5px 10px;
+    border-radius: 2px;
+    height: 100%;
+    white-space: nowrap;
+    display: block;
+    color: var(--color-link);
+    cursor: pointer;
+}
+.nav-hover-packages-span:hover {
+	background-color: var(--color-nav-location-item-hover);
+    transition: var(--common-transitions-bezier);
+    color: var(--color-link-hover);
+}
+.nav-hover-packages-span:after {
+	content: ' ';
+	margin: auto 0 auto 0.3em;
+	display: inline-block;
+	vertical-align: middle;
+
+	border-left: 0.4em solid transparent;
+	border-right: 0.4em solid transparent;
+	border-bottom: 0em solid transparent;
+	border-top: 0.4em solid var(--color-doc-section-arrow);
+}
+
+.nav-hover-packages-item li {
+    list-style: none;
+}
+.nav-hover-packages-item li>a {
+    padding: 2px 0px;
+    display: block;
+}
+.nav-hover-packages-item .nav-hover-packages {
+	position: absolute;
+	left: 0;
+	top: 100%;
+}
+.nav-hover-packages-item ul {
+	background: var(--color-nav-background);
+    box-shadow: 1px 1px 5px var(--color-ui-element-shadow);
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-top: 0.08em;
+}
+.nav-hover-packages-item:hover .nav-hover-packages {
+	display: inherit;
+}
+.nav-hover-packages:hover, .nav-hover-packages:hover ul {
+	display: inherit;
+}
+
 .doc-footer [data-footer-location] {
 	display: none;
 }
