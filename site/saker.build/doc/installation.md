@@ -14,7 +14,7 @@ You can also use command line tools to download a release with a specific versio
 	
 cURL:
 ```plaintext code-wrap
-curl https://api.nest.saker.build/bundle/download/saker.build-v#MACRO_VERSION_SAKER_BUILD -o saker.build.jar
+curl -L https://api.nest.saker.build/bundle/download/saker.build-v#MACRO_VERSION_SAKER_BUILD -o saker.build.jar
 ```
 
 PowerShell: 
@@ -26,7 +26,7 @@ You can also use the following commands to download the latest version:
 
 cURL:
 ```plaintext code-wrap
-curl https://api.nest.saker.build/bundle/download/saker.build-v$(curl -s https://mirror.nest.saker.build/badges/saker.build/latest.txt) -o saker.build.jar
+curl -L https://api.nest.saker.build/bundle/download/saker.build-v$(curl -s https://mirror.nest.saker.build/badges/saker.build/latest.txt) -o saker.build.jar
 ```
 
 PowerShell: 

@@ -4,13 +4,14 @@ build {
 		DOC_NAV_TEMPLATE: templates/nav/navtemplate.html,
 		DOC_FOOTER_TEMPLATE: templates/footer/packagefootertemplate.html,
 		DOC_SPONSOR_TEMPLATE: templates/sponsor/sponsortemplate.html,
+		DOC_UL_PACKAGES: templates/ul_docpackages.html,
 	}
 	$docmacros = {
 		FOOTER_COPYRIGHT: static(COPYRIGHT),
-		VERSION_SAKER_BUILD: std.param.exec(Name: site.version.saker.build, Default: 0.8.11),
-		VERSION_SAKER_NEST: std.param.exec(Name: site.version.saker.nest, Default: 0.8.4),
-		VERSION_ECLIPSE_PLUGINS: std.param.exec(Name: site.version.saker.build.ide.eclipse, Default: 0.8.11),
-		VERSION_INTELLIJ_PLUGINS: std.param.exec(Name: site.version.saker.build.ide.intellij, Default: 0.8.11),
+		VERSION_SAKER_BUILD: std.param.exec(Name: site.version.saker.build, Default: 0.8.12),
+		VERSION_SAKER_NEST: std.param.exec(Name: site.version.saker.nest, Default: 0.8.5),
+		VERSION_ECLIPSE_PLUGINS: std.param.exec(Name: site.version.saker.build.ide.eclipse, Default: 0.8.12),
+		VERSION_INTELLIJ_PLUGINS: std.param.exec(Name: site.version.saker.build.ide.intellij, Default: 0.8.12),
 	}
 	
 	$landingembedmacros = {
@@ -571,6 +572,43 @@ build {
 					}
 				],
 			},
+			{
+				Directory: site/saker.android/,
+				RootMarkdown: doc/root.md,
+				TemplateFiles: { **: templates/doctemplate.html },
+				Macros: $docmacros + {
+					PACKAGE_NAME: saker.android,
+					DOC_DATA_PRESENCE: "nest-package packagedoc javadoc taskdoc",
+				},
+				EmbedMacros: $docembedmacros,
+				Include: [
+					{
+						Directory: site/saker.android/javadoc/,
+						TargetDirectory: javadoc
+					},
+					{
+						Directory: site/saker.android/,
+						Resources: index.html
+					},
+					{
+						Directory: include(
+							taskdoc, 
+							bundle: saker.android,
+							output: saker.android,
+							docdatapresence: "nest-package packagedoc javadoc taskdoc",
+						)[taskdoc][OutputPath],
+						TargetDirectory: taskdoc
+					},
+				],
+				SiteOutputDirectory: saker.android,
+				TaskLinkPaths: $tasklinkpaths,
+				BreadcrumpRoots: [
+					{
+						Name: saker.android,
+						Link: "index.md",
+					}
+				],
+			},
 		],
 	)
 	$pages = [
@@ -643,6 +681,7 @@ build {
 		saker.zip.create: ../saker.zip/taskdoc,
 		
 		saker.jar.create: ../saker.jar/taskdoc,
+		saker.jar.multi_release.optimize: ../saker.jar/taskdoc,
 		
 		nest.local.install: ../nest.repository.support/taskdoc,
 		nest.server.upload: ../nest.repository.support/taskdoc,
@@ -668,6 +707,19 @@ build {
 		std.env.qualifier.params: ../saker.standard/taskdoc,
 		std.env.qualifier.any: ../saker.standard/taskdoc,
 		
+		saker.android.aapt2.compile: ../saker.android/taskdoc,
+		saker.android.aapt2.link: ../saker.android/taskdoc,
+		saker.android.aidl: ../saker.android/taskdoc,
+		saker.android.classpath.platform: ../saker.android/taskdoc,
+		saker.android.classpath: ../saker.android/taskdoc,
+		saker.android.d8: ../saker.android/taskdoc,
+		saker.android.sdk.buildtools: ../saker.android/taskdoc,
+		saker.android.sdk.platform: ../saker.android/taskdoc,
+		saker.android.zipalign: ../saker.android/taskdoc,
+		saker.aar.extract: ../saker.android/taskdoc,
+		saker.apk.create: ../saker.android/taskdoc,
+		saker.apk.sign: ../saker.android/taskdoc,
+		
 		abort: ../saker.build/doc/scripting/builtintasks,
 		global: ../saker.build/doc/scripting/builtintasks,
 		include: ../saker.build/doc/scripting/builtintasks,
@@ -691,6 +743,7 @@ taskdoc(
 		DOC_NAV_TEMPLATE: templates/nav/navtemplate.html,
 		DOC_FOOTER_TEMPLATE: templates/footer/packagefootertemplate.html,
 		DOC_SPONSOR_TEMPLATE: templates/sponsor/sponsortemplate.html,
+		DOC_UL_PACKAGES: templates/ul_docpackages.html,
 	},
 	in docdatapresence,
 ){

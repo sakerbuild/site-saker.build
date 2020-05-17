@@ -25,4 +25,4 @@ The `TestClassPath` can access the classes from `ClassPath` in order to test the
 
 **But how does the `TestRunnerClassPath` know about the test cases defined in `TestClassPath`?**
 
-You might ask. The test runner is initialized with the reference to the `TestClassPath` (this is not displayed in the above diagram). For each test case that is being invoked, the test runner will be passed the name of the test case class. It will then use the [`ClassLoader`](https://docs.oracle.com/javase/8/docs/api/java/lang/ClassLoader.html) for the test class path, and load the test case class for the given name.
+The test runner is initialized with the reference to the `TestClassPath` (this is not displayed in the above diagram). For each test case that is being invoked, the test runner will be passed the name of the test case class. It will then use the [`ClassLoader`](https://docs.oracle.com/javase/8/docs/api/java/lang/ClassLoader.html) for the test class path, and load the test case class for the given name.

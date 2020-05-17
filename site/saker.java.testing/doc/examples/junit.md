@@ -31,7 +31,7 @@ saker.java.test(
 
 The above is what we consider the absolute minimal example that uses JUnit. Let's break it apart:
 
-The `$junitcp` variable is set to represent a [Maven classpath](root:/saker.maven.classpath/index.html). It is passed as the input for the test compilation, and as well to the test runtime classpath.
+The `$junitcp` variable is set to represent a [Maven classpath](root:/saker.maven.classpath/doc/index.html). It is passed as the input for the test compilation, and as well to the test runtime classpath.
 
 The `$src` variable contains the compilation results of our Java app. The sources are under the `src` directory.
 

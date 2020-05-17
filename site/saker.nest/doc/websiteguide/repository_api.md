@@ -116,7 +116,7 @@ The request contains no contents.
 
 The binary byte stream of the bundle contents or an error describing the issue.
 
-The server may also respond with status code 302 in which case the download should be attempted from that address.
+The server may also respond with a redirection status code in which case the download should be attempted from that address.
 
 ## Bundle upload allocation
 

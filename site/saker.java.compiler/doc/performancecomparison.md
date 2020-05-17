@@ -54,7 +54,7 @@ We also used the `--parallel` flag when invoking Gradle, as without it the build
 | Test case                	| Saker.build 	| Gradle 6.0.1 		|
 |--------------------------	|-------------:	|--------------:	|
 | Clean build              	| 20133       	| 36774        		|
-| No-op (no changes)       	| 1040        	| 3541         		|
+| No-op (no changes)       	| 1040        	| 3260         		|
 | Incremental ABI keeping  	| 1190        	| 3541         		|
 | Incremental ABI changing 	| 4062        	| 6979         		|
 

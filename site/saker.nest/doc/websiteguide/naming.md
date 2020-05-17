@@ -36,7 +36,16 @@ saker.java.compile()
 saker.jar.create()
 ```
 
-Claiming a task name can happen any time after you create a package, however, if you've published at least one bundle that contains a task for the given name, that task name cannot be unclaimed.
+Task names in which a component conists of a complex phrase, the underscore (`'_'`) should be used to separate the consisting words or their parts. E.g.:
+
+```sakerscript
+company.topic.do_something()
+company.topic.perform_the_thing()
+```
+
+No `camelCase` or `PascalCase` spelling should be used, as the task names are interpreted in a case insensitive manner.
+
+In order to use a task name for your package, you need to claim it in the repository website. Claiming a task name can happen any time after you create a package, however, if you've published at least one bundle that contains a task for the given name, that task name cannot be unclaimed.
 
 ## Restricted names
 

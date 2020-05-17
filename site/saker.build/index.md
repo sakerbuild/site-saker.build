@@ -109,6 +109,20 @@ See also the topics on the left (or top if you're on mobile), and the navigation
 
 </div>
 
+### Android
+
+<div class="doc-table-of-contents">
+
+* [saker.android package](root:/saker.android/doc/index.html)
+* [Performance comparison](root:/saker.android/doc/perfcomparison.html)
+* [Resource compilation](root:/saker.android/doc/androiddev/resources.html)
+* [Java compilation](root:/saker.android/doc/androiddev/java.html)
+* [Dexing](root:/saker.android/doc/androiddev/dexing.html)
+* [Dependency handling](root:/saker.android/doc/androiddev/dependencies.html)
+* [SDK management](root:/saker.android/doc/androiddev/sdkmanagement.html)
+
+</div>
+
 ### Saker.nest repository
 
 <div class="doc-table-of-contents">

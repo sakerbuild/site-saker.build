@@ -598,7 +598,11 @@ public class ScriptStyleCSSBuilder implements AutoCloseable {
 
 	}
 
-	private static class SingleFileSakerFileProvider implements SakerFileProvider {
+	private interface SetGetRoots {
+		public Set<String> getRoots() throws IOException;
+	}
+
+	private static class SingleFileSakerFileProvider implements SakerFileProvider, SetGetRoots {
 		private String root;
 		private String fileName;
 		private byte[] contents;
@@ -611,7 +615,7 @@ public class ScriptStyleCSSBuilder implements AutoCloseable {
 		}
 
 		@Override
-		public Set<String> getRoots() throws IOException {
+		public NavigableSet<String> getRoots() throws IOException {
 			return ImmutableUtils.singletonNavigableSet(root);
 		}
 

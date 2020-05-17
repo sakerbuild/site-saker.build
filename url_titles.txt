@@ -414,3 +414,39 @@ https://github.com/sakerbuild/saker.build.ide.intellij
 	sakerbuild/saker.build.ide.intellij: IntelliJ plugin for the saker.build system
 https://github.com/sakerbuild/saker.build.ide.intellij/releases
 	Releases &#183; sakerbuild/saker.build.ide.intellij
+https://developer.android.com/studio#command-tools
+	Download Android SDK tools &nbsp;|&nbsp; Android Developers
+https://developer.android.com/studio/command-line/aapt2
+	AAPT2 &nbsp;|&nbsp; Android Developers
+https://developer.android.com/studio/command-line/d8
+	d8 &nbsp;|&nbsp; Android Developers
+https://developer.android.com/studio/command-line/apksigner
+	apksigner &nbsp;|&nbsp; Android Developers
+https://developer.android.com/guide/components/aidl
+	Android Interface Definition Language (AIDL) &nbsp;|&nbsp; Android Developers
+https://developer.android.com/guide/topics/resources/providing-resources
+	App resources overview &nbsp;|&nbsp; Android Developers
+https://developer.android.com/reference/android/app/Activity
+	Activity &nbsp;|&nbsp; Android Developers
+https://developer.android.com/studio/build/multidex
+	Enable multidex for apps with over 64K methods &nbsp;|&nbsp; Android Developers
+https://developer.android.com/studio/command-line/zipalign
+	zipalign &nbsp;|&nbsp; Android Developers
+https://developer.android.com/studio/command-line/variables#android_sdk_root
+	Environment variables &nbsp;|&nbsp; Android Developers
+https://developer.android.com/studio/projects/android-library
+	Create an Android library &nbsp;|&nbsp; Android Developers
+https://docs.oracle.com/javase/8/docs/technotes/tools/unix/keytool.html
+	keytool
+https://github.com/sakerbuild/performance-comparisons/tree/78cd8d7896c4b0255ec77304762471e6cab95411/android-medium
+	performance-comparisons/android-medium at 78cd8d7896c4b0255ec77304762471e6cab95411 &#183; sakerbuild/performance-comparisons
+https://github.com/sakerbuild/performance-comparisons/blob/78cd8d7896c4b0255ec77304762471e6cab95411/android-medium/app/src/main/java/saker/android/perftest/MainActivity.java#L16
+	performance-comparisons/MainActivity.java at 78cd8d7896c4b0255ec77304762471e6cab95411 &#183; sakerbuild/performance-comparisons
+https://github.com/sakerbuild/performance-comparisons/blob/78cd8d7896c4b0255ec77304762471e6cab95411/android-medium/app/src/main/res/values/strings.xml
+	performance-comparisons/strings.xml at 78cd8d7896c4b0255ec77304762471e6cab95411 &#183; sakerbuild/performance-comparisons
+https://developer.android.com/studio/build/manifest-merge
+	Merge multiple manifest files &nbsp;|&nbsp; Android Developers
+https://developer.android.com/platform/technology/app-bundle
+	Android App Bundle &nbsp;|&nbsp; Android Developers
+https://developer.android.com/topic/libraries/data-binding
+	Data Binding Library &nbsp;|&nbsp; Android Developers

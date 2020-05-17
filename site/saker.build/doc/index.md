@@ -9,6 +9,7 @@ Some of the features that saker.build includes:
 * **Extensibility.** Be it custom tasks, new build script languages, or custom task management implementation, saker.build lets you extend it in various ways. It provides a rich API to take full advantage of the build system services.
 * **Incrementality.** Saker.build considers incremental builds to be the highest priority. It strives to rebuild only parts of the project which have changed and is built from the ground up to support this facility. Short incremental builds lets you think more about your code rather than waiting for the project to compile.
 * **Scalability.** Saker.build is able to scale both vertically (faster CPU) and horizontally (more build PCs). Maximizing parallelization of build tasks and the support for build clusters bring great performance for both small and large projects.
+* **Build trace.** Record and visualize your build execution to find bottlenecks and debug build failures.
 * **Build clusters.** You don't need to install any other tools to use multiple PCs for building your project. Support for dispatching build tasks over the network is included.
 * **Build language.** Saker.build uses a custom language for the build definitions by default. The language focuses on performance and readability while using a clutter-free syntax.
 * **Build cache.** (Work in progress) If a task has already been run by others, the build cache lets you download its outputs rather than executing it again on your machine.

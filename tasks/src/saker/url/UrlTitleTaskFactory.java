@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
 import java.net.HttpURLConnection;
+import java.net.URI;
 import java.net.URL;
 import java.util.Locale;
 import java.util.Map;
@@ -50,8 +51,8 @@ public class UrlTitleTaskFactory implements TaskFactory<String>, Task<String>, E
 		SakerFile titlestile = taskcontext.getTaskUtilities().resolveFileAtPath(SakerPath.valueOf("url_titles.txt"));
 		if (titlestile != null) {
 			taskcontext.getTaskUtilities().reportInputFileDependency(null, titlestile);
-			Map<String, String> urltitles = taskcontext.computeFileContentData(titlestile, new TitleFileDataComputer());
-			String foundtitle = urltitles.get(url);
+			Map<URI, String> urltitles = taskcontext.computeFileContentData(titlestile, new TitleFileDataComputer());
+			String foundtitle = urltitles.get(URI.create(url));
 			if (foundtitle != null) {
 				return foundtitle;
 			}
@@ -245,10 +246,10 @@ public class UrlTitleTaskFactory implements TaskFactory<String>, Task<String>, E
 		return "UrlTitleTaskFactory[" + (url != null ? "url=" + url : "") + "]";
 	}
 
-	private static final class TitleFileDataComputer implements FileDataComputer<Map<String, String>> {
+	private static final class TitleFileDataComputer implements FileDataComputer<Map<URI, String>> {
 		@Override
-		public Map<String, String> compute(SakerFile file) throws IOException {
-			Map<String, String> urlvals = new TreeMap<>();
+		public Map<URI, String> compute(SakerFile file) throws IOException {
+			Map<URI, String> urlvals = new TreeMap<>();
 			String content = file.getContent();
 			String[] lines = content.split("[\n\r]+");
 			for (int i = 0; i < lines.length; i++) {
@@ -260,7 +261,7 @@ public class UrlTitleTaskFactory implements TaskFactory<String>, Task<String>, E
 				if (i + 1 >= lines.length) {
 					break;
 				}
-				urlvals.put(s, lines[++i].trim());
+				urlvals.put(URI.create(s), lines[++i].trim());
 			}
 			return urlvals;
 		}
