@@ -6,6 +6,7 @@ https://saker.build/blog/github_packages_maven/index.html
 https://saker.build/blog/index.html
 https://saker.build/blog/intellij_plugin_release/index.html
 https://saker.build/blog/intro_build_trace/index.html
+https://saker.build/blog/java_target_older_releases/index.html
 https://saker.build/blog/javac_source_target_parameters/index.html
 https://saker.build/blog/odd_initial_release_number.html
 https://saker.build/blog/release_0.8.0.html

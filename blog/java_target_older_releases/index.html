@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Using switch expressions, text blocks, and var on Java 8&nbsp;|&nbsp;saker.build blog</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+	
+	<link rel="stylesheet" href="../../res/bootstrap.min.css" >
+	<link rel="stylesheet" href="../../res/doc-saker.css" >
+	
+	<script type="application/ld+json">
+	{
+	  "@context": "https://schema.org",
+	  "@type": "WebSite",
+	  "name": "Saker.build Blog",
+	  "url": "https://saker.build/blog"
+	}
+	</script>
+</head>
+<body data-nav-location="blog">
+<div class="doc-nav-bar">
+	<div class="container">
+		<a class="home-link" href="/index.html" title="saker.build"><img style="height: 2.5em;" class="logo" src="/res/logo.svg"/><span class="page-name">saker.build</span></a>
+		<div class="nav-bar-controls">
+			<a class="nav-bar-special" href="/saker.build/doc/installation.html" title="saker.build installation">Download</a>
+			<label class="d-lg-none nav-bar-collapse" for="collapse-nav-bar-label">
+				<svg style="height: 1.5em;" viewBox="0 0 24 24">
+				    <path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+				</svg>
+			</label>
+			<input style="display:none;" id="collapse-nav-bar-label" type="checkbox"/>
+			<div class="nav-bar-items">
+				<a href="/saker.build/doc/index.html" title="saker.build documentation">Documentation</a>
+				<a href="/buildtrace.html" title="Build trace viewer">Build trace</a>
+				<a style="display:none;" href="/sponsor.html" title="Sponsoring development">Sponsor</a>
+				<a href="/blog/" title="saker.build system blog">Blog</a>
+				<a class="no-external-icon" href="https://github.com/sakerbuild/saker.build" title="saker.build GitHub repository">GitHub</a>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container page-contents packagedoc">
+	<div class="row">
+		<div class="col-12 col-lg-3 col-xl-2 p-lg-0">
+			<div class="doc-navigation-container">
+				<label class="d-lg-none nav-collapse" for="doc-collapse-nav-label">
+					<svg style="height: 1.5em;" viewBox="0 0 24 24">
+					    <path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+					</svg>
+					Navigation
+				</label>
+				<input style="display:none;" id="doc-collapse-nav-label" type="checkbox"/> 
+				<div class="doc-nav">  <div class="doc-section"><ul><li><a class="doc-nav-section-link" href="../index.html" title="Welcome">Welcome</a></li><li><a class="doc-nav-section-link" href="../archive.html" title="Blog archive">Blog archive</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Releases</p><ul><li><a class="doc-nav-section-link" href="../intellij_plugin_release/index.html" title="IntelliJ plugin for saker.build v0.8.11">IntelliJ plugin for saker.build v0.8.11</a></li><li><a class="doc-nav-section-link" href="../release_0.8.0.html" title="Release 0.8.0 (initial)">Release 0.8.0 (initial)</a></li></ul>  </div>  <div class="doc-section">    <p class="section-title">Blog posts</p><ul><li class="doc-active doc-active-parent"><a class="doc-nav-section-link" href="index.html" title="Using switch expressions, text blocks, and var on Java 8">Using switch expressions, text blocks, and var on Java 8</a></li><li><a class="doc-nav-section-link" href="../javac_source_target_parameters/index.html" title="Beware of the -source and -target javac parameters">Beware of the -source and -target javac parameters</a></li><li><a class="doc-nav-section-link" href="../intro_build_trace/index.html" title="Introducing the build trace for saker.build">Introducing the build trace for saker.build</a></li><li><a class="doc-nav-section-link" href="../do_i_need_a_build_system.html" title=""Do I need a build system?"">"Do I need a build system?"</a></li><li><a class="doc-nav-section-link" href="../github_packages_maven/index.html" title="Using the GitHub packages Maven repository">Using the GitHub packages Maven repository</a></li><li><a class="doc-nav-section-link" href="../odd_initial_release_number.html" title="0.8.0 seems like an odd initial release number">0.8.0 seems like an odd initial release number</a></li><li><a class="doc-nav-section-link" href="../another_buildsystem.html" title="Do we need another build system?">Do we need another build system?</a></li></ul>  </div></div>
+			</div>
+		</div>
+		<div class="col-12 col-lg-9 col-xl-10 doc-page">
+			<div class="sb-sponsors" style="display: none;">
+	<span class="sb-sponsors-title">Sponsors</span>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4 col-12">
+				<a class="sb-sponsors-link"></a>
+			</div>
+			<div class="col-md-4 col-12">
+				<a class="sb-sponsors-link"></a>
+			</div>
+			<div class="col-md-4 col-12">
+				<a class="sb-sponsors-link"></a>
+			</div>
+		</div>
+	</div>
+</div>
+			<div class="doc-content"><h1 id="using-switch-expressions_-text-blocks_-and-var-on-java_8">Using switch expressions, text blocks, and <code>var</code> on Java 8<a class="doc-heading-anchor" href="#using-switch-expressions_-text-blocks_-and-var-on-java_8"></a></h1>
+<p><small>2020 May 18</small></p>
+<p>If you've been following the news about the Java language, you probably know that among others, <a href="https://openjdk.java.net/jeps/361" title="JEP 361: Switch Expressions (Standard)">switch expressions</a>, <a href="https://openjdk.java.net/jeps/355" title="JEP 355: Text Blocks (Preview)">text blocks</a>, and <a href="https://openjdk.java.net/jeps/286" title="JEP 286: Local-Variable Type Inference">local type inference</a> has been introduced to the language. If you're anything like us, you probably haven't even tried them out due to the fact that our code still has to run on Java 8. Let's change that!</p>
+<p>As an update to the saker.build system, you can now configure the Java compilation in a way that lets you use (some of) the new language features while still being able to run on Java 8.</p>
+<p>The examples for the post is available on GitHub: <a href="https://github.com/Sipkab/java-target-older-releases" title="GitHub - Sipkab/java-target-older-releases: Example repository for using new Java language features while targetting older releases">java-target-older-releases</a>.</p>
+<h2 id="feature-overview">Feature overview<a class="doc-heading-anchor" href="#feature-overview"></a></h2>
+<p>Some of the notable language features that were added since Java 8 are the following:</p>
+<p><small>(Skip this if you're already familiar with them.)</small></p>
+<h4 id="switch-expressions">Switch expressions<a class="doc-heading-anchor" href="#switch-expressions"></a></h4>
+<p><a href="https://openjdk.java.net/jeps/361" title="JEP 361: Switch Expressions (Standard)">Switch expressions</a> for Java was standardized in Java 14. It basically allows you to use <code>switch</code> in more places as well as returning values from them:</p>
+<pre class="doc-code-block"><code class="language-java">// from https://openjdk.java.net/jeps/361
+switch (day) {
+    case MONDAY, FRIDAY, SUNDAY -&gt; System.out.println(6);
+    case TUESDAY                -&gt; System.out.println(7);
+    case THURSDAY, SATURDAY     -&gt; System.out.println(8);
+    case WEDNESDAY              -&gt; System.out.println(9);
+}
+T result = switch (arg) {
+    case L1 -&gt; e1;
+    case L2 -&gt; e2;
+    default -&gt; e3;
+};
+</code></pre>
+<h4 id="text-blocks">Text blocks<a class="doc-heading-anchor" href="#text-blocks"></a></h4>
+<p><a href="https://openjdk.java.net/jeps/355" title="JEP 355: Text Blocks (Preview)">Text blocks</a> let you declare string literals that consist of multiple lines without dealing with concatenation and escaping:</p>
+<pre class="doc-code-block"><code class="language-java">// from https://openjdk.java.net/jeps/355
+engine.eval(&quot;function hello() {\n&quot; +
+            &quot;    print('\&quot;Hello, world\&quot;');\n&quot; +
+            &quot;}\n&quot; +
+            &quot;\n&quot; +
+            &quot;hello();\n&quot;);
+// becomes
+engine.eval(&quot;&quot;&quot;
+	        function hello() {
+	            print('&quot;Hello, world&quot;');
+	        }
+	        
+	        hello();
+	        &quot;&quot;&quot;);
+</code></pre>
+<h4 id="local-type-inference">Local type inference<a class="doc-heading-anchor" href="#local-type-inference"></a></h4>
+<p><a href="https://openjdk.java.net/jeps/286" title="JEP 286: Local-Variable Type Inference">Local type inference</a> was introduced in Java 10 and allows you to declare local variables with the <code>var</code> keyword. The compiler will deduce the type of the variable for you:</p>
+<pre class="doc-code-block"><code class="language-java">// from https://openjdk.java.net/jeps/286
+var list = new ArrayList&lt;String&gt;();  // infers ArrayList&lt;String&gt;
+var stream = list.stream();          // infers Stream&lt;String&gt;
+</code></pre>
+<h2 id="using-new-language-features">Using new language features<a class="doc-heading-anchor" href="#using-new-language-features"></a></h2>
+<p>To use these features while targetting Java 8, you need to set the release, and source version parameters for the Java compiler.
+When using <code>javac</code> directly (or via other means), it won't allow you to do this and report an error for mismatching configuration.</p>
+<p>However, with the <a href="../../saker.java.compiler/taskdoc/saker.java.compile.html"><code>saker.java.compile()</code></a> build task for saker.build you can circumvent this restriction:</p>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
+	<span class="h"><a href="../../saker.java.compiler/taskdoc/saker.java.compile.html#SourceDirectories" title="Parameter SourceDirectories of task saker.java.compile()">SourceDirectories</a></span>: <span class="e">src</span>,
+	<span class="h"><a href="../../saker.java.compiler/taskdoc/saker.java.compile.html#Parameters" title="Parameter Parameters of task saker.java.compile()">Parameters</a></span>: <span class="i">[</span>
+		--<span class="e">enable-preview</span><span class="i">,</span>
+		--<span class="e">release</span><span class="i">,</span> <span class="e">8</span>
+	<span class="i">]</span>,
+	<span class="h"><a href="../../saker.java.compiler/taskdoc/saker.java.compile.html#PatchEnablePreview" title="Parameter PatchEnablePreview of task saker.java.compile()">PatchEnablePreview</a></span>: <span class="j">true</span>,
+	<span class="h"><a href="../../saker.java.compiler/taskdoc/saker.java.compile.html#AllowTargetReleaseMismatch" title="Parameter AllowTargetReleaseMismatch of task saker.java.compile()">AllowTargetReleaseMismatch</a></span>: <span class="j">true</span>,
+	<span class="h"><a href="../../saker.java.compiler/taskdoc/saker.java.compile.html#SourceVersion" title="Parameter SourceVersion of task saker.java.compile()">SourceVersion</a></span>: <span class="e">14</span>,
+	<span class="b"># No need to specify TargetVersion as the --release parameter implies it</span>
+	<span class="b">#TargetVersion: 8,</span>
+	<span class="h"><a href="../../saker.java.compiler/taskdoc/saker.java.compile.html#SDKs" title="Parameter SDKs of task saker.java.compile()">SDKs</a></span>: <span class="i">{</span>
+		<span class="b"># Use JDK 14 for compilation</span>
+		<span class="g">Java</span>: <span class="d"><a href="../../saker.java.compiler/taskdoc/saker.java.sdk.html" title="Task: saker.java.sdk()">saker.java.sdk</a>(</span><span class="e">14</span><span class="d">)</span><span class="i">,</span>
+	<span class="i">}</span>
+<span class="d">)</span>
+</code></pre>
+<p>Breaking it down:</p>
+<ul class="doc-md-list">
+<li><code>--enable-preview</code> lets you use the preview features of the used Java compiler. For Java 14 it enables us to use text blocks and pattern matching.</li>
+<li><code>--release 8</code> specifies that the boot classpath for Java 8 should be used when compiling the sources. This will prevent possible binary incompatibilities as referencing missing APIs will be reported as compilation errors.</li>
+<li><a href="../../saker.java.compiler/taskdoc/saker.java.compile.html"><code>PatchEnablePreview</code></a> lets us run the Java classes without specifying <code>--enable-preview</code> for the <code>java</code> command.</li>
+<li><a href="../../saker.java.compiler/taskdoc/saker.java.compile.html"><code>AllowTargetReleaseMismatch</code></a> is a safeguard parameter to allow mismatching target and release configuration. If it is not set to <code>true</code>, then the usual error will be reported for invalid configuration.</li>
+<li><a href="../../saker.java.compiler/taskdoc/saker.java.compile.html"><code>SourceVersion</code></a> sets the source version that our Java files should conform to.</li>
+</ul>
+<p><strong>And basically that's it!</strong> <br />
+You can try it out by cloning, building, and running the <a href="https://github.com/Sipkab/java-target-older-releases" title="GitHub - Sipkab/java-target-older-releases: Example repository for using new Java language features while targetting older releases">example repository</a>. <br />
+View the <a href="https://github.com/Sipkab/java-target-older-releases/blob/master/src/test/Main.java" title="java-target-older-releases/Main.java at master &#183; Sipkab/java-target-older-releases &#183; GitHub">example source file</a> to see other language features that are also compatible. <br />
+View the compilation and test results on <a href="https://dev.azure.com/sipkab/java-target-older-releases/_build/results?buildId=53&amp;view=logs&amp;j=12f1170f-54f2-53f3-20dd-22fc7dff55f9&amp;t=59a85588-b0ba-5043-24c4-d9e29d89c6f6" title="Pipelines">Azure Pipelines</a>.</p>
+<p>Or read on for more details.</p>
+<h2 id="how-does-it-work_">How does it work?<a class="doc-heading-anchor" href="#how-does-it-work_"></a></h2>
+<p>We don't do anything magic. Javac will actually happily generate the class files for older release versions without us diving deep into the internal details of javac. There's no source rewriting or other shenanigans going on.</p>
+<p>The trick is not allow validation of the source version, target version, and <code>--release</code> configuration before invoking javac itself. This can be done by invoking javac through Java code rather than using the command line.</p>
+<p>You may see the following warning emitted:</p>
+<pre class="doc-code-block"><code class="language-plaintext code-wrap">jrt:/jdk.scripting.nashorn/module-info.class: Warning: Cannot find annotation method 'forRemoval()' in type 'java.lang.Deprecated'
+</code></pre>
+<p>This can happen when you specify <code>--release 8</code> and is nothing to be afraid of. It is a side effect of how the classes are structured and analyzed when compiling for other releases. The <code>forRemoval()</code> method was added to <code>@Deprecated</code> in Java 9, but the compiler can't find it in Java 8. This warning can be safely ignored.</p>
+<h2 id="limitations">Limitations<a class="doc-heading-anchor" href="#limitations"></a></h2>
+<p>You are limited to using new language features that don't introduce new bytecode. This entails that if you target Java 8, then you can't use <a href="https://openjdk.java.net/jeps/261" title="JEP 261: Module System">modules</a> or <a href="https://openjdk.java.net/jeps/359" title="JEP 359: Records (Preview)">records</a>.</p>
+<p>You can use the new language features that essentially boil down to just being syntactic sugar. The ones mentioned in this article are notable examples of these. You can view the <a href="https://github.com/Sipkab/java-target-older-releases/blob/master/src/test/Main.java" title="java-target-older-releases/Main.java at master &#183; Sipkab/java-target-older-releases &#183; GitHub">example source file</a> to see other but less prevalent ones. (pattern matching, generic subclass, private interface methods)</p>
+<h3 id="pitfalls">Pitfalls<a class="doc-heading-anchor" href="#pitfalls"></a></h3>
+<p>In some cases you may encounter compilation errors. One such is when you set the target version higher than the <code>--release</code> version.</p>
+<p>If we add 9 as the target version in the above example:</p>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span>
+	<span class="h"><a href="../../saker.java.compiler/taskdoc/saker.java.compile.html#Parameters" title="Parameter Parameters of task saker.java.compile()">Parameters</a></span>: <span class="i">[</span>
+		--<span class="e">enable-preview</span><span class="i">,</span>
+		--<span class="e">release</span><span class="i">,</span> <span class="e">8</span>
+	<span class="i">]</span>,
+	<span class="h"><a href="../../saker.java.compiler/taskdoc/saker.java.compile.html#SourceVersion" title="Parameter SourceVersion of task saker.java.compile()">SourceVersion</a></span>: <span class="e">14</span>,
+	<span class="h"><a href="../../saker.java.compiler/taskdoc/saker.java.compile.html#TargetVersion" title="Parameter TargetVersion of task saker.java.compile()">TargetVersion</a></span>: <span class="e">9</span>,
+<span class="d">)</span>
+</code></pre>
+<p>Then the compilation will simply throw a fatal error:</p>
+<pre class="doc-code-block"><code>com.sun.tools.javac.util.FatalError: Fatal Error: Unable to find method makeConcatWithConstants
+	at com.sun.tools.javac.comp.Resolve.resolveInternalMethod(Resolve.java:2763)
+	at com.sun.tools.javac.jvm.StringConcat$IndyConstants.doCall(StringConcat.java:490)
+	at com.sun.tools.javac.jvm.StringConcat$IndyConstants.emit(StringConcat.java:450)
+	at com.sun.tools.javac.jvm.StringConcat$Indy.makeConcat(StringConcat.java:275)
+	at com.sun.tools.javac.jvm.Gen.visitBinary(Gen.java:2122)
+</code></pre>
+<p>This is because javac will attempt to generate code that is expected to run on Java 9. <a href="https://openjdk.java.net/jeps/280" title="JEP 280: Indify String Concatenation">JEP 280: Indify String Concatenation</a> introduced a new way of generating string concatenation code and it requires APIs that aren't available on Java 8, therefore an error is generated.</p>
+<p>To avoid this, <strong>make sure the target version is not higher than the <code>--release</code> version</strong>. This is usually the case when compiling Java, so generally you shouldn't encounter this error.</p>
+<h2 id="binary-compatibility">Binary compatibility<a class="doc-heading-anchor" href="#binary-compatibility"></a></h2>
+<p>The method we present in this post doesn't use a well documented API of javac. It is more like a <em>hack</em> that causes javac to behave in a way that we want, but was not designed for. <br />
+<em>Questions may arise whether or not this is a future-proof and compatible way of using new language features?</em></p>
+<p><strong>The answer is no</strong>. Future Java releases may break this way of using new language features on older releases. Although it's not expected, you may still encounter binary incompatibility. We recommend thorough testing of your code before deploying it to production.</p>
+<link href="../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>
+			<div class="doc-headings-nav">  <ul>    <li><a href="#using-switch-expressions_-text-blocks_-and-var-on-java_8" title="Using switch expressions, text blocks, and var on Java 8">Using switch expressions, text blocks, and var on Java 8</a>      <ul>        <li><a href="#feature-overview" title="Feature overview">Feature overview</a>          <ul>            <li><a href="#switch-expressions" title="Switch expressions">Switch expressions</a>            </li>            <li><a href="#text-blocks" title="Text blocks">Text blocks</a>            </li>            <li><a href="#local-type-inference" title="Local type inference">Local type inference</a>            </li>          </ul>        </li>        <li><a href="#using-new-language-features" title="Using new language features">Using new language features</a>        </li>        <li><a href="#how-does-it-work_" title="How does it work?">How does it work?</a>        </li>        <li><a href="#limitations" title="Limitations">Limitations</a>          <ul>            <li><a href="#pitfalls" title="Pitfalls">Pitfalls</a>            </li>          </ul>        </li>        <li><a href="#binary-compatibility" title="Binary compatibility">Binary compatibility</a>        </li>      </ul>    </li>  </ul></div>
+		</div>
+	</div>
+</div>
+<div class="doc-footer">
+	<div class="container">
+		<div class="row">
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">About</p>
+				<div><a href="/" title="Saker.build home page">Home</a></div>
+				<div><a href="/saker.build/doc/roadmap.html" title="Saker.build development roadmap">Roadmap</a></div>
+				<div style="display:none;"><a href="/sponsor.html" title="Sponsoring development">Sponsor</a></div>
+				<div><a href="/saker.build/doc/contribute.html" title="Contributing to the saker.build system development">Contribute</a></div>
+				<div><a href="/contact.html" title="Contact us">Contact</a></div>
+			</div>
+			<div class="footer-section col-6 col-sm-4 col-md-3">
+				<p class="footer-section-title">Resources</p>
+				<div><a href="/saker.build/doc/index.html" title="saker.build documentation">Documentation</a></div>
+				<div><a href="/saker.build/javadoc/index.html" title="Saker.build API JavaDoc">JavaDoc</a></div>
+				<div><a href="https://github.com/sakerbuild/saker.build" title="saker.build on GitHub">GitHub</a></div>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col site-copyright">
+			&copy; Bence Sipka 2020
+			</div>
+		</div>
+	</div>
+</div>
+
+<link rel="stylesheet" href="../../res/hljs.css"><script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js" integrity="sha256-js+I1fdbke/DJrW2qXQlrw7VUEqmdeFeOW37UC0bEiU=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.13.1/build/languages/java.min.js"></script><script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.13.1/build/languages/plaintext.min.js"></script>
+<script>
+if(window.hasOwnProperty("hljs")){
+	hljs.configure({
+	  languages: []
+	});
+	hljs.initHighlightingOnLoad();
+}
+</script>
+
+</body>
+</html>

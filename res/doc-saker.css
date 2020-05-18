@@ -1644,3 +1644,10 @@ body.style-landing .landing-main {
 	color: #f5ce00;
 	font-weight: bold;
 }
+
+.site-copyright {
+	margin-bottom: 20px;
+}
+.site-copyright:not(:hover) {
+	opacity: 0.7;
+}
