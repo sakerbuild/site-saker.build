@@ -7,6 +7,7 @@
 ```
 
 ```Blog posts
+[!section](java_target_older_releases/index.md)
 [!section](javac_source_target_parameters/index.md)
 [!section](intro_build_trace/index.md)
 [!section](do_i_need_a_build_system.md)
