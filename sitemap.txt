@@ -121,6 +121,8 @@ https://saker.build/saker.android/javadoc/saker/android/api/apk/sign/SignApkWork
 https://saker.build/saker.android/javadoc/saker/android/api/apk/sign/index.html
 https://saker.build/saker.android/javadoc/saker/android/api/d8/D8WorkerTaskOutput.html
 https://saker.build/saker.android/javadoc/saker/android/api/d8/index.html
+https://saker.build/saker.android/javadoc/saker/android/api/ndk/strip/StripWorkerTaskOutput.html
+https://saker.build/saker.android/javadoc/saker/android/api/ndk/strip/index.html
 https://saker.build/saker.android/javadoc/saker/android/api/zipalign/ZipAlignWorkerTaskOutput.html
 https://saker.build/saker.android/javadoc/saker/android/api/zipalign/index.html
 https://saker.build/saker.android/taskdoc/index.html
@@ -1437,12 +1439,16 @@ https://saker.build/saker.sdk.support/javadoc/saker/sdk/support/api/index.html
 https://saker.build/saker.sdk.support/taskdoc/index.html
 https://saker.build/saker.sdk.support/taskdoc/sdk.path.html
 https://saker.build/saker.sdk.support/taskdoc/sdk.property.html
+https://saker.build/saker.sdk.support/taskdoc/sdk.resolve.html
 https://saker.build/saker.sdk.support/taskdoc/sdk.user.html
 https://saker.build/saker.sdk.support/taskdoc/types/EnvironmentQualifierTaskOption.html
+https://saker.build/saker.sdk.support/taskdoc/types/FormatString.html
 https://saker.build/saker.sdk.support/taskdoc/types/SDKDescription.html
+https://saker.build/saker.sdk.support/taskdoc/types/SDKDescriptionTaskOption.html
 https://saker.build/saker.sdk.support/taskdoc/types/SDKIdentifier.html
 https://saker.build/saker.sdk.support/taskdoc/types/SDKName.html
 https://saker.build/saker.sdk.support/taskdoc/types/SDKPathReference.html
+https://saker.build/saker.sdk.support/taskdoc/types/SDKPropertyFormatArgument.html
 https://saker.build/saker.sdk.support/taskdoc/types/SDKPropertyReference.html
 https://saker.build/saker.standard/doc/buildparameters/index.html
 https://saker.build/saker.standard/doc/buildparameters/retrieveparameters.html
