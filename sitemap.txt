@@ -1474,6 +1474,8 @@ https://saker.build/saker.standard/index.html
 https://saker.build/saker.standard/javadoc/all-classes.html
 https://saker.build/saker.standard/javadoc/constants.html
 https://saker.build/saker.standard/javadoc/index.html
+https://saker.build/saker.standard/javadoc/saker/std/api/dir/prepare/PrepareDirectoryWorkerTaskOutput.html
+https://saker.build/saker.standard/javadoc/saker/std/api/dir/prepare/index.html
 https://saker.build/saker.standard/javadoc/saker/std/api/environment/qualifier/AnyEnvironmentQualifier.html
 https://saker.build/saker.standard/javadoc/saker/std/api/environment/qualifier/EnvironmentQualifier.html
 https://saker.build/saker.standard/javadoc/saker/std/api/environment/qualifier/EnvironmentQualifierVisitor.html
