@@ -1491,6 +1491,7 @@ https://saker.build/saker.standard/javadoc/saker/std/api/util/SakerStandardTaskU
 https://saker.build/saker.standard/javadoc/saker/std/api/util/SakerStandardUtils.html
 https://saker.build/saker.standard/javadoc/saker/std/api/util/index.html
 https://saker.build/saker.standard/taskdoc/index.html
+https://saker.build/saker.standard/taskdoc/std.dir.prepare.html
 https://saker.build/saker.standard/taskdoc/std.env.qualifier.any.html
 https://saker.build/saker.standard/taskdoc/std.env.qualifier.params.html
 https://saker.build/saker.standard/taskdoc/std.file.copy.html
@@ -1511,6 +1512,11 @@ https://saker.build/saker.standard/taskdoc/types/FileCollection.html
 https://saker.build/saker.standard/taskdoc/types/FileLocation.html
 https://saker.build/saker.standard/taskdoc/types/FileLocationTaskOption.html
 https://saker.build/saker.standard/taskdoc/types/LocalFileLocation.html
+https://saker.build/saker.standard/taskdoc/types/MultiFileLocationTaskOption.html
+https://saker.build/saker.standard/taskdoc/types/Pattern.html
+https://saker.build/saker.standard/taskdoc/types/PatternReplacement.html
+https://saker.build/saker.standard/taskdoc/types/PatternReplacement_2.html
+https://saker.build/saker.standard/taskdoc/types/RelativeContentsTaskOption.html
 https://saker.build/saker.util/doc/addclasspath.html
 https://saker.build/saker.util/doc/asbundledependency.html
 https://saker.build/saker.util/doc/downloadlib.html

@@ -190,7 +190,6 @@
 	  	return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
 	}
 	function createChart(targetid, title, data, metric, color, ylabel, grouping) {
-	console.log(grouping);
 		c3.generate({
 			bindto: targetid,
 			data: {
