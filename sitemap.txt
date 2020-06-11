@@ -333,6 +333,7 @@ https://saker.build/saker.build/javadoc/saker/build/file/content/MultiContentDes
 https://saker.build/saker.build/javadoc/saker/build/file/content/MultiPathContentDescriptor.html
 https://saker.build/saker.build/javadoc/saker/build/file/content/NonExistentContentDescriptor.html
 https://saker.build/saker.build/javadoc/saker/build/file/content/NullContentDescriptor.html
+https://saker.build/saker.build/javadoc/saker/build/file/content/PosixFilePermissionsDelegateContentDescriptor.html
 https://saker.build/saker.build/javadoc/saker/build/file/content/SerializableContentDescriptor.html
 https://saker.build/saker.build/javadoc/saker/build/file/content/UUIDContentDescriptor.html
 https://saker.build/saker.build/javadoc/saker/build/file/content/index.html
