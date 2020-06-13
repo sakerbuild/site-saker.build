@@ -5,7 +5,7 @@ See also: [](../jarcreation/multirelease.md), [](classes.md)
 In the following example we use the [`saker.java.compile()`](root:/saker.java.compiler/taskdoc/saker.java.compile.html) task to compile Java sources and include it in the Java archive. We'll compile the codebase for multiple target JDK versions and include them in the created JAR file. The following example uses the [compiler options](root:/saker.java.compiler/doc/javacompile/compileroptions.html) to set an appropriate JDK for each task.
 
 ```sakerscript
-$options = # ... the compilation options ...
+$options = "__TOKEN__"# ... the compilation options ...
 $multireleasecontents = foreach $jdk in [8, 9, 10] 
 		with $javac {
 	$javac = saker.java.compile(

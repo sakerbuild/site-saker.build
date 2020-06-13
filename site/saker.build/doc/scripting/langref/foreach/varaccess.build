@@ -1,5 +1,5 @@
 # a variable with the name $item in the build target scope
-$item = # ...
+$item = "__TOKEN__"# ...
 foreach $item in [1, 2, 3]
 	with $local {
 	# accesses the loop variable
@@ -22,7 +22,7 @@ foreach $item in [1, 2, 3]
 		$"item"
 		
 		# accesses and assigns the local variable for the inner loop
-		$inlocal = # ...
+		$inlocal = "__TOKEN__"# ...
 		# accesses the local variable of the outer loop
 		$local
 		# accesses the variable $local in the build target scope

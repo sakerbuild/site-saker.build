@@ -22,7 +22,7 @@ The above will result in the `example.MyProcessor` being used when compiling the
 To pass options for the used annotation processors:
 
 ```sakerscript
-$processor = # ...
+$processor = "__TOKEN__"# ...
 saker.java.compile(
 	SourceDirectories: src,
 	AnnotationProcessors: $processor,
