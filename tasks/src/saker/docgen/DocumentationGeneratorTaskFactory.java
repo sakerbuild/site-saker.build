@@ -1079,7 +1079,8 @@ public class DocumentationGeneratorTaskFactory implements TaskFactory<Object>, E
 					sakerscript = scriptStyleCssBuilder.process(codeliteral);
 				} catch (IOException | ScriptParsingFailedException e) {
 					//XXX reify
-					throw new RuntimeException("Failed to parse script in: " + markdown.getAbsolutePath(), e);
+					throw new RuntimeException("Failed to parse script in: " + markdown.getAbsolutePath()
+							+ " with contents:" + codeliteral, e);
 				}
 			}
 			if (sakerscript != null) {

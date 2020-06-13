@@ -38,7 +38,7 @@ build(
 	out OutputParam1,
 	out OutputParam2 = execute.some.task(),
 ) {
-	$OutputParam1 = #...
+	$OutputParam1 = "__TOKEN__"#...
 }
 ```
 

@@ -222,6 +222,10 @@ public class ScriptStyleCSSBuilder implements AutoCloseable {
 				int tokenstartoffset = Math.max(startoffset, token.getOffset());
 				int tokenendoffset = Math.min(token.getEndOffset(), endoffset);
 				String text = contents.substring(tokenstartoffset, tokenendoffset);
+				if ("__TOKEN__".equals(text) || "\"__TOKEN__\"".equals(text)) {
+					//don't need this
+					continue;
+				}
 
 				String title = null;
 				String link = null;

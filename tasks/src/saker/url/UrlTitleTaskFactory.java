@@ -59,7 +59,6 @@ public class UrlTitleTaskFactory implements TaskFactory<String>, Task<String>, E
 		}
 
 		long nanos = System.nanoTime();
-		SakerLog.log().verbose().println("Retrieving title for: " + url);
 		URL url = new URL(this.url);
 		if ("api.nest.saker.build".equals(url.getHost())) {
 			SakerPath path = SakerPath.valueOf(url.getPath());
@@ -150,6 +149,7 @@ public class UrlTitleTaskFactory implements TaskFactory<String>, Task<String>, E
 			}
 			throw new IllegalArgumentException("Unrecognized path for nest URL: " + url + " with " + path);
 		}
+		SakerLog.log().verbose().println("Retrieving title for: " + url);
 		HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 		connection.addRequestProperty("User-Agent",
 				"Mozilla/5.0 (Windows NT 6.1; WOW64; rv:25.0) Gecko/20100101 Firefox/25.0");

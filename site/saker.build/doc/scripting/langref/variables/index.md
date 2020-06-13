@@ -28,14 +28,14 @@ Variables share the scope of the build target they're declared in. There are no 
 
 ```sakerscript
 # variable among the global expressions
-$outervar = # ...
+$outervar = "__TOKEN__"# ...
 build{
 	# variable in the build target, 
 	# named the same as used among the global expressions
 	# they are different variables
-	$outervar = #...
+	$outervar = "__TOKEN__"#...
 	
-	$targetvar = #...
+	$targetvar = "__TOKEN__"#...
 	
 	if example.condition.task() {
 		# both references the vars in the build target:
@@ -52,7 +52,7 @@ build{
 	example.task($ifvar)
 	
 	# same named var as in the below loop
-	$item = # ...
+	$item = "__TOKEN__"# ...
 	foreach $item in [1, 2] {
 		# shadows the $item variable in the build target scope
 		$item
@@ -61,7 +61,7 @@ build{
 		
 		# assign a variable of the build target
 		# probably erroneous as a variable may be assigned only once
-		$foreachvar = # ...
+		$foreachvar = "__TOKEN__"# ...
 	}
 }
 ```
