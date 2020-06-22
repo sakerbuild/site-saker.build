@@ -86,6 +86,7 @@ https://saker.build/nest.repository.support/taskdoc/types/LocalizeBundleTaskOutp
 https://saker.build/nest.repository.support/taskdoc/types/LocalizeWorkerTaskOutput.html
 https://saker.build/nest.repository.support/taskdoc/types/SakerPath.html
 https://saker.build/nest.repository.support/taskdoc/types/String.html
+https://saker.build/nest.repository.support/taskdoc/types/WildcardPath.html
 https://saker.build/saker.android/doc/androiddev/apkcreation.html
 https://saker.build/saker.android/doc/androiddev/apksigning.html
 https://saker.build/saker.android/doc/androiddev/dependencies.html
