@@ -156,6 +156,31 @@ resources:
       branches:
         include:
         - master
+  - repository: repo_saker_clang
+    type: github
+    name: 'sakerbuild/saker.clang'
+    endpoint: sakerbuild
+    trigger:
+      branches:
+        include:
+        - master
+  - repository: repo_saker_windows
+    type: github
+    name: 'sakerbuild/saker.windows'
+    endpoint: sakerbuild
+    trigger:
+      branches:
+        include:
+        - master
+  - repository: repo_saker_apple
+    type: github
+    name: 'sakerbuild/saker.apple'
+    endpoint: sakerbuild
+    trigger:
+      branches:
+        include:
+        - master
+
 
 pool:
   vmImage: 'ubuntu-latest'
@@ -251,6 +276,12 @@ steps:
   path: s/build-javadoc/nest.repository.support
 - checkout: repo_saker_android
   path: s/build-javadoc/saker.android
+- checkout: repo_saker_clang
+  path: s/build-javadoc/saker.clang
+- checkout: repo_saker_windows
+  path: s/build-javadoc/saker.windows
+- checkout: repo_saker_apple
+  path: s/build-javadoc/saker.apple
 - script: |
     set -e	
     mkdir javadoc
@@ -321,6 +352,15 @@ steps:
   workingDirectory: build-javadoc
 - script: $(JAVA_HOME_9_X64)/bin/javadoc -locale en_US -sourcepath "../saker.build-site/doclet/pseudo:saker.build/core/common:saker.build/thirdparty/rmi/api/src:saker.build/thirdparty/rmi/impl/src:saker.build/thirdparty/utils/common:saker.build/thirdparty/utils/jdk8:saker.build/core/test/api/common:saker.build/core/test/api/enabled:saker.build/thirdparty/asm/src:saker.build/core/jdk8:saker.nest/src:saker.nest/json:saker.nest/test/disabled:saker.nest/test/api:saker.nest/jdkutil/jdk8:saker.standard/src:saker.sdk.support/src/main:saker.compiler.utils/api/src/main:saker.compiler.utils/impl/src/main:saker.zip/api/src/main:saker.zip/main/src/main:saker.zip/impl/src/main:saker.java.compiler/api/src/main:saker.java.compiler/impl/src/main:saker.java.compiler/impl/src/asm:saker.java.compiler/impl-util-jdk8/src/main:saker.java.compiler/impl-jdk8/src/main:saker.java.compiler/testapi/api/common:saker.java.compiler/testapi/api/disabled:saker.maven.support/api/src/main:saker.maven.support/main/src/main:saker.maven.support/impl/src/main:saker.maven.classpath/api/src/main:saker.maven.classpath/main/src/main:saker.maven.classpath/impl/src/main:saker.android/main/src:saker.android/impl/src:saker.android/api/src:saker.android/test/testapi/common:saker.android/test/testapi/disabled" -docletpath "../saker.build.jar:../saker.doclet.jar" -doclet saker.doclet.SakerDoclet -subpackages saker.android.api -classpath saker.apiextract-api.jar:saker.nest-api.jar:saker.build-api.jar -d javadoc/saker.android/javadoc -template ../saker.build-site/templates/javadoc_template.html -index-title "Saker.android API JavaDoc" -embed-macro DOC_FOOTER_TEMPLATE ../saker.build-site/templates/footer/packagefootertemplate.html -embed-macro DOC_NAV_TEMPLATE ../saker.build-site/templates/nav/navtemplate.html -embed-macro DOC_UL_PACKAGES ../saker.build-site/templates/ul_docpackages.html -macro "<!-- DOC-PATH-TO-ROOT-DIR -->" "JAVADOC_ROOT../" -macro PACKAGE_NAME saker.android -macro DOC_DATA_PRESENCE "nest-package packagedoc taskdoc javadoc" -external-doc saker.build.** /saker.build/javadoc/ -external-doc saker.util.** /saker.util/javadoc/ -external-doc saker.rmi.** /saker.rmi/javadoc/ -external-doc saker.nest.** /saker.nest/javadoc/ -external-doc saker.compiler.utils.** /saker.compiler.utils/javadoc/ -external-doc saker.java.compiler.** /saker.java.compiler/javadoc/ -external-doc saker.maven.support.** /saker.maven.support/javadoc/ -external-doc saker.zip.** /saker.zip/javadoc/ -external-doc saker.sdk.support.** /saker.sdk.support/javadoc/ -external-doc saker.std.** /saker.standard/javadoc/ -macro FOOTER_COPYRIGHT "Bence Sipka 2020" -error-reporting warning -warning-format "##vso[task.logissue type=warning]%s" -error-format "##vso[task.logissue type=error]%s"
   displayName: 'Javadoc: saker.android'
+  workingDirectory: build-javadoc
+- script: $(JAVA_HOME_9_X64)/bin/javadoc -locale en_US -sourcepath "../saker.build-site/doclet/pseudo:saker.build/core/common:saker.build/thirdparty/rmi/api/src:saker.build/thirdparty/rmi/impl/src:saker.build/thirdparty/utils/common:saker.build/thirdparty/utils/jdk8:saker.build/core/test/api/common:saker.build/core/test/api/enabled:saker.build/thirdparty/asm/src:saker.build/core/jdk8:saker.nest/src:saker.nest/json:saker.nest/test/disabled:saker.nest/test/api:saker.nest/jdkutil/jdk8:saker.standard/src:saker.sdk.support/src/main:saker.compiler.utils/api/src/main:saker.compiler.utils/impl/src/main:saker.clang/src/main" -docletpath "../saker.build.jar:../saker.doclet.jar" -doclet saker.doclet.SakerDoclet -subpackages saker.clang.api -classpath saker.apiextract-api.jar:saker.nest-api.jar:saker.build-api.jar -d javadoc/saker.clang/javadoc -template ../saker.build-site/templates/javadoc_template.html -index-title "Saker.clang API JavaDoc" -embed-macro DOC_FOOTER_TEMPLATE ../saker.build-site/templates/footer/packagefootertemplate.html -embed-macro DOC_NAV_TEMPLATE ../saker.build-site/templates/nav/navtemplate.html -embed-macro DOC_UL_PACKAGES ../saker.build-site/templates/ul_docpackages.html -macro "<!-- DOC-PATH-TO-ROOT-DIR -->" "JAVADOC_ROOT../" -macro PACKAGE_NAME saker.clang -macro DOC_DATA_PRESENCE "nest-package packagedoc taskdoc javadoc" -external-doc saker.build.** /saker.build/javadoc/ -external-doc saker.util.** /saker.util/javadoc/ -external-doc saker.rmi.** /saker.rmi/javadoc/ -external-doc saker.nest.** /saker.nest/javadoc/ -external-doc saker.compiler.utils.** /saker.compiler.utils/javadoc/ -external-doc saker.java.compiler.** /saker.java.compiler/javadoc/ -external-doc saker.maven.support.** /saker.maven.support/javadoc/ -external-doc saker.zip.** /saker.zip/javadoc/ -external-doc saker.sdk.support.** /saker.sdk.support/javadoc/ -external-doc saker.std.** /saker.standard/javadoc/ -macro FOOTER_COPYRIGHT "Bence Sipka 2020" -error-reporting warning -warning-format "##vso[task.logissue type=warning]%s" -error-format "##vso[task.logissue type=error]%s"
+  displayName: 'Javadoc: saker.clang'
+  workingDirectory: build-javadoc
+- script: $(JAVA_HOME_9_X64)/bin/javadoc -locale en_US -sourcepath "../saker.build-site/doclet/pseudo:saker.build/core/common:saker.build/thirdparty/rmi/api/src:saker.build/thirdparty/rmi/impl/src:saker.build/thirdparty/utils/common:saker.build/thirdparty/utils/jdk8:saker.build/core/test/api/common:saker.build/core/test/api/enabled:saker.build/thirdparty/asm/src:saker.build/core/jdk8:saker.nest/src:saker.nest/json:saker.nest/test/disabled:saker.nest/test/api:saker.nest/jdkutil/jdk8:saker.standard/src:saker.sdk.support/src/main:saker.compiler.utils/api/src/main:saker.compiler.utils/impl/src/main:saker.windows/src/main" -docletpath "../saker.build.jar:../saker.doclet.jar" -doclet saker.doclet.SakerDoclet -subpackages saker.windows.api -classpath saker.apiextract-api.jar:saker.nest-api.jar:saker.build-api.jar -d javadoc/saker.windows/javadoc -template ../saker.build-site/templates/javadoc_template.html -index-title "Saker.windows API JavaDoc" -embed-macro DOC_FOOTER_TEMPLATE ../saker.build-site/templates/footer/packagefootertemplate.html -embed-macro DOC_NAV_TEMPLATE ../saker.build-site/templates/nav/navtemplate.html -embed-macro DOC_UL_PACKAGES ../saker.build-site/templates/ul_docpackages.html -macro "<!-- DOC-PATH-TO-ROOT-DIR -->" "JAVADOC_ROOT../" -macro PACKAGE_NAME saker.windows -macro DOC_DATA_PRESENCE "nest-package packagedoc taskdoc javadoc" -external-doc saker.build.** /saker.build/javadoc/ -external-doc saker.util.** /saker.util/javadoc/ -external-doc saker.rmi.** /saker.rmi/javadoc/ -external-doc saker.nest.** /saker.nest/javadoc/ -external-doc saker.compiler.utils.** /saker.compiler.utils/javadoc/ -external-doc saker.java.compiler.** /saker.java.compiler/javadoc/ -external-doc saker.maven.support.** /saker.maven.support/javadoc/ -external-doc saker.zip.** /saker.zip/javadoc/ -external-doc saker.sdk.support.** /saker.sdk.support/javadoc/ -external-doc saker.std.** /saker.standard/javadoc/ -macro FOOTER_COPYRIGHT "Bence Sipka 2020" -error-reporting warning -warning-format "##vso[task.logissue type=warning]%s" -error-format "##vso[task.logissue type=error]%s"
+  displayName: 'Javadoc: saker.windows'
+  workingDirectory: build-javadoc
+- script: $(JAVA_HOME_9_X64)/bin/javadoc -locale en_US -sourcepath "../saker.build-site/doclet/pseudo:saker.build/core/common:saker.build/thirdparty/rmi/api/src:saker.build/thirdparty/rmi/impl/src:saker.build/thirdparty/utils/common:saker.build/thirdparty/utils/jdk8:saker.build/core/test/api/common:saker.build/core/test/api/enabled:saker.build/thirdparty/asm/src:saker.build/core/jdk8:saker.nest/src:saker.nest/json:saker.nest/test/disabled:saker.nest/test/api:saker.nest/jdkutil/jdk8:saker.standard/src:saker.sdk.support/src/main:saker.compiler.utils/api/src/main:saker.compiler.utils/impl/src/main:saker.apple/src/main:saker.clang/src/main" -docletpath "../saker.build.jar:../saker.doclet.jar" -doclet saker.doclet.SakerDoclet -subpackages saker.apple.api -classpath saker.apiextract-api.jar:saker.nest-api.jar:saker.build-api.jar -d javadoc/saker.apple/javadoc -template ../saker.build-site/templates/javadoc_template.html -index-title "Saker.apple API JavaDoc" -embed-macro DOC_FOOTER_TEMPLATE ../saker.build-site/templates/footer/packagefootertemplate.html -embed-macro DOC_NAV_TEMPLATE ../saker.build-site/templates/nav/navtemplate.html -embed-macro DOC_UL_PACKAGES ../saker.build-site/templates/ul_docpackages.html -macro "<!-- DOC-PATH-TO-ROOT-DIR -->" "JAVADOC_ROOT../" -macro PACKAGE_NAME saker.apple -macro DOC_DATA_PRESENCE "nest-package packagedoc taskdoc javadoc" -external-doc saker.build.** /saker.build/javadoc/ -external-doc saker.util.** /saker.util/javadoc/ -external-doc saker.rmi.** /saker.rmi/javadoc/ -external-doc saker.nest.** /saker.nest/javadoc/ -external-doc saker.compiler.utils.** /saker.compiler.utils/javadoc/ -external-doc saker.java.compiler.** /saker.java.compiler/javadoc/ -external-doc saker.maven.support.** /saker.maven.support/javadoc/ -external-doc saker.zip.** /saker.zip/javadoc/ -external-doc saker.sdk.support.** /saker.sdk.support/javadoc/ -external-doc saker.std.** /saker.standard/javadoc/ -macro FOOTER_COPYRIGHT "Bence Sipka 2020" -error-reporting warning -warning-format "##vso[task.logissue type=warning]%s" -error-format "##vso[task.logissue type=error]%s"
+  displayName: 'Javadoc: saker.apple'
   workingDirectory: build-javadoc
 - script: cp -r build-javadoc/javadoc/* saker.build-site/site/
   displayName: 'Copy Javadoc results to working tree'
