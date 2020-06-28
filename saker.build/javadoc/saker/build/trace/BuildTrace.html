@@ -206,8 +206,9 @@
  <td>asCollection</td>
  </tr>
  </table>
- The <i>addAll</i> action will cause the resulting value to be a collection with the existing element(s) first.
- <br>
+ The <i>addAll</i> action will cause the resulting value to be a collection with the existing element(s) first. If
+ both the existing and new values are instance of <span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Set.html" title="interface java.util.Set" data-javadoc-kind="interface">Set</a></span>, then the resulting collection will be a <span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Set.html" title="interface java.util.Set" data-javadoc-kind="interface">Set</a></span>
+ as well. <br>
  The <i>add</i> action will append the element to the existing collection. <br>
  The <i>putAll</i> action will add all map entries to the existing collection. The map values are merged
  recursively. <br>
