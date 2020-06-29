@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>IncludeDirectoryPathTaskOption&nbsp|&nbsp;saker.msvc</title>
+	<title>MSVCCompilerWorkerTaskOutput&nbsp|&nbsp;saker.msvc</title>
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
@@ -63,7 +63,7 @@
 		</div>
 	</div>
 </div>
-<nav class="taskdoc-nav" data-nav-location="IncludeDirectoryPathTaskOption">
+<nav class="taskdoc-nav" data-nav-location="MSVCCompilerWorkerTaskOutput">
 	<div class="container">
 		<span class="taskdoc-nav-title">TaskDoc</span>
 		<a class="nav-location-item" data-nav-location="taskdoc-index" href="../index.html" title="Task doc index">Index</a>
@@ -71,9 +71,15 @@
 </nav>
 <div class="container page-contents taskdoc">
 	<div class="taskdoc-content">
-	<div class="typedoc-header"><div class="typedoc-typename"><a href="" title="Type IncludeDirectoryPathTaskOption">IncludeDirectoryPathTaskOption</a></div><div class="typedoc-container-bundle">In bundle: <a title="Package saker.msvc">saker.msvc</a></div></div><div class="typedoc-info" taskdoc-info-format="format.plaintext">Represents an include directory for C/C++ compilation.
-Include directories are used to resolve #include directives in source code by the preprocessor.
-The option accepts simple paths, wildcards, file locations, file collections, and SDK paths.</div>
+	<div class="typedoc-header"><div class="typedoc-typename"><a href="" title="Type MSVCCompilerWorkerTaskOutput">MSVCCompilerWorkerTaskOutput</a></div><div class="typedoc-container-bundle">In bundle: <a title="Package saker.msvc">saker.msvc</a></div></div><div class="typedoc-info" taskdoc-info-format="format.plaintext">Output of the saker.msvc.ccompile() task.
+The object is a reference to the compilation results using the Microsoft Visual C++ toolchain.
+It can be passed to the saker.msvc.clink() linker task to produce the resulting binary, or consume the compilation results in some other way.</div><div class="typedoc-idx"><div class="typedoc-idx-title">Summary</div><div class="typedoc-idx-section typedoc-idx-fields"><table><caption>Fields</caption><tbody><tr class="taskdoc-idx-member"><td><a class="typedoc-idx-field-name" href="#f-Architecture" title="Field Architecture">Architecture</a></td><td>Contains the target Architecture for which the compilation was done.
+</td></tr><tr class="taskdoc-idx-member"><td><a class="typedoc-idx-field-name" href="#f-Identifier" title="Field Identifier">Identifier</a></td><td>Contains the compilation Identifier that the compilation task was assigned with when compiling the inputs.</td></tr><tr class="taskdoc-idx-member"><td><a class="typedoc-idx-field-name" href="#f-ObjectFilePaths" title="Field ObjectFilePaths">ObjectFilePaths</a></td><td>Contains the paths to the compilation result object files.
+</td></tr><tr class="taskdoc-idx-member"><td><a class="typedoc-idx-field-name" href="#f-SDKs" title="Field SDKs">SDKs</a></td><td>Contains the SDKs that were used for compiling the inputs.
+</td></tr></tbody></table></div></div><div class="typedoc-details-fields"><div class="typedoc-details-title">Fields</div><div id="f-Architecture" class="typedoc-detail-member typedoc-detail-field"><div class="typedoc-detail-param-header-sig"><div class="typedoc-detail-field-name"><a href="#f-Architecture" title="Field Architecture">Architecture</a></div><div class="typedoc-detail-field-type"><a href="ArchitectureType.html" title="Type ArchitectureType">ArchitectureType</a></div></div><div class="typedoc-detail-field-detail" taskdoc-info-format="format.plaintext">Contains the target Architecture for which the compilation was done.
+The architecture was either explicitly specified to the compilation task, or was inferred from the enclosing build environment.</div></div><div id="f-Identifier" class="typedoc-detail-member typedoc-detail-field"><div class="typedoc-detail-param-header-sig"><div class="typedoc-detail-field-name"><a href="#f-Identifier" title="Field Identifier">Identifier</a></div><div class="typedoc-detail-field-type"><a href="CompilationIdentifierTaskOption.html" title="Type CompilationIdentifierTaskOption">CompilationIdentifierTaskOption</a></div></div><div class="typedoc-detail-field-detail" taskdoc-info-format="format.plaintext">Contains the compilation Identifier that the compilation task was assigned with when compiling the inputs.</div></div><div id="f-ObjectFilePaths" class="typedoc-detail-member typedoc-detail-field"><div class="typedoc-detail-param-header-sig"><div class="typedoc-detail-field-name"><a href="#f-ObjectFilePaths" title="Field ObjectFilePaths">ObjectFilePaths</a></div><div class="typedoc-detail-field-type">Collection of <a href="../../../saker.build/javadoc/saker/build/file/path/SakerPath.html" title="SakerPath">SakerPath</a></div></div><div class="typedoc-detail-field-detail" taskdoc-info-format="format.plaintext">Contains the paths to the compilation result object files.
+Each path is the result of the compilation of an input file.</div></div><div id="f-SDKs" class="typedoc-detail-member typedoc-detail-field"><div class="typedoc-detail-param-header-sig"><div class="typedoc-detail-field-name"><a href="#f-SDKs" title="Field SDKs">SDKs</a></div><div class="typedoc-detail-field-type">Map of <a href="SDKName.html" title="Type SDKName">SDKName</a> : <a href="SDKDescription.html" title="Type SDKDescription">SDKDescription</a></div></div><div class="typedoc-detail-field-detail" taskdoc-info-format="format.plaintext">Contains the SDKs that were used for compiling the inputs.
+The map contains all SDKs (explicit or implicit) that was used during the configuration of the compilation.</div></div></div>
 	</div>
 </div>
 <div class="doc-footer">

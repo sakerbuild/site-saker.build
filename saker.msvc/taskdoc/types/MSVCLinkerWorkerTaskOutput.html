@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>MSVCLinkParameter&nbsp|&nbsp;saker.msvc</title>
+	<title>MSVCLinkerWorkerTaskOutput&nbsp|&nbsp;saker.msvc</title>
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
@@ -63,7 +63,7 @@
 		</div>
 	</div>
 </div>
-<nav class="taskdoc-nav" data-nav-location="MSVCLinkParameter">
+<nav class="taskdoc-nav" data-nav-location="MSVCLinkerWorkerTaskOutput">
 	<div class="container">
 		<span class="taskdoc-nav-title">TaskDoc</span>
 		<a class="nav-location-item" data-nav-location="taskdoc-index" href="../index.html" title="Task doc index">Index</a>
@@ -71,7 +71,17 @@
 </nav>
 <div class="container page-contents taskdoc">
 	<div class="taskdoc-content">
-	<div class="typedoc-header"><div class="typedoc-typename"><a href="" title="Type MSVCLinkParameter">MSVCLinkParameter</a></div><div class="typedoc-container-bundle">In bundle: <a title="Package saker.msvc">saker.msvc</a></div></div><div class="typedoc-info" taskdoc-info-format="format.plaintext">Singular option for the MSVC linker (link.exe) that is directly passed to it on the command line.</div>
+	<div class="typedoc-header"><div class="typedoc-typename"><a href="" title="Type MSVCLinkerWorkerTaskOutput">MSVCLinkerWorkerTaskOutput</a></div><div class="typedoc-container-bundle">In bundle: <a title="Package saker.msvc">saker.msvc</a></div></div><div class="typedoc-info" taskdoc-info-format="format.plaintext">Represents the output of the saker.msvc.clink() task.
+The object is a reference to the link operation results using the Microsoft Visual C++ toolchain.
+The result can be consumed in any way the developer sees fit. The OutputPath field contains the path to the linker result binary.</div><div class="typedoc-idx"><div class="typedoc-idx-title">Summary</div><div class="typedoc-idx-section typedoc-idx-fields"><table><caption>Fields</caption><tbody><tr class="taskdoc-idx-member"><td><a class="typedoc-idx-field-name" href="#f-Architecture" title="Field Architecture">Architecture</a></td><td>Contains the target Architecture for which the link operation was done.
+</td></tr><tr class="taskdoc-idx-member"><td><a class="typedoc-idx-field-name" href="#f-Identifier" title="Field Identifier">Identifier</a></td><td>Contains the Identifier that the linker task was assigned with when linking the inputs.</td></tr><tr class="taskdoc-idx-member"><td><a class="typedoc-idx-field-name" href="#f-OutputPath" title="Field OutputPath">OutputPath</a></td><td>Contains the path to the link operation output.
+</td></tr><tr class="taskdoc-idx-member"><td><a class="typedoc-idx-field-name" href="#f-OutputWinmdPath" title="Field OutputWinmdPath">OutputWinmdPath</a></td><td>The output path to the generated Windows Metadata (.winmd) file.
+</td></tr><tr class="taskdoc-idx-member"><td><a class="typedoc-idx-field-name" href="#f-SDKs" title="Field SDKs">SDKs</a></td><td>Contains the SDKs that were used for linking the inputs.
+</td></tr></tbody></table></div></div><div class="typedoc-details-fields"><div class="typedoc-details-title">Fields</div><div id="f-Architecture" class="typedoc-detail-member typedoc-detail-field"><div class="typedoc-detail-param-header-sig"><div class="typedoc-detail-field-name"><a href="#f-Architecture" title="Field Architecture">Architecture</a></div><div class="typedoc-detail-field-type"><a href="ArchitectureType.html" title="Type ArchitectureType">ArchitectureType</a></div></div><div class="typedoc-detail-field-detail" taskdoc-info-format="format.plaintext">Contains the target Architecture for which the link operation was done.
+The architecture was either explicitly specified to the compilation task, or was inferred from the inputs.</div></div><div id="f-Identifier" class="typedoc-detail-member typedoc-detail-field"><div class="typedoc-detail-param-header-sig"><div class="typedoc-detail-field-name"><a href="#f-Identifier" title="Field Identifier">Identifier</a></div><div class="typedoc-detail-field-type"><a href="CompilationIdentifierTaskOption.html" title="Type CompilationIdentifierTaskOption">CompilationIdentifierTaskOption</a></div></div><div class="typedoc-detail-field-detail" taskdoc-info-format="format.plaintext">Contains the Identifier that the linker task was assigned with when linking the inputs.</div></div><div id="f-OutputPath" class="typedoc-detail-member typedoc-detail-field"><div class="typedoc-detail-param-header-sig"><div class="typedoc-detail-field-name"><a href="#f-OutputPath" title="Field OutputPath">OutputPath</a></div><div class="typedoc-detail-field-type"><a href="../../../saker.build/javadoc/saker/build/file/path/SakerPath.html" title="SakerPath">SakerPath</a></div></div><div class="typedoc-detail-field-detail" taskdoc-info-format="format.plaintext">Contains the path to the link operation output.
+The type of the file is based on the configuration of the linker task.</div></div><div id="f-OutputWinmdPath" class="typedoc-detail-member typedoc-detail-field"><div class="typedoc-detail-param-header-sig"><div class="typedoc-detail-field-name"><a href="#f-OutputWinmdPath" title="Field OutputWinmdPath">OutputWinmdPath</a></div><div class="typedoc-detail-field-type"><a href="../../../saker.build/javadoc/saker/build/file/path/SakerPath.html" title="SakerPath">SakerPath</a></div></div><div class="typedoc-detail-field-detail" taskdoc-info-format="format.plaintext">The output path to the generated Windows Metadata (.winmd) file.
+This path is available only when GenerateWinmd option is set to true for the linker process.</div></div><div id="f-SDKs" class="typedoc-detail-member typedoc-detail-field"><div class="typedoc-detail-param-header-sig"><div class="typedoc-detail-field-name"><a href="#f-SDKs" title="Field SDKs">SDKs</a></div><div class="typedoc-detail-field-type">Map of <a href="SDKName.html" title="Type SDKName">SDKName</a> : <a href="SDKDescription.html" title="Type SDKDescription">SDKDescription</a></div></div><div class="typedoc-detail-field-detail" taskdoc-info-format="format.plaintext">Contains the SDKs that were used for linking the inputs.
+The map contains all SDKs (explicit or implicit) that was used during the configuration of the linker.</div></div></div>
 	</div>
 </div>
 <div class="doc-footer">
