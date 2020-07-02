@@ -357,9 +357,6 @@ https://saker.build/saker.build/javadoc/saker/build/file/provider/FileEventListe
 https://saker.build/saker.build/javadoc/saker/build/file/provider/FileHashResult.html
 https://saker.build/saker.build/javadoc/saker/build/file/provider/FileProviderKey.html
 https://saker.build/saker.build/javadoc/saker/build/file/provider/LocalFileProvider.html
-https://saker.build/saker.build/javadoc/saker/build/file/provider/LocalFileProviderInternalRMIAccess.MultiByteArray.html
-https://saker.build/saker.build/javadoc/saker/build/file/provider/LocalFileProviderInternalRMIAccess.RMIBufferedFileOutput.html
-https://saker.build/saker.build/javadoc/saker/build/file/provider/LocalFileProviderInternalRMIAccess.RMIWriteToResult.html
 https://saker.build/saker.build/javadoc/saker/build/file/provider/PartiallyDeletedChildrenException.html
 https://saker.build/saker.build/javadoc/saker/build/file/provider/RootFileProviderKey.html
 https://saker.build/saker.build/javadoc/saker/build/file/provider/SakerFileProvider.html
