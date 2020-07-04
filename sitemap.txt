@@ -968,6 +968,8 @@ https://saker.build/saker.java.compiler/javadoc/saker/java/compiler/api/processi
 https://saker.build/saker.java.compiler/javadoc/saker/java/compiler/api/processing/SakerMessager.html
 https://saker.build/saker.java.compiler/javadoc/saker/java/compiler/api/processing/SakerProcessingEnvironment.html
 https://saker.build/saker.java.compiler/javadoc/saker/java/compiler/api/processing/SakerRoundEnvironment.html
+https://saker.build/saker.java.compiler/javadoc/saker/java/compiler/api/processing/exc/ElementKindNotFoundException.html
+https://saker.build/saker.java.compiler/javadoc/saker/java/compiler/api/processing/exc/ModifierNotFoundException.html
 https://saker.build/saker.java.compiler/javadoc/saker/java/compiler/api/processing/exc/SourceVersionNotFoundException.html
 https://saker.build/saker.java.compiler/javadoc/saker/java/compiler/api/processing/exc/index.html
 https://saker.build/saker.java.compiler/javadoc/saker/java/compiler/api/processing/index.html
