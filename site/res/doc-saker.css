@@ -768,7 +768,7 @@ body>.page-contents:not(.javadoc):not(.taskdoc) a[href^="https://"]:not(.no-exte
 }
 
 .taskdoc-required-parameter, .taskdoc-deprecated-parameter {
-	font-weight: bold;
+	font-weight: 600;
 }
 
 .taskdoc-relatedtypes {

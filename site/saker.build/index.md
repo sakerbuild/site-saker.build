@@ -14,7 +14,7 @@ The following pages serve as the documentation for the saker.build system.
 
 ## Related topics
 
-The following topics and link can help you navigate other parts of the documentation. 
+The following topics and links can help you navigate other parts of the documentation. 
 
 See also the topics on the left (or top if you're on mobile), and the navigation bar for task documentations and JavaDoc if available for the given package.
 
@@ -109,6 +109,18 @@ See also the topics on the left (or top if you're on mobile), and the navigation
 
 </div>
 
+### C++ with Clang
+
+<div class="doc-table-of-contents">
+
+* [saker.clang package](root:/saker.clang/doc/index.html)
+* [Compiling files](root:/saker.clang/doc/compile/compiling.html)
+* [Linking](root:/saker.clang/doc/compile/linking.html)
+* [Precompiled headers](root:/saker.clang/doc/compile/precompiledheaders.html)
+* [Force includes](root:/saker.clang/doc/compile/forceinclude.html)
+
+</div>
+
 ### Android
 
 <div class="doc-table-of-contents">
@@ -120,6 +132,20 @@ See also the topics on the left (or top if you're on mobile), and the navigation
 * [Dexing](root:/saker.android/doc/androiddev/dexing.html)
 * [Dependency handling](root:/saker.android/doc/androiddev/dependencies.html)
 * [SDK management](root:/saker.android/doc/androiddev/sdkmanagement.html)
+
+</div>
+
+### Apple
+
+<div class="doc-table-of-contents">
+
+* [saker.apple package](root:/saker.apple/doc/index.html)
+* [Apple platform SDKs](root:/saker.apple/doc/sdkmanagement/platform.html)
+* [Property list overview](root:/saker.apple/doc/plist/index.html)
+* [Modifying property lists](root:/saker.apple/doc/plist/modify.html)
+* [Configuration presets](root:/saker.apple/doc/appdev/preset.html)
+* [Creating application bundles](root:/saker.apple/doc/appdev/appbundle.html)
+* [Code signing](root:/saker.apple/doc/appdev/signing.html)
 
 </div>
 

@@ -63,4 +63,4 @@ foreach $lang in [en, de, es] {
 
 In the above example we compile the source files defined by the `src/**/*.cpp` wildcard, and use different include directories for each compilation pass. If we're compiling for english, the `inc/en` include directory will be used, as the option entry with the `en` identifier is merged with the compilation pass options. (And similarly with other languages.)
 
-A compiler option entry will be merged with the compilation pass if all of the dot separated identifier parts are contained in the compilation identifier of the task.
+A compiler option entry will be merged with the compilation pass if all of the dash separated identifier parts are contained in the compilation identifier of the task.

@@ -14,7 +14,7 @@ The following pages serve as the documentation for the saker.msvc package that s
 
 ## Related topics
 
-The following topics and link can help you navigate other parts of the documentation. 
+The following topics and links can help you navigate other parts of the documentation. 
 
 See also the topics on the left (or top if you're on mobile), and the navigation bar for task documentations and JavaDoc.
 
@@ -35,6 +35,16 @@ See also the topics on the left (or top if you're on mobile), and the navigation
 
 </div>
 
+### Windows support
+
+<div class="doc-table-of-contents">
+
+* [saker.windows package](root:/saker.windows/doc/index.html)
+* [Windows Kits SDK](root:/saker.windows/doc/sdkmanagement/windowskits.html)
+* [Universal Application Platform SDK](root:/saker.windows/doc/sdkmanagement/uap.html)
+
+</div>
+
 ### Compiler options
 
 <div class="doc-table-of-contents">
@@ -52,7 +62,6 @@ See also the topics on the left (or top if you're on mobile), and the navigation
 <div class="doc-table-of-contents">
 
 * [saker.java.compiler package](root:/saker.java.compiler/doc/index.html)
-* [Cross-compilation](root:/saker.java.compiler/doc/javacompile/crosscompile.html)
 * [JNI compilation](root:/saker.java.compiler/doc/examples/jnicompile.html)
 
 </div>

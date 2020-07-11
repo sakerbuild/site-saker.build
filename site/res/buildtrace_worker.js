@@ -13,6 +13,7 @@ const TYPE_BOOLEAN_TRUE = 12;
 const TYPE_BOOLEAN_FALSE = 13;
 const TYPE_FLOAT_AS_STRING = 14;
 const TYPE_DOUBLE_AS_STRING = 15;
+const TYPE_EXCEPTION_STACKTRACE = 16;
 function readProgress(buffer) {
 	let percent = buffer.idx / buffer.buffer.length;
 	if (buffer.lastPercent == null || percent - buffer.lastPercent > 0.01) {
@@ -61,9 +62,14 @@ function readLong(buffer) {
 		b5 === undefined || b6 === undefined || b7 === undefined || b8 === undefined) {
 		throw "EOF";
 	}
+	let i1 = ((b1 << 24) | (b2 << 16) | (b3 << 8) | (b4));
+	let i2 = (((b5 << 24) | (b6 << 16) | (b7 << 8) | b8));
 	//needs multiplication as shifting is 32 bit only
-	return ((b1 << 56) | (b2 << 48) | (b3 << 40) | (b4 << 32)) * 0x100000000 + 
-		((b5 << 24) | (b6 << 16) | (b7 << 8) | b8);
+	if (i2 >= 0) {
+		return i1 * 0x100000000 + i2;
+	}
+	//needs to fix if i2 is negative
+	return i1 * 0x100000000 + 0x100000000 + i2;
 };
 function readString(buffer) {
 	let len = readInt(buffer);
@@ -75,7 +81,7 @@ function readString(buffer) {
 	readProgress(buffer);
 	return charbuf.join('');
 };
-function readObject(buffer) {
+function readObject(buffer, listener) {
 	let type = readByte(buffer);
 	switch (type) {
 		case TYPE_BYTE: {
@@ -96,7 +102,7 @@ function readObject(buffer) {
 			};
 			for(let i = 0; i < len; i++) {
 				let name = readString(buffer);
-				let value = readObject(buffer);
+				let value = readObject(buffer, listener);
 				result[name] = value;
 			}
 			readProgress(buffer);
@@ -106,7 +112,7 @@ function readObject(buffer) {
 			let len = readInt(buffer);
 			let array = new Array(len);
 			for(let i = 0; i < len; i++) {
-				array[i] = readObject(buffer);
+				array[i] = readObject(buffer, listener);
 			}
 			readProgress(buffer);
 			return array;
@@ -122,7 +128,7 @@ function readObject(buffer) {
 		case TYPE_ARRAY_NULL_BOUNDED: {
 			let array = new Array();
 			while (true) {
-				let obj = readObject(buffer);
+				let obj = readObject(buffer, listener);
 				if (obj == null) {
 					break;
 				}
@@ -139,7 +145,7 @@ function readObject(buffer) {
 				if (name == "") {
 					break;
 				}
-				let value = readObject(buffer);
+				let value = readObject(buffer, listener);
 				result[name] = value;
 			}
 			readProgress(buffer);
@@ -163,6 +169,18 @@ function readObject(buffer) {
 			let str = readString(buffer);
 			readProgress(buffer);
 			return Number(str);
+		}
+		case TYPE_EXCEPTION_STACKTRACE: {
+			let str = readString(buffer);
+			let result = {
+				__bt_type: 'exception_stacktrace',
+				stackTraceString: str
+			};
+			if (listener != null && listener.onReadException != null) {
+				listener.onReadException(result);
+			}
+			readProgress(buffer);
+			return result;
 		}
 		default: {
 			throw "unknown-type " + type;
@@ -190,7 +208,10 @@ function parseInput(buffer) {
 		throw "Unsupported version " + version;
 	}
 	let bt = {
+		_custom_exceptions: [],
+		_exception_count: 0
 	};
+	let exceptiontraceidcounter = 0;
 	while (true) {
 		let str;
 		try {
@@ -202,7 +223,13 @@ function parseInput(buffer) {
 			break;
 		}
 		try {
-			bt[str] = readObject(buffer);
+			bt[str] = readObject(buffer, {
+				onReadException: function (exc) {
+					exc.trace_id = exceptiontraceidcounter++;
+					bt._custom_exceptions.push(exc);
+					bt._exception_count++;
+				}
+			});
 		} catch(e) {
 			throw "Read error " + e;
 		}
@@ -227,6 +254,10 @@ function parseInput(buffer) {
 	let totalwarningcount = 0;
 	let totalexceptioncount = 0;
 	let exceptionseverity = 10;
+	if (bt.ignored_exceptions != null) {
+		totalexceptioncount += bt.ignored_exceptions.length;
+		exceptionseverity = Math.min(exceptionseverity, 3);
+	}
 	bt.tasks.forEach(function(task){
 		if (task.created_tasks != null && task.created_tasks.length > 0) {
 			task.created_tasks.forEach(function(createdtasktraceid){
@@ -283,7 +314,7 @@ function parseInput(buffer) {
 		totalwarningcount += warningcount;
 	});
 	bt._warning_count = totalwarningcount;
-	bt._exception_count = totalexceptioncount;
+	bt._exception_count += totalexceptioncount;
 	bt._artifact_count = bt.artifacts == null ? 0 : Object.keys(bt.artifacts).length;
 	switch(exceptionseverity) {
 		case 1: {
@@ -295,6 +326,11 @@ function parseInput(buffer) {
 			break;
 		}
 		case 3: {
+			bt._exception_severity = 'ignored';
+			break;
+		}
+		case 10: {
+			//not assignd
 			bt._exception_severity = 'ignored';
 			break;
 		}

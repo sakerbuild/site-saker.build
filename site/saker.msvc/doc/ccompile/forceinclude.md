@@ -7,7 +7,9 @@ Let's see an example:
 ```cpp
 // foo.h
 #define FOO_CONSTANT 123
+```
 
+```cpp
 // main.cpp
 #include "foo.h"
 
@@ -21,7 +23,9 @@ The above doesn't use force inclusion, and compiles fine as is. However, if we m
 ```cpp
 // foo.h
 #define FOO_CONSTANT 123
+```
 
+```cpp
 // main.cpp
 int main() {
 	return FOO_CONSTANT;

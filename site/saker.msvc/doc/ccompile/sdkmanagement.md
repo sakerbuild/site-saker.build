@@ -56,7 +56,9 @@ In these cases the version is considered to be the one as in the `Microsoft Visu
 
 When developing with the MSVC toolchain, you are most likely to use the Windows SDK. The Windows SDK contains the necessary headers, libraries and other resources to develop for the Windows operating system. (E.g. `Windows.h`)
 
-The [`saker.msvc.sdk.windowskits()`](/taskdoc/saker.msvc.sdk.windowskits.html) task allows locating the Windows SDK. Without any arguments, it will look for it under the `Program Files (x86)` and `Program Files` directory. However, you can also set the requested version number:
+An SDK configuration for Windows Kits can be retrieved using the [`saker.windows.sdk.windowskits()`](root:/saker.windows/taskdoc/saker.windows.sdk.windowskits.html) task. It's provided by the [saker.windows](root:/saker.windows/doc/index.html) package.
+
+An example for using it:
 
 ```sakerscript
 saker.msvc.ccompile(
@@ -69,7 +71,7 @@ saker.msvc.ccompile(
 		]
 	},
 	SDKs: {
-		WindowsKits: saker.msvc.sdk.windowskits(10.0.18362.0)
+		WindowsKits: saker.windows.sdk.windowskits(10.0.18362.0)
 	}
 )
 ```
@@ -80,15 +82,4 @@ Note that the WindowsKits SDK is not an absolute requirement for the compilation
 
 The [`saker.msvc.coptions.preset()`](/taskdoc/saker.msvc.coptions.preset.html) when used will add the `WindowsKits` SDK if necessary to the tasks if not specified explicitly by the developer.
 
-### Windows kits environment parameter
-
-The `saker.msvc.windowskits.sdk.install.location.<version>` build environment user parameter can be used to specify the location of a Windows Kits installation.
-
-For example:
-
-```plaintext
-saker.msvc.windowskits.sdk.install.location.10.0.18362.0=c:\Program Files (x86)\Windows Kits\10
-```
-
-Note that you must specify the installation directory path that contains the `Include`, `Lib` and other directories instead of any of the subdirectories.
-
+See [Windows Kits SDK](root:/saker.windows/doc/sdkmanagement/windowskits.html) for more information.

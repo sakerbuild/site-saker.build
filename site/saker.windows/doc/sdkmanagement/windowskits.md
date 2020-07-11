@@ -19,3 +19,16 @@ saker.windows.sdk.windowskits(10.0.18362.0)
 ```
 
 The result of the task can be passed to other build tasks that work with SDKs.
+
+### Windows kits environment parameter
+
+The `saker.windows.sdk.windowskits.install.location.<version>` build environment user parameter can be used to specify the location of a Windows Kits installation.
+
+For example:
+
+```plaintext
+saker.windows.sdk.windowskits.install.location.10.0.18362.0=c:\Program Files (x86)\Windows Kits\10
+```
+
+Note that you must specify the installation directory path that contains the `Include`, `Lib` and other directories instead of any of the subdirectories.
+

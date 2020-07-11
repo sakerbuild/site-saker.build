@@ -46,7 +46,7 @@ build {
 				},
 				EmbedMacros: $landingembedmacros,
 				SiteOutputDirectory: blog,
-				TaskLinkPaths: $tasklinkpaths,
+				TaskLinkFormat: $tasklinkformat,
 			},
 			{
 				Directory: site/saker.build,
@@ -73,7 +73,7 @@ build {
 					},
 				],
 				SiteOutputDirectory: saker.build,
-				TaskLinkPaths: $tasklinkpaths,
+				TaskLinkFormat: $tasklinkformat,
 				BreadcrumpRoots: [
 					{
 						Name: saker.build,
@@ -101,7 +101,7 @@ build {
 					},
 				],
 				SiteOutputDirectory: saker.nest,
-				TaskLinkPaths: $tasklinkpaths,
+				TaskLinkFormat: $tasklinkformat,
 				BreadcrumpRoots: [
 					{
 						Name: saker.nest,
@@ -138,7 +138,7 @@ build {
 					}
 				],
 				SiteOutputDirectory: saker.java.compiler,
-				TaskLinkPaths: $tasklinkpaths,
+				TaskLinkFormat: $tasklinkformat,
 				BreadcrumpRoots: [
 					{
 						Name: saker.java.compiler,
@@ -175,10 +175,121 @@ build {
 					}
 				],
 				SiteOutputDirectory: saker.zip,
-				TaskLinkPaths: $tasklinkpaths,
+				TaskLinkFormat: $tasklinkformat,
 				BreadcrumpRoots: [
 					{
 						Name: saker.zip,
+						Link: "index.md",
+					}
+				],
+			},
+			{
+				Directory: site/saker.clang/,
+				RootMarkdown: doc/root.md,
+				TemplateFiles: { **: templates/doctemplate.html },
+				Macros: $docmacros + {
+					PACKAGE_NAME: saker.clang,
+					DOC_DATA_PRESENCE: "nest-package packagedoc javadoc taskdoc",
+				},
+				EmbedMacros: $docembedmacros,
+				Include: [
+					{
+						Directory: site/saker.clang/javadoc/,
+						TargetDirectory: javadoc
+					},
+					{
+						Directory: site/saker.clang/,
+						Resources: index.html
+					},
+					{
+						Directory: include(
+							taskdoc, 
+							bundle: saker.clang,
+							output: saker.clang,
+							docdatapresence: "nest-package packagedoc javadoc taskdoc",
+						)[taskdoc][OutputPath],
+						TargetDirectory: taskdoc
+					}
+				],
+				SiteOutputDirectory: saker.clang,
+				TaskLinkFormat: $tasklinkformat,
+				BreadcrumpRoots: [
+					{
+						Name: saker.clang,
+						Link: "index.md",
+					}
+				],
+			},
+			{
+				Directory: site/saker.windows/,
+				RootMarkdown: doc/root.md,
+				TemplateFiles: { **: templates/doctemplate.html },
+				Macros: $docmacros + {
+					PACKAGE_NAME: saker.windows,
+					DOC_DATA_PRESENCE: "nest-package packagedoc javadoc taskdoc",
+				},
+				EmbedMacros: $docembedmacros,
+				Include: [
+					{
+						Directory: site/saker.windows/javadoc/,
+						TargetDirectory: javadoc
+					},
+					{
+						Directory: site/saker.windows/,
+						Resources: index.html
+					},
+					{
+						Directory: include(
+							taskdoc, 
+							bundle: saker.windows,
+							output: saker.windows,
+							docdatapresence: "nest-package packagedoc javadoc taskdoc",
+						)[taskdoc][OutputPath],
+						TargetDirectory: taskdoc
+					}
+				],
+				SiteOutputDirectory: saker.windows,
+				TaskLinkFormat: $tasklinkformat,
+				BreadcrumpRoots: [
+					{
+						Name: saker.windows,
+						Link: "index.md",
+					}
+				],
+			},
+			{
+				Directory: site/saker.apple/,
+				RootMarkdown: doc/root.md,
+				TemplateFiles: { **: templates/doctemplate.html },
+				Macros: $docmacros + {
+					PACKAGE_NAME: saker.apple,
+					DOC_DATA_PRESENCE: "nest-package packagedoc javadoc taskdoc",
+				},
+				EmbedMacros: $docembedmacros,
+				Include: [
+					{
+						Directory: site/saker.apple/javadoc/,
+						TargetDirectory: javadoc
+					},
+					{
+						Directory: site/saker.apple/,
+						Resources: index.html
+					},
+					{
+						Directory: include(
+							taskdoc, 
+							bundle: saker.apple,
+							output: saker.apple,
+							docdatapresence: "nest-package packagedoc javadoc taskdoc",
+						)[taskdoc][OutputPath],
+						TargetDirectory: taskdoc
+					}
+				],
+				SiteOutputDirectory: saker.apple,
+				TaskLinkFormat: $tasklinkformat,
+				BreadcrumpRoots: [
+					{
+						Name: saker.apple,
 						Link: "index.md",
 					}
 				],
@@ -212,7 +323,7 @@ build {
 					}
 				],
 				SiteOutputDirectory: saker.jar,
-				TaskLinkPaths: $tasklinkpaths,
+				TaskLinkFormat: $tasklinkformat,
 				BreadcrumpRoots: [
 					{
 						Name: saker.jar,
@@ -249,7 +360,7 @@ build {
 					}
 				],
 				SiteOutputDirectory: saker.sdk.support,
-				TaskLinkPaths: $tasklinkpaths,
+				TaskLinkFormat: $tasklinkformat,
 				BreadcrumpRoots: [
 					{
 						Name: saker.sdk.support,
@@ -286,7 +397,7 @@ build {
 					}
 				],
 				SiteOutputDirectory: saker.maven.support,
-				TaskLinkPaths: $tasklinkpaths,
+				TaskLinkFormat: $tasklinkformat,
 				BreadcrumpRoots: [
 					{
 						Name: saker.maven.support,
@@ -323,7 +434,7 @@ build {
 					}
 				],
 				SiteOutputDirectory: saker.maven.classpath,
-				TaskLinkPaths: $tasklinkpaths,
+				TaskLinkFormat: $tasklinkformat,
 				BreadcrumpRoots: [
 					{
 						Name: saker.maven.classpath,
@@ -360,7 +471,7 @@ build {
 					}
 				],
 				SiteOutputDirectory: saker.msvc,
-				TaskLinkPaths: $tasklinkpaths,
+				TaskLinkFormat: $tasklinkformat,
 				BreadcrumpRoots: [
 					{
 						Name: saker.msvc,
@@ -397,7 +508,7 @@ build {
 					}
 				],
 				SiteOutputDirectory: saker.java.testing,
-				TaskLinkPaths: $tasklinkpaths,
+				TaskLinkFormat: $tasklinkformat,
 				BreadcrumpRoots: [
 					{
 						Name: saker.java.testing,
@@ -434,7 +545,7 @@ build {
 					}
 				],
 				SiteOutputDirectory: saker.standard,
-				TaskLinkPaths: $tasklinkpaths,
+				TaskLinkFormat: $tasklinkformat,
 				BreadcrumpRoots: [
 					{
 						Name: saker.standard,
@@ -471,7 +582,7 @@ build {
 					}
 				],
 				SiteOutputDirectory: nest.repository.support,
-				TaskLinkPaths: $tasklinkpaths,
+				TaskLinkFormat: $tasklinkformat,
 				BreadcrumpRoots: [
 					{
 						Name: nest.repository.support,
@@ -499,7 +610,7 @@ build {
 					},
 				],
 				SiteOutputDirectory: saker.rmi,
-				TaskLinkPaths: $tasklinkpaths,
+				TaskLinkFormat: $tasklinkformat,
 				BreadcrumpRoots: [
 					{
 						Name: saker.rmi,
@@ -527,7 +638,7 @@ build {
 					},
 				],
 				SiteOutputDirectory: saker.util,
-				TaskLinkPaths: $tasklinkpaths,
+				TaskLinkFormat: $tasklinkformat,
 				BreadcrumpRoots: [
 					{
 						Name: saker.util,
@@ -564,7 +675,7 @@ build {
 					},
 				],
 				SiteOutputDirectory: saker.compiler.utils,
-				TaskLinkPaths: $tasklinkpaths,
+				TaskLinkFormat: $tasklinkformat,
 				BreadcrumpRoots: [
 					{
 						Name: saker.compiler.utils,
@@ -601,7 +712,7 @@ build {
 					},
 				],
 				SiteOutputDirectory: saker.android,
-				TaskLinkPaths: $tasklinkpaths,
+				TaskLinkFormat: $tasklinkformat,
 				BreadcrumpRoots: [
 					{
 						Name: saker.android,
@@ -652,83 +763,7 @@ build {
 	std.file.copy(Source: site/res/, Target: "{$genres[OutputDirectory]}/res", Wildcard: **)
 	std.file.copy(Source: site/saker.build.ide.eclipse/, Target: "{$genres[OutputDirectory]}/saker.build.ide.eclipse", Wildcard: **)
 	
-	$tasklinkpaths = {
-		saker.msvc.ccompile: ../saker.msvc/taskdoc,
-		saker.msvc.clink: ../saker.msvc/taskdoc,
-		saker.msvc.sdk: ../saker.msvc/taskdoc,
-		saker.msvc.sdk.windowskits: ../saker.msvc/taskdoc,
-		saker.msvc.coptions.preset: ../saker.msvc/taskdoc,
-		
-		saker.maven.resolve: ../saker.maven.support/taskdoc,
-		saker.maven.download: ../saker.maven.support/taskdoc,
-		saker.maven.localize: ../saker.maven.support/taskdoc,
-		saker.maven.install: ../saker.maven.support/taskdoc,
-		saker.maven.deploy: ../saker.maven.support/taskdoc,
-		saker.maven.auth.account: ../saker.maven.support/taskdoc,
-		saker.maven.auth.privatekey: ../saker.maven.support/taskdoc,
-		
-		saker.maven.classpath: ../saker.maven.classpath/taskdoc,
-		
-		saker.java.compile: ../saker.java.compiler/taskdoc,
-		saker.java.processor: ../saker.java.compiler/taskdoc,
-		saker.java.sdk: ../saker.java.compiler/taskdoc,
-		saker.java.classpath.bundle: ../saker.java.compiler/taskdoc,
-		
-		sdk.path: ../saker.sdk.support/taskdoc,
-		sdk.property: ../saker.sdk.support/taskdoc,
-		sdk.user: ../saker.sdk.support/taskdoc,
-		
-		saker.zip.create: ../saker.zip/taskdoc,
-		
-		saker.jar.create: ../saker.jar/taskdoc,
-		saker.jar.multi_release.optimize: ../saker.jar/taskdoc,
-		
-		nest.local.install: ../nest.repository.support/taskdoc,
-		nest.server.upload: ../nest.repository.support/taskdoc,
-		nest.bundle.download: ../nest.repository.support/taskdoc,
-		nest.bundle.localize: ../nest.repository.support/taskdoc,
-		nest.dependency.resolve: ../nest.repository.support/taskdoc,
-		nest.dependency.filter.kind: ../nest.repository.support/taskdoc,
-		nest.dependency.filter.compile: ../nest.repository.support/taskdoc,
-		nest.test.instrument: ../nest.repository.support/taskdoc,
-		
-		std.file.mirror: ../saker.standard/taskdoc,
-		std.file.mirror.path: ../saker.standard/taskdoc,
-		std.file.copy: ../saker.standard/taskdoc,
-		std.file.local: ../saker.standard/taskdoc,
-		std.file.place: ../saker.standard/taskdoc,
-		std.file.put: ../saker.standard/taskdoc,
-		std.file.wildcard: ../saker.standard/taskdoc,
-		std.file.wildcard.local: ../saker.standard/taskdoc,
-		
-		std.param.env: ../saker.standard/taskdoc,
-		std.param.exec: ../saker.standard/taskdoc,
-		
-		std.env.qualifier.params: ../saker.standard/taskdoc,
-		std.env.qualifier.any: ../saker.standard/taskdoc,
-		
-		saker.android.aapt2.compile: ../saker.android/taskdoc,
-		saker.android.aapt2.link: ../saker.android/taskdoc,
-		saker.android.aidl: ../saker.android/taskdoc,
-		saker.android.classpath.platform: ../saker.android/taskdoc,
-		saker.android.classpath: ../saker.android/taskdoc,
-		saker.android.d8: ../saker.android/taskdoc,
-		saker.android.sdk.buildtools: ../saker.android/taskdoc,
-		saker.android.sdk.platform: ../saker.android/taskdoc,
-		saker.android.zipalign: ../saker.android/taskdoc,
-		saker.aar.extract: ../saker.android/taskdoc,
-		saker.apk.create: ../saker.android/taskdoc,
-		saker.apk.sign: ../saker.android/taskdoc,
-		
-		abort: ../saker.build/doc/scripting/builtintasks,
-		global: ../saker.build/doc/scripting/builtintasks,
-		include: ../saker.build/doc/scripting/builtintasks,
-		path: ../saker.build/doc/scripting/builtintasks,
-		print: ../saker.build/doc/scripting/builtintasks,
-		sequence: ../saker.build/doc/scripting/builtintasks,
-		static: ../saker.build/doc/scripting/builtintasks,
-		var: ../saker.build/doc/scripting/builtintasks,
-	}
+	$tasklinkformat = "../%1$s/taskdoc/%2$s.html"
 }
 gencommandlineref(){
 	saker.cmd.reference(cmdlineref/saker.build.launching.Launcher, Name: saker.build)

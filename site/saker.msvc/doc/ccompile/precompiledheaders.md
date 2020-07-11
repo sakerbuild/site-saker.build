@@ -2,7 +2,7 @@
 
 The [`saker.msvc.ccompile()`](/taskdoc/saker.msvc.ccompile.html) task supports using precompiled headers during compilation. Precompiled headers can improve build times by precompiling infrequently changing header files and reusing them later. See more information on the [Precompiled Header Files | Microsoft Docs](https://docs.microsoft.com/en-us/cpp/build/creating-precompiled-header-files?view=vs-2019) site for an in-depth explanation.
 
-In order to use precompiled headers, you need to specify the `PrecompiledHeader` parameter for the source files in your build task invocation:
+In order to use precompiled headers, specify the `PrecompiledHeader` parameter for the inputs in your build task invocation:
 
 ```sakerscript
 saker.msvc.ccompile({
@@ -29,9 +29,7 @@ The build task also supports using precompiled headers on multiple machines. Tha
 
 As you've seen, in order to use the precompiled header, you need to include it in the first statement of the compiled source files. If you don't include it, the compiler will throw an error.
 
-As it may feel like a chore, you can specify the [`ForceIncludePrecompiledHeader`](/taskdoc/types/CompilationInputPassTaskOption.html#f-ForceIncludePrecompiledHeader) parameter to have that done automatically for your. If you set it to `true`, the build task will automatically add an appropriate [`/FI`](https://docs.microsoft.com/en-us/cpp/build/reference/fi-name-forced-include-file?view=vs-2019) command line argument to force include the precompiled header.
-
-**Note** that we don't recommend using this as it may cause portability issues to other build system.
+As it may feel like a chore, you can specify the [`ForceIncludePrecompiledHeader`](/taskdoc/types/CompilationInputPassTaskOption.html#f-ForceIncludePrecompiledHeader) parameter to have that done automatically for you. If you set it to `true`, the build task will automatically add an appropriate [`/FI`](https://docs.microsoft.com/en-us/cpp/build/reference/fi-name-forced-include-file?view=vs-2019) command line argument to force include the precompiled header.
 
 ## Notes
 

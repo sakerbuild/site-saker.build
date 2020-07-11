@@ -26,7 +26,7 @@ The above will cause the task to pass the [`/DLL`](https://docs.microsoft.com/en
 
 ## Output
 
-The output of the linking is placed in the build directory. It will be under the `{build-dir}/saker.msvc.clink/{compilation-id}/{architecture}` directory where `{compilation-id}` is the [compilation identifier](#compilation-identifier) of the compilation pass and `{architecture}` is the target [architecture](#architecture) of the compilation.
+The output of the linking is placed in the build directory. It will be under the `{build-dir}/saker.msvc.clink/{compilation-id}/{architecture}` directory where `{compilation-id}` is the [compilation identifier](#compilation-identifier) of the linker pass and `{architecture}` is the target [architecture](#architecture) of the compilation.
 
 ## Compilation identifier
 

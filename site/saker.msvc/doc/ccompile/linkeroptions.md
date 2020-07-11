@@ -29,6 +29,6 @@ saker.msvc.clink(
 
 The above will cause the [`/DEBUG`](https://docs.microsoft.com/en-us/cpp/build/reference/debug-generate-debug-info?view=vs-2019) argument to be passed to the [`link.exe`](https://docs.microsoft.com/en-us/cpp/build/reference/linking?view=vs-2019) backend for the `main-debug` linker operation, while the [`/LTCG`](https://docs.microsoft.com/en-us/cpp/build/reference/ltcg-link-time-code-generation?view=vs-2019) argument to be passed for the `main-release` linker operation.
 
-A linker option entry will be merged with the linker operation if all of the dot separated identifier parts are contained in the operation identifier of the task.
+A linker option entry will be merged with the linker operation if all of the dash separated identifier parts are contained in the operation identifier of the task.
 
 The mergeability of the options can also be decided based on the target `Architecture` of the linked inputs.

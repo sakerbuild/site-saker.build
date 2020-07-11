@@ -24,4 +24,25 @@ See also the topics on the left (or top if you're on mobile), and the navigation
 
 </div>
 
-TODO clang
+### Using Clang
+
+<div class="doc-table-of-contents">
+
+* [saker.clang package](root:/saker.clang/doc/index.html)
+* [Compiling files](root:/saker.clang/doc/compile/compiling.html)
+* [Linking](root:/saker.clang/doc/compile/linking.html)
+* [Precompiled headers](root:/saker.clang/doc/compile/precompiledheaders.html)
+* [Force includes](root:/saker.clang/doc/compile/forceinclude.html)
+
+</div>
+
+### SDK handling
+
+<div class="doc-table-of-contents">
+
+* [saker.sdk.support package](root:/saker.sdk.support/doc/index.html)
+* [What is an SDK?](root:/saker.sdk.support/doc/sdks/index.html)
+* [SDK names and identifiers](root:/saker.sdk.support/doc/sdks/sdknames.html)
+* [Using an SDK path](root:/saker.sdk.support/doc/examples/sdkpaths.html)
+
+</div>

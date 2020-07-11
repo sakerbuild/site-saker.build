@@ -4,8 +4,6 @@ When compared to [Gradle](https://gradle.org) (the official build system for And
 
 On this page we'd like to enumerate some of the known missing features for the saker.android package. Note that this just means that these features are not implemented *currently*. They may (and probably will) be added in future versions.
 
-* NDK support
-	* The Android Native Development Kit is not currently supported. We aim to support it in the near future, as the [saker.clang](https://github.com/sakerbuild/saker.clang) project gets mature.
 * Kotlin
 	* Kotlin is greatly supported by the Android ecosystem, however, saker.build doesn't have a released solution for compiling it yet.
 * ADB support

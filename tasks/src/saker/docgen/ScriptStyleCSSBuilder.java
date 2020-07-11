@@ -171,6 +171,10 @@ public class ScriptStyleCSSBuilder implements AutoCloseable {
 			List<? extends StructureOutlineEntry> entries, int offset) {
 		for (StructureOutlineEntry entry : entries) {
 			if (offset >= entry.getOffset() && offset <= entry.getOffset() + entry.getLength()) {
+				StructureOutlineEntry tn = findTaskEntryForParameterOffsetInOutline(entry.getChildren(), offset);
+				if (tn != null) {
+					return tn;
+				}
 				if ("saker.script.task".equals(entry.getSchemaIdentifier())) {
 					for (StructureOutlineEntry c : entry.getChildren()) {
 						if ("saker.script.task.parameter".equals(c.getSchemaIdentifier())) {
@@ -179,10 +183,6 @@ public class ScriptStyleCSSBuilder implements AutoCloseable {
 							}
 						}
 					}
-				}
-				StructureOutlineEntry tn = findTaskEntryForParameterOffsetInOutline(entry.getChildren(), offset);
-				if (tn != null) {
-					return tn;
 				}
 			}
 		}
@@ -239,15 +239,17 @@ public class ScriptStyleCSSBuilder implements AutoCloseable {
 						break;
 					}
 					case "param_name_content": {
-						StructureOutlineEntry taskoutlineentry = findTaskEntryForParameterOffsetInOutline(
-								outline.getRootEntries(), token.getOffset() + token.getLength() / 2);
-						if (taskoutlineentry != null) {
-							String taskname = contents.substring(taskoutlineentry.getSelectionOffset(),
-									taskoutlineentry.getSelectionOffset() + taskoutlineentry.getSelectionLength());
-							String tlink = tasklinkhreffunction.getTaskLink(taskname);
-							if (tlink != null) {
-								title = "Parameter " + text + " of task " + taskname + "()";
-								link = tlink + "#" + text;
+						if (tasklinkhreffunction != null) {
+							StructureOutlineEntry taskoutlineentry = findTaskEntryForParameterOffsetInOutline(
+									outline.getRootEntries(), token.getOffset() + token.getLength() / 2);
+							if (taskoutlineentry != null) {
+								String taskname = contents.substring(taskoutlineentry.getSelectionOffset(),
+										taskoutlineentry.getSelectionOffset() + taskoutlineentry.getSelectionLength());
+								String tlink = tasklinkhreffunction.getTaskLink(taskname);
+								if (tlink != null) {
+									title = "Parameter " + text + " of task " + taskname + "()";
+									link = tlink + "#" + text;
+								}
 							}
 						}
 						break;

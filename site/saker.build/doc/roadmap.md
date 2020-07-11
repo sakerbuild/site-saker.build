@@ -59,6 +59,8 @@ Support for using saker.build to develop for Android should be added. The implem
 
 #### iOS & macOS support
 
+**Update**: Basic support for Apple platforms are introduced by the [saker.apple](https://github.com/sakerbuild/saker.apple) package.
+
 Support for using saker.build to develop for iOS & macOS should be added. The implementation may be gradual, meaning that at start the build tasks should support creating basic iOS & macOS applcations, and later it can be extended for more complex use-cases.
 
 #### .NET, C#, and related technologies

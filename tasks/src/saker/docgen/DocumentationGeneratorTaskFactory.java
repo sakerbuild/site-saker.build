@@ -25,7 +25,6 @@ import java.util.NavigableSet;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
-import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.regex.Pattern;
 
@@ -78,6 +77,9 @@ import saker.build.thirdparty.saker.util.io.FileUtils;
 import saker.build.thirdparty.saker.util.io.SerialUtils;
 import saker.docgen.ScriptStyleCSSBuilder.ProcessedScript;
 import saker.docgen.ScriptStyleCSSBuilder.TaskLinkHrefProvider;
+import saker.nest.bundle.BundleIdentifier;
+import saker.nest.bundle.NestBundleClassLoader;
+import saker.nest.utils.NestUtils;
 import saker.url.UrlTitleTaskFactory;
 
 public class DocumentationGeneratorTaskFactory implements TaskFactory<Object>, Externalizable {
@@ -1471,7 +1473,7 @@ public class DocumentationGeneratorTaskFactory implements TaskFactory<Object>, E
 		protected Set<SimpleIncludeOption> includes;
 
 		protected SakerPath rootMarkdownPath;
-		protected Map<TaskName, SakerPath> taskLinkPaths;
+		protected String taskLinkFormat;
 
 		protected List<Entry<String, String>> macros;
 
@@ -1489,7 +1491,7 @@ public class DocumentationGeneratorTaskFactory implements TaskFactory<Object>, E
 
 		public SimpleSiteInfo(SakerPath directory, SakerPath outputDirectory,
 				Map<WildcardPath, SakerPath> templatefiles, SimplePlaceholderCollection placeholders,
-				Set<SimpleIncludeOption> includes, SakerPath rootMarkdownPath, Map<TaskName, SakerPath> taskLinkPaths,
+				Set<SimpleIncludeOption> includes, SakerPath rootMarkdownPath, String taskLinkFormat,
 				List<Entry<String, String>> macros, List<Entry<String, SakerPath>> embedmacros) {
 			this.markdownDirectory = directory;
 			this.outputDirectory = outputDirectory;
@@ -1497,7 +1499,7 @@ public class DocumentationGeneratorTaskFactory implements TaskFactory<Object>, E
 			this.placeholders = placeholders;
 			this.includes = includes;
 			this.rootMarkdownPath = rootMarkdownPath;
-			this.taskLinkPaths = taskLinkPaths;
+			this.taskLinkFormat = taskLinkFormat;
 			this.macros = ObjectUtils.cloneArrayList(macros, ImmutableUtils::makeImmutableMapEntry);
 			this.embedMacros = ObjectUtils.cloneArrayList(embedmacros, ImmutableUtils::makeImmutableMapEntry);
 		}
@@ -1508,8 +1510,8 @@ public class DocumentationGeneratorTaskFactory implements TaskFactory<Object>, E
 			out.writeObject(outputDirectory);
 			out.writeObject(placeholders);
 			out.writeObject(rootMarkdownPath);
+			out.writeObject(taskLinkFormat);
 			SerialUtils.writeExternalCollection(out, includes);
-			SerialUtils.writeExternalMap(out, taskLinkPaths);
 			SerialUtils.writeExternalMap(out, templateFiles);
 			SerialUtils.writeExternalCollection(out, macros);
 			SerialUtils.writeExternalCollection(out, embedMacros);
@@ -1522,8 +1524,8 @@ public class DocumentationGeneratorTaskFactory implements TaskFactory<Object>, E
 			outputDirectory = (SakerPath) in.readObject();
 			placeholders = (SimplePlaceholderCollection) in.readObject();
 			rootMarkdownPath = (SakerPath) in.readObject();
+			taskLinkFormat = SerialUtils.readExternalObject(in);
 			includes = SerialUtils.readExternalImmutableLinkedHashSet(in);
-			taskLinkPaths = SerialUtils.readExternalImmutableNavigableMap(in);
 			templateFiles = SerialUtils.readExternalImmutableLinkedHashMap(in);
 			macros = SerialUtils.readExternalImmutableList(in);
 			embedMacros = SerialUtils.readExternalImmutableList(in);
@@ -1542,7 +1544,7 @@ public class DocumentationGeneratorTaskFactory implements TaskFactory<Object>, E
 			result = prime * result + ((outputDirectory == null) ? 0 : outputDirectory.hashCode());
 			result = prime * result + ((placeholders == null) ? 0 : placeholders.hashCode());
 			result = prime * result + ((rootMarkdownPath == null) ? 0 : rootMarkdownPath.hashCode());
-			result = prime * result + ((taskLinkPaths == null) ? 0 : taskLinkPaths.hashCode());
+			result = prime * result + ((taskLinkFormat == null) ? 0 : taskLinkFormat.hashCode());
 			result = prime * result + ((templateFiles == null) ? 0 : templateFiles.hashCode());
 			return result;
 		}
@@ -1596,10 +1598,10 @@ public class DocumentationGeneratorTaskFactory implements TaskFactory<Object>, E
 					return false;
 			} else if (!rootMarkdownPath.equals(other.rootMarkdownPath))
 				return false;
-			if (taskLinkPaths == null) {
-				if (other.taskLinkPaths != null)
+			if (taskLinkFormat == null) {
+				if (other.taskLinkFormat != null)
 					return false;
-			} else if (!taskLinkPaths.equals(other.taskLinkPaths))
+			} else if (!taskLinkFormat.equals(other.taskLinkFormat))
 				return false;
 			if (templateFiles == null) {
 				if (other.templateFiles != null)
@@ -1893,20 +1895,35 @@ public class DocumentationGeneratorTaskFactory implements TaskFactory<Object>, E
 						String docrootpath = getDocRootPath(markdowndirectory, relpath);
 						SakerPath pageoutputpath = outputdirabsolutepath.resolve(relpath);
 
-						TaskLinkHrefProvider tasklinkfunction = ti -> {
+						TaskLinkHrefProvider tasklinkfunction = siteInfo.taskLinkFormat == null ? null : ti -> {
 							TaskName tn;
 							try {
 								tn = TaskName.valueOf(ti);
 							} catch (IllegalArgumentException e) {
 								return null;
 							}
-							SakerPath linkedpath = siteInfo.taskLinkPaths.get(tn);
-							if (linkedpath == null) {
+							try {
+								//TODO dependency should be added on the found tasks
+								NestBundleClassLoader cl = (NestBundleClassLoader) this.getClass().getClassLoader();
+								TaskFactory<?> taskfactory = cl.getBundleStorageConfiguration().lookupTask(tn);
+								BundleIdentifier taskbundleid = NestUtils
+										.getClassBundleIdentifier(taskfactory.getClass()).withoutMetaQualifiers();
+								return SakerPath
+										.valueOf(docrootpath + String.format(siteInfo.taskLinkFormat, taskbundleid, tn))
+										.toString();
+//								return SakerPath
+//										.valueOf(docrootpath + "../" + taskbundleid + "/taskdoc/" + tn + ".html")
+//										.toString();
+							} catch (Exception e) {
 								return null;
 							}
-							SakerPath linkpath = SakerPath.valueOf(docrootpath + linkedpath + "/" + tn + ".html");
-							//TODO add to linked resources and check for existence
-							return linkpath.toString();
+//							SakerPath linkedpath = siteInfo.taskLinkPaths.get(tn);
+//							if (linkedpath == null) {
+//								return null;
+//							}
+//							SakerPath linkpath = SakerPath.valueOf(docrootpath + linkedpath + "/" + tn + ".html");
+//							//TODO add to linked resources and check for existence
+//							return linkpath.toString();
 						};
 
 						Map<PlaceholderType, Supplier<? extends CharSequence>> placeholdercontents = new EnumMap<>(
@@ -2616,7 +2633,7 @@ public class DocumentationGeneratorTaskFactory implements TaskFactory<Object>, E
 
 		public SakerPath getRootMarkdown();
 
-		public Map<TaskName, SakerPath> getTaskLinkPaths();
+		public String getTaskLinkFormat();
 
 		public Map<String, String> getMacros();
 
@@ -2767,8 +2784,7 @@ public class DocumentationGeneratorTaskFactory implements TaskFactory<Object>, E
 					}
 				}
 
-				Map<TaskName, SakerPath> sitetasklinkpaths = ImmutableUtils
-						.makeImmutableNavigableMap(site.getTaskLinkPaths());
+				String tasklinkformat = site.getTaskLinkFormat();
 
 				Map<WildcardPath, SakerPath> templatefiles = ImmutableUtils
 						.makeImmutableLinkedHashMap(site.getTemplateFiles());
@@ -2795,8 +2811,7 @@ public class DocumentationGeneratorTaskFactory implements TaskFactory<Object>, E
 				}
 				SimpleSiteInfo siteinfo = new SimpleSiteInfo(site.getDirectory(), siteoutputdir, templatefiles,
 						DEFAULTS_PLACEHOLDER_COLLECTION, ImmutableUtils.makeImmutableLinkedHashSet(includes),
-						site.getRootMarkdown(), sitetasklinkpaths,
-						ImmutableUtils.makeImmutableList(sitemacros.entrySet()),
+						site.getRootMarkdown(), tasklinkformat, ImmutableUtils.makeImmutableList(sitemacros.entrySet()),
 						ImmutableUtils.makeImmutableList(embedmacros.entrySet()));
 				siteinfo.breadcrumbRoots = breadcrumbroots;
 				sites.add(siteinfo);

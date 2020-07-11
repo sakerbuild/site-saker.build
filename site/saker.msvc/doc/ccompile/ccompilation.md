@@ -2,7 +2,7 @@
 
 The [`saker.msvc.ccompile()`](/taskdoc/saker.msvc.ccompile.html) task allows compiling C/C++ source files into object files. The task can be used to compile for the local machine, or for any other supported architectures.
 
-The task serves as a frontend for the [`cl.exe`](https://docs.microsoft.com/en-us/cpp/build/reference/compiling-a-c-cpp-program?view=vs-2019) present in the MSVC toolchain.
+The task serves as a frontend for [`cl.exe`](https://docs.microsoft.com/en-us/cpp/build/reference/compiling-a-c-cpp-program?view=vs-2019) present in the MSVC toolchain.
 
 The simplest example for compilation is the following:
 
@@ -10,7 +10,7 @@ The simplest example for compilation is the following:
 saker.msvc.ccompile(src/**/*.cpp)
 ```
 
-The above compiles all source files in the `src` directory that end with `.cpp`. The compilation language is automatically determined by the extension of the source file. You can also specify various options for the compiled files:
+The above compiles all source files in the `src` directory that end with `.cpp`. The compilation language is automatically determined by the extension of the source file (or using the [`Language`](/taskdoc/types/CompilationInputPassTaskOption.html#f-Language) option). You can also specify various options for the compiled files:
 
 ```sakerscript
 saker.msvc.ccompile(

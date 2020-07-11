@@ -13,7 +13,7 @@ The following pages serve as the documentation for the saker.compiler.utils pack
 
 ## Related topics
 
-The following topics and link can help you navigate other parts of the documentation. 
+The following topics and links can help you navigate other parts of the documentation. 
 
 See also the topics on the left (or top if you're on mobile), and the navigation bar for task documentations and JavaDoc.
 

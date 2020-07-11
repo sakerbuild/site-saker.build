@@ -124,7 +124,7 @@ LANDING_NAV
 	font-weight: 600;
 	min-width: 1px;
 	
-	border: 0.5px solid #ffffffaa;
+	border: 1px solid #ffffffaa;
     box-sizing: content-box;
 	
 	cursor: pointer;
@@ -849,6 +849,14 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 	min-width: calc(200px - 1.4em);
 	padding-left: 0px;
 }
+.trace-custom-value-exc_stacktrace {
+	cursor: pointer;
+	font-family: var(--font-family-code);
+	word-break: break-all;
+}
+.trace-custom-value-exc_stacktrace:hover {
+	background-color: var(--task-row-entry-hover-color);
+}
 
 </style>
 
@@ -1003,6 +1011,7 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
     <path fill="currentColor" d="M20 21H4V10H6V19H18V10H20V21M3 3H21V9H3V3M9.5 11H14.5C14.78 11 15 11.22 15 11.5V13H9V11.5C9 11.22 9.22 11 9.5 11M5 5V7H19V5H5Z" />
 </svg>
 	`;
+	const EXCEPTION_FIRST_LINE_REGEX = /((?:[a-zA-Z0-9]+\.)*)([a-zA-Z0-9]+)\:(.*)/;
 	
 	function getDocumentationToolipLinkSvg(href, title) {
 		let result = $(`<a>${ DOC_SVG }</a>`);
@@ -1487,13 +1496,28 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 			return null;
 		}
 		let result = undefined;
-		if(bt.connections != null) {
+		if (bt.connections != null) {
 			$.each(bt.connections, function(key, value){
 				if (value.env_uuid == envuuid) {
 					result = key;
 					return false;
 				}
 			});
+		}
+		if (result == null) {
+			if (bt.environments != null) {
+				bt.environments.forEach(function(value) {
+					if (value.env_uuid == envuuid) {
+						if (value.environment_name_info != null) {
+							result = value.environment_name_info;
+						} else if (value.computer_name != null) {
+							result = value.computer_name;
+						} else {
+							result = value.os_name;
+						}
+					}
+				});
+			}
 		}
 		return result;
 	}
@@ -1661,6 +1685,25 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 			
 			lines.push(line);
 		}
+		lines.sort(function(l, r){
+			if (l.connection_name == null) {
+				if (r.connection_name != null) {
+					return -1;
+				}
+			}
+			if (r.connection_name == null) {
+				return 1;
+			}
+			let cmp = l.connection_name.localeCompare(r.connection_name);
+			if (cmp != 0) {
+				return cmp;
+			}
+			cmp = l.execution_env.localeCompare(r.execution_env);
+			if (cmp != 0) {
+				return cmp;
+			}
+			return 0;
+		});
 		return {
 			lines: lines
 		};
@@ -1703,7 +1746,7 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 		return result;
 	}
 	function isAnyBuildTraceException(bt) {
-		return isAnyTaskListException(bt.tasks);
+		return bt._exception_count > 0 || isAnyTaskListException(bt.tasks);
 	}
 	
 	function getShortenedTaskFactoryClassName(cn) {
@@ -1756,8 +1799,8 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 	}
 	
 	const TIMELINE_ROW_HEIGHT = 20;
-	const TIMELINE_ROW_MARGIN = 0.5;
-	
+	const TIMELINE_ROW_MARGIN = 1;
+	const TIMELINE_DIVISOR_HEIGHT = 1;
 	
 	function fillTimelineControl(bt, timeline, timelinecontroljq) {
 		let timelinecss = '';
@@ -1776,18 +1819,6 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 				}
 			});
 		});
-		lines.sort(function(l, r){
-			if (l.connection_name == null) {
-				if (r.connection_name == null) {
-					return 0;
-				}
-				return -1;
-			}
-			if (r.connection_name == null) {
-				return 1;
-			}
-			return l.connection_name.localeCompare(r.connection_name);
-		});
 		//use map for insertion order
 		let machineblocks = new Map();
 		let blockcount = 0;
@@ -1803,7 +1834,7 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 				if (machineidx < 0) {
 					machineidx = 0;
 				} else {
-					++machineidx;
+					//++machineidx;
 				}
 				let isanyfailure = isAnyFailureException(range.task);
 				let isanywarning = isAnyTaskWarning(range.task);
@@ -1811,7 +1842,7 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 				let blockleft = (range.startpct * 100);
 				let blockwidth = ((range.endpct - range.startpct) * 100);
 				let timelinelabel = getTaskTimelineLabel(range.task);
-				let blocktoppx = (TIMELINE_ROW_MARGIN + (TIMELINE_ROW_HEIGHT + TIMELINE_ROW_MARGIN * 2) * index + machineidx * 1);
+				let blocktoppx = (TIMELINE_ROW_HEIGHT + TIMELINE_ROW_MARGIN) * index + machineidx * (TIMELINE_DIVISOR_HEIGHT + TIMELINE_ROW_MARGIN);
 				let block = $(document.createElement('div'))
 					.addClass('timeline-block')
 					.addClass('timeline-view')
@@ -1893,19 +1924,22 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 				return;
 			}
 			blockcount += nonuptodatetaskcount;
-			let cname = foundline.connection_name;
-			if (cname == null) {
-				cname = "My computer";
+			let envid = foundline.execution_env;
+			if (envid == null) {
+				//if undefined
+				envid = null;
 			}
-			let mblock = machineblocks.get(cname);
+			let mblock = machineblocks.get(envid);
 			if (mblock == null) {
 				mblock = {
 					connection_name: foundline.connection_name,
 					height: 0,
-					execution_env: foundline.execution_env,
-					machine_first_block_top: (TIMELINE_ROW_HEIGHT + TIMELINE_ROW_MARGIN * 2) * index + (machineblocks.size - 1) * 1
+					execution_env: foundline.execution_env
 				};
-				machineblocks.set(cname, mblock);
+				if (index > 0) {
+					mblock.machine_first_block_top = (TIMELINE_ROW_HEIGHT + TIMELINE_ROW_MARGIN) * index + machineblocks.size * (TIMELINE_DIVISOR_HEIGHT + TIMELINE_ROW_MARGIN) - TIMELINE_DIVISOR_HEIGHT; 
+				}
+				machineblocks.set(envid, mblock);
 			}
 			mblock.height++;
 		});
@@ -1916,12 +1950,17 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 		machineblocks.forEach(function(v, k){
 			let envinfo = getExecutionEnvironmentInfo(bt, v.execution_env == null ? bt.execution_environment_uuid : v.execution_env);
 			
+			let cname = v.connection_name;
+			if (cname == null) {
+				cname = "My computer";
+			}
+			
 			let machinediv = $(document.createElement('div'))
 				.addClass('trace-timeline-left-machine')
 				.append(
 					$(document.createElement('div'))
 					.addClass('trace-timeline-left-machine-label')
-					.text(k)
+					.text(cname)
 				);
 			if (envinfo != null) {
 				let inf = [];
@@ -1951,22 +1990,22 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 					machinediv.append(infdiv);
 				}
 			}
-			let containerh = ((TIMELINE_ROW_HEIGHT + TIMELINE_ROW_MARGIN * 2) * v.height);
+			let containerh = (TIMELINE_ROW_HEIGHT) * v.height + TIMELINE_ROW_MARGIN * (v.height + 1) + (v.machine_first_block_top != null ? TIMELINE_DIVISOR_HEIGHT : 0);
 			leftenvdiv.append(
 				$(document.createElement('div'))
 				.addClass('trace-timeline-left-machine-container')
 				.css('height', containerh + "px")
 				.append(machinediv)
 			);
-			machinediv.css('max-height', containerh + "px")
-			if (v.connection_name != null) {
+			if (v.machine_first_block_top != null) {
 				let divisor = $(document.createElement('div'))
-					.addClass('timeline-machine-divisor')
-					divisor.css('top', v.machine_first_block_top + "px");
+					.addClass('timeline-machine-divisor');
+				divisor.css('top', v.machine_first_block_top + "px");
 				timelineholder.append(divisor);
 			}
+			machinediv.css('max-height', containerh + "px")
 		});
-		let holderh = ((TIMELINE_ROW_HEIGHT + TIMELINE_ROW_MARGIN * 2) * lines.length + machines.length * 1);
+		let holderh = (TIMELINE_ROW_HEIGHT + TIMELINE_ROW_MARGIN) * lines.length + Math.max(0, machines.length - 1) * (TIMELINE_DIVISOR_HEIGHT + TIMELINE_ROW_MARGIN) + TIMELINE_ROW_MARGIN;
 		timelineholder.css('height', holderh + "px");
 		timelinecontroljq.find('.trace-timeline').css('height', holderh + "px");
 		
@@ -2960,119 +2999,129 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 				$(document.createElement('thead'))
 				.append(
 					$(document.createElement('tr'))
-					.append($(document.createElement('th')).text('Task'))
+					.append($(document.createElement('th')).text('Origin'))
 					.append($(document.createElement('th')).text('Exception'))
 				)
 			).append(tasksbody)
 		);
 		
-		exceptiontasks.forEach(function(task){
-			let tasktitle = getTaskTitle(task);
+		function appendExceptionStackTrace(elem, exception) {
+			const ST_LINE_REGEX = /([ \t]+)at ([^(]+)\.([^(]+)\(([^)]+)\)/;
 			
-			function appendExceptionStackTrace(elem, exception) {
-				const ST_LINE_REGEX = /([ \t]+)at ([^(]+)\.([^(]+)\(([^)]+)\)/;
-				
-				let lines = exception.split(/\r?\n/);
-				lines.forEach(function (l){
-					let match = ST_LINE_REGEX.exec(l);
-					if (match != null) {
-						let ws = match[1];
-						let cname = match[2];
-						let method = match[3];
-						let pos = match[4];
-						let reducedcname = cname.substring(cname.lastIndexOf('.') + 1);
-						let toplevelname = reducedcname;
-						let didx = toplevelname.indexOf('$');
-						if (didx > 0) {
-							toplevelname = toplevelname.substring(0, didx);
-						}
-						if (pos.startsWith(toplevelname + '.java')) {
-							pos = pos.substring(toplevelname.length + 5);
-						}
-						elem.append(
-							$(document.createElement('div'))
-							.addClass('stacktrace-reduced')
-							.append(`${ ws }at ${ reducedcname }.${ method }(${ pos })`)
-						);
-						elem.append(
-							$(document.createElement('div'))
-							.addClass('stacktrace-full')
-							.append(l)
-						);
-					} else {
-						elem.append(
-							$(document.createElement('div'))
-							.append(l)
-						);
-					}
-				});
-				return elem;
-			}
-			
-			function appendExceptionRows(exc, iconelemjq, traceid) {
-				if (exc == null) {
-					return;
-				}
-				let detailstd = $(document.createElement('td'))
-					.addClass('task-details-contents')
-					.attr('colspan', 2);
-				let exctd = $(document.createElement('td'))
-					.addClass('task-exception-summary');
-				let tasktitletd = $(document.createElement('td'))
-					.append(document.createTextNode(tasktitle));
-				if(iconelemjq != null) {
-					tasktitletd.prepend(iconelemjq);
-				}
-					
-				let taskrow = $(document.createElement('tr'))
-					.attr('data-trace-id', traceid)
-					.addClass('task-row-entry')
-					.append(tasktitletd)
-					.append(exctd);
-				let detailsrow = $(document.createElement('tr'))
-					.attr('data-trace-id', traceid)
-					.addClass('task-details-row')
-					.append(detailstd);
-					
-				let taskexcdiv = $(document.createElement('div'))
-					.addClass('trace-task-exceptions');
-				
-				let excdiv = $(document.createElement('div'));
-				
-				const FIRST_LINE_REGEX = /((?:[a-zA-Z0-9]+\.)*)([a-zA-Z0-9]+)\:(.*)/;
-				
-				excdiv.append(
-					appendExceptionStackTrace(
-						$(document.createElement('div'))
-						.addClass('trace-exception-stacktrace'), 
-						exc
-					)
-				);
-				let excfirstline = exc.split(/\r?\n/)[0];
-				let match = FIRST_LINE_REGEX.exec(excfirstline);
+			let lines = exception.split(/\r?\n/);
+			lines.forEach(function (l){
+				let match = ST_LINE_REGEX.exec(l);
 				if (match != null) {
-					exctd.append(
-						$(document.createElement('div'))
-						.addClass('stacktrace-full')
-						.append(excfirstline)
-					);
-					exctd.append(
+					let ws = match[1];
+					let cname = match[2];
+					let method = match[3];
+					let pos = match[4];
+					let reducedcname = cname.substring(cname.lastIndexOf('.') + 1);
+					let toplevelname = reducedcname;
+					let didx = toplevelname.indexOf('$');
+					if (didx > 0) {
+						toplevelname = toplevelname.substring(0, didx);
+					}
+					if (pos.startsWith(toplevelname + '.java')) {
+						pos = pos.substring(toplevelname.length + 5);
+					}
+					elem.append(
 						$(document.createElement('div'))
 						.addClass('stacktrace-reduced')
-						.append(`${ match[2] }:${ match[3] }`)
+						.append(`${ ws }at ${ reducedcname }.${ method }(${ pos })`)
+					);
+					elem.append(
+						$(document.createElement('div'))
+						.addClass('stacktrace-full')
+						.append(l)
 					);
 				} else {
-					exctd.text(excfirstline);
+					elem.append(
+						$(document.createElement('div'))
+						.append(l)
+					);
 				}
-				
-				taskrow.click(function(e) {
-					e.preventDefault();
-					taskrow.toggleClass('data-entry-open');
-				});
-				taskexcdiv.append(excdiv);
-				detailstd.append(taskexcdiv);
-				tasksbody.append(taskrow).append(detailsrow);
+			});
+			return elem;
+		}
+		
+		function appendExceptionRows(exc, iconelemjq, traceid, tasktitle, traceidattrname) {
+			if (exc == null) {
+				return;
 			}
+			if (traceidattrname == null) {
+				traceidattrname = 'data-trace-id';
+			}
+			let detailstd = $(document.createElement('td'))
+				.addClass('task-details-contents')
+				.attr('colspan', 2);
+			let exctd = $(document.createElement('td'))
+				.addClass('task-exception-summary');
+			let tasktitletd = $(document.createElement('td'));
+			if (tasktitle != null) {
+				tasktitletd.append(document.createTextNode(tasktitle));
+			} else {
+				let tn = $(document.createElement('span'))
+					.text('Build execution')
+					.css('opacity', '0.6');
+				tasktitletd.append(tn);
+			}
+			if (iconelemjq != null) {
+				tasktitletd.prepend(iconelemjq);
+			}
+				
+			let taskrow = $(document.createElement('tr'))
+				.addClass('task-row-entry')
+				.append(tasktitletd)
+				.append(exctd);
+			let detailsrow = $(document.createElement('tr'))
+				.addClass('task-details-row')
+				.append(detailstd);
+			if (traceid != null) {
+				taskrow.attr(traceidattrname, traceid);
+				detailsrow.attr(traceidattrname, traceid);
+			}
+				
+			let taskexcdiv = $(document.createElement('div'))
+				.addClass('trace-task-exceptions');
+			
+			let excdiv = $(document.createElement('div'));
+			
+			excdiv.append(
+				appendExceptionStackTrace(
+					$(document.createElement('div'))
+					.addClass('trace-exception-stacktrace'), 
+					exc
+				)
+			);
+			let excfirstline = exc.split(/\r?\n/)[0];
+			let match = EXCEPTION_FIRST_LINE_REGEX.exec(excfirstline);
+			if (match != null) {
+				exctd.append(
+					$(document.createElement('div'))
+					.addClass('stacktrace-full')
+					.append(excfirstline)
+				);
+				exctd.append(
+					$(document.createElement('div'))
+					.addClass('stacktrace-reduced')
+					.append(`${ match[2] }:${ match[3] }`)
+				);
+			} else {
+				exctd.text(excfirstline);
+			}
+			
+			taskrow.click(function(e) {
+				e.preventDefault();
+				taskrow.toggleClass('data-entry-open');
+			});
+			taskexcdiv.append(excdiv);
+			detailstd.append(taskexcdiv);
+			tasksbody.append(taskrow).append(detailsrow);
+		}
+		
+		exceptiontasks.forEach(function(task){
+			let tasktitle = getTaskTitle(task);
 			
 			if (task.exception != null) {
 				let icon = $(document.createElement('span'))
@@ -3083,7 +3132,7 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 					)
 					.attr('data-tooltip', 'The task terminated abruptly by throwing an exception.')
 				;
-				appendExceptionRows(task.exception, icon, task.trace_id);
+				appendExceptionRows(task.exception, icon, task.trace_id, tasktitle);
 			}
 			
 			if (task.abort_exceptions != null) {
@@ -3100,7 +3149,7 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 						)
 						.attr('data-tooltip', 'The task failed gracefully by aborting with an exception.')
 					;
-					appendExceptionRows(exc, icon, task.trace_id);
+					appendExceptionRows(exc, icon, task.trace_id, tasktitle);
 				});
 			}
 			if (task.ignored_exceptions != null) {
@@ -3113,7 +3162,7 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 						)
 						.attr('data-tooltip', 'An exception was ignored/not handled by the task.')
 					;
-					appendExceptionRows(exc, icon, task.trace_id);
+					appendExceptionRows(exc, icon, task.trace_id, tasktitle);
 				});
 			}
 			if (task.inner_tasks != null) {
@@ -3122,10 +3171,36 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 						.addClass('color-failure')
 						.addClass('inline-svg');
 					//TODO signal that it is an inner task
-					appendExceptionRows(innertask.exception, icon, innertask.trace_id);
+					appendExceptionRows(innertask.exception, icon, innertask.trace_id, tasktitle);
 				});
 			}
 		});
+		if (bt._custom_exceptions != null) {
+			bt._custom_exceptions.forEach(function(exc) {
+				let icon = $(document.createElement('span'))
+					.append(
+						$(EXC_SVG)
+						.addClass('color-failure')
+						.addClass('inline-svg')
+					)
+					.attr('data-tooltip', 'An exception was encountered.')
+				;
+				appendExceptionRows(exc.stackTraceString, icon, exc.trace_id, null, 'data-exc-trace-id');
+			});
+		}
+		if (bt.ignored_exceptions != null) {
+			bt.ignored_exceptions.forEach(function(exc){
+				let icon = $(document.createElement('span'))
+					.append(
+						$(WARN_SVG)
+						.addClass('color-warning')
+						.addClass('inline-svg')
+					)
+					.attr('data-tooltip', 'An exception was ignored/not handled during the build.')
+				;
+				appendExceptionRows(exc, icon);
+			});
+		}
 		if (tasksbody.find('.task-row-entry').length == 1) {
 			//auto-open if only a single task contains exceptions
 			tasksbody.find('.task-row-entry').addClass('data-entry-open');
@@ -3265,59 +3340,90 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 				.text(value)
 			);
 		} else if(typeof value === 'object') {
-			let table = $(document.createElement('table'))
-				.addClass('trace-custom-value-map');
-			let tbody = $(document.createElement('tbody'));
-			let elemcount = 0;
-			$.each(value, function(k, v) {
-				++elemcount;
-				let tr = $(document.createElement('tr'));
-				if (Array.isArray(v) || typeof v === 'object') {
-					let td = $(document.createElement('td'))
-						.attr('colspan', 2);
-					//TODO style more, and visibility toggle
-					
-					let cvalid = customValueIdCounter++;
-					
-					let vallabel = $(document.createElement('label'));
-					td.append(
-						$(document.createElement('input'))
-						.attr('type', 'checkbox')
-						.addClass('vis-toggle')
-						.attr('id', 'toggle-custom-value-' + cvalid)
-					)
-					.append(
-						vallabel
-						.addClass('custom-value-show-toggle')
-						.addClass('vis-toggle')
-						.attr('for', 'toggle-custom-value-' + cvalid)
-						.text(k)
-					);
-					
-					let cvaldiv = document.createElement('div');
-					let cvaldivjq = $(cvaldiv);
-					
-					appendSingleCustomValueView(v, cvaldivjq);
-					
-					if (cvaldiv.hasChildNodes()) {
-						td.append(cvaldivjq);
-					} else {
-						vallabel.addClass('custom-value-empty');
-					}
-					tr.append(td);
+			if (value.__bt_type == 'exception_stacktrace') {
+				let excfirstline = value.stackTraceString.split(/\r?\n/)[0];
+				let match = EXCEPTION_FIRST_LINE_REGEX.exec(excfirstline);
+				let exctext;
+				if (match != null) {
+					exctext = `${ match[2] }:${ match[3] }`;
 				} else {
-					let td2 = $(document.createElement('td'));
-					appendSingleCustomValueView(v, td2);
-					tr.append(
-						$(document.createElement('td')).text(k)
-					);
-					tr.append(td2);
+					exctext = excfirstline;
 				}
-				tbody.append(tr);
-			});
-			table.append(tbody);
-			if (elemcount > 0) {
-				container.append(table);
+				let icon = $(document.createElement('div'))
+					.addClass('color-failure')
+					.addClass('trace-custom-value-exc_stacktrace')
+					.append(
+						$(EXC_SVG)
+						.addClass('inline-svg')
+					)
+					.append(document.createTextNode(exctext))
+					.attr('data-exc-trace-id', value.trace_id)
+					.click(function(e){
+						e.preventDefault();
+						showPageWithId('page-exceptions');
+						$(`#page-exceptions .exceptions-table .task-row-entry:not([data-exc-trace-id="${ value.trace_id }"])`).removeClass('data-entry-open');
+						$(`#page-exceptions .exceptions-table .task-row-entry[data-exc-trace-id="${ value.trace_id }"]`).addClass('data-entry-open')[0].scrollIntoView();
+						console.log(value);
+					})
+				;
+				container.append(
+					icon
+				);
+			} else {
+				let table = $(document.createElement('table'))
+					.addClass('trace-custom-value-map');
+				let tbody = $(document.createElement('tbody'));
+				let elemcount = 0;
+				$.each(value, function(k, v) {
+					++elemcount;
+					let tr = $(document.createElement('tr'));
+					if (Array.isArray(v) || (typeof v === 'object' && v.__bt_type == null)) {
+						let td = $(document.createElement('td'))
+							.attr('colspan', 2);
+						//TODO style more, and visibility toggle
+						
+						let cvalid = customValueIdCounter++;
+						
+						let vallabel = $(document.createElement('label'));
+						td.append(
+							$(document.createElement('input'))
+							.attr('type', 'checkbox')
+							.addClass('vis-toggle')
+							.attr('id', 'toggle-custom-value-' + cvalid)
+						)
+						.append(
+							vallabel
+							.addClass('custom-value-show-toggle')
+							.addClass('vis-toggle')
+							.attr('for', 'toggle-custom-value-' + cvalid)
+							.text(k)
+						);
+						
+						let cvaldiv = document.createElement('div');
+						let cvaldivjq = $(cvaldiv);
+						
+						appendSingleCustomValueView(v, cvaldivjq);
+						
+						if (cvaldiv.hasChildNodes()) {
+							td.append(cvaldivjq);
+						} else {
+							vallabel.addClass('custom-value-empty');
+						}
+						tr.append(td);
+					} else {
+						let td2 = $(document.createElement('td'));
+						appendSingleCustomValueView(v, td2);
+						tr.append(
+							$(document.createElement('td')).text(k)
+						);
+						tr.append(td2);
+					}
+					tbody.append(tr);
+				});
+				table.append(tbody);
+				if (elemcount > 0) {
+					container.append(table);
+				}
 			}
 		} else {
 			console.log(value);
