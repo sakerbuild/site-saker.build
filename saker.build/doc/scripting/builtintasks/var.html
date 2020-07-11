@@ -119,18 +119,18 @@
 <h2 id="example">Example<a class="doc-heading-anchor" href="#example"></a></h2>
 <pre class="doc-code-block"><code class="language-sakerscript"><span class="b"># the following is the same</span>
 <span class="c">$num</span> = <span class="e">3</span>
-<span class="d">var(</span><span class="c">num</span><span class="d">)</span> = <span class="e">3</span>
+<span class="d"><a href="/saker.build/doc/scripting/builtintasks/var.html" title="Task: var()">var</a>(</span><span class="c">num</span><span class="d">)</span> = <span class="e">3</span>
 
 <span class="j">foreach </span><span class="c">$item</span><span class="j"> in </span><span class="i">[</span><span class="e">1</span><span class="i">,</span> <span class="e">2</span><span class="i">]</span> <span class="j">{</span>
 	<span class="b"># accesses the item variable, not the loop variable</span>
-	<span class="d">var(</span><span class="c">item</span><span class="d">)</span>
+	<span class="d"><a href="/saker.build/doc/scripting/builtintasks/var.html" title="Task: var()">var</a>(</span><span class="c">item</span><span class="d">)</span>
 	<span class="b"># accesses the loop variable</span>
 	<span class="c">$item</span>
 <span class="j">}</span>
 
 <span class="a">build(</span><span class="j">in</span> <span class="c">Input</span><span class="a">)</span> <span class="a">{</span>
 	<span class="b"># accesses the Input parameter</span>
-	<span class="d">var(</span><span class="c">Input</span><span class="d">)</span>
+	<span class="d"><a href="/saker.build/doc/scripting/builtintasks/var.html" title="Task: var()">var</a>(</span><span class="c">Input</span><span class="d">)</span>
 <span class="a">}</span>
 </code></pre>
 <link href="../../../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>

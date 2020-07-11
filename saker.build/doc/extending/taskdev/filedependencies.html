@@ -111,7 +111,7 @@
 </p>
 <p>If we setup an environment that contains a <code>file.txt</code> named file in the working directory, with <code>abcd123</code> as its contents, then the following will print out exactly that:</p>
 <pre class="doc-code-block"><code class="language-sakerscript"><span class="c">$contents</span> = <span class="d">example.filecontents(</span><span class="h">Path</span>: <span class="e">file.txt</span><span class="d">)</span>
-<span class="d">print(</span><span class="c">$contents</span><span class="d">)</span>
+<span class="d"><a href="/saker.build/doc/scripting/builtintasks/print.html" title="Task: print()">print</a>(</span><span class="c">$contents</span><span class="d">)</span>
 </code></pre>
 <p>If we run the build without any changes, it will print out the contents again without rerunning our task. However, if we modify the contents of <code>file.txt</code> to <code>xyz456</code>, and rerun the build, our task will rerun accordingly, because a dependency for the input file was reported, and the build system can detect the file changes.</p>
 <p>In the task implementation we used the task utilities to resolve a file at a given path. The task utilities is an object that provides various convenience functions for dealing with tasks.</p>

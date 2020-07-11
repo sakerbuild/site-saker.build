@@ -108,24 +108,24 @@
 </p>
 <p>Using them in the following way:</p>
 <pre class="doc-code-block"><code class="language-sakerscript"><span class="c">$firstsum</span> = <span class="d">example.sum(</span><span class="h">Left</span>: <span class="e">4</span>, <span class="h">Right</span>: <span class="e">6</span><span class="d">)</span>
-<span class="d">print(</span><span class="c">$firstsum</span><span class="d">)</span>
+<span class="d"><a href="/saker.build/doc/scripting/builtintasks/print.html" title="Task: print()">print</a>(</span><span class="c">$firstsum</span><span class="d">)</span>
 
 <span class="c">$secondsum</span> = <span class="d">example.sum(</span>
 	<span class="h">Left</span>: <span class="c">$firstsum</span>, 
 	<span class="h">Right</span>: <span class="d">example.sum(</span><span class="h">Left</span>: <span class="e">10</span>, <span class="h">Right</span>: <span class="e">30</span><span class="d">)</span>,
 <span class="d">)</span>
-<span class="d">print(</span><span class="c">$secondsum</span><span class="d">)</span>
+<span class="d"><a href="/saker.build/doc/scripting/builtintasks/print.html" title="Task: print()">print</a>(</span><span class="c">$secondsum</span><span class="d">)</span>
 </code></pre>
 <p>Will print out <code>10</code> for the first sum of <code>4 + 6</code>, and <code>50</code> for the <code>$secondsum</code>, as it will add <code>10</code> to <code>10 + 30</code>.</p>
 <p>When you run the build without any modifications, it will print out <code>10</code> and <code>50</code> again. However, if you decide to modify the first invocation of <code>example.sum</code>, like the following (<code>Right: 6</code> modified to <code>Right: 16</code>):</p>
 <pre class="doc-code-block"><code class="language-sakerscript"><span class="c">$firstsum</span> = <span class="d">example.sum(</span><span class="h">Left</span>: <span class="e">4</span>, <span class="h">Right</span>: <span class="e">16</span><span class="d">)</span>
-<span class="d">print(</span><span class="c">$firstsum</span><span class="d">)</span>
+<span class="d"><a href="/saker.build/doc/scripting/builtintasks/print.html" title="Task: print()">print</a>(</span><span class="c">$firstsum</span><span class="d">)</span>
 
 <span class="c">$secondsum</span> = <span class="d">example.sum(</span>
 	<span class="h">Left</span>: <span class="c">$firstsum</span>, 
 	<span class="h">Right</span>: <span class="d">example.sum(</span><span class="h">Left</span>: <span class="e">10</span>, <span class="h">Right</span>: <span class="e">30</span><span class="d">)</span>,
 <span class="d">)</span>
-<span class="d">print(</span><span class="c">$secondsum</span><span class="d">)</span>
+<span class="d"><a href="/saker.build/doc/scripting/builtintasks/print.html" title="Task: print()">print</a>(</span><span class="c">$secondsum</span><span class="d">)</span>
 </code></pre>
 <p>Then with the modification, the first will print out <code>20</code>, and the second will print out <code>60</code>. You can notice that the modifications of the first task transitively caused all the dependent tasks to re-run, and print out the updated values.</p>
 <p>This happens because when you retrieve a result of a task, the build system will automatically record a dependency on the associated task. Whenever that task is considered to be changed, any dependent task will re-run.</p>

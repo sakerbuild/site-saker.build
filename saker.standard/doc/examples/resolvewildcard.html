@@ -104,7 +104,7 @@
 			<div class="doc-content"><h1 id="resolve-wildcard-path">Resolve wildcard path<a class="doc-heading-anchor" href="#resolve-wildcard-path"></a></h1>
 <p>Wildcard paths can be used to represent a set of files during the build execution. However, sometimes you may want to deal with each matching file individually.</p>
 <pre class="doc-code-block"><code class="language-sakerscript"><span class="j">foreach </span><span class="c">$file</span><span class="j"> in </span><span class="d"><a href="../../../saker.standard/taskdoc/std.file.wildcard.html" title="Task: std.file.wildcard()">std.file.wildcard</a>(</span><span class="e">*.txt</span><span class="d">)</span><span class="j">{</span>
-	<span class="d">print(</span><span class="c">$file</span><span class="f">[</span><span class="g">Path</span><span class="f">]</span><span class="d">)</span>
+	<span class="d"><a href="/saker.build/doc/scripting/builtintasks/print.html" title="Task: print()">print</a>(</span><span class="c">$file</span><span class="f">[</span><span class="g">Path</span><span class="f">]</span><span class="d">)</span>
 <span class="j">}</span>
 </code></pre>
 <p>The above example will simply print out the paths for each file matching the <code>*.txt</code> wildcard in the current directory.</p>
