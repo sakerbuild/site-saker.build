@@ -31,7 +31,9 @@
 <ul>
 <li><a href="/nest.repository.support/doc/index.html">nest.repository.support</a></li>
 <li><a href="/saker.android/doc/index.html">saker.android</a></li>
+<li><a href="/saker.apple/doc/index.html">saker.apple</a></li>
 <li><a href="/saker.build/doc/index.html">saker.build</a></li>
+<li><a href="/saker.clang/doc/index.html">saker.clang</a></li>
 <li><a href="/saker.compiler.utils/doc/index.html">saker.compiler.utils</a></li>
 <li><a href="/saker.jar/doc/index.html">saker.jar</a></li>
 <li><a href="/saker.java.compiler/doc/index.html">saker.java.compiler</a></li>
@@ -44,6 +46,7 @@
 <li><a href="/saker.sdk.support/doc/index.html">saker.sdk.support</a></li>
 <li><a href="/saker.standard/doc/index.html">saker.standard</a></li>
 <li><a href="/saker.util/doc/index.html">saker.util</a></li>
+<li><a href="/saker.windows/doc/index.html">saker.windows</a></li>
 <li><a href="/saker.zip/doc/index.html">saker.zip</a></li>
 </ul>
 </div></span>
@@ -103,7 +106,7 @@
 <p>The output of these tasks is a set of file references that can be passed to other tasks which support them as inputs.</p>
 <p>As an example, we print out the paths of files in the working directory that end with <code>*.txt</code>:</p>
 <pre class="doc-code-block"><code class="language-sakerscript"><span class="j">foreach </span><span class="c">$file</span><span class="j"> in </span><span class="d"><a href="../../../saker.standard/taskdoc/std.file.wildcard.html" title="Task: std.file.wildcard()">std.file.wildcard</a>(</span><span class="e">*.txt</span><span class="d">)</span><span class="j">{</span>
-	<span class="d"><a href="../../../saker.build/doc/scripting/builtintasks/print.html" title="Task: print()">print</a>(</span><span class="c">$file</span><span class="f">[</span><span class="g">Path</span><span class="f">]</span><span class="d">)</span>
+	<span class="d">print(</span><span class="c">$file</span><span class="f">[</span><span class="g">Path</span><span class="f">]</span><span class="d">)</span>
 <span class="j">}</span>
 </code></pre>
 <p>If the contents of the working directory is the following:</p>
@@ -121,7 +124,7 @@ wd:/readme.txt
 	<span class="e">*.txt</span>, 
 	<span class="h"><a href="../../../saker.standard/taskdoc/std.file.wildcard.local.html#Directory" title="Parameter Directory of task std.file.wildcard.local()">Directory</a></span>: <span class="e">&quot;c:/path/to/project/directory&quot;</span>
 <span class="d">)</span> <span class="j">{</span>
-	<span class="d"><a href="../../../saker.build/doc/scripting/builtintasks/print.html" title="Task: print()">print</a>(</span><span class="c">$file</span><span class="f">[</span><span class="g">LocalPath</span><span class="f">]</span><span class="d">)</span>
+	<span class="d">print(</span><span class="c">$file</span><span class="f">[</span><span class="g">LocalPath</span><span class="f">]</span><span class="d">)</span>
 <span class="j">}</span>
 </code></pre>
 <p>The the output will be:</p>
@@ -132,7 +135,7 @@ c:/path/to/project/directory/readme.txt
 <pre class="doc-code-block"><code class="language-sakerscript"><span class="j">foreach </span><span class="c">$file</span><span class="j"> in </span><span class="d"><a href="../../../saker.standard/taskdoc/std.file.wildcard.local.html" title="Task: std.file.wildcard.local()">std.file.wildcard.local</a>(</span>
 	<span class="e">&quot;c:/path/to/project/directory/*.txt&quot;</span>
 <span class="d">)</span> <span class="j">{</span>
-	<span class="d"><a href="../../../saker.build/doc/scripting/builtintasks/print.html" title="Task: print()">print</a>(</span><span class="c">$file</span><span class="f">[</span><span class="g">LocalPath</span><span class="f">]</span><span class="d">)</span>
+	<span class="d">print(</span><span class="c">$file</span><span class="f">[</span><span class="g">LocalPath</span><span class="f">]</span><span class="d">)</span>
 <span class="j">}</span>
 </code></pre>
 <p>And the output will be the same.</p>

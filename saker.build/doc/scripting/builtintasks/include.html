@@ -31,7 +31,9 @@
 <ul>
 <li><a href="/nest.repository.support/doc/index.html">nest.repository.support</a></li>
 <li><a href="/saker.android/doc/index.html">saker.android</a></li>
+<li><a href="/saker.apple/doc/index.html">saker.apple</a></li>
 <li><a href="/saker.build/doc/index.html">saker.build</a></li>
+<li><a href="/saker.clang/doc/index.html">saker.clang</a></li>
 <li><a href="/saker.compiler.utils/doc/index.html">saker.compiler.utils</a></li>
 <li><a href="/saker.jar/doc/index.html">saker.jar</a></li>
 <li><a href="/saker.java.compiler/doc/index.html">saker.java.compiler</a></li>
@@ -44,6 +46,7 @@
 <li><a href="/saker.sdk.support/doc/index.html">saker.sdk.support</a></li>
 <li><a href="/saker.standard/doc/index.html">saker.standard</a></li>
 <li><a href="/saker.util/doc/index.html">saker.util</a></li>
+<li><a href="/saker.windows/doc/index.html">saker.windows</a></li>
 <li><a href="/saker.zip/doc/index.html">saker.zip</a></li>
 </ul>
 </div></span>
@@ -131,7 +134,7 @@ If the <code>Target</code> parameter is missing, a default build target will be 
 <pre class="doc-code-block"><code class="language-sakerscript"><span class="a">build</span> <span class="a">{</span>
 	<span class="b"># includes the compile target in saker.build</span>
 	<span class="b">#   with the &quot;src&quot; value as Directory parameter</span>
-	<span class="d"><a href="../../../../saker.build/doc/scripting/builtintasks/include.html" title="Task: include()">include</a>(</span><span class="e">compile</span>, <span class="h"><a href="../../../../saker.build/doc/scripting/builtintasks/include.html#Directory" title="Parameter Directory of task include()">Directory</a></span>: <span class="e">src</span><span class="d">)</span>
+	<span class="d">include(</span><span class="e">compile</span>, <span class="h">Directory</span>: <span class="e">src</span><span class="d">)</span>
 	<span class="b"># ... some other build steps</span>
 <span class="a">}</span>
 <span class="a">compile(</span>
@@ -143,7 +146,7 @@ If the <code>Target</code> parameter is missing, a default build target will be 
 		<span class="c">$Directory</span>,
 		<span class="b"># include the build target in library.build</span>
 		<span class="b">#   and access the Library output parameter</span>
-		<span class="h">LibraryPath</span>: <span class="d"><a href="../../../../saker.build/doc/scripting/builtintasks/include.html" title="Task: include()">include</a>(</span><span class="h">Path</span>: <span class="e">library.build</span><span class="d">)</span><span class="f">[</span><span class="g">Library</span><span class="f">]</span>
+		<span class="h">LibraryPath</span>: <span class="d">include(</span><span class="h">Path</span>: <span class="e">library.build</span><span class="d">)</span><span class="f">[</span><span class="g">Library</span><span class="f">]</span>
 	<span class="d">)</span>
 <span class="a">}</span>
 </code></pre>

@@ -31,7 +31,9 @@
 <ul>
 <li><a href="/nest.repository.support/doc/index.html">nest.repository.support</a></li>
 <li><a href="/saker.android/doc/index.html">saker.android</a></li>
+<li><a href="/saker.apple/doc/index.html">saker.apple</a></li>
 <li><a href="/saker.build/doc/index.html">saker.build</a></li>
+<li><a href="/saker.clang/doc/index.html">saker.clang</a></li>
 <li><a href="/saker.compiler.utils/doc/index.html">saker.compiler.utils</a></li>
 <li><a href="/saker.jar/doc/index.html">saker.jar</a></li>
 <li><a href="/saker.java.compiler/doc/index.html">saker.java.compiler</a></li>
@@ -44,6 +46,7 @@
 <li><a href="/saker.sdk.support/doc/index.html">saker.sdk.support</a></li>
 <li><a href="/saker.standard/doc/index.html">saker.standard</a></li>
 <li><a href="/saker.util/doc/index.html">saker.util</a></li>
+<li><a href="/saker.windows/doc/index.html">saker.windows</a></li>
 <li><a href="/saker.zip/doc/index.html">saker.zip</a></li>
 </ul>
 </div></span>
@@ -121,7 +124,7 @@
 	<span class="d">example.export.project()</span>
 <span class="a">}</span>
 <span class="a">test</span> <span class="a">{</span>
-	<span class="d"><a href="../../../saker.build/doc/scripting/builtintasks/include.html" title="Task: include()">include</a>(</span><span class="e">export</span><span class="d">)</span>
+	<span class="d">include(</span><span class="e">export</span><span class="d">)</span>
 	<span class="d">example.test.project()</span>
 <span class="a">}</span>
 </code></pre>
@@ -132,18 +135,18 @@
 	<span class="c">$CompilationResult</span> = <span class="d"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span><span class="e">src</span><span class="d">)</span>
 <span class="a">}</span>
 <span class="a">export</span> <span class="a">{</span>
-	<span class="c">$compile</span> = <span class="d"><a href="../../../saker.build/doc/scripting/builtintasks/include.html" title="Task: include()">include</a>(</span><span class="e">compile</span><span class="d">)</span>
+	<span class="c">$compile</span> = <span class="d">include(</span><span class="e">compile</span><span class="d">)</span>
 	<span class="d">example.export.project(</span><span class="h">Results</span>: <span class="c">$compile</span><span class="f">[</span><span class="g">CompilationResult</span><span class="f">]</span><span class="d">)</span>
 <span class="a">}</span>
 </code></pre>
 <p>When <code>export</code> is called in the above example, it will include the <code>compile</code> target. That will compile the appropriate sources, and return the result of the compilation via assigning the output parameter variable <code>CompilationResult</code>. The <code>export</code> target then use the result of the <code>compile</code> target and export the project using the value of the <code>CompilationResult</code> output parameter.</p>
 <p>If you know that the <a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html"><code>saker.java.compile()</code></a> task is always called when any of the build targets are invoked in a file, you can also export the compilation task call to the global expression scope:</p>
-<pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.build/doc/scripting/builtintasks/static.html" title="Task: static()">static</a>(</span><span class="c">CompilationResult</span><span class="d">)</span> = <span class="d"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span><span class="e">src</span><span class="d">)</span>
+<pre class="doc-code-block"><code class="language-sakerscript"><span class="d">static(</span><span class="c">CompilationResult</span><span class="d">)</span> = <span class="d"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span><span class="e">src</span><span class="d">)</span>
 <span class="a">compile</span> <span class="a">{</span>
 	<span class="b"># compilation is invoked automatically by the above global expression</span>
 <span class="a">}</span>
 <span class="a">export</span> <span class="a">{</span>
-	<span class="d">export.project(</span><span class="h">Results</span>: <span class="d"><a href="../../../saker.build/doc/scripting/builtintasks/static.html" title="Task: static()">static</a>(</span><span class="c">CompilationResult</span><span class="d">))</span>
+	<span class="d">export.project(</span><span class="h">Results</span>: <span class="d">static(</span><span class="c">CompilationResult</span><span class="d">))</span>
 <span class="a">}</span>
 </code></pre>
 <p>The expressions in the global scope will always be invoked if a build target is called in the script file, and this can result in a more concise code. The results of the compilation is conveyed to the <code>export</code> target using a file-level <a href="../scripting/builtintasks/static.html" title="static()">static</a> variable. See <a href="../scripting/langref/sourcefile/index.html#global-expressions" title="Global expressions">Global expressions</a> for more information.</p>
@@ -155,8 +158,8 @@
 	<span class="c">$CompilationResult</span> = <span class="d"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html" title="Task: saker.java.compile()">saker.java.compile</a>(</span><span class="h"><a href="../../../saker.java.compiler/taskdoc/saker.java.compile.html#Directory" title="Parameter Directory of task saker.java.compile()">Directory</a></span>: <span class="c">$Directory</span><span class="d">)</span>
 <span class="a">}</span>
 <span class="a">all</span> <span class="a">{</span>
-	<span class="d"><a href="../../../saker.build/doc/scripting/builtintasks/include.html" title="Task: include()">include</a>(</span><span class="e">compile</span>, <span class="h"><a href="../../../saker.build/doc/scripting/builtintasks/include.html#Directory" title="Parameter Directory of task include()">Directory</a></span>: <span class="e">src</span><span class="d">)</span>
-	<span class="d"><a href="../../../saker.build/doc/scripting/builtintasks/include.html" title="Task: include()">include</a>(</span><span class="e">compile</span>, <span class="h"><a href="../../../saker.build/doc/scripting/builtintasks/include.html#Directory" title="Parameter Directory of task include()">Directory</a></span>: <span class="e">test</span><span class="d">)</span>
+	<span class="d">include(</span><span class="e">compile</span>, <span class="h">Directory</span>: <span class="e">src</span><span class="d">)</span>
+	<span class="d">include(</span><span class="e">compile</span>, <span class="h">Directory</span>: <span class="e">test</span><span class="d">)</span>
 <span class="a">}</span>
 </code></pre>
 <p>The <code>compile</code> target in the above example compiles some sources in the directory that is specified by the <code>Directory</code> parameter. It is passed to the target in the <code>include()</code> calls as an extra named parameter.</p>

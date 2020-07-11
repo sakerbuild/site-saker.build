@@ -31,7 +31,9 @@
 <ul>
 <li><a href="/nest.repository.support/doc/index.html">nest.repository.support</a></li>
 <li><a href="/saker.android/doc/index.html">saker.android</a></li>
+<li><a href="/saker.apple/doc/index.html">saker.apple</a></li>
 <li><a href="/saker.build/doc/index.html">saker.build</a></li>
+<li><a href="/saker.clang/doc/index.html">saker.clang</a></li>
 <li><a href="/saker.compiler.utils/doc/index.html">saker.compiler.utils</a></li>
 <li><a href="/saker.jar/doc/index.html">saker.jar</a></li>
 <li><a href="/saker.java.compiler/doc/index.html">saker.java.compiler</a></li>
@@ -44,6 +46,7 @@
 <li><a href="/saker.sdk.support/doc/index.html">saker.sdk.support</a></li>
 <li><a href="/saker.standard/doc/index.html">saker.standard</a></li>
 <li><a href="/saker.util/doc/index.html">saker.util</a></li>
+<li><a href="/saker.windows/doc/index.html">saker.windows</a></li>
 <li><a href="/saker.zip/doc/index.html">saker.zip</a></li>
 </ul>
 </div></span>
@@ -123,7 +126,7 @@
 <span class="d">)</span>
 </code></pre>
 <p>The above will cause the <a href="https://docs.microsoft.com/en-us/cpp/build/reference/debug-generate-debug-info?view=vs-2019" title="/DEBUG (Generate Debug Info) | Microsoft Docs"><code>/DEBUG</code></a> argument to be passed to the <a href="https://docs.microsoft.com/en-us/cpp/build/reference/linking?view=vs-2019" title="MSVC linker reference | Microsoft Docs"><code>link.exe</code></a> backend for the <code>main-debug</code> linker operation, while the <a href="https://docs.microsoft.com/en-us/cpp/build/reference/ltcg-link-time-code-generation?view=vs-2019" title="/LTCG (Link-time Code Generation) | Microsoft Docs"><code>/LTCG</code></a> argument to be passed for the <code>main-release</code> linker operation.</p>
-<p>A linker option entry will be merged with the linker operation if all of the dot separated identifier parts are contained in the operation identifier of the task.</p>
+<p>A linker option entry will be merged with the linker operation if all of the dash separated identifier parts are contained in the operation identifier of the task.</p>
 <p>The mergeability of the options can also be decided based on the target <code>Architecture</code> of the linked inputs.</p>
 <link href="../../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>
 			<div class="end-section-links">

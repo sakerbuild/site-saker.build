@@ -31,7 +31,9 @@
 <ul>
 <li><a href="/nest.repository.support/doc/index.html">nest.repository.support</a></li>
 <li><a href="/saker.android/doc/index.html">saker.android</a></li>
+<li><a href="/saker.apple/doc/index.html">saker.apple</a></li>
 <li><a href="/saker.build/doc/index.html">saker.build</a></li>
+<li><a href="/saker.clang/doc/index.html">saker.clang</a></li>
 <li><a href="/saker.compiler.utils/doc/index.html">saker.compiler.utils</a></li>
 <li><a href="/saker.jar/doc/index.html">saker.jar</a></li>
 <li><a href="/saker.java.compiler/doc/index.html">saker.java.compiler</a></li>
@@ -44,6 +46,7 @@
 <li><a href="/saker.sdk.support/doc/index.html">saker.sdk.support</a></li>
 <li><a href="/saker.standard/doc/index.html">saker.standard</a></li>
 <li><a href="/saker.util/doc/index.html">saker.util</a></li>
+<li><a href="/saker.windows/doc/index.html">saker.windows</a></li>
 <li><a href="/saker.zip/doc/index.html">saker.zip</a></li>
 </ul>
 </div></span>
@@ -125,37 +128,33 @@
 <pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span>
 	<span class="h"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html#Input" title="Parameter Input of task saker.msvc.ccompile()">Input</a></span>: <span class="k">### ... ###</span>,
 	<span class="h"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html#SDKs" title="Parameter SDKs of task saker.msvc.ccompile()">SDKs</a></span>: <span class="i">{</span>
-		<span class="g">MSVC</span>: <span class="d"><a href="../../../saker.msvc/taskdoc/saker.msvc.sdk.html" title="Task: saker.msvc.sdk()">saker.msvc.sdk</a>(</span><span class="h"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html#LegacyVersion" title="Parameter LegacyVersion of task saker.msvc.ccompile()">LegacyVersion</a></span>: <span class="e">14.0</span><span class="d">)</span>
+		<span class="g">MSVC</span>: <span class="d"><a href="../../../saker.msvc/taskdoc/saker.msvc.sdk.html" title="Task: saker.msvc.sdk()">saker.msvc.sdk</a>(</span><span class="h"><a href="../../../saker.msvc/taskdoc/saker.msvc.sdk.html#LegacyVersion" title="Parameter LegacyVersion of task saker.msvc.sdk()">LegacyVersion</a></span>: <span class="e">14.0</span><span class="d">)</span>
 	<span class="i">}</span>
 <span class="d">)</span>
 </code></pre>
 <p>In these cases the version is considered to be the one as in the <code>Microsoft Visual Studio &lt;version&gt;</code> parent directory.</p>
 <h2 id="windows-kits">Windows kits<a class="doc-heading-anchor" href="#windows-kits"></a></h2>
 <p>When developing with the MSVC toolchain, you are most likely to use the Windows SDK. The Windows SDK contains the necessary headers, libraries and other resources to develop for the Windows operating system. (E.g. <code>Windows.h</code>)</p>
-<p>The <a href="../../taskdoc/saker.msvc.sdk.windowskits.html"><code>saker.msvc.sdk.windowskits()</code></a> task allows locating the Windows SDK. Without any arguments, it will look for it under the <code>Program Files (x86)</code> and <code>Program Files</code> directory. However, you can also set the requested version number:</p>
+<p>An SDK configuration for Windows Kits can be retrieved using the <a href="../../../saker.windows/taskdoc/saker.windows.sdk.windowskits.html"><code>saker.windows.sdk.windowskits()</code></a> task. It's provided by the <a href="../../../saker.windows/doc/index.html" title="Overview">saker.windows</a> package.</p>
+<p>An example for using it:</p>
 <pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span>
 	<span class="h"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html#Input" title="Parameter Input of task saker.msvc.ccompile()">Input</a></span>: <span class="i">{</span>
 		<span class="g">Files</span>: <span class="e">src/**/*.cpp</span><span class="i">,</span>
 		<span class="g">IncludeDirectories</span>: <span class="i">[</span>
-			<span class="d"><a href="../../../saker.sdk.support/taskdoc/sdk.path.html" title="Task: sdk.path()">sdk.path</a>(</span><span class="e">WindowsKits</span>, <span class="h"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html#Identifier" title="Parameter Identifier of task saker.msvc.ccompile()">Identifier</a></span>: <span class="e">include.shared</span><span class="d">)</span><span class="i">,</span>
-			<span class="d"><a href="../../../saker.sdk.support/taskdoc/sdk.path.html" title="Task: sdk.path()">sdk.path</a>(</span><span class="e">WindowsKits</span>, <span class="h"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html#Identifier" title="Parameter Identifier of task saker.msvc.ccompile()">Identifier</a></span>: <span class="e">include.ucrt</span><span class="d">)</span><span class="i">,</span>
-			<span class="d"><a href="../../../saker.sdk.support/taskdoc/sdk.path.html" title="Task: sdk.path()">sdk.path</a>(</span><span class="e">WindowsKits</span>, <span class="h"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html#Identifier" title="Parameter Identifier of task saker.msvc.ccompile()">Identifier</a></span>: <span class="e">include.um</span><span class="d">)</span>
+			<span class="d"><a href="../../../saker.sdk.support/taskdoc/sdk.path.html" title="Task: sdk.path()">sdk.path</a>(</span><span class="e">WindowsKits</span>, <span class="h"><a href="../../../saker.sdk.support/taskdoc/sdk.path.html#Identifier" title="Parameter Identifier of task sdk.path()">Identifier</a></span>: <span class="e">include.shared</span><span class="d">)</span><span class="i">,</span>
+			<span class="d"><a href="../../../saker.sdk.support/taskdoc/sdk.path.html" title="Task: sdk.path()">sdk.path</a>(</span><span class="e">WindowsKits</span>, <span class="h"><a href="../../../saker.sdk.support/taskdoc/sdk.path.html#Identifier" title="Parameter Identifier of task sdk.path()">Identifier</a></span>: <span class="e">include.ucrt</span><span class="d">)</span><span class="i">,</span>
+			<span class="d"><a href="../../../saker.sdk.support/taskdoc/sdk.path.html" title="Task: sdk.path()">sdk.path</a>(</span><span class="e">WindowsKits</span>, <span class="h"><a href="../../../saker.sdk.support/taskdoc/sdk.path.html#Identifier" title="Parameter Identifier of task sdk.path()">Identifier</a></span>: <span class="e">include.um</span><span class="d">)</span>
 		<span class="i">]</span>
 	<span class="i">}</span>,
 	<span class="h"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html#SDKs" title="Parameter SDKs of task saker.msvc.ccompile()">SDKs</a></span>: <span class="i">{</span>
-		<span class="g">WindowsKits</span>: <span class="d"><a href="../../../saker.msvc/taskdoc/saker.msvc.sdk.windowskits.html" title="Task: saker.msvc.sdk.windowskits()">saker.msvc.sdk.windowskits</a>(</span><span class="e">10.0.18362.0</span><span class="d">)</span>
+		<span class="g">WindowsKits</span>: <span class="d"><a href="../../../saker.windows/taskdoc/saker.windows.sdk.windowskits.html" title="Task: saker.windows.sdk.windowskits()">saker.windows.sdk.windowskits</a>(</span><span class="e">10.0.18362.0</span><span class="d">)</span>
 	<span class="i">}</span>
 <span class="d">)</span>
 </code></pre>
 <p>The above example uses the Windows Kits SDK with the version of <code>10.0.18362.0</code>, and adds some include directories from it for the compilation.</p>
 <p>Note that the WindowsKits SDK is not an absolute requirement for the compilation and linker tasks to work, however, you most likely will need it when using them.</p>
 <p>The <a href="../../taskdoc/saker.msvc.coptions.preset.html"><code>saker.msvc.coptions.preset()</code></a> when used will add the <code>WindowsKits</code> SDK if necessary to the tasks if not specified explicitly by the developer.</p>
-<h3 id="windows-kits-environment-parameter">Windows kits environment parameter<a class="doc-heading-anchor" href="#windows-kits-environment-parameter"></a></h3>
-<p>The <code>saker.msvc.windowskits.sdk.install.location.&lt;version&gt;</code> build environment user parameter can be used to specify the location of a Windows Kits installation.</p>
-<p>For example:</p>
-<pre class="doc-code-block"><code class="language-plaintext">saker.msvc.windowskits.sdk.install.location.10.0.18362.0=c:\Program Files (x86)\Windows Kits\10
-</code></pre>
-<p>Note that you must specify the installation directory path that contains the <code>Include</code>, <code>Lib</code> and other directories instead of any of the subdirectories.</p>
+<p>See <a href="../../../saker.windows/doc/sdkmanagement/windowskits.html" title="Windows Kits">Windows Kits SDK</a> for more information.</p>
 <link href="../../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>
 			<div class="end-section-links">
 				<div class="end-section-prev">
@@ -169,7 +168,7 @@
 </svg></a>
 				</div>
 			</div>
-			<div class="doc-headings-nav">  <ul>    <li><a href="#sdk-management" title="SDK management">SDK management</a>      <ul>        <li><a href="#msvc-environment-parameters" title="MSVC environment parameters">MSVC environment parameters</a>          <ul>            <li><a href="#legacy-toolchain-layout" title="Legacy toolchain layout">Legacy toolchain layout</a>            </li>          </ul>        </li>        <li><a href="#windows-kits" title="Windows kits">Windows kits</a>          <ul>            <li><a href="#windows-kits-environment-parameter" title="Windows kits environment parameter">Windows kits environment parameter</a>            </li>          </ul>        </li>      </ul>    </li>  </ul></div>
+			<div class="doc-headings-nav">  <ul>    <li><a href="#sdk-management" title="SDK management">SDK management</a>      <ul>        <li><a href="#msvc-environment-parameters" title="MSVC environment parameters">MSVC environment parameters</a>          <ul>            <li><a href="#legacy-toolchain-layout" title="Legacy toolchain layout">Legacy toolchain layout</a>            </li>          </ul>        </li>        <li><a href="#windows-kits" title="Windows kits">Windows kits</a>        </li>      </ul>    </li>  </ul></div>
 		</div>
 	</div>
 </div>

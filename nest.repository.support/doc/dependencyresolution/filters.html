@@ -31,7 +31,9 @@
 <ul>
 <li><a href="/nest.repository.support/doc/index.html">nest.repository.support</a></li>
 <li><a href="/saker.android/doc/index.html">saker.android</a></li>
+<li><a href="/saker.apple/doc/index.html">saker.apple</a></li>
 <li><a href="/saker.build/doc/index.html">saker.build</a></li>
+<li><a href="/saker.clang/doc/index.html">saker.clang</a></li>
 <li><a href="/saker.compiler.utils/doc/index.html">saker.compiler.utils</a></li>
 <li><a href="/saker.jar/doc/index.html">saker.jar</a></li>
 <li><a href="/saker.java.compiler/doc/index.html">saker.java.compiler</a></li>
@@ -44,6 +46,7 @@
 <li><a href="/saker.sdk.support/doc/index.html">saker.sdk.support</a></li>
 <li><a href="/saker.standard/doc/index.html">saker.standard</a></li>
 <li><a href="/saker.util/doc/index.html">saker.util</a></li>
+<li><a href="/saker.windows/doc/index.html">saker.windows</a></li>
 <li><a href="/saker.zip/doc/index.html">saker.zip</a></li>
 </ul>
 </div></span>
@@ -145,7 +148,7 @@ library.bundle
 	<span class="h"><a href="../../../nest.repository.support/taskdoc/nest.dependency.resolve.html#Bundles" title="Parameter Bundles of task nest.dependency.resolve()">Bundles</a></span>: <span class="i">[</span>
 		<span class="e">example.bundle-api</span>
 	<span class="i">]</span>,
-	<span class="h"><a href="../../../nest.repository.support/taskdoc/nest.dependency.resolve.html#Filters" title="Parameter Filters of task nest.dependency.resolve()">Filters</a></span>: <span class="d"><a href="../../../nest.repository.support/taskdoc/nest.dependency.filter.compile.html" title="Task: nest.dependency.filter.compile()">nest.dependency.filter.compile</a>(</span><span class="h"><a href="../../../nest.repository.support/taskdoc/nest.dependency.resolve.html#CompileTransitive" title="Parameter CompileTransitive of task nest.dependency.resolve()">CompileTransitive</a></span>: <span class="j">false</span><span class="d">)</span>
+	<span class="h"><a href="../../../nest.repository.support/taskdoc/nest.dependency.resolve.html#Filters" title="Parameter Filters of task nest.dependency.resolve()">Filters</a></span>: <span class="d"><a href="../../../nest.repository.support/taskdoc/nest.dependency.filter.compile.html" title="Task: nest.dependency.filter.compile()">nest.dependency.filter.compile</a>(</span><span class="h"><a href="../../../nest.repository.support/taskdoc/nest.dependency.filter.compile.html#CompileTransitive" title="Parameter CompileTransitive of task nest.dependency.filter.compile()">CompileTransitive</a></span>: <span class="j">false</span><span class="d">)</span>
 <span class="d">)</span>
 </code></pre>
 <p>The above dependency resolution will only result in <code>example.bundle-api-v1.0</code>, as the <code>example.bundle-impl</code> transitive dependency is omitted, because it is marked with the <code>compile-transitive: false</code> meta-data. The compile filter will omit that dependency.</p>
@@ -154,7 +157,7 @@ library.bundle
 	<span class="h"><a href="../../../nest.repository.support/taskdoc/nest.dependency.resolve.html#Bundles" title="Parameter Bundles of task nest.dependency.resolve()">Bundles</a></span>: <span class="i">[</span>
 		<span class="e">example.bundle-api</span>
 	<span class="i">]</span>,
-	<span class="h"><a href="../../../nest.repository.support/taskdoc/nest.dependency.resolve.html#Filters" title="Parameter Filters of task nest.dependency.resolve()">Filters</a></span>: <span class="d"><a href="../../../nest.repository.support/taskdoc/nest.dependency.filter.compile.html" title="Task: nest.dependency.filter.compile()">nest.dependency.filter.compile</a>(</span><span class="h"><a href="../../../nest.repository.support/taskdoc/nest.dependency.resolve.html#CompileTransitive" title="Parameter CompileTransitive of task nest.dependency.resolve()">CompileTransitive</a></span>: <span class="j">true</span><span class="d">)</span>
+	<span class="h"><a href="../../../nest.repository.support/taskdoc/nest.dependency.resolve.html#Filters" title="Parameter Filters of task nest.dependency.resolve()">Filters</a></span>: <span class="d"><a href="../../../nest.repository.support/taskdoc/nest.dependency.filter.compile.html" title="Task: nest.dependency.filter.compile()">nest.dependency.filter.compile</a>(</span><span class="h"><a href="../../../nest.repository.support/taskdoc/nest.dependency.filter.compile.html#CompileTransitive" title="Parameter CompileTransitive of task nest.dependency.filter.compile()">CompileTransitive</a></span>: <span class="j">true</span><span class="d">)</span>
 <span class="d">)</span>
 </code></pre>
 <p>Then the result bundle dependencies will be:</p>

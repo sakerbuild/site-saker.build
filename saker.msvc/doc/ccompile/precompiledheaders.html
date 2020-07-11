@@ -31,7 +31,9 @@
 <ul>
 <li><a href="/nest.repository.support/doc/index.html">nest.repository.support</a></li>
 <li><a href="/saker.android/doc/index.html">saker.android</a></li>
+<li><a href="/saker.apple/doc/index.html">saker.apple</a></li>
 <li><a href="/saker.build/doc/index.html">saker.build</a></li>
+<li><a href="/saker.clang/doc/index.html">saker.clang</a></li>
 <li><a href="/saker.compiler.utils/doc/index.html">saker.compiler.utils</a></li>
 <li><a href="/saker.jar/doc/index.html">saker.jar</a></li>
 <li><a href="/saker.java.compiler/doc/index.html">saker.java.compiler</a></li>
@@ -44,6 +46,7 @@
 <li><a href="/saker.sdk.support/doc/index.html">saker.sdk.support</a></li>
 <li><a href="/saker.standard/doc/index.html">saker.standard</a></li>
 <li><a href="/saker.util/doc/index.html">saker.util</a></li>
+<li><a href="/saker.windows/doc/index.html">saker.windows</a></li>
 <li><a href="/saker.zip/doc/index.html">saker.zip</a></li>
 </ul>
 </div></span>
@@ -100,7 +103,7 @@
 </div>
 			<div class="doc-content"><h1 id="precompiled-headers">Precompiled headers<a class="doc-heading-anchor" href="#precompiled-headers"></a></h1>
 <p>The <a href="../../taskdoc/saker.msvc.ccompile.html"><code>saker.msvc.ccompile()</code></a> task supports using precompiled headers during compilation. Precompiled headers can improve build times by precompiling infrequently changing header files and reusing them later. See more information on the <a href="https://docs.microsoft.com/en-us/cpp/build/creating-precompiled-header-files?view=vs-2019" title="Precompiled Header Files | Microsoft Docs">Precompiled Header Files | Microsoft Docs</a> site for an in-depth explanation.</p>
-<p>In order to use precompiled headers, you need to specify the <code>PrecompiledHeader</code> parameter for the source files in your build task invocation:</p>
+<p>In order to use precompiled headers, specify the <code>PrecompiledHeader</code> parameter for the inputs in your build task invocation:</p>
 <pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span><span class="i">{</span>
 	<span class="g">Files</span>: <span class="e">src/*.cpp</span><span class="i">,</span>
 	<span class="g">PrecompiledHeader</span>: <span class="e">pch/pch.h</span><span class="i">,</span>
@@ -117,8 +120,7 @@ int main() {
 <p>The build task also supports using precompiled headers on multiple machines. That is, if you use build clusters to distribute the compilation tasks, the precompiled headers are used on the clusters as well. (See <a href="precompiledheaders.html#notes" title="Notes">Notes</a> for more information.)</p>
 <h2 id="force-inclusion">Force inclusion<a class="doc-heading-anchor" href="#force-inclusion"></a></h2>
 <p>As you've seen, in order to use the precompiled header, you need to include it in the first statement of the compiled source files. If you don't include it, the compiler will throw an error.</p>
-<p>As it may feel like a chore, you can specify the <a href="../../taskdoc/types/CompilationInputPassTaskOption.html#f-ForceIncludePrecompiledHeader"><code>ForceIncludePrecompiledHeader</code></a> parameter to have that done automatically for your. If you set it to <code>true</code>, the build task will automatically add an appropriate <a href="https://docs.microsoft.com/en-us/cpp/build/reference/fi-name-forced-include-file?view=vs-2019" title="/FI (Name Forced Include File) | Microsoft Docs"><code>/FI</code></a> command line argument to force include the precompiled header.</p>
-<p><strong>Note</strong> that we don't recommend using this as it may cause portability issues to other build system.</p>
+<p>As it may feel like a chore, you can specify the <a href="../../taskdoc/types/CompilationInputPassTaskOption.html#f-ForceIncludePrecompiledHeader"><code>ForceIncludePrecompiledHeader</code></a> parameter to have that done automatically for you. If you set it to <code>true</code>, the build task will automatically add an appropriate <a href="https://docs.microsoft.com/en-us/cpp/build/reference/fi-name-forced-include-file?view=vs-2019" title="/FI (Name Forced Include File) | Microsoft Docs"><code>/FI</code></a> command line argument to force include the precompiled header.</p>
 <h2 id="notes">Notes<a class="doc-heading-anchor" href="#notes"></a></h2>
 <p>Using precompiled headers may differ from the experience you're used to in Visual Studio.</p>
 <p>First of all, you don't need a separate <code>cpp</code> or other compilation unit file for your precompiled header. The task will compile the precompiled header file as is. This means that the actual input to the compiler is the <code>pch.h</code> instead of constructing a new compilation unit. (I.e. you don't need <code>stdafx.cpp</code> or other files.)</p>

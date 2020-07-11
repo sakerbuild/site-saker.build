@@ -31,7 +31,9 @@
 <ul>
 <li><a href="/nest.repository.support/doc/index.html">nest.repository.support</a></li>
 <li><a href="/saker.android/doc/index.html">saker.android</a></li>
+<li><a href="/saker.apple/doc/index.html">saker.apple</a></li>
 <li><a href="/saker.build/doc/index.html">saker.build</a></li>
+<li><a href="/saker.clang/doc/index.html">saker.clang</a></li>
 <li><a href="/saker.compiler.utils/doc/index.html">saker.compiler.utils</a></li>
 <li><a href="/saker.jar/doc/index.html">saker.jar</a></li>
 <li><a href="/saker.java.compiler/doc/index.html">saker.java.compiler</a></li>
@@ -44,6 +46,7 @@
 <li><a href="/saker.sdk.support/doc/index.html">saker.sdk.support</a></li>
 <li><a href="/saker.standard/doc/index.html">saker.standard</a></li>
 <li><a href="/saker.util/doc/index.html">saker.util</a></li>
+<li><a href="/saker.windows/doc/index.html">saker.windows</a></li>
 <li><a href="/saker.zip/doc/index.html">saker.zip</a></li>
 </ul>
 </div></span>
@@ -103,8 +106,8 @@
 <p>Let's see an example:</p>
 <pre class="doc-code-block"><code class="language-cpp">// foo.h
 #define FOO_CONSTANT 123
-
-// main.cpp
+</code></pre>
+<pre class="doc-code-block"><code class="language-cpp">// main.cpp
 #include &quot;foo.h&quot;
 
 int main() {
@@ -114,8 +117,8 @@ int main() {
 <p>The above doesn't use force inclusion, and compiles fine as is. However, if we modify <code>main.cpp</code> by removing the inclusion:</p>
 <pre class="doc-code-block"><code class="language-cpp">// foo.h
 #define FOO_CONSTANT 123
-
-// main.cpp
+</code></pre>
+<pre class="doc-code-block"><code class="language-cpp">// main.cpp
 int main() {
 	return FOO_CONSTANT;
 }

@@ -31,7 +31,9 @@
 <ul>
 <li><a href="/nest.repository.support/doc/index.html">nest.repository.support</a></li>
 <li><a href="/saker.android/doc/index.html">saker.android</a></li>
+<li><a href="/saker.apple/doc/index.html">saker.apple</a></li>
 <li><a href="/saker.build/doc/index.html">saker.build</a></li>
+<li><a href="/saker.clang/doc/index.html">saker.clang</a></li>
 <li><a href="/saker.compiler.utils/doc/index.html">saker.compiler.utils</a></li>
 <li><a href="/saker.jar/doc/index.html">saker.jar</a></li>
 <li><a href="/saker.java.compiler/doc/index.html">saker.java.compiler</a></li>
@@ -44,6 +46,7 @@
 <li><a href="/saker.sdk.support/doc/index.html">saker.sdk.support</a></li>
 <li><a href="/saker.standard/doc/index.html">saker.standard</a></li>
 <li><a href="/saker.util/doc/index.html">saker.util</a></li>
+<li><a href="/saker.windows/doc/index.html">saker.windows</a></li>
 <li><a href="/saker.zip/doc/index.html">saker.zip</a></li>
 </ul>
 </div></span>
@@ -100,11 +103,11 @@
 </div>
 			<div class="doc-content"><h1 id="compiling">Compiling<a class="doc-heading-anchor" href="#compiling"></a></h1>
 <p>The <a href="../../taskdoc/saker.msvc.ccompile.html"><code>saker.msvc.ccompile()</code></a> task allows compiling C/C++ source files into object files. The task can be used to compile for the local machine, or for any other supported architectures.</p>
-<p>The task serves as a frontend for the <a href="https://docs.microsoft.com/en-us/cpp/build/reference/compiling-a-c-cpp-program?view=vs-2019" title="MSVC C/C++ compiler reference - Visual Studio | Microsoft Docs"><code>cl.exe</code></a> present in the MSVC toolchain.</p>
+<p>The task serves as a frontend for <a href="https://docs.microsoft.com/en-us/cpp/build/reference/compiling-a-c-cpp-program?view=vs-2019" title="MSVC C/C++ compiler reference - Visual Studio | Microsoft Docs"><code>cl.exe</code></a> present in the MSVC toolchain.</p>
 <p>The simplest example for compilation is the following:</p>
 <pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span><span class="e">src/**/*.cpp</span><span class="d">)</span>
 </code></pre>
-<p>The above compiles all source files in the <code>src</code> directory that end with <code>.cpp</code>. The compilation language is automatically determined by the extension of the source file. You can also specify various options for the compiled files:</p>
+<p>The above compiles all source files in the <code>src</code> directory that end with <code>.cpp</code>. The compilation language is automatically determined by the extension of the source file (or using the <a href="../../taskdoc/types/CompilationInputPassTaskOption.html#f-Language"><code>Language</code></a> option). You can also specify various options for the compiled files:</p>
 <pre class="doc-code-block"><code class="language-sakerscript"><span class="d"><a href="../../../saker.msvc/taskdoc/saker.msvc.ccompile.html" title="Task: saker.msvc.ccompile()">saker.msvc.ccompile</a>(</span>
 	<span class="i">{</span>
 		<span class="g">Files</span>: <span class="e">src/**/*.cpp</span><span class="i">,</span>
