@@ -36,6 +36,7 @@ build {
 		AllowMissingResources: [
 			std.param.exec(Name: site.allowed.missing.resources, Default: null)
 		],
+		BuiltinTaskRoot: /saker.build/doc/scripting/builtintasks,
 		Sites: [
 			{
 				Directory: site/blog/,

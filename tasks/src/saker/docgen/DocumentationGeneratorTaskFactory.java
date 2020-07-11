@@ -93,6 +93,11 @@ public class DocumentationGeneratorTaskFactory implements TaskFactory<Object>, E
 	private static final String LINK_ROOT_SITE_ROOT = "root:";
 	private static final String LINK_ROOT_RAW = "raw:/";
 
+	public static final Set<String> BUILTIN_TASK_NAMES = ImmutableUtils.makeImmutableNavigableSet(
+			new String[] { "abort", "global", "include", "path", "print", "sequence", "static", "var"
+			//TODO add defaults when documented		
+			});
+
 	private interface NavigationSection {
 		public String getTitle();
 	}
@@ -1669,6 +1674,8 @@ public class DocumentationGeneratorTaskFactory implements TaskFactory<Object>, E
 
 		private Set<WildcardPath> allowedMissingResources = new TreeSet<>();
 
+		private SakerPath builtinTaskRoot;
+
 		/**
 		 * For {@link Externalizable}.
 		 */
@@ -1901,6 +1908,9 @@ public class DocumentationGeneratorTaskFactory implements TaskFactory<Object>, E
 								tn = TaskName.valueOf(ti);
 							} catch (IllegalArgumentException e) {
 								return null;
+							}
+							if (builtinTaskRoot != null && BUILTIN_TASK_NAMES.contains(tn.getName())) {
+								return builtinTaskRoot.resolve(tn.getName() + ".html").toString();
 							}
 							try {
 								//TODO dependency should be added on the found tasks
@@ -2434,6 +2444,7 @@ public class DocumentationGeneratorTaskFactory implements TaskFactory<Object>, E
 		public void writeExternal(ObjectOutput out) throws IOException {
 			out.writeObject(outputDirectory);
 			out.writeObject(cssDirectory);
+			out.writeObject(builtinTaskRoot);
 			SerialUtils.writeExternalCollection(out, siteInfos);
 			SerialUtils.writeExternalMap(out, resourceRoots);
 			SerialUtils.writeExternalCollection(out, allowedMissingResources);
@@ -2443,6 +2454,7 @@ public class DocumentationGeneratorTaskFactory implements TaskFactory<Object>, E
 		public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
 			outputDirectory = (SakerPath) in.readObject();
 			cssDirectory = (SakerPath) in.readObject();
+			builtinTaskRoot = (SakerPath) in.readObject();
 			siteInfos = SerialUtils.readExternalImmutableList(in);
 			resourceRoots = SerialUtils.readExternalImmutableNavigableMap(in);
 			allowedMissingResources = SerialUtils.readExternalImmutableNavigableSet(in);
@@ -2453,6 +2465,7 @@ public class DocumentationGeneratorTaskFactory implements TaskFactory<Object>, E
 			final int prime = 31;
 			int result = 1;
 			result = prime * result + ((allowedMissingResources == null) ? 0 : allowedMissingResources.hashCode());
+			result = prime * result + ((builtinTaskRoot == null) ? 0 : builtinTaskRoot.hashCode());
 			result = prime * result + ((cssDirectory == null) ? 0 : cssDirectory.hashCode());
 			result = prime * result + ((outputDirectory == null) ? 0 : outputDirectory.hashCode());
 			result = prime * result + ((resourceRoots == null) ? 0 : resourceRoots.hashCode());
@@ -2473,6 +2486,11 @@ public class DocumentationGeneratorTaskFactory implements TaskFactory<Object>, E
 				if (other.allowedMissingResources != null)
 					return false;
 			} else if (!allowedMissingResources.equals(other.allowedMissingResources))
+				return false;
+			if (builtinTaskRoot == null) {
+				if (other.builtinTaskRoot != null)
+					return false;
+			} else if (!builtinTaskRoot.equals(other.builtinTaskRoot))
 				return false;
 			if (cssDirectory == null) {
 				if (other.cssDirectory != null)
@@ -2751,6 +2769,9 @@ public class DocumentationGeneratorTaskFactory implements TaskFactory<Object>, E
 		@SakerInput(value = "AllowMissingResources")
 		public Collection<WildcardPath> allowedMissingResourcesOption = Collections.emptyNavigableSet();
 
+		@SakerInput(value = "BuiltinTaskRoot")
+		public SakerPath builtinTaskRoot;
+
 		@Override
 		public Object run(TaskContext taskcontext) throws Exception {
 			if (outputDirectoryOption == null) {
@@ -2819,6 +2840,7 @@ public class DocumentationGeneratorTaskFactory implements TaskFactory<Object>, E
 
 			WorkerTaskFactory workertaskfactory = new WorkerTaskFactory(outputDirectoryOption, cssDirectoryOption,
 					resroots, sites);
+			workertaskfactory.builtinTaskRoot = this.builtinTaskRoot;
 			workertaskfactory.allowedMissingResources = new TreeSet<>();
 			if (allowedMissingResourcesOption != null) {
 				for (WildcardPath wp : allowedMissingResourcesOption) {
