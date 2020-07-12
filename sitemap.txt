@@ -134,6 +134,9 @@ https://saker.build/saker.android/taskdoc/saker.android.aidl.html
 https://saker.build/saker.android/taskdoc/saker.android.classpath.html
 https://saker.build/saker.android/taskdoc/saker.android.classpath.platform.html
 https://saker.build/saker.android/taskdoc/saker.android.d8.html
+https://saker.build/saker.android/taskdoc/saker.android.ndk.clang.preset.html
+https://saker.build/saker.android/taskdoc/saker.android.ndk.sdk.html
+https://saker.build/saker.android/taskdoc/saker.android.ndk.strip.html
 https://saker.build/saker.android/taskdoc/saker.android.sdk.buildtools.html
 https://saker.build/saker.android/taskdoc/saker.android.sdk.platform.html
 https://saker.build/saker.android/taskdoc/saker.android.zipalign.html
@@ -148,8 +151,14 @@ https://saker.build/saker.android/taskdoc/types/Aapt2LinkerInputTaskOption.html
 https://saker.build/saker.android/taskdoc/types/Aapt2OutputFormatTaskOption.html
 https://saker.build/saker.android/taskdoc/types/AarExtractTaskOutput.html
 https://saker.build/saker.android/taskdoc/types/AidlTaskOutput.html
+https://saker.build/saker.android/taskdoc/types/AndroidAbi.html
 https://saker.build/saker.android/taskdoc/types/AndroidClassPathInputTaskOption.html
 https://saker.build/saker.android/taskdoc/types/AndroidClassPathReference.html
+https://saker.build/saker.android/taskdoc/types/AndroidLibraryEntryOption.html
+https://saker.build/saker.android/taskdoc/types/AndroidNdkClangOptionsPreset.html
+https://saker.build/saker.android/taskdoc/types/AndroidNdkLibrary.html
+https://saker.build/saker.android/taskdoc/types/AndroidNdkRuntimeFeatures.html
+https://saker.build/saker.android/taskdoc/types/AndroidNdkSDKDescription.html
 https://saker.build/saker.android/taskdoc/types/AndroidPlatformClassPath.html
 https://saker.build/saker.android/taskdoc/types/ApkClassesTaskOption.html
 https://saker.build/saker.android/taskdoc/types/ApkCreatorTaskOutput.html
@@ -169,6 +178,8 @@ https://saker.build/saker.android/taskdoc/types/SDKName.html
 https://saker.build/saker.android/taskdoc/types/SignApkInputTaskOption.html
 https://saker.build/saker.android/taskdoc/types/SignApkTaskOutput.html
 https://saker.build/saker.android/taskdoc/types/SignerTaskOption.html
+https://saker.build/saker.android/taskdoc/types/StripWorkerTaskOutput.html
+https://saker.build/saker.android/taskdoc/types/SymbolVisibility.html
 https://saker.build/saker.android/taskdoc/types/V4SigningEnabledInputTaskOption.html
 https://saker.build/saker.android/taskdoc/types/ZipAlignInputTaskOption.html
 https://saker.build/saker.android/taskdoc/types/ZipAlignTaskOutput.html
