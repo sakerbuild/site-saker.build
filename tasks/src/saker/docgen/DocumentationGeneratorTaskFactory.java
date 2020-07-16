@@ -1902,7 +1902,7 @@ public class DocumentationGeneratorTaskFactory implements TaskFactory<Object>, E
 						String docrootpath = getDocRootPath(markdowndirectory, relpath);
 						SakerPath pageoutputpath = outputdirabsolutepath.resolve(relpath);
 
-						TaskLinkHrefProvider tasklinkfunction = siteInfo.taskLinkFormat == null ? null : ti -> {
+						TaskLinkHrefProvider tasklinkfunction = ti -> {
 							TaskName tn;
 							try {
 								tn = TaskName.valueOf(ti);
@@ -1912,28 +1912,22 @@ public class DocumentationGeneratorTaskFactory implements TaskFactory<Object>, E
 							if (builtinTaskRoot != null && BUILTIN_TASK_NAMES.contains(tn.getName())) {
 								return builtinTaskRoot.resolve(tn.getName() + ".html").toString();
 							}
-							try {
-								//TODO dependency should be added on the found tasks
-								NestBundleClassLoader cl = (NestBundleClassLoader) this.getClass().getClassLoader();
-								TaskFactory<?> taskfactory = cl.getBundleStorageConfiguration().lookupTask(tn);
-								BundleIdentifier taskbundleid = NestUtils
-										.getClassBundleIdentifier(taskfactory.getClass()).withoutMetaQualifiers();
-								return SakerPath
-										.valueOf(docrootpath + String.format(siteInfo.taskLinkFormat, taskbundleid, tn))
-										.toString();
-//								return SakerPath
-//										.valueOf(docrootpath + "../" + taskbundleid + "/taskdoc/" + tn + ".html")
-//										.toString();
-							} catch (Exception e) {
-								return null;
+							if (siteInfo.taskLinkFormat != null) {
+								try {
+									//TODO dependency should be added on the found tasks
+									NestBundleClassLoader cl = (NestBundleClassLoader) this.getClass().getClassLoader();
+									TaskFactory<?> taskfactory = cl.getBundleStorageConfiguration().lookupTask(tn);
+									BundleIdentifier taskbundleid = NestUtils
+											.getClassBundleIdentifier(taskfactory.getClass()).withoutMetaQualifiers();
+									return SakerPath
+											.valueOf(docrootpath
+													+ String.format(siteInfo.taskLinkFormat, taskbundleid, tn))
+											.toString();
+								} catch (Exception e) {
+									return null;
+								}
 							}
-//							SakerPath linkedpath = siteInfo.taskLinkPaths.get(tn);
-//							if (linkedpath == null) {
-//								return null;
-//							}
-//							SakerPath linkpath = SakerPath.valueOf(docrootpath + linkedpath + "/" + tn + ".html");
-//							//TODO add to linked resources and check for existence
-//							return linkpath.toString();
+							return null;
 						};
 
 						Map<PlaceholderType, Supplier<? extends CharSequence>> placeholdercontents = new EnumMap<>(
