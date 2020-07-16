@@ -3064,17 +3064,17 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 					elem.append(
 						$(document.createElement('div'))
 						.addClass('stacktrace-reduced')
-						.append(`${ ws }at ${ reducedcname }.${ method }(${ pos })`)
+						.text(`${ ws }at ${ reducedcname }.${ method }(${ pos })`)
 					);
 					elem.append(
 						$(document.createElement('div'))
 						.addClass('stacktrace-full')
-						.append(l)
+						.text(l)
 					);
 				} else {
 					elem.append(
 						$(document.createElement('div'))
-						.append(l)
+						.text(l)
 					);
 				}
 			});
