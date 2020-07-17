@@ -675,6 +675,7 @@ https://saker.build/saker.build/javadoc/saker/build/thirdparty/org/objectweb/asm
 https://saker.build/saker.build/javadoc/saker/build/thirdparty/org/objectweb/asm/MethodVisitor.html
 https://saker.build/saker.build/javadoc/saker/build/thirdparty/org/objectweb/asm/ModuleVisitor.html
 https://saker.build/saker.build/javadoc/saker/build/thirdparty/org/objectweb/asm/Opcodes.html
+https://saker.build/saker.build/javadoc/saker/build/thirdparty/org/objectweb/asm/RecordComponentVisitor.html
 https://saker.build/saker.build/javadoc/saker/build/thirdparty/org/objectweb/asm/Type.html
 https://saker.build/saker.build/javadoc/saker/build/thirdparty/org/objectweb/asm/TypePath.html
 https://saker.build/saker.build/javadoc/saker/build/thirdparty/org/objectweb/asm/TypeReference.html
