@@ -396,7 +396,7 @@ the same way as in name part of -mount parameter paths.</p>
 Multi-parameter. 
 </div>
 <div class="doc-cmdref-param-doc">
-<p>Specifies a daemon connection that should be used as a cluster for the build</p>
+<p>Specifies a daemon connection that should be used as a cluster for the build.</p>
 <p>This parameter adds connection specified by the given name as cluster to
 the build execution. Clusters can be used to execute a build over multiple
 computers by delegating tasks to it.</p>
@@ -406,6 +406,17 @@ support this feature.</p>
 <p>This parameter can be specified multiple times.
 Specifying a connection multiple times as a cluster has no additional
 effects.</p>
+</div>
+<h5 id="-cluster-use-clients">-cluster-use-clients<a class="doc-heading-anchor" href="#-cluster-use-clients"></a></h5>
+<div class="doc-cmdref-param-aliases">-cluster-use-clients
+</div>
+<div class="doc-cmdref-param-flags">
+</div>
+<div class="doc-cmdref-param-doc">
+<p>Flag to specify to use the connected clients of the used daemon as clusters.</p>
+<p>If the daemon that is used for build execution has other clients connected
+to it, then they will be used as clusters for this build execution.</p>
+<p>The default is false.</p>
 </div>
 <h5 id="-connect">-connect<a class="doc-heading-anchor" href="#-connect"></a></h5>
 <div class="doc-cmdref-param-aliases">-connect &lt;address&gt; &lt;name&gt;
@@ -463,6 +474,17 @@ if required and the -daemon flag is specified.</p>
 -daemon flag.</p>
 <p>See -daemon parameter flag.</p>
 </div>
+<h5 id="-daemon-port">-daemon-port<a class="doc-heading-anchor" href="#-daemon-port"></a></h5>
+<div class="doc-cmdref-param-aliases">-daemon-port &lt;int[0-65535]&gt;
+</div>
+<div class="doc-cmdref-param-flags">
+</div>
+<div class="doc-cmdref-param-doc">
+<p>Specifies the port on which the daemon should listen for incoming connections.</p>
+<p>If the port is 0, it will be assigned by the operating system, therefore
+it may be random.</p>
+<p>If not specified, the default port of 3500 will be used.</p>
+</div>
 <h5 id="-daemon-storage-directory">-daemon-storage-directory<a class="doc-heading-anchor" href="#-daemon-storage-directory"></a></h5>
 <div class="doc-cmdref-param-aliases">-daemon-storage-directory &lt;path&gt;
 -daemon-storage-dir &lt;path&gt;
@@ -484,17 +506,6 @@ to store its files and various data.</p>
 <p>Flag that specifies whether or not the daemon should act as a server.
 A server daemon can accept incoming connections from any network addresses.
 A non-server daemon can only accept connections from the localhost.</p>
-</div>
-<h5 id="-daemon-port">-daemon-port<a class="doc-heading-anchor" href="#-daemon-port"></a></h5>
-<div class="doc-cmdref-param-aliases">-daemon-port &lt;int[0-65535]&gt;
-</div>
-<div class="doc-cmdref-param-flags">
-</div>
-<div class="doc-cmdref-param-doc">
-<p>Specifies the port on which the daemon should listen for incoming connections.</p>
-<p>If the port is 0, it will be assigned by the operating system, therefore
-it may be random.</p>
-<p>If not specified, the default port of 3500 will be used.</p>
 </div>
 <h5 id="-daemon-cluster-enable">-daemon-cluster-enable<a class="doc-heading-anchor" href="#-daemon-cluster-enable"></a></h5>
 <div class="doc-cmdref-param-aliases">-daemon-cluster-enable
@@ -637,18 +648,6 @@ monitors the build.</p>
 for builds running on a Continuous Integration server or where
 the developer has no opportunity to provide manual input.</p>
 </div>
-<h5 id="-deadlock-polling-millis">-deadlock-polling-millis<a class="doc-heading-anchor" href="#-deadlock-polling-millis"></a></h5>
-<div class="doc-cmdref-param-aliases">-deadlock-polling-millis &lt;long&gt;
-</div>
-<div class="doc-cmdref-param-flags">
-</div>
-<div class="doc-cmdref-param-doc">
-<p>Specifies the interval of the polling based deadlock detection mechanism.</p>
-<p>The build system actively detects any deadlocks occurring during task
-executions. The waiting tasks will be woken up in regular intervals based
-on this parameter.</p>
-<p>The value is expected in milliseconds, default is 3000 (3 seconds).</p>
-</div>
 <h5 id="-trace">-trace<a class="doc-heading-anchor" href="#-trace"></a></h5>
 <div class="doc-cmdref-param-aliases">-trace &lt;mount-path&gt;
 </div>
@@ -715,7 +714,7 @@ An exception is thrown if a build script file is not found.</p>
 </svg></a>
 				</div>
 			</div>
-			<div class="doc-headings-nav">  <ul>    <li><a href="#build" title="build">build</a>      <ul>        <li><a href="#_command-file" title="@command-file">@command-file</a>        </li>        <li><a href="#-working-directory" title="-working-directory">-working-directory</a>        </li>        <li><a href="#-build-directory" title="-build-directory">-build-directory</a>        </li>        <li><a href="#-mirror-directory" title="-mirror-directory">-mirror-directory</a>        </li>        <li><a href="#-mount" title="-mount">-mount</a>        </li>        <li><a href="#-u" title="-U">-U</a>        </li>        <li><a href="#-repository-no-nest" title="-repository-no-nest">-repository-no-nest</a>        </li>        <li><a href="#-repository" title="-repository">-repository</a>        </li>        <li><a href="#-repository-class" title="-repository-class">-repository-class</a>        </li>        <li><a href="#-repository-id" title="-repository-id">-repository-id</a>        </li>        <li><a href="#-script-files" title="-script-files">-script-files</a>        </li>        <li><a href="#-script-classpath" title="-script-classpath">-script-classpath</a>        </li>        <li><a href="#-script-class" title="-script-class">-script-class</a>        </li>        <li><a href="#-so" title="-SO">-SO</a>        </li>        <li><a href="#-dbconfig-fallback" title="-dbconfig-fallback">-dbconfig-fallback</a>        </li>        <li><a href="#-dbconfig-path" title="-dbconfig-path">-dbconfig-path</a>        </li>        <li><a href="#-cluster" title="-cluster">-cluster</a>        </li>        <li><a href="#-connect" title="-connect">-connect</a>        </li>        <li><a href="#-daemon" title="-daemon">-daemon</a>        </li>        <li><a href="#-daemon-address" title="-daemon-address">-daemon-address</a>        </li>        <li><a href="#-daemon-storage-directory" title="-daemon-storage-directory">-daemon-storage-directory</a>        </li>        <li><a href="#-daemon-server" title="-daemon-server">-daemon-server</a>        </li>        <li><a href="#-daemon-port" title="-daemon-port">-daemon-port</a>        </li>        <li><a href="#-daemon-cluster-enable" title="-daemon-cluster-enable">-daemon-cluster-enable</a>        </li>        <li><a href="#-daemon-cluster-mirror-directory" title="-daemon-cluster-mirror-directory">-daemon-cluster-mirror-directory</a>        </li>        <li><a href="#-eu" title="-EU">-EU</a>        </li>        <li><a href="#-thread-factor" title="-thread-factor">-thread-factor</a>        </li>        <li><a href="#-saker-jar" title="-saker-jar">-saker-jar</a>        </li>        <li><a href="#-no-daemon-cache" title="-no-daemon-cache">-no-daemon-cache</a>        </li>        <li><a href="#-stacktrace" title="-stacktrace">-stacktrace</a>        </li>        <li><a href="#-interactive" title="-interactive">-interactive</a>        </li>        <li><a href="#-deadlock-polling-millis" title="-deadlock-polling-millis">-deadlock-polling-millis</a>        </li>        <li><a href="#-trace" title="-trace">-trace</a>        </li>        <li><a href="#-trace-artifacts-embed" title="-trace-artifacts-embed">-trace-artifacts-embed</a>        </li>        <li><a href="#target" title="target">target</a>        </li>        <li><a href="#build-script" title="build-script">build-script</a>        </li>      </ul>    </li>  </ul></div>
+			<div class="doc-headings-nav">  <ul>    <li><a href="#build" title="build">build</a>      <ul>        <li><a href="#_command-file" title="@command-file">@command-file</a>        </li>        <li><a href="#-working-directory" title="-working-directory">-working-directory</a>        </li>        <li><a href="#-build-directory" title="-build-directory">-build-directory</a>        </li>        <li><a href="#-mirror-directory" title="-mirror-directory">-mirror-directory</a>        </li>        <li><a href="#-mount" title="-mount">-mount</a>        </li>        <li><a href="#-u" title="-U">-U</a>        </li>        <li><a href="#-repository-no-nest" title="-repository-no-nest">-repository-no-nest</a>        </li>        <li><a href="#-repository" title="-repository">-repository</a>        </li>        <li><a href="#-repository-class" title="-repository-class">-repository-class</a>        </li>        <li><a href="#-repository-id" title="-repository-id">-repository-id</a>        </li>        <li><a href="#-script-files" title="-script-files">-script-files</a>        </li>        <li><a href="#-script-classpath" title="-script-classpath">-script-classpath</a>        </li>        <li><a href="#-script-class" title="-script-class">-script-class</a>        </li>        <li><a href="#-so" title="-SO">-SO</a>        </li>        <li><a href="#-dbconfig-fallback" title="-dbconfig-fallback">-dbconfig-fallback</a>        </li>        <li><a href="#-dbconfig-path" title="-dbconfig-path">-dbconfig-path</a>        </li>        <li><a href="#-cluster" title="-cluster">-cluster</a>        </li>        <li><a href="#-cluster-use-clients" title="-cluster-use-clients">-cluster-use-clients</a>        </li>        <li><a href="#-connect" title="-connect">-connect</a>        </li>        <li><a href="#-daemon" title="-daemon">-daemon</a>        </li>        <li><a href="#-daemon-address" title="-daemon-address">-daemon-address</a>        </li>        <li><a href="#-daemon-port" title="-daemon-port">-daemon-port</a>        </li>        <li><a href="#-daemon-storage-directory" title="-daemon-storage-directory">-daemon-storage-directory</a>        </li>        <li><a href="#-daemon-server" title="-daemon-server">-daemon-server</a>        </li>        <li><a href="#-daemon-cluster-enable" title="-daemon-cluster-enable">-daemon-cluster-enable</a>        </li>        <li><a href="#-daemon-cluster-mirror-directory" title="-daemon-cluster-mirror-directory">-daemon-cluster-mirror-directory</a>        </li>        <li><a href="#-eu" title="-EU">-EU</a>        </li>        <li><a href="#-thread-factor" title="-thread-factor">-thread-factor</a>        </li>        <li><a href="#-saker-jar" title="-saker-jar">-saker-jar</a>        </li>        <li><a href="#-no-daemon-cache" title="-no-daemon-cache">-no-daemon-cache</a>        </li>        <li><a href="#-stacktrace" title="-stacktrace">-stacktrace</a>        </li>        <li><a href="#-interactive" title="-interactive">-interactive</a>        </li>        <li><a href="#-trace" title="-trace">-trace</a>        </li>        <li><a href="#-trace-artifacts-embed" title="-trace-artifacts-embed">-trace-artifacts-embed</a>        </li>        <li><a href="#target" title="target">target</a>        </li>        <li><a href="#build-script" title="build-script">build-script</a>        </li>      </ul>    </li>  </ul></div>
 		</div>
 	</div>
 </div>

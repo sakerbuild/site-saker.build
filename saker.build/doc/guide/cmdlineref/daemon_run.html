@@ -129,6 +129,19 @@ is not supported for arguments in the command file.
 The file path may be absolute or relative.</p>
 <p>E.g: @path/to/arguments.txt</p>
 </div>
+<h5 id="-port">-port<a class="doc-heading-anchor" href="#-port"></a></h5>
+<div class="doc-cmdref-param-aliases">-port &lt;int[0-65535]|-&gt;
+</div>
+<div class="doc-cmdref-param-flags">
+</div>
+<div class="doc-cmdref-param-doc">
+<p>Specifies the port on which the daemon should listen for incoming connections.</p>
+<p>If the port is 0, it will be assigned by the operating system, therefore
+it may be random.</p>
+<p>If not specified, the default port of 3500 will be used.</p>
+<p>A simple dash (-) can be used to signal that the daemon shouldn't listen
+for incoming connections in any way.</p>
+</div>
 <h5 id="-storage-directory">-storage-directory<a class="doc-heading-anchor" href="#-storage-directory"></a></h5>
 <div class="doc-cmdref-param-aliases">-storage-directory &lt;path&gt;
 -storage-dir &lt;path&gt;
@@ -150,17 +163,6 @@ to store its files and various data.</p>
 <p>Flag that specifies whether or not the daemon should act as a server.
 A server daemon can accept incoming connections from any network addresses.
 A non-server daemon can only accept connections from the localhost.</p>
-</div>
-<h5 id="-port">-port<a class="doc-heading-anchor" href="#-port"></a></h5>
-<div class="doc-cmdref-param-aliases">-port &lt;int[0-65535]&gt;
-</div>
-<div class="doc-cmdref-param-flags">
-</div>
-<div class="doc-cmdref-param-doc">
-<p>Specifies the port on which the daemon should listen for incoming connections.</p>
-<p>If the port is 0, it will be assigned by the operating system, therefore
-it may be random.</p>
-<p>If not specified, the default port of 3500 will be used.</p>
 </div>
 <h5 id="-cluster-enable">-cluster-enable<a class="doc-heading-anchor" href="#-cluster-enable"></a></h5>
 <div class="doc-cmdref-param-aliases">-cluster-enable
@@ -217,6 +219,21 @@ number of threads when dealing with multi-threaded worker threads.</p>
 <p>If unspecified, 0, or negative, the thread factor will be determined in an
 implementation dependent manner. (Usually based on the number of cores the CPU has.)</p>
 </div>
+<h5 id="-connect-client">-connect-client<a class="doc-heading-anchor" href="#-connect-client"></a></h5>
+<div class="doc-cmdref-param-aliases">-connect-client &lt;address&gt;
+</div>
+<div class="doc-cmdref-param-flags">
+Multi-parameter. 
+</div>
+<div class="doc-cmdref-param-doc">
+<p>Specifies the network addresses of server daemons to which
+the daemon should connect to as a client.</p>
+<p>The build daemon will attempt to connect to the specified daemons as clients.
+This can be useful if the daemon can act as a cluster as the server daemon can
+automatically use this one to participate in builds.</p>
+<p>The connected clients can be used as clusters for build execution by using the
+-cluster-use-clients flag.</p>
+</div>
 <h5 id="-no-output">-no-output<a class="doc-heading-anchor" href="#-no-output"></a></h5>
 <div class="doc-cmdref-param-aliases">-no-output
 </div>
@@ -256,7 +273,7 @@ an issue at https://github.com/sakerbuild/saker.build/issues)</p>
 </svg></a>
 				</div>
 			</div>
-			<div class="doc-headings-nav">  <ul>    <li><a href="#run" title="run">run</a>      <ul>        <li><a href="#_command-file" title="@command-file">@command-file</a>        </li>        <li><a href="#-storage-directory" title="-storage-directory">-storage-directory</a>        </li>        <li><a href="#-server" title="-server">-server</a>        </li>        <li><a href="#-port" title="-port">-port</a>        </li>        <li><a href="#-cluster-enable" title="-cluster-enable">-cluster-enable</a>        </li>        <li><a href="#-cluster-mirror-directory" title="-cluster-mirror-directory">-cluster-mirror-directory</a>        </li>        <li><a href="#-eu" title="-EU">-EU</a>        </li>        <li><a href="#-thread-factor" title="-thread-factor">-thread-factor</a>        </li>        <li><a href="#-no-output" title="-no-output">-no-output</a>        </li>        <li><a href="#-saker-jar" title="-saker-jar">-saker-jar</a>        </li>      </ul>    </li>  </ul></div>
+			<div class="doc-headings-nav">  <ul>    <li><a href="#run" title="run">run</a>      <ul>        <li><a href="#_command-file" title="@command-file">@command-file</a>        </li>        <li><a href="#-port" title="-port">-port</a>        </li>        <li><a href="#-storage-directory" title="-storage-directory">-storage-directory</a>        </li>        <li><a href="#-server" title="-server">-server</a>        </li>        <li><a href="#-cluster-enable" title="-cluster-enable">-cluster-enable</a>        </li>        <li><a href="#-cluster-mirror-directory" title="-cluster-mirror-directory">-cluster-mirror-directory</a>        </li>        <li><a href="#-eu" title="-EU">-EU</a>        </li>        <li><a href="#-thread-factor" title="-thread-factor">-thread-factor</a>        </li>        <li><a href="#-connect-client" title="-connect-client">-connect-client</a>        </li>        <li><a href="#-no-output" title="-no-output">-no-output</a>        </li>        <li><a href="#-saker-jar" title="-saker-jar">-saker-jar</a>        </li>      </ul>    </li>  </ul></div>
 		</div>
 	</div>
 </div>
