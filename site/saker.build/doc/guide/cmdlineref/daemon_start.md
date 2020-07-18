@@ -46,6 +46,26 @@ E.g: @path/to/arguments.txt
 </div>
 
 
+##### -port
+
+<div class="doc-cmdref-param-aliases">-port &lt;int[0-65535]&gt;
+</div>
+
+<div class="doc-cmdref-param-flags">
+</div>
+
+<div class="doc-cmdref-param-doc">
+
+Specifies the port on which the daemon should listen for incoming connections.
+
+If the port is 0, it will be assigned by the operating system, therefore 
+it may be random.
+
+If not specified, the default port of 3500 will be used.
+
+</div>
+
+
 ##### -storage-directory
 
 <div class="doc-cmdref-param-aliases">-storage-directory &lt;path&gt;
@@ -79,26 +99,6 @@ Note that only a single daemon can be running in a given storage directory.
 Flag that specifies whether or not the daemon should act as a server.
 A server daemon can accept incoming connections from any network addresses.
 A non-server daemon can only accept connections from the localhost.
-
-</div>
-
-
-##### -port
-
-<div class="doc-cmdref-param-aliases">-port &lt;int[0-65535]&gt;
-</div>
-
-<div class="doc-cmdref-param-flags">
-</div>
-
-<div class="doc-cmdref-param-doc">
-
-Specifies the port on which the daemon should listen for incoming connections.
-
-If the port is 0, it will be assigned by the operating system, therefore 
-it may be random.
-
-If not specified, the default port of 3500 will be used.
 
 </div>
 
@@ -189,6 +189,30 @@ number of threads when dealing with multi-threaded worker threads.
 
 If unspecified, 0, or negative, the thread factor will be determined in an
 implementation dependent manner. (Usually based on the number of cores the CPU has.)
+
+</div>
+
+
+##### -connect-client
+
+<div class="doc-cmdref-param-aliases">-connect-client &lt;address&gt;
+</div>
+
+<div class="doc-cmdref-param-flags">
+Multi-parameter. 
+</div>
+
+<div class="doc-cmdref-param-doc">
+
+Specifies the network addresses of server daemons to which 
+the daemon should connect to as a client.
+
+The build daemon will attempt to connect to the specified daemons as clients. 
+This can be useful if the daemon can act as a cluster as the server daemon can 
+automatically use this one to participate in builds.
+
+The connected clients can be used as clusters for build execution by using the 
+-cluster-use-clients flag.
 
 </div>
 

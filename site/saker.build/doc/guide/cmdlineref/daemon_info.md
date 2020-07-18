@@ -48,5 +48,7 @@ The address of the daemon to connect to.
 If the daemon is not running at the given address, or doesn't accept
 client connections then an exception will be thrown.
 
+If not specified, information about locally running daemons will be printed.
+
 </div>
 

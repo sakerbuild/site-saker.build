@@ -462,7 +462,7 @@ Multi-parameter.
 
 <div class="doc-cmdref-param-doc">
 
-Specifies a daemon connection that should be used as a cluster for the build
+Specifies a daemon connection that should be used as a cluster for the build.
 
 This parameter adds connection specified by the given name as cluster to
 the build execution. Clusters can be used to execute a build over multiple
@@ -476,6 +476,26 @@ Connections can be specified using the -connect parameter.
 This parameter can be specified multiple times.
 Specifying a connection multiple times as a cluster has no additional
 effects.
+
+</div>
+
+
+##### -cluster-use-clients
+
+<div class="doc-cmdref-param-aliases">-cluster-use-clients
+</div>
+
+<div class="doc-cmdref-param-flags">
+</div>
+
+<div class="doc-cmdref-param-doc">
+
+Flag to specify to use the connected clients of the used daemon as clusters.
+
+If the daemon that is used for build execution has other clients connected
+to it, then they will be used as clusters for this build execution.
+
+The default is false.
 
 </div>
 
@@ -570,6 +590,26 @@ See -daemon parameter flag.
 </div>
 
 
+##### -daemon-port
+
+<div class="doc-cmdref-param-aliases">-daemon-port &lt;int[0-65535]&gt;
+</div>
+
+<div class="doc-cmdref-param-flags">
+</div>
+
+<div class="doc-cmdref-param-doc">
+
+Specifies the port on which the daemon should listen for incoming connections.
+
+If the port is 0, it will be assigned by the operating system, therefore 
+it may be random.
+
+If not specified, the default port of 3500 will be used.
+
+</div>
+
+
 ##### -daemon-storage-directory
 
 <div class="doc-cmdref-param-aliases">-daemon-storage-directory &lt;path&gt;
@@ -603,26 +643,6 @@ Note that only a single daemon can be running in a given storage directory.
 Flag that specifies whether or not the daemon should act as a server.
 A server daemon can accept incoming connections from any network addresses.
 A non-server daemon can only accept connections from the localhost.
-
-</div>
-
-
-##### -daemon-port
-
-<div class="doc-cmdref-param-aliases">-daemon-port &lt;int[0-65535]&gt;
-</div>
-
-<div class="doc-cmdref-param-flags">
-</div>
-
-<div class="doc-cmdref-param-doc">
-
-Specifies the port on which the daemon should listen for incoming connections.
-
-If the port is 0, it will be assigned by the operating system, therefore 
-it may be random.
-
-If not specified, the default port of 3500 will be used.
 
 </div>
 
@@ -819,27 +839,6 @@ monitors the build.
 This can be used for local builds and is not recommended
 for builds running on a Continuous Integration server or where
 the developer has no opportunity to provide manual input.
-
-</div>
-
-
-##### -deadlock-polling-millis
-
-<div class="doc-cmdref-param-aliases">-deadlock-polling-millis &lt;long&gt;
-</div>
-
-<div class="doc-cmdref-param-flags">
-</div>
-
-<div class="doc-cmdref-param-doc">
-
-Specifies the interval of the polling based deadlock detection mechanism.
-
-The build system actively detects any deadlocks occurring during task
-executions. The waiting tasks will be woken up in regular intervals based
-on this parameter.
-
-The value is expected in milliseconds, default is 3000 (3 seconds).
 
 </div>
 
