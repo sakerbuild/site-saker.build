@@ -45,7 +45,13 @@ You can name your token any way that you'd like, its just for informational purp
 
 #### Back to the project
 
-If you've checked out the example repository, you can build your project by running the following command:
+If you've checked out the example repository, you first need to download the latest release of saker.build:
+
+```plaintext
+curl -L https://api.nest.saker.build/bundle/download/saker.build-v#MACRO_VERSION_SAKER_BUILD -o saker.build.jar
+```
+
+Then you can build your project by running the following command:
 
 ```plaintext
 java -jar saker.build.jar -bd build export
