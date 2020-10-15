@@ -484,6 +484,8 @@ input.vis-toggle + label.vis-toggle + div {
 }
 .custom-value-show-toggle {
 	width: 100%;
+	white-space: nowrap;
+    word-break: keep-all;
 }
 .script-details-show-toggle:hover, .custom-value-show-toggle:hover {
 	background-color: var(--task-row-entry-hover-color);
@@ -873,11 +875,26 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 	width: 100%;
 	white-space: normal;
 }
+
+.trace-custom-value-str-cols-container {
+	display: inline-table;
+}
+.trace-custom-value-str-col1 {
+	min-width: 280px;
+	padding-right: 10px;
+	display: table-cell;
+}
+.trace-custom-value-str-col2 {
+	word-break: break-word;
+	display: table-cell;
+	white-space: normal;
+}
+
 #page-summary .trace-custom-value-map>tbody>tr>td:first-child {
 	min-width: 290px;
 	padding-right: 10px !important;
 }
-.trace-custom-value-map>tbody>tr>td:first-child {
+.trace-custom-value-map>tbody>tr>td:first-child:not(::only-child) {
 	white-space: nowrap;
 	word-break: break-all;
 }
@@ -3432,8 +3449,28 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 							.addClass('custom-value-show-toggle')
 							.addClass('vis-toggle')
 							.attr('for', 'toggle-custom-value-' + cvalid)
-							.text(k)
 						);
+						let tabidx = k.indexOf('\t');
+						if (tabidx >= 0) {
+							vallabel
+							.append(
+								$(document.createElement('span'))
+								.addClass('trace-custom-value-str-cols-container')
+								.append(
+									$(document.createElement('span'))
+									.addClass('trace-custom-value-str-col1')
+									.text(k.substring(0, tabidx))
+								)
+								.append(
+									$(document.createElement('span'))
+									.addClass('trace-custom-value-str-col2')
+									.text(k.substring(tabidx + 1))
+								)
+							);
+						} else {
+							vallabel.text(k);
+						}
+						
 						
 						let cvaldiv = document.createElement('div');
 						let cvaldivjq = $(cvaldiv);
@@ -3447,12 +3484,58 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 						}
 						tr.append(td);
 					} else {
-						let td2 = $(document.createElement('td'));
-						appendSingleCustomValueView(v, td2);
-						tr.append(
-							$(document.createElement('td')).text(k)
-						);
-						tr.append(td2);
+						let tabidx = k.indexOf('\t');
+						if (tabidx >= 0) {
+							//use two columns and a row below for the content
+							let td = $(document.createElement('td'))
+								.attr('colspan', 2);
+								
+							let cvalid = customValueIdCounter++;
+						
+							let vallabel = $(document.createElement('label'));
+							td.append(
+								$(document.createElement('input'))
+								.attr('type', 'checkbox')
+								.attr('checked', '')
+								.addClass('vis-toggle')
+								.attr('id', 'toggle-custom-value-' + cvalid)
+							)
+							.append(
+								vallabel
+								.addClass('custom-value-show-toggle')
+								.addClass('vis-toggle')
+								.attr('for', 'toggle-custom-value-' + cvalid)
+							);
+								
+							vallabel.append(
+								$(document.createElement('span'))
+								.addClass('trace-custom-value-str-cols-container')
+								.append(
+									$(document.createElement('span'))
+									.addClass('trace-custom-value-str-col1')
+									.text(k.substring(0, tabidx))
+								)
+								.append(
+									$(document.createElement('span'))
+									.addClass('trace-custom-value-str-col2')
+									.text(k.substring(tabidx + 1))
+								)
+							);
+							let subtd = $(document.createElement('td'))
+								.attr('colspan', 2);
+							let cvaldiv = document.createElement('div');
+							let cvaldivjq = $(cvaldiv);
+							appendSingleCustomValueView(v, cvaldivjq);
+							td.append(cvaldivjq);
+							tr.append(td);
+						} else {
+							tr.append(
+								$(document.createElement('td')).text(k)
+							);
+							let td2 = $(document.createElement('td'));
+							appendSingleCustomValueView(v, td2);
+							tr.append(td2);
+						}
 					}
 					tbody.append(tr);
 				});
