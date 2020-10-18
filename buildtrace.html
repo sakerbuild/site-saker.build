@@ -413,9 +413,6 @@ input.vis-toggle:checked + label.vis-toggle.vis-toggle-side-arrow:not(.vis-toggl
 	border-top: 0em solid transparent;
 	border-bottom: 0.4em solid var(--color-doc-section-arrow);
 }
-label.vis-toggle.custom-value-empty:before {
-	visibility: hidden;
-}
 label.vis-toggle {
 	cursor: pointer;
 	display: block;
@@ -429,6 +426,11 @@ input.vis-toggle:not(:checked) + label.vis-toggle + div {
 input.vis-toggle + label.vis-toggle + div {
     margin-left: var(--vis-toggled-margin-left);
 }
+
+.trace-custom-values td:first-child:not(.trace-value-toggleable), .trace-custom-child {
+	padding-left: var(--vis-toggled-margin-left) !important;
+}
+
 .task-details-properties-table {
 	width: 100%;
 }
@@ -809,9 +811,11 @@ tr.trace-summary-embed-table-p2>td:first-child {
 }
 
 .trace-file-node {
+	word-break: break-all;
 }
 .trace-file-leaf {
 	margin-left: var(--vis-toggled-margin-left);
+	word-break: break-all;
 }
 .trace-file-children {
 	border-left: 3px solid var(--task-row-entry-hover-color);
@@ -902,6 +906,9 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 	min-width: calc(200px - 1.4em);
 	padding-left: 0px;
 }
+.task-details-properties-table .trace-custom-value-str-col1 {
+	min-width: calc(200px - 1.4em);
+}
 .trace-custom-value-exc_stacktrace {
 	cursor: pointer;
 	font-family: var(--font-family-code);
@@ -910,6 +917,8 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 .trace-custom-value-exc_stacktrace:hover {
 	background-color: var(--task-row-entry-hover-color);
 }
+
+
 
 </style>
 
@@ -2303,7 +2312,7 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 		let timeline = createTaskListTimeline(bt, timelinetasks);
 		
 		let timelinecontroljq = $(createTimelineControl());
-		timelinecontroljq.attr('data-timeline-title', 'Build tasks timeline');
+		timelinecontroljq.attr('data-timeline-title', 'Build timeline');
 		
 		fillTimelineControl(bt, timeline, timelinecontroljq);
 		
@@ -2430,26 +2439,25 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 							.addClass('task-details-properties-table');
 						let detailtbody = $(document.createElement('tbody'));
 						detailtable.append(detailtbody);
+						let timingtd = $(document.createElement('td'));
+						let timingnametd = $(document.createElement('td'))
+							.attr('data-tooltip', 'The timing information of the task execution.');
+						if (isuptodate) {
+							timingtd.attr('data-tooltip', 'The task wasn\'t run, no inputs or outputs were modified.');
+							timingtd.text(`Up to date`);
+							timingnametd.text('Status');
+						} else {
+							timingtd.attr('data-tooltip', 'Format: Start - End (Duration)');
+							timingtd.text(`${toTimeDisplay(task.start)} - ${toTimeDisplay(task.end)} (${toTimeDisplay(task.end - task.start)})`);
+							timingnametd.text('Timing');
+						}
 						detailtbody.append(
 								$(document.createElement('tr'))
 								.append(
-									$(document.createElement('td'))
-									.text('Start time')
-									.attr('data-tooltip', 'The elapsed time between build start and the beginning of the task execution.')
+									timingnametd
 								)
-								.append($(document.createElement('td')).text(toTimeDisplay(task.start)))
+								.append(timingtd)
 							);
-						if (isuptodate) {
-							detailtbody.append(
-									$(document.createElement('tr'))
-									.append($(document.createElement('td')).text('Status'))
-									.append(
-										$(document.createElement('td'))
-										.text('Up to date')
-										.attr('data-tooltip', 'The task wasn\'t run, no inputs or outputs were modified.')
-									)
-								);
-						}
 						if (task.task_class != null) {
 							detailtbody.append(
 								$(document.createElement('tr'))
@@ -3367,7 +3375,8 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 				.addClass('trace-custom-list-list');
 			value.forEach(function(v){
 				let entrydiv = $(document.createElement('div'))
-					.addClass('trace-custom-list-entry');
+					.addClass('trace-custom-list-entry')
+					.addClass('trace-custom-child');
 				appendSingleCustomValueView(v, entrydiv);
 				listdivjq.append(entrydiv);
 			});
@@ -3417,11 +3426,8 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 						$(`#page-exceptions .exceptions-table .task-row-entry:not([data-exc-trace-id="${ value.trace_id }"])`).removeClass('data-entry-open');
 						$(`#page-exceptions .exceptions-table .task-row-entry[data-exc-trace-id="${ value.trace_id }"]`).addClass('data-entry-open')[0].scrollIntoView();
 						console.log(value);
-					})
-				;
-				container.append(
-					icon
-				);
+					});
+				container.append(icon);
 			} else {
 				let table = $(document.createElement('table'))
 					.addClass('trace-custom-value-map');
@@ -3430,31 +3436,15 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 				$.each(value, function(k, v) {
 					++elemcount;
 					let tr = $(document.createElement('tr'));
-					if (Array.isArray(v) || (typeof v === 'object' && v.__bt_type == null)) {
+					if ((Array.isArray(v) && v.length > 0) || (typeof v === 'object' && v.__bt_type == null && Object.keys(v).length > 0)) {
 						let td = $(document.createElement('td'))
 							.attr('colspan', 2);
 						//TODO style more, and visibility toggle
 						
-						let cvalid = customValueIdCounter++;
-						
-						let vallabel = $(document.createElement('label'));
-						td.append(
-							$(document.createElement('input'))
-							.attr('type', 'checkbox')
-							.addClass('vis-toggle')
-							.attr('id', 'toggle-custom-value-' + cvalid)
-						)
-						.append(
-							vallabel
-							.addClass('custom-value-show-toggle')
-							.addClass('vis-toggle')
-							.attr('for', 'toggle-custom-value-' + cvalid)
-						);
 						let tabidx = k.indexOf('\t');
+						let text;
 						if (tabidx >= 0) {
-							vallabel
-							.append(
-								$(document.createElement('span'))
+							text = $(document.createElement('span'))
 								.addClass('trace-custom-value-str-cols-container')
 								.append(
 									$(document.createElement('span'))
@@ -3465,12 +3455,10 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 									$(document.createElement('span'))
 									.addClass('trace-custom-value-str-col2')
 									.text(k.substring(tabidx + 1))
-								)
-							);
+								);
 						} else {
-							vallabel.text(k);
+							text = document.createTextNode(k);
 						}
-						
 						
 						let cvaldiv = document.createElement('div');
 						let cvaldivjq = $(cvaldiv);
@@ -3478,9 +3466,21 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 						appendSingleCustomValueView(v, cvaldivjq);
 						
 						if (cvaldiv.hasChildNodes()) {
+							let cvalid = customValueIdCounter++;
+							let valinput = $(document.createElement('input'))
+								.attr('type', 'checkbox')
+								.addClass('vis-toggle')
+								.attr('id', 'toggle-custom-value-' + cvalid);
+							let vallabel = $(document.createElement('label'))
+								.addClass('custom-value-show-toggle')
+								.addClass('vis-toggle')
+								.attr('for', 'toggle-custom-value-' + cvalid);
+							td.append(valinput).append(vallabel);
+							vallabel.append(text);
 							td.append(cvaldivjq);
+							td.addClass('trace-value-toggleable');
 						} else {
-							vallabel.addClass('custom-value-empty');
+							td.append(text);
 						}
 						tr.append(td);
 					} else {
@@ -3490,25 +3490,7 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 							let td = $(document.createElement('td'))
 								.attr('colspan', 2);
 								
-							let cvalid = customValueIdCounter++;
-						
-							let vallabel = $(document.createElement('label'));
-							td.append(
-								$(document.createElement('input'))
-								.attr('type', 'checkbox')
-								.attr('checked', '')
-								.addClass('vis-toggle')
-								.attr('id', 'toggle-custom-value-' + cvalid)
-							)
-							.append(
-								vallabel
-								.addClass('custom-value-show-toggle')
-								.addClass('vis-toggle')
-								.attr('for', 'toggle-custom-value-' + cvalid)
-							);
-								
-							vallabel.append(
-								$(document.createElement('span'))
+							let text = $(document.createElement('span'))
 								.addClass('trace-custom-value-str-cols-container')
 								.append(
 									$(document.createElement('span'))
@@ -3519,14 +3501,36 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 									$(document.createElement('span'))
 									.addClass('trace-custom-value-str-col2')
 									.text(k.substring(tabidx + 1))
-								)
-							);
-							let subtd = $(document.createElement('td'))
-								.attr('colspan', 2);
+								);
+							
 							let cvaldiv = document.createElement('div');
-							let cvaldivjq = $(cvaldiv);
+							let cvaldivjq = $(cvaldiv)
+								.addClass('trace-custom-child');
 							appendSingleCustomValueView(v, cvaldivjq);
-							td.append(cvaldivjq);
+							
+							if (cvaldiv.hasChildNodes()) {
+								let cvalid = customValueIdCounter++;
+							
+								let valinput = $(document.createElement('input'))
+									.attr('type', 'checkbox')
+									.addClass('vis-toggle')
+									.attr('id', 'toggle-custom-value-' + cvalid);
+								let vallabel = $(document.createElement('label'))
+									.addClass('custom-value-show-toggle')
+									.addClass('vis-toggle')
+									.attr('for', 'toggle-custom-value-' + cvalid);
+								if (typeof v === 'object' && v.__bt_type == 'exception_stacktrace') {
+									//auto-open if the value is an exception
+									valinput.attr('checked', '');
+								}
+								td.append(valinput).append(vallabel);
+								vallabel.append(text);
+								td.append(cvaldivjq);
+								td.addClass('trace-value-toggleable');
+							} else {
+								td.append(text);
+							}
+							
 							tr.append(td);
 						} else {
 							tr.append(
