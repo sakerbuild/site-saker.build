@@ -272,6 +272,8 @@
  types are the following:
  <ul>
  <li><span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="class java.lang.String" data-javadoc-kind="class">String</a></span>, or <span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/CharSequence.html" title="interface java.lang.CharSequence" data-javadoc-kind="interface">CharSequence</a></span> instances.</li>
+ <li><span class="javadoc-code-ref"><a href="../file/path/SakerPath.html" title="class saker.build.file.path.SakerPath" data-javadoc-kind="class">SakerPath</a></span>, <span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/nio/file/Path.html" title="interface java.nio.file.Path" data-javadoc-kind="interface">Path</a></span>, <span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/net/URL.html" title="class java.net.URL" data-javadoc-kind="class">URL</a></span>, <span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/net/URI.html" title="class java.net.URI" data-javadoc-kind="class">URI</a></span> are converted to <span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="class java.lang.String" data-javadoc-kind="class">String</a></span>. (Since saker.build
+ 0.8.16)</li>
  <li>Boxed primitive numbers and <code>boolean</code>.</li>
  <li>Arrays of other values.</li>
  <li><span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Collection.html" title="interface java.util.Collection" data-javadoc-kind="interface">Collections</a></span> and <span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html" title="interface java.lang.Iterable" data-javadoc-kind="interface">Iterables</a></span> of other values.</li>
@@ -287,6 +289,9 @@
  <p>
  The specified category determines where the given values are displayed in the build trace. See the
  <code>VALUE_CATEGORY_*</code> constants for their placement.
+ <p>
+ String keys serving as names in the rendered build trace may contain the <code>\t</code> character in which case
+ they are displayed in two separate columns when appropriate.
  <p>
  <b>Note:</b> Although this method takes a map with wildcard key type as its argument, only <span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="class java.lang.String" data-javadoc-kind="class">String</a></span> keys
  are supported. It is wildcard for compatibility as we may support non-string keys in the future.</div><div class="javadoc-method-detail-params javadoc-blocktag-section"><div class="javadoc-method-detail-param"><span class="javadoc-method-detail-param-name">values</span><span class="javadoc-method-detail-param-detail">The values to set. If any value in the map is <code>null</code>, the recorded value with the given
