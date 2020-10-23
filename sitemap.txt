@@ -718,6 +718,7 @@ https://saker.build/saker.build/javadoc/saker/build/thirdparty/saker/rmi/excepti
 https://saker.build/saker.build/javadoc/saker/build/thirdparty/saker/rmi/exception/RMICallForbiddenException.html
 https://saker.build/saker.build/javadoc/saker/build/thirdparty/saker/rmi/exception/RMIIOFailureException.html
 https://saker.build/saker.build/javadoc/saker/build/thirdparty/saker/rmi/exception/RMIInvalidConfigurationException.html
+https://saker.build/saker.build/javadoc/saker/build/thirdparty/saker/rmi/exception/RMIListenerException.html
 https://saker.build/saker.build/javadoc/saker/build/thirdparty/saker/rmi/exception/RMIObjectTransferFailureException.html
 https://saker.build/saker.build/javadoc/saker/build/thirdparty/saker/rmi/exception/RMIProxyCreationFailedException.html
 https://saker.build/saker.build/javadoc/saker/build/thirdparty/saker/rmi/exception/RMIRuntimeException.html
