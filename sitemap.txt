@@ -707,6 +707,7 @@ https://saker.build/saker.build/javadoc/saker/build/thirdparty/saker/rmi/connect
 https://saker.build/saker.build/javadoc/saker/build/thirdparty/saker/rmi/connection/RMIOptions.html
 https://saker.build/saker.build/javadoc/saker/build/thirdparty/saker/rmi/connection/RMIServer.html
 https://saker.build/saker.build/javadoc/saker/build/thirdparty/saker/rmi/connection/RMIShutdownRequestDeniedException.html
+https://saker.build/saker.build/javadoc/saker/build/thirdparty/saker/rmi/connection/RMISocketConfiguration.html
 https://saker.build/saker.build/javadoc/saker/build/thirdparty/saker/rmi/connection/RMIStatistics.MethodStatistics.html
 https://saker.build/saker.build/javadoc/saker/build/thirdparty/saker/rmi/connection/RMIStatistics.html
 https://saker.build/saker.build/javadoc/saker/build/thirdparty/saker/rmi/connection/RMITransferProperties.Builder.html
@@ -1500,6 +1501,7 @@ https://saker.build/saker.rmi/javadoc/saker/rmi/connection/RMIConnection.html
 https://saker.build/saker.rmi/javadoc/saker/rmi/connection/RMIOptions.html
 https://saker.build/saker.rmi/javadoc/saker/rmi/connection/RMIServer.html
 https://saker.build/saker.rmi/javadoc/saker/rmi/connection/RMIShutdownRequestDeniedException.html
+https://saker.build/saker.rmi/javadoc/saker/rmi/connection/RMISocketConfiguration.html
 https://saker.build/saker.rmi/javadoc/saker/rmi/connection/RMIStatistics.MethodStatistics.html
 https://saker.build/saker.rmi/javadoc/saker/rmi/connection/RMIStatistics.html
 https://saker.build/saker.rmi/javadoc/saker/rmi/connection/RMITransferProperties.Builder.html
