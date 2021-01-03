@@ -1088,6 +1088,7 @@ https://saker.build/saker.java.compiler/javadoc/saker/java/compiler/api/modulepa
 https://saker.build/saker.java.compiler/javadoc/saker/java/compiler/api/modulepath/SDKModulePath.html
 https://saker.build/saker.java.compiler/javadoc/saker/java/compiler/api/modulepath/index.html
 https://saker.build/saker.java.compiler/javadoc/saker/java/compiler/api/option/JavaAddExports.html
+https://saker.build/saker.java.compiler/javadoc/saker/java/compiler/api/option/JavaAddReads.html
 https://saker.build/saker.java.compiler/javadoc/saker/java/compiler/api/option/index.html
 https://saker.build/saker.java.compiler/javadoc/saker/java/compiler/api/processing/SakerElementsTypes.html
 https://saker.build/saker.java.compiler/javadoc/saker/java/compiler/api/processing/SakerFiler.html
