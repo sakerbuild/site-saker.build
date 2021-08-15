@@ -5,7 +5,7 @@ import sys
 import multiprocessing
 
 if len(sys.argv) < 2:
-    print "Invalid arguments. (" + str(sys.argv) + ")"
+    print("Invalid arguments. (" + str(sys.argv) + ")")
     exit(-1)
 
 if sys.argv[1] != "" :
@@ -23,5 +23,5 @@ for r in rels:
     search = PATTERN.search(r.tag_name)
     if search :
         version = search.group(1)
-        print version
+        print(version)
 
