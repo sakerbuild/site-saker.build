@@ -20,7 +20,7 @@ def downloadSite(arg):
     asset = arg['asset']
     version = arg['version']
     print("Downloading: " + version + " from " + asset.browser_download_url)
-    urllib.urlretrieve(asset.browser_download_url, "site-v" + version + ".zip")
+    urllib.request.urlretrieve(asset.browser_download_url, "site-v" + version + ".zip")
 
 pool = multiprocessing.Pool(16);
 
