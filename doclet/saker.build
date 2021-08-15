@@ -9,7 +9,7 @@ compile(
 			saker.java.classpath.bundle(static(DOCLET_DEPENDENCIES))
 		],
 		SDKs: {
-			Java: saker.java.sdk([9, 10, 11, 12, 13, 14])
+			Java: saker.java.sdk([9])
 		},
 	)
 }
