@@ -1852,9 +1852,13 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 	
 	function toTimeDisplay(time) {
 		let result = [];
+		if (time > 3600000) {
+			//more than 1 hour
+			result.push(Math.floor((time) / 3600000) + "h");
+		}
 		if (time > 60000) {
 			//more than 1 min
-			result.push(Math.floor((time) / 60000) + "m");
+			result.push(Math.floor((time % 3600000) / 60000) + "m");
 		}
 		result.push(((time % 60000) / 1000).toFixed(3) + "s");
 		return result.join(' ');

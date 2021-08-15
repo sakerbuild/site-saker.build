@@ -1096,6 +1096,9 @@ https://saker.build/saker.java.compiler/javadoc/saker/java/compiler/api/processi
 https://saker.build/saker.java.compiler/javadoc/saker/java/compiler/api/processing/SakerProcessingEnvironment.html
 https://saker.build/saker.java.compiler/javadoc/saker/java/compiler/api/processing/SakerRoundEnvironment.html
 https://saker.build/saker.java.compiler/javadoc/saker/java/compiler/api/processing/exc/ElementKindNotFoundException.html
+https://saker.build/saker.java.compiler/javadoc/saker/java/compiler/api/processing/exc/ElementTypeNotFoundException.html
+https://saker.build/saker.java.compiler/javadoc/saker/java/compiler/api/processing/exc/EnumerationArrayNotFoundException.html
+https://saker.build/saker.java.compiler/javadoc/saker/java/compiler/api/processing/exc/EnumerationNotFoundException.html
 https://saker.build/saker.java.compiler/javadoc/saker/java/compiler/api/processing/exc/ModifierNotFoundException.html
 https://saker.build/saker.java.compiler/javadoc/saker/java/compiler/api/processing/exc/SourceVersionNotFoundException.html
 https://saker.build/saker.java.compiler/javadoc/saker/java/compiler/api/processing/exc/index.html
