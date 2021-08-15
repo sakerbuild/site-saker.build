@@ -5,7 +5,7 @@ import sys
 import multiprocessing
 
 if len(sys.argv) != 2:
-    print("Invalid arguments. (" + str(sys.argv) + "))
+    print("Invalid arguments. (" + str(sys.argv) + ")")
     exit(-1)
 
 g = Github(sys.argv[1])
