@@ -1117,6 +1117,9 @@ https://saker.build/saker.java.compiler/taskdoc/types/AddExportsModuleName.html
 https://saker.build/saker.java.compiler/taskdoc/types/AddExportsPackageName.html
 https://saker.build/saker.java.compiler/taskdoc/types/AddExportsPathTaskOption.html
 https://saker.build/saker.java.compiler/taskdoc/types/AddExportsTargetModuleName.html
+https://saker.build/saker.java.compiler/taskdoc/types/AddReadsModuleName.html
+https://saker.build/saker.java.compiler/taskdoc/types/AddReadsPathTaskOption.html
+https://saker.build/saker.java.compiler/taskdoc/types/AddReadsRequiresOption.html
 https://saker.build/saker.java.compiler/taskdoc/types/AnnotationProcessorClassName.html
 https://saker.build/saker.java.compiler/taskdoc/types/AnnotationProcessorOptionName.html
 https://saker.build/saker.java.compiler/taskdoc/types/AnnotationProcessorOptionValue.html
