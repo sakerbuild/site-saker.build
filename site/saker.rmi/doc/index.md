@@ -4,7 +4,7 @@ Saker.rmi is a Java library that provides RMI (Remote Method Invocation) functio
 
 The goal of Saker.rmi was to develop an RMI library that supports the following features:
 
-* **Cooperation.** The main design point was that the connection endpoints should call each others functions. The method calls are also back-dispatched to the originating threads, therefore `synchronized` blocks don't deadlock in case of issueing new requests when serving one.
+* **Cooperation.** The main design point was that the connection endpoints should call each others functions. The method calls are also back-dispatched to the originating threads, therefore `synchronized` blocks don't deadlock in case of issuing new requests when serving one.
 * **Transparency.** The code that calls RMI proxy methods don't have to know that its calling an RMI proxy method. The proxies work the same way as if the objects were in the same JVM.
 * **Automatic proxy creation.** The RMI proxies used in an RMI connection are automatically created, no additional declarations necessary on the possible proxy interfaces.
 * **Ease of transfer configuration.** You can easily customize how a given object is transferred over an RMI connection by either annotating the associated `interface`, or setting them directly on the connection.
