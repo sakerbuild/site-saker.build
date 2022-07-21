@@ -31,7 +31,7 @@ If the `storage-name` part of a parameter equals to `repository`, then the param
 
 The following parameters can be used to configure the the overall repository runtime.
 
-#### `storage.configuration`
+#### `repository.storage.configuration`
 
 The parameter specifies the storages that should be used during the operation with the repository. It defines how the repository will find, look up, and load bundles.
 
@@ -127,7 +127,7 @@ The configuration value format allows the type for repeating declarations to be 
 "[[p5:params, l:], [p6:params, l:local]]"
 ```
 
-#### `constraint.force.jre.major`
+#### `repository.constraint.force.jre.major`
 
 Parameter for overriding the default Java Runtime version [dependency constraint](constraints.md).
 
@@ -137,7 +137,7 @@ disable the JRE major version constraint.
 
 The default value is the current Java Runtime major version.
 
-#### `constraint.force.architecture`
+#### `repository.constraint.force.architecture`
 
 Parameter for overriding the native architecture [dependency constraint](constraints.md).
 
@@ -145,7 +145,7 @@ The value of the parameter may be any arbitrary string that corresponds to a val
 
 The default value is the current value of the `"os.arch"` system property.
 
-#### `constraint.force.repo.version`
+#### `repository.constraint.force.repo.version`
 
 Parameter for overriding the Nest repository version [dependency constraint](constraints.md).
 
@@ -153,7 +153,7 @@ The value of the parameter must be a valid [version number](versioning.md). It w
 
 The default value is the current full version of the Nest repository.
 
-#### `constraint.force.buildsystem.version`
+#### `repository.constraint.force.buildsystem.version`
 
 Parameter for overriding the saker.build system version [dependency constraint](constraints.md).
 
@@ -161,7 +161,7 @@ The value of the parameter must be a valid [version number](versioning.md). It w
 
 The default value is the current full version of the saker.build system.
 
-#### `pin.task.version`
+#### `repository.pin.task.version`
 
 Parameter for pinning a specific task version.
 
