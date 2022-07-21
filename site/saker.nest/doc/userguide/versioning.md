@@ -36,7 +36,7 @@ If a version number is prefixed with the character `'v'`, then it is considered 
 A version range is a specification of allowed version numbers for a given use-case. They are often used when declaring [bundle dependencies](../devguide/dependencies.md). When a specification is interpreted as a *version range*, it can consist of the following elements:
 
 * **Number**: A version number as defined above. E.g. `1.2.3`\
-Numbers without any enclosing range declaration will allow any versions that start with the given number. E.g. the input `1.2` allows `1.2`, `1.2.0`, `1.2.1`, and any following version numbers up until `1.3`.
+Numbers without any enclosing range declaration will allow any versions that start with the given number. E.g. the input `1.2` allows `1.2`, `1.2.0`, `1.2.1`, and any following version numbers up until (but not including) `1.3`.
 * **Range**: Two version numbers separated by comma (`','`) enclosed in either parentheses (`'('` and `')'`) or brackets (`'['` and `']'`). The kind of enclosing characters may be used together. The enclosing characters correspond to the same semantics as in the notation used by intervals in mathematics. (Parentheses for open ended (exclusive) ranges, and brackets for closed (inclusive) ranges.)\
 The right side of the range must be greater than the left side.\
 E.g. `[1, 2)` includes any version starting from `1` and is smaller than `2`.
