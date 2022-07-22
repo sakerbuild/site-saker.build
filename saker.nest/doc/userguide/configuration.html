@@ -119,7 +119,7 @@
 <p>If the <code>storage-name</code> part of a parameter equals to <code>repository</code>, then the parameter will apply to the overall repository configuration instead of the storage with the given name.</p>
 <h3 id="repository-parameters">Repository parameters<a class="doc-heading-anchor" href="#repository-parameters"></a></h3>
 <p>The following parameters can be used to configure the the overall repository runtime.</p>
-<h4 id="storage_configuration"><code>storage.configuration</code><a class="doc-heading-anchor" href="#storage_configuration"></a></h4>
+<h4 id="repository_storage_configuration"><code>repository.storage.configuration</code><a class="doc-heading-anchor" href="#repository_storage_configuration"></a></h4>
 <p>The parameter specifies the storages that should be used during the operation with the repository. It defines how the repository will find, look up, and load bundles.</p>
 <p>The value of this parameter contains the configured storage names and their types. They can be specified in a <code>&lt;name&gt;:&lt;type&gt;</code> format where the name must only contains alphabetic (<code>a-z</code>, <code>A-Z</code>), numberic (<code>0-9</code>), or underscore (<code>_</code>) characters. The type must be one of <code>server</code>, <code>local</code>, or <code>params</code>.</p>
 <p>Multiple storage declarations can be specified in a list that is enclosed in brackets (<code>[</code>, <code>]</code>) and separated by commas (<code>,</code>). The list declarations can be nested. These subsequent storage declarations define the lookup behaviour assigned to each configuration.</p>
@@ -171,25 +171,25 @@
 &quot;[[p5:params, l:local], [p6:params, l:]]&quot;
 &quot;[[p5:params, l:], [p6:params, l:local]]&quot;
 </code></pre>
-<h4 id="constraint_force_jre_major"><code>constraint.force.jre.major</code><a class="doc-heading-anchor" href="#constraint_force_jre_major"></a></h4>
+<h4 id="repository_constraint_force_jre_major"><code>repository.constraint.force.jre.major</code><a class="doc-heading-anchor" href="#repository_constraint_force_jre_major"></a></h4>
 <p>Parameter for overriding the default Java Runtime version <a href="constraints.html" title="Constraint properties">dependency constraint</a>.</p>
 <p>The value of the parameter must be an integer that is greater or equals to 1. It will be used to constrain
 dependencies and bundle loading instead of the default value. Set it to <code>&quot;null&quot;</code> or empty string to
 disable the JRE major version constraint.</p>
 <p>The default value is the current Java Runtime major version.</p>
-<h4 id="constraint_force_architecture"><code>constraint.force.architecture</code><a class="doc-heading-anchor" href="#constraint_force_architecture"></a></h4>
+<h4 id="repository_constraint_force_architecture"><code>repository.constraint.force.architecture</code><a class="doc-heading-anchor" href="#repository_constraint_force_architecture"></a></h4>
 <p>Parameter for overriding the native architecture <a href="constraints.html" title="Constraint properties">dependency constraint</a>.</p>
 <p>The value of the parameter may be any arbitrary string that corresponds to a valid native architecture. (e.g. <code>&quot;x86&quot;</code>, <code>&quot;amd64&quot;</code>) It is used to constrain dependencies and bundle loading instead of the default value. Set it to <code>&quot;null&quot;</code> or empty string to disable the native architecture constraint.</p>
 <p>The default value is the current value of the <code>&quot;os.arch&quot;</code> system property.</p>
-<h4 id="constraint_force_repo_version"><code>constraint.force.repo.version</code><a class="doc-heading-anchor" href="#constraint_force_repo_version"></a></h4>
+<h4 id="repository_constraint_force_repo_version"><code>repository.constraint.force.repo.version</code><a class="doc-heading-anchor" href="#repository_constraint_force_repo_version"></a></h4>
 <p>Parameter for overriding the Nest repository version <a href="constraints.html" title="Constraint properties">dependency constraint</a>.</p>
 <p>The value of the parameter must be a valid <a href="versioning.html" title="Versioning">version number</a>. It will be used to constrain dependencies and bundle loading instead of the default value. Set it to <code>&quot;null&quot;</code> or empty string to disable the repository version version constraint.</p>
 <p>The default value is the current full version of the Nest repository.</p>
-<h4 id="constraint_force_buildsystem_version"><code>constraint.force.buildsystem.version</code><a class="doc-heading-anchor" href="#constraint_force_buildsystem_version"></a></h4>
+<h4 id="repository_constraint_force_buildsystem_version"><code>repository.constraint.force.buildsystem.version</code><a class="doc-heading-anchor" href="#repository_constraint_force_buildsystem_version"></a></h4>
 <p>Parameter for overriding the saker.build system version <a href="constraints.html" title="Constraint properties">dependency constraint</a>.</p>
 <p>The value of the parameter must be a valid <a href="versioning.html" title="Versioning">version number</a>. It will be used to constrain dependencies and bundle loading instead of the default value. Set it to <code>&quot;null&quot;</code> or empty string to disable the build system version version constraint.</p>
 <p>The default value is the current full version of the saker.build system.</p>
-<h4 id="pin_task_version"><code>pin.task.version</code><a class="doc-heading-anchor" href="#pin_task_version"></a></h4>
+<h4 id="repository_pin_task_version"><code>repository.pin.task.version</code><a class="doc-heading-anchor" href="#repository_pin_task_version"></a></h4>
 <p>Parameter for pinning a specific task version.</p>
 <p>The value of the parameter is a semicolon (<code>;</code>) separated list that specifies the task names and their
 pinned version numbers. When a task lookup request is served by the repository, it will only try to load the task
@@ -228,7 +228,7 @@ will be searched for.</p>
 </svg></a>
 				</div>
 			</div>
-			<div class="doc-headings-nav">  <ul>    <li><a href="#runtime-configuration" title="Runtime configuration">Runtime configuration</a>      <ul>        <li><a href="#repository-configuration" title="Repository configuration">Repository configuration</a>          <ul>            <li><a href="#repository-parameters" title="Repository parameters">Repository parameters</a>              <ul>                <li><a href="#storage_configuration" title="storage.configuration">storage.configuration</a>                </li>                <li><a href="#constraint_force_jre_major" title="constraint.force.jre.major">constraint.force.jre.major</a>                </li>                <li><a href="#constraint_force_architecture" title="constraint.force.architecture">constraint.force.architecture</a>                </li>                <li><a href="#constraint_force_repo_version" title="constraint.force.repo.version">constraint.force.repo.version</a>                </li>                <li><a href="#constraint_force_buildsystem_version" title="constraint.force.buildsystem.version">constraint.force.buildsystem.version</a>                </li>                <li><a href="#pin_task_version" title="pin.task.version">pin.task.version</a>                </li>              </ul>            </li>          </ul>        </li>        <li><a href="#repository-storages" title="Repository storages">Repository storages</a>        </li>      </ul>    </li>  </ul></div>
+			<div class="doc-headings-nav">  <ul>    <li><a href="#runtime-configuration" title="Runtime configuration">Runtime configuration</a>      <ul>        <li><a href="#repository-configuration" title="Repository configuration">Repository configuration</a>          <ul>            <li><a href="#repository-parameters" title="Repository parameters">Repository parameters</a>              <ul>                <li><a href="#repository_storage_configuration" title="repository.storage.configuration">repository.storage.configuration</a>                </li>                <li><a href="#repository_constraint_force_jre_major" title="repository.constraint.force.jre.major">repository.constraint.force.jre.major</a>                </li>                <li><a href="#repository_constraint_force_architecture" title="repository.constraint.force.architecture">repository.constraint.force.architecture</a>                </li>                <li><a href="#repository_constraint_force_repo_version" title="repository.constraint.force.repo.version">repository.constraint.force.repo.version</a>                </li>                <li><a href="#repository_constraint_force_buildsystem_version" title="repository.constraint.force.buildsystem.version">repository.constraint.force.buildsystem.version</a>                </li>                <li><a href="#repository_pin_task_version" title="repository.pin.task.version">repository.pin.task.version</a>                </li>              </ul>            </li>          </ul>        </li>        <li><a href="#repository-storages" title="Repository storages">Repository storages</a>        </li>      </ul>    </li>  </ul></div>
 		</div>
 	</div>
 </div>

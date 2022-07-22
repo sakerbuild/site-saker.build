@@ -132,7 +132,7 @@
 <ul class="doc-md-list">
 <li>
 <p><strong>Number</strong>: A version number as defined above. E.g. <code>1.2.3</code><br />
-Numbers without any enclosing range declaration will allow any versions that start with the given number. E.g. the input <code>1.2</code> allows <code>1.2</code>, <code>1.2.0</code>, <code>1.2.1</code>, and any following version numbers up until <code>1.3</code>.</p>
+Numbers without any enclosing range declaration will allow any versions that start with the given number. E.g. the input <code>1.2</code> allows <code>1.2</code>, <code>1.2.0</code>, <code>1.2.1</code>, and any following version numbers up until (but not including) <code>1.3</code>.</p>
 </li>
 <li>
 <p><strong>Range</strong>: Two version numbers separated by comma (<code>','</code>) enclosed in either parentheses (<code>'('</code> and <code>')'</code>) or brackets (<code>'['</code> and <code>']'</code>). The kind of enclosing characters may be used together. The enclosing characters correspond to the same semantics as in the notation used by intervals in mathematics. (Parentheses for open ended (exclusive) ranges, and brackets for closed (inclusive) ranges.)<br />
