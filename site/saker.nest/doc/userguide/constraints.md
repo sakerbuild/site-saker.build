@@ -14,22 +14,22 @@ The following constraints are used by saker.nest.
 
 Bundles can specify a constraint to be only loaded if the current Java environment major version number matches the one specified by them.
 
-The [](configuration.md#constraint_force_jre_major) repository parameter can be used to override the default.
+The [](configuration.md#repository_constraint_force_jre_major) repository parameter can be used to override the default.
 
 ## Repository version
 
 Constraint that applies to the current full release number of the saker.nest repository.
 
-The [](configuration.md#constraint_force_repo_version) repository parameter can be used to override the default.
+The [](configuration.md#repository_constraint_force_repo_version) repository parameter can be used to override the default.
 
 ## Saker.build system version
 
 Constraint that applies to the current full release number of the saker.build system environment that loaded the runtime.
 
-The [](configuration.md#constraint_force_buildsystem_version) repository parameter can be used to override the default.
+The [](configuration.md#repository_constraint_force_buildsystem_version) repository parameter can be used to override the default.
 
 ## Native architecture
 
 Constraint that applies to the underlying native architecture of the runtime. The value of this constraint is based on the `"os.arch"` Java system property.
 
-The [](configuration.md#constraint_force_architecture) repository parameter can be used to override the default.
+The [](configuration.md#repository_constraint_force_architecture) repository parameter can be used to override the default.
