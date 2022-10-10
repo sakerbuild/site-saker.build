@@ -103,7 +103,7 @@
 </div>
 			<div class="doc-content"><h1 id="signing">Signing<a class="doc-heading-anchor" href="#signing"></a></h1>
 <p>In order to distribute your application to your users, you'll need to digitally sign it. This is required so they can be installed on Windows. The Windows Store also requires your applications to be signed.</p>
-<p>The signing can be performed using the <a href="../../taskdoc/saker.windows.signtool.sign.html"><code>saker.windows.signtool.sign()</code></a> task. It uses <a href="https://docs.microsoft.com/en-us/windows/win32/seccrypto/signtool" title="SignTool - Win32 apps | Microsoft Docs">SignTool</a> to perform the application signing.</p>
+<p>The signing can be performed using the <a href="../../taskdoc/saker.windows.signtool.sign.html"><code>saker.windows.signtool.sign()</code></a> task. It uses <a href="https://docs.microsoft.com/en-us/windows/win32/seccrypto/signtool" title="SignTool - Win32 apps | Microsoft Learn">SignTool</a> to perform the application signing.</p>
 <pre class="doc-code-block"><code class="language-sakerscript"><span class="c">$pkg</span> = <span class="d"><a href="../../../saker.windows/taskdoc/saker.appx.package.html" title="Task: saker.appx.package()">saker.appx.package</a>(</span><span class="c">$prepared</span><span class="d">)</span>
 <span class="d"><a href="../../../saker.windows/taskdoc/saker.windows.signtool.sign.html" title="Task: saker.windows.signtool.sign()">saker.windows.signtool.sign</a>(</span>
 	<span class="c">$pkg</span>, 

@@ -103,7 +103,7 @@
 </div>
 			<div class="doc-content"><h1 id="running">Running<a class="doc-heading-anchor" href="#running"></a></h1>
 <p>During development you'll often run the application in order to properly test it. After you've <a href="preparing.html" title="Preparing appx">prepared</a> the application directory, you can then register and launch the developed application.</p>
-<p>In order to do this, you need to <a href="https://docs.microsoft.com/en-us/windows/uwp/get-started/enable-your-device-for-development" title="Enable your device for development - Windows apps | Microsoft Docs">enable development mode</a> on your PC. After that, the application needs to be registered before it can be launched.</p>
+<p>In order to do this, you need to <a href="https://docs.microsoft.com/en-us/windows/uwp/get-started/enable-your-device-for-development" title="Enable your device for development - Windows apps | Microsoft Learn">enable development mode</a> on your PC. After that, the application needs to be registered before it can be launched.</p>
 <h2 id="registering">Registering<a class="doc-heading-anchor" href="#registering"></a></h2>
 <p>Registering an application causes it to be installed in your system. It means that the application that you've previously prepared will be basically installed on your machine. You'll be able run it as you would other applications, but it is also debuggable if necessary.</p>
 <p>The registration is done using the <a href="../../taskdoc/saker.appx.register.html"><code>saker.appx.register()</code></a> build task which takes the output of the <a href="../../taskdoc/saker.appx.prepare.html"><code>saker.appx.prepare()</code></a> task as the input.</p>
@@ -117,7 +117,7 @@
 	<span class="h"><a href="../../../saker.windows/taskdoc/saker.appx.register.html#AllowReinstall" title="Parameter AllowReinstall of task saker.appx.register()">AllowReinstall</a></span>: <span class="j">true</span>
 <span class="d">)</span>
 </code></pre>
-<p>The task uses the <a href="https://docs.microsoft.com/en-us/powershell/module/appx/add-appxpackage" title="Add-AppxPackage (Appx) | Microsoft Docs">Add-AppxPackage</a> PowerShell cmdlet to register the application.</p>
+<p>The task uses the <a href="https://docs.microsoft.com/en-us/powershell/module/appx/add-appxpackage" title="Add-AppxPackage (Appx) | Microsoft Learn">Add-AppxPackage</a> PowerShell cmdlet to register the application.</p>
 <h2 id="launching">Launching<a class="doc-heading-anchor" href="#launching"></a></h2>
 <p>After registering your app, you can launch it from the Start Menu, or in any way you like it. If you want to run it as part of your build process, use the <a href="../../taskdoc/saker.appx.launch.html"><code>saker.appx.launch()</code></a> build task:</p>
 <pre class="doc-code-block"><code class="language-sakerscript"><span class="c">$register</span> = <span class="d"><a href="../../../saker.windows/taskdoc/saker.appx.register.html" title="Task: saker.appx.register()">saker.appx.register</a>(</span>
@@ -127,12 +127,12 @@
 <span class="d"><a href="../../../saker.windows/taskdoc/saker.appx.launch.html" title="Task: saker.appx.launch()">saker.appx.launch</a>(</span><span class="c">$register</span><span class="d">)</span>
 </code></pre>
 <p>The task accepts the output of the <a href="../../taskdoc/saker.appx.register.html"><code>saker.appx.register()</code></a> task so it can make sure that the application is already registered before attempting to launch it.</p>
-<p>You can also launch other applications by specifying their <a href="https://docs.microsoft.com/en-us/windows/configuration/find-the-application-user-model-id-of-an-installed-app" title="Find the Application User Model ID of an installed app - Configure Windows | Microsoft Docs">Application User Model ID</a>:</p>
+<p>You can also launch other applications by specifying their <a href="https://docs.microsoft.com/en-us/windows/configuration/find-the-application-user-model-id-of-an-installed-app" title="Find the Application User Model ID of an installed app - Configure Windows | Microsoft Learn">Application User Model ID</a>:</p>
 <pre class="doc-code-block"><code class="language-sakerscript"><span class="b"># Launches the windows calculator</span>
 <span class="d"><a href="../../../saker.windows/taskdoc/saker.appx.launch.html" title="Task: saker.appx.launch()">saker.appx.launch</a>(</span><span class="e">Microsoft.WindowsCalculator_8wekyb3d8bbwe!App</span><span class="d">)</span>
 </code></pre>
 <p>If you don't specify the ID part of the AUMID (<em>!App</em> in the case above), the launch task will attempt to figure it on its own.</p>
-<p>The task uses the <a href="https://docs.microsoft.com/en-us/windows/uwp/xbox-apps/automate-launching-uwp-apps#command-line-1" title="Automate launching Windows 10 Universal Windows Platform (UWP) apps - UWP applications | Microsoft Docs">appxlauncher.exe</a> tool to launch the applications.</p>
+<p>The task uses the <a href="https://docs.microsoft.com/en-us/windows/uwp/xbox-apps/automate-launching-uwp-apps#command-line-1" title="Automate launching Windows 10 Universal Windows Platform (UWP) apps - UWP applications | Microsoft Learn">appxlauncher.exe</a> tool to launch the applications.</p>
 <link href="../../../css/sakerscript.css"  rel="stylesheet" type="text/css" /></div>
 			<div class="end-section-links">
 				<div class="end-section-prev">
