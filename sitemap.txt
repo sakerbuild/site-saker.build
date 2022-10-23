@@ -877,6 +877,7 @@ https://saker.build/saker.build/javadoc/saker/build/thirdparty/saker/util/rmi/wr
 https://saker.build/saker.build/javadoc/saker/build/thirdparty/saker/util/rmi/wrap/index.html
 https://saker.build/saker.build/javadoc/saker/build/thirdparty/saker/util/rmi/writer/EnumArrayRMIObjectWriteHandler.html
 https://saker.build/saker.build/javadoc/saker/build/thirdparty/saker/util/rmi/writer/index.html
+https://saker.build/saker.build/javadoc/saker/build/thirdparty/saker/util/thread/BooleanLatch.html
 https://saker.build/saker.build/javadoc/saker/build/thirdparty/saker/util/thread/ExceptionThread.html
 https://saker.build/saker.build/javadoc/saker/build/thirdparty/saker/util/thread/ParallelExecutionAbortedException.html
 https://saker.build/saker.build/javadoc/saker/build/thirdparty/saker/util/thread/ParallelExecutionCancelledException.html
@@ -1811,6 +1812,7 @@ https://saker.build/saker.util/javadoc/saker/util/rmi/wrap/RMITreeSetStringEleme
 https://saker.build/saker.util/javadoc/saker/util/rmi/wrap/index.html
 https://saker.build/saker.util/javadoc/saker/util/rmi/writer/EnumArrayRMIObjectWriteHandler.html
 https://saker.build/saker.util/javadoc/saker/util/rmi/writer/index.html
+https://saker.build/saker.util/javadoc/saker/util/thread/BooleanLatch.html
 https://saker.build/saker.util/javadoc/saker/util/thread/ExceptionThread.html
 https://saker.build/saker.util/javadoc/saker/util/thread/ParallelExecutionAbortedException.html
 https://saker.build/saker.util/javadoc/saker/util/thread/ParallelExecutionCancelledException.html
