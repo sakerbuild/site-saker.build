@@ -604,6 +604,7 @@ https://saker.build/saker.build/javadoc/saker/build/task/dependencies/CommonTask
 https://saker.build/saker.build/javadoc/saker/build/task/dependencies/FileCollectionStrategy.html
 https://saker.build/saker.build/javadoc/saker/build/task/dependencies/TaskOutputChangeDetector.html
 https://saker.build/saker.build/javadoc/saker/build/task/dependencies/index.html
+https://saker.build/saker.build/javadoc/saker/build/task/exception/ClusterEnvironmentSelectionFailedException.html
 https://saker.build/saker.build/javadoc/saker/build/task/exception/ClusterTaskException.html
 https://saker.build/saker.build/javadoc/saker/build/task/exception/ClusterTaskExecutionFailedException.html
 https://saker.build/saker.build/javadoc/saker/build/task/exception/IllegalTaskOperationException.html
@@ -621,6 +622,7 @@ https://saker.build/saker.build/javadoc/saker/build/task/exception/TaskExecution
 https://saker.build/saker.build/javadoc/saker/build/task/exception/TaskExecutionFailedException.html
 https://saker.build/saker.build/javadoc/saker/build/task/exception/TaskIdentifierConflictException.html
 https://saker.build/saker.build/javadoc/saker/build/task/exception/TaskParameterException.html
+https://saker.build/saker.build/javadoc/saker/build/task/exception/TaskResultSerializationException.html
 https://saker.build/saker.build/javadoc/saker/build/task/exception/TaskResultWaitingFailedException.html
 https://saker.build/saker.build/javadoc/saker/build/task/exception/TaskResultWaitingInterruptedException.html
 https://saker.build/saker.build/javadoc/saker/build/task/exception/TaskStandardIOLockIllegalStateException.html
