@@ -719,6 +719,7 @@ https://saker.build/saker.build/javadoc/saker/build/thirdparty/saker/rmi/connect
 https://saker.build/saker.build/javadoc/saker/build/thirdparty/saker/rmi/connection/index.html
 https://saker.build/saker.build/javadoc/saker/build/thirdparty/saker/rmi/exception/RMICallFailedException.html
 https://saker.build/saker.build/javadoc/saker/build/thirdparty/saker/rmi/exception/RMICallForbiddenException.html
+https://saker.build/saker.build/javadoc/saker/build/thirdparty/saker/rmi/exception/RMIContextVariableNotFoundException.html
 https://saker.build/saker.build/javadoc/saker/build/thirdparty/saker/rmi/exception/RMIIOFailureException.html
 https://saker.build/saker.build/javadoc/saker/build/thirdparty/saker/rmi/exception/RMIInvalidConfigurationException.html
 https://saker.build/saker.build/javadoc/saker/build/thirdparty/saker/rmi/exception/RMIListenerException.html
@@ -1521,6 +1522,7 @@ https://saker.build/saker.rmi/javadoc/saker/rmi/connection/RMIVariables.html
 https://saker.build/saker.rmi/javadoc/saker/rmi/connection/index.html
 https://saker.build/saker.rmi/javadoc/saker/rmi/exception/RMICallFailedException.html
 https://saker.build/saker.rmi/javadoc/saker/rmi/exception/RMICallForbiddenException.html
+https://saker.build/saker.rmi/javadoc/saker/rmi/exception/RMIContextVariableNotFoundException.html
 https://saker.build/saker.rmi/javadoc/saker/rmi/exception/RMIIOFailureException.html
 https://saker.build/saker.rmi/javadoc/saker/rmi/exception/RMIInvalidConfigurationException.html
 https://saker.build/saker.rmi/javadoc/saker/rmi/exception/RMIListenerException.html
