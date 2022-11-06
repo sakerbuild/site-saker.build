@@ -55,10 +55,10 @@
 	
 	--vis-toggled-margin-left: calc(10px + 0.8em);
 	
-	--task-row-entry-hover-color: #f4f4f4;
+	--task-row-entry-hover-color: #f6f6f6;
 	
-	--console-hightlight-border-color: #66cee8;
-	--console-hightlight-border: solid var(--console-hightlight-border-color) 2px;
+	--console-highlight-border-color: #66cee8;
+	--console-highlight-border: solid var(--console-highlight-border-color) 2px;
 }
 .trace-timeline {
 	position: relative;
@@ -222,7 +222,7 @@
 }
 #dropzone-content {
 	border: 5px dashed;
-	border-color: var(--console-hightlight-border-color);
+	border-color: var(--console-highlight-border-color);
     border-radius: 20px;
     height: 100%;
 }
@@ -232,7 +232,7 @@
 	max-width: 70%;
 	text-align: center;
 	font-size: 2em;
-	color: var(--console-hightlight-border-color);
+	color: var(--console-highlight-border-color);
 	position: sticky;
 	top: 0;
 }
@@ -512,16 +512,47 @@ input:checked+.script-details-show-toggle {
 
 .trace-console-content:not(:empty) {
 	white-space: pre-wrap;
-	font-family: var(--font-family-code);
 	line-height: 1.3;
 	word-break: break-all;
 	font-size: 0.9em;
+	margin-top: calc(1.3em + 2px);
+}
+.trace-console-content div.task-console-lines {
+	font-family: var(--font-family-code);
 }
 .trace-console-content:empty:before {
 	content: 'No console output were recorded in this build.';
 }
 .trace-console-content>[data-trace-id] {
 	position: relative;
+}
+.trace-console-content [data-trace-id]:hover [data-task-label] {
+	display: block;
+}
+.trace-console-content [data-task-label] {
+	position: absolute;
+	top: -1.3em;
+	left: -2px;
+	bottom: 0;
+	display: none;
+}
+.trace-console-content [data-task-label]:after {
+	content: attr(data-task-label);
+    position: sticky;
+    top: 0;
+    left: 0;
+    background-color: var(--console-highlight-border-color);
+    z-index: 150;  /* above the border */
+    padding: 1px 4px;
+    font-weight: 600;
+    border-radius: 2px 2px 0px 0px;
+}
+.trace-console-content [data-task-label]:before {
+	/*element to have a single line height height*/
+	content: '.';
+	visibility: hidden;
+    font-family: var(--font-family-code);
+    position: absolute;
 }
 .trace-console-content>[data-trace-id]:hover {
 	background-color: var(--task-row-entry-hover-color);
@@ -2923,11 +2954,17 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 						tc.attr('data-console-highlight', task.trace_id);
 					}
 				});
+			taskoutdiv.append(
+				$(document.createElement('div'))
+				.attr('data-task-label', getTaskTimelineLabel(task))
+				.addClass('trace-console-task-label')
+			);
 			let lastseverity = null;
 			let lastlines = [];
 			function finishPendingLines() {
 				if (lastlines.length > 0) {
-					let sevdiv = $(document.createElement('div'));
+					let sevdiv = $(document.createElement('div'))
+						.addClass('task-console-lines');
 					if (lastseverity != null) {
 						sevdiv.attr('data-trace-log-severity', lastseverity);
 					}
@@ -2972,7 +3009,7 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 				top: -2px;
 			    left: -2px;
 			    bottom: -2px;
-				border: var(--console-hightlight-border);
+				border: var(--console-highlight-border);
 				border-right: none;
 				border-bottom-left-radius: 2px;
 				border-top-left-radius: 2px;
@@ -2986,12 +3023,15 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 				top: -2px;
 			    right: -2px;
 			    bottom: -2px;
-				border: var(--console-hightlight-border);
+				border: var(--console-highlight-border);
 				border-left: none;
 				border-bottom-right-radius: 2px;
 				border-top-right-radius: 2px;
 				z-index: 100;
 				pointer-events: none;
+			}
+			#trace-contents[data-console-highlight="${ task.trace_id }"] .trace-console-content [data-trace-id="${ task.trace_id }"] [data-task-label] {
+				display: block;
 			}
 			`;
 		});
