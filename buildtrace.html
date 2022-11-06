@@ -1299,7 +1299,7 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 				window.history.replaceState(null, "", docurl.toString());
 			}
 		};
-		oReq.timeout = 5000;
+		oReq.timeout = 20000;
 		oReq.ontimeout = function(){
 			oReq.onreadystatechange = null;
 			$('#modal-error-dialog .modal-title').text('Request timeout');
