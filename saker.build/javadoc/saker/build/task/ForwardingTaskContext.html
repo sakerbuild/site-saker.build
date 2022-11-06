@@ -107,9 +107,13 @@
  Calling this function will set a pending cause exception for the task result. Tasks which retrieve the result of
  this task will receive this exception.
  <p>
- The execution of this task will continue, and is required to return <code>null</code> as a result from
- <span class="javadoc-code-ref"><a href="Task.html" title="interface saker.build.task.Task" data-javadoc-kind="interface">Task</a>.<a href="Task.html#run-saker.build.task.TaskContext-" title="Task.run(TaskContext)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface">run<span class="javadoc-code-ref">(<wbr>TaskContext)</span></a></span>. Not returning <code>null</code> will result in an
- <span class="javadoc-code-ref"><a href="exception/InvalidTaskResultException.html" title="class saker.build.task.exception.InvalidTaskResultException" data-javadoc-kind="class">InvalidTaskResultException</a></span> after finishing the task.
+ The execution of this task will continue, and the task may still return an object from the
+ <span class="javadoc-code-ref"><a href="Task.html" title="interface saker.build.task.Task" data-javadoc-kind="interface">Task</a>.<a href="Task.html#run-saker.build.task.TaskContext-" title="Task.run(TaskContext)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface">run<span class="javadoc-code-ref">(<wbr>TaskContext)</span></a></span> method. This task result will not be visible to other tasks, but this task can
+ still retrieve it using <span class="javadoc-code-ref"><a href="TaskContext.html" title="interface saker.build.task.TaskContext" data-javadoc-kind="interface">TaskContext</a>.<a href="TaskContext.html#getPreviousTaskOutput-java.lang.Class-" title="TaskContext.getPreviousTaskOutput(Class<T>)" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface">getPreviousTaskOutput<span class="javadoc-code-ref">(<wbr>Class&lt;<wbr><span class="javadoc-tp" title="T of TaskContext.getPreviousTaskOutput(Class<T>)">T</span>&gt;)</span></a></span> when it is run next time.
+ <p>
+ For inner tasks, calling this function will return this exception via the
+ <span class="javadoc-code-ref"><a href="InnerTaskResultHolder.html" title="interface saker.build.task.InnerTaskResultHolder" data-javadoc-kind="interface">InnerTaskResultHolder</a>.<a href="InnerTaskResultHolder.html#getExceptionIfAny--" title="InnerTaskResultHolder.getExceptionIfAny()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface">getExceptionIfAny<span class="javadoc-code-ref">()</span></a></span>, and the inner task may also return an object as a result,
+ which is available via <span class="javadoc-code-ref"><a href="InnerTaskResultHolder.html" title="interface saker.build.task.InnerTaskResultHolder" data-javadoc-kind="interface">InnerTaskResultHolder</a>.<a href="InnerTaskResultHolder.html#getResult--" title="InnerTaskResultHolder.getResult()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface">getResult<span class="javadoc-code-ref">()</span></a></span>.
  <p>
  Aborting excecution using this functions is preferable to throwing an exception directly when the task is able to
  handle previously thrown exceptions in the next run.
@@ -665,10 +669,10 @@
  proper operation. This is in order to ensure that the enclosing task complies with the restrictions that
  computation token usage imposes.
  <p>
- Inner tasks may be declared to be <a href="TaskFactory.html#CAPABILITY_SHORT_TASK" title="TaskFactory.CAPABILITY_SHORT_TASK" data-javadoc-kind="field">CAPABILITY_SHORT_TASK</a>, in which case they behave the
- same way normal tasks would work. They are invoked a single time and are not duplicated (see below). Generally,
- using short inner tasks have limited use-cases, as the work the inner task does can be executed directly in the
- enclosing task.
+ Inner tasks may be declared to be <a href="TaskFactory.html#CAPABILITY_SHORT_TASK" title="TaskFactory.CAPABILITY_SHORT_TASK" data-javadoc-kind="field">short</a>, in which case they behave
+ the same way normal tasks would work. They are invoked a single time and are not duplicated (see below).
+ Generally, using short inner tasks have limited use-cases, as the work the inner task does can be executed
+ directly in the enclosing task.
  <p>
  Inner tasks can select their execution environment the same way as normal tasks do. See
  <span class="javadoc-code-ref"><a href="TaskFactory.html" title="interface saker.build.task.TaskFactory" data-javadoc-kind="interface">TaskFactory</a>.<a href="TaskFactory.html#getExecutionEnvironmentSelector--" title="TaskFactory.getExecutionEnvironmentSelector()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface">getExecutionEnvironmentSelector<span class="javadoc-code-ref">()</span></a></span>. The execution environment selector will be used to find
