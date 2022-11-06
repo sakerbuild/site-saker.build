@@ -102,8 +102,13 @@ function readObject(buffer, listener) {
 			};
 			for(let i = 0; i < len; i++) {
 				let name = readString(buffer);
-				let value = readObject(buffer, listener);
-				result[name] = value;
+				try {
+					let value = readObject(buffer, listener);
+					result[name] = value;
+				} catch (e) {
+					console.error("Failed to read object entry with name", name, ":", e);
+					throw e;
+				}
 			}
 			readProgress(buffer);
 			return result;
@@ -112,7 +117,12 @@ function readObject(buffer, listener) {
 			let len = readInt(buffer);
 			let array = new Array(len);
 			for(let i = 0; i < len; i++) {
-				array[i] = readObject(buffer, listener);
+				try {
+					array[i] = readObject(buffer, listener);
+				} catch (e) {
+					console.error("Failed to read array element at index", i, ":", e);
+					throw e;
+				}
 			}
 			readProgress(buffer);
 			return array;
@@ -127,12 +137,17 @@ function readObject(buffer, listener) {
 		}
 		case TYPE_ARRAY_NULL_BOUNDED: {
 			let array = new Array();
-			while (true) {
-				let obj = readObject(buffer, listener);
-				if (obj == null) {
-					break;
+			try {
+				while (true) {
+					let obj = readObject(buffer, listener);
+					if (obj == null) {
+						break;
+					}
+					array.push(obj);
 				}
-				array.push(obj);
+			} catch (e) {
+				console.error("Failed to read array element at index", array.length, ":", e);
+				throw e;
 			}
 			readProgress(buffer);
 			return array;
@@ -145,8 +160,13 @@ function readObject(buffer, listener) {
 				if (name == "") {
 					break;
 				}
-				let value = readObject(buffer, listener);
-				result[name] = value;
+				try {
+					let value = readObject(buffer, listener);
+					result[name] = value;
+				} catch (e) {
+					console.error("Failed to read object entry with name", name, ":", e);
+					throw e;
+				}
 			}
 			readProgress(buffer);
 			return result;
@@ -183,6 +203,7 @@ function readObject(buffer, listener) {
 			return result;
 		}
 		default: {
+			console.error("Failed to read object, unknown-type:", type);
 			throw "unknown-type " + type;
 		}
 	}
@@ -218,7 +239,7 @@ function parseInput(buffer) {
 			str = readString(buffer);
 		} catch(e) {
 			if (e != "EOF") {
-				console.log("TODO read error: " + e);
+				console.error("TODO read error:",  e);
 			}
 			break;
 		}
@@ -231,6 +252,7 @@ function parseInput(buffer) {
 				}
 			});
 		} catch(e) {
+			console.error("Failed to read build trace entry", str, ":", e, "around buffer index:", buffer.idx);
 			throw "Read error " + e;
 		}
 	}
