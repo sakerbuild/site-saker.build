@@ -725,6 +725,7 @@ https://saker.build/saker.build/javadoc/saker/build/thirdparty/saker/rmi/excepti
 https://saker.build/saker.build/javadoc/saker/build/thirdparty/saker/rmi/exception/RMIListenerException.html
 https://saker.build/saker.build/javadoc/saker/build/thirdparty/saker/rmi/exception/RMIObjectTransferFailureException.html
 https://saker.build/saker.build/javadoc/saker/build/thirdparty/saker/rmi/exception/RMIProxyCreationFailedException.html
+https://saker.build/saker.build/javadoc/saker/build/thirdparty/saker/rmi/exception/RMIResourceUnavailableException.html
 https://saker.build/saker.build/javadoc/saker/build/thirdparty/saker/rmi/exception/RMIRuntimeException.html
 https://saker.build/saker.build/javadoc/saker/build/thirdparty/saker/rmi/exception/RMIStackTracedException.html
 https://saker.build/saker.build/javadoc/saker/build/thirdparty/saker/rmi/exception/index.html
@@ -1528,6 +1529,7 @@ https://saker.build/saker.rmi/javadoc/saker/rmi/exception/RMIInvalidConfiguratio
 https://saker.build/saker.rmi/javadoc/saker/rmi/exception/RMIListenerException.html
 https://saker.build/saker.rmi/javadoc/saker/rmi/exception/RMIObjectTransferFailureException.html
 https://saker.build/saker.rmi/javadoc/saker/rmi/exception/RMIProxyCreationFailedException.html
+https://saker.build/saker.rmi/javadoc/saker/rmi/exception/RMIResourceUnavailableException.html
 https://saker.build/saker.rmi/javadoc/saker/rmi/exception/RMIRuntimeException.html
 https://saker.build/saker.rmi/javadoc/saker/rmi/exception/RMIStackTracedException.html
 https://saker.build/saker.rmi/javadoc/saker/rmi/exception/index.html
