@@ -465,10 +465,10 @@ input:checked+.script-details-show-toggle {
 	top: 0;
 }
 #page-timeline .tasks-table tr.task-row-entry>td:first-child {
-	min-width: 300px;
+	min-width: max(300px, min(500px, 30vw));
 }
 #page-exceptions .exceptions-table tr.task-row-entry>td:first-child {
-	min-width: 300px;
+	min-width: max(300px, min(500px, 30vw));
 }
 #page-exceptions .exceptions-table tr.task-row-entry>td:last-child {
 	width: 100%;
@@ -1787,9 +1787,23 @@ let currentBuildTrace = null;
 	}
 	
 	function isAnyTaskException(task) {
-		return task.exception != null || 
-				(task.abort_exceptions != null && task.abort_exceptions.length > 0) || 
-				(task.ignored_exceptions != null && task.ignored_exceptions.length > 0) ||
+		if (task.exception != null) {
+			let exc = task.exception;
+			if (!exc._bt_omittable) {
+				return true;
+			}
+			//the exception is omittable
+		}
+		if (task.abort_exceptions != null && task.abort_exceptions.length > 0) {
+			for (let i = 0; i < task.abort_exceptions.length; ++i) {
+				let exc = task.abort_exceptions[i];
+				if (!exc._bt_omittable) {
+					return true;
+				}
+			}
+			//all of the abortexceptions are omittable
+		}
+		return (task.ignored_exceptions != null && task.ignored_exceptions.length > 0) ||
 				(task.inner_tasks != null && isAnyTaskListException(task.inner_tasks));
 	}
 	function isAnyTaskWarning(task) {
@@ -2216,9 +2230,6 @@ let currentBuildTrace = null;
 				//the task has inner tasks, display it
 				return true;
 			}
-			if (task.classification == "worker") {
-				return true;
-			}
 			if (task.classification != null) {
 				switch(task.classification) {
 					case "worker": {
@@ -2265,6 +2276,15 @@ let currentBuildTrace = null;
 			if (task.remote_dispatchable == true) {
 				//display tasks that are remote dispatchable as they are generally worker tasks
 				return true;
+			}
+			if (task.classification == "external" 
+					&& (task.exception != null || (task.abort_exceptions != null && task.abort_exceptions.length > 0))) {
+				//the task failed, but all the exceptions are omittable, because this filter is only called
+				//if the previous filter doesn't find any exceptions, because they are omittable
+				//don't display the task in this case, as the real cause exception is some other task failure
+				//this is usually the case when some parameter assignment fails to the external task, and it didn't
+				//set a different classification yet
+				return false;
 			}
 			if (task.display != null || task.title != null || task.label_timeline != null) {
 				//some display property was set.
@@ -3038,13 +3058,16 @@ let currentBuildTrace = null;
 		bt.tasks.forEach(function(task) {
 			if (isAnyTaskException(task)) {
 				exceptiontasks.push(task);
+				return;
 			}
 			if (task.inner_tasks != null) {
-				task.inner_tasks.forEach(function(innertask){
+				for (let i = 0; i < task.inner_tasks.length; ++i) {
+					let innertask = task.inner_tasks[i];
 					if (isAnyTaskException(innertask)) {
-						exceptiontasks.push(innertask);
+						exceptiontasks.push(task);
+						return;
 					}
-				});
+				}
 			}
 		});
 		exceptiontasks.sort(function(l, r){ return l.start - r.start; });
@@ -3255,8 +3278,9 @@ let currentBuildTrace = null;
 					let icon = $(EXC_SVG)
 						.addClass('color-failure')
 						.addClass('inline-svg');
-					//TODO signal that it is an inner task
-					appendExceptionRows(innertask.exception, icon, innertask.trace_id, tasktitle);
+					//TODO better hierarhical view for the inner task exception?
+					let innertasktitle = tasktitle + " | " + getTaskTitle(innertask);
+					appendExceptionRows(innertask.exception, icon, innertask.trace_id, innertasktitle);
 				});
 			}
 		});

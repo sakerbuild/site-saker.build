@@ -235,12 +235,32 @@ const CONSOLE_MARKER_GROUP_LINEEND = 10;
 const CONSOLE_MARKER_GROUP_SEVERITY = 11;
 const CONSOLE_MARKER_GROUP_MESSAGE = 12;
 
+//determines if this exception is omittable from the display
+//this is the case if the exception (or its cause exception)
+//are caused by other tasks failing
+//that is, they have a task_trace_id field
+//similar to TaskUtils.isCausedByTaskExecutionFailedExceptionImpl()
+function isOmittableTaskFailureException(exception) {
+	if (exception.circular_reference != null) {
+		//this is a circular reference to some previous exception
+		return false;
+	}
+	if (exception.cause == null) {
+		//no cause
+		return false;
+	}
+	if (exception.cause.task_trace_id != null) {
+		return true;
+	}
+	return isOmittableTaskFailureException(exception.cause);
+}
+
 function collectCustomExceptions(value, collector) {
 	if (value == null) {
 		return;
 	}
 	if (typeof value === 'object') {
-		if(value.__bt_type == 'exception_detail') {
+		if (value.__bt_type == 'exception_detail') {
 			collector(value);
 			return;
 		}
@@ -302,6 +322,9 @@ function parseInput(buffer) {
 			bt[str] = readObject(buffer, {
 				onReadException: function (exc) {
 					exc.trace_id = exceptiontraceidcounter++;
+					if (isOmittableTaskFailureException(exc)) {
+						exc._bt_omittable = true;
+					}
 				}
 			});
 		} catch(e) {
@@ -329,9 +352,9 @@ function parseInput(buffer) {
 	let totalwarningcount = 0;
 	let totalexceptioncount = 0;
 	let exceptionseverity = 10;
-	bt.ignored_exceptions = convertExceptionStackTraceStringToExceptionDetails(bt.ignored_exceptions);
 	
 	if (bt.ignored_exceptions != null) {
+		bt.ignored_exceptions = convertExceptionStackTraceStringToExceptionDetails(bt.ignored_exceptions);
 		totalexceptioncount += bt.ignored_exceptions.length;
 		exceptionseverity = Math.min(exceptionseverity, 3);
 	}
@@ -361,17 +384,29 @@ function parseInput(buffer) {
 			task.abort_exceptions = convertExceptionStackTraceStringToExceptionDetails(task.abort_exceptions);
 		}
 		
-		task.ignored_exceptions = convertExceptionStackTraceStringToExceptionDetails(task.ignored_exceptions);
-		
-		if(task.exception != null) {
-			++exceptioncount;
+		if (task.exception != null) {
+			let exc = task.exception;
+			if(exc._bt_omittable) {
+			} else if (exc.task_trace_id != null && exc.task_trace_id != task.trace_id) {
+				exc._bt_omittable = true;
+			} else {
+				++exceptioncount;
+			}
 			exceptionseverity = 1;
 		}
-		if(task.abort_exceptions != null) {
-			exceptioncount += task.abort_exceptions.length;
+		if (task.abort_exceptions != null && task.abort_exceptions.length > 0) {
+			task.abort_exceptions.forEach(function(exc) {
+				if(exc._bt_omittable) {
+				} else if (exc.task_trace_id != null && exc.task_trace_id != task.trace_id) {
+					exc._bt_omittable = true;
+				} else {
+					++exceptioncount;
+				}
+			});
 			exceptionseverity = Math.min(exceptionseverity, 2);
 		}
-		if(task.ignored_exceptions != null) {
+		if (task.ignored_exceptions != null) {
+			task.ignored_exceptions = convertExceptionStackTraceStringToExceptionDetails(task.ignored_exceptions);
 			exceptioncount += task.ignored_exceptions.length;
 			exceptionseverity = Math.min(exceptionseverity, 3);
 		}
@@ -408,10 +443,23 @@ function parseInput(buffer) {
 				}
 				
 				if (innertask.exception != null) {
-					++exceptioncount;
+					let exc = innertask.exception;
+					if(exc._bt_omittable) {
+					} else if (exc.task_trace_id != null && exc.task_trace_id != task.trace_id) {
+						exc._bt_omittable = true;
+					} else {
+						++exceptioncount;
+					}
 				}
-				if(innertask.abort_exceptions != null) {
-					exceptioncount += innertask.abort_exceptions.length;
+				if (innertask.abort_exceptions != null) {
+					innertask.abort_exceptions.forEach(function(exc) {
+						if(exc._bt_omittable) {
+						} else if (exc.task_trace_id != null && exc.task_trace_id != task.trace_id) {
+							exc._bt_omittable = true;
+						} else {
+							++exceptioncount;
+						}
+					});
 				}
 				collectCustomExceptions(innertask.values, addCustomException);
 			});
