@@ -238,12 +238,12 @@
 }
 #trace-menu {
 	position: relative;
-	padding: 0.6em 0;
 	white-space: nowrap;
 	background-color: var(--color-doc-nav-background);
 }
 #trace-menu-container {
 	position: sticky;
+	padding: 0.6em 0;
 	top: 0;
 }
 
@@ -501,10 +501,10 @@ input:checked+.script-details-show-toggle {
 	top: 0;
 }
 #page-timeline .tasks-table tr.task-row-entry>td:first-child {
-	min-width: 300px;
+	min-width: max(300px, min(500px, 30vw));
 }
 #page-exceptions .exceptions-table tr.task-row-entry>td:first-child {
-	min-width: 300px;
+	min-width: max(300px, min(500px, 30vw));
 }
 #page-exceptions .exceptions-table tr.task-row-entry>td:last-child {
 	width: 100%;
@@ -1068,6 +1068,10 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
 <script>
+
+// global to allow examination in the console for dev purposes
+let currentBuildTrace = null;
+	
 (function() {
 	const DOC_SVG = `
 <svg class="info-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -1123,7 +1127,6 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 	
 	let nextTimelineControlCssId = 0;
 	
-	let currentBuildTrace = null;
 	function createTimelineControl() {
 		let zoomstate = {
 			zoom: 1,
@@ -1820,9 +1823,23 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 	}
 	
 	function isAnyTaskException(task) {
-		return task.exception != null || 
-				(task.abort_exceptions != null && task.abort_exceptions.length > 0) || 
-				(task.ignored_exceptions != null && task.ignored_exceptions.length > 0) ||
+		if (task.exception != null) {
+			let exc = task.exception;
+			if (!exc._bt_omittable) {
+				return true;
+			}
+			//the exception is omittable
+		}
+		if (task.abort_exceptions != null && task.abort_exceptions.length > 0) {
+			for (let i = 0; i < task.abort_exceptions.length; ++i) {
+				let exc = task.abort_exceptions[i];
+				if (!exc._bt_omittable) {
+					return true;
+				}
+			}
+			//all of the abortexceptions are omittable
+		}
+		return (task.ignored_exceptions != null && task.ignored_exceptions.length > 0) ||
 				(task.inner_tasks != null && isAnyTaskListException(task.inner_tasks));
 	}
 	function isAnyTaskWarning(task) {
@@ -2249,9 +2266,6 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 				//the task has inner tasks, display it
 				return true;
 			}
-			if (task.classification == "worker") {
-				return true;
-			}
 			if (task.classification != null) {
 				switch(task.classification) {
 					case "worker": {
@@ -2299,6 +2313,15 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 				//display tasks that are remote dispatchable as they are generally worker tasks
 				return true;
 			}
+			if (task.classification == "external" 
+					&& (task.exception != null || (task.abort_exceptions != null && task.abort_exceptions.length > 0))) {
+				//the task failed, but all the exceptions are omittable, because this filter is only called
+				//if the previous filter doesn't find any exceptions, because they are omittable
+				//don't display the task in this case, as the real cause exception is some other task failure
+				//this is usually the case when some parameter assignment fails to the external task, and it didn't
+				//set a different classification yet
+				return false;
+			}
 			if (task.display != null || task.title != null || task.label_timeline != null) {
 				//some display property was set.
 				return true;
@@ -2316,6 +2339,7 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 		let totalduration = bt.duration;
 		let timelinetasks = [];
 		let tabletasks = [];
+		let durationfilteredtasks = [];
 		bt.tasks.forEach(function(task){
 			let isuptodate = task.up_to_date === true;
 			if (alwaystimelinefilter(task)) {
@@ -2337,11 +2361,14 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 			if(durpct >= 0.005) {
 				//do not put the too short tasks in the timeline, as it could overcrowd it
 				timelinetasks.push(task);
+			} else {
+				durationfilteredtasks.push(task);
 			}
 		});
-		if(timelinetasks.length == 0) {
-			//all tasks were too short to display display them all, whatever.
-			timelinetasks = tabletasks;
+		if (timelinetasks.length == 0) {
+			//all tasks were up to date, or all of them were short
+			//display all tasks that were filtered out based on its duration
+			timelinetasks = durationfilteredtasks;
 		}
 		
 		let timeline = createTaskListTimeline(bt, timelinetasks);
@@ -3036,22 +3063,24 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 			`;
 		});
 		
-		//add empty string so we have an EOL at the end
-		alllines.push('');
-		let enc = new TextEncoder();
-		let consolebytes = enc.encode(alllines.join('\n'));
-		
-		let dlelem = document.createElement('a');
-		dlelem.setAttribute('href', '#');
-		//TODO revoke url
-		dlelem.href = window.URL.createObjectURL(new Blob([consolebytes], {type: "text/plain"}));
-		dlelem.download = "console.txt";
-		dlelem.innerHTML = 'Download';
-		pagediv.append(
-			$(document.createElement('div'))
-			.addClass('trace-see-links')
-			.append(dlelem)
-		);
+		if (alllines.length > 0) {
+			//add empty string so we have an EOL at the end
+			alllines.push('');
+			let enc = new TextEncoder();
+			let consolebytes = enc.encode(alllines.join('\n'));
+			
+			let dlelem = document.createElement('a');
+			dlelem.setAttribute('href', '#');
+			//TODO revoke url
+			dlelem.href = window.URL.createObjectURL(new Blob([consolebytes], {type: "text/plain"}));
+			dlelem.download = "console.txt";
+			dlelem.innerHTML = 'Download';
+			pagediv.append(
+				$(document.createElement('div'))
+				.addClass('trace-see-links')
+				.append(dlelem)
+			);
+		}
 		
 		pagediv.append(stdoutdiv);
 		
@@ -3065,6 +3094,16 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 		bt.tasks.forEach(function(task) {
 			if (isAnyTaskException(task)) {
 				exceptiontasks.push(task);
+				return;
+			}
+			if (task.inner_tasks != null) {
+				for (let i = 0; i < task.inner_tasks.length; ++i) {
+					let innertask = task.inner_tasks[i];
+					if (isAnyTaskException(innertask)) {
+						exceptiontasks.push(task);
+						return;
+					}
+				}
 			}
 		});
 		exceptiontasks.sort(function(l, r){ return l.start - r.start; });
@@ -3112,8 +3151,8 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 		
 		function appendExceptionStackTrace(elem, exception) {
 			const ST_LINE_REGEX = /([ \t]+)at ([^(]+)\.([^(]+)\(([^)]+)\)/;
-			
-			let lines = exception.split(/\r?\n/);
+
+			let lines = exception.stacktrace.split(/\r?\n/);
 			lines.forEach(function (l){
 				let match = ST_LINE_REGEX.exec(l);
 				if (match != null) {
@@ -3199,7 +3238,7 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 					exc
 				)
 			);
-			let excfirstline = exc.split(/\r?\n/)[0];
+			let excfirstline = exc.stacktrace.split(/\r?\n/)[0];
 			let match = EXCEPTION_FIRST_LINE_REGEX.exec(excfirstline);
 			if (match != null) {
 				exctd.append(
@@ -3275,8 +3314,9 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 					let icon = $(EXC_SVG)
 						.addClass('color-failure')
 						.addClass('inline-svg');
-					//TODO signal that it is an inner task
-					appendExceptionRows(innertask.exception, icon, innertask.trace_id, tasktitle);
+					//TODO better hierarhical view for the inner task exception?
+					let innertasktitle = tasktitle + " | " + getTaskTitle(innertask);
+					appendExceptionRows(innertask.exception, icon, innertask.trace_id, innertasktitle);
 				});
 			}
 		});
@@ -3290,7 +3330,7 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 					)
 					.attr('data-tooltip', 'An exception was encountered.')
 				;
-				appendExceptionRows(exc.stackTraceString, icon, exc.trace_id, null, 'data-exc-trace-id');
+				appendExceptionRows(exc, icon, exc.trace_id, null, 'data-exc-trace-id');
 			});
 		}
 		if (bt.ignored_exceptions != null) {
@@ -3446,8 +3486,8 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 				.text(value)
 			);
 		} else if(typeof value === 'object') {
-			if (value.__bt_type == 'exception_stacktrace') {
-				let excfirstline = value.stackTraceString.split(/\r?\n/)[0];
+			if (value.__bt_type == 'exception_detail') {
+				let excfirstline = value.stacktrace.split(/\r?\n/)[0];
 				let match = EXCEPTION_FIRST_LINE_REGEX.exec(excfirstline);
 				let exctext;
 				if (match != null) {
@@ -3563,7 +3603,7 @@ input.vis-toggle:not(:checked) + label.vis-toggle.tree-file-contents-toggle:befo
 									.addClass('custom-value-show-toggle')
 									.addClass('vis-toggle')
 									.attr('for', 'toggle-custom-value-' + cvalid);
-								if (typeof v === 'object' && v.__bt_type == 'exception_stacktrace') {
+								if (typeof v === 'object' && v.__bt_type == 'exception_detail') {
 									//auto-open if the value is an exception
 									valinput.attr('checked', '');
 								}

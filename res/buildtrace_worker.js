@@ -14,6 +14,7 @@ const TYPE_BOOLEAN_FALSE = 13;
 const TYPE_FLOAT_AS_STRING = 14;
 const TYPE_DOUBLE_AS_STRING = 15;
 const TYPE_EXCEPTION_STACKTRACE = 16;
+const TYPE_EXCEPTION_DETAIL = 17;
 function readProgress(buffer) {
 	let percent = buffer.idx / buffer.buffer.length;
 	if (buffer.lastPercent == null || percent - buffer.lastPercent > 0.01) {
@@ -193,12 +194,27 @@ function readObject(buffer, listener) {
 		case TYPE_EXCEPTION_STACKTRACE: {
 			let str = readString(buffer);
 			let result = {
-				__bt_type: 'exception_stacktrace',
-				stackTraceString: str
+				__bt_type: 'exception_detail',
+				stacktrace: str,
+				exc_context_id: 0
 			};
 			if (listener != null && listener.onReadException != null) {
 				listener.onReadException(result);
 			}
+			readProgress(buffer);
+			return result;
+		}
+		case TYPE_EXCEPTION_DETAIL: {
+			let result = readObject(buffer, listener);
+			result.__bt_type = 'exception_detail';
+			
+			if (result.exc_context_id == 0) {
+				//only call for the top level exception
+				if (listener != null && listener.onReadException != null) {
+					listener.onReadException(result);
+				}
+			}
+			
 			readProgress(buffer);
 			return result;
 		}
@@ -219,6 +235,62 @@ const CONSOLE_MARKER_GROUP_LINEEND = 10;
 const CONSOLE_MARKER_GROUP_SEVERITY = 11;
 const CONSOLE_MARKER_GROUP_MESSAGE = 12;
 
+//determines if this exception is omittable from the display
+//this is the case if the exception (or its cause exception)
+//are caused by other tasks failing
+//that is, they have a task_trace_id field
+//similar to TaskUtils.isCausedByTaskExecutionFailedExceptionImpl()
+function isOmittableTaskFailureException(exception) {
+	if (exception.circular_reference != null) {
+		//this is a circular reference to some previous exception
+		return false;
+	}
+	if (exception.cause == null) {
+		//no cause
+		return false;
+	}
+	if (exception.cause.task_trace_id != null) {
+		return true;
+	}
+	return isOmittableTaskFailureException(exception.cause);
+}
+
+function collectCustomExceptions(value, collector) {
+	if (value == null) {
+		return;
+	}
+	if (typeof value === 'object') {
+		if (value.__bt_type == 'exception_detail') {
+			collector(value);
+			return;
+		}
+		for (const [key, val] of Object.entries(value)) {
+			collectCustomExceptions(val, collector);
+		}
+	}
+}
+
+function convertExceptionStackTraceStringToExceptionDetails(exception) {
+	if (exception == null) {
+		return null;
+	}
+	if (Array.isArray(exception)) {
+		let result = [];
+		exception.forEach(function(exc){
+			result.push(convertExceptionStackTraceStringToExceptionDetails(exc));
+		});
+		return result;
+	}
+	if(typeof exception === 'string') {
+		return {
+			__bt_type: 'exception_detail',
+			stacktrace: exception,
+			exc_context_id: 0
+		};
+	}
+	return exception;
+}
+
 function parseInput(buffer) {
 	let magic = readInt(buffer);
 	if (magic != 0x45a8f96a) {
@@ -232,6 +304,9 @@ function parseInput(buffer) {
 		_custom_exceptions: [],
 		_exception_count: 0
 	};
+	function addCustomException(exc) {
+		bt._custom_exceptions.push(exc);
+	}
 	let exceptiontraceidcounter = 0;
 	while (true) {
 		let str;
@@ -247,8 +322,9 @@ function parseInput(buffer) {
 			bt[str] = readObject(buffer, {
 				onReadException: function (exc) {
 					exc.trace_id = exceptiontraceidcounter++;
-					bt._custom_exceptions.push(exc);
-					bt._exception_count++;
+					if (isOmittableTaskFailureException(exc)) {
+						exc._bt_omittable = true;
+					}
 				}
 			});
 		} catch(e) {
@@ -276,7 +352,9 @@ function parseInput(buffer) {
 	let totalwarningcount = 0;
 	let totalexceptioncount = 0;
 	let exceptionseverity = 10;
+	
 	if (bt.ignored_exceptions != null) {
+		bt.ignored_exceptions = convertExceptionStackTraceStringToExceptionDetails(bt.ignored_exceptions);
 		totalexceptioncount += bt.ignored_exceptions.length;
 		exceptionseverity = Math.min(exceptionseverity, 3);
 	}
@@ -293,15 +371,42 @@ function parseInput(buffer) {
 		let exceptioncount = 0;
 		let warningcount = 0;
 			
-		if(task.exception != null) {
-			++exceptioncount;
+		if (task.exception_detail != null) {
+			task.exception = task.exception_detail;
+			delete task.exception_detail;
+		} else if(task.exception != null) {
+			task.exception = convertExceptionStackTraceStringToExceptionDetails(task.exception);
+		}
+		if (task.abort_exception_details != null) {
+			task.abort_exceptions = task.abort_exception_details;
+			delete task.abort_exception_details;
+		} else if(task.abort_exceptions != null) {
+			task.abort_exceptions = convertExceptionStackTraceStringToExceptionDetails(task.abort_exceptions);
+		}
+		
+		if (task.exception != null) {
+			let exc = task.exception;
+			if(exc._bt_omittable) {
+			} else if (exc.task_trace_id != null && exc.task_trace_id != task.trace_id) {
+				exc._bt_omittable = true;
+			} else {
+				++exceptioncount;
+			}
 			exceptionseverity = 1;
 		}
-		if(task.abort_exceptions != null) {
-			exceptioncount += task.abort_exceptions.length;
+		if (task.abort_exceptions != null && task.abort_exceptions.length > 0) {
+			task.abort_exceptions.forEach(function(exc) {
+				if(exc._bt_omittable) {
+				} else if (exc.task_trace_id != null && exc.task_trace_id != task.trace_id) {
+					exc._bt_omittable = true;
+				} else {
+					++exceptioncount;
+				}
+			});
 			exceptionseverity = Math.min(exceptionseverity, 2);
 		}
-		if(task.ignored_exceptions != null) {
+		if (task.ignored_exceptions != null) {
+			task.ignored_exceptions = convertExceptionStackTraceStringToExceptionDetails(task.ignored_exceptions);
 			exceptioncount += task.ignored_exceptions.length;
 			exceptionseverity = Math.min(exceptionseverity, 3);
 		}
@@ -323,11 +428,44 @@ function parseInput(buffer) {
 		}
 		if (task.inner_tasks != null) {
 			task.inner_tasks.forEach(function(innertask) {
-				if(innertask.exception != null) {
-					++exceptioncount;
+			
+				if (innertask.exception_detail != null) {
+					innertask.exception = innertask.exception_detail;
+					delete innertask.exception_detail;
+				} else if(innertask.exception != null) {
+					innertask.exception = convertExceptionStackTraceStringToExceptionDetails(innertask.exception);
 				}
+				if (innertask.abort_exception_details != null) {
+					innertask.abort_exceptions = innertask.abort_exception_details;
+					delete innertask.abort_exception_details;
+				} else if(innertask.abort_exceptions != null) {
+					innertask.abort_exceptions = convertExceptionStackTraceStringToExceptionDetails(innertask.abort_exceptions);
+				}
+				
+				if (innertask.exception != null) {
+					let exc = innertask.exception;
+					if(exc._bt_omittable) {
+					} else if (exc.task_trace_id != null && exc.task_trace_id != task.trace_id) {
+						exc._bt_omittable = true;
+					} else {
+						++exceptioncount;
+					}
+				}
+				if (innertask.abort_exceptions != null) {
+					innertask.abort_exceptions.forEach(function(exc) {
+						if(exc._bt_omittable) {
+						} else if (exc.task_trace_id != null && exc.task_trace_id != task.trace_id) {
+							exc._bt_omittable = true;
+						} else {
+							++exceptioncount;
+						}
+					});
+				}
+				collectCustomExceptions(innertask.values, addCustomException);
 			});
 		}
+		
+		collectCustomExceptions(task.values, addCustomException);
 		
 		task._exception_count = exceptioncount;
 		totalexceptioncount += exceptioncount;
@@ -335,8 +473,11 @@ function parseInput(buffer) {
 		task._warning_count = warningcount;
 		totalwarningcount += warningcount;
 	});
+	bt.environments.forEach(function(environment){
+		collectCustomExceptions(environment.values, addCustomException);
+	});
 	bt._warning_count = totalwarningcount;
-	bt._exception_count += totalexceptioncount;
+	bt._exception_count += totalexceptioncount + bt._custom_exceptions.length;
 	bt._artifact_count = bt.artifacts == null ? 0 : Object.keys(bt.artifacts).length;
 	switch(exceptionseverity) {
 		case 1: {
