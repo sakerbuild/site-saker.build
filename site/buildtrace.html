@@ -3279,7 +3279,11 @@ let currentBuildTrace = null;
 						.addClass('color-failure')
 						.addClass('inline-svg');
 					//TODO better hierarhical view for the inner task exception?
-					let innertasktitle = tasktitle + " | " + getTaskTitle(innertask);
+					let innertitle = getTaskTitle(innertask);
+					let innertasktitle = tasktitle;
+					if (innertitle != null) {
+						innertasktitle +=  " | " + innertitle;
+					}
 					appendExceptionRows(innertask.exception, icon, innertask.trace_id, innertasktitle);
 				});
 			}
