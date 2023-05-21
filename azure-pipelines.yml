@@ -296,7 +296,7 @@ steps:
     pipeline: 15
     runVersion: 'latestFromBranch'
     runBranch: 'refs/heads/master'
-    artifactName: 'export_jars_8'
+    artifactName: 'Linux_export_jars_8'
     path: 'build-javadoc/'
     patterns: '**/saker.build-api.jar'
   displayName: 'Download saker.build-api'
