@@ -550,6 +550,7 @@ https://saker.build/saker.build/javadoc/saker/build/scripting/model/info/FieldIn
 https://saker.build/saker.build/javadoc/saker/build/scripting/model/info/InformationHolder.html
 https://saker.build/saker.build/javadoc/saker/build/scripting/model/info/LiteralInformation.html
 https://saker.build/saker.build/javadoc/saker/build/scripting/model/info/ScriptInfoUtils.html
+https://saker.build/saker.build/javadoc/saker/build/scripting/model/info/SimpleBuildTargetInformation.html
 https://saker.build/saker.build/javadoc/saker/build/scripting/model/info/SimpleBuildTargetParameterInformation.html
 https://saker.build/saker.build/javadoc/saker/build/scripting/model/info/SimpleFieldInformation.html
 https://saker.build/saker.build/javadoc/saker/build/scripting/model/info/SimpleLiteralInformation.html
