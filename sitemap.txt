@@ -543,11 +543,14 @@ https://saker.build/saker.build/javadoc/saker/build/scripting/model/TextPartitio
 https://saker.build/saker.build/javadoc/saker/build/scripting/model/TextRegionChange.html
 https://saker.build/saker.build/javadoc/saker/build/scripting/model/TokenStyle.html
 https://saker.build/saker.build/javadoc/saker/build/scripting/model/index.html
+https://saker.build/saker.build/javadoc/saker/build/scripting/model/info/BuildTargetInformation.html
+https://saker.build/saker.build/javadoc/saker/build/scripting/model/info/BuildTargetParameterInformation.html
 https://saker.build/saker.build/javadoc/saker/build/scripting/model/info/ExternalScriptInformationProvider.html
 https://saker.build/saker.build/javadoc/saker/build/scripting/model/info/FieldInformation.html
 https://saker.build/saker.build/javadoc/saker/build/scripting/model/info/InformationHolder.html
 https://saker.build/saker.build/javadoc/saker/build/scripting/model/info/LiteralInformation.html
 https://saker.build/saker.build/javadoc/saker/build/scripting/model/info/ScriptInfoUtils.html
+https://saker.build/saker.build/javadoc/saker/build/scripting/model/info/SimpleBuildTargetParameterInformation.html
 https://saker.build/saker.build/javadoc/saker/build/scripting/model/info/SimpleFieldInformation.html
 https://saker.build/saker.build/javadoc/saker/build/scripting/model/info/SimpleLiteralInformation.html
 https://saker.build/saker.build/javadoc/saker/build/scripting/model/info/SimpleTaskInformation.html
