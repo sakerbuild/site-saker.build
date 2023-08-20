@@ -307,7 +307,7 @@ steps:
     pipeline: 7
     runVersion: 'latestFromBranch'
     runBranch: 'refs/heads/master'
-    artifactName: 'export_jars'
+    artifactName: 'Linux_export_jars_8'
     path: 'build-javadoc/'
     patterns: '**/saker.nest-api.jar'
   displayName: 'Download saker.nest-api'
