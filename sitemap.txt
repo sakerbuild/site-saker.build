@@ -920,6 +920,7 @@ https://saker.build/saker.build/javadoc/saker/build/util/data/DataConverterUtils
 https://saker.build/saker.build/javadoc/saker/build/util/data/GenericArgumentLocation.html
 https://saker.build/saker.build/javadoc/saker/build/util/data/annotation/ConverterConfiguration.html
 https://saker.build/saker.build/javadoc/saker/build/util/data/annotation/ConverterConfigurationHolder.html
+https://saker.build/saker.build/javadoc/saker/build/util/data/annotation/ValueType.html
 https://saker.build/saker.build/javadoc/saker/build/util/data/annotation/index.html
 https://saker.build/saker.build/javadoc/saker/build/util/data/index.html
 https://saker.build/saker.build/javadoc/saker/build/util/exc/ExceptionView.html
