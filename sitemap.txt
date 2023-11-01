@@ -1914,6 +1914,7 @@ https://saker.build/saker.zip/javadoc/index.html
 https://saker.build/saker.zip/javadoc/saker/zip/api/create/IncludeResourceMapping.html
 https://saker.build/saker.zip/javadoc/saker/zip/api/create/ZipCreationTaskBuilder.html
 https://saker.build/saker.zip/javadoc/saker/zip/api/create/ZipCreatorTaskOutput.html
+https://saker.build/saker.zip/javadoc/saker/zip/api/create/ZipResourceEntry.html
 https://saker.build/saker.zip/javadoc/saker/zip/api/create/ZipResourceTransformationContext.html
 https://saker.build/saker.zip/javadoc/saker/zip/api/create/ZipResourceTransformer.html
 https://saker.build/saker.zip/javadoc/saker/zip/api/create/ZipResourceTransformerFactory.html
