@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>ZipIncludeTaskOption&nbsp|&nbsp;saker.jar</title>
+	<title>ZipCompression&nbsp|&nbsp;saker.jar</title>
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
@@ -66,7 +66,7 @@
 		</div>
 	</div>
 </div>
-<nav class="taskdoc-nav" data-nav-location="ZipIncludeTaskOption">
+<nav class="taskdoc-nav" data-nav-location="ZipCompression">
 	<div class="container">
 		<span class="taskdoc-nav-title">TaskDoc</span>
 		<a class="nav-location-item" data-nav-location="taskdoc-index" href="../index.html" title="Task doc index">Index</a>
@@ -74,20 +74,7 @@
 </nav>
 <div class="container page-contents taskdoc">
 	<div class="taskdoc-content">
-	<div class="typedoc-header"><div class="typedoc-typename"><a href="" title="Type ZipIncludeTaskOption">ZipIncludeTaskOption</a></div><div class="typedoc-container-bundle">In bundle: <a title="Package saker.zip">saker.zip</a></div></div><div class="typedoc-info" taskdoc-info-format="format.plaintext">Represents an archive entry inclusion for ZIP archive creation.
-Accepts simple paths, file locations, file collections or may be configured directly.
-The options is used to include the specified entries from an Archive and add them to the output ZIP archive.
-Use the Resources field to specify the entries to include, and the TargetDirectory to relocate the entries in the output.</div><div class="typedoc-idx"><div class="typedoc-idx-title">Summary</div><div class="typedoc-idx-section typedoc-idx-fields"><table><caption>Fields</caption><tbody><tr class="taskdoc-idx-member"><td><a class="typedoc-idx-field-name" href="#f-Archive" title="Field Archive">Archive</a></td><td>Specifies one or more source ZIP archives from where the entries should be included.
-</td></tr><tr class="taskdoc-idx-member"><td><a class="typedoc-idx-field-name" href="#f-Compression" title="Field Compression">Compression</a></td><td>Sets the compression that should be used for the included resources.</td></tr><tr class="taskdoc-idx-member"><td><a class="typedoc-idx-field-name" href="#f-Resources" title="Field Resources">Resources</a></td><td>Specifies one or more wildcard patterns which are used to select the input entries that should be included in the output.
-</td></tr><tr class="taskdoc-idx-member"><td><a class="typedoc-idx-field-name" href="#f-TargetDirectory" title="Field TargetDirectory">TargetDirectory</a></td><td>Specifies the target directory under which the entries specified should be placed.
-</td></tr></tbody></table></div></div><div class="typedoc-details-fields"><div class="typedoc-details-title">Fields</div><div id="f-Archive" class="typedoc-detail-member typedoc-detail-field"><div class="typedoc-detail-param-header-sig"><div class="typedoc-detail-field-name"><a href="#f-Archive" title="Field Archive">Archive</a></div><div class="typedoc-detail-field-type">Collection of <a href="MultiFileLocationTaskOption.html" title="Type MultiFileLocationTaskOption">MultiFileLocationTaskOption</a></div></div><div class="typedoc-detail-field-detail" taskdoc-info-format="format.plaintext">Specifies one or more source ZIP archives from where the entries should be included.
-The archives can be specified using simple paths, wildcards, file locations or file collections.
-For each given archive, the specified Resources will be included and added to the result archive under the given TargetDirectory.</div></div><div id="f-Compression" class="typedoc-detail-member typedoc-detail-field"><div class="typedoc-detail-param-header-sig"><div class="typedoc-detail-field-name"><a href="#f-Compression" title="Field Compression">Compression</a></div><div class="typedoc-detail-field-type"><a href="ZipCompressionTaskOption.html" title="Type ZipCompressionTaskOption">ZipCompressionTaskOption</a></div></div><div class="typedoc-detail-field-detail" taskdoc-info-format="format.plaintext">Sets the compression that should be used for the included resources.</div></div><div id="f-Resources" class="typedoc-detail-member typedoc-detail-field"><div class="typedoc-detail-param-header-sig"><div class="typedoc-detail-field-name"><a href="#f-Resources" title="Field Resources">Resources</a></div><div class="typedoc-detail-field-type">Collection of <a href="../../../saker.build/javadoc/saker/build/file/path/WildcardPath.html" title="WildcardPath">WildcardPath</a></div></div><div class="typedoc-detail-field-detail" taskdoc-info-format="format.plaintext">Specifies one or more wildcard patterns which are used to select the input entries that should be included in the output.
-Each entry in the source Archive will be checked if any of the specified resource wildcards matches its name. If so, then it will be included in the output ZIP with the archive path that is the concatenation of TargetDirectory and the path in the source Archive.
-If none of the wildcards match an input entry name, it won&#39;t be added to the output.
-If no wildcard patterns are specified, all entries will be included from the source Archive.</div></div><div id="f-TargetDirectory" class="typedoc-detail-member typedoc-detail-field"><div class="typedoc-detail-param-header-sig"><div class="typedoc-detail-field-name"><a href="#f-TargetDirectory" title="Field TargetDirectory">TargetDirectory</a></div><div class="typedoc-detail-field-type"><a href="../../../saker.build/javadoc/saker/build/file/path/SakerPath.html" title="SakerPath">SakerPath</a></div></div><div class="typedoc-detail-field-detail" taskdoc-info-format="format.plaintext">Specifies the target directory under which the entries specified should be placed.
-Any input entry that is matched by this configuration will have their archive paths prepended by the value of this field.
-The specified path must be forward relative. By default, no target directory is used.</div></div></div>
+	<div class="typedoc-header"><div class="typedoc-typename"><a href="" title="Type ZipCompression">ZipCompression</a></div><div class="typedoc-container-bundle">In bundle: <a title="Package saker.zip">saker.zip</a></div></div><div class="typedoc-info" taskdoc-info-format="format.plaintext">ZIP compression methods.</div><div class="typedoc-idx"><div class="typedoc-idx-title">Summary</div><div class="typedoc-idx-section typedoc-idx-enums"><table><caption>Enumeration values</caption><tbody><tr class="taskdoc-idx-member"><td><a class="typedoc-idx-enum-name" href="#en-DEFLATED" title="Enum DEFLATED">DEFLATED</a></td><td>Use deflate compression for the data.</td></tr><tr class="taskdoc-idx-member"><td><a class="typedoc-idx-enum-name" href="#en-STORED" title="Enum STORED">STORED</a></td><td>Store the data as is, without compression.</td></tr></tbody></table></div></div><div class="typedoc-details-enums"><div class="typedoc-details-title">Enumeration values</div><div id="en-DEFLATED" class="typedoc-detail-member typedoc-detail-enum"><div class="typedoc-detail-enum-name"><a href="#en-DEFLATED" title="Enum DEFLATED">DEFLATED</a></div><div class="typedoc-detail-enum-detail" taskdoc-info-format="format.plaintext">Use deflate compression for the data.</div></div><div id="en-STORED" class="typedoc-detail-member typedoc-detail-enum"><div class="typedoc-detail-enum-name"><a href="#en-STORED" title="Enum STORED">STORED</a></div><div class="typedoc-detail-enum-detail" taskdoc-info-format="format.plaintext">Store the data as is, without compression.</div></div></div>
 	</div>
 </div>
 <div class="doc-footer">

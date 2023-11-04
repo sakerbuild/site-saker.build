@@ -1029,6 +1029,8 @@ https://saker.build/saker.jar/taskdoc/types/MultiFileLocationTaskOption.html
 https://saker.build/saker.jar/taskdoc/types/MultiReleaseJavaMajorNumber.html
 https://saker.build/saker.jar/taskdoc/types/MultiReleaseOptimizerInputFileTaskOption.html
 https://saker.build/saker.jar/taskdoc/types/MultiReleaseOptimizerTaskOutput.html
+https://saker.build/saker.jar/taskdoc/types/ZipCompression.html
+https://saker.build/saker.jar/taskdoc/types/ZipCompressionTaskOption.html
 https://saker.build/saker.jar/taskdoc/types/ZipContentsTaskOption.html
 https://saker.build/saker.jar/taskdoc/types/ZipCreatorTaskOutput.html
 https://saker.build/saker.jar/taskdoc/types/ZipIncludeTaskOption.html
@@ -1926,6 +1928,8 @@ https://saker.build/saker.zip/taskdoc/types/FileCollection.html
 https://saker.build/saker.zip/taskdoc/types/FileLocation.html
 https://saker.build/saker.zip/taskdoc/types/LocalFileLocation.html
 https://saker.build/saker.zip/taskdoc/types/MultiFileLocationTaskOption.html
+https://saker.build/saker.zip/taskdoc/types/ZipCompression.html
+https://saker.build/saker.zip/taskdoc/types/ZipCompressionTaskOption.html
 https://saker.build/saker.zip/taskdoc/types/ZipCreatorTaskOutput.html
 https://saker.build/saker.zip/taskdoc/types/ZipIncludeTaskOption.html
 https://saker.build/saker.zip/taskdoc/types/ZipResourceTransformerTaskOption.html
