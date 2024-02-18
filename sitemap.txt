@@ -1657,6 +1657,7 @@ https://saker.build/saker.standard/taskdoc/std.file.mirror.html
 https://saker.build/saker.standard/taskdoc/std.file.mirror.path.html
 https://saker.build/saker.standard/taskdoc/std.file.place.html
 https://saker.build/saker.standard/taskdoc/std.file.put.html
+https://saker.build/saker.standard/taskdoc/std.file.type.html
 https://saker.build/saker.standard/taskdoc/std.file.wildcard.html
 https://saker.build/saker.standard/taskdoc/std.file.wildcard.local.html
 https://saker.build/saker.standard/taskdoc/std.param.env.html
@@ -1668,11 +1669,12 @@ https://saker.build/saker.standard/taskdoc/types/ExecutionFileLocation.html
 https://saker.build/saker.standard/taskdoc/types/FileCollection.html
 https://saker.build/saker.standard/taskdoc/types/FileLocation.html
 https://saker.build/saker.standard/taskdoc/types/FileLocationTaskOption.html
+https://saker.build/saker.standard/taskdoc/types/FileTypeTaskOutput.html
 https://saker.build/saker.standard/taskdoc/types/LocalFileLocation.html
 https://saker.build/saker.standard/taskdoc/types/MultiFileLocationTaskOption.html
 https://saker.build/saker.standard/taskdoc/types/Pattern.html
 https://saker.build/saker.standard/taskdoc/types/PatternReplacement.html
-https://saker.build/saker.standard/taskdoc/types/PatternReplacement_2.html
+https://saker.build/saker.standard/taskdoc/types/PrepareDirectoryWorkerTaskOutput.html
 https://saker.build/saker.standard/taskdoc/types/RelativeContentsTaskOption.html
 https://saker.build/saker.util/doc/addclasspath.html
 https://saker.build/saker.util/doc/asbundledependency.html

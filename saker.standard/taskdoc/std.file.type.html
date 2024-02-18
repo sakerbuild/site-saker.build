@@ -2,25 +2,24 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Saker.standard API JavaDoc</title>
+	<title>std.file.type()&nbsp|&nbsp;saker.standard</title>
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
 	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
 	
-	<link rel="stylesheet" type="text/css" href="../../res/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="../../res/doc-saker.css">
-	
+	<link rel="stylesheet" href="../../res/bootstrap.min.css" >
+	<link rel="stylesheet" href="../../res/doc-saker.css" >
 	<script type="application/ld+json">
 	{
 	  "@context": "https://schema.org",
 	  "@type": "WebSite",
 	  "name": "saker.standard",
-	  "url": "https://saker.build/saker.standard/javadoc"
+	  "url": "https://saker.build/saker.standard/taskdoc"
 	}
 	</script>
 </head>
-<body data-nav-location="javadoc" data-subdoc-presence="nest-package packagedoc javadoc taskdoc">
+<body data-nav-location="taskdoc" data-subdoc-presence="nest-package packagedoc javadoc taskdoc">
 <div class="doc-nav-bar">
 	<div class="container">
 		<a class="home-link" href="../index.html" title="saker.standard"><img style="height: 2.5em;" class="logo" src="../../res/logo.svg"/><span class="page-name">saker.standard</span></a>
@@ -67,17 +66,17 @@
 		</div>
 	</div>
 </div>
-<nav class="javadoc-nav" data-nav-location="index">
+<nav class="taskdoc-nav" data-nav-location="std.file.type">
 	<div class="container">
-		<span class="javadoc-nav-title">JavaDoc</span>
-		<a class="nav-location-item" data-nav-location="javadoc-packages" href="index.html" title="Package index">Packages</a>
-		<a class="nav-location-item" data-nav-location="javadoc-all-classes" href="all-classes.html" title="All classes">All classes</a>
-		<a class="nav-location-item" data-nav-location="javadoc-constants" href="constants.html" title="All constants">Constants</a>
+		<span class="taskdoc-nav-title">TaskDoc</span>
+		<a class="nav-location-item" data-nav-location="taskdoc-index" href="index.html" title="Task doc index">Index</a>
 	</div>
 </nav>
-<div class="container page-contents javadoc">
-	<div class="javadoc-content">
-	<div class="javadoc-index-packages javadoc-idx-section"><table><caption>Packages</caption><thead><tr><th class="javadoc-index-packages-th-name"></th><th class="javadoc-index-packages-th-short"></th></tr></thead><tbody><tr class="javadoc-index-package javadoc-idx-member"><td class="javadoc-index-package-name javadoc-idx-member-meta"><a href="saker/std/api/dir/prepare/index.html" title="saker.std.api.dir.prepare" data-javadoc-kind="package">saker.std.api.dir.prepare</a></td><td class="javadoc-index-package-sig javadoc-idx-member-sig"><div class="javadoc-index-package-short javadoc-idx-member-short">Contains classes related to the std.dir.prepare task.</div></td></tr><tr class="javadoc-index-package javadoc-idx-member"><td class="javadoc-index-package-name javadoc-idx-member-meta"><a href="saker/std/api/environment/qualifier/index.html" title="saker.std.api.environment.qualifier" data-javadoc-kind="package">saker.std.api.environment.qualifier</a></td><td class="javadoc-index-package-sig javadoc-idx-member-sig"><div class="javadoc-index-package-short javadoc-idx-member-short">Contains classes related to build environment qualifiers.</div></td></tr><tr class="javadoc-index-package javadoc-idx-member"><td class="javadoc-index-package-name javadoc-idx-member-meta"><a href="saker/std/api/file/location/index.html" title="saker.std.api.file.location" data-javadoc-kind="package">saker.std.api.file.location</a></td><td class="javadoc-index-package-sig javadoc-idx-member-sig"><div class="javadoc-index-package-short javadoc-idx-member-short">Contains classes for handling and representing files in the build system.</div></td></tr><tr class="javadoc-index-package javadoc-idx-member"><td class="javadoc-index-package-name javadoc-idx-member-meta"><a href="saker/std/api/util/index.html" title="saker.std.api.util" data-javadoc-kind="package">saker.std.api.util</a></td><td class="javadoc-index-package-sig javadoc-idx-member-sig"><div class="javadoc-index-package-short javadoc-idx-member-short">Utility classes for the saker.standard package.</div></td></tr></tbody></table></div>
+<div class="container page-contents taskdoc">
+	<div class="taskdoc-content">
+	<div class="taskdoc-header"><div class="taskdoc-header-sig"><div class="taskdoc-taskname"><a href="" title="Build task std.file.type()">std.file.type()</a></div><div class="taskdoc-return-type"><a href="types/FileTypeTaskOutput.html" title="Type FileTypeTaskOutput">FileTypeTaskOutput</a></div></div><div class="taskdoc-container-bundle">In bundle: <a title="Bundle saker.standard">saker.standard</a></div></div><div class="taskdoc-info" taskdoc-info-format="format.plaintext">Gets information about the type of a file.
+The task will query the file system for the file at the given file location and returns an object containing information about its type.
+In case information about a local file is queried, symbolic links will be followed.</div><div class="taskdoc-idx"><div class="taskdoc-idx-title">Summary</div><div class="taskdoc-idx-section taskdoc-idx-parameters"><table><caption>Parameters</caption><tbody><tr class="taskdoc-idx-member" taskdoc-required><td class="taskdoc-idx-param-meta"><a class="taskdoc-idx-paramname" href="#Path" title="Task parameter Path">Path</a></td><td class="taskdoc-idx-param-summary"><div class="taskdoc-required-parameter">Required parameter. </div>The path or file location of the file that should be queried.</td></tr></tbody></table></div></div><div class="taskdoc-details-parameters"><div class="taskdoc-details-title">Parameters</div><div id="Path" class="taskdoc-detail-param" taskdoc-required><div class="taskdoc-detail-param-header"><div class="taskdoc-detail-param-header-sig"><div class="taskdoc-detail-param-header-name"><a href="#Path" title="Task parameter Path">Path</a></div><div class="taskdoc-detail-param-header-type"><a href="types/FileLocationTaskOption.html" title="Type FileLocationTaskOption">FileLocationTaskOption</a></div></div><div class="taskdoc-detail-param-header-aliases">Aliases: <div class="taskdoc-detail-param-header-alias"><a title="Unnamed parameter">&lt;unnamed&gt;</a></div></div></div><div class="taskdoc-detail-member taskdoc-detail-param-detail" taskdoc-info-format="format.plaintext"><div class="taskdoc-required-parameter">Required parameter.</div>The path or file location of the file that should be queried.</div></div></div>
 	</div>
 </div>
 <div class="doc-footer">

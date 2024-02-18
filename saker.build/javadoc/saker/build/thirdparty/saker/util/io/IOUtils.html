@@ -109,7 +109,7 @@
  wrapped into an <span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html" title="class java.io.IOException" data-javadoc-kind="class">IOException</a></span>, the laters will be added as suppressed exceptions to the first caught exception.
  <p>
  Methods that start with <code>close</code> will call <span class="javadoc-code-ref"><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseable.html" title="interface java.lang.AutoCloseable" data-javadoc-kind="interface">AutoCloseable</a>.<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseable.html#close--" title="AutoCloseable.close()" data-javadoc-kind="method" data-javadoc-enclosing-kind="interface">close<span class="javadoc-code-ref">()</span></a></span> on the argument object(s). The
- closing will occurr for all argument objects, and any exception caught will be handled according to each method
+ closing will occur for all argument objects, and any exception caught will be handled according to each method
  documentation. Using this methods can be useful when multiple closeables need to be closed without having a nested
  try-finally block in the caller method.
  <p>
