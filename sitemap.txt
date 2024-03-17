@@ -663,6 +663,7 @@ https://saker.build/saker.build/javadoc/saker/build/task/utils/dependencies/Equa
 https://saker.build/saker.build/javadoc/saker/build/task/utils/dependencies/PathFileCollectionStrategy.html
 https://saker.build/saker.build/javadoc/saker/build/task/utils/dependencies/RecursiveFileCollectionStrategy.html
 https://saker.build/saker.build/javadoc/saker/build/task/utils/dependencies/RecursiveIgnoreCaseExtensionFileCollectionStrategy.html
+https://saker.build/saker.build/javadoc/saker/build/task/utils/dependencies/StringValueTaskOutputChangeDetector.html
 https://saker.build/saker.build/javadoc/saker/build/task/utils/dependencies/WildcardFileCollectionStrategy.html
 https://saker.build/saker.build/javadoc/saker/build/task/utils/dependencies/index.html
 https://saker.build/saker.build/javadoc/saker/build/task/utils/index.html
